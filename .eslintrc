@@ -1,0 +1,6 @@
+{
+  "extends": "@equinor/eslint-config-fusion",
+  "rules": {
+    "@typescript-eslint/no-namespace": "off"
+  }
+}

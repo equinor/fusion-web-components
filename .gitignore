@@ -1,0 +1,12 @@
+.vscode
+.DS_STORE
+
+*.log
+*.log.*
+*.tsbuildinfo*
+
+node_modules
+packages/*/package-lock.json
+packages/*/build
+packages/*/dist
+packages/*/lib

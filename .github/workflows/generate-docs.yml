@@ -1,0 +1,42 @@
+name: Generate Docs
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout docs
+        uses: actions/checkout@v2
+        with:
+          ref: docs
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+
+      - name: Config git user
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: update branch
+        run: git pull origin main
+
+      - name: Install Node Dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Build storybook
+        run: npm run storybook:build
+
+      - name: Commit changes
+        run: |
+            echo "!docs/" >> .gitignore
+            git add docs 
+            git commit -m'docs: Build of storybook'
+            git push --force

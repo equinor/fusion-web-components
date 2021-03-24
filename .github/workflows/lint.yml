@@ -1,0 +1,46 @@
+name: Lint project files
+
+on: 
+  pull_request:
+    paths:
+      - '**.ts'
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+
+      - name: Cache Node Modules
+        id: cache-node
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}
+
+      - name: Install Node Dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm ci
+        env:
+          CI: TRUE
+
+      - name: Build project
+        run: npx tsc -b
+
+      - name: Save Code Linting Report JSON
+        run: npm run lint:report
+        continue-on-error: true
+
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@1.1.2
+        with:
+          repo-token: "${{ github.token }}"
+          report-json: "eslint-report.log.json"
+
+      - name: Upload ESLint report
+        uses: actions/upload-artifact@v2
+        with:
+          name: eslint-report.log.json
+          path: eslint-report.log.json

@@ -1,0 +1,43 @@
+import { html } from 'lit-element';
+import { styleMap } from 'lit-html/directives/style-map';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element, { iconNames } from '@equinor/fusion-wc-icon';
+Element;
+
+<Meta
+    title="Basic/icons"
+    argTypes={{
+        icon: {
+            control: {
+                type: 'select',
+                options: iconNames,
+            },
+        },
+        size: {
+            control: {
+                type: 'range',
+                min: 8,
+                max: 120,
+                step: 8,
+            },
+        },
+        color: { control: 'color' },
+    }}
+/>
+
+export const Template = ({ icon, size, color }) => {
+    const style = styleMap({
+        fontSize: size + 'px',
+        color,
+    });
+    return html`<fwc-icon style=${style} icon=${icon}></fwc-icon>`;
+};
+
+With `MDX` we can define a story for `Checkbox` right in the middle of our
+Markdown documentation.
+
+<Canvas>
+    <Story name="default" args={{ icon: 'person', size: 64 }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>

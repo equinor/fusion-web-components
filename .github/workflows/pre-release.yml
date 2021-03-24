@@ -1,0 +1,60 @@
+name: Pre-release
+
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Realse tag (PR)'     
+        required: true
+
+jobs:
+  publish:
+    name: Publish to PR
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          registry-url: https://registry.npmjs.org
+
+      - name: Config git user
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Cache Node Modules
+        id: cache-node
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}
+
+      - name: Install Node Dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm ci
+        env:
+          CI: TRUE
+
+      - name: Bump versions (pre-release)
+        run: npx lerna version --yes --conventional-prerelease --no-changelog --no-git-tag-version --preid ${{ github.event.inputs.tag }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Commit changes
+        run: |
+            git add packages/*/package.json 
+            git commit -m'chore(prerelease): bumped version with tag ${{ github.event.inputs.tag }}'
+            git push
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Release packages
+        run: npx lerna publish from-package --yes --no-verify-access --dist-tag ${{ github.event.inputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

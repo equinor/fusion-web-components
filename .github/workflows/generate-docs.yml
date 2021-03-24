@@ -28,11 +28,8 @@ jobs:
         if: steps.cache-node.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build project
-        run: npm run build
-
       - name: Build storybook
-        run: npm run storybook:build
+        run: npm run docs
 
       - name: Commit changes
         run: |

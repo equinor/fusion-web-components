@@ -12,10 +12,10 @@ export interface PopoverElementProps {
   show?: boolean;
   flip?: boolean;
   offset?: [number, number];
-  triggers?: ShowTrigger[]
+  triggers?: ShowTrigger[];
 }
 
-export type ShowTrigger = 'hover' | 'click'
+export type ShowTrigger = 'hover' | 'click';
 
 /**
  * Element wrapper for PopperJS
@@ -63,7 +63,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
           offset: this.offset,
         },
       },
-      ...this._modifiers
+      ...this._modifiers,
     ];
   }
 
@@ -74,10 +74,12 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
   }
 
   render() {
-    const popperClasses = this.disabled ? 'disabled' : classMap({
-      show: !!this.show,
-      hover: this.triggers.includes('hover')
-    })
+    const popperClasses = this.disabled
+      ? 'disabled'
+      : classMap({
+          show: !!this.show,
+          hover: this.triggers.includes('hover'),
+        });
     return html`
       <span id="content" popperjs=${popperjs(this.popper, this.options)} @click=${this.handleClick}>
         <slot></slot>
@@ -88,13 +90,12 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
     `;
   }
 
-  @eventOptions({passive: true})
-  protected handleClick(){
-    if(this.triggers.includes('click')){
+  @eventOptions({ passive: true })
+  protected handleClick() {
+    if (this.triggers.includes('click')) {
       this.show = !this.show;
     }
   }
-
 }
 
 export default PopoverElement;

@@ -16,7 +16,8 @@
     "docs": "npm run build-storybook --prefix storybook -- --docs --loglevel warn",
     "prepublish": "lerna bootstrap --hoist",
     "prepack": "npm run build",
-    "lint": "eslint --quiet ./**/src/**/*.ts",
+    "lint": "eslint ./packages/*/src",
+    "lint:fix": "npm run lint -- --fix",
     "lint:report": "eslint --output-file eslint-report.log.json --format json packages/*/src",
     "update": "npx lerna-update-wizard",
     "dedupe": "npx lerna-update-wizard --dedupe",
@@ -50,7 +51,7 @@
     }
   },
   "lint-staged": {
-    "./**/src/**/*.ts": [
+    "./packages/*/src": [
       "eslint --quiet --fix"
     ]
   }

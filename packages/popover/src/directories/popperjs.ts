@@ -5,16 +5,17 @@ type PopperInstance = Instance & {
   resizeObserver: ResizeObserver;
 };
 
-export type Options<TModifier extends Partial<Modifier<any, any>> = StrictModifiers> = Partial<
-  OptionsGeneric<TModifier>
-> & {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type PopperModifier = Partial<Modifier<any, any>>;
+
+export type Options<TModifier extends PopperModifier = StrictModifiers> = Partial<OptionsGeneric<TModifier>> & {
   enabled?: boolean;
 };
 
 const instances = new WeakMap<HTMLElement, PopperInstance>();
 
 export const popperjs = directive(
-  <TElement extends HTMLElement = HTMLElement, TModifier extends Partial<Modifier<any, any>> = StrictModifiers>(
+  <TElement extends HTMLElement = HTMLElement, TModifier extends PopperModifier = StrictModifiers>(
     popper: TElement | Promise<TElement>,
     options?: Options<TModifier>
   ) => async (part: Part): Promise<void> => {

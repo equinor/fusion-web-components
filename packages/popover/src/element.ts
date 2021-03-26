@@ -1,10 +1,10 @@
 import { eventOptions, html, LitElement, property, queryAsync, TemplateResult } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
-import { Modifier, Placement } from '@popperjs/core';
+import { Placement } from '@popperjs/core';
 
 import style from './element.css';
-import { popperjs, Options } from './directories/popperjs';
+import { popperjs, Options, PopperModifier } from './directories/popperjs';
 
 export interface PopoverElementProps {
   disabled?: boolean;
@@ -50,8 +50,8 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
     return { placement, enabled, modifiers };
   }
 
-  private _modifiers: Partial<Modifier<any, any>>[] = [];
-  get modifiers(): Partial<Modifier<any, any>>[] {
+  private _modifiers: PopperModifier[] = [];
+  get modifiers(): PopperModifier[] {
     return [
       {
         name: 'flip',
@@ -68,7 +68,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
   }
 
   /** Set popper modifiers for element */
-  set modifiers(modifiers: Partial<Modifier<any, any>>[]) {
+  set modifiers(modifiers: PopperModifier[]) {
     this._modifiers = modifiers;
     this.requestUpdate();
   }

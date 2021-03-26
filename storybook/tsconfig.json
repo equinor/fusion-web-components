@@ -12,5 +12,6 @@
   "references": [
     { "path": "../packages/picture" },
     { "path": "../packages/icon" },
+    { "path": "../packages/popover" },
   ]
 }

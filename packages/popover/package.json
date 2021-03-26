@@ -7,11 +7,6 @@
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/equinor/fusion-web-components.git",
-    "directory": "packages/popover"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -30,5 +25,13 @@
     "lit-element": "^2.x",
     "lit-html": "^1.x",
     "typescript": "^4.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/popover"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

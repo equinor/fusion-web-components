@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
+  "private": true,
   "scripts": {
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"
@@ -21,5 +22,13 @@
     "lit-element": "^2.x",
     "lit-html": "^1.x",
     "typescript": "^4.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/avatar"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

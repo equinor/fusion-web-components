@@ -7,6 +7,15 @@
     "build": "tsc -b",
     "prepack": "npm run build"
   },
+  
   "keywords": [],
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/core"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -23,5 +23,13 @@
     "lit-element": "^2.x",
     "lit-html": "^1.x",
     "typescript": "^4.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/picture"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

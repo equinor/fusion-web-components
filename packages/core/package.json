@@ -1,13 +1,12 @@
 {
   "name": "@equinor/fusion-wc-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",
     "prepack": "npm run build"
   },
-  
   "keywords": [],
   "license": "ISC",
   "repository": {

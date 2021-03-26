@@ -2,6 +2,7 @@
   "name": "@equinor/fusion-wc-avatar",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",

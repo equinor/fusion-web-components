@@ -13,7 +13,7 @@
     "build:clean": "npm run clean && npm run build",
     "build:typescript": "tsc -b",
     "predocs": "del-cli ./docs && npm run build",
-    "docs": "npm run build-storybook --prefix storybook -- --loglevel warn",
+    "docs": "npm run build-storybook --prefix storybook -- --docs --loglevel warn",
     "prepublish": "lerna bootstrap --hoist",
     "prepack": "npm run build",
     "lint": "eslint --quiet ./**/src/**/*.ts",

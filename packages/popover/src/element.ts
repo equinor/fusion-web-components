@@ -1,4 +1,4 @@
-import { eventOptions, html, LitElement, property, queryAsync } from 'lit-element';
+import { eventOptions, html, LitElement, property, queryAsync, TemplateResult } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
 import { Modifier, Placement } from '@popperjs/core';
@@ -73,7 +73,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
     this.requestUpdate();
   }
 
-  render() {
+  render(): TemplateResult {
     const popperClasses = this.disabled
       ? 'disabled'
       : classMap({
@@ -91,7 +91,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
   }
 
   @eventOptions({ passive: true })
-  protected handleClick() {
+  protected handleClick(): void {
     if (this.triggers.includes('click')) {
       this.show = !this.show;
     }

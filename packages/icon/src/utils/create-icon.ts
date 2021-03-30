@@ -1,4 +1,4 @@
-import { svg } from 'lit-element';
+import { svg, SVGTemplateResult } from 'lit-element';
 
 import * as edsIcons from '@equinor/eds-icons';
 import { IconData } from '@equinor/eds-icons';
@@ -11,13 +11,13 @@ export enum IconType {
   EDS = 'eds',
 }
 
-export const createSvg = ({ height, width, svgPathData }: IconData) => svg`
+export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplateResult => svg`
   <svg height="${height}" width="${width}"  viewBox="0 0 ${width} ${height}">
     <path fill-rule="evenodd" clip-rule="evenodd" d="${svgPathData}"></path>
   </svg>
 `;
 
-export const createIcon = (name: IconName, type: IconType = IconType.EDS) => {
+export const createIcon = (name: IconName, type: IconType = IconType.EDS): SVGTemplateResult => {
   switch (type) {
     case IconType.EDS:
       return createSvg(edsIcons[name as keyof typeof edsIcons]);

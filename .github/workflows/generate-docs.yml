@@ -22,7 +22,7 @@ jobs:
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: update branch
-        run: git pull --rebase origin main
+        run: git pull --no-edit origin main
 
       - name: Install Node Dependencies
         if: steps.cache-node.outputs.cache-hit != 'true'

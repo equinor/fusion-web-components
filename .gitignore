@@ -10,5 +10,3 @@ packages/*/package-lock.json
 packages/*/build
 packages/*/dist
 packages/*/lib
-
-docs/

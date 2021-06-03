@@ -1,0 +1,21 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element from '@equinor/fusion-wc-checkbox';
+Element;
+
+<Meta title="Basic/checkbox" />
+
+export const Template = () => {
+  return html`<fwc-checkbox></fwc-checkbox>`;
+};
+
+With `MDX` we can define a story for `Checkbox` right in the middle of our
+Markdown documentation.
+
+## Checkbox
+
+<Canvas>
+  <Story name="default" args={{}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

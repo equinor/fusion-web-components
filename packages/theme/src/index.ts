@@ -1,1 +1,1 @@
-export { style as fusionTheme } from './style';
+export { mdcStyle as fusionMDCStyle } from './mdcStyle';

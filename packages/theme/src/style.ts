@@ -6,5 +6,6 @@ export const style = css`
     --mdc-theme-secondary: ${unsafeCSS(theme.colors.interactive.primary__resting.value.hex)};
     --mdc-theme-on-surface: ${unsafeCSS(theme.colors.text.static_icons__primary_white.value.hex)};
     --mdc-theme-surface: ${unsafeCSS(theme.colors.text.static_icons__secondary.value.hex)};
+    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.primary__resting.value.hex)};
   }
 `;

@@ -5,17 +5,45 @@ Element;
 
 <Meta title="Basic/switch" />
 
-export const Template = () => {
+export const Default = ({}) => {
   return html`<fwc-switch></fwc-switch>`;
+};
+
+export const DefaultChecked = ({}) => {
+  return html`<fwc-switch checked></fwc-switch>`;
+};
+
+export const Disabled = ({}) => {
+  return html`<fwc-switch disabled></fwc-switch>`;
+};
+
+export const DisabledChecked = ({}) => {
+  return html`<fwc-switch checked disabled/></fwc-switch>`;
 };
 
 With `MDX` we can define a story for `Switch` right in the middle of our
 Markdown documentation.
 
-## Checkbox
+## Switch
+
+### Default
 
 <Canvas>
   <Story name="default" args={{}}>
-    {Template.bind({})}
+    {Default.bind({})}
+  </Story>
+  <Story name="default-checked" args={{}}>
+    {DefaultChecked.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story name="disabled" args={{}}>
+    {Disabled.bind({})}
+  </Story>
+  <Story name="disabled-checked" args={{}}>
+    {DisabledChecked.bind({})}
   </Story>
 </Canvas>

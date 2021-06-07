@@ -1,0 +1,21 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element from '@equinor/fusion-wc-switch';
+Element;
+
+<Meta title="Basic/switch" />
+
+export const Template = () => {
+  return html`<fwc-switch></fwc-switch>`;
+};
+
+With `MDX` we can define a story for `Switch` right in the middle of our
+Markdown documentation.
+
+## Checkbox
+
+<Canvas>
+  <Story name="default" args={{}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

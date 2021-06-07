@@ -13,6 +13,7 @@
     { "path": "./packages/intersection" },
     { "path": "./packages/picture" },
     { "path": "./packages/popover" },
+    { "path": "./packages/switch" },
     { "path": "./packages/theme" }
   ]
 }

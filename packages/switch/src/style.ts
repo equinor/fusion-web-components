@@ -1,4 +1,3 @@
-import { unsafeCSS } from 'lit-element';
+import { css } from 'lit-element';
 
-export const style = unsafeCSS`
-`;
+export const style = css``;

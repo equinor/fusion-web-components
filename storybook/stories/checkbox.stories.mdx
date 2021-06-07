@@ -6,19 +6,28 @@ Element;
 <Meta title="Basic/checkbox" />
 
 export const Default = ({}) => {
-  return html`<fwc-checkbox></fwc-checkbox>
-    <fwc-checkbox checked></fwc-checkbox>
-    <fwc-checkbox indeterminate></fwc-checkbox>`;
+  return html`<fwc-checkbox></fwc-checkbox>`;
+};
+
+export const DefaultChecked = ({}) => {
+  return html`<fwc-checkbox checked></fwc-checkbox>`;
+};
+
+export const DefaultIndeterminate = ({}) => {
+  return html`<fwc-checkbox indeterminate></fwc-checkbox>`;
 };
 
 export const Disabled = ({}) => {
-  return html`<fwc-checkbox disabled></fwc-checkbox>
-    <fwc-checkbox checked disabled/></fwc-checkbox>
-    <fwc-checkbox indeterminate disabled></fwc-checkbox>`;
+  return html`<fwc-checkbox disabled></fwc-checkbox>`;
 };
 
-With `MDX` we can define a story for `Checkbox` right in the middle of our
-Markdown documentation.
+export const DisabledChecked = ({}) => {
+  return html`<fwc-checkbox disabled checked></fwc-checkbox>`;
+};
+
+export const DisabledIndeterminate = ({}) => {
+  return html`<fwc-checkbox disabled indeterminate></fwc-checkbox>`;
+};
 
 ## Checkbox
 
@@ -28,6 +37,12 @@ Markdown documentation.
   <Story name="default" args={{}}>
     {Default.bind({})}
   </Story>
+  <Story name="default-checked" args={{}}>
+    {DefaultChecked.bind({})}
+  </Story>
+  <Story name="default-indeterminate" args={{}}>
+    {DefaultIndeterminate.bind({})}
+  </Story>
 </Canvas>
 
 ### Disabled
@@ -35,5 +50,11 @@ Markdown documentation.
 <Canvas>
   <Story name="disabled" args={{}}>
     {Disabled.bind({})}
+  </Story>
+  <Story name="disabled-checked" args={{}}>
+    {DisabledChecked.bind({})}
+  </Story>
+  <Story name="disabled-indeterminate" args={{}}>
+    {DisabledIndeterminate.bind({})}
   </Story>
 </Canvas>

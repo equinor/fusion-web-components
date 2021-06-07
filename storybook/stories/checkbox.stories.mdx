@@ -5,8 +5,16 @@ Element;
 
 <Meta title="Basic/checkbox" />
 
-export const Template = () => {
-  return html`<fwc-checkbox></fwc-checkbox>`;
+export const Default = ({}) => {
+  return html`<fwc-checkbox></fwc-checkbox>
+    <fwc-checkbox checked></fwc-checkbox>
+    <fwc-checkbox indeterminate></fwc-checkbox>`;
+};
+
+export const Disabled = ({}) => {
+  return html`<fwc-checkbox disabled></fwc-checkbox>
+    <fwc-checkbox checked disabled/></fwc-checkbox>
+    <fwc-checkbox indeterminate disabled></fwc-checkbox>`;
 };
 
 With `MDX` we can define a story for `Checkbox` right in the middle of our
@@ -14,8 +22,18 @@ Markdown documentation.
 
 ## Checkbox
 
+### Default
+
 <Canvas>
   <Story name="default" args={{}}>
-    {Template.bind({})}
+    {Default.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story name="disabled" args={{}}>
+    {Disabled.bind({})}
   </Story>
 </Canvas>

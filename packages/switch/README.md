@@ -3,6 +3,8 @@
 
 ## 📚 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-switch)
 
+## [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/switch)
+
 ### Properties/Attributes
 | Name       | Type      | Default | Description
 | ---------- | --------- | ------- | -----------

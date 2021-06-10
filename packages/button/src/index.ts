@@ -1,14 +1,12 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import Element from './element';
+import ButtonElement from './element';
 
 export const tag = 'fwc-button';
 
 @fusionElement(tag)
-export default class _element extends Element {}
+export default class _ extends ButtonElement {}
 declare global {
   interface HTMLElementTagNameMap {
-    [tag]: _element;
+    [tag]: ButtonElement;
   }
 }
-
-export * from './element';

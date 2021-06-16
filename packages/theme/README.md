@@ -14,9 +14,6 @@ npm install @equinor/fusion-wc-theme
   <head>
     <meta charset="utf-8">
     <title>My Example App</title>
-
-    <!-- Your application must load the Equinor font. -->
-    <link rel="stylesheet" href="https://eds-static.equinor.com/font/equinor-font.css" />
   </head>
   <body>
     <!-- Add the Fusion Theme variables to the DOM. -->

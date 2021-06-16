@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-checkbox",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Checkbox web component based on Material UI",
   "main": "lib/index.js",
   "private": true,

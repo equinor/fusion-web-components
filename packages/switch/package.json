@@ -1,0 +1,34 @@
+{
+  "name": "@equinor/fusion-wc-switch",
+  "version": "0.1.0",
+  "description": "Switch web component based on Material UI",
+  "main": "lib/index.js",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b",
+    "prepack": "npm run build && fwc-build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/switch"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@equinor/fusion-wc-core": "^1.0.1",
+    "@material/mwc-switch": "^0.21.0"
+  },
+  "devDependencies": {
+    "@equinor/fusion-wc-builder": "^1.0.1"
+  },
+  "peerDependencies": {
+    "lit-element": "^2.x",
+    "lit-html": "^1.x",
+    "typescript": "^4.1.3"
+  }
+}

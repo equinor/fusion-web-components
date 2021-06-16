@@ -6,7 +6,7 @@
 
 ### [Theme](https://github.com/equinor/fusion-web-components/tree/main/packages/theme)
 
-Package for overriding Material UI css variables with EDS theme tokens
+Component for overriding Material UI css variables with EDS theme tokens
 
 ### [Picture](https://github.com/equinor/fusion-web-components/tree/main/packages/picture)
 
@@ -23,3 +23,7 @@ Component and dictionary (_Lit-html_) for detecting intersections
 ### [Checkbox](https://github.com/equinor/fusion-web-components/tree/main/packages/checkbox)
 
 Component for displaying checkbox
+
+### [Switch](https://github.com/equinor/fusion-web-components/tree/main/packages/switch)
+
+Component for displaying switch

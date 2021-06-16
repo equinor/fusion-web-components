@@ -3,7 +3,15 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Element from '@equinor/fusion-wc-radio';
 Element;
 
-<Meta title="Basic/radio" />
+<Meta
+  title="Basic/radio"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
 
 export const Default = ({}) => {
   return html`<fwc-radio name="my-group" value="value1"></fwc-radio

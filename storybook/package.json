@@ -17,11 +17,8 @@
     "@equinor/fusion-wc-icon": "^1.0.2",
     "@equinor/fusion-wc-picture": "^1.0.2",
     "@equinor/fusion-wc-popover": "^1.0.2",
-<<<<<<< HEAD
     "@equinor/fusion-wc-switch": "^0.1.0",
-=======
     "@equinor/fusion-wc-theme": "^0.2.2",
->>>>>>> main
     "@storybook/addon-actions": "^6.1.19",
     "@storybook/addon-essentials": "^6.1.19",
     "@storybook/addon-links": "^6.1.19",

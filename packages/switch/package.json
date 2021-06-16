@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.1",
-    "@equinor/fusion-wc-theme": "^0.1.0",
     "@material/mwc-switch": "^0.21.0"
   },
   "devDependencies": {

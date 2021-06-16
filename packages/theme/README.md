@@ -1,23 +1,49 @@
 # Fusion Theme for Web-Components
 
+```sh
+npm install @equinor/fusion-wc-theme
+```
+
 ## Usage
 
+### Vanilla JS/HTML
+
 ```
-import { CSSResult } from 'lit-element';
-import { fusionElement } from '@equinor/fusion-wc-core';
-import { ComponentBase } from '@material/mwc-component/mwc-component-base';
-import { style as mdcStyle } from '@material/mwc-component/mwc-component-css';
-import { fusionMDCStyle } from '@equinor/fusion-wc-theme';
-import { style } from './style';
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Example App</title>
+  </head>
+  <body>
+    <!-- Add the Fusion Theme variables to the DOM. -->
+    <fwc-theme></fwc-theme>
 
-declare global {
-  interface HTMLElementTagNameMap {
-    'fwc-component': MyComponent;
-  }
-}
+    <!-- The rest of your app code... -->
 
-@fusionElement('fwc-component')
-export default class MyComponent extends ComponentBase {
-  static styles: CSSResult[] = [mdcStyle, fusionMDCStyle, style];
+    <!-- The Fusion Web Components use standard JavaScript modules. -->
+    <script type="module">
+      import '@equinor/fusion-wc-theme';
+    </script>
+  </body>
+</html>
+```
+
+### React
+
+```
+import Theme from '@equinor/fusion-wc-theme';
+Theme;
+
+export const App => {
+  return (
+    <>
+    <!-- Add theme variables to DOM. -->
+      <fwc-theme></fwc-theme>
+      <!-- The rest of your react app code. -->
+      <MyComponent>
+      </MyComponent>
+    <>
+  );
 }
 ```

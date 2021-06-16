@@ -1,0 +1,45 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element from '@equinor/fusion-wc-radio';
+Element;
+
+<Meta
+  title="Basic/radio"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Default = ({}) => {
+  return html`<fwc-radio name="my-group" value="value1"></fwc-radio
+    ><fwc-radio name="my-group" value="value2" checked></fwc-radio>`;
+};
+
+export const Disabled = ({}) => {
+  return html`<fwc-radio name="my-group-disabled" value="value1" disabled></fwc-radio
+    ><fwc-radio name="my-group-disabled" value="value2" checked disabled></fwc-radio>`;
+};
+
+With `MDX` we can define a story for `Radio` right in the middle of our
+Markdown documentation.
+
+## Checkbox
+
+### Default
+
+<Canvas>
+  <Story name="default" args={{}}>
+    {Default.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story name="disabled" args={{}}>
+    {Disabled.bind({})}
+  </Story>
+</Canvas>

@@ -1,0 +1,33 @@
+{
+  "name": "@equinor/fusion-wc-checkbox",
+  "version": "0.2.1",
+  "description": "Checkbox web component based on Material UI",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "prepack": "npm run build && fwc-build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/checkbox"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@equinor/fusion-wc-core": "^1.0.1",
+    "@material/mwc-checkbox": "^0.21.0"
+  },
+  "devDependencies": {
+    "@equinor/fusion-wc-builder": "^1.0.1"
+  },
+  "peerDependencies": {
+    "lit-element": "^2.x",
+    "lit-html": "^1.x",
+    "typescript": "^4.1.3"
+  }
+}

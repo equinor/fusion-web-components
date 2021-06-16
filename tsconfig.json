@@ -8,11 +8,15 @@
   "references": [
     { "path": "./packages/avatar" },
     { "path": "./packages/button" },
+    { "path": "./packages/checkbox" },
     { "path": "./packages/core" },
     { "path": "./packages/icon" },
     { "path": "./packages/intersection" },
     { "path": "./packages/picture" },
     { "path": "./packages/popover" },
-    { "path": "./packages/theme" }
+    { "path": "./packages/radio" },
+    { "path": "./packages/switch" },
+    { "path": "./packages/theme" },
+    { "path": "./packages/textinput" }
   ]
 }

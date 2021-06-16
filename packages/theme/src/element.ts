@@ -8,7 +8,7 @@ export default class Element extends LitElement {
 
   render() {
     return html`<style>
-      :root
+      :root {
         --mdc-theme-primary: ${theme.colors.interactive.primary__resting.value.hex};
         --mdc-theme-secondary: ${theme.colors.interactive.primary__resting.value.hex};
         --mdc-theme-surface: ${theme.colors.ui.background__light.value.hex};

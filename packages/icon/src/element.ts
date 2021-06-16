@@ -1,5 +1,5 @@
 import { IconName } from '@equinor/eds-icons';
-import { LitElement, property } from 'lit-element';
+import { LitElement, property, SVGTemplateResult } from 'lit-element';
 import createIcon, { IconType } from './utils/create-icon';
 
 import { style } from './element.css';
@@ -18,7 +18,7 @@ export class IconElement extends LitElement implements IconElementProps {
   @property()
   public type?: IconType;
 
-  render() {
+  render(): SVGTemplateResult {
     return createIcon(this.icon);
   }
 }

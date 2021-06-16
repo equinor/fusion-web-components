@@ -16,6 +16,7 @@
     { "path": "./packages/popover" },
     { "path": "./packages/radio" },
     { "path": "./packages/switch" },
-    { "path": "./packages/theme" }
+    { "path": "./packages/theme" },
+    { "path": "./packages/textinput" }
   ]
 }

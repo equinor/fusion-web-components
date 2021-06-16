@@ -31,3 +31,7 @@ Component for displaying radio button
 ### [Switch](https://github.com/equinor/fusion-web-components/tree/main/packages/switch)
 
 Component for displaying switch
+
+### [TextInput](https://github.com/equinor/fusion-web-components/tree/main/packages/textinput)
+
+Component for displaying text input

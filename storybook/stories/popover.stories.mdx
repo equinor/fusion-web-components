@@ -11,12 +11,12 @@ Element;
     placement: {
       control: {
         type: 'select',
-        options: [ 'auto', 'auto-end', 'top', 'bottom', 'left', 'right'],
+        options: ['auto', 'auto-end', 'top', 'bottom', 'left', 'right'],
       },
     },
-    offset: { control: 'text'},
-    show: { control: 'boolean'},
-    flip: { control: 'boolean'},
+    offset: { control: 'text' },
+    show: { control: 'boolean' },
+    flip: { control: 'boolean' },
   }}
   args={{
     placement: 'auto',
@@ -24,11 +24,17 @@ Element;
     show: false,
     flip: false,
     content: 'Popover content',
-    triggers: '["hover"]'
+    triggers: '["hover"]',
+  }}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
   }}
 />
 
-export const Template = ({ placement, show, flip, offset, content, triggers  }) => {
+export const Template = ({ placement, show, flip, offset, content, triggers }) => {
   const styleContainer = styleMap({
     position: 'relative',
     width: '800px',
@@ -37,15 +43,15 @@ export const Template = ({ placement, show, flip, offset, content, triggers  }) 
     borderRadius: '10px',
     overflow: 'scroll',
     overscrollBehavior: 'contain',
-    border: '2px dashed #ff6b81'
+    border: '2px dashed #ff6b81',
   });
   const stylePopover = styleMap({
-      margin: '300px 20px',
+    margin: '300px 20px',
   });
   const stylePopoverContent = styleMap({
-      padding: '1rem',
-      border: '1px solid red',
-      backgroundColor: 'white'
+    padding: '1rem',
+    border: '1px solid red',
+    backgroundColor: 'white',
   });
   const logoStyle = styleMap({
     backgroundImage: `url("${src}")`,
@@ -56,7 +62,7 @@ export const Template = ({ placement, show, flip, offset, content, triggers  }) 
     display: 'inline-block',
   });
   const containerId = `container-${Math.floor(Math.random() * 100)}`;
-  window.requestAnimationFrame(() => document.querySelector(`#${containerId}`).scrollTop = 220);
+  window.requestAnimationFrame(() => (document.querySelector(`#${containerId}`).scrollTop = 220));
   return html`
       <div id="${containerId}" style=${styleContainer}>
         <fwc-popover .placement=${placement} ?show=${show} ?flip=${flip} style=${stylePopover} offset=${offset} triggers=${triggers}>
@@ -68,11 +74,13 @@ export const Template = ({ placement, show, flip, offset, content, triggers  }) 
 };
 
 # Popover
+
 > This component uses [PopperJS](https://popper.js.org/)
 
 ## Properties
 
 ### Offset
+
 ```tsx
 type Offset: [?number, ?number];
 const offset: Offset = [10,10];
@@ -85,23 +93,29 @@ const bar = () => {
 ```
 
 ### Triggers
+
 Triggers for showing the popover could either be mouse hover or click on element
+
 ```tsx
-const trigger: ShowTrigger = 'click'
-const foo = () => (<fwc-popover triggers={JSON.stringify([trigger])}></fwc-popover>)
+const trigger: ShowTrigger = 'click';
+const foo = () => <fwc-popover triggers={JSON.stringify([trigger])}></fwc-popover>;
 const bar = () => {
   const ref = useRef();
-  useEffect(() => ref.current.triggers = [trigger], [ref.current]);
-  return <fwc-popover ref={ref}></fwc-popover>
-}
+  useEffect(() => (ref.current.triggers = [trigger]), [ref.current]);
+  return <fwc-popover ref={ref}></fwc-popover>;
+};
 ```
 
 #### Click
+
 <Canvas>
-  <Story name="clickable" args={{triggers: '["click"]'}}>{Template.bind({})}</Story>
+  <Story name="clickable" args={{ triggers: '["click"]' }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
 #### Hover
+
 <Canvas>
   <Story name="hover">{Template.bind({})}</Story>
 </Canvas>
@@ -109,8 +123,9 @@ const bar = () => {
 ## DEMO
 
 ### Static
+
 <Canvas>
-  <Story name="static" args={{show: true}}>{Template.bind({})}</Story>
+  <Story name="static" args={{ show: true }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
-
-

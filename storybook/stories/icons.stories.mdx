@@ -1,5 +1,87 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
-import Element from '@equinor/fusion-wc-icon';
+import { html } from 'lit-element';
+import { styleMap } from 'lit-html/directives/style-map';
+import { repeat } from 'lit-html/directives/repeat';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element, { iconNames } from '@equinor/fusion-wc-icon';
 Element;
 
-<Meta title="Icon/intro" component="fwc-icon" />
+<Meta
+  title="Basic/icons"
+  argTypes={{
+    size: {
+      control: {
+        type: 'range',
+        min: 8,
+        max: 120,
+        step: 8,
+      },
+    },
+    color: { control: 'color' },
+  }}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Template = ({ icon, size, color }) => {
+  const style = styleMap({
+    fontSize: size + 'px',
+    color,
+  });
+  return html`<fwc-icon style=${style} icon=${icon}></fwc-icon>`;
+};
+
+export const AllIcons = (args) => {
+  const style = styleMap({
+    display: 'inline-flex',
+    flexFlow: 'column',
+    alignItems: 'center',
+    padding: '.5rem',
+    margin: '.5rem',
+    border: '1px solid',
+    borderRadius: '.25rem',
+  });
+  return html`${repeat(
+    iconNames,
+    (x) => x,
+    (icon) => html`
+      <span style=${style}>
+        ${Template({ icon, ...args })}
+        <span>${icon}</span>
+      </span>
+    `
+  )} `;
+};
+
+With `MDX` we can define a story for `Checkbox` right in the middle of our
+Markdown documentation.
+
+## Icon
+
+<Canvas>
+  <Story
+    name="default"
+    args={{ icon: 'person', size: 64 }}
+    argTypes={{
+      icon: {
+        control: {
+          type: 'select',
+          options: iconNames,
+        },
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## All Icons
+
+<Canvas>
+  <Story name="all" args={{ size: 64 }}>
+    {AllIcons.bind({})}
+  </Story>
+</Canvas>

@@ -5,62 +5,68 @@ import Picture from '@equinor/fusion-wc-picture';
 import src from './static/fusion.png';
 
 <Meta
-    title="Basic/Picture"
-    argTypes={{
-        height: {
-            control: { type: 'range', min: 48, max: 768, step: 10 },
-        },
-        width: {
-            control: { type: 'range', min: 48, max: 1080, step: 10 },
-        },
-        position: {
-            control: {
-                type: 'select',
-                options: ['center', 'top', 'bottom', 'left', 'right'],
-            },
-        },
-    }}
+  title="Basic/Picture"
+  argTypes={{
+    height: {
+      control: { type: 'range', min: 48, max: 768, step: 10 },
+    },
+    width: {
+      control: { type: 'range', min: 48, max: 1080, step: 10 },
+    },
+    position: {
+      control: {
+        type: 'select',
+        options: ['center', 'top', 'bottom', 'left', 'right'],
+      },
+    },
+  }}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
 />
 
 export const Template = (args) => {
-    const { src, cover, height, width, position } = args;
-    const style = styleMap({
-        height: `${height}px`,
-        width: `${width}px`,
-    });
-    return html`<fwc-picture style="${style}" src="${src}" ?cover=${cover} .position="${position}"></fwc-picture>`;
+  const { src, cover, height, width, position } = args;
+  const style = styleMap({
+    height: `${height}px`,
+    width: `${width}px`,
+  });
+  return html`<fwc-picture style="${style}" src="${src}" ?cover=${cover} .position="${position}"></fwc-picture>`;
 };
 
 export const PictureWithViewBox = (args) => {
-    const { src } = args;
-    const boxStyle = styleMap({
-        minHeight: '100px',
-        maxHeight: '200px',
-        overflow: 'scroll',
-        border: '1px solid grey'
-    });
-    const pictureStyle = styleMap({
-        marginTop: `800px`,
-        height: `100px`,
-    });
-    return html`
-        <div style="${boxStyle}">
-            <p>scroll down</p>
-            <fwc-picture style="${pictureStyle}" src="${src}" lazy>
-                <p slot="loader">Loading</p>
-            </fwc-picture>
-        </div>
-    `;
-} 
+  const { src } = args;
+  const boxStyle = styleMap({
+    minHeight: '100px',
+    maxHeight: '200px',
+    overflow: 'scroll',
+    border: '1px solid grey',
+  });
+  const pictureStyle = styleMap({
+    marginTop: `800px`,
+    height: `100px`,
+  });
+  return html`
+    <div style="${boxStyle}">
+      <p>scroll down</p>
+      <fwc-picture style="${pictureStyle}" src="${src}" lazy>
+        <p slot="loader">Loading</p>
+      </fwc-picture>
+    </div>
+  `;
+};
 
 With `MDX` we can define a story for `Checkbox` right in the middle of our
 Markdown documentation.
 
 <Canvas>
-    <Story name="default" args={{ src, cover: false, height: 100, width: 100, position: 'center' }}>
-        {Template.bind({})}
-    </Story>
-    <Story name="lazy loading" args={{ src }}>
-        {PictureWithViewBox.bind({})}
-    </Story>
+  <Story name="default" args={{ src, cover: false, height: 100, width: 100, position: 'center' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="lazy loading" args={{ src }}>
+    {PictureWithViewBox.bind({})}
+  </Story>
 </Canvas>

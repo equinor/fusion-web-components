@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.4...@equinor/fusion-wc-theme@0.2.5) (2021-06-16)
+
+
+### Bug Fixes
+
+* added Equinor font to theme ([f3bab72](https://github.com/equinor/fusion-web-components/commit/f3bab72d6d9d7a5da07701223b7ed6e20a18b586))
+
+
+
+
+
 ## [0.2.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.3...@equinor/fusion-wc-theme@0.2.4) (2021-06-16)
 
 

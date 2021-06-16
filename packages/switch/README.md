@@ -1,9 +1,14 @@
 <!--prettier-ignore-start-->
-# Fusion Switch Web-Component
+# `<fusion-wc-switch>` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-switch.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-switch)
 
-## 📚 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-switch)
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-switch)
 
-## [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/switch)
+[Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/switch)
+
+## Installation
+```sh
+npm install @equinor/fusion-wc-switch
+```
 
 ### Properties/Attributes
 | Name       | Type      | Default | Description

@@ -1,9 +1,14 @@
 <!--prettier-ignore-start-->
-# Fusion Checkbox Web-Component
+# `<fusion-wc-checkbox>` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-checkbox.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-checkbox)
 
-## 📚 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-checkbox)
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-checkbox)
 
-## [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/checkbox)
+[Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/checkbox)
+
+## Installation
+```sh
+npm install @equinor/fusion-wc-checkbox
+```
 
 ### Properties/Attributes
 

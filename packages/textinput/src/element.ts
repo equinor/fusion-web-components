@@ -11,7 +11,7 @@ export class TextInputElement extends TextFieldBase {
   @property({ type: String }) icon: IconName = '';
   @property({ type: String }) iconTrailing: IconName = '';
 
-  protected renderIcon(icon: string, isTrailingIcon: boolean = false): TemplateResult {
+  protected renderIcon(icon: string, isTrailingIcon = false): TemplateResult {
     return html`<fwc-icon icon=${icon} isTrailingIcon=${isTrailingIcon} textInput></fwc-icon>`;
   }
 }

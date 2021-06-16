@@ -1,13 +1,10 @@
 module.exports = {
-  "stories": ["../stories/**/*.stories.mdx"],
-  // "stories": ["../stories/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
-  "addons": [
+  stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
     {
       name: '@storybook/addon-docs',
       options: {
         configureJSX: true,
-        babelOptions: {},
-        sourceLoaderOptions: null,
       },
     },
     // {
@@ -28,9 +25,8 @@ module.exports = {
     //     showRoots: true,
     //   },
     // },
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
   ],
   // babel: async (options) => {
   //   // Object.assign(options.plugins.find((plugin) => plugin[0].includes('plugin-proposal-decorators'))[1], {
@@ -50,4 +46,4 @@ module.exports = {
 
   //   return config;
   // },
-}
+};

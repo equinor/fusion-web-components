@@ -24,7 +24,8 @@
     "update:typescript": "npx lerna-update-wizard --non-interactive --dependency typescript@latest",
     "update:lit": "npm run update:lit-element && npm run update:lit-html",
     "update:lit-element": "npx lerna-update-wizard --non-interactive --dependency lit-element@latest",
-    "update:lit-html": "npx lerna-update-wizard --non-interactive --dependency lit-html@latest"
+    "update:lit-html": "npx lerna-update-wizard --non-interactive --dependency lit-html@latest",
+    "test:pack": "lerna exec 'npm pack --dry-run'"
   },
   "keywords": [],
   "author": "",

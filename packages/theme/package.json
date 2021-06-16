@@ -1,24 +1,24 @@
 {
-  "name": "@equinor/fusion-wc-intersection",
-  "version": "1.0.2",
+  "name": "@equinor/fusion-wc-theme",
+  "version": "0.2.2",
   "description": "",
   "main": "lib/index.js",
+  "private": true,
   "scripts": {
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"
   },
   "keywords": [],
+  "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "@equinor/fusion-wc-builder": "^1.0.1",
     "@equinor/fusion-wc-core": "^1.0.1",
-    "fast-deep-equal": "^3.1.3",
     "lit-element": "^2.4.0",
     "lit-html": "^1.3.0"
   },
-  "devDependencies": {
-    "@equinor/fusion-wc-builder": "^1.0.1"
-  },
   "peerDependencies": {
+    "@equinor/fusion-wc-core": "^1.x",
     "lit-element": "^2.x",
     "lit-html": "^1.x",
     "typescript": "^4.x"
@@ -26,9 +26,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/equinor/fusion-web-components.git",
-    "directory": "packages/intersection"
+    "directory": "packages/theme"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@equinor/fusion-web-theme": "^0.1.2",
+    "@material/theme": "^11.0.0"
   }
 }

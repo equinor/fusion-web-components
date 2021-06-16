@@ -3,23 +3,19 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": [
-    "packages/**/src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "lib",
-    "*.spec.ts",
-    "api"
-  ],
+  "include": ["packages/**/src/**/*"],
+  "exclude": ["node_modules", "dist", "lib", "*.spec.ts", "api"],
   "references": [
-    {"path": "./packages/avatar"},
-    {"path": "./packages/button"},
-    {"path": "./packages/core"},
-    {"path": "./packages/icon"},
-    {"path": "./packages/intersection"},
-    {"path": "./packages/picture"},
-    {"path": "./packages/popover"},
+    { "path": "./packages/avatar" },
+    { "path": "./packages/button" },
+    { "path": "./packages/checkbox" },
+    { "path": "./packages/core" },
+    { "path": "./packages/icon" },
+    { "path": "./packages/intersection" },
+    { "path": "./packages/picture" },
+    { "path": "./packages/popover" },
+    { "path": "./packages/radio" },
+    { "path": "./packages/switch" },
+    { "path": "./packages/theme" }
   ]
 }

@@ -24,7 +24,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
   static styles = [style];
 
   @property({ reflect: true })
-  placement?: Placement;
+  placement: Placement = 'auto';
 
   @property({ type: Boolean })
   disabled?: boolean;

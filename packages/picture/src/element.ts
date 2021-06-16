@@ -1,4 +1,4 @@
-import { html, LitElement, property, eventOptions, internalProperty } from 'lit-element';
+import { html, LitElement, property, eventOptions, internalProperty, TemplateResult } from 'lit-element';
 
 import { styleMap } from 'lit-html/directives/style-map';
 import { repeat } from 'lit-html/directives/repeat';
@@ -90,7 +90,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
     return this.hasAttribute('loaded');
   }
 
-  protected render() {
+  protected render(): TemplateResult {
     const style = styleMap({
       backgroundImage: this.loaded ? `url(${this.currentSrc})` : '',
       backgroundPosition: this.position || '',
@@ -111,7 +111,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
     `;
   }
 
-  protected renderImage() {
+  protected renderImage(): TemplateResult {
     return html`
       ${repeat(
         this.srcSets,

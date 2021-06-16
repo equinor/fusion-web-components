@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit-element';
+import { html, LitElement, TemplateResult } from 'lit-element';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 export default class Element extends LitElement {
@@ -6,7 +6,7 @@ export default class Element extends LitElement {
     return this;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<style>
       :root {
         --mdc-theme-primary: ${theme.colors.interactive.primary__resting.value.hex};

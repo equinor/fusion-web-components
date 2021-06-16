@@ -3,7 +3,6 @@
   "version": "0.2.2",
   "description": "",
   "main": "lib/index.js",
-  "private": true,
   "scripts": {
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"

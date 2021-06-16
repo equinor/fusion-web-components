@@ -42,7 +42,6 @@ Name                      | Type                          | Description
 `validateOnInitialRender` | `boolean`                     | Runs validation check on initial render.
 `name`                    | `string`                      | Sets the `name` attribute on the internal input.\*\*\*
 
-\*  `TextFieldType` is exported by `fwc-textinput` and `fwc-textinput-base`
 ```ts
 type TextFieldType = 'text'|'search'|'tel'|'url'|'email'|'password'|
     'date'|'month'|'week'|'time'|'datetime-local'|'number'|'color';

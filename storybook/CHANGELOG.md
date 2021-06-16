@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.2.0...@equinor/fusion-wc-storybook@1.3.0) (2021-06-16)
+
+
+### Bug Fixes
+
+* merged changes and fixed merge conflicts ([6902fc7](https://github.com/equinor/fusion-web-components/commit/6902fc7d882b56d54cae4cd03932f1460fc6e61e))
+
+
+### Features
+
+* added radio component ([75e463b](https://github.com/equinor/fusion-web-components/commit/75e463bca2cd43df7dd9aefdb30b6702c01a034b))
+
+
+
+
+
 # [1.2.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.1.0...@equinor/fusion-wc-storybook@1.2.0) (2021-06-16)
 
 

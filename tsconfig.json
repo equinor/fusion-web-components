@@ -8,6 +8,7 @@
   "references": [
     { "path": "./packages/avatar" },
     { "path": "./packages/button" },
+    { "path": "./packages/checkbox" },
     { "path": "./packages/core" },
     { "path": "./packages/icon" },
     { "path": "./packages/intersection" },

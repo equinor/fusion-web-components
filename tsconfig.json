@@ -14,11 +14,8 @@
     { "path": "./packages/intersection" },
     { "path": "./packages/picture" },
     { "path": "./packages/popover" },
-<<<<<<< HEAD
     { "path": "./packages/radio" },
-=======
     { "path": "./packages/switch" },
->>>>>>> main
     { "path": "./packages/theme" }
   ]
 }

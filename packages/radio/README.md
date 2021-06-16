@@ -1,6 +1,10 @@
 <!--prettier-ignore-start-->
 # Fusion Radio Web-Component
 
+```sh
+npm install @equinor/fusion-wc-radio
+```
+
 ## 📚 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-radio)
 
 ## [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/radio)

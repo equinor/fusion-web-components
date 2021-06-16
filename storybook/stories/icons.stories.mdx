@@ -18,6 +18,12 @@ Element;
     },
     color: { control: 'color' },
   }}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
 />
 
 export const Template = ({ icon, size, color }) => {
@@ -54,6 +60,7 @@ With `MDX` we can define a story for `Checkbox` right in the middle of our
 Markdown documentation.
 
 ## Icon
+
 <Canvas>
   <Story
     name="default"
@@ -72,6 +79,7 @@ Markdown documentation.
 </Canvas>
 
 ## All Icons
+
 <Canvas>
   <Story name="all" args={{ size: 64 }}>
     {AllIcons.bind({})}

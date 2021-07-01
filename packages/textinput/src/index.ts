@@ -1,6 +1,7 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import TextInputElement from './element';
 
+export { style } from './element.css';
 export const tag = 'fwc-textinput';
 
 @fusionElement(tag)

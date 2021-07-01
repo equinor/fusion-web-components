@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-icon": "^1.0.3",
-    "@equinor/fusion-wc-textinput": "^0.2.1",
+    "@equinor/fusion-wc-textinput": "^0.2.2",
     "@material/mwc-textarea": "^0.21.0",
     "@material/mwc-textfield": "^0.21.0"
   },

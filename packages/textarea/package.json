@@ -1,17 +1,23 @@
 {
-  "name": "@equinor/fusion-wc-textinput",
-  "version": "0.2.2",
+  "name": "@equinor/fusion-wc-textarea",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "text area",
+    "fusion",
+    "equinor"
+  ],
+  "author": "Equinor ASA",
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-icon": "^1.0.3",
+    "@equinor/fusion-wc-textinput": "^0.2.2",
+    "@material/mwc-textarea": "^0.21.0",
     "@material/mwc-textfield": "^0.21.0"
   },
   "devDependencies": {
@@ -29,7 +35,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/equinor/fusion-web-components.git",
-    "directory": "packages/textinput"
+    "directory": "packages/textarea"
   },
   "publishConfig": {
     "access": "public"

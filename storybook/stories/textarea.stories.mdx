@@ -1,0 +1,88 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element from '@equinor/fusion-wc-textarea';
+Element;
+
+<Meta
+  title="Input/textarea"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Default = ({}) => {
+  return html`<fwc-textarea label="Default"></fwc-textarea>`;
+};
+
+export const Rows = ({}) => {
+  return html`<fwc-textarea rows="5" label="Default"></fwc-textarea>`;
+};
+
+export const Helper = ({}) => {
+  return html`<fwc-textarea label="Helper" helper="Helper Text" helperpersistent></fwc-textarea>`;
+};
+
+export const CharCounter = ({}) => {
+  return html`<fwc-textarea label="Counter" maxlength="18" charCounter></fwc-textarea>`;
+};
+
+export const FullWidth = ({}) => {
+  return html`<fwc-textarea label="Fluid" fullwidth></fwc-textarea>`;
+};
+
+export const Disabled = ({}) => {
+  return html`<fwc-textarea label="Disabled" disabled></fwc-textarea>`;
+};
+
+## TextArea
+
+### Default
+
+<Canvas>
+  <Story name="default" args={{}}>
+    {Default.bind({})}
+  </Story>
+</Canvas>
+
+### Multiple Rows
+
+<Canvas>
+  <Story name="rows" args={{}}>
+    {Rows.bind({})}
+  </Story>
+</Canvas>
+
+### With helper
+
+<Canvas>
+  <Story name="helper" args={{}}>
+    {Helper.bind({})}
+  </Story>
+</Canvas>
+
+### With character counter
+
+<Canvas>
+  <Story name="counter" args={{}}>
+    {CharCounter.bind({})}
+  </Story>
+</Canvas>
+
+### Full width (fluid)
+
+<Canvas>
+  <Story name="full" args={{}}>
+    {FullWidth.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story name="disabled" args={{}}>
+    {Disabled.bind({})}
+  </Story>
+</Canvas>

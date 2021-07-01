@@ -19,6 +19,7 @@
     { "path": "../packages/switch" },
     { "path": "../packages/checkbox" },
     { "path": "../packages/theme" },
+    { "path": "../packages/textarea" },
     { "path": "../packages/textinput" }
   ]
 }

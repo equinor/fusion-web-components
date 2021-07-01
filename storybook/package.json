@@ -19,6 +19,7 @@
     "@equinor/fusion-wc-popover": "^1.0.2",
     "@equinor/fusion-wc-radio": "^0.2.1",
     "@equinor/fusion-wc-switch": "^0.2.1",
+    "@equinor/fusion-wc-textarea": "^0.1.0",
     "@equinor/fusion-wc-textinput": "^0.2.1",
     "@equinor/fusion-wc-theme": "^0.2.5",
     "@storybook/addon-actions": "^6.1.19",

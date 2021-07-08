@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.4.0...@equinor/fusion-wc-storybook@1.4.1) (2021-07-05)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+# [1.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.6...@equinor/fusion-wc-storybook@1.4.0) (2021-07-01)
+
+
+### Features
+
+* added textarea component ([690b9cf](https://github.com/equinor/fusion-web-components/commit/690b9cf083169749d8646564df7f762162415807))
+
+
+
+
+
+## [1.3.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.5...@equinor/fusion-wc-storybook@1.3.6) (2021-07-01)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
 ## [1.3.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.4...@equinor/fusion-wc-storybook@1.3.5) (2021-06-16)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

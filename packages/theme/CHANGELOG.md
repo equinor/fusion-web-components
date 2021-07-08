@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.5...@equinor/fusion-wc-theme@0.2.6) (2021-07-05)
+
+
+### Bug Fixes
+
+* fixed colors and added icon font to theme ([d543b87](https://github.com/equinor/fusion-web-components/commit/d543b87224db4609695e20c11d79363ccf8d4b14))
+
+
+
+
+
 ## [0.2.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.4...@equinor/fusion-wc-theme@0.2.5) (2021-06-16)
 
 

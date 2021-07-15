@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-textinput",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-icon": "^1.0.3",
+    "@equinor/fusion-wc-icon": "^1.0.4",
     "@material/mwc-textfield": "^0.21.0"
   },
   "devDependencies": {

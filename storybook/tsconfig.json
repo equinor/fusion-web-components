@@ -12,6 +12,7 @@
     "allowSyntheticDefaultImports": true
   },
   "references": [
+    { "path": "../packages/button" },
     { "path": "../packages/picture" },
     { "path": "../packages/icon" },
     { "path": "../packages/popover" },

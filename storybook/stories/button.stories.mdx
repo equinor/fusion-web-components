@@ -4,7 +4,7 @@ import Element from '@equinor/fusion-wc-button';
 Element;
 
 <Meta
-  title="Basic/button"
+  title="Input/button"
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -13,16 +13,268 @@ Element;
   }}
 />
 
-export const Default = ({}) => {
-  return html`<fwc-button>Test</fwc-button>`;
+export const PrimaryContained = ({}) => {
+  return html`<fwc-button variant="contained" color="primary">Primary</fwc-button>`;
 };
 
-## Checkbox
+export const SecondaryContained = ({}) => {
+  return html`<fwc-button variant="contained" color="secondary">Secondary</fwc-button>`;
+};
 
-### Default
+export const DangerContained = ({}) => {
+  return html`<fwc-button variant="contained" color="danger">Danger</fwc-button>`;
+};
+
+export const DisabledContained = ({}) => {
+  return html`<fwc-button disabled>Disabled</fwc-button>`;
+};
+
+export const PrimaryOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="primary">Primary</fwc-button>`;
+};
+
+export const SecondaryOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="secondary">Secondary</fwc-button>`;
+};
+
+export const DangerOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="danger">Danger</fwc-button>`;
+};
+
+export const DisabledOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" disabled>Disabled</fwc-button>`;
+};
+
+export const PrimaryGhost = ({}) => {
+  return html`<fwc-button variant="ghost" color="primary">Primary</fwc-button>`;
+};
+
+export const SecondaryGhost = ({}) => {
+  return html`<fwc-button variant="ghost" color="secondary">Secondary</fwc-button>`;
+};
+
+export const DangerGhost = ({}) => {
+  return html`<fwc-button variant="ghost" color="danger">Danger</fwc-button>`;
+};
+
+export const DisabledGhost = ({}) => {
+  return html`<fwc-button variant="ghost" disabled>Disabled</fwc-button>`;
+};
+
+export const PrimaryDenseContained = ({}) => {
+  return html`<fwc-button variant="contained" color="primary" dense>Primary</fwc-button>`;
+};
+
+export const SecondaryDenseContained = ({}) => {
+  return html`<fwc-button variant="contained" color="secondary" dense>Secondary</fwc-button>`;
+};
+
+export const DangerDenseContained = ({}) => {
+  return html`<fwc-button variant="contained" color="danger" dense>Danger</fwc-button>`;
+};
+
+export const DisabledDenseContained = ({}) => {
+  return html`<fwc-button variant="contained" disabled dense>Disabled</fwc-button>`;
+};
+
+export const PrimaryDenseOutlined = ({}) => {
+  return html`<fwc-button dense variant="outlined" color="primary">Primary</fwc-button>`;
+};
+
+export const SecondaryDenseOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="secondary" dense>Secondary</fwc-button>`;
+};
+
+export const DangerDenseOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="danger" dense>Danger</fwc-button>`;
+};
+
+export const DisabledDenseOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" disabled dense>Disabled</fwc-button>`;
+};
+
+export const PrimaryIconContained = ({}) => {
+  return html`<fwc-button variant="contained" color="primary" icon="settings">Primary</fwc-button>`;
+};
+
+export const SecondaryIconContained = ({}) => {
+  return html`<fwc-button variant="contained" color="secondary" icon="settings">Secondary</fwc-button>`;
+};
+
+export const DangerIconContained = ({}) => {
+  return html`<fwc-button variant="contained" color="danger" icon="settings">Danger</fwc-button>`;
+};
+
+export const DisabledIconContained = ({}) => {
+  return html`<fwc-button variant="contained" disabled icon="settings">Disabled</fwc-button>`;
+};
+
+export const PrimaryIconOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="primary" icon="settings">Primary</fwc-button>`;
+};
+
+export const SecondaryIconOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="secondary" icon="settings">Secondary</fwc-button>`;
+};
+
+export const DangerIconOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" color="danger" icon="settings">Danger</fwc-button>`;
+};
+
+export const DisabledIconOutlined = ({}) => {
+  return html`<fwc-button variant="outlined" disabled icon="settings">Disabled</fwc-button>`;
+};
+
+export const PrimaryIconGhost = ({}) => {
+  return html`<fwc-button variant="ghost" color="primary" icon="settings">Primary</fwc-button>`;
+};
+
+export const SecondaryIconGhost = ({}) => {
+  return html`<fwc-button variant="ghost" color="secondary" icon="settings">Secondary</fwc-button>`;
+};
+
+export const DangerIconGhost = ({}) => {
+  return html`<fwc-button variant="ghost" color="danger" icon="settings">Danger</fwc-button>`;
+};
+
+export const DisabledIconGhost = ({}) => {
+  return html`<fwc-button variant="ghost" disabled icon="settings">Disabled</fwc-button>`;
+};
+
+## Button
+
+### Contained
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Default.bind({})}
+  <Story name="primary-contained" args={{}}>
+    {PrimaryContained.bind({})}
+  </Story>
+  <Story name="secondary-contained" args={{}}>
+    {SecondaryContained.bind({})}
+  </Story>
+  <Story name="danger-contained" args={{}}>
+    {DangerContained.bind({})}
+  </Story>
+  <Story name="disabled-contained" args={{}}>
+    {DisabledContained.bind({})}
+  </Story>
+</Canvas>
+
+### Outlined
+
+<Canvas>
+  <Story name="primary-outlined" args={{}}>
+    {PrimaryOutlined.bind({})}
+  </Story>
+  <Story name="secondary-outlined" args={{}}>
+    {SecondaryOutlined.bind({})}
+  </Story>
+  <Story name="danger-outlined" args={{}}>
+    {DangerOutlined.bind({})}
+  </Story>
+  <Story name="disabled-outlined" args={{}}>
+    {DisabledOutlined.bind({})}
+  </Story>
+</Canvas>
+
+### Ghost
+
+<Canvas>
+  <Story name="primary-ghost" args={{}}>
+    {PrimaryGhost.bind({})}
+  </Story>
+  <Story name="secondary-ghost" args={{}}>
+    {SecondaryGhost.bind({})}
+  </Story>
+  <Story name="danger-ghost" args={{}}>
+    {DangerGhost.bind({})}
+  </Story>
+  <Story name="disabled-ghost" args={{}}>
+    {DisabledGhost.bind({})}
+  </Story>
+</Canvas>
+
+### Dense Contained
+
+<Canvas>
+  <Story name="primary-dense-contained" args={{}}>
+    {PrimaryDenseContained.bind({})}
+  </Story>
+  <Story name="secondary-dense-contained" args={{}}>
+    {SecondaryDenseContained.bind({})}
+  </Story>
+  <Story name="danger-dense-contained" args={{}}>
+    {DangerDenseContained.bind({})}
+  </Story>
+  <Story name="disabled-dense-contained" args={{}}>
+    {DisabledDenseContained.bind({})}
+  </Story>
+</Canvas>
+
+### Dense Outlined
+
+<Canvas>
+  <Story name="primary-dense-outlined" args={{}}>
+    {PrimaryDenseOutlined.bind({})}
+  </Story>
+  <Story name="secondary-dense-outlined" args={{}}>
+    {SecondaryDenseOutlined.bind({})}
+  </Story>
+  <Story name="danger-dense-outlined" args={{}}>
+    {DangerDenseOutlined.bind({})}
+  </Story>
+  <Story name="disabled-dense-outlined" args={{}}>
+    {DisabledDenseOutlined.bind({})}
+  </Story>
+</Canvas>
+
+### Icon Contained
+
+<Canvas>
+  <Story name="primary-icon-contained" args={{}}>
+    {PrimaryIconContained.bind({})}
+  </Story>
+  <Story name="secondary-icon-contained" args={{}}>
+    {SecondaryIconContained.bind({})}
+  </Story>
+  <Story name="danger-icon-contained" args={{}}>
+    {DangerIconContained.bind({})}
+  </Story>
+  <Story name="disabled-icon-contained" args={{}}>
+    {DisabledIconContained.bind({})}
+  </Story>
+</Canvas>
+
+### Icon Outlined
+
+<Canvas>
+  <Story name="primary-icon-outlined" args={{}}>
+    {PrimaryIconOutlined.bind({})}
+  </Story>
+  <Story name="secondary-icon-outlined" args={{}}>
+    {SecondaryIconOutlined.bind({})}
+  </Story>
+  <Story name="danger-icon-outlined" args={{}}>
+    {DangerIconOutlined.bind({})}
+  </Story>
+  <Story name="disabled-icon-outlined" args={{}}>
+    {DisabledIconOutlined.bind({})}
+  </Story>
+</Canvas>
+
+### Icon Ghost
+
+<Canvas>
+  <Story name="primary-icon-ghost" args={{}}>
+    {PrimaryIconGhost.bind({})}
+  </Story>
+  <Story name="secondary-icon-ghost" args={{}}>
+    {SecondaryIconGhost.bind({})}
+  </Story>
+  <Story name="danger-icon-ghost" args={{}}>
+    {DangerIconGhost.bind({})}
+  </Story>
+  <Story name="disabled-icon-ghost" args={{}}>
+    {DisabledIconGhost.bind({})}
   </Story>
 </Canvas>

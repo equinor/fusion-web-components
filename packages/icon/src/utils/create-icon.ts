@@ -12,7 +12,7 @@ export enum IconType {
 }
 
 export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplateResult => svg`
-  <svg height="${height}" width="${width}"  viewBox="0 0 ${width} ${height}">
+  <svg viewBox="0 0 ${width} ${height}">
     <path fill-rule="evenodd" clip-rule="evenodd" d="${svgPathData}"></path>
   </svg>
 `;

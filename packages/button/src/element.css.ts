@@ -9,40 +9,40 @@ export const style = css`
     --mdc-button-disabled-outline-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
     --mdc-typography-button-text-transform: none;
   }
+  :host([variant='contained'][color='primary']) .mdc-button {
+    background-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+  }
+  :host([variant='contained'][color='secondary']) .mdc-button {
+    background-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+  }
+  :host([variant='contained'][color='danger']) .mdc-button {
+    background-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+  }
+  :host([variant='outlined'][color='primary']) .mdc-button {
+    border-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+  }
+  :host([variant='outlined'][color='secondary']) .mdc-button {
+    border-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+    color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+  }
+  :host([variant='outlined'][color='danger']) .mdc-button {
+    border-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+  }
+  :host([variant='ghost'][color='primary']) .mdc-button {
+    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+  }
+  :host([variant='ghost'][color='secondary']) .mdc-button {
+    color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+  }
+  :host([variant='ghost'][color='danger']) .mdc-button {
+    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+  }
   .leading-icon fwc-icon,
   .trailing-icon fwc-icon,
   ::slotted(fwc-icon) {
     font-size: 20px;
-  }
-  .mdc-button.mdc-button--unelevated.fwc-button--primary:not(:disabled) {
-    background-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-  }
-  .mdc-button.mdc-button--unelevated.fwc-button--secondary:not(:disabled) {
-    background-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-  }
-  .mdc-button.mdc-button--unelevated.fwc-button--danger:not(:disabled) {
-    background-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-  }
-  .mdc-button.mdc-button--outlined.fwc-button--primary:not(:disabled) {
-    border-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-  }
-  .mdc-button.mdc-button--outlined.fwc-button--secondary:not(:disabled) {
-    border-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-  }
-  .mdc-button.mdc-button--outlined.fwc-button--danger:not(:disabled) {
-    border-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-  }
-  .mdc-button.fwc-button--ghost.fwc-button--primary:not(:disabled) {
-    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-  }
-  .mdc-button.fwc-button--ghost.fwc-button--secondary:not(:disabled) {
-    color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-  }
-  .mdc-button.fwc-button--ghost.fwc-button--danger:not(:disabled) {
-    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
 `;
 

@@ -1,5 +1,5 @@
-import { html, property, CSSResult, TemplateResult } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html, property, CSSResult, TemplateResult, PropertyValues } from 'lit-element';
+// import { classMap } from 'lit-html/directives/class-map';
 import { IconName } from '@equinor/fusion-wc-icon';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
 import { style as mdcStyle } from '@material/mwc-button/styles-css';
@@ -18,25 +18,53 @@ export interface ButtonProps {
 export class ButtonElement extends ButtonBase implements ButtonProps {
   static styles: CSSResult[] = [mdcStyle, style];
 
-  @property() icon: IconName = '';
-  @property() color: ButtonColor = 'primary';
-  @property() variant: ButtonVariant = 'contained';
-  @property({ type: Boolean, reflect: true }) unelevated: boolean = false;
+  @property()
+  icon: IconName = '';
 
-  constructor() {
-    super();
-  }
+  @property()
+  color: ButtonColor = 'primary';
 
-  protected getRenderClasses() {
-    return classMap({
-      'mdc-button--unelevated': this.variant === 'contained',
-      'mdc-button--outlined': this.variant === 'outlined',
-      'fwc-button--ghost': this.variant === 'ghost',
-      'mdc-button--dense': this.dense,
-      'fwc-button--primary': this.color === 'primary',
-      'fwc-button--secondary': this.color === 'secondary',
-      'fwc-button--danger': this.color === 'danger',
-    });
+  @property({ reflect: true })
+  variant: ButtonVariant = 'contained';
+
+  // protected getRenderClasses() {
+  //   return classMap({
+  //     // 'mdc-button--raised': this.raised,
+  //     // 'mdc-button--unelevated': this.unelevated,
+  //     // 'mdc-button--outlined': this.outlined,
+  //     // 'mdc-button--dense': this.dense,
+  //     'fwc-button--ghost': this.variant === 'ghost',
+  //     'fwc-button--primary': this.color === 'primary',
+  //     'fwc-button--secondary': this.color === 'secondary',
+  //     'fwc-button--danger': this.color === 'danger',
+  //   });
+  // }
+
+  protected updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+    if (changedProperties.has('variant')) {
+      switch (this.variant) {
+        case 'contained': {
+          this.unelevated = true;
+          this.raised = false;
+          this.outlined = false;
+          break;
+        }
+        case 'outlined': {
+          this.unelevated = false;
+          this.raised = false;
+          this.outlined = true;
+          break;
+        }
+        case 'ghost': {
+          this.unelevated = false;
+          this.raised = false;
+          this.outlined = false;
+          break;
+        }
+      }
+      this.requestUpdate();
+    }
   }
 
   protected renderIcon(): TemplateResult {

@@ -1,58 +1,61 @@
-import { LitElement, html, property, query } from 'lit-element';
+import { html, property, CSSResult, TemplateResult, PropertyValues } from 'lit-element';
+// import { classMap } from 'lit-html/directives/class-map';
+import { IconName } from '@equinor/fusion-wc-icon';
+import { ButtonBase } from '@material/mwc-button/mwc-button-base';
+import { style as mdcStyle } from '@material/mwc-button/styles-css';
+import style from './element.css';
 
-import styles from './element.css';
+export type ButtonColor = 'primary' | 'secondary' | 'danger';
 
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
-export class ButtonElement extends LitElement {
-  static styles = styles;
+export interface ButtonProps {
+  icon?: IconName;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
+}
 
-  @property({ type: Boolean, reflect: true })
-  disabled?: boolean;
+export class ButtonElement extends ButtonBase implements ButtonProps {
+  static styles: CSSResult[] = [mdcStyle, style];
 
-  @property({ type: Boolean, reflect: true })
-  raised?: boolean;
+  @property()
+  icon: IconName = '';
 
-  @property({ type: Boolean, reflect: true })
-  type?: boolean;
+  @property()
+  color: ButtonColor = 'primary';
 
-  @property({ type: String, reflect: true })
-  size?: ButtonSize;
+  @property({ reflect: true })
+  variant: ButtonVariant = 'contained';
 
-  @property({ type: Boolean, reflect: true })
-  outlined?: boolean;
-
-  @property({ type: Boolean, reflect: true })
-  fullwidth?: boolean;
-
-  @query('#button')
-  buttonElement!: HTMLElement;
-
-  focus() {
-    const { buttonElement } = this;
-    buttonElement && buttonElement.focus();
+  protected updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+    if (changedProperties.has('variant')) {
+      switch (this.variant) {
+        case 'contained': {
+          this.unelevated = true;
+          this.raised = false;
+          this.outlined = false;
+          break;
+        }
+        case 'outlined': {
+          this.unelevated = false;
+          this.raised = false;
+          this.outlined = true;
+          break;
+        }
+        case 'ghost': {
+          this.unelevated = false;
+          this.raised = false;
+          this.outlined = false;
+          break;
+        }
+      }
+      this.requestUpdate();
+    }
   }
 
-  blur() {
-    const { buttonElement } = this;
-    buttonElement && buttonElement.blur();
-  }
-
-  protected createRenderRoot() {
-    return this.attachShadow({ mode: 'open', delegatesFocus: true });
-  }
-
-  protected render() {
-    return html`
-      <button id="button" ?disabled="${this.disabled}">
-        <span class="leading-icon">
-          <slot name="icon"></slot>
-        </span>
-        <span class="label">
-          <slot></slot>
-        </span>
-      </button>
-    `;
+  protected renderIcon(): TemplateResult {
+    return html`<fwc-icon class="mdc-button__icon" icon=${this.icon}></fwc-icon>`;
   }
 }
 

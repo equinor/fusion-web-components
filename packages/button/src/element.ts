@@ -27,19 +27,6 @@ export class ButtonElement extends ButtonBase implements ButtonProps {
   @property({ reflect: true })
   variant: ButtonVariant = 'contained';
 
-  // protected getRenderClasses() {
-  //   return classMap({
-  //     // 'mdc-button--raised': this.raised,
-  //     // 'mdc-button--unelevated': this.unelevated,
-  //     // 'mdc-button--outlined': this.outlined,
-  //     // 'mdc-button--dense': this.dense,
-  //     'fwc-button--ghost': this.variant === 'ghost',
-  //     'fwc-button--primary': this.color === 'primary',
-  //     'fwc-button--secondary': this.color === 'secondary',
-  //     'fwc-button--danger': this.color === 'danger',
-  //   });
-  // }
-
   protected updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {

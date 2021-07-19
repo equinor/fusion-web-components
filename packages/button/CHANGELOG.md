@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.2...@equinor/fusion-wc-button@1.1.3) (2021-07-19)
+
+
+### Bug Fixes
+
+* fixed release flag ([c31fa73](https://github.com/equinor/fusion-web-components/commit/c31fa73600d545a81d116dfaca8ef7911d793e74))
+
+
+
+
+
 ## [1.1.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.1...@equinor/fusion-wc-button@1.1.2) (2021-07-19)
 
 

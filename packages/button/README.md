@@ -1,7 +1,7 @@
 <!--prettier-ignore-start-->
 ## `fusion-wc-button` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-button.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-button)
 
-[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-button)
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/input-button)
 
 [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/button)
 
@@ -34,7 +34,7 @@ npm install @equinor/fusion-wc-button
 type ButtonVariant = 'contained'|'outlined'|'ghost';
 ```
 
-\*  `ButtonColor` is exported by `fwc-button`.
+\**  `ButtonColor` is exported by `fwc-button`.
 ```ts
 type ButtonVariant = 'primary'|'secondary'|'danger';
 ```

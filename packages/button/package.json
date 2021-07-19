@@ -8,7 +8,12 @@
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"
   },
-  "keywords": [],
+  "keywords": [
+    "equinor",
+    "fusion",
+    "web components",
+    "button"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

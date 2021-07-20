@@ -3,7 +3,7 @@
 
 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-textinput)
 
-[Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/textinput)
+[Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/textfield)
 
 ## Installation
 ```sh

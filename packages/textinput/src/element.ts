@@ -12,7 +12,14 @@ export class TextInputElement extends TextFieldBase {
   @property({ type: String }) iconTrailing: IconName = '';
 
   protected renderIcon(icon: string, isTrailingIcon = false): TemplateResult {
-    return html`<fwc-icon icon=${icon} isTrailingIcon=${isTrailingIcon} textInput></fwc-icon>`;
+    return html`<fwc-icon
+      icon=${icon}
+      isTrailingIcon=${isTrailingIcon}
+      textInput
+      class="mdc-text-field__icon ${isTrailingIcon
+        ? 'mdc-text-field__icon--trailing'
+        : 'mdc-text-field__icon--leading'}"
+    ></fwc-icon>`;
   }
 }
 

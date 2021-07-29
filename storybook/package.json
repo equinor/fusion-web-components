@@ -25,6 +25,7 @@
     "@equinor/fusion-wc-theme": "^0.2.7",
     "@storybook/addon-actions": "^6.1.19",
     "@storybook/addon-essentials": "^6.1.19",
+    "@storybook/react": "^6.3.6",
     "@storybook/addon-links": "^6.1.19",
     "@storybook/web-components": "^6.1.19",
     "babel-loader": "^8.2.2",

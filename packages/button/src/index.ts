@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import ButtonElement from './element';
+import ButtonElement, { ButtonElementProps } from './element';
 
 export const tag = 'fwc-button';
 
@@ -8,5 +8,11 @@ export default class _ extends ButtonElement {}
 declare global {
   interface HTMLElementTagNameMap {
     [tag]: ButtonElement;
+  }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      [tag]: React.DetailedHTMLProps<React.PropsWithChildren<ButtonElementProps>, ButtonElement>;
+    }
   }
 }

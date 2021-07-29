@@ -2,6 +2,7 @@ import { html, property, CSSResult, TemplateResult, PropertyValues } from 'lit-e
 // import { classMap } from 'lit-html/directives/class-map';
 import { IconName } from '@equinor/fusion-wc-icon';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
+import { Ripple } from '@material/mwc-ripple/mwc-ripple';
 import { style as mdcStyle } from '@material/mwc-button/styles-css';
 import style from './element.css';
 
@@ -9,13 +10,26 @@ export type ButtonColor = 'primary' | 'secondary' | 'danger';
 
 export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
-export interface ButtonProps {
+export interface ButtonElementProps {
   icon?: IconName;
   variant?: ButtonVariant;
   color?: ButtonColor;
+  raised: boolean;
+  unelevated: boolean;
+  outlined: boolean;
+  dense: boolean;
+  disabled: boolean;
+  trailingIcon: boolean;
+  fullwidth: boolean;
+  label: string;
+  expandContent: boolean;
+  buttonElement: HTMLElement;
+  ripple: Promise<Ripple | null>;
+  focus(): void;
+  blur(): void;
 }
 
-export class ButtonElement extends ButtonBase implements ButtonProps {
+export class ButtonElement extends ButtonBase implements ButtonElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
 
   @property()

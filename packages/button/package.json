@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-icon": "^1.0.4",
-    "@material/mwc-button": "^0.21.0"
+    "@material/mwc-button": "^0.22.1"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.1",

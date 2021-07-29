@@ -15,11 +15,8 @@ export interface ButtonElementProps {
   variant?: ButtonVariant;
   color?: ButtonColor;
   dense?: boolean;
-  disabled?: boolean;
   trailingIcon?: boolean;
   expandContent?: boolean;
-  focus?(): void;
-  blur?(): void;
 }
 
 export class ButtonElement extends ButtonBase implements ButtonElementProps {

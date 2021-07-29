@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.8...@equinor/fusion-wc-storybook@1.5.9) (2021-07-29)
+
+
+### Bug Fixes
+
+* fixed type declaration for JSX components ([59e93d7](https://github.com/equinor/fusion-web-components/commit/59e93d729299582edb97debb82ee4891eb8f9eb4))
+
+
+
+
+
 ## [1.5.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.7...@equinor/fusion-wc-storybook@1.5.8) (2021-07-29)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

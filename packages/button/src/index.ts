@@ -5,6 +5,7 @@ export const tag = 'fwc-button';
 
 @fusionElement(tag)
 export default class _ extends ButtonElement {}
+
 declare global {
   interface HTMLElementTagNameMap {
     [tag]: ButtonElement;
@@ -12,7 +13,10 @@ declare global {
 
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<React.PropsWithChildren<ButtonElementProps>, ButtonElement>;
+      [tag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<ButtonElementProps & React.HTMLAttributes<ButtonElement>>,
+        ButtonElement
+      >;
     }
   }
 }

@@ -36,6 +36,6 @@ type ButtonVariant = 'contained'|'outlined'|'ghost';
 
 \**  `ButtonColor` is exported by `fwc-button`.
 ```ts
-type ButtonVariant = 'primary'|'secondary'|'danger';
+type ButtonColor = 'primary'|'secondary'|'danger';
 ```
 <!--prettier-ignore-end-->

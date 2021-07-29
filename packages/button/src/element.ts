@@ -9,7 +9,7 @@ export type ButtonColor = 'primary' | 'secondary' | 'danger';
 
 export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
-export interface ButtonElementProps extends HTMLElement {
+export interface ButtonElementProps {
   icon?: IconName;
   label: string;
   variant?: ButtonVariant;

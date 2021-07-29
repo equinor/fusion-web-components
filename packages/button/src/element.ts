@@ -11,15 +11,15 @@ export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
 export interface ButtonElementProps {
   icon?: IconName;
-  label: string;
+  label?: string;
   variant?: ButtonVariant;
   color?: ButtonColor;
-  dense: boolean;
-  disabled: boolean;
-  trailingIcon: boolean;
-  expandContent: boolean;
-  focus(): void;
-  blur(): void;
+  dense?: boolean;
+  disabled?: boolean;
+  trailingIcon?: boolean;
+  expandContent?: boolean;
+  focus?(): void;
+  blur?(): void;
 }
 
 export class ButtonElement extends ButtonBase implements ButtonElementProps {

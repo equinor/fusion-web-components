@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.1...@equinor/fusion-wc-checkbox@0.2.2) (2021-08-02)
+
+
+### Bug Fixes
+
+* fixed readme ([f3aa833](https://github.com/equinor/fusion-web-components/commit/f3aa83354653938dd0d41c6a7e6f35a8abfb37f0))
+* fixed readme ([32c155a](https://github.com/equinor/fusion-web-components/commit/32c155a1d50a69be36a159419ec27e8978fbe00a))
+* fixed typing and readme as well as updated packages ([6bf92ad](https://github.com/equinor/fusion-web-components/commit/6bf92ade989eaa8a4cbfd9b51b31a3dd98080140))
+
+
+
+
+
 ## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.0...@equinor/fusion-wc-checkbox@0.2.1) (2021-06-16)
 
 

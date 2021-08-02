@@ -6,8 +6,16 @@
 [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/radio)
 
 ## Installation
+
 ```sh
 npm install @equinor/fusion-wc-radio
+```
+
+## Example Usage
+
+```html
+<fwc-radio name='group1' value='value1' checked/>
+<fwc-radio name='group1' value='value2'/>
 ```
 
 ### Properties/Attributes
@@ -20,11 +28,10 @@ Name                 | Type      | Default | Description
 `value`              | `string`  | `''`    | Value of the input for form submission. Maps to the native [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio#value) attribute.
 `global`             | `boolean` | `false` | If `true`, this radio button will use a global, document-level scope for its selection group rather than its local shadow root.
 `reducedTouchTarget` | `boolean` | `false` | When `true`, the radio removes touch target that extends beyond visual boundary of the component. Set to `false` by default to meet Material [accessibility guidelines](https://material.io/design/usability/accessibility.html).
-
-### Methods
-*None*
+`formElementTabIndex` | `number` | 0 | Input's tabindex is updated based on checked status. Tab navigation will be removed from unchecked radios.
 
 ### Events
+
 | Name     | Detail | Description
 | ---------| ------ | -----------
 | `change` | `{}`   | Fired when the user modifies the radio `checked` state from an input device interaction on this radio. Note that, like [native `<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event), the `change` event is *not* fired when the `checked` property is set from JavaScript, nor is it fired when another radio in the same group becomes `checked`.

@@ -1,16 +1,22 @@
-import { CSSResult } from 'lit-element';
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { CheckboxBase } from '@material/mwc-checkbox/mwc-checkbox-base';
-import { style as mdcStyle } from '@material/mwc-checkbox/mwc-checkbox-css';
-import { style } from './style';
+import CheckboxElement, { CheckboxElementProps } from './element';
+
+export const tag = 'fwc-checkbox';
+
+@fusionElement(tag)
+export default class _ extends CheckboxElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    'fwc-checkbox': Checkbox;
+    [tag]: CheckboxElement;
   }
-}
 
-@fusionElement('fwc-checkbox')
-export default class Checkbox extends CheckboxBase {
-  static styles: CSSResult[] = [mdcStyle, style];
+  namespace JSX {
+    interface IntrinsicElements {
+      [tag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<CheckboxElementProps & React.HTMLAttributes<CheckboxElement>>,
+        CheckboxElement
+      >;
+    }
+  }
 }

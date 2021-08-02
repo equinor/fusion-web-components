@@ -1,24 +1,28 @@
 <!--prettier-ignore-start-->
 # `<fusion-wc-switch>` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-switch.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-switch)
 
-[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-switch)
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/input-switch)
 
 [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/switch)
 
 ## Installation
+
 ```sh
 npm install @equinor/fusion-wc-switch
 ```
 
+## Example Usage
+
+```html
+<fwc-switch value='value' checked/>
+```
+
 ### Properties/Attributes
+
 | Name       | Type      | Default | Description
 | ---------- | --------- | ------- | -----------
 | `checked`  | `boolean` | `false` | Whether or not the switch should be checked / activated.
 | `disabled` | `boolean` | `false` | Disables the input and sets the disabled styles.
-
-### Methods
-
-*None*
 
 ### Events
 

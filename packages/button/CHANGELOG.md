@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.6...@equinor/fusion-wc-button@1.1.7) (2021-07-29)
+
+
+### Bug Fixes
+
+* fixed type declaration for JSX components ([59e93d7](https://github.com/equinor/fusion-web-components/commit/59e93d729299582edb97debb82ee4891eb8f9eb4))
+
+
+
+
+
 ## [1.1.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.5...@equinor/fusion-wc-button@1.1.6) (2021-07-29)
 
 

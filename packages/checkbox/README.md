@@ -6,8 +6,15 @@
 [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/checkbox)
 
 ### Installation
+
 ```sh
 npm install @equinor/fusion-wc-checkbox
+```
+
+## Example Usage
+
+```html
+<fwc-checkbox value='value' checked/>
 ```
 
 ### Properties/Attributes
@@ -19,11 +26,6 @@ Name            | Type      | Default | Description
 `disabled`           | `boolean` | `false` | When `true`, the checkbox cannot be interacted with, and renders in muted colors.
 `value`              | `string`  | `''`    | The value that will be included if the checkbox is submitted in a form.
 `reducedTouchTarget` | `boolean` | `false` | When `true`, the checkbox remove padding for touchscreens and increase density. Note, the checkbox will no longer meet accessibility guidelines for touch.
-
-
-### Methods
-
-*None*
 
 ### Events
 

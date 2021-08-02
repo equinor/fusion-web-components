@@ -29,10 +29,8 @@ Name                      | Type                          | Description
 `placeholder`             | `string`                      | Sets disappearing input placeholder.
 `prefix`                  | `string`                      | Prefix text to display before the input.
 `suffix`                  | `string`                      | Suffix text to display after the input.
-`icon`                    | `IconName***`                 | Leading icon to display in input. See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
-`iconTrailing`            | `IconName***`                 | Trailing icon to display in input. See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
 `disabled`                | `boolean`                     | Whether or not the input should be disabled.
-`charCounter`             | `boolean`                     | **Note: requries `maxLength` to be set.** Display character counter with max length.
+`charCounter`             | `boolean | TextInputCharCounter***`                     | **Note: requries `maxLength` to be set.** Display character counter with max length.
 `helper`                  | `string`                      | Helper text to display below the input. Display default only when focused.
 `helperPersistent`        | `boolean`                     | Always show the helper text despite focus.
 `required`                | `boolean`                     | Displays error state if value is empty and input is blurred.
@@ -46,7 +44,7 @@ Name                      | Type                          | Description
 `autoValidate`            | `boolean`                     | Reports validity on value change rather than only on blur.
 `validity`                | `ValidityState` (readonly)    | The [`ValidityState`](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState) of the textarea.
 `willValidate`            | `boolean` (readonly)          | [`HTMLInputElement.prototype.willValidate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Properties)
-`validityTransform`       | `ValidityTransform***`\|`null` | Callback called before each validation check. See the [validation section](#Validation) for more details.
+`validityTransform`       | `ValidityTransform****`\|`null` | Callback called before each validation check. See the [validation section](#Validation) for more details.
 `validateOnInitialRender` | `boolean`                     | Runs validation check on initial render.
 `name`                    | `string`                      | Sets the `name` attribute on the internal input.\*\*\*
 
@@ -56,17 +54,22 @@ type TextInputType = 'text'|'search'|'tel'|'url'|'email'|'password'|
     'date'|'month'|'week'|'time'|'datetime-local'|'number'|'color';
 ```
 
-\*\* `ValidityTransform` is exported by `fwc-textinput`.
+\*\*  `TextInputVariant` is exported by `fwc-textinput`.
+```ts
+export type TextInputVariant = 'filled' | 'outlined';
+```
+
+\*\*\* `TextInputCharCounter` is exported by `fwc-textinput`.
+```ts
+type TextInputCharCounter = 'external' | 'internal';
+```
+
+\*\*\*\* `ValidityTransform` is exported by `fwc-textinput`.
 ```ts
 type ValidityTransform = (value: string, nativeValidity: ValidityState) => Partial<ValidityState>
 ```
 
-\*\*\* `IconName` is exported by `fwc-icon`.
-```ts
-type IconName = keyof typeof edsIcons | string;
-```
-
-\*\*\*\* The `name` property should only be used for browser autofill as webcomponent form participation does not currently consider the `name` attribute. See [#289](https://github.com/material-components/material-components-web-components/issues/289).
+\*\*\*\*\* The `name` property should only be used for browser autofill as webcomponent form participation does not currently consider the `name` attribute. See [#289](https://github.com/material-components/material-components-web-components/issues/289).
 
 ### Methods
 

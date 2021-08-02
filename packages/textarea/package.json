@@ -17,8 +17,7 @@
   "dependencies": {
     "@equinor/fusion-wc-icon": "^1.0.4",
     "@equinor/fusion-wc-textinput": "^0.2.4",
-    "@material/mwc-textarea": "^0.21.0",
-    "@material/mwc-textfield": "^0.21.0"
+    "@material/mwc-textarea": "^0.22.1"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.1",

@@ -1,16 +1,22 @@
-import { CSSResult } from 'lit-element';
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { RadioBase } from '@material/mwc-radio/mwc-radio-base';
-import { style as mdcStyle } from '@material/mwc-radio/mwc-radio-css';
-import { style } from './style';
+import RadioElement, { RadioElementProps } from './element';
+
+export const tag = 'fwc-radio';
+
+@fusionElement(tag)
+export default class _ extends RadioElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    'fwc-radio': Checkbox;
+    [tag]: RadioElement;
   }
-}
 
-@fusionElement('fwc-radio')
-export default class Checkbox extends RadioBase {
-  static styles: CSSResult[] = [mdcStyle, style];
+  namespace JSX {
+    interface IntrinsicElements {
+      [tag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<RadioElementProps & React.HTMLAttributes<RadioElement>>,
+        RadioElement
+      >;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 <!--prettier-ignore-start-->
 # `<fusion-wc-textinput>` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-textinput.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-textinput)
 
-[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/basic-textinput)
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/input-textinput)
 
 [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/textfield)
 
@@ -10,21 +10,27 @@
 npm install @equinor/fusion-wc-textinput
 ```
 
+## Example Usage
+
+```html
+<fwc-textinput label='My Label' icon="settings"></fwc-textinput>
+```
+
 ### Properties/Attributes
 
 Name                      | Type                          | Description
 ------------------------- | ----------------------------- | -----------
 `value`                   | `string`                      | The input control's value.
-`type`                    | `TextFieldType*`              | A string specifying the type of control to render.
+`type`                    | `TextInputType*`              | A string specifying the type of control to render.
+`variant`                 | `TextInputVariant**`          | Input style variant to render.
 `label`                   | `string`                      | Sets floating label value.
 `placeholder`             | `string`                      | Sets disappearing input placeholder.
 `prefix`                  | `string`                      | Prefix text to display before the input.
 `suffix`                  | `string`                      | Suffix text to display after the input.
-`icon`                    | `string`                      | Leading icon to display in input. See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
-`iconTrailing`            | `string`                      | Trailing icon to display in input. See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
+`icon`                    | `IconName***`                 | Leading icon to display in input. See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
+`iconTrailing`            | `IconName***`                 | Trailing icon to display in input. See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
 `disabled`                | `boolean`                     | Whether or not the input should be disabled.
 `charCounter`             | `boolean`                     | **Note: requries `maxLength` to be set.** Display character counter with max length.
-`outlined`                | `boolean`                     | Whether or not to show the material outlined variant.
 `helper`                  | `string`                      | Helper text to display below the input. Display default only when focused.
 `helperPersistent`        | `boolean`                     | Always show the helper text despite focus.
 `required`                | `boolean`                     | Displays error state if value is empty and input is blurred.
@@ -38,21 +44,27 @@ Name                      | Type                          | Description
 `autoValidate`            | `boolean`                     | Reports validity on value change rather than only on blur.
 `validity`                | `ValidityState` (readonly)    | The [`ValidityState`](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState) of the textinput.
 `willValidate`            | `boolean` (readonly)          | [`HTMLInputElement.prototype.willValidate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Properties)
-`validityTransform`       | `ValidityTransform**`\|`null` | Callback called before each validation check. See the [validation section](#Validation) for more details.
+`validityTransform`       | `ValidityTransform***`\|`null` | Callback called before each validation check. See the [validation section](#Validation) for more details.
 `validateOnInitialRender` | `boolean`                     | Runs validation check on initial render.
 `name`                    | `string`                      | Sets the `name` attribute on the internal input.\*\*\*
 
+\*  `TextInputType` is exported by `fwc-textinput`.
 ```ts
-type TextFieldType = 'text'|'search'|'tel'|'url'|'email'|'password'|
+type TextInputType = 'text'|'search'|'tel'|'url'|'email'|'password'|
     'date'|'month'|'week'|'time'|'datetime-local'|'number'|'color';
 ```
 
-\*\* `ValidityTransform` is not exported. See the [validation section](#Validation) for more details.
+\*\* `ValidityTransform` is exported by `fwc-textinput`.
 ```ts
 type ValidityTransform = (value: string, nativeValidity: ValidityState) => Partial<ValidityState>
 ```
 
-\*\*\* The `name` property should only be used for browser autofill as webcomponent form participation does not currently consider the `name` attribute. See [#289](https://github.com/material-components/material-components-web-components/issues/289).
+\*\*\* `IconName` is exported by `fwc-icon`.
+```ts
+type IconName = keyof typeof edsIcons | string;
+```
+
+\*\*\*\* The `name` property should only be used for browser autofill as webcomponent form participation does not currently consider the `name` attribute. See [#289](https://github.com/material-components/material-components-web-components/issues/289).
 
 ### Methods
 

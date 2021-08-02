@@ -1,12 +1,19 @@
-import { CSSResult } from 'lit-element';
+import { property, CSSResult } from 'lit-element';
 import { TextAreaBase } from '@material/mwc-textarea/mwc-textarea-base';
-import { style as mdcStyle } from '@material/mwc-textarea/mwc-textarea-css';
-import { style as fwcTextInputStyle } from '@equinor/fusion-wc-textinput';
-import { style as mdcTextFieldStyle } from '@material/mwc-textfield/mwc-textfield-css';
+import { styles as mdcStyle } from '@material/mwc-textarea/mwc-textarea.css';
+import { style as fwcTextInputStyle, mdcStyle as mdcTextInputStyle } from '@equinor/fusion-wc-textinput';
 import elementStyle from './element.css';
+import { TextInputElementProps } from 'textinput/src/element';
 
-export class TextAreaElement extends TextAreaBase {
-  static styles: CSSResult[] = [mdcTextFieldStyle, mdcStyle, fwcTextInputStyle, elementStyle];
+export interface TextAreaElementProps extends TextInputElementProps {
+  rows?: number;
+  cols?: number;
+}
+
+export class TextAreaElement extends TextAreaBase implements TextAreaElementProps {
+  static styles: CSSResult[] = [mdcStyle, mdcTextInputStyle, fwcTextInputStyle, elementStyle];
+
+  @property({ type: Boolean }) charCounter: boolean = false;
 }
 
 export default TextAreaElement;

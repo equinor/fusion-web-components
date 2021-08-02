@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-radio@0.2.1...@equinor/fusion-wc-radio@0.2.2) (2021-08-02)
+
+
+### Bug Fixes
+
+* fixed typing and readme as well as updated packages ([6bf92ad](https://github.com/equinor/fusion-web-components/commit/6bf92ade989eaa8a4cbfd9b51b31a3dd98080140))
+
+
+
+
+
 ## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-radio@0.2.0...@equinor/fusion-wc-radio@0.2.1) (2021-06-16)
 
 

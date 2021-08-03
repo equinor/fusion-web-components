@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.2...@equinor/fusion-wc-popover@1.0.3) (2021-08-02)
+
+
+### Bug Fixes
+
+* fixed eslint error ([aa31c03](https://github.com/equinor/fusion-web-components/commit/aa31c03d614c0216ca5711519786eed9358ad445))
+
+
+
+
+
 ## [1.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.1...@equinor/fusion-wc-popover@1.0.2) (2021-03-30)
 
 

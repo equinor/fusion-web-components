@@ -30,14 +30,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "lerna": "^4.0.0"
-  },
   "devDependencies": {
-    "del-cli": "^4.0.1",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@equinor/eslint-config-fusion": "0.1.2",
+    "del-cli": "^4.0.1",
     "eslint": "^7.32.0",
     "husky": "^7.0.1",
     "lerna": "^4.0.0",

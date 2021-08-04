@@ -15,6 +15,7 @@
     "@babel/core": "^7.14.8",
     "@equinor/fusion-wc-button": "^1.1.7",
     "@equinor/fusion-wc-checkbox": "^0.2.1",
+    "@equinor/fusion-wc-date": "^0.1.0",
     "@equinor/fusion-wc-icon": "^1.0.4",
     "@equinor/fusion-wc-picture": "^1.0.3",
     "@equinor/fusion-wc-popover": "^1.0.2",

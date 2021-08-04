@@ -10,6 +10,7 @@
     { "path": "./packages/button" },
     { "path": "./packages/checkbox" },
     { "path": "./packages/core" },
+    { "path": "./packages/date" },
     { "path": "./packages/icon" },
     { "path": "./packages/intersection" },
     { "path": "./packages/picture" },

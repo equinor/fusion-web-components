@@ -33,14 +33,13 @@ export interface TextInputElementProps {
   size?: number | null;
   step?: number | null;
   autoValidate?: boolean;
-  get validity(): ValidityState;
   willValidate?: boolean;
   validityTransform?: ValidityTransform | null;
   validateOnInitialRender?: boolean;
   name?: string;
   readOnly?: boolean;
-  endAligned: boolean;
-  autocapitalize: string;
+  endAligned?: boolean;
+  autocapitalize?: string;
 }
 
 export class TextInputElement extends TextFieldBase implements TextInputElementProps {

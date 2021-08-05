@@ -17,12 +17,73 @@ export const Default = ({}) => {
   return html`<fwc-date />`;
 };
 
+export const Date = ({}) => {
+  
+  return html`<fwc-date variant="date" />`;
+};
+
+export const Time = ({}) => {
+  return html`<fwc-date variant="time" />`;
+};
+
+export const Relative = ({}) => {
+  return html`<fwc-date variant="relative" />`;
+};
+
+export const Distance = ({}) => {
+  return html`<fwc-date variant="distance" />`;
+};
+
+export const Custom = ({}) => {
+  return html`<fwc-date format="dd-MM-yyyy HH:mm:ss" />`;
+};
+
 ## Date
 
-### Default
+### Default (Date & Time)
 
 <Canvas>
   <Story name="default" args={{}}>
     {Default.bind({})}
+  </Story>
+</Canvas>
+
+### Date
+
+<Canvas>
+  <Story name="date" args={{}}>
+    {Date.bind({})}
+  </Story>
+</Canvas>
+
+### Time
+
+<Canvas>
+  <Story name="time" args={{}}>
+    {Time.bind({})}
+  </Story>
+</Canvas>
+
+### Relative
+
+<Canvas>
+  <Story name="relative" args={{}}>
+    {Relative.bind({})}
+  </Story>
+</Canvas>
+
+### Distance
+
+<Canvas>
+  <Story name="distance" args={{}}>
+    {Distance.bind({})}
+  </Story>
+</Canvas>
+
+### Custom format
+
+<Canvas>
+  <Story name="custom" args={{}}>
+    {Custom.bind({})}
   </Story>
 </Canvas>

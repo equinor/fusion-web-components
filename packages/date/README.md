@@ -11,8 +11,9 @@ npm install @equinor/fusion-wc-date
 ## Example Usage
 
 ```ts
-const date = new Date();
-return <fwc-date variant='distance' date={date}/>
+const date = new Date(2021, 8, 1, 12, 0);
+const baseDate = new Date();
+return <fwc-date variant='distance' date={date} baseDate={baseDate}/>
 ```
 
 ### Properties/Attributes

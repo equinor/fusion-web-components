@@ -18,7 +18,6 @@ export const Default = ({}) => {
 };
 
 export const Date = ({}) => {
-  
   return html`<fwc-date variant="date" />`;
 };
 
@@ -31,11 +30,11 @@ export const Relative = ({}) => {
 };
 
 export const Distance = ({}) => {
-  return html`<fwc-date variant="distance" />`;
+  return html`<fwc-date variant="distance" addSuffix="true" />`;
 };
 
 export const Custom = ({}) => {
-  return html`<fwc-date format="dd-MM-yyyy HH:mm:ss" />`;
+  return html`<fwc-date format="dd-MM-yyyy HH:mm:ss" variant="custom" />`;
 };
 
 ## Date

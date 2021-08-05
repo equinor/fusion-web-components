@@ -26,10 +26,10 @@ export interface DateElementProps {
 
 export class DateElement extends LitElement implements DateElementProps {
   @property({ type: Boolean, reflect: true })
-  addSuffix: boolean = false;
+  addSuffix?: boolean = false;
 
   @property({ type: Boolean, reflect: true })
-  capitalizeFirstLetter: boolean = false;
+  capitalizeFirstLetter?: boolean = false;
 
   @property({ type: Object, reflect: true })
   date: Date = new Date();
@@ -44,16 +44,16 @@ export class DateElement extends LitElement implements DateElementProps {
   includeSeconds?: boolean = false;
 
   @property({ type: Object, reflect: true })
-  locale: Locale = enGB;
+  locale?: Locale = enGB;
 
   @property({ type: Boolean, reflect: true })
-  relative: boolean = false;
+  relative?: boolean = false;
 
   @property({ type: String, reflect: true })
   variant: DateVariant = 'datetime';
 
   @property({ type: Number, reflect: true })
-  weekStartsOn: WeekDay = 1;
+  weekStartsOn?: WeekDay = 1;
 
   constructor() {
     super();
@@ -89,7 +89,7 @@ export class DateElement extends LitElement implements DateElementProps {
     }
   }
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('format')) {
       if (this.format) {

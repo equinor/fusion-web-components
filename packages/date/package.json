@@ -10,8 +10,10 @@
   "keywords": [
     "equinor",
     "fusion",
-    "web components",
-    "date"
+    "web component",
+    "date",
+    "time",
+    "datetime"
   ],
   "author": "",
   "license": "ISC",

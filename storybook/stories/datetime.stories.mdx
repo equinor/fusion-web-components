@@ -1,10 +1,10 @@
 import { html } from 'lit-element';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Element from '@equinor/fusion-wc-date';
+import Element, { DateTimeFormat } from '@equinor/fusion-wc-date';
 Element;
 
 <Meta
-  title="Data/date"
+  title="Data/datetime"
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -14,30 +14,22 @@ Element;
 />
 
 export const Default = ({}) => {
-  return html`<fwc-date />`;
+  return html`<fwc-datetime format=${DateTimeFormat.dateTime} date="2021-08-09T11:12:49Z" />`;
 };
 
 export const Date = ({}) => {
-  return html`<fwc-date variant="date" />`;
+  return html`<fwc-datetime format=${DateTimeFormat.date} date="2021-08-09T11:12:49Z" />`;
 };
 
 export const Time = ({}) => {
-  return html`<fwc-date variant="time" />`;
-};
-
-export const Relative = ({}) => {
-  return html`<fwc-date variant="relative" />`;
-};
-
-export const Distance = ({}) => {
-  return html`<fwc-date variant="distance" addSuffix="true" />`;
+  return html`<fwc-datetime format=${DateTimeFormat.time} date="2021-08-09T11:12:49Z" />`;
 };
 
 export const Custom = ({}) => {
-  return html`<fwc-date format="dd-MM-yyyy HH:mm:ss" variant="custom" />`;
+  return html`<fwc-datetime format="yyyy-MM-dd HH:mm:ss" date="2021-08-09T11:12:49Z" />`;
 };
 
-## Date
+## DateTime
 
 ### Default (Date & Time)
 
@@ -60,22 +52,6 @@ export const Custom = ({}) => {
 <Canvas>
   <Story name="time" args={{}}>
     {Time.bind({})}
-  </Story>
-</Canvas>
-
-### Relative
-
-<Canvas>
-  <Story name="relative" args={{}}>
-    {Relative.bind({})}
-  </Story>
-</Canvas>
-
-### Distance
-
-<Canvas>
-  <Story name="distance" args={{}}>
-    {Distance.bind({})}
   </Story>
 </Canvas>
 

@@ -1,21 +1,32 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import DateElement, { DateElementProps } from './element';
+import DateTimeElement, { DateTimeElementProps } from './dateTimeElement';
+import DateRangeElement, { DateRangeElementProps } from './dateRangeElement';
+export { DateTimeFormat, DateTimeElementProps } from './dateTimeElement';
+export { DateRangeElementProps } from './dateRangeElement';
+export const dateTimeTag = 'fwc-datetime';
+export const dateRangeTag = 'fwc-daterange';
 
-export const tag = 'fwc-date';
+@fusionElement(dateTimeTag)
+export class DateTime extends DateTimeElement {}
 
-@fusionElement(tag)
-export default class _ extends DateElement {}
+@fusionElement(dateRangeTag)
+export class DateRange extends DateRangeElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    [tag]: DateElement;
+    [dateTimeTag]: DateTimeElement;
+    [dateRangeTag]: DateRangeElement;
   }
 
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<DateElementProps & React.HTMLAttributes<DateElement>>,
-        DateElement
+      [dateTimeTag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<DateTimeElementProps & React.HTMLAttributes<DateTimeElement>>,
+        DateTimeElement
+      >;
+      [dateRangeTag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<DateRangeElementProps & React.HTMLAttributes<DateRangeElement>>,
+        DateRangeElement
       >;
     }
   }

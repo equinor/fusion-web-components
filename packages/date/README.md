@@ -95,6 +95,11 @@ return (
 );
 ```
 
+### Slots
+| Name          | Default                 | Description
+| ------------  | ----------------------  | -----------
+| `separator`   | `<span>-</span>`        | Separator element to render between `from` and `to` dates for variant `datetime`.
+
 ### Properties/Attributes
 
 Name                    | Type                         | Default        | Description

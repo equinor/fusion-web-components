@@ -31,8 +31,19 @@ export const DateTime = ({}) => {
     variant="datetime"
     date="2021-08-09T09:12:49Z"
     baseDate="2021-08-09T11:12:49Z"
-    format=${DateTimeFormat.time}
+    format=${DateTimeFormat.date}
   />`;
+};
+
+export const DateTimeSeparator = ({}) => {
+  return html`<fwc-daterange
+    variant="datetime"
+    date="2021-08-09T09:12:49Z"
+    baseDate="2021-08-09T11:12:49Z"
+    format=${DateTimeFormat.date}
+  >
+    <span slot="separator">to</span>
+  </fwc-daterange>`;
 };
 
 ## DateRange
@@ -58,5 +69,13 @@ export const DateTime = ({}) => {
 <Canvas>
   <Story name="datetime" args={{}}>
     {DateTime.bind({})}
+  </Story>
+</Canvas>
+
+### Date & Time with custom separator
+
+<Canvas>
+  <Story name="datetime-separator" args={{}}>
+    {DateTimeSeparator.bind({})}
   </Story>
 </Canvas>

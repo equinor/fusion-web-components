@@ -55,11 +55,6 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
     }
   }
 
-  /** @override */
-  protected createRenderRoot(): Element {
-    return this;
-  }
-
   protected formatText = (value: string): string => {
     if (this.capitalize) {
       value.charAt(0).toUpperCase() + value.slice(1);
@@ -91,7 +86,7 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
       case 'datetime':
         return html`<span>
           <fwc-datetime date=${this.from} format=${ifDefined(this.format)}></fwc-datetime>
-          <span>-</span>
+          <slot name="separator"><span>-</span></slot>
           <fwc-datetime date=${this.to} format=${ifDefined(this.format)}></fwc-datetime>
         </span>`;
     }

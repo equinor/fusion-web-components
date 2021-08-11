@@ -1,8 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import DateTimeElement, { DateTimeElementProps } from './dateTimeElement';
 import DateRangeElement, { DateRangeElementProps } from './dateRangeElement';
-export { DateTimeFormat, DateTimeElementProps } from './dateTimeElement';
+export { DateTimeElementProps } from './dateTimeElement';
 export { DateRangeElementProps } from './dateRangeElement';
+export { DateTimeFormat } from './types';
 export const dateTimeTag = 'fwc-datetime';
 export const dateRangeTag = 'fwc-daterange';
 

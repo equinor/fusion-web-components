@@ -1,6 +1,6 @@
 import { html } from 'lit-element';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Element from '@equinor/fusion-wc-date';
+import Element, { DateTimeFormat } from '@equinor/fusion-wc-date';
 Element;
 
 <Meta
@@ -26,6 +26,15 @@ export const Distance = ({}) => {
   />`;
 };
 
+export const DateTime = ({}) => {
+  return html`<fwc-daterange
+    variant="datetime"
+    date="2021-08-09T09:12:49Z"
+    baseDate="2021-08-09T11:12:49Z"
+    format=${DateTimeFormat.time}
+  />`;
+};
+
 ## DateRange
 
 ### Relative
@@ -41,5 +50,13 @@ export const Distance = ({}) => {
 <Canvas>
   <Story name="distance" args={{}}>
     {Distance.bind({})}
+  </Story>
+</Canvas>
+
+### Date & Time (From - To)
+
+<Canvas>
+  <Story name="datetime" args={{}}>
+    {DateTime.bind({})}
   </Story>
 </Canvas>

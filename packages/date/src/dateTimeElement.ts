@@ -2,14 +2,7 @@ import { html, LitElement, property, TemplateResult } from 'lit-element';
 import { format, formatISO, Locale } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import parseISO from 'date-fns/parseISO';
-
-export enum DateTimeFormat {
-  date = 'dd.MM.yyyy',
-  time = 'HH:mm',
-  dateTime = 'HH:mm dd.MM.yyyy',
-  timeWithSeconds = 'HH:mm:ss',
-  dateTimeWithSeconds = 'HH:mm:ss dd.MM.yyyy',
-}
+import { DateTimeFormat } from './types';
 
 export interface DateTimeElementProps {
   date: string;
@@ -22,7 +15,7 @@ export class DateTimeElement extends LitElement implements DateTimeElementProps 
   date: string = formatISO(new Date());
 
   @property({ type: String })
-  format: string = DateTimeFormat.dateTime;
+  format: DateTimeFormat | string = DateTimeFormat.datetime;
 
   @property({ type: Object })
   locale: Locale = enGB;

@@ -1,6 +1,7 @@
 import { html } from 'lit-element';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Element, { DateTimeFormat } from '@equinor/fusion-wc-date';
+import { nb } from 'date-fns/locale';
 Element;
 
 <Meta
@@ -46,6 +47,15 @@ export const DateTimeSeparator = ({}) => {
   </fwc-daterange>`;
 };
 
+export const Locale = ({}) => {
+  return html`<fwc-daterange
+    variant="relative"
+    date="2021-08-09T09:12:49Z"
+    baseDate="2021-08-09T11:12:49Z"
+    .locale=${nb}
+  />`;
+};
+
 ## DateRange
 
 ### Relative
@@ -77,5 +87,13 @@ export const DateTimeSeparator = ({}) => {
 <Canvas>
   <Story name="datetime-separator" args={{}}>
     {DateTimeSeparator.bind({})}
+  </Story>
+</Canvas>
+
+### Using a custom locale
+
+<Canvas>
+  <Story name="locale" args={{}}>
+    {Locale.bind({})}
   </Story>
 </Canvas>

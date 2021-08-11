@@ -30,7 +30,7 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
   @property({ type: Boolean })
   seconds?: boolean = undefined;
 
-  @property({ type: Object })
+  @property({ type: Object, attribute: false })
   locale: Locale = enGB;
 
   @property({ type: String })
@@ -45,7 +45,8 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
   @property({ type: Boolean })
   capitalize?: boolean = undefined;
 
-  protected updated(changedProperties: PropertyValues) {
+  /** @overide */
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('format')) {
       if (this.format !== undefined && this.variant !== 'datetime') {

@@ -13,22 +13,28 @@ npm install @equinor/fusion-wc-date
 
 #### Date
 ```ts
-return <fwc-datetime format='date' date='2021-08-09T11:12:49Z'/>
+return <fwc-datetime format={DateTimeFormat.date} date='2021-08-09T11:12:49Z'/>
 ```
 
 #### Date & Time
 ```ts
-return <fwc-datetime format='datetime' date='2021-08-09T11:12:49Z'/>
+return <fwc-datetime format={DateTimeFormat.datetime} date='2021-08-09T11:12:49Z'/>
 ```
 
 #### Time
 ```ts
-return <fwc-datetime format='time' date='2021-08-09T11:12:49Z'/>
+return <fwc-datetime format={DateTimeFormat.time} date='2021-08-09T11:12:49Z'/>
 ```
 
 #### Custom
 ```ts
 return <fwc-datetime format='yyyy.MM.dd' date='2021-08-09T11:12:49Z'/>
+```
+
+#### Alternative format type
+The `format` variable can also be given as a value instead of a typed enum
+```ts
+return <fwc-datetime format='datetime' date='2021-08-09T11:12:49Z'/>
 ```
 
 ### Properties/Attributes
@@ -63,6 +69,11 @@ return <fwc-daterange variant='relative' date='2021-08-09T09:12:49Z' baseDate='2
 return <fwc-daterange variant='distance' date='2021-08-09T09:12:49Z' baseDate='2021-08-09T11:12:49Z'/>
 ```
 
+#### Date & Time (From - To)
+```ts
+return <fwc-daterange variant='datetime' format={DateTimeFormat.datetime} date='2021-08-09T09:12:49Z' baseDate='2021-08-09T11:12:49Z'/>
+```
+
 ### Properties/Attributes
 
 Name                    | Type                        | Default        | Description
@@ -78,7 +89,7 @@ Name                    | Type                        | Default        | Descrip
 
 \*  `DateRangeVariant` is exported by `fwc-date`.
 ```ts
-type DateRangeVariant = 'relative' | 'distance' | 'datetime;
+type DateRangeVariant = 'relative' | 'distance' | 'datetime';
 ```
 
 \*\*  `DateTimeFormat` is exported by `fwc-date`.

@@ -10,11 +10,18 @@ export interface DateTimeElementProps {
   format?: DateTimeFormat | string;
 }
 
+const formatConverter = (value: string | null): string | null => {
+  if (value && value in DateTimeFormat) {
+    return DateTimeFormat[value as keyof typeof DateTimeFormat];
+  }
+  return value;
+};
+
 export class DateTimeElement extends LitElement implements DateTimeElementProps {
   @property({ type: String })
   date: string = formatISO(new Date());
 
-  @property({ type: String })
+  @property({ type: String, converter: formatConverter })
   format: DateTimeFormat | string = DateTimeFormat.datetime;
 
   @property({ type: Object })

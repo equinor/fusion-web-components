@@ -15,23 +15,18 @@ Element;
 />
 
 export const Relative = ({}) => {
-  return html`<fwc-daterange variant="relative" date="2021-08-09T09:12:49Z" baseDate="2021-08-09T11:12:49Z" />`;
+  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" />`;
 };
 
 export const Distance = ({}) => {
-  return html`<fwc-daterange
-    variant="distance"
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
-    addSuffix
-  />`;
+  return html`<fwc-daterange variant="distance" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" addSuffix />`;
 };
 
 export const DateTime = ({}) => {
   return html`<fwc-daterange
     variant="datetime"
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
+    from="2021-08-09T09:12:49Z"
+    to="2021-08-09T11:12:49Z"
     format=${DateTimeFormat.date}
   />`;
 };
@@ -39,8 +34,8 @@ export const DateTime = ({}) => {
 export const DateTimeSeparator = ({}) => {
   return html`<fwc-daterange
     variant="datetime"
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
+    from="2021-08-09T09:12:49Z"
+    to="2021-08-09T11:12:49Z"
     format=${DateTimeFormat.date}
   >
     <span slot="separator">to</span>
@@ -48,12 +43,7 @@ export const DateTimeSeparator = ({}) => {
 };
 
 export const Locale = ({}) => {
-  return html`<fwc-daterange
-    variant="relative"
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
-    .locale=${nb}
-  />`;
+  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" .locale=${nb} />`;
 };
 
 ## DateRange

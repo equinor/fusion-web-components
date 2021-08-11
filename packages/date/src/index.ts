@@ -3,7 +3,7 @@ import DateTimeElement, { DateTimeElementProps } from './dateTimeElement';
 import DateRangeElement, { DateRangeElementProps } from './dateRangeElement';
 export { DateTimeElementProps } from './dateTimeElement';
 export { DateRangeElementProps } from './dateRangeElement';
-export { DateTimeFormat } from './types';
+export { DateTimeFormat, DateRangeVariant, WeekDay } from './types';
 export const dateTimeTag = 'fwc-datetime';
 export const dateRangeTag = 'fwc-daterange';
 

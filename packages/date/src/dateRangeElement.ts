@@ -3,26 +3,22 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import { formatDistance, formatISO, formatRelative, Locale } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import parseISO from 'date-fns/parseISO';
-import { DateTimeFormat } from './types';
-
-export type DateRangeVariant = 'distance' | 'relative' | 'datetime';
-
-export type WeekDay = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+import { DateRangeVariant, DateTimeFormat, WeekDay } from './types';
 
 export interface DateRangeElementProps {
-  suffix?: boolean;
   from: string;
   to?: string;
-  seconds?: boolean;
-  locale?: Locale;
   variant?: DateRangeVariant;
-  weekstart?: WeekDay;
   format?: DateTimeFormat | string;
+  locale?: Locale;
+  seconds?: boolean;
+  weekstart?: WeekDay;
+  suffix?: boolean;
 }
 
 export class DateRangeElement extends LitElement implements DateRangeElementProps {
   @property({ type: Boolean })
-  suffix?: boolean = false;
+  suffix?: boolean = undefined;
 
   @property({ type: String })
   from: string = formatISO(new Date());
@@ -31,7 +27,7 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
   to: string = formatISO(new Date());
 
   @property({ type: Boolean })
-  seconds?: boolean = false;
+  seconds?: boolean = undefined;
 
   @property({ type: Object })
   locale: Locale = enGB;

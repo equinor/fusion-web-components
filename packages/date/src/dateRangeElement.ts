@@ -14,6 +14,7 @@ export interface DateRangeElementProps {
   seconds?: boolean;
   weekstart?: WeekDay;
   suffix?: boolean;
+  capitalize?: boolean;
 }
 
 export class DateRangeElement extends LitElement implements DateRangeElementProps {
@@ -33,13 +34,16 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
   locale: Locale = enGB;
 
   @property({ type: String })
-  variant: DateRangeVariant = 'relative';
+  variant: DateRangeVariant = 'datetime';
 
   @property({ type: Number })
   weekstart: WeekDay = 1;
 
   @property({ type: String })
   format?: DateTimeFormat | string = undefined;
+
+  @property({ type: Boolean })
+  capitalize?: boolean = undefined;
 
   protected updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
@@ -56,22 +60,33 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
     return this;
   }
 
+  protected formatText = (value: string): string => {
+    if (this.capitalize) {
+      value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    return value;
+  };
+
   protected render(): TemplateResult {
     switch (this.variant) {
       case 'relative':
         return html`<time datetime=${this.from}
-          >${formatRelative(parseISO(this.from), parseISO(this.to), {
-            locale: this.locale,
-            weekStartsOn: this.weekstart,
-          })}</time
+          >${this.formatText(
+            formatRelative(parseISO(this.from), parseISO(this.to), {
+              locale: this.locale,
+              weekStartsOn: this.weekstart,
+            })
+          )}</time
         >`;
       case 'distance':
         return html`<time datetime=${this.from}
-          >${formatDistance(parseISO(this.from), parseISO(this.to), {
-            locale: this.locale,
-            includeSeconds: this.seconds,
-            addSuffix: this.suffix,
-          })}</time
+          >${this.formatText(
+            formatDistance(parseISO(this.from), parseISO(this.to), {
+              locale: this.locale,
+              includeSeconds: this.seconds,
+              addSuffix: this.suffix,
+            })
+          )}</time
         >`;
       case 'datetime':
         return html`<span>

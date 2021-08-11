@@ -8,7 +8,7 @@
 npm install @equinor/fusion-wc-date
 ```
 
-## DateTime (<fwc-datetime>)
+## DateTime `<fwc-datetime>`
 ### Example Usage
 
 #### Date
@@ -56,7 +56,7 @@ enum DateTimeFormat {
 }
 ```
 
-## Range (<fwc-daterange>)
+## Range `<fwc-daterange>`
 ### Example Usage
 
 #### Relative

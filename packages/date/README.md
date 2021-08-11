@@ -95,6 +95,20 @@ return (
 );
 ```
 
+#### Date & Time with custom separator
+```ts
+return (
+  <fwc-daterange
+    variant="datetime"
+    format={DateTimeFormat.datetime}
+    date="2021-08-09T09:12:49Z"
+    baseDate="2021-08-09T11:12:49Z"
+  >
+  <span slot="separator">to</span>
+  </fwc-daterange>
+);
+```
+
 ### Slots
 | Name          | Default                 | Description
 | ------------  | ----------------------  | -----------

@@ -5,7 +5,7 @@ import { enGB } from 'date-fns/locale';
 import parseISO from 'date-fns/parseISO';
 import { DateRangeVariant, DateTimeFormat, WeekDay } from './types';
 
-export interface DateRangeElementProps {
+export type DateRangeElementProps = {
   from: string;
   to?: string;
   variant?: DateRangeVariant;
@@ -15,7 +15,7 @@ export interface DateRangeElementProps {
   weekstart?: WeekDay;
   suffix?: boolean;
   capitalize?: boolean;
-}
+};
 
 export class DateRangeElement extends LitElement implements DateRangeElementProps {
   @property({ type: Boolean })

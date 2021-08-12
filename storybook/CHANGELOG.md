@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.12...@equinor/fusion-wc-storybook@1.6.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* added better support for formats and fixed readme ([5fcb48b](https://github.com/equinor/fusion-web-components/commit/5fcb48bd0c0a7192d8d9765b9e42b8de39bd5e9e))
+* added separator sløt ([667408b](https://github.com/equinor/fusion-web-components/commit/667408b5d031e9aeffb00ce5d733cf3ea5f38de7))
+* fixed from/to date in storybook ([d9f8b1b](https://github.com/equinor/fusion-web-components/commit/d9f8b1bcf4f5086c648ed95a04bc33549534d2f8))
+* fixed locale from attribute to property, fixed missing return type and added typedoc for updated ([83485f3](https://github.com/equinor/fusion-web-components/commit/83485f31d4c809bf6f529f1599af6db1ea203943))
+* fixed property names and added support for datetime variant in daterange ([4a5da06](https://github.com/equinor/fusion-web-components/commit/4a5da06662a26266c59eaa7066b15cfd05a34334))
+* fixed readme and added mapping from value to enum for format ([add657e](https://github.com/equinor/fusion-web-components/commit/add657e66d418e0b30db3434b44489a70cfc2516))
+* fixed stories ([f4a3e2e](https://github.com/equinor/fusion-web-components/commit/f4a3e2ef1e857b1b588d78839ba103de7793c6ca))
+* merged main ([a84d5e7](https://github.com/equinor/fusion-web-components/commit/a84d5e748c2030f8a2e610d31e16130d29174be0))
+
+
+### Features
+
+* added date component ([78b2317](https://github.com/equinor/fusion-web-components/commit/78b231795da1a9b8d4d8830e1a83f2e195be7267))
+* split date into two components and improved functionality. Replaced Date type for string. Improved README and storybook. ([bd254fc](https://github.com/equinor/fusion-web-components/commit/bd254fce6598886d7a89c0329f7bd472a5b6a789))
+
+
+
+
+
 ## [1.5.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.11...@equinor/fusion-wc-storybook@1.5.12) (2021-08-05)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

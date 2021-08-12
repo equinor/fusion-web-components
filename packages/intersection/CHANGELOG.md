@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.2...@equinor/fusion-wc-intersection@1.0.3) (2021-08-12)
+
+
+### Bug Fixes
+
+* replaced props interfaces with type ([39cc307](https://github.com/equinor/fusion-web-components/commit/39cc3078b3bb217587f5eb39020a312cb859bb96))
+
+
+
+
+
 ## [1.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.1...@equinor/fusion-wc-intersection@1.0.2) (2021-03-30)
 
 

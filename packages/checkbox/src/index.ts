@@ -1,5 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import CheckboxElement, { CheckboxElementProps } from './element';
+export * from './element';
 
 export const tag = 'fwc-checkbox';
 

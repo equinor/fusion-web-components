@@ -1,7 +1,6 @@
 import { html, LitElement, TemplateResult } from 'lit-element';
 import { styles as theme } from '@equinor/fusion-web-theme';
-
-export default class Element extends LitElement {
+export default class ThemeElement extends LitElement {
   protected createRenderRoot(): Element {
     return this;
   }

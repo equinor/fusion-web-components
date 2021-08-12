@@ -5,12 +5,12 @@ import { IntersectionEvent, IntersectionEventInit } from './events/intersection-
 // convert cvs to float array
 const converter = (s: string | null) => s?.split(',').map((v) => parseFloat(v));
 
-export interface IntersectionElementProps {
+export type IntersectionElementProps = {
   disabled?: boolean;
   once?: boolean;
   margin?: string;
   threshold?: number | number[];
-}
+};
 
 /**
  * Custom element for registering intersections

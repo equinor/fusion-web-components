@@ -3,7 +3,7 @@ import { RadioBase } from '@material/mwc-radio/mwc-radio-base';
 import { styles as mdcStyle } from '@material/mwc-radio/mwc-radio.css';
 import { style } from './element.css';
 
-export interface RadioElementProps {
+export type RadioElementProps = {
   checked?: boolean;
   disabled?: boolean;
   formElementTabIndex?: number;
@@ -12,7 +12,7 @@ export interface RadioElementProps {
   name?: string;
   reducedTouchTarget?: boolean;
   value?: string;
-}
+};
 
 export class RadioElement extends RadioBase implements RadioElementProps {
   static styles: CSSResult[] = [mdcStyle, style];

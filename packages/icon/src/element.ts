@@ -4,10 +4,10 @@ import createIcon, { IconType } from './utils/create-icon';
 
 import { style } from './element.css';
 
-export interface IconElementProps {
+export type IconElementProps = {
   icon: IconName;
   type?: IconType;
-}
+};
 
 export class IconElement extends LitElement implements IconElementProps {
   static styles = [style];

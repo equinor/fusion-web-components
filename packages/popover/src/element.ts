@@ -6,14 +6,14 @@ import { Placement } from '@popperjs/core';
 import style from './element.css';
 import { popperjs, Options, PopperModifier } from './directories/popperjs';
 
-export interface PopoverElementProps {
+export type PopoverElementProps = {
   disabled?: boolean;
   placement?: Placement;
   show?: boolean;
   flip?: boolean;
   offset?: [number, number];
   triggers?: ShowTrigger[];
-}
+};
 
 export type ShowTrigger = 'hover' | 'click';
 

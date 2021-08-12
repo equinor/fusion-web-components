@@ -2,6 +2,7 @@ import { html, LitElement, property, eventOptions, internalProperty, TemplateRes
 
 import { styleMap } from 'lit-html/directives/style-map';
 import { repeat } from 'lit-html/directives/repeat';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { observeIntersection } from '@equinor/fusion-wc-intersection';
 
@@ -10,12 +11,12 @@ import style from './element.css';
 
 export type PictureAlignment = 'center' | 'top' | 'bottom' | 'left' | 'right';
 
-export interface PictureElementProps {
+export type PictureElementProps = {
   src?: string;
   position?: PictureAlignment;
   cover?: boolean;
   lazy?: boolean;
-}
+};
 
 export class PictureElement extends LitElement implements PictureElementProps {
   static styles = [style];
@@ -118,7 +119,12 @@ export class PictureElement extends LitElement implements PictureElementProps {
         (src) => src.srcset || src.src,
         (src) => src
       )}
-      <img src="${this.src}" height="${this.width}" width="${this.height}" @load="${this._onSourceChange}" />
+      <img
+        src="${this.src}"
+        height="${ifDefined(this.width)}"
+        width="${ifDefined(this.height)}"
+        @load="${this._onSourceChange}"
+      />
     `;
   }
 

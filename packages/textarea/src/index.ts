@@ -1,7 +1,8 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import TextAreaElement, { TextAreaElementProps } from './element';
+export * from './element';
+export * from '@equinor/fusion-wc-textinput';
 
-export { style } from './element.css';
 export const tag = 'fwc-textarea';
 
 @fusionElement(tag)

@@ -9,7 +9,7 @@ export type ButtonColor = 'primary' | 'secondary' | 'danger';
 
 export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
-export interface ButtonElementProps {
+export type ButtonElementProps = {
   icon?: IconName;
   label?: string;
   variant?: ButtonVariant;
@@ -17,7 +17,7 @@ export interface ButtonElementProps {
   dense?: boolean;
   trailingIcon?: boolean;
   expandContent?: boolean;
-}
+};
 
 export class ButtonElement extends ButtonBase implements ButtonElementProps {
   static styles: CSSResult[] = [mdcStyle, style];

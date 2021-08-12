@@ -1,18 +1,24 @@
 {
-  "name": "@equinor/fusion-wc-textinput",
-  "version": "0.2.6",
+  "name": "@equinor/fusion-wc-date",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",
     "prepack": "npm run build && fwc-build"
   },
-  "keywords": [],
+  "keywords": [
+    "equinor",
+    "fusion",
+    "web component",
+    "date",
+    "time",
+    "datetime"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-icon": "^1.0.4",
-    "@material/mwc-textfield": "^0.22.1"
+    "date-fns": "^2.23.0"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.1",
@@ -29,7 +35,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/equinor/fusion-web-components.git",
-    "directory": "packages/textinput"
+    "directory": "packages/date"
   },
   "publishConfig": {
     "access": "public"

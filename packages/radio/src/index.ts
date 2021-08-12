@@ -1,5 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import RadioElement, { RadioElementProps } from './element';
+export * from './element';
 
 export const tag = 'fwc-radio';
 

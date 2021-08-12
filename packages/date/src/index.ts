@@ -4,6 +4,7 @@ import DateRangeElement, { DateRangeElementProps } from './dateRangeElement';
 export * from './dateTimeElement';
 export * from './dateRangeElement';
 export * from './types';
+export { Locale } from 'date-fns';
 export const dateTimeTag = 'fwc-datetime';
 export const dateRangeTag = 'fwc-daterange';
 

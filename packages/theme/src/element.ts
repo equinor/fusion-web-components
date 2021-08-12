@@ -10,16 +10,15 @@ export default class Element extends LitElement {
     return html` <link href="https://eds-static.equinor.com/font/equinor-font.css" rel="stylesheet" />
       <style>
         :root {
-          --mdc-ripple-color: #000;
-          --mdc-ripple-hover-opacity: 0.1;
-          --mdc-theme-background: #fff;
-          --mdc-theme-error: ${theme.colors.interactive.danger__text.getVariable('color')};
-          --mdc-theme-on-primary: ${theme.colors.text.static_icons__primary_white.getVariable('color')};
-          --mdc-theme-on-secondary: ${theme.colors.text.static_icons__primary_white.getVariable('color')};
-          --mdc-theme-on-surface: ${theme.colors.text.static_icons__secondary.getVariable('color')};
-          --mdc-theme-primary: ${theme.colors.interactive.primary__resting.getVariable('color')};
-          --mdc-theme-secondary: ${theme.colors.interactive.primary__resting.getVariable('color')};
-          --mdc-theme-surface: ${theme.colors.ui.background__light.getVariable('color')};
+          --mdc-ripple-color: ${theme.colors.interactive.primary__resting.value.hex};
+          --mdc-theme-background: #ffffff;
+          --mdc-theme-error: ${theme.colors.interactive.danger__text.value.hex};
+          --mdc-theme-on-primary: ${theme.colors.text.static_icons__primary_white.value.hex};
+          --mdc-theme-on-secondary: ${theme.colors.text.static_icons__primary_white.value.hex};
+          --mdc-theme-on-surface: ${theme.colors.text.static_icons__secondary.value.hex};
+          --mdc-theme-primary: ${theme.colors.interactive.primary__resting.value.hex};
+          --mdc-theme-secondary: ${theme.colors.interactive.primary__resting.value.hex};
+          --mdc-theme-surface: ${theme.colors.ui.background__light.value.hex};
           --mdc-typography-font-family: Equinor;
         }
       </style>`;

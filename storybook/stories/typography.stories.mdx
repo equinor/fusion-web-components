@@ -1,0 +1,28 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element from '@equinor/fusion-wc-typography';
+Element;
+
+<Meta
+  title="Data/typography"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Default = ({}) => {
+  return html`<fwc-typography variant="h1">test</fwc-typography>`;
+};
+
+## Typography
+
+### Default
+
+<Canvas>
+  <Story name="default" args={{}}>
+    {Default.bind({})}
+  </Story>
+</Canvas>

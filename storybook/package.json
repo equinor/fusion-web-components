@@ -24,6 +24,7 @@
     "@equinor/fusion-wc-textarea": "^0.2.4",
     "@equinor/fusion-wc-textinput": "^0.2.6",
     "@equinor/fusion-wc-theme": "^0.2.7",
+    "@equinor/fusion-wc-typography": "^0.1.0",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",

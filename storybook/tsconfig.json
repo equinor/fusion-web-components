@@ -22,6 +22,7 @@
     { "path": "../packages/switch" },
     { "path": "../packages/theme" },
     { "path": "../packages/textarea" },
-    { "path": "../packages/textinput" }
+    { "path": "../packages/textinput" },
+    { "path": "../packages/typography" }
   ]
 }

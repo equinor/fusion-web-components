@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.7...@equinor/fusion-wc-button@1.1.8) (2021-08-12)
+
+
+### Bug Fixes
+
+* fixed type exports ([e7e19a5](https://github.com/equinor/fusion-web-components/commit/e7e19a59c3db40b20d29f9ea888614a188a2fcc4))
+* replaced props interfaces with type ([39cc307](https://github.com/equinor/fusion-web-components/commit/39cc3078b3bb217587f5eb39020a312cb859bb96))
+
+
+
+
+
 ## [1.1.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.6...@equinor/fusion-wc-button@1.1.7) (2021-07-29)
 
 

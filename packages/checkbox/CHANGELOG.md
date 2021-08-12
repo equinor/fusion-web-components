@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.2...@equinor/fusion-wc-checkbox@0.2.3) (2021-08-12)
+
+
+### Bug Fixes
+
+* fixed type exports ([e7e19a5](https://github.com/equinor/fusion-web-components/commit/e7e19a59c3db40b20d29f9ea888614a188a2fcc4))
+* replaced props interfaces with type ([39cc307](https://github.com/equinor/fusion-web-components/commit/39cc3078b3bb217587f5eb39020a312cb859bb96))
+
+
+
+
+
 ## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.1...@equinor/fusion-wc-checkbox@0.2.2) (2021-08-02)
 
 

@@ -5,7 +5,7 @@ export const tag = 'fwc-theme';
 
 declare global {
   interface HTMLElementTagNameMap {
-    tag: ThemeElement;
+    [tag]: ThemeElement;
   }
 }
 

@@ -5,10 +5,10 @@ import { style as fwcTextInputStyle, mdcStyle as mdcTextInputStyle } from '@equi
 import elementStyle from './element.css';
 import { TextInputElementProps } from 'textinput/src/element';
 
-export interface TextAreaElementProps extends TextInputElementProps {
+export type TextAreaElementProps = TextInputElementProps & {
   rows?: number;
   cols?: number;
-}
+};
 
 export class TextAreaElement extends TextAreaBase implements TextAreaElementProps {
   static styles: CSSResult[] = [mdcStyle, mdcTextInputStyle, fwcTextInputStyle, elementStyle];

@@ -10,7 +10,7 @@ export type ValidityTransform = (value: string, nativeValidity: ValidityState) =
 export type TextInputType = TextFieldType;
 export type TextInputCharCounter = 'external' | 'internal';
 
-export interface TextInputElementProps {
+export type TextInputElementProps = {
   value?: string;
   type?: TextInputType;
   label?: string;
@@ -40,7 +40,7 @@ export interface TextInputElementProps {
   readOnly?: boolean;
   endAligned?: boolean;
   autocapitalize?: string;
-}
+};
 
 export class TextInputElement extends TextFieldBase implements TextInputElementProps {
   static styles: CSSResult[] = [mdcStyle, elementStyle];

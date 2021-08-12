@@ -1,8 +1,8 @@
 import { LitElement } from 'lit-element';
 
-export interface AvatarElementProps {
+export type AvatarElementProps = {
   todo: string;
-}
+};
 
 export class AvatarElement extends LitElement {}
 

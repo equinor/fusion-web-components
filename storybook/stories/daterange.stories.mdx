@@ -1,0 +1,89 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Element, { DateTimeFormat } from '@equinor/fusion-wc-date';
+import { nb } from 'date-fns/locale';
+Element;
+
+<Meta
+  title="Data/daterange"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Relative = ({}) => {
+  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" />`;
+};
+
+export const Distance = ({}) => {
+  return html`<fwc-daterange variant="distance" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" addSuffix />`;
+};
+
+export const DateTime = ({}) => {
+  return html`<fwc-daterange
+    variant="datetime"
+    from="2021-08-09T09:12:49Z"
+    to="2021-08-09T11:12:49Z"
+    format=${DateTimeFormat.date}
+  />`;
+};
+
+export const DateTimeSeparator = ({}) => {
+  return html`<fwc-daterange
+    variant="datetime"
+    from="2021-08-09T09:12:49Z"
+    to="2021-08-09T11:12:49Z"
+    format=${DateTimeFormat.date}
+  >
+    <span slot="separator">to</span>
+  </fwc-daterange>`;
+};
+
+export const Locale = ({}) => {
+  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" .locale=${nb} />`;
+};
+
+## DateRange
+
+### Relative
+
+<Canvas>
+  <Story name="default" args={{}}>
+    {Relative.bind({})}
+  </Story>
+</Canvas>
+
+### Distance
+
+<Canvas>
+  <Story name="distance" args={{}}>
+    {Distance.bind({})}
+  </Story>
+</Canvas>
+
+### Date & Time (From - To)
+
+<Canvas>
+  <Story name="datetime" args={{}}>
+    {DateTime.bind({})}
+  </Story>
+</Canvas>
+
+### Date & Time with custom separator
+
+<Canvas>
+  <Story name="datetime-separator" args={{}}>
+    {DateTimeSeparator.bind({})}
+  </Story>
+</Canvas>
+
+### Using a custom locale
+
+<Canvas>
+  <Story name="locale" args={{}}>
+    {Locale.bind({})}
+  </Story>
+</Canvas>

@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.1",
-    "typescript": "4.3.5"
+    "typescript": "^4.3.5"
   }
 }

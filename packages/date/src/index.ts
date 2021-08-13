@@ -1,18 +1,17 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import DateTimeElement, { DateTimeElementProps } from './dateTimeElement';
-import DateRangeElement, { DateRangeElementProps } from './dateRangeElement';
-export * from './dateTimeElement';
-export * from './dateRangeElement';
+import DateTime, { DateTimeElementProps } from './datetime/element';
+import DateRange, { DateRangeElementProps } from './daterange/element';
+export * from './datetime/element';
+export * from './daterange/element';
 export * from './types';
-export { Locale } from 'date-fns';
 export const dateTimeTag = 'fwc-datetime';
 export const dateRangeTag = 'fwc-daterange';
 
 @fusionElement(dateTimeTag)
-export class DateTime extends DateTimeElement {}
+export class DateTimeElement extends DateTime {}
 
 @fusionElement(dateRangeTag)
-export class DateRange extends DateRangeElement {}
+export class DateRangeElement extends DateRange {}
 
 declare global {
   interface HTMLElementTagNameMap {

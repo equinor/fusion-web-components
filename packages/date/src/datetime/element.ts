@@ -1,12 +1,13 @@
 import { html, LitElement, property, TemplateResult } from 'lit-element';
-import { format, formatISO, Locale } from 'date-fns';
+import { format, formatISO } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import parseISO from 'date-fns/parseISO';
-import { DateTimeFormat } from './types';
+import { DateTimeFormat, LocaleName } from '../types';
+import { resolveLocale } from '../utils/resolve-locale';
 
 export type DateTimeElementProps = {
   date: string;
-  locale?: Locale;
+  locale?: LocaleName;
   format?: DateTimeFormat | string;
 };
 
@@ -24,8 +25,8 @@ export class DateTimeElement extends LitElement implements DateTimeElementProps 
   @property({ type: String, converter: formatConverter })
   format: DateTimeFormat | string = DateTimeFormat.datetime;
 
-  @property({ type: Object })
-  locale: Locale = enGB;
+  @property({ type: String })
+  locale: LocaleName = enGB.code as LocaleName;
 
   /** @override */
   protected createRenderRoot(): Element {
@@ -34,7 +35,7 @@ export class DateTimeElement extends LitElement implements DateTimeElementProps 
 
   protected render(): TemplateResult {
     return html`<time datetime=${this.date}
-      >${format(parseISO(this.date), this.format, { locale: this.locale })}</time
+      >${format(parseISO(this.date), this.format, { locale: resolveLocale(this.locale) })}</time
     >`;
   }
 }

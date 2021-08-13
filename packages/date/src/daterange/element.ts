@@ -1,16 +1,17 @@
 import { html, LitElement, property, PropertyValues, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { formatDistance, formatISO, formatRelative, Locale } from 'date-fns';
+import { formatDistance, formatISO, formatRelative } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import parseISO from 'date-fns/parseISO';
-import { DateRangeVariant, DateTimeFormat, WeekDay } from './types';
+import { DateRangeVariant, DateTimeFormat, LocaleName, WeekDay } from '../types';
+import { resolveLocale } from '../utils/resolve-locale';
 
 export type DateRangeElementProps = {
   from: string;
   to?: string;
   variant?: DateRangeVariant;
   format?: DateTimeFormat | string;
-  locale?: Locale;
+  locale?: LocaleName;
   seconds?: boolean;
   weekstart?: WeekDay;
   suffix?: boolean;
@@ -30,8 +31,8 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
   @property({ type: Boolean })
   seconds?: boolean = undefined;
 
-  @property({ type: Object, attribute: false })
-  locale: Locale = enGB;
+  @property({ type: String })
+  locale: LocaleName = enGB.code as LocaleName;
 
   @property({ type: String })
   variant: DateRangeVariant = 'datetime';
@@ -69,7 +70,7 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
         return html`<time datetime=${this.from}
           >${this.formatText(
             formatRelative(parseISO(this.from), parseISO(this.to), {
-              locale: this.locale,
+              locale: resolveLocale(this.locale),
               weekStartsOn: this.weekstart,
             })
           )}</time
@@ -78,7 +79,7 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
         return html`<time datetime=${this.from}
           >${this.formatText(
             formatDistance(parseISO(this.from), parseISO(this.to), {
-              locale: this.locale,
+              locale: resolveLocale(this.locale),
               includeSeconds: this.seconds,
               addSuffix: this.suffix,
             })

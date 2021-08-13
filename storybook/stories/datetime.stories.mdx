@@ -29,6 +29,10 @@ export const Custom = ({}) => {
   return html`<fwc-datetime format="yyyy-MM-dd HH:mm:ss" date="2021-08-09T11:12:49Z" />`;
 };
 
+export const Locale = ({}) => {
+  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" locale="nb" />`;
+};
+
 ## DateTime
 
 ### Default (Date & Time)
@@ -60,5 +64,13 @@ export const Custom = ({}) => {
 <Canvas>
   <Story name="custom" args={{}}>
     {Custom.bind({})}
+  </Story>
+</Canvas>
+
+### Using a custom locale
+
+<Canvas>
+  <Story name="locale" args={{}}>
+    {Locale.bind({})}
   </Story>
 </Canvas>

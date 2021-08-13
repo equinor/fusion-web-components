@@ -1,3 +1,5 @@
+import * as locales from 'date-fns/locale';
+
 export enum DateTimeFormat {
   date = 'dd.MM.yyyy',
   time = 'HH:mm',
@@ -9,3 +11,7 @@ export enum DateTimeFormat {
 export type DateRangeVariant = 'distance' | 'relative' | 'datetime';
 
 export type WeekDay = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
+export const localeNames = Object.keys(locales);
+
+export type LocaleName = keyof typeof localeNames;

@@ -50,7 +50,7 @@ return (
 #### With custom locale property
 ```ts
 return (
-  <fwc-datetime format='datetime' date='2021-08-09T11:12:49Z' locale="nb" />
+  <fwc-datetime format={DateTimeFormat.time} date='2021-08-09T11:12:49Z' locale='nb' />
 );
 ```
 
@@ -65,11 +65,11 @@ Name                    | Type                        | Default          | Descr
 \*  `DateTimeFormat` is exported by `fwc-date`.
 ```ts
 enum DateTimeFormat {
-  date = 'dd.MM.yyyy',
-  time = 'HH:mm',
-  datetime = 'HH:mm dd.MM.yyyy',
-  time_with_seconds = 'HH:mm:ss',
-  datetime_with_seconds = 'HH:mm:ss dd.MM.yyyy',
+  date='dd.MM.yyyy',
+  time='HH:mm',
+  datetime='HH:mm dd.MM.yyyy',
+  time_with_seconds='HH:mm:ss',
+  datetime_with_seconds='HH:mm:ss dd.MM.yyyy',
 }
 ```
 
@@ -100,10 +100,10 @@ return (
 ```ts
 return (
   <fwc-daterange
-    variant="datetime"
+    variant='datetime'
     format={DateTimeFormat.datetime}
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
+    date='2021-08-09T09:12:49Z'
+    baseDate='2021-08-09T11:12:49Z'
   />
 );
 ```
@@ -112,12 +112,12 @@ return (
 ```ts
 return (
   <fwc-daterange
-    variant="datetime"
+    variant='datetime'
     format={DateTimeFormat.datetime}
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
+    date='2021-08-09T09:12:49Z'
+    baseDate='2021-08-09T11:12:49Z'
   >
-  <span slot="separator">to</span>
+  <span slot='separator'>to</span>
   </fwc-daterange>
 );
 ```
@@ -126,13 +126,13 @@ return (
 ```ts
 return (
   <fwc-daterange
-    variant="datetime"
+    variant='datetime'
     format={DateTimeFormat.datetime}
-    date="2021-08-09T09:12:49Z"
-    baseDate="2021-08-09T11:12:49Z"
-    locale="nb"
+    date='2021-08-09T09:12:49Z'
+    baseDate='2021-08-09T11:12:49Z'
+    locale='nb'
   >
-  <span slot="separator">to</span>
+  <span slot='separator'>to</span>
   </fwc-daterange>
 );
 ```

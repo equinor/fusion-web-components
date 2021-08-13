@@ -15,7 +15,7 @@
   "author": "Equinor ASA",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-core": "^1.0.1",
+    "@equinor/fusion-wc-core": "1.0.1",
     "@equinor/fusion-wc-icon": "^1.0.7",
     "@equinor/fusion-wc-textinput": "^0.2.9",
     "@material/mwc-textarea": "^0.22.1",

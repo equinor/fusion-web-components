@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-core": "^1.0.1",
+    "@equinor/fusion-wc-core": "1.0.1",
     "@popperjs/core": "^2.9.1",
     "@types/resize-observer-browser": "^0.1.5",
     "lit-element": "2.5.1",

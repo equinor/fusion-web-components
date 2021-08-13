@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-core": "^1.0.1",
+    "@equinor/fusion-wc-core": "1.0.1",
     "@equinor/fusion-wc-intersection": "^1.0.5",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"

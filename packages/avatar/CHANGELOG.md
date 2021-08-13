@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.7...@equinor/fusion-wc-avatar@1.0.8) (2021-08-13)
+
+
+### Bug Fixes
+
+* fixed locale and type exports ([aa14787](https://github.com/equinor/fusion-web-components/commit/aa14787d229b8a2956991ba940a10e5174356bb9))
+
+
+
+
+
 ## [1.0.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.6...@equinor/fusion-wc-avatar@1.0.7) (2021-08-13)
 
 

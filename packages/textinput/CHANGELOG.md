@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.2.8...@equinor/fusion-wc-textinput@0.2.9) (2021-08-13)
+
+
+### Bug Fixes
+
+* fixed dependencies for all packages ([9a78b73](https://github.com/equinor/fusion-web-components/commit/9a78b73068685cd4d096fdea1e8501464c18a51c))
+
+
+
+
+
 ## [0.2.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.2.7...@equinor/fusion-wc-textinput@0.2.8) (2021-08-13)
 
 

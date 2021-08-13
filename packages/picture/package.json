@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-picture",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -12,12 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "1.0.1",
-    "@equinor/fusion-wc-intersection": "^1.0.5",
+    "@equinor/fusion-wc-intersection": "^1.0.6",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"
   },
   "devDependencies": {
-    "@equinor/fusion-wc-builder": "^1.0.1",
+    "@equinor/fusion-wc-builder": "^1.0.2",
     "typescript": "^4.3.5"
   },
   "repository": {

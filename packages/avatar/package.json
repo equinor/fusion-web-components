@@ -13,8 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.1",
-    "@equinor/fusion-wc-icon": "1.0.6",
-    "@equinor/fusion-wc-picture": "1.0.5",
+    "@equinor/fusion-wc-icon": "^1.0.7",
+    "@equinor/fusion-wc-picture": "^1.0.6",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"
   },

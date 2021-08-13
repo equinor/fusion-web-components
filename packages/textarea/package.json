@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-textarea",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -16,8 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.1",
-    "@equinor/fusion-wc-icon": "^1.0.6",
-    "@equinor/fusion-wc-textinput": "^0.2.8",
+    "@equinor/fusion-wc-icon": "^1.0.7",
+    "@equinor/fusion-wc-textinput": "^0.2.9",
     "@material/mwc-textarea": "^0.22.1",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"

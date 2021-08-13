@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.4...@equinor/fusion-wc-date@0.2.5) (2021-08-13)
+
+
+### Bug Fixes
+
+* fixed locale and type exports ([aa14787](https://github.com/equinor/fusion-web-components/commit/aa14787d229b8a2956991ba940a10e5174356bb9))
+
+
+
+
+
+## [0.2.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.3...@equinor/fusion-wc-date@0.2.4) (2021-08-13)
+
+
+### Bug Fixes
+
+* fixed dependencies for all packages ([9a78b73](https://github.com/equinor/fusion-web-components/commit/9a78b73068685cd4d096fdea1e8501464c18a51c))
+
+
+
+
+
 ## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.2...@equinor/fusion-wc-date@0.2.3) (2021-08-13)
 
 

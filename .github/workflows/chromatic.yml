@@ -1,0 +1,47 @@
+# .github/workflows/chromatic.yml
+
+# Workflow name
+name: 'Chromatic'
+
+# Event for the workflow
+on: 
+  pull_request:
+  push:
+    branches:
+      - main
+
+# List of jobs
+jobs:
+  chromatic-deployment:
+    # do not waste render on dependabot
+    if: contains(fromJson('["dependabot[bot]", "dependabot-preview[bot]"]'), github.actor) == false
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm ci
+      - name: Build libs
+        run: npm run build
+
+      # 👇 Checks if the branch is not main and runs Chromatic
+      - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/main'
+        uses: chromaui/action@v1
+        # Required options for the Chromatic GitHub Action
+        with:
+          workingDir: storybook
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+        # 👇 Checks if the branch is main and accepts all changes in Chromatic
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/main'
+        uses: chromaui/action@v1
+        # Required options for the Chromatic GitHub Action
+        with:
+          workingDir: storybook
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true # 👈 Option to accept all changes

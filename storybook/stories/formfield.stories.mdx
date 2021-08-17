@@ -1,0 +1,56 @@
+import { html } from 'lit-element';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+
+import '@equinor/fusion-wc-formfield';
+import '@equinor/fusion-wc-checkbox';
+import '@equinor/fusion-wc-switch';
+
+<Meta title="Input/Formfield" />
+
+export const TemplateCheckbox = (props) => {
+  return html`
+    <div style="display:flex; flex-direction: ${props.spaceBetween ? 'column': 'row'}; gap: 10px;">
+      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap} >
+        <fwc-checkbox />
+      </fwc-formfield>
+      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap}>
+        <fwc-switch />
+      </fwc-formfield>
+      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap}>
+        <fwc-radio />
+      </fwc-formfield>
+      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap}>
+        <fwc-textinput />
+      </fwc-formfield>
+    </div>
+  `;
+};
+
+### Default
+
+<Canvas>
+  <Story name="default" args={{label: 'default' }}>
+    {TemplateCheckbox.bind({})}
+  </Story>
+</Canvas>
+
+
+### Align end
+
+<Canvas>
+  <Story name="alignment" args={{label: 'alignment', alignEnd: true}}>
+    {TemplateCheckbox.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="spacing" args={{label: 'alignment', spaceBetween: true, alignEnd: true}}>
+    {TemplateCheckbox.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="nowrap" args={{spaceBetween: true, alignEnd: true, label: 'Bacon ipsum dolor amet biltong turducken bacon, boudin salami ball tip pork loin ground round rump turkey brisket doner tail jowl drumstick.', nowrap: true}}>
+    {TemplateCheckbox.bind({})}
+  </Story>
+</Canvas>

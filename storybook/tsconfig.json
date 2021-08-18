@@ -17,6 +17,7 @@
     { "path": "../packages/date" },
     { "path": "../packages/picture" },
     { "path": "../packages/icon" },
+    { "path": "../packages/formfield" },
     { "path": "../packages/popover" },
     { "path": "../packages/radio" },
     { "path": "../packages/switch" },

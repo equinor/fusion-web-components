@@ -12,6 +12,7 @@
     { "path": "./packages/core" },
     { "path": "./packages/date" },
     { "path": "./packages/icon" },
+    { "path": "./packages/formfield" },
     { "path": "./packages/intersection" },
     { "path": "./packages/picture" },
     { "path": "./packages/popover" },

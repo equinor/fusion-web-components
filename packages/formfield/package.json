@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-formfield",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Formfield web component based on Material UI",
   "main": "lib/index.js",
   "scripts": {

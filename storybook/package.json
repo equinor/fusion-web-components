@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@equinor/fusion-wc-badge": "^0.1.0",
     "@equinor/fusion-wc-button": "^1.1.11",
     "@equinor/fusion-wc-checkbox": "^0.2.6",
     "@equinor/fusion-wc-date": "^0.2.6",

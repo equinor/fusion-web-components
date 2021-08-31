@@ -1,0 +1,55 @@
+import { LitElement, CSSResult, TemplateResult, html, property } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import { IconName } from '@equinor/fusion-wc-icon';
+import style from './element.css';
+
+export type BadgeSize = 'small' | 'medium' | 'large';
+export type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+export type BadgeColor = 'primary' | 'secondary';
+
+export type BadgeElementProps = {
+  size?: BadgeSize;
+  position?: BadgePosition;
+  color?: BadgeColor;
+  value?: string;
+  icon?: IconName;
+  circular?: boolean;
+};
+
+export class BadgeElement extends LitElement implements BadgeElementProps {
+  static styles: CSSResult[] = [style];
+
+  @property({ type: String, reflect: true })
+  size: BadgeSize = 'medium';
+
+  @property({ type: String, reflect: true })
+  position: BadgePosition = 'top-right';
+
+  @property({ type: String, reflect: true })
+  color: BadgeColor = 'secondary';
+
+  @property({ type: String })
+  value?: string;
+
+  @property({ type: String })
+  icon?: IconName;
+
+  @property({ type: Boolean })
+  circular?: boolean;
+
+  get renderIcon(): TemplateResult {
+    return html`<fwc-icon icon=${ifDefined(this.icon)}></fwc-icon>`;
+  }
+
+  protected render(): TemplateResult {
+    if (this.icon) {
+      return this.renderIcon;
+    }
+    if (this.value) {
+      return html`<span>${this.value}</span>`;
+    }
+    return html`<span><slot></slot></span>`;
+  }
+}
+
+export default BadgeElement;

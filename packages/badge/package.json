@@ -2,7 +2,6 @@
   "name": "@equinor/fusion-wc-badge",
   "version": "0.1.0",
   "description": "",
-  "private": true,
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",

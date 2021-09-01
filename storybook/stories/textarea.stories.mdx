@@ -1,10 +1,16 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Element from '@equinor/fusion-wc-textarea';
-Element;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import TextArea from './Components/TextArea';
+
+export const Container = ({children}) => (
+  <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+    {children}
+  </div>
+);
 
 <Meta
-  title="Input/textarea"
+  title="Input/TextArea"
+  component={TextArea}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -13,76 +19,30 @@ Element;
   }}
 />
 
-export const Default = ({}) => {
-  return html`<fwc-textarea label="Default"></fwc-textarea>`;
-};
 
-export const Rows = ({}) => {
-  return html`<fwc-textarea rows="5" label="Default"></fwc-textarea>`;
-};
+# Icon
 
-export const Helper = ({}) => {
-  return html`<fwc-textarea label="Helper" helper="Helper Text" helperpersistent></fwc-textarea>`;
-};
-
-export const CharCounter = ({}) => {
-  return html`<fwc-textarea label="Counter" maxlength="18" charCounter></fwc-textarea>`;
-};
-
-export const FullWidth = ({}) => {
-  return html`<fwc-textarea label="Fluid" fullwidth></fwc-textarea>`;
-};
-
-export const Disabled = ({}) => {
-  return html`<fwc-textarea label="Disabled" disabled></fwc-textarea>`;
-};
-
-## TextArea
-
-### Default
+```sh
+npm i @equinor/fusion-wc-textarea
+```
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Default.bind({})}
+  <Story
+    name="Basic"
+    args={{ 
+      label: 'TextInput',
+    }}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {TextArea.bind({})}
   </Story>
 </Canvas>
 
-### Multiple Rows
+<ArgsTable story="Basic" />
 
-<Canvas>
-  <Story name="rows" args={{}}>
-    {Rows.bind({})}
-  </Story>
-</Canvas>
+## Examples
 
-### With helper
+### General
+<Story name="General">
+</Story>
 
-<Canvas>
-  <Story name="helper" args={{}}>
-    {Helper.bind({})}
-  </Story>
-</Canvas>
-
-### With character counter
-
-<Canvas>
-  <Story name="counter" args={{}}>
-    {CharCounter.bind({})}
-  </Story>
-</Canvas>
-
-### Full width (fluid)
-
-<Canvas>
-  <Story name="full" args={{}}>
-    {FullWidth.bind({})}
-  </Story>
-</Canvas>
-
-### Disabled
-
-<Canvas>
-  <Story name="disabled" args={{}}>
-    {Disabled.bind({})}
-  </Story>
-</Canvas>

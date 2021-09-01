@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-picture@1.0.7...@equinor/fusion-wc-picture@1.0.8) (2021-09-01)
+
+**Note:** Version bump only for package @equinor/fusion-wc-picture
+
+
+
+
+
 ## [1.0.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-picture@1.0.6...@equinor/fusion-wc-picture@1.0.7) (2021-08-13)
 
 

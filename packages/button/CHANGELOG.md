@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.11...@equinor/fusion-wc-button@1.1.12) (2021-09-01)
+
+
+### Bug Fixes
+
+* preserve Icon component ([a627983](https://github.com/equinor/fusion-web-components/commit/a627983b25fef5c365ec961314d131b4236491c7))
+
+
+
+
+
 ## [1.1.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.10...@equinor/fusion-wc-button@1.1.11) (2021-08-13)
 
 

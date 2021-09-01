@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-picture",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "1.0.1",
-    "@equinor/fusion-wc-intersection": "^1.0.6",
+    "@equinor/fusion-wc-intersection": "^1.0.7",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"
   },

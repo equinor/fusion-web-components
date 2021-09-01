@@ -1,88 +1,78 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { DateRangeElement, DateTimeFormat } from '@equinor/fusion-wc-date';
-DateRangeElement;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import DateRange from './Components/DateRange';
+
+export const Container = ({ children}) => (
+    <div style={{display: 'flex', flexFlow: 'column', gap: '10px'}}> 
+      {children}
+    </div>
+);
+
+export const now = new Date();
 
 <Meta
-  title="Data/daterange"
+  title="Data/DateRange"
+  component={DateRange}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
       canvas: { hidden: true },
     },
   }}
+  argTypes={{
+    from: { control: 'date' },
+    to: { control: 'date' },
+  }}
 />
 
-export const Relative = ({}) => {
-  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" />`;
-};
 
-export const Distance = ({}) => {
-  return html`<fwc-daterange variant="distance" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" addSuffix />`;
-};
-
-export const DateTime = ({}) => {
-  return html`<fwc-daterange
-    variant="datetime"
-    from="2021-08-09T09:12:49Z"
-    to="2021-08-09T11:12:49Z"
-    format=${DateTimeFormat.date}
-  />`;
-};
-
-export const DateTimeSeparator = ({}) => {
-  return html`<fwc-daterange
-    variant="datetime"
-    from="2021-08-09T09:12:49Z"
-    to="2021-08-09T11:12:49Z"
-    format=${DateTimeFormat.date}
-  >
-    <span slot="separator">to</span>
-  </fwc-daterange>`;
-};
-
-export const Locale = ({}) => {
-  return html`<fwc-daterange variant="relative" from="2021-08-09T09:12:49Z" to="2021-08-09T11:12:49Z" locale="nb" />`;
-};
-
-## DateRange
-
-### Relative
+```sh
+npm i @equinor/fusion-wc-date
+```
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Relative.bind({})}
+  <Story 
+    name="Basic" 
+    args={{from: '2021-08-09T09:12:49Z', to: '2021-09-09T09:12:49Z'}}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {DateRange.bind({})}
   </Story>
 </Canvas>
+
+<ArgsTable story="Basic" />
 
 ### Distance
+<Story name="Distance" parameters={{chromatic: { disableSnapshot: true }}}>
+  <Container>
+    <fwc-daterange from={now} to={new Date(now.getTime()+ 60* 60000)}  variant="distance" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 24* 60* 60000)} variant="distance" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 2* 24 * 60* 60000)} variant="distance" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 30 * 24 * 60* 60000)} variant="distance" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 2 * 365 * 24 * 60* 60000)} variant="distance" />
+  </Container>
+</Story>
 
-<Canvas>
-  <Story name="distance" args={{}}>
-    {Distance.bind({})}
-  </Story>
-</Canvas>
+### Relative
+<Story name="Relative" parameters={{chromatic: { disableSnapshot: true }}}>
+  <Container>
+    <fwc-daterange from={now} to={new Date(now.getTime()+ 60* 60000)}  variant="relative" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 24* 60* 60000)} variant="relative" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 2* 24 * 60* 60000)} variant="relative" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 30 * 24 * 60* 60000)} variant="relative" />
+    <fwc-daterange from={now} to={new Date(now.getTime() + 2 * 365 * 24 * 60* 60000)} variant="relative " />
+  </Container>
+</Story>
 
-### Date & Time (From - To)
+### Formatting
 
-<Canvas>
-  <Story name="datetime" args={{}}>
-    {DateTime.bind({})}
-  </Story>
-</Canvas>
+#### yyyy-mm-dd
+<Story name="Datetime iso" args={{from: '2021-08-09T09:12:49Z', to: '2021-09-09T09:12:49Z', format:"yyyy-mm-dd", variant:"datetime"}}>
+  {DateRange.bind({})}
+</Story>
 
-### Date & Time with custom separator
+#### d MMMM yy
+<Story name="Datetime custom format" args={{from: '2021-08-09T09:12:49Z', to: '2021-09-09T09:12:49Z', format:"d MMMM yy", variant:"datetime"}}>
+  {DateRange.bind({})}
+</Story>
 
-<Canvas>
-  <Story name="datetime-separator" args={{}}>
-    {DateTimeSeparator.bind({})}
-  </Story>
-</Canvas>
-
-### Using a custom locale
-
-<Canvas>
-  <Story name="locale" args={{}}>
-    {Locale.bind({})}
-  </Story>
-</Canvas>

@@ -1,64 +1,53 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { DateTimeElement, DateTimeFormat } from '@equinor/fusion-wc-date';
-DateTimeElement;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import DateTime from './Components/DateTime';
+
+export const Container = ({ children}) => (
+    <div style={{display: 'flex', flexFlow: 'column', gap: '10px'}}> 
+      {children}
+    </div>
+);
 
 <Meta
-  title="Data/datetime"
+  title="Data/DateTime"
+  component={DateTime}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
       canvas: { hidden: true },
     },
   }}
+  argTypes={{
+    date: { control: 'date' },
+  }}
 />
 
-export const Default = ({}) => {
-  return html`<fwc-datetime format="${DateTimeFormat.datetime}" date="2021-08-09T11:12:49Z" />`;
-};
 
-export const Date = ({}) => {
-  return html`<fwc-datetime format=${DateTimeFormat.date} date="2021-08-09T11:12:49Z" />`;
-};
-
-export const Time = ({}) => {
-  return html`<fwc-datetime format=${DateTimeFormat.time} date="2021-08-09T11:12:49Z" />`;
-};
-
-export const Custom = ({}) => {
-  return html`<fwc-datetime format="yyyy-MM-dd HH:mm:ss" date="2021-08-09T11:12:49Z" />`;
-};
-
-## DateTime
-
-### Default (Date & Time)
+```sh
+npm i @equinor/fusion-wc-date
+```
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Default.bind({})}
+  <Story 
+    name="Basic" 
+    args={{date: '2021-08-09T09:12:49Z'}}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {DateTime.bind({})}
   </Story>
 </Canvas>
 
-### Date
+<ArgsTable story="Basic" />
 
-<Canvas>
-  <Story name="date" args={{}}>
-    {Date.bind({})}
-  </Story>
-</Canvas>
 
-### Time
+### Formatting
 
-<Canvas>
-  <Story name="time" args={{}}>
-    {Time.bind({})}
-  </Story>
-</Canvas>
+#### yyyy-mm-dd
+<Story name="Datetime iso" args={{date: '2021-08-09T09:12:49Z', format:"yyyy-mm-dd"}}>
+  {DateTime.bind({})}
+</Story>
 
-### Custom format
-
-<Canvas>
-  <Story name="custom" args={{}}>
-    {Custom.bind({})}
-  </Story>
-</Canvas>
+#### d MMMM yy
+<Story name="Datetime custom format" args={{date: '2021-08-09T09:12:49Z', format:"d MMMM yy"}}>
+  {DateTime.bind({})}
+</Story>

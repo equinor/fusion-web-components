@@ -1,9 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import DateTimeElement, { DateTimeElementProps } from './element';
-export * from './element';
-export * from '../types';
-export const dateTimeTag = 'fwc-datetime';
+import { DateTimeElement, DateTimeElementProps } from './element';
 
+export { DateTimeElement, DateTimeElementProps } from './element';
+
+export const dateTimeTag = 'fwc-datetime';
 @fusionElement(dateTimeTag)
 export class _ extends DateTimeElement {}
 

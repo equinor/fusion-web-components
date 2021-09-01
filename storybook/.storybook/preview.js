@@ -1,9 +1,7 @@
-import { html } from 'lit-element';
-import Theme from '@equinor/fusion-wc-theme';
-Theme;
+import '@equinor/fusion-wc-theme';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
 };
 
-export const decorators = [(Story) => html`<fwc-theme></fwc-theme>${Story()}`];
+export const decorators = [(Story) => <div><fwc-theme></fwc-theme> {Story()}</div>];

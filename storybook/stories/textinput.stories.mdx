@@ -1,10 +1,16 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Element from '@equinor/fusion-wc-textinput';
-Element;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import TextArea from './Components/TextArea';
+
+export const Container = ({children}) => (
+  <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+    {children}
+  </div>
+);
 
 <Meta
-  title="Input/textinput"
+  title="Input/TextArea"
+  component={TextArea}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -13,88 +19,73 @@ Element;
   }}
 />
 
-export const Default = ({}) => {
-  return html`<fwc-textinput label="Default"></fwc-textinput>`;
-};
 
-export const Helper = ({}) => {
-  return html`<fwc-textinput label="Helper" helper="Helper Text" helperpersistent></fwc-textinput>`;
-};
+# TextArea
 
-export const Icon = ({}) => {
-  return html`<fwc-textinput label="Icon" icon="settings"></fwc-textinput>`;
-};
-
-export const TrailingIcon = ({}) => {
-  return html`<fwc-textinput label="Icon" iconTrailing="settings"></fwc-textinput>`;
-};
-
-export const CharLimit = ({}) => {
-  return html`<fwc-textinput label="Limit" maxlength="18" charCounter></fwc-textinput>`;
-};
-
-export const FullWidth = ({}) => {
-  return html`<fwc-textinput label="Fluid" fullwidth></fwc-textinput>`;
-};
-
-export const Disabled = ({}) => {
-  return html`<fwc-textinput label="Disabled" disabled></fwc-textinput>`;
-};
-
-## TextInput
-
-### Default
+```sh
+npm i @equinor/fusion-wc-textarea
+```
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Default.bind({})}
+  <Story
+    name="Basic"
+    args={{ 
+      label: 'TextInput',
+    }}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {TextArea.bind({})}
   </Story>
 </Canvas>
 
-### With helper
+<ArgsTable story="Basic" />
 
-<Canvas>
-  <Story name="helper" args={{}}>
-    {Helper.bind({})}
-  </Story>
-</Canvas>
+## Examples
 
-### With icon
+### General
+TODO: outlined does not seem to work
+<Story name="General">
+  <h4>Filled</h4>
+  <Container>
+    <fwc-textarea label="default" />
+    <fwc-textarea label="readonly" readonly/>
+    <fwc-textarea label="disabled" disabled/>
+  </Container>
+  <h4>Outlined</h4>
+  <Container>
+    <fwc-textarea label="default" variant="outlined" />
+    <fwc-textarea label="readonly" variant="outlined" readonly/>
+    <fwc-textarea label="disabled" variant="outlined" disabled/>
+  </Container>
+</Story>
 
-<Canvas>
-  <Story name="icon" args={{}}>
-    {Icon.bind({})}
-  </Story>
-</Canvas>
+### Helper text
+<Story name="Helper text">
+  <Container>
+    <fwc-textarea label="Helper text" helper="Helper Text" helperpersistent/>
+  </Container>
+</Story>
 
-### With trailing icon
+### With Icon
+<Story name="With Icon">
+  <Container>
+    <fwc-textarea label="With Icon" icon="settings"/>
+    <fwc-textarea label="With trailing icon" iconTrailing="settings"/>
+  </Container>
+</Story>
 
-<Canvas>
-  <Story name="trailing-icon" args={{}}>
-    {TrailingIcon.bind({})}
-  </Story>
-</Canvas>
+### Character limit
+TOOD: missing validation of max length
+<Story name="Character limit">
+  <Container>
+    <fwc-textarea label="Limit" maxlength="18" charCounter value="foo"/>
+    <fwc-textarea label="Limit" maxlength="3" charCounter value="foobar"/>
+  </Container>
+</Story>
 
-### With character limit
+### Fluid
+TODO: this does not seem to work
+<Story name="Fluid">
+  <fwc-textarea label="Fluid" fullwidth/>
+</Story>
 
-<Canvas>
-  <Story name="limit" args={{}}>
-    {CharLimit.bind({})}
-  </Story>
-</Canvas>
-
-### Full width (fluid)
-
-<Canvas>
-  <Story name="full" args={{}}>
-    {FullWidth.bind({})}
-  </Story>
-</Canvas>
-
-### Disabled
-
-<Canvas>
-  <Story name="disabled" args={{}}>
-    {Disabled.bind({})}
-  </Story>
-</Canvas>

@@ -1,9 +1,37 @@
-import { html } from 'lit-element';
-import { styleMap } from 'lit-html/directives/style-map';
-import { repeat } from 'lit-html/directives/repeat';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Element, { iconNames } from '@equinor/fusion-wc-icon';
-Element;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Icon from './Components/Icon';
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+export const Template = ({ icon, size, color }) => {
+  const style = {
+    fontSize: size + 'px',
+    color,
+  };
+  return <fwc-icon style={style} icon={icon}/>;
+};
+
+export const Container = ({children}) => (
+  <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+    {children}
+  </div>
+);
+
+export const IconInfo = (props) => {
+  const style = {
+    display: 'inline-flex',
+    flexFlow: 'column',
+    alignItems: 'center',
+    border: '1px solid',
+    borderRadius: '.25rem',
+  };
+  return (
+    <div style={style}>
+      <Template {...props} />
+      <span>icon</span>
+    </div>
+  );
+}
 
 <Meta
   title="General/icon"
@@ -18,6 +46,7 @@ Element;
     },
     color: { control: 'color' },
   }}
+  component={Icon}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -26,44 +55,11 @@ Element;
   }}
 />
 
-export const Template = ({ icon, size, color }) => {
-  const style = styleMap({
-    fontSize: size + 'px',
-    color,
-  });
-  return html`<fwc-icon style=${style} icon=${icon}></fwc-icon>`;
-};
-
-export const AllIcons = (args) => {
-  const style = styleMap({
-    display: 'inline-flex',
-    flexFlow: 'column',
-    alignItems: 'center',
-    padding: '.5rem',
-    margin: '.5rem',
-    border: '1px solid',
-    borderRadius: '.25rem',
-  });
-  return html`${repeat(
-    iconNames,
-    (x) => x,
-    (icon) => html`
-      <span style=${style}>
-        ${Template({ icon, ...args })}
-        <span>${icon}</span>
-      </span>
-    `
-  )} `;
-};
-
-With `MDX` we can define a story for `Checkbox` right in the middle of our
-Markdown documentation.
 
 ## Icon
-
 <Canvas>
   <Story
-    name="default"
+    name="Basic"
     args={{ icon: 'person', size: 64 }}
     argTypes={{
       icon: {
@@ -73,15 +69,48 @@ Markdown documentation.
         },
       },
     }}
+    parameters={{chromatic: { disableSnapshot: true }}}
   >
     {Template.bind({})}
   </Story>
 </Canvas>
 
-## All Icons
+<ArgsTable story="Basic" />
 
-<Canvas>
-  <Story name="all" args={{ size: 64 }}>
-    {AllIcons.bind({})}
-  </Story>
-</Canvas>
+## Color
+use the style attribute `color` for adjusting the color of the icon, normally this will have the same color as the font in the paragraph
+<Story name="Icon Colors" args={{size:32, icon: 'person'}}>
+  {(args) => {
+    const colors = ['red', 'green', '#334455'];
+    return (
+      <Container>
+        {colors.map(color => <Template key={color} {...args} color={color} />)}
+      </Container>
+    );
+  }}
+</Story>
+
+## Size
+use the style attribute `font-size` for adjusting the size of the icon. Normally the size is the same as the font size of the paragraph
+<Story name="Icon Size" args={{size:32, icon: 'person'}}>
+  {(args) => {
+    const sizes = [50, 40, 30, 20, 10];
+    return (
+      <Container>
+        {sizes.map(size => <Template key={size} {...args} size={size} />)}
+      </Container>
+    );
+  }}
+</Story>
+
+## All Icons
+Below are all registered icons listed out, copy the name and use on the `icon` attribute
+<Story name="Icon List" args={{size:32}}>
+  {(args) => {
+    return (
+      <Container>
+        {iconNames.map(icon => <IconInfo key={icon} icon={icon} {...args} />)}
+      </Container>
+    );
+  }}
+</Story>

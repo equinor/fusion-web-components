@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o ../docs"
+    "build-storybook": "build-storybook -o ../docs",
+    "generate-web-components-manifests": "web-component-analyzer ../packages/**/src --format json --outFile custom-elements.json"
   },
   "keywords": [],
   "author": "",
@@ -29,10 +30,7 @@
     "@storybook/addon-essentials": "^6.3.7",
     "@storybook/addon-links": "^6.3.7",
     "@storybook/react": "^6.3.7",
-    "@storybook/web-components": "^6.3.7",
     "babel-loader": "^8.2.2",
-    "lit-element": "2.5.1",
-    "lit-html": "1.4.1",
-    "react-is": "^17.0.2"
+    "web-component-analyzer": "^1.1.6"
   }
 }

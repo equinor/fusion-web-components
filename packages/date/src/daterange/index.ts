@@ -1,7 +1,8 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import DateRangeElement, { DateRangeElementProps } from './element';
-export * from './element';
-export * from '../types';
+import { DateRangeElement, DateRangeElementProps } from './element';
+
+export { DateRangeElement, DateRangeElementProps } from './element';
+
 export const dateRangeTag = 'fwc-daterange';
 
 @fusionElement(dateRangeTag)

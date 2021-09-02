@@ -1,13 +1,12 @@
 import { html, LitElement, property, TemplateResult } from 'lit-element';
-import { format, formatISO } from 'date-fns';
+import { format as formatDate } from 'date-fns';
 import { enGB } from 'date-fns/locale';
-import parseISO from 'date-fns/parseISO';
-import { DateTimeFormat, LocaleName } from '../types';
-import { resolveLocale } from '../utils/resolve-locale';
+import { DateTimeFormat } from '../types';
+import { resolveLocale, dateConverter } from '../utils';
 
 export type DateTimeElementProps = {
-  date: string;
-  locale?: LocaleName;
+  date: Date | string;
+  locale?: string;
   format?: DateTimeFormat | string;
 };
 
@@ -19,14 +18,19 @@ const formatConverter = (value: string | null): string | null => {
 };
 
 export class DateTimeElement extends LitElement implements DateTimeElementProps {
-  @property({ type: String })
-  date: string = formatISO(new Date());
+  @property({ type: Date, reflect: true, converter: dateConverter })
+  date: Date = new Date();
 
-  @property({ type: String, converter: formatConverter })
-  format: DateTimeFormat | string = DateTimeFormat.datetime;
+  @property({ type: String, converter: { fromAttribute: formatConverter } })
+  format?: DateTimeFormat;
 
   @property({ type: String })
-  locale: LocaleName = enGB.code as LocaleName;
+  locale: string = enGB.code as string;
+
+  get formatted(): string {
+    const { date, locale, format = DateTimeFormat.datetime } = this;
+    return formatDate(date, format, { locale: resolveLocale(locale) });
+  }
 
   /** @override */
   protected createRenderRoot(): Element {
@@ -34,9 +38,7 @@ export class DateTimeElement extends LitElement implements DateTimeElementProps 
   }
 
   protected render(): TemplateResult {
-    return html`<time datetime=${this.date}
-      >${format(parseISO(this.date), this.format, { locale: resolveLocale(this.locale) })}</time
-    >`;
+    return html`<time datetime=${this.date.toISOString()}>${this.formatted}</time>`;
   }
 }
 

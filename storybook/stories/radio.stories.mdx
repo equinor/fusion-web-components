@@ -1,10 +1,10 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import Element from '@equinor/fusion-wc-radio';
-Element;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Radio from './Components/Radio';
 
 <Meta
-  title="Input/radio"
+  title="Input/Radio"
+  component={Radio}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -13,33 +13,35 @@ Element;
   }}
 />
 
-export const Default = ({}) => {
-  return html`<fwc-radio name="my-group" value="value1"></fwc-radio
-    ><fwc-radio name="my-group" value="value2" checked></fwc-radio>`;
-};
+```sh
+npm i @equinor/fusion-wc-radio
+```
 
-export const Disabled = ({}) => {
-  return html`<fwc-radio name="my-group-disabled" value="value1" disabled></fwc-radio
-    ><fwc-radio name="my-group-disabled" value="value2" checked disabled></fwc-radio>`;
-};
+TODO check SingleSelectionController
 
-With `MDX` we can define a story for `Radio` right in the middle of our
-Markdown documentation.
-
-## Checkbox
-
-### Default
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Default.bind({})}
+  <Story 
+    name="Basic"
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {Radio.bind({})}
   </Story>
 </Canvas>
+
+<ArgsTable story="Basic" />
+
+
+### Unchecked
+<Story name="Unchecked">
+  <fwc-radio />
+  <fwc-radio checked/>
+  <fwc-radio indeterminate/>
+</Story>
 
 ### Disabled
-
-<Canvas>
-  <Story name="disabled" args={{}}>
-    {Disabled.bind({})}
-  </Story>
-</Canvas>
+<Story name="Disabled">
+  <fwc-radio disabled/>
+  <fwc-radio disabled checked/>
+  <fwc-radio disabled indeterminate/>
+</Story>

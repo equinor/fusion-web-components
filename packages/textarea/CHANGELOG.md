@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textarea@0.2.8...@equinor/fusion-wc-textarea@0.2.9) (2021-09-01)
+
+
+### Bug Fixes
+
+* remove relative import ([225dd64](https://github.com/equinor/fusion-web-components/commit/225dd6494785e67432a01b8178043fc1a5e70757))
+
+
+
+
+
 ## [0.2.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textarea@0.2.7...@equinor/fusion-wc-textarea@0.2.8) (2021-08-13)
 
 

@@ -74,7 +74,7 @@ type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 \*\*\*  `BadgeColor` is exported by `fwc-badge`.
 ```ts
-type BadgeColor = 'primary' | 'secondary';
+type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 ```
 
 \*\*\*\*  `IconName` is exported by `fwc-icon` and is based on EDS icon tokens.

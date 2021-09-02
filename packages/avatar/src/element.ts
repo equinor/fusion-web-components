@@ -24,7 +24,7 @@ export type AvatarElementProps = {
   position?: PersonPosition;
   initial?: string;
   src?: string;
-  status?: boolean;
+  badge?: boolean;
   badgeIcon?: IconName;
   clickable?: boolean;
 };
@@ -48,7 +48,10 @@ export class AvatarElement extends LitElement {
   src?: string;
 
   @property({ type: Boolean })
-  status: boolean = true;
+  badge: boolean = true;
+
+  @property({ type: String })
+  badgeIcon?: IconName;
 
   @property({ type: Boolean })
   clickable?: boolean;
@@ -67,13 +70,19 @@ export class AvatarElement extends LitElement {
   }
 
   protected renderBadge(): TemplateResult {
-    return html`<fwc-badge position="bottom-right" color=${this.getBadgeColor()} circular size=${this.size} />`;
+    return html`<fwc-badge
+      position="bottom-right"
+      color=${this.getBadgeColor()}
+      circular
+      size=${this.size}
+      icon=${ifDefined(this.badgeIcon)}
+    />`;
   }
 
   protected renderImage(): TemplateResult {
     return html`
       <div>
-        ${this.status && this.renderBadge()}
+        ${this.badge && this.renderBadge()}
         <div class="circle">
           <fwc-picture class="image" src=${ifDefined(this.src)} cover></fwc-picture>
         </div>
@@ -82,7 +91,7 @@ export class AvatarElement extends LitElement {
   }
 
   protected renderInitial(): TemplateResult {
-    return html`${this.status && this.renderBadge()}
+    return html`${this.badge && this.renderBadge()}
       <div class="circle">${this.initial?.substr(0, 1).toUpperCase()}</div>`;
   }
 
@@ -93,7 +102,7 @@ export class AvatarElement extends LitElement {
     if (this.initial) {
       return this.renderInitial();
     }
-    return html`${this.status && this.renderBadge()}
+    return html`${this.badge && this.renderBadge()}
       <div class="circle"><slot></slot></div>`;
   }
 }

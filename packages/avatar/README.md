@@ -20,27 +20,39 @@ return (
 
 ### Properties/Attributes
 
-Name                    | Type                            | Default          | Description
----------------------   | --------------                  | -----------      | -----------------
-`size`                  | `AvatarSize*`                   | `medium`         | Size of the avatar.
-`color`                 | `AvatarColor**`                 | `primary`        | Color of the avatar background.
-`initial`               | `string`                        | ``               | Initial letter to render in the avatar circle.
-`image`                 | `string`                        | ``               | Image src to render in avatar circle.
-`badge`                 | `boolean`                       | `false`          | Set to true to render badge.
+Name                    | Type                            | Default           | Description
+---------------------   | --------------                  | -----------       | -----------------
+`size`                  | `AvatarSize*`                   | `medium`          | Size of the avatar.
+`presence`              | `PersonPresence**`              | `PresenceUnknown` | The presence of the person, indicated by badge color.
+`position`              | `PersonPosition***`             | ``                | The position of the person, indicated by border color.
+`initial`               | `string`                        | ``                | Initial letter to render in the avatar circle.
+`src`                   | `string`                        | ``                | Image src to render in avatar circle.
+`badge`                 | `boolean`                       | `true`            | Set to true to render presence status badge.
+`badgeIcon`             | `IconName****`                  | ``                | Icon to render in presence status badge.
+`clickable`             | `boolean`                       | `false`           | Set to true to activate visual hover effects to indicate that the avatar is clickable.
 
-\*  `BadgeSize` is exported by `fwc-badge`.
+\*  `AvatarSize` is exported by `fwc-avatar`.
 ```ts
-type BadgeSize = 'small' | 'medium' | 'large';
+type AvatarSize = 'small' | 'medium' | 'large';
 ```
 
-\*\*  `BadgePosition` is exported by `fwc-badge`.
+\*\*  `PersonPresence` is exported by `fwc-avatar`.
 ```ts
-type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+type PersonPresence = 
+  | 'Available'
+  | 'AvailableIdle'
+  | 'Away'
+  | 'BeRightBack'
+  | 'Busy'
+  | 'BusyIdle'
+  | 'DoNotDisturb'
+  | 'Offline'
+  | 'PresenceUnknown';
 ```
 
-\*\*\*  `BadgeColor` is exported by `fwc-badge`.
+\*\*\*  `PersonPosition` is exported by `fwc-avatar`.
 ```ts
-type BadgeColor = 'primary' | 'secondary';
+type PersonPosition = 'Employee' | 'External hire' | 'X-External' | 'Joint venture/Affiliate';
 ```
 
 \*\*\*\*  `IconName` is exported by `fwc-icon` and is based on EDS icon tokens.

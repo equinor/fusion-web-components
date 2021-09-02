@@ -1,9 +1,12 @@
 import { html, property, CSSResult, TemplateResult, PropertyValues } from 'lit-element';
 // import { classMap } from 'lit-html/directives/class-map';
-import { IconName } from '@equinor/fusion-wc-icon';
+import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
 import { styles as mdcStyle } from '@material/mwc-button/styles.css';
 import style from './element.css';
+
+// persist element
+Icon;
 
 export type ButtonColor = 'primary' | 'secondary' | 'danger';
 

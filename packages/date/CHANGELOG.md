@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.6...@equinor/fusion-wc-date@0.2.7) (2021-09-01)
+
+
+### Bug Fixes
+
+* cleaning up readme ([f63fb61](https://github.com/equinor/fusion-web-components/commit/f63fb61b145cf10cb31ae0d556c6f56af0a59b42))
+* fixed readme ([b451434](https://github.com/equinor/fusion-web-components/commit/b451434e5452f470f7269d2b7064a746f61d6194))
+* support Date properties ([3978bf7](https://github.com/equinor/fusion-web-components/commit/3978bf70dc856a9fb69a9fa262e7ebfd7994eecf))
+
+
+
+
+
 ## [0.2.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.5...@equinor/fusion-wc-date@0.2.6) (2021-08-13)
 
 

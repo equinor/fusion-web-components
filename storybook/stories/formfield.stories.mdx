@@ -1,56 +1,84 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import '@equinor/fusion-wc-formfield';
+import FormField from './Components/FormField';
+import extractProps from './Components/extract-props';
+
 import '@equinor/fusion-wc-checkbox';
 import '@equinor/fusion-wc-switch';
+import '@equinor/fusion-wc-radio';
+import '@equinor/fusion-wc-textinput';
 
-<Meta title="Input/Formfield" />
+export const Container = ({flow, children}) => (
+   <div style={{display: 'flex', flexFlow: flow, gap: '10px'}}>
+     {children}
+   </div>
+);
 
-export const TemplateCheckbox = (props) => {
-  return html`
-    <div style="display:flex; flex-direction: ${props.spaceBetween ? 'column': 'row'}; gap: 10px;">
-      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap} >
+export const Template = (props) => {
+  const args = extractProps(props);
+  return (
+    <Container flow={props.spaceBetween ? 'column': 'row'}>
+      <fwc-formfield {...args} >
         <fwc-checkbox />
       </fwc-formfield>
-      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap}>
+      <fwc-formfield {...args} >
         <fwc-switch />
       </fwc-formfield>
-      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap}>
+      <fwc-formfield {...args} >
         <fwc-radio />
       </fwc-formfield>
-      <fwc-formfield label="${props.label}" ?alignEnd=${props.alignEnd} ?spaceBetween=${props.spaceBetween} ?nowrap=${props.nowrap}>
+      <fwc-formfield {...args} >
         <fwc-textinput />
       </fwc-formfield>
-    </div>
-  `;
+    </Container>
+  );
 };
 
-### Default
+<Meta 
+  title="Input/Formfield"
+  component={FormField}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }} 
+/>
+
+```sh
+npm i @equinor/fusion-wc-formfield
+```
 
 <Canvas>
-  <Story name="default" args={{label: 'default' }}>
-    {TemplateCheckbox.bind({})}
+  <Story 
+    name="Basic" 
+    args={{label: 'foobar'}}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {Template.bind({})}
   </Story>
 </Canvas>
 
+<ArgsTable story="Basic" />
 
-### Align end
+### Stories
 
-<Canvas>
-  <Story name="alignment" args={{label: 'alignment', alignEnd: true}}>
-    {TemplateCheckbox.bind({})}
-  </Story>
-</Canvas>
+#### default
+<Story name="default " args={{label: 'Boudin salami ball'}}>
+  {Template.bind({})}
+</Story>
 
-<Canvas>
-  <Story name="spacing" args={{label: 'alignment', spaceBetween: true, alignEnd: true}}>
-    {TemplateCheckbox.bind({})}
-  </Story>
-</Canvas>
+#### alignEnd
+<Story name="alignment" args={{label: 'Boudin salami ball', alignEnd: true}}>
+  {Template.bind({})}
+</Story>
 
-<Canvas>
-  <Story name="nowrap" args={{spaceBetween: true, alignEnd: true, label: 'Bacon ipsum dolor amet biltong turducken bacon, boudin salami ball tip pork loin ground round rump turkey brisket doner tail jowl drumstick.', nowrap: true}}>
-    {TemplateCheckbox.bind({})}
-  </Story>
-</Canvas>
+#### spaceBetween
+<Story name="spacing" args={{label: 'Bacon ipsum', spaceBetween: true, alignEnd: true}}>
+  {Template.bind({})}
+</Story>
+
+#### nowrap
+<Story name="nowrap" args={{spaceBetween: true, alignEnd: true, label: 'Bacon ipsum dolor amet biltong turducken bacon, boudin salami ball tip pork loin ground round rump turkey brisket doner tail jowl drumstick.', nowrap: true}}>
+  {Template.bind({})}
+</Story>

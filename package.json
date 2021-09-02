@@ -9,7 +9,7 @@
     "clean": "lerna clean --yes && del-cli packages/*/package-lock.json && npm run clean:typescript",
     "clean:typescript": "npm run build:typescript -- --clean",
     "bootstrap": "lerna bootstrap --hoist",
-    "build": "npm run build:typescript -- --verbose",
+    "build": "lerna run build",
     "build:clean": "npm run clean && npm run build",
     "build:typescript": "tsc -b",
     "predocs": "del-cli ./docs && npm run build",

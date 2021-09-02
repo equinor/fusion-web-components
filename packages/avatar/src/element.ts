@@ -48,7 +48,7 @@ export class AvatarElement extends LitElement {
   src?: string;
 
   @property({ type: Boolean })
-  badge: boolean = true;
+  badge = true;
 
   @property({ type: String })
   badgeIcon?: IconName;

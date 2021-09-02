@@ -13,7 +13,10 @@ declare global {
   }
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<React.PropsWithChildren<AvatarElementProps>, AvatarElement>;
+      [tag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<AvatarElementProps & React.HTMLAttributes<AvatarElement>>,
+        AvatarElement
+      >;
     }
   }
 }

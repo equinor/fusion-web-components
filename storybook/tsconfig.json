@@ -12,6 +12,7 @@
     "allowSyntheticDefaultImports": true
   },
   "references": [
+    { "path": "../packages/avatar" },
     { "path": "../packages/badge" },
     { "path": "../packages/button" },
     { "path": "../packages/checkbox" },

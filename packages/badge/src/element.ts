@@ -5,7 +5,7 @@ import style from './element.css';
 
 export type BadgeSize = 'small' | 'medium' | 'large';
 export type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-export type BadgeColor = 'primary' | 'secondary';
+export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 
 export type BadgeElementProps = {
   size?: BadgeSize;
@@ -14,6 +14,7 @@ export type BadgeElementProps = {
   value?: string;
   icon?: IconName;
   circular?: boolean;
+  tooltip?: string;
 };
 
 export class BadgeElement extends LitElement implements BadgeElementProps {
@@ -37,13 +38,16 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
   @property({ type: Boolean })
   circular?: boolean;
 
-  get renderIcon(): TemplateResult {
+  @property({ type: String })
+  tooltip?: string;
+
+  protected renderIcon(): TemplateResult {
     return html`<fwc-icon icon=${ifDefined(this.icon)}></fwc-icon>`;
   }
 
   protected render(): TemplateResult {
     if (this.icon) {
-      return this.renderIcon;
+      return this.renderIcon();
     }
     if (this.value) {
       return html`<span>${this.value}</span>`;

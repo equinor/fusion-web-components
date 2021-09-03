@@ -1,37 +1,122 @@
-import { html } from 'lit-element';
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { BadgeElement } from '@equinor/fusion-wc-badge';
-BadgeElement;
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import Badge, { BadgeWrapper } from './Components/Badge';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="Positions">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="top-left" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="top-right" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="bottom-left" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="bottom-right" {...props} />
+      </BadgeWrapper>
+    </Container>
+    <Container title="Sizes">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="small" {...props}>
+          S
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" {...props}>
+          M
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="large" {...props}>
+          L
+        </fwc-badge>
+      </BadgeWrapper>
+    </Container>
+    <Container title="Colors">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="primary" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="secondary" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="success" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="danger" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="warning" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="disabled" {...props} />
+      </BadgeWrapper>
+    </Container>
+    <Container title="Content">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge value="10" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge icon="settings" {...props} />
+      </BadgeWrapper>
+    </Container>
+  </div>
+);
+
+# Badge
 
 <Meta
-  title="Data/badge"
+  title="Data/Badge"
+  component={Badge}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
       canvas: { hidden: true },
     },
   }}
+  argTypes={{
+    icon: {
+      control: 'select',
+      options: iconNames,
+    },
+  }}
 />
 
-export const Default = ({}) => {
-  return html`<div style="width: 3.5em; height: 3.5em; position: relative; background-color: gray">
-    <fwc-badge size="medium" icon="settings"></fwc-badge>
-  </div>`;
-};
-
-export const Circular = ({}) => {
-  return html`<div style="width: 3.5em; height: 3.5em; position: relative; background-color: gray; border-radius: 50%">
-    <fwc-badge size="medium" circular icon="settings"></fwc-badge>
-  </div>`;
-};
-
-## Badge
+```sh
+npm i @equinor/fusion-wc-badge
+```
 
 <Canvas>
-  <Story name="default" args={{}}>
-    {Default.bind({})}
-  </Story>
-  <Story name="circular" args={{}}>
-    {Circular.bind({})}
+  <Story name="Default" args={{ label: 'badge' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Badge.bind({})}
   </Story>
 </Canvas>
+
+<ArgsTable story="Default" />
+
+## Default
+
+<Story name="Rectangular" args={{}}>
+  {Template.bind({})}
+</Story>
+
+## Circular
+
+<Story name="Circular" args={{ circular: true }}>
+  {Template.bind({})}
+</Story>

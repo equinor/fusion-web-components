@@ -27,7 +27,7 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
   position: BadgePosition = 'top-right';
 
   @property({ type: String, reflect: true })
-  color: BadgeColor = 'secondary';
+  color: BadgeColor = 'primary';
 
   @property({ type: String })
   value?: string;

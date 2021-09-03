@@ -18,20 +18,6 @@ return (
 );
 ```
 
-#### Icon
-```ts
-return (
-  <fwc-badge icon="settings" />
-);
-```
-
-#### Circular
-```ts
-return (
-  <fwc-badge icon="settings" circular />
-);
-```
-
 #### Sizes
 ```ts
 return (
@@ -51,6 +37,21 @@ return (
 );
 ```
 
+
+#### Icon
+```ts
+return (
+  <fwc-badge icon="settings" />
+);
+```
+
+#### Circular parent (Use if the parent component is circular instead of rectangular for correct positioning)
+```ts
+return (
+  <fwc-badge circular />
+);
+```
+
 ### Properties/Attributes
 
 Name                    | Type                            | Default          | Description
@@ -61,6 +62,7 @@ Name                    | Type                            | Default          | D
 `value`                 | `string`                        | ``               | Text value to be rendered within the badge.
 `icon`                  | `IconName****`                  | ``               | Icon to be rendered within the badge.
 `circular`              | `boolean`                       | `false`          | Set to true if badge is placed within a circular wrapper for correct position.
+`tooltip`               | `string`                        | ``               | Tooltip text to show on hover.
 
 \*  `BadgeSize` is exported by `fwc-badge`.
 ```ts

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.8...@equinor/fusion-wc-storybook@1.7.0) (2021-09-06)
+
+
+### Bug Fixes
+
+* fixed sizing, storybook and readme ([e942393](https://github.com/equinor/fusion-web-components/commit/e942393890bd9daacb2a7d5b0485c497bc69826f))
+
+
+### Features
+
+* added badge web component ([0f3ce2a](https://github.com/equinor/fusion-web-components/commit/0f3ce2af72587ff255986df9344bbc9fb137157b))
+
+
+
+
+
 ## [1.6.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.7...@equinor/fusion-wc-storybook@1.6.8) (2021-09-01)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

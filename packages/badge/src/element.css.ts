@@ -23,33 +23,57 @@ export const style = css`
     padding: 0 0.5rem;
   }
   :host([size='small']) {
-    min-width: 0.7rem;
-    height: 0.7rem;
-    font-size: 0.35rem;
-    border-radius: 0.35rem;
-  }
-  :host([size='medium']) {
     min-width: 1rem;
     height: 1rem;
     font-size: 0.5rem;
     border-radius: 0.5rem;
   }
-  :host([size='large']) {
+  :host([size='medium']) {
     min-width: 1.5rem;
     height: 1.5rem;
     font-size: 0.75rem;
     border-radius: 0.75rem;
   }
+  :host([size='large']) {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+  }
   :host([position='top-left']:not([circular])) {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  :host([position='top-left'][circular][size='medium']) {
+    transform: scale(1) translate(-12.5%, -12.5%);
+  }
+  :host([position='top-left'][circular][size='large']) {
     transform: scale(1) translate(-25%, -25%);
   }
   :host([position='top-right']:not([circular])) {
+    transform: scale(1) translate(50%, -50%);
+  }
+  :host([position='top-right'][circular][size='medium']) {
+    transform: scale(1) translate(12.5%, -12.5%);
+  }
+  :host([position='top-right'][circular][size='large']) {
     transform: scale(1) translate(25%, -25%);
   }
   :host([position='bottom-left']:not([circular])) {
+    transform: scale(1) translate(-50%, 50%);
+  }
+  :host([position='bottom-left'][circular][size='medium']) {
+    transform: scale(1) translate(-12.5%, 12.5%);
+  }
+  :host([position='bottom-left'][circular][size='large']) {
     transform: scale(1) translate(-25%, 25%);
   }
   :host([position='bottom-right']:not([circular])) {
+    transform: scale(1) translate(50%, 50%);
+  }
+  :host([position='bottom-right'][circular][size='medium']) {
+    transform: scale(1) translate(12.5%, 12.5%);
+  }
+  :host([position='bottom-right'][circular][size='large']) {
     transform: scale(1) translate(25%, 25%);
   }
   :host([position='top-left']) {
@@ -76,7 +100,7 @@ export const style = css`
     background-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
   :host([color='secondary']) {
-    background-color: ${unsafeCSS(theme.colors.infographic.primary__energy_red_100.getVariable('color'))};
+    background-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
   }
   :host([color='success']) {
     background-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};

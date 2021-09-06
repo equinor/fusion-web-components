@@ -95,6 +95,11 @@ export class AvatarElement extends LitElement {
       <div class="circle">${this.initial?.substr(0, 1).toUpperCase()}</div>`;
   }
 
+  protected renderSlot(): TemplateResult {
+    return html`${this.badge && this.renderBadge()}
+      <div class="circle"><slot></slot></div>`;
+  }
+
   protected render(): TemplateResult {
     if (this.src) {
       return this.renderImage();
@@ -102,8 +107,7 @@ export class AvatarElement extends LitElement {
     if (this.initial) {
       return this.renderInitial();
     }
-    return html`${this.badge && this.renderBadge()}
-      <div class="circle"><slot></slot></div>`;
+    return this.renderSlot();
   }
 }
 

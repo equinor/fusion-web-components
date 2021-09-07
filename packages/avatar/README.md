@@ -27,8 +27,6 @@ Name                    | Type                            | Default           | 
 `position`              | `PersonPosition***`             | ``                | The position of the person, indicated by border color.
 `initial`               | `string`                        | ``                | Initial letter to render in the avatar circle.
 `src`                   | `string`                        | ``                | Image src to render in avatar circle.
-`badge`                 | `boolean`                       | `true`            | Set to true to render presence status badge.
-`badgeIcon`             | `IconName****`                  | ``                | Icon to render in presence status badge.
 `clickable`             | `boolean`                       | `false`           | Set to true to activate visual hover effects to indicate that the avatar is clickable.
 
 \*  `AvatarSize` is exported by `fwc-avatar`.
@@ -53,10 +51,5 @@ type PersonPresence =
 \*\*\*  `PersonPosition` is exported by `fwc-avatar`.
 ```ts
 type PersonPosition = 'Employee' | 'External hire' | 'X-External' | 'Joint venture/Affiliate';
-```
-
-\*\*\*\*  `IconName` is exported by `fwc-icon` and is based on EDS icon tokens.
-```ts
-type IconName = 'calendar' | 'settings'...;
 ```
 <!--prettier-ignore-end-->

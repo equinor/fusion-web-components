@@ -22,10 +22,8 @@ export type AvatarElementProps = {
   size?: AvatarSize;
   presence?: PersonPresence;
   position?: PersonPosition;
-  initial?: string;
+  initial: string;
   src?: string;
-  badge?: boolean;
-  badgeIcon?: IconName;
   clickable?: boolean;
 };
 
@@ -36,36 +34,52 @@ export class AvatarElement extends LitElement {
   size: AvatarSize = 'medium';
 
   @property({ type: String, reflect: true })
-  presence: PersonPresence = 'PresenceUnknown';
+  presence?: PersonPresence;
 
   @property({ type: String, reflect: true })
   position?: PersonPosition;
 
   @property({ type: String })
-  initial?: string;
+  initial: string = '';
 
   @property({ type: String })
   src?: string;
-
-  @property({ type: Boolean })
-  badge = true;
-
-  @property({ type: String })
-  badgeIcon?: IconName;
 
   @property({ type: Boolean })
   clickable?: boolean;
 
   protected getBadgeColor(): BadgeColor {
     switch (this.presence) {
-      case 'Available' || 'AvailableIdle':
+      case 'Available':
+      case 'AvailableIdle':
         return 'success';
-      case 'Away' || 'BeRightBack':
+      case 'Away':
+      case 'BeRightBack':
         return 'warning';
-      case 'Busy' || 'BusyIdle' || 'DoNotDisturb':
+      case 'Busy':
+      case 'BusyIdle':
+      case 'DoNotDisturb':
         return 'danger';
       default:
         return 'disabled';
+    }
+  }
+
+  protected getBadgeIcon(): IconName | undefined {
+    switch (this.presence) {
+      case 'Available':
+        return 'check';
+      case 'AvailableIdle':
+      case 'Away':
+      case 'BeRightBack':
+      case 'BusyIdle':
+        return 'time';
+      case 'DoNotDisturb':
+        return 'blocked';
+      case 'Offline':
+        return 'close_circle_outlined';
+      default:
+        return undefined;
     }
   }
 
@@ -75,28 +89,25 @@ export class AvatarElement extends LitElement {
       color=${this.getBadgeColor()}
       circular
       size=${this.size}
-      icon=${ifDefined(this.badgeIcon)}
+      icon=${ifDefined(this.getBadgeIcon())}
+      tooltip=${ifDefined(this.presence)}
     />`;
   }
 
   protected renderImage(): TemplateResult {
     return html`
-      <div>
-        ${this.badge && this.renderBadge()}
-        <div class="circle">
-          <fwc-picture class="image" src=${ifDefined(this.src)} cover></fwc-picture>
-        </div>
-      </div>
+      ${this.presence && this.renderBadge()}
+      <div class="circle"><fwc-picture src=${ifDefined(this.src)} cover></fwc-picture></div>
     `;
   }
 
   protected renderInitial(): TemplateResult {
-    return html`${this.badge && this.renderBadge()}
+    return html`${this.presence && this.renderBadge()}
       <div class="circle">${this.initial?.substr(0, 1).toUpperCase()}</div>`;
   }
 
   protected renderSlot(): TemplateResult {
-    return html`${this.badge && this.renderBadge()}
+    return html`${this.presence && this.renderBadge()}
       <div class="circle"><slot></slot></div>`;
   }
 

@@ -43,38 +43,26 @@ export const style = css`
   :host([position='top-left']:not([circular])) {
     transform: scale(1) translate(-50%, -50%);
   }
-  :host([position='top-left'][circular][size='medium']) {
-    transform: scale(1) translate(-12.5%, -12.5%);
-  }
-  :host([position='top-left'][circular][size='large']) {
-    transform: scale(1) translate(-25%, -25%);
+  :host([position='top-left'][circular]) {
+    transform: scale(1) translate(-15%, -15%);
   }
   :host([position='top-right']:not([circular])) {
     transform: scale(1) translate(50%, -50%);
   }
-  :host([position='top-right'][circular][size='medium']) {
-    transform: scale(1) translate(12.5%, -12.5%);
-  }
-  :host([position='top-right'][circular][size='large']) {
-    transform: scale(1) translate(25%, -25%);
+  :host([position='top-right'][circular]) {
+    transform: scale(1) translate(15%, -15%);
   }
   :host([position='bottom-left']:not([circular])) {
     transform: scale(1) translate(-50%, 50%);
   }
-  :host([position='bottom-left'][circular][size='medium']) {
-    transform: scale(1) translate(-12.5%, 12.5%);
-  }
-  :host([position='bottom-left'][circular][size='large']) {
-    transform: scale(1) translate(-25%, 25%);
+  :host([position='bottom-left'][circular]) {
+    transform: scale(1) translate(-15%, 15%);
   }
   :host([position='bottom-right']:not([circular])) {
     transform: scale(1) translate(50%, 50%);
   }
-  :host([position='bottom-right'][circular][size='medium']) {
-    transform: scale(1) translate(12.5%, 12.5%);
-  }
-  :host([position='bottom-right'][circular][size='large']) {
-    transform: scale(1) translate(25%, 25%);
+  :host([position='bottom-right'][circular]) {
+    transform: scale(1) translate(15%, 15%);
   }
   :host([position='top-left']) {
     top: 0;
@@ -112,7 +100,7 @@ export const style = css`
     background-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
   }
   :host([color='disabled']) {
-    background-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
+    background-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
   }
 `;
 

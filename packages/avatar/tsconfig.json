@@ -2,13 +2,8 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "./lib",
+    "outDir": "./lib"
   },
-  "include": [
-    "src/**/*"
-  ],
-  "references": [
-    { "path": "../core" },
-    { "path": "../picture" },
-  ]
+  "include": ["src/**/*"],
+  "references": [{ "path": "../badge" }, { "path": "../core" }, { "path": "../picture" }]
 }

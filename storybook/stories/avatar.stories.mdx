@@ -1,0 +1,79 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import Avatar, { AvatarWrapper } from './Components/Avatar';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="Presence">
+      <fwc-avatar presence="Available" {...props} />
+      <fwc-avatar presence="AvailableIdle" {...props} />
+      <fwc-avatar presence="Away" {...props} />
+      <fwc-avatar presence="BeRightBack" {...props} />
+      <fwc-avatar presence="Busy" {...props} />
+      <fwc-avatar presence="BusyIdle" {...props} />
+      <fwc-avatar presence="DoNotDisturb" {...props} />
+      <fwc-avatar presence="Offline" {...props} />
+      <fwc-avatar presence="PresenceUnknown" {...props} />
+    </Container>
+    <Container title="Positions">
+      <fwc-avatar presence="Available" position="Employee" {...props} />
+      <fwc-avatar presence="Available" position="External hire" {...props} />
+      <fwc-avatar presence="Available" position="X-External" {...props} />
+      <fwc-avatar presence="Available" position="Joint venture/Affiliate" {...props} />
+    </Container>
+    <Container title="Sizes">
+      <fwc-avatar size="small" position="Employee" presence="Available" {...props} />
+      <fwc-avatar size="medium" position="Employee" presence="Available" {...props} />
+      <fwc-avatar size="large" position="Employee" presence="Available" {...props} />
+    </Container>
+    <Container title="Clickable">
+      <fwc-avatar presence="Available" position="Employee" clickable {...props} />
+    </Container>
+  </div>
+);
+
+# Avatar
+
+<Meta
+  title="Data/Avatar"
+  component={Avatar}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-avatar
+```
+
+<Canvas>
+  <Story name="Default" args={{ label: 'avatar' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Avatar.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Picture
+
+<Story name="Picture" args={{ src: 'https://i.imgur.com/GcZeeXX.jpeg' }}>
+  {Template.bind({})}
+</Story>
+
+## Initial
+
+<Story name="Initial" args={{ initial: 'A' }}>
+  {Template.bind({})}
+</Story>

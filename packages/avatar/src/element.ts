@@ -1,7 +1,11 @@
 import { LitElement, CSSResult, TemplateResult, html, property } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
+import Picture from '@equinor/fusion-wc-picture';
 import style from './element.css';
+
+// persist element
+Picture;
 
 export type AvatarSize = 'small' | 'medium' | 'large';
 
@@ -97,7 +101,7 @@ export class AvatarElement extends LitElement {
   protected renderImage(): TemplateResult {
     return html`
       ${this.presence && this.renderBadge()}
-      <div class="circle"><fwc-picture src=${ifDefined(this.src)} cover></fwc-picture></div>
+      <div class="circle"><fwc-picture class="picture" src="https://i.imgur.com/GcZeeXX.jpeg" cover></fwc-picture></div>
     `;
   }
 

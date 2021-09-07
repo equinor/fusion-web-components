@@ -19,6 +19,10 @@ export const style = css`
     font-family: Equinor;
     font-weight: 400;
   }
+  :host .picture {
+    width: 100%;
+    height: 100%;
+  }
   :host([size='small']) {
     width: 2rem;
     height: 2rem;

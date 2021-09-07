@@ -40,7 +40,7 @@ export class AvatarElement extends LitElement {
   position?: PersonPosition;
 
   @property({ type: String })
-  initial: string = '';
+  initial = '';
 
   @property({ type: String })
   src?: string;

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.2...@equinor/fusion-wc-storybook@1.7.3) (2021-09-07)
+
+
+### Bug Fixes
+
+* added presence and position ([3cf9225](https://github.com/equinor/fusion-web-components/commit/3cf922522ea76add9987c7a88db062cf16b085c0))
+* fixed merge conflict ([e5892a9](https://github.com/equinor/fusion-web-components/commit/e5892a96c0cbc64dd8518863818f0f45acc4b986))
+* fixed picture and adjusted storybook ([08979c3](https://github.com/equinor/fusion-web-components/commit/08979c36cbc70e12cbdd5d559a5cdedb19268d61))
+* fixed storybook, changed props, added icons and other adjustments ([a77d956](https://github.com/equinor/fusion-web-components/commit/a77d956bce80daf4a9caf2862b28acdab5b95d78))
+* merged badge ([defc3cb](https://github.com/equinor/fusion-web-components/commit/defc3cb369088bcdcd29ffd1e379848b56b9bba2))
+
+
+
+
+
 ## [1.7.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.1...@equinor/fusion-wc-storybook@1.7.2) (2021-09-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

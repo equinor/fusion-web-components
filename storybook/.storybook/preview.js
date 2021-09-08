@@ -4,4 +4,4 @@ export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
 };
 
-export const decorators = [(Story) => <div><fwc-theme></fwc-theme> {Story()}</div>];
+export const decorators = [(Story) => <fwc-theme>{Story()}</fwc-theme>];

@@ -39,10 +39,11 @@ export const style = css`
   :host([variant='ghost'][color='danger']) .mdc-button {
     color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
-  .leading-icon fwc-icon,
-  .trailing-icon fwc-icon,
-  ::slotted(fwc-icon) {
-    font-size: 20px;
+  .leading-icon fwc-icon.mdc-button__icon,
+  .leading-icon ::slotted(fwc-icon),
+  .trailing-icon fwc-icon.mdc-button__icon,
+  .trailing-icon ::slotted(fwc-icon) {
+    display: inline-flex;
   }
 `;
 

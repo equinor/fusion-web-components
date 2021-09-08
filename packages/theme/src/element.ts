@@ -27,6 +27,7 @@ export default class ThemeElement extends LitElement {
     const link = document.createElement('link');
     link.id = FONT_ID;
     link.href = 'https://eds-static.equinor.com/font/equinor-font.css';
+    link.rel = 'stylesheet';
     document.head.append(link);
   }
 

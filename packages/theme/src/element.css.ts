@@ -2,7 +2,7 @@ import { css, unsafeCSS } from 'lit-element';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const style = css`
-  :host {
+  ::slotted(*) {
     --mdc-ripple-color: #000;
     --mdc-ripple-hover-opacity: 0.1;
     --mdc-theme-background: #fff;

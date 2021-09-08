@@ -7,6 +7,7 @@
   "exclude": ["node_modules", "dist", "lib", "*.spec.ts", "api"],
   "references": [
     { "path": "./packages/avatar" },
+    { "path": "./packages/badge" },
     { "path": "./packages/button" },
     { "path": "./packages/checkbox" },
     { "path": "./packages/core" },

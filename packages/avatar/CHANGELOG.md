@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.11...@equinor/fusion-wc-avatar@1.0.12) (2021-09-07)
+
+
+### Bug Fixes
+
+* fixed package and readme ([9f87852](https://github.com/equinor/fusion-web-components/commit/9f87852a946a16227d9a140ab342b8d7fed57324))
+
+
+
+
+
+## [1.0.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.10...@equinor/fusion-wc-avatar@1.0.11) (2021-09-07)
+
+
+### Bug Fixes
+
+* added presence and position ([3cf9225](https://github.com/equinor/fusion-web-components/commit/3cf922522ea76add9987c7a88db062cf16b085c0))
+* fixed linting ([d15372f](https://github.com/equinor/fusion-web-components/commit/d15372f78d4a7f831e2ebd346a3c20a0dfde4b0c))
+* fixed linting ([aa3a553](https://github.com/equinor/fusion-web-components/commit/aa3a55384d6a0f8d0d811fd03f29121962d98984))
+* fixed picture and adjusted storybook ([08979c3](https://github.com/equinor/fusion-web-components/commit/08979c36cbc70e12cbdd5d559a5cdedb19268d61))
+* fixed readme file ([b8358bd](https://github.com/equinor/fusion-web-components/commit/b8358bd3329497090f2a2425947d280f33ab49fe))
+* fixed storybook, changed props, added icons and other adjustments ([a77d956](https://github.com/equinor/fusion-web-components/commit/a77d956bce80daf4a9caf2862b28acdab5b95d78))
+* merged badge ([defc3cb](https://github.com/equinor/fusion-web-components/commit/defc3cb369088bcdcd29ffd1e379848b56b9bba2))
+
+
+
+
+
 ## [1.0.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.9...@equinor/fusion-wc-avatar@1.0.10) (2021-09-01)
 
 **Note:** Version bump only for package @equinor/fusion-wc-avatar

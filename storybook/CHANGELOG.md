@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.4...@equinor/fusion-wc-storybook@1.7.5) (2021-09-08)
+
+
+### Bug Fixes
+
+* **theme:** wrap content ([b29212e](https://github.com/equinor/fusion-web-components/commit/b29212e44d30bd84ed5bb2d44bf9f2b88c92c437))
+
+
+
+
+
 ## [1.7.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.3...@equinor/fusion-wc-storybook@1.7.4) (2021-09-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

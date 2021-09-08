@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.12...@equinor/fusion-wc-theme@0.2.13) (2021-09-08)
+
+
+### Bug Fixes
+
+* add rel to link ([621cc0d](https://github.com/equinor/fusion-web-components/commit/621cc0d60dd76ce45961abfa55dca100d5ae6959))
+* **theme:** wrap content ([b29212e](https://github.com/equinor/fusion-web-components/commit/b29212e44d30bd84ed5bb2d44bf9f2b88c92c437))
+
+
+
+
+
 ## [0.2.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.11...@equinor/fusion-wc-theme@0.2.12) (2021-09-01)
 
 **Note:** Version bump only for package @equinor/fusion-wc-theme

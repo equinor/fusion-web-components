@@ -1,26 +1,36 @@
 import { html, LitElement, TemplateResult } from 'lit-element';
-import { styles as theme } from '@equinor/fusion-web-theme';
+
+import style from './element.css';
+
+const FONT_ID = 'FUSION_EQUINOR_FONT';
+
+/**
+ * REMARKS - might unload font on disconnect
+ */
 export default class ThemeElement extends LitElement {
-  protected createRenderRoot(): Element {
-    return this;
+  static styles = [style];
+
+  get FontLink(): HTMLLinkElement | null {
+    return document.head.querySelector<HTMLLinkElement>(`link#${FONT_ID}`);
+  }
+
+  /** @override */
+  connectedCallback(): void {
+    super.connectedCallback();
+    !this.FontLink && this.injectFont();
+  }
+
+  /**
+   * Inject font to head of current document
+   */
+  protected injectFont(): void {
+    const link = document.createElement('link');
+    link.id = FONT_ID;
+    link.href = 'https://eds-static.equinor.com/font/equinor-font.css';
+    document.head.append(link);
   }
 
   render(): TemplateResult {
-    return html` <link href="https://eds-static.equinor.com/font/equinor-font.css" rel="stylesheet" />
-      <style>
-        :root {
-          --mdc-ripple-color: #000;
-          --mdc-ripple-hover-opacity: 0.1;
-          --mdc-theme-background: #fff;
-          --mdc-theme-error: ${theme.colors.interactive.danger__text.getVariable('color')};
-          --mdc-theme-on-primary: ${theme.colors.text.static_icons__primary_white.getVariable('color')};
-          --mdc-theme-on-secondary: ${theme.colors.text.static_icons__primary_white.getVariable('color')};
-          --mdc-theme-on-surface: ${theme.colors.text.static_icons__secondary.getVariable('color')};
-          --mdc-theme-primary: ${theme.colors.interactive.primary__resting.getVariable('color')};
-          --mdc-theme-secondary: ${theme.colors.interactive.primary__resting.getVariable('color')};
-          --mdc-theme-surface: ${theme.colors.ui.background__light.getVariable('color')};
-          --mdc-typography-font-family: Equinor;
-        }
-      </style>`;
+    return html`<slot></slot>`;
   }
 }

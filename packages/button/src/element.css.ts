@@ -39,6 +39,10 @@ export const style = css`
   :host([variant='ghost'][color='danger']) .mdc-button {
     color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
+  .leading-icon ::slotted(*),
+  .trailing-icon ::slotted(*) {
+    display: initial;
+  }
   .leading-icon fwc-icon.mdc-button__icon,
   .leading-icon ::slotted(fwc-icon),
   .trailing-icon fwc-icon.mdc-button__icon,

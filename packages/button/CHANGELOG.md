@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.13...@equinor/fusion-wc-button@1.1.14) (2021-09-09)
+
+
+### Bug Fixes
+
+* **button:** slotted icon ([c0f2b7f](https://github.com/equinor/fusion-web-components/commit/c0f2b7ffd868e41051d344e1f0f6c202e6ee3999))
+
+
+
+
+
 ## [1.1.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.12...@equinor/fusion-wc-button@1.1.13) (2021-09-08)
 
 

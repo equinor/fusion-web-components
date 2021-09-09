@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.5...@equinor/fusion-wc-storybook@1.7.6) (2021-09-08)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
 ## [1.7.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.4...@equinor/fusion-wc-storybook@1.7.5) (2021-09-08)
 
 

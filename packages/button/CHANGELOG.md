@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.12...@equinor/fusion-wc-button@1.1.13) (2021-09-08)
+
+
+### Bug Fixes
+
+* **button:** override default icon style ([61df4cb](https://github.com/equinor/fusion-web-components/commit/61df4cbaee92acfb03cb16cd896d9b3ba0ad5542))
+
+
+
+
+
 ## [1.1.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.11...@equinor/fusion-wc-button@1.1.12) (2021-09-01)
 
 

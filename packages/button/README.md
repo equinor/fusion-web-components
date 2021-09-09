@@ -1,5 +1,6 @@
 <!--prettier-ignore-start-->
-## `fusion-wc-button` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-button.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-button)
+# @equinor/fusion-wc-button 
+[![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-button.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-button)
 
 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/input-button)
 
@@ -7,7 +8,16 @@
 
 ### Installation
 ```sh
+
 npm install @equinor/fusion-wc-button
+
+```
+
+### Usage
+```html
+<fwc-button label="default"></fwc-button>
+<fwc-button label="default" icon="settings"></fwc-button>
+<fwc-button label="default"><span slot="icon">🚀</span></fwc-button>
 ```
 
 ### Slots
@@ -30,12 +40,18 @@ npm install @equinor/fusion-wc-button
 | 'expandContent' | `boolean` | `false` | When `true`, the space after the label and before any trailing icon, where default slotted content is rendered, is expanded to fit the available space inside the button.
 
 \*  `ButtonVariant` is exported by `fwc-button`.
+
 ```ts
+
 type ButtonVariant = 'contained'|'outlined'|'ghost';
+
 ```
 
 \**  `ButtonColor` is exported by `fwc-button`.
+
 ```ts
+
 type ButtonColor = 'primary'|'secondary'|'danger';
+
 ```
 <!--prettier-ignore-end-->

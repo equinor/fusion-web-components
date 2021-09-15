@@ -17,6 +17,7 @@
 | Component | Package | Status
 | --------- | ------- | ------
 | [`<fwc-accordion>`](https://github.com/equinor/fusion-web-components/tree/main/packages/accordion) | `@equinor/fusion-wc-accordion` | TBD
+| [`<fwc-divider>`](https://github.com/equinor/fusion-web-components/tree/main/packages/divider) | `@equinor/fusion-wc-divider` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-divider.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-divider)
 
 ## Inputs
 | Component | Package | Status

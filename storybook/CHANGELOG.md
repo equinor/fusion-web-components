@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.8.0...@equinor/fusion-wc-storybook@1.8.1) (2021-09-15)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+# [1.8.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.7...@equinor/fusion-wc-storybook@1.8.0) (2021-09-15)
+
+
+### Features
+
+* added divider component ([aada7ae](https://github.com/equinor/fusion-web-components/commit/aada7ae231a2da8baa70d93baabbac1328f12b7e))
+
+
+
+
+
 ## [1.7.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.6...@equinor/fusion-wc-storybook@1.7.7) (2021-09-09)
 
 

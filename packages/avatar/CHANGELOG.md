@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.12...@equinor/fusion-wc-avatar@1.0.13) (2021-09-15)
+
+
+### Bug Fixes
+
+* removed test code for src ([52ec3ec](https://github.com/equinor/fusion-web-components/commit/52ec3ec07d12d3daaab46bed74a43ca2354d2b6a))
+
+
+
+
+
 ## [1.0.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.11...@equinor/fusion-wc-avatar@1.0.12) (2021-09-07)
 
 

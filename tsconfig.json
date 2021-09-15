@@ -12,6 +12,7 @@
     { "path": "./packages/checkbox" },
     { "path": "./packages/core" },
     { "path": "./packages/date" },
+    { "path": "./packages/divider" },
     { "path": "./packages/icon" },
     { "path": "./packages/formfield" },
     { "path": "./packages/intersection" },

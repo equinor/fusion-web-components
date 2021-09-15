@@ -19,7 +19,7 @@
     { "path": "../packages/button" },
     { "path": "../packages/checkbox" },
     { "path": "../packages/date" },
-    { "path": "../packages/picture" },
+    { "path": "../packages/divider" },
     { "path": "../packages/icon" },
     { "path": "../packages/formfield" },
     { "path": "../packages/popover" },

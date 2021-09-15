@@ -1,5 +1,4 @@
 <!--prettier-ignore-start-->
-
 ## `fusion-wc-divider` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-divider.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-divider)
 
 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-divider)

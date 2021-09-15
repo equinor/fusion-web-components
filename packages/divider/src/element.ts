@@ -32,9 +32,9 @@ export class DividerElement extends LitElement implements DividerElementProps {
   orientation: DividerOrientation = 'horizontal';
 
   @property({ type: Boolean })
-  flexItem: boolean = false;
+  flexItem = false;
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {
       if (this.variant === 'list' && this.orientation === 'vertical') {

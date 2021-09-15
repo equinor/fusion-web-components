@@ -101,7 +101,7 @@ export class AvatarElement extends LitElement {
   protected renderImage(): TemplateResult {
     return html`
       ${this.presence && this.renderBadge()}
-      <div class="circle"><fwc-picture class="picture" src="https://i.imgur.com/GcZeeXX.jpeg" cover></fwc-picture></div>
+      <div class="circle"><fwc-picture class="picture" src=${ifDefined(this.src)} cover></fwc-picture></div>
     `;
   }
 

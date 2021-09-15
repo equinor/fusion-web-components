@@ -10,7 +10,7 @@
 npm install @equinor/fusion-wc-divider
 ```
 
-## Badge `<fwc-divider>`
+## Divider `<fwc-divider>`
 
 ### Properties/Attributes
 

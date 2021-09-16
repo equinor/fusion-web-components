@@ -13,6 +13,9 @@ export const style = css`
     color: #fff;
     z-index: 1;
   }
+  :host([size='x-small']:not([icon])) {
+    padding: 0 0.15rem;
+  }
   :host([size='small']:not([icon])) {
     padding: 0 0.2rem;
   }
@@ -21,6 +24,12 @@ export const style = css`
   }
   :host([size='large']:not([icon])) {
     padding: 0 0.5rem;
+  }
+  :host([size='x-small']) {
+    min-width: 0.75rem;
+    height: 0.75rem;
+    font-size: 0.375rem;
+    border-radius: 0.375rem;
   }
   :host([size='small']) {
     min-width: 1rem;
@@ -43,17 +52,35 @@ export const style = css`
   :host([position='top-left']:not([circular])) {
     transform: scale(1) translate(-50%, -50%);
   }
+  :host([position='top-left'][size='x-small'][circular]) {
+    transform: scale(1) translate(15%, 15%);
+  }
+  :host([position='top-left'][size='small'][circular]) {
+    transform: scale(1) translate(0, 0);
+  }
   :host([position='top-left'][circular]) {
     transform: scale(1) translate(-15%, -15%);
   }
   :host([position='top-right']:not([circular])) {
     transform: scale(1) translate(50%, -50%);
   }
+  :host([position='top-right'][size='x-small'][circular]) {
+    transform: scale(1) translate(-15%, 15%);
+  }
+  :host([position='top-right'][size='small'][circular]) {
+    transform: scale(1) translate(0, 0);
+  }
   :host([position='top-right'][circular]) {
     transform: scale(1) translate(15%, -15%);
   }
   :host([position='bottom-left']:not([circular])) {
     transform: scale(1) translate(-50%, 50%);
+  }
+  :host([position='bottom-left'][size='x-small'][circular]) {
+    transform: scale(1) translate(15%, -15%);
+  }
+  :host([position='bottom-left'][size='small'][circular]) {
+    transform: scale(1) translate(0, 0);
   }
   :host([position='bottom-left'][circular]) {
     transform: scale(1) translate(-15%, 15%);
@@ -63,6 +90,12 @@ export const style = css`
   }
   :host([position='bottom-right'][circular]) {
     transform: scale(1) translate(15%, 15%);
+  }
+  :host([position='bottom-right'][size='x-small'][circular]) {
+    transform: scale(1) translate(-15%, -15%);
+  }
+  :host([position='bottom-right'][size='small'][circular]) {
+    transform: scale(1) translate(0, 0);
   }
   :host([position='top-left']) {
     top: 0;

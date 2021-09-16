@@ -29,6 +29,11 @@ export const Template = (props) => (
     </Container>
     <Container title="Sizes">
       <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="x-small" {...props}>
+          xs
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
         <fwc-badge size="small" {...props}>
           S
         </fwc-badge>

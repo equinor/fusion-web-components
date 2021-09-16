@@ -3,7 +3,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import { IconName } from '@equinor/fusion-wc-icon';
 import style from './element.css';
 
-export type BadgeSize = 'small' | 'medium' | 'large';
+export type BadgeSize = 'x-small' | 'small' | 'medium' | 'large';
 export type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 

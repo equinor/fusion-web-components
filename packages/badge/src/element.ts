@@ -1,9 +1,9 @@
-import { LitElement, CSSResult, TemplateResult, html, property } from 'lit-element';
+import { LitElement, CSSResult, TemplateResult, PropertyValues, html, property } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { IconName } from '@equinor/fusion-wc-icon';
 import style from './element.css';
 
-export type BadgeSize = 'small' | 'medium' | 'large';
+export type BadgeSize = 'x-small' | 'small' | 'medium' | 'large';
 export type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 
@@ -15,19 +15,21 @@ export type BadgeElementProps = {
   icon?: IconName;
   circular?: boolean;
   tooltip?: string;
+  clickable?: boolean;
+  disabled?: boolean;
 };
 
 export class BadgeElement extends LitElement implements BadgeElementProps {
   static styles: CSSResult[] = [style];
 
-  @property({ type: String, reflect: true })
-  size: BadgeSize = 'medium';
+  @property({ type: String })
+  size?: BadgeSize;
 
   @property({ type: String, reflect: true })
   position: BadgePosition = 'top-right';
 
   @property({ type: String, reflect: true })
-  color: BadgeColor = 'primary';
+  color?: BadgeColor;
 
   @property({ type: String })
   value?: string;
@@ -40,6 +42,23 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
 
   @property({ type: String })
   tooltip?: string;
+
+  @property({ type: Boolean, reflect: true })
+  clickable?: boolean;
+
+  @property({ type: Boolean })
+  disabled?: boolean;
+
+  protected updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+    if (changedProperties.has('disabled')) {
+      if (this.disabled) {
+        this.clickable = false;
+        this.color = 'disabled';
+      }
+      this.requestUpdate();
+    }
+  }
 
   protected renderIcon(): TemplateResult {
     return html`<fwc-icon icon=${ifDefined(this.icon)}></fwc-icon>`;

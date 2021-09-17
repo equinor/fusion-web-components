@@ -12,6 +12,12 @@ export type RippleElementProps = {
   activated?: boolean;
   selected?: boolean;
   disabled?: boolean;
+  startPress?: (e?: Event) => void;
+  endPress?: () => void;
+  startFocus?: () => void;
+  endFocus?: () => void;
+  startHover?: () => void;
+  endHover?: () => void;
 };
 
 export class RippleElement extends RippleBase implements RippleElementProps {

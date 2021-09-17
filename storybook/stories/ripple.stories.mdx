@@ -13,10 +13,14 @@ export const Container = ({ title, children }) => (
 
 export const Template = (props) => (
   <div>
-    <Container title="standard">
-      <RippleBox>
-        <fwc-ripple activated="true" {...props} />
-      </RippleBox>
+    <Container title="default">
+      <RippleBox {...props} />
+    </Container>
+    <Container title="activated">
+      <RippleBox activated="true" {...props} />
+    </Container>
+    <Container title="selected">
+      <RippleBox selected="true" {...props} />
     </Container>
   </div>
 );
@@ -42,7 +46,7 @@ npm i @equinor/fusion-wc-ripple
 
 <Canvas>
   <Story name="Default" args={{}} parameters={{ chromatic: { disableSnapshot: true } }}>
-    {Ripple.bind({})}
+    {RippleBox.bind({})}
   </Story>
 </Canvas>
 
@@ -50,6 +54,14 @@ npm i @equinor/fusion-wc-ripple
 
 ## Snapshots
 
+### Standard
+
 <Story name="Standard" args={{}}>
+  {Template.bind({})}
+</Story>
+
+### Unbounded
+
+<Story name="Unbounded" args={{ unbounded: true }}>
   {Template.bind({})}
 </Story>

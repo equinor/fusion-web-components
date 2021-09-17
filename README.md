@@ -12,6 +12,7 @@
 | [`<fwc-icon>`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon) | `@equinor/fusion-wc-icon` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-icon.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-icon)
 | [`<fwc-intersection>`](https://github.com/equinor/fusion-web-components/tree/main/packages/intersection) | `@equinor/fusion-wc-intersection` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-intersection.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-intersection)
 | [`<fwc-picture>`](https://github.com/equinor/fusion-web-components/tree/main/packages/picture) | `@equinor/fusion-wc-picture` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-picture.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-picture)
+| [`<fwc-ripple>`](https://github.com/equinor/fusion-web-components/tree/main/packages/ripple) | `@equinor/fusion-wc-ripple` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-ripple.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-ripple)
 
 ## Layout
 | Component | Package | Status

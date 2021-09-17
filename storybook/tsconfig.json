@@ -24,6 +24,7 @@
     { "path": "../packages/formfield" },
     { "path": "../packages/popover" },
     { "path": "../packages/radio" },
+    { "path": "../packages/ripple" },
     { "path": "../packages/switch" },
     { "path": "../packages/theme" },
     { "path": "../packages/textarea" },

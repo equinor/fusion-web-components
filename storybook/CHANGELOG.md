@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.8.2...@equinor/fusion-wc-storybook@1.9.0) (2021-09-17)
+
+
+### Bug Fixes
+
+* fixed storybook ([5261811](https://github.com/equinor/fusion-web-components/commit/5261811b3e5ef0c432756704aa53ab72afce40c4))
+
+
+### Features
+
+* added ripple component ([a90867d](https://github.com/equinor/fusion-web-components/commit/a90867d95c5efda0f8072a9338b660cc4e39e46c))
+
+
+
+
+
+## [1.8.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.8.1...@equinor/fusion-wc-storybook@1.8.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* added x-small size ([4aad6d1](https://github.com/equinor/fusion-web-components/commit/4aad6d1125f72c4593800df9de2638e62b66d6e6))
+* fixed circular offset for sizes, added disabled and fixed hover ([9970e4b](https://github.com/equinor/fusion-web-components/commit/9970e4bcf78c416f68001ad0b3c35a1b5db59293))
+
+
+
+
+
 ## [1.8.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.8.0...@equinor/fusion-wc-storybook@1.8.1) (2021-09-15)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

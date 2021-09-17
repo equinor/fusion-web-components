@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -14,8 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@equinor/fusion-wc-avatar": "^1.0.13",
-    "@equinor/fusion-wc-badge": "^0.2.2",
+    "@equinor/fusion-wc-avatar": "^1.0.14",
+    "@equinor/fusion-wc-badge": "^0.2.3",
     "@equinor/fusion-wc-button": "^1.1.14",
     "@equinor/fusion-wc-checkbox": "^0.2.7",
     "@equinor/fusion-wc-date": "^0.2.7",
@@ -25,6 +25,7 @@
     "@equinor/fusion-wc-picture": "^1.0.8",
     "@equinor/fusion-wc-popover": "^1.0.8",
     "@equinor/fusion-wc-radio": "^0.2.7",
+    "@equinor/fusion-wc-ripple": "^0.2.0",
     "@equinor/fusion-wc-switch": "^0.2.7",
     "@equinor/fusion-wc-textarea": "^0.2.9",
     "@equinor/fusion-wc-textinput": "^0.2.11",

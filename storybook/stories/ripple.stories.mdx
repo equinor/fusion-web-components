@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import Ripple, { RippleBox } from './Components/Ripple';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="default">
+      <RippleBox {...props} />
+    </Container>
+    <Container title="activated">
+      <RippleBox activated="true" {...props} />
+    </Container>
+    <Container title="selected">
+      <RippleBox selected="true" {...props} />
+    </Container>
+  </div>
+);
+
+# Ripple
+
+<Meta
+  title="General/Ripple"
+  component={Ripple}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-ripple
+```
+
+## Playground
+
+<Canvas>
+  <Story name="Default" args={{}} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {RippleBox.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Snapshots
+
+### Standard
+
+<Story name="Standard" args={{}}>
+  {Template.bind({})}
+</Story>
+
+### Unbounded
+
+<Story name="Unbounded" args={{ unbounded: true }}>
+  {Template.bind({})}
+</Story>

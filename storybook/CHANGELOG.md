@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.0...@equinor/fusion-wc-storybook@1.9.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* added ripple and removed fusion specific attributes ([93f3206](https://github.com/equinor/fusion-web-components/commit/93f3206e36d90682c76d4b143164281878bae288))
+
+
+
+
+
 # [1.9.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.8.2...@equinor/fusion-wc-storybook@1.9.0) (2021-09-17)
 
 

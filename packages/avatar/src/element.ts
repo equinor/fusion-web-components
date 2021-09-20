@@ -1,128 +1,136 @@
-import { LitElement, CSSResult, TemplateResult, html, property } from 'lit-element';
+import {
+  LitElement,
+  CSSResult,
+  TemplateResult,
+  PropertyValues,
+  html,
+  property,
+  queryAsync,
+  eventOptions,
+} from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Picture from '@equinor/fusion-wc-picture';
+import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
 import style from './element.css';
 
 // persist element
 Picture;
 
-export type AvatarSize = 'small' | 'medium' | 'large';
+export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large';
 
-export type PersonPresence =
-  | 'Available'
-  | 'AvailableIdle'
-  | 'Away'
-  | 'BeRightBack'
-  | 'Busy'
-  | 'BusyIdle'
-  | 'DoNotDisturb'
-  | 'Offline'
-  | 'PresenceUnknown';
-
-export type PersonPosition = 'Employee' | 'External hire' | 'X-External' | 'Joint venture/Affiliate';
+export type AvatarColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 
 export type AvatarElementProps = {
   size?: AvatarSize;
-  presence?: PersonPresence;
-  position?: PersonPosition;
-  initial: string;
+  color?: AvatarColor;
+  value?: string;
   src?: string;
   clickable?: boolean;
+  disabled?: boolean;
 };
 
-export class AvatarElement extends LitElement {
+export class AvatarElement extends LitElement implements AvatarElementProps {
   static styles: CSSResult[] = [style];
 
   @property({ type: String, reflect: true })
   size: AvatarSize = 'medium';
 
   @property({ type: String, reflect: true })
-  presence?: PersonPresence;
-
-  @property({ type: String, reflect: true })
-  position?: PersonPosition;
+  color?: AvatarColor;
 
   @property({ type: String })
-  initial = '';
+  value?: string;
 
   @property({ type: String })
   src?: string;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   clickable?: boolean;
 
-  protected getBadgeColor(): BadgeColor {
-    switch (this.presence) {
-      case 'Available':
-      case 'AvailableIdle':
-        return 'success';
-      case 'Away':
-      case 'BeRightBack':
-        return 'warning';
-      case 'Busy':
-      case 'BusyIdle':
-      case 'DoNotDisturb':
-        return 'danger';
-      default:
-        return 'disabled';
+  @property({ type: Boolean })
+  disabled?: boolean;
+
+  @queryAsync('fwc-ripple') ripple!: Promise<Ripple | null>;
+
+  protected rippleHandlers = new RippleHandlers(() => {
+    return this.ripple;
+  });
+
+  protected updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+    if (changedProperties.has('disabled')) {
+      if (this.disabled) {
+        this.color = 'disabled';
+        this.clickable = false;
+      }
+      this.requestUpdate();
     }
   }
 
-  protected getBadgeIcon(): IconName | undefined {
-    switch (this.presence) {
-      case 'Available':
-        return 'check';
-      case 'AvailableIdle':
-      case 'Away':
-      case 'BeRightBack':
-      case 'BusyIdle':
-        return 'time';
-      case 'DoNotDisturb':
-        return 'blocked';
-      case 'Offline':
-        return 'close_circle_outlined';
-      default:
-        return undefined;
-    }
+  protected renderPicture(): TemplateResult {
+    return html`<fwc-picture class="picture" src=${ifDefined(this.src)} cover></fwc-picture> `;
   }
 
-  protected renderBadge(): TemplateResult {
-    return html`<fwc-badge
-      position="bottom-right"
-      color=${this.getBadgeColor()}
-      circular
-      size=${this.size}
-      icon=${ifDefined(this.getBadgeIcon())}
-      tooltip=${ifDefined(this.presence)}
-    />`;
-  }
-
-  protected renderImage(): TemplateResult {
-    return html`
-      ${this.presence && this.renderBadge()}
-      <div class="circle"><fwc-picture class="picture" src=${ifDefined(this.src)} cover></fwc-picture></div>
-    `;
-  }
-
-  protected renderInitial(): TemplateResult {
-    return html`${this.presence && this.renderBadge()}
-      <div class="circle">${this.initial?.substr(0, 1).toUpperCase()}</div>`;
+  protected renderValue(): TemplateResult {
+    return html`${this.value}`;
   }
 
   protected renderSlot(): TemplateResult {
-    return html`${this.presence && this.renderBadge()}
-      <div class="circle"><slot></slot></div>`;
+    return html`<slot></slot>`;
   }
 
   protected render(): TemplateResult {
-    if (this.src) {
-      return this.renderImage();
-    }
-    if (this.initial) {
-      return this.renderInitial();
-    }
-    return this.renderSlot();
+    const content = this.src ? this.renderPicture() : this.value ? this.renderValue() : this.renderSlot();
+    return html`<span
+      class="circle"
+      @focus="${this.handleRippleFocus}"
+      @blur="${this.handleRippleBlur}"
+      @mousedown="${this.handleRippleActivate}"
+      @mouseenter="${this.handleRippleMouseEnter}"
+      @mouseleave="${this.handleRippleMouseLeave}"
+      @touchstart="${this.handleRippleActivate}"
+      @touchend="${this.handleRippleDeactivate}"
+      @touchcancel="${this.handleRippleDeactivate}"
+      >${this.renderRipple()}<slot name="badge"></slot>${content}</span
+    >`;
+  }
+
+  protected renderRipple(): TemplateResult | string {
+    return this.clickable
+      ? html`<fwc-ripple class="ripple" disabled="${ifDefined(this.disabled)}" unbounded></fwc-ripple>`
+      : '';
+  }
+
+  @eventOptions({ passive: true })
+  protected handleRippleActivate(evt?: Event) {
+    const onUp = () => {
+      window.removeEventListener('mouseup', onUp);
+
+      this.handleRippleDeactivate();
+    };
+
+    window.addEventListener('mouseup', onUp);
+    this.rippleHandlers.startPress(evt);
+  }
+
+  protected handleRippleDeactivate() {
+    this.rippleHandlers.endPress();
+  }
+
+  protected handleRippleMouseEnter() {
+    this.rippleHandlers.startHover();
+  }
+
+  protected handleRippleMouseLeave() {
+    this.rippleHandlers.endHover();
+  }
+
+  protected handleRippleFocus() {
+    this.rippleHandlers.startFocus();
+  }
+
+  protected handleRippleBlur() {
+    this.rippleHandlers.endFocus();
   }
 }
 

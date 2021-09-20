@@ -15,6 +15,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "1.0.1",
     "@equinor/fusion-wc-picture": "^1.0.8",
+    "@equinor/fusion-wc-ripple": "^0.2.0",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"
   },

@@ -13,30 +13,44 @@ export const Container = ({ title, children }) => (
 
 export const Template = (props) => (
   <div>
-    <Container title="Presence">
-      <fwc-avatar presence="Available" {...props} />
-      <fwc-avatar presence="AvailableIdle" {...props} />
-      <fwc-avatar presence="Away" {...props} />
-      <fwc-avatar presence="BeRightBack" {...props} />
-      <fwc-avatar presence="Busy" {...props} />
-      <fwc-avatar presence="BusyIdle" {...props} />
-      <fwc-avatar presence="DoNotDisturb" {...props} />
-      <fwc-avatar presence="Offline" {...props} />
-      <fwc-avatar presence="PresenceUnknown" {...props} />
-    </Container>
-    <Container title="Positions">
-      <fwc-avatar presence="Available" position="Employee" {...props} />
-      <fwc-avatar presence="Available" position="External hire" {...props} />
-      <fwc-avatar presence="Available" position="X-External" {...props} />
-      <fwc-avatar presence="Available" position="Joint venture/Affiliate" {...props} />
-    </Container>
     <Container title="Sizes">
-      <fwc-avatar size="small" position="Employee" presence="Available" {...props} />
-      <fwc-avatar size="medium" position="Employee" presence="Available" {...props} />
-      <fwc-avatar size="large" position="Employee" presence="Available" {...props} />
+      <fwc-avatar size="x-small" {...props} />
+      <fwc-avatar size="small" {...props} />
+      <fwc-avatar size="medium" {...props} />
+      <fwc-avatar size="large" {...props} />
+    </Container>
+    <Container title="Colors">
+      <fwc-avatar color="primary" {...props} />
+      <fwc-avatar color="secondary" {...props} />
+      <fwc-avatar color="success" {...props} />
+      <fwc-avatar color="danger" {...props} />
+      <fwc-avatar color="warning" {...props} />
+      <fwc-avatar color="disabled" {...props} />
+    </Container>
+    <Container title="Custom Colors">
+      <fwc-avatar style={{ '--fwc-avatar-color': '#495057' }} {...props} />
+      <fwc-avatar style={{ '--fwc-avatar-color': '#ffc6ff', '--fwc-avatar-font-color': '#000' }} {...props} />
+      <fwc-avatar style={{ '--fwc-avatar-color': '#81b29a', '--fwc-avatar-font-color': '#335c67' }} {...props} />
+    </Container>
+    <Container title="Badge">
+      <fwc-avatar size="x-small" {...props}>
+        <fwc-badge slot="badge" size="x-small" position="bottom-right" color="success" circular />
+      </fwc-avatar>
+      <fwc-avatar size="small" {...props}>
+        <fwc-badge slot="badge" size="small" position="bottom-right" color="success" circular />
+      </fwc-avatar>
+      <fwc-avatar size="medium" {...props}>
+        <fwc-badge slot="badge" size="medium" position="bottom-right" color="success" circular />
+      </fwc-avatar>
+      <fwc-avatar size="large" {...props}>
+        <fwc-badge slot="badge" size="large" position="bottom-right" color="success" circular />
+      </fwc-avatar>
     </Container>
     <Container title="Clickable">
-      <fwc-avatar presence="Available" position="Employee" clickable {...props} />
+      <fwc-avatar clickable {...props} />
+    </Container>
+    <Container title="Disabled">
+      <fwc-avatar clickable disabled {...props} />
     </Container>
   </div>
 );
@@ -74,6 +88,6 @@ npm i @equinor/fusion-wc-avatar
 
 ## Initial
 
-<Story name="Initial" args={{ initial: 'A' }}>
+<Story name="Initial" args={{ value: 'A' }}>
   {Template.bind({})}
 </Story>

@@ -23,33 +23,19 @@ return (
 Name                    | Type                            | Default           | Description
 ---------------------   | --------------                  | -----------       | -----------------
 `size`                  | `AvatarSize*`                   | `medium`          | Size of the avatar.
-`presence`              | `PersonPresence**`              | `PresenceUnknown` | The presence of the person, indicated by badge color.
-`position`              | `PersonPosition***`             | ``                | The position of the person, indicated by border color.
-`initial`               | `string`                        | ``                | Initial letter to render in the avatar circle.
+`color`                 | `AvatarColor**`                 | `secondary`       | Color of the avatar.
+`value`                 | `string`                        | ``                | Text value to be rendered within the avatar.
 `src`                   | `string`                        | ``                | Image src to render in avatar circle.
-`clickable`             | `boolean`                       | `false`           | Set to true to activate visual hover effects to indicate that the avatar is clickable.
+`clickable`             | `boolean`                       | `false`           | Set to true to activate visual ripple effects to indicate that the avatar is clickable.
+`disabled`              | `boolean`                       | `false`           | Set to true to display the avatar as disabled.
 
 \*  `AvatarSize` is exported by `fwc-avatar`.
 ```ts
 type AvatarSize = 'small' | 'medium' | 'large';
 ```
 
-\*\*  `PersonPresence` is exported by `fwc-avatar`.
+\*\*  `AvatarColor` is exported by `fwc-avatar`.
 ```ts
-type PersonPresence = 
-  | 'Available'
-  | 'AvailableIdle'
-  | 'Away'
-  | 'BeRightBack'
-  | 'Busy'
-  | 'BusyIdle'
-  | 'DoNotDisturb'
-  | 'Offline'
-  | 'PresenceUnknown';
-```
-
-\*\*\*  `PersonPosition` is exported by `fwc-avatar`.
-```ts
-type PersonPosition = 'Employee' | 'External hire' | 'X-External' | 'Joint venture/Affiliate';
+type AvatarColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 ```
 <!--prettier-ignore-end-->

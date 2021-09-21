@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.14...@equinor/fusion-wc-avatar@1.0.15) (2021-09-20)
+
+
+### Bug Fixes
+
+* added ripple and removed fusion specific attributes ([93f3206](https://github.com/equinor/fusion-web-components/commit/93f3206e36d90682c76d4b143164281878bae288))
+* removing fusion specific attributes, replaced badge render with slot ([9a16c3f](https://github.com/equinor/fusion-web-components/commit/9a16c3f84225138196d9ee45b20f082c436e3f2d))
+
+
+
+
+
+## [1.0.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.13...@equinor/fusion-wc-avatar@1.0.14) (2021-09-16)
+
+**Note:** Version bump only for package @equinor/fusion-wc-avatar
+
+
+
+
+
+## [1.0.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.12...@equinor/fusion-wc-avatar@1.0.13) (2021-09-15)
+
+
+### Bug Fixes
+
+* removed test code for src ([52ec3ec](https://github.com/equinor/fusion-web-components/commit/52ec3ec07d12d3daaab46bed74a43ca2354d2b6a))
+
+
+
+
+
 ## [1.0.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.11...@equinor/fusion-wc-avatar@1.0.12) (2021-09-07)
 
 

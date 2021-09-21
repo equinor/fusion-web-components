@@ -1,6 +1,6 @@
 {
-  "name": "@equinor/fusion-wc-badge",
-  "version": "0.2.3",
+  "name": "@equinor/fusion-wc-divider",
+  "version": "0.2.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "1.0.1",
-    "@equinor/fusion-wc-icon": "^1.0.8",
     "lit-element": "2.5.1",
     "lit-html": "1.4.1"
   },

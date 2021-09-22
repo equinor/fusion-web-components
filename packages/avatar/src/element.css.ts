@@ -8,7 +8,7 @@ export const style = css`
     --fwc-avatar-font-color: #fff;
     --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
-  :host .circle {
+  :host .fwc-avatar__container {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -17,16 +17,30 @@ export const style = css`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-color: var(--fwc-avatar-color);
     background-color: var(--fwc-avatar-color);
-    font-family: Equinor;
-    font-weight: 400;
   }
-  :host .picture {
+  :host .fwc-avatar__picture-container {
+    width: calc(100% - 0.5rem);
+    height: calc(100% - 0.5rem);
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  :host .fwc-avatar__picture {
     width: 100%;
     height: 100%;
   }
-  :host .ripple {
+  :host([disabled]) .fwc-avatar__picture {
+    opacity: 0.7;
+  }
+  :host .fwc-avatar__value {
+    display: contents;
+    font-family: Equinor;
+    font-weight: 400;
+  }
+  :host .fwc-avatar__ripple {
     z-index: 5;
   }
   :host([size='x-small']) {
@@ -53,30 +67,6 @@ export const style = css`
     font-size: 3rem;
     line-height: 5rem;
   }
-  :host([size='x-small'][src]) .circle {
-    border-style: solid;
-    border-width: 0.1rem;
-    width: calc(100% - 0.2rem);
-    height: calc(100% - 0.2rem);
-  }
-  :host([size='small'][src]) .circle {
-    border-style: solid;
-    border-width: 0.2rem;
-    width: calc(100% - 0.4rem);
-    height: calc(100% - 0.4rem);
-  }
-  :host([size='medium'][src]) .circle {
-    border-style: solid;
-    border-width: 0.25rem;
-    width: calc(100% - 0.5rem);
-    height: calc(100% - 0.5rem);
-  }
-  :host([size='large'][src]) .circle {
-    border-style: solid;
-    border-width: 0.3rem;
-    width: calc(100% - 0.6rem);
-    height: calc(100% - 0.6rem);
-  }
   :host([color='primary']) {
     --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
@@ -95,7 +85,7 @@ export const style = css`
   :host([color='disabled']) {
     --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
   }
-  :host([clickable]:hover) .circle {
+  :host([clickable]:hover) .fwc-avatar__container {
     cursor: pointer;
   }
 `;

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.2.11...@equinor/fusion-wc-textinput@0.3.0) (2021-09-21)
+
+
+### Features
+
+* allow reset of validity message ([f03f5e0](https://github.com/equinor/fusion-web-components/commit/f03f5e06b11b42a792d922d602f8b400b8cebea0))
+
+
+
+
+
 ## [0.2.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.2.10...@equinor/fusion-wc-textinput@0.2.11) (2021-09-01)
 
 **Note:** Version bump only for package @equinor/fusion-wc-textinput

@@ -1,0 +1,94 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import PersonAvatar, { PersonAvatarWrapper } from './Components/PersonAvatar';
+import { Availability, AccountType } from '@equinor/fusion-wc-person';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="Sizes">
+      <fwc-person-avatar size="x-small" {...props} />
+      <fwc-person-avatar size="small" {...props} />
+      <fwc-person-avatar size="medium" {...props} />
+      <fwc-person-avatar size="large" {...props} />
+    </Container>
+    <Container title="Colors">
+      <fwc-person-avatar color="primary" {...props} />
+      <fwc-person-avatar color="secondary" {...props} />
+      <fwc-person-avatar color="success" {...props} />
+      <fwc-person-avatar color="danger" {...props} />
+      <fwc-person-avatar color="warning" {...props} />
+      <fwc-person-avatar color="disabled" {...props} />
+    </Container>
+    <Container title="Custom Colors">
+      <fwc-person-avatar style={{ '--fwc-person-avatar-color': '#495057' }} {...props} />
+      <fwc-person-avatar
+        style={{ '--fwc-person-avatar-color': '#ffc6ff', '--fwc-person-avatar-font-color': '#000' }}
+        {...props}
+      />
+      <fwc-person-avatar
+        style={{ '--fwc-person-avatar-color': '#81b29a', '--fwc-person-avatar-font-color': '#335c67' }}
+        {...props}
+      />
+    </Container>
+    <Container title="Badge">
+      <fwc-person-avatar size="x-small" {...props}>
+        <fwc-badge slot="badge" size="x-small" position="bottom-right" color="success" circular />
+      </fwc-person-avatar>
+      <fwc-person-avatar size="small" {...props}>
+        <fwc-badge slot="badge" size="small" position="bottom-right" color="success" circular />
+      </fwc-person-avatar>
+      <fwc-person-avatar size="medium" {...props}>
+        <fwc-badge slot="badge" size="medium" position="bottom-right" color="success" circular />
+      </fwc-person-avatar>
+      <fwc-person-avatar size="large" {...props}>
+        <fwc-badge slot="badge" size="large" position="bottom-right" color="success" circular />
+      </fwc-person-avatar>
+    </Container>
+    <Container title="Clickable">
+      <fwc-person-avatar clickable {...props} />
+    </Container>
+    <Container title="Disabled">
+      <fwc-person-avatar clickable disabled {...props} />
+    </Container>
+  </div>
+);
+
+# PersonAvatar
+
+<Meta
+  title="Data/PersonAvatar"
+  component={PersonAvatar}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-person-avatar
+```
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      azureId: '1234567890',
+    }}
+    parameters={{ chromatic: { disableSnapshot: true } }}
+  >
+    {PersonAvatar.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />

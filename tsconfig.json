@@ -19,6 +19,7 @@
     { "path": "./packages/intersection" },
     { "path": "./packages/list" },
     { "path": "./packages/picture" },
+    { "path": "./packages/person" },
     { "path": "./packages/popover" },
     { "path": "./packages/radio" },
     { "path": "./packages/ripple" },

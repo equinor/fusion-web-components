@@ -2,7 +2,7 @@ import { CSSResult, TemplateResult, html } from 'lit';
 import { property } from 'lit/decorators';
 import { ifDefined } from 'lit/directives/if-defined';
 import { PersonElement, PersonElementProps } from '../person';
-import { Availability, PersonPresence, PersonDetails } from '../types';
+import { Availability, PersonPresence, PersonDetails, AccountType } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
 import style from './element.css';
@@ -23,9 +23,16 @@ Avatar;
  * @summary Base element for person elements implementing a reactive controller to resolve person data by 'azureId'.
  */
 export type PersonAvatarElementProps = PersonElementProps & {
+  name?: string;
+  accountType?: AccountType;
+  availability?: Availability;
+  pictureSrc?: string;
   size?: AvatarSize;
   clickable?: boolean;
   disabled?: boolean;
+  resolveDetails?: boolean;
+  resolvePresence?: boolean;
+  resolvePicture?: boolean;
 };
 
 export class PersonAvatarElement extends PersonElement implements PersonAvatarElementProps {

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -14,7 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@equinor/fusion-wc-avatar": "^1.0.16",
+    "@equinor/fusion-wc-avatar": "^1.0.17",
     "@equinor/fusion-wc-badge": "^0.2.4",
     "@equinor/fusion-wc-button": "^1.1.14",
     "@equinor/fusion-wc-checkbox": "^0.2.7",

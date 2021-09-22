@@ -11,9 +11,6 @@ Badge;
 Avatar;
 
 export type PersonAvatarElementProps = PersonElementProps & {
-  resolveDetails?: boolean;
-  resolvePresence?: boolean;
-  resolvePicture?: boolean;
   name?: string;
   accountType?: AccountType;
   availability?: Availability;
@@ -21,6 +18,9 @@ export type PersonAvatarElementProps = PersonElementProps & {
   size?: AvatarSize;
   clickable?: boolean;
   disabled?: boolean;
+  resolveDetails?: boolean;
+  resolvePresence?: boolean;
+  resolvePicture?: boolean;
 };
 
 export class PersonAvatarElement extends PersonElement implements PersonAvatarElementProps {

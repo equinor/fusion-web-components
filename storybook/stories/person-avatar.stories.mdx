@@ -20,44 +20,27 @@ export const Template = (props) => (
       <fwc-person-avatar size="medium" {...props} />
       <fwc-person-avatar size="large" {...props} />
     </Container>
-    <Container title="Colors">
-      <fwc-person-avatar color="primary" {...props} />
-      <fwc-person-avatar color="secondary" {...props} />
-      <fwc-person-avatar color="success" {...props} />
-      <fwc-person-avatar color="danger" {...props} />
-      <fwc-person-avatar color="warning" {...props} />
-      <fwc-person-avatar color="disabled" {...props} />
+    <Container title="Account Types">
+      <fwc-person-avatar accountType={AccountType.Employee} {...props} />
+      <fwc-person-avatar accountType={AccountType.ExternalHire} {...props} />
+      <fwc-person-avatar accountType={AccountType.XExternal} {...props} />
+      <fwc-person-avatar accountType={AccountType.JointVentureAffiliate} {...props} />
     </Container>
-    <Container title="Custom Colors">
-      <fwc-person-avatar style={{ '--fwc-person-avatar-color': '#495057' }} {...props} />
-      <fwc-person-avatar
-        style={{ '--fwc-person-avatar-color': '#ffc6ff', '--fwc-person-avatar-font-color': '#000' }}
-        {...props}
-      />
-      <fwc-person-avatar
-        style={{ '--fwc-person-avatar-color': '#81b29a', '--fwc-person-avatar-font-color': '#335c67' }}
-        {...props}
-      />
-    </Container>
-    <Container title="Badge">
-      <fwc-person-avatar size="x-small" {...props}>
-        <fwc-badge slot="badge" size="x-small" position="bottom-right" color="success" circular />
-      </fwc-person-avatar>
-      <fwc-person-avatar size="small" {...props}>
-        <fwc-badge slot="badge" size="small" position="bottom-right" color="success" circular />
-      </fwc-person-avatar>
-      <fwc-person-avatar size="medium" {...props}>
-        <fwc-badge slot="badge" size="medium" position="bottom-right" color="success" circular />
-      </fwc-person-avatar>
-      <fwc-person-avatar size="large" {...props}>
-        <fwc-badge slot="badge" size="large" position="bottom-right" color="success" circular />
-      </fwc-person-avatar>
+    <Container title="Availability">
+      <fwc-person-avatar availability={Availability.Available} {...props} />
+      <fwc-person-avatar availability={Availability.AvailableIdle} {...props} />
+      <fwc-person-avatar availability={Availability.Away} {...props} />
+      <fwc-person-avatar availability={Availability.BeRightBack} {...props} />
+      <fwc-person-avatar availability={Availability.Busy} {...props} />
+      <fwc-person-avatar availability={Availability.BusyIdle} {...props} />
+      <fwc-person-avatar availability={Availability.DoNotDisturb} {...props} />
+      <fwc-person-avatar availability={Availability.Offline} {...props} />
     </Container>
     <Container title="Clickable">
       <fwc-person-avatar clickable {...props} />
     </Container>
     <Container title="Disabled">
-      <fwc-person-avatar clickable disabled {...props} />
+      <fwc-person-avatar disabled {...props} />
     </Container>
   </div>
 );
@@ -79,6 +62,8 @@ export const Template = (props) => (
 npm i @equinor/fusion-wc-person-avatar
 ```
 
+## Playground
+
 <Canvas>
   <Story
     name="Default"
@@ -92,3 +77,17 @@ npm i @equinor/fusion-wc-person-avatar
 </Canvas>
 
 <ArgsTable story="Default" />
+
+## Snapshots
+
+### Picture
+
+<Story name="Picture" args={{ pictureSrc: 'https://i.imgur.com/C4iPxwN.jpeg' }}>
+  {Template.bind({})}
+</Story>
+
+### Initial
+
+<Story name="Initial" args={{ name: 'Ben Dover' }}>
+  {Template.bind({})}
+</Story>

@@ -1,6 +1,7 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonAvatarElement, PersonAvatarElementProps } from './element';
 export * from './element';
+export { AvatarSize } from '@equinor/fusion-wc-avatar';
 
 const tag = 'fwc-person-avatar';
 

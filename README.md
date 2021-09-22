@@ -55,4 +55,9 @@
 | [`<fwc-date>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date) | `@equinor/fusion-wc-date` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-date.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-date)
 | [`<fwc-list>`](https://github.com/equinor/fusion-web-components/tree/main/packages/list) | `@equinor/fusion-wc-list` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-list.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-list)
 | [`<fwc-skeleton>`](https://github.com/equinor/fusion-web-components/tree/main/packages/skeleton) | `@equinor/fusion-wc-skeleton` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-skeleton.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-skeleton)
+
+## Context
+| Component | Package | Status
+| --------- | ------- | ------
+| [`<fwc-person>`](https://github.com/equinor/fusion-web-components/tree/main/packages/person) | `@equinor/fusion-wc-person` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-person.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-person)
 <!--prettier-ignore-end-->

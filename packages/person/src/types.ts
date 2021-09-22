@@ -1,14 +1,3 @@
-export enum Availability {
-  Available = 'Available',
-  AvailableIdle = 'AvailableIdle',
-  Away = 'Away',
-  BeRightBack = 'BeRightBack',
-  Busy = 'Busy',
-  BusyIdle = 'BusyIdle',
-  DoNotDisturb = 'DoNotDisturb',
-  Offline = 'Offline',
-}
-
 export type PersonPresence = {
   id: string;
   availability: Availability;
@@ -36,4 +25,15 @@ export enum AccountType {
   ExternalHire = 'External hire',
   XExternal = 'X-External',
   JointVentureAffiliate = 'Joint venture/Affiliate',
+}
+
+export enum Availability {
+  Available = 'Available',
+  AvailableIdle = 'AvailableIdle',
+  Away = 'Away',
+  BeRightBack = 'BeRightBack',
+  Busy = 'Busy',
+  BusyIdle = 'BusyIdle',
+  DoNotDisturb = 'DoNotDisturb',
+  Offline = 'Offline',
 }

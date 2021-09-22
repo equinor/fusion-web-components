@@ -53,4 +53,9 @@
 | [`<fwc-badge>`](https://github.com/equinor/fusion-web-components/tree/main/packages/badge) | `@equinor/fusion-wc-badge` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-badge.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-badge)
 | [`<fwc-chip>`](https://github.com/equinor/fusion-web-components/tree/main/packages/chip) | `@equinor/fusion-wc-chip` | TBD
 | [`<fwc-date>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date) | `@equinor/fusion-wc-date` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-date.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-date)
+
+## Context
+| Component | Package | Status
+| --------- | ------- | ------
+| [`<fwc-person>`](https://github.com/equinor/fusion-web-components/tree/main/packages/person) | `@equinor/fusion-wc-person` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-person.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-person)
 <!--prettier-ignore-end-->

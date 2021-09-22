@@ -68,11 +68,13 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   }
 
   protected renderPicture(): TemplateResult {
-    return html`<fwc-picture class="picture" src=${ifDefined(this.src)} cover></fwc-picture> `;
+    return html`<div class="fwc-avatar__picture-container">
+      <fwc-picture class="fwc-avatar__picture" src=${ifDefined(this.src)} cover></fwc-picture>
+    </div>`;
   }
 
   protected renderValue(): TemplateResult {
-    return html`${this.value}`;
+    return html`<span class="fwc-avatar__value">${this.value}</span>`;
   }
 
   protected renderSlot(): TemplateResult {
@@ -82,7 +84,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   protected render(): TemplateResult {
     const content = this.src ? this.renderPicture() : this.value ? this.renderValue() : this.renderSlot();
     return html`<span
-      class="circle"
+      class="fwc-avatar__container"
       @focus="${this.handleRippleFocus}"
       @blur="${this.handleRippleBlur}"
       @mousedown="${this.handleRippleActivate}"
@@ -97,7 +99,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
 
   protected renderRipple(): TemplateResult | string {
     return this.clickable
-      ? html`<fwc-ripple class="ripple" disabled="${ifDefined(this.disabled)}" unbounded></fwc-ripple>`
+      ? html`<fwc-ripple class="fwc-avatar__ripple" disabled="${ifDefined(this.disabled)}" unbounded></fwc-ripple>`
       : '';
   }
 

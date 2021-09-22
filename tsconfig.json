@@ -17,6 +17,7 @@
     { "path": "./packages/formfield" },
     { "path": "./packages/intersection" },
     { "path": "./packages/picture" },
+    { "path": "./packages/person" },
     { "path": "./packages/popover" },
     { "path": "./packages/radio" },
     { "path": "./packages/ripple" },

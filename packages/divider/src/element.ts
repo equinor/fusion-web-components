@@ -1,5 +1,5 @@
 import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import style from './element.css';
 
 export type DividerColor = 'medium' | 'light' | 'lighter';

@@ -1,6 +1,6 @@
 import { IconName } from '@equinor/eds-icons';
 import { LitElement, SVGTemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import createIcon, { IconType } from './utils/create-icon';
 import { style } from './element.css';
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.9...@equinor/fusion-wc-popover@1.0.10) (2021-09-23)
+
+
+### Bug Fixes
+
+* fixed lit imports ([1c15f6b](https://github.com/equinor/fusion-web-components/commit/1c15f6b865b9e43193942610f881ed1bc74a623c))
+
+
+
+
+
 ## [1.0.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.8...@equinor/fusion-wc-popover@1.0.9) (2021-09-23)
 
 

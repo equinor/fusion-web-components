@@ -1,6 +1,6 @@
 import { html, LitElement, TemplateResult } from 'lit';
-import { property, queryAsync, eventOptions } from 'lit/decorators';
-import { classMap } from 'lit/directives/class-map';
+import { property, queryAsync, eventOptions } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 
 import { Placement } from '@popperjs/core';
 

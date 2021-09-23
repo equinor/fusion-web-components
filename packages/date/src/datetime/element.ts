@@ -1,6 +1,6 @@
 import { html, LitElement, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
-import { ifDefined } from 'lit/directives/if-defined';
+import { property } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { format as formatDate } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import { DateTimeFormat } from '../types';

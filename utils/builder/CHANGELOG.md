@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.2...@equinor/fusion-wc-builder@1.0.3) (2021-09-23)
+
+
+### Bug Fixes
+
+* upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
+
+
+
+
+
 ## [1.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.1...@equinor/fusion-wc-builder@1.0.2) (2021-08-13)
 
 

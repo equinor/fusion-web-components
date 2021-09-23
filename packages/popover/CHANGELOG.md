@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.8...@equinor/fusion-wc-popover@1.0.9) (2021-09-23)
+
+
+### Bug Fixes
+
+* upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
+
+
+
+
+
 ## [1.0.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.7...@equinor/fusion-wc-popover@1.0.8) (2021-09-01)
 
 **Note:** Version bump only for package @equinor/fusion-wc-popover

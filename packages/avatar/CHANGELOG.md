@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.18](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.17...@equinor/fusion-wc-avatar@1.0.18) (2021-09-23)
+
+
+### Bug Fixes
+
+* fixed linting ([ca6a86e](https://github.com/equinor/fusion-web-components/commit/ca6a86ebda14f6c85cb58f125778e94847b70b1d))
+* upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
+
+
+
+
+
 ## [1.0.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.16...@equinor/fusion-wc-avatar@1.0.17) (2021-09-22)
 
 

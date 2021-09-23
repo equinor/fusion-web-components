@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.9...@equinor/fusion-wc-date@0.2.10) (2021-09-23)
+
+
+### Bug Fixes
+
+* fixed lit imports ([c9c75e2](https://github.com/equinor/fusion-web-components/commit/c9c75e26c2edf1e6df2230777f45a843528741dc))
+
+
+
+
+
 ## [0.2.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-date@0.2.8...@equinor/fusion-wc-date@0.2.9) (2021-09-23)
 
 

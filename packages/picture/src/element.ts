@@ -1,10 +1,10 @@
-import { html, LitElement, property, eventOptions, internalProperty, TemplateResult } from 'lit-element';
+import { html, LitElement, TemplateResult } from 'lit';
+import { property, state, eventOptions } from 'lit/decorators';
+import { styleMap } from 'lit/directives/style-map';
+import { repeat } from 'lit/directives/repeat';
+import { ifDefined } from 'lit/directives/if-defined';
 
-import { styleMap } from 'lit-html/directives/style-map';
-import { repeat } from 'lit-html/directives/repeat';
-import { ifDefined } from 'lit-html/directives/if-defined';
-
-import { observeIntersection } from '@equinor/fusion-wc-intersection';
+import { observeIntersection, ObserverInfo } from '@equinor/fusion-wc-intersection';
 
 import PictureEvent from './events/picture-event';
 import style from './element.css';
@@ -53,27 +53,27 @@ export class PictureElement extends LitElement implements PictureElementProps {
    * Set the picture height
    * Updated with the img natural height when loaded
    */
-  @internalProperty()
+  @state()
   public currentSrc?: string;
 
   /**
    * Set the picture height
    * Updated with the img natural height when loaded
    */
-  @internalProperty()
+  @state()
   public height?: number;
 
   /**
    * Set the picture width
    * Updated with the img natural width when loaded
    */
-  @internalProperty()
+  @state()
   public width?: number;
 
   /**
    * indicate if picture is intersected
    */
-  @internalProperty()
+  @state()
   public intersected?: boolean;
 
   /**
@@ -92,22 +92,23 @@ export class PictureElement extends LitElement implements PictureElementProps {
   }
 
   protected render(): TemplateResult {
-    const style = styleMap({
+    const style = {
       backgroundImage: this.loaded ? `url(${this.currentSrc})` : '',
       backgroundPosition: this.position || '',
       backgroundSize: this.cover ? 'cover' : 'contain',
-    });
+    };
 
-    const intersection = observeIntersection({
+    const observerInfo: ObserverInfo = {
       cb: ([entry]) => {
         this.intersected = entry.isIntersecting;
       },
       disabled: this.intersected,
-    });
+    };
 
     return html`
-      <picture style="${style}" intersection="${intersection}">
-        ${this.loaded ? '' : html`<slot name="loader" />`} ${this.lazy && !this.intersected ? '' : this.renderImage()}
+      <picture style=${styleMap(style)} intersection=${observeIntersection(observerInfo)}>
+        ${this.loaded ? '' : html`<slot name="loader"></slot>`}
+        ${this.lazy && !this.intersected ? '' : this.renderImage()}
       </picture>
     `;
   }
@@ -129,7 +130,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
   }
 
   @eventOptions({ passive: true })
-  protected _onSourceChange(e: Event) {
+  protected _onSourceChange(e: Event): void {
     const img = e.target as HTMLImageElement;
     const { naturalHeight, naturalWidth, currentSrc } = img;
     if (this.currentSrc !== currentSrc && this._emitChange(img)) {
@@ -140,7 +141,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
     }
   }
 
-  protected _emitChange(img: HTMLImageElement, args?: CustomEventInit) {
+  protected _emitChange(img: HTMLImageElement, args?: CustomEventInit): boolean {
     const { naturalHeight, naturalWidth, currentSrc } = img;
     const detail = { naturalHeight, naturalWidth, currentSrc };
     const event = new PictureEvent('picture-load', { ...args, detail });

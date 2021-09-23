@@ -1,4 +1,5 @@
-import { html, property, CSSResult, TemplateResult, PropertyValues } from 'lit-element';
+import { html, CSSResult, TemplateResult, PropertyValues } from 'lit';
+import { property } from 'lit/decorators';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { TextFieldBase, TextFieldType } from '@material/mwc-textfield/mwc-textfield-base';
 import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
@@ -40,15 +41,36 @@ export type TextInputElementProps = {
   readOnly?: boolean;
   endAligned?: boolean;
   autocapitalize?: string;
+  /**
+   * reset components validity
+   */
+  clearValidity: VoidFunction;
 };
 
 export class TextInputElement extends TextFieldBase implements TextInputElementProps {
   static styles: CSSResult[] = [mdcStyle, elementStyle];
 
-  @property({ type: String }) icon: IconName = '';
-  @property({ type: String }) iconTrailing: IconName = '';
-  @property({ type: String }) variant: TextInputVariant = 'filled';
+  @property({ type: String })
+  icon: IconName = '';
 
+  @property({ type: String })
+  iconTrailing: IconName = '';
+
+  @property({ type: String })
+  variant: TextInputVariant = 'filled';
+
+  clearValidity(): void {
+    this.mdcFoundation.setValid(true);
+    this.isUiValid = true;
+  }
+
+  /** @override */
+  setCustomValidity(txt: string): void {
+    super.setCustomValidity(txt);
+    !txt && this.clearValidity();
+  }
+
+  /** @override */
   updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {
@@ -66,6 +88,7 @@ export class TextInputElement extends TextFieldBase implements TextInputElementP
     }
   }
 
+  /** @override */
   protected renderIcon(icon: string, isTrailingIcon = false): TemplateResult {
     return html`<fwc-icon
       icon=${icon}

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.7...@equinor/fusion-wc-intersection@1.0.8) (2021-09-23)
+
+
+### Bug Fixes
+
+* fixed linting ([ca6a86e](https://github.com/equinor/fusion-web-components/commit/ca6a86ebda14f6c85cb58f125778e94847b70b1d))
+* upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
+
+
+
+
+
 ## [1.0.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.6...@equinor/fusion-wc-intersection@1.0.7) (2021-09-01)
 
 **Note:** Version bump only for package @equinor/fusion-wc-intersection

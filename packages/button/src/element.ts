@@ -1,4 +1,5 @@
-import { html, property, CSSResult, TemplateResult, PropertyValues } from 'lit-element';
+import { html, CSSResult, TemplateResult, PropertyValues } from 'lit';
+import { property } from 'lit/decorators';
 // import { classMap } from 'lit-html/directives/class-map';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
@@ -34,7 +35,7 @@ export class ButtonElement extends ButtonBase implements ButtonElementProps {
   @property({ type: String, reflect: true })
   variant: ButtonVariant = 'contained';
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {
       switch (this.variant) {

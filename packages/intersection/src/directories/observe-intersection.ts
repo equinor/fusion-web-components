@@ -1,8 +1,12 @@
-import { AttributePart, directive, Part, PropertyPart } from 'lit-html';
-
+import { directive, Directive, PartInfo, PartType, AttributePart, DirectiveParameters } from 'lit/directive';
+import { noChange } from 'lit';
 import * as equal from 'fast-deep-equal/es6';
 
-const observerCache = new WeakMap<Element, Observer>();
+export interface ObserverInfo {
+  cb: IntersectionObserverCallback;
+  opt?: IntersectionObserverInit;
+  disabled?: boolean;
+}
 
 class Observer extends IntersectionObserver {
   constructor(public callback: IntersectionObserverCallback, public options?: IntersectionObserverInit) {
@@ -10,50 +14,59 @@ class Observer extends IntersectionObserver {
   }
 }
 
-const createObserver = (
-  el: Element,
-  cb: IntersectionObserverCallback,
-  options?: IntersectionObserverInit
-): Observer => {
-  const observer = new Observer(cb, options);
-  observer.options = options;
-  observer.observe(el);
-  observerCache.set(el, observer);
-  return observer;
-};
+const observerCache = new WeakMap<Element, Observer>();
 
-export interface ObserverProps {
-  cb: IntersectionObserverCallback;
-  opt?: IntersectionObserverInit;
-  disabled?: boolean;
+class ObserveIntersectionDirective extends Directive {
+  element?: HTMLElement;
+
+  constructor(partInfo: PartInfo) {
+    super(partInfo);
+    if (
+      partInfo.type !== PartType.ATTRIBUTE ||
+      partInfo.name !== 'intersection' ||
+      (partInfo.strings?.length as number) > 2
+    ) {
+      throw new Error(
+        'The `observeIntersection` directive must be used in the `intersection` attribute and must be the only part in the attribute.'
+      );
+    }
+  }
+
+  override render(observerInfo: ObserverInfo) {
+    const { cb, disabled, opt } = observerInfo;
+
+    if (this.element) {
+      const observer = observerCache.get(this.element);
+
+      // disconnect if disabled or observer options change
+      if (observer && (disabled || !equal(observer.options, opt))) {
+        observer?.disconnect();
+        observerCache.delete(this.element);
+      }
+
+      // create new observer if not disabled
+      if (!observer && !disabled) {
+        this.createObserver(this.element, cb, opt);
+      }
+    }
+
+    return noChange;
+  }
+
+  override update(part: AttributePart, [observerInfo]: DirectiveParameters<this>) {
+    this.element = part.element as HTMLElement;
+    return this.render(observerInfo);
+  }
+
+  createObserver = (el: Element, cb: IntersectionObserverCallback, options?: IntersectionObserverInit): Observer => {
+    const observer = new Observer(cb, options);
+    observer.options = options;
+    observer.observe(el);
+    observerCache.set(el, observer);
+    return observer;
+  };
 }
 
-export const observeIntersection = directive(({ cb, disabled, opt }: ObserverProps) => (part: Part): void => {
-  if (
-    !(part instanceof AttributePart) ||
-    part instanceof PropertyPart ||
-    part.committer.name !== 'intersection' ||
-    part.committer.parts.length > 1
-  ) {
-    throw new Error(
-      'The `observeIntersection` directive must be used in the style attribute ' +
-        'and must be the only part in the attribute.'
-    );
-  }
+export const observeIntersection = directive(ObserveIntersectionDirective);
 
-  const element = part.committer.element as HTMLElement;
-  const observer = observerCache.get(element);
-
-  // disconnect if disabled or observer options change
-  if (observer && (disabled || !equal(observer.options, opt))) {
-    observer?.disconnect();
-    observerCache.delete(element);
-  }
-
-  // create new observer if not disabled
-  if (!observer && !disabled) {
-    createObserver(element, cb, opt);
-  }
-});
-
-export default observeIntersection;
+export type { ObserveIntersectionDirective };

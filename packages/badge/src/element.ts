@@ -1,5 +1,6 @@
-import { LitElement, CSSResult, TemplateResult, PropertyValues, html, property } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
+import { property } from 'lit/decorators';
+import { ifDefined } from 'lit/directives/if-defined';
 import { IconName } from '@equinor/fusion-wc-icon';
 import style from './element.css';
 

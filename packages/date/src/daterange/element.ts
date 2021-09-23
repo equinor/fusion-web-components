@@ -1,4 +1,5 @@
-import { html, LitElement, property, PropertyValues, TemplateResult } from 'lit-element';
+import { html, LitElement, PropertyValues, TemplateResult } from 'lit';
+import { property } from 'lit/decorators';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { formatDistance, formatRelative } from 'date-fns';
 import { enGB } from 'date-fns/locale';
@@ -107,21 +108,21 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
     switch (this.variant) {
       case 'relative':
         return html`<span>
-          <time data-date-start=${this.from.toISOString()} />
-          <time data-date-end=${this.to?.toISOString()} />
+          <time data-date-start=${this.from.toISOString()}></time>
+          <time data-date-end=${ifDefined(this.to?.toISOString())}></time>
           ${this.formatText(this.Relative)}
         </span>`;
       case 'distance':
         return html`<span>
-          <time data-date-start=${this.from.toISOString()} />
-          <time data-date-end=${this.to?.toISOString()} />
+          <time data-date-start=${this.from.toISOString()}></time>
+          <time data-date-end=${ifDefined(this.to?.toISOString())}></time>
           ${this.formatText(this.Distance)}
         </span>`;
       case 'datetime':
         return html`<span>
-          <fwc-datetime date=${this.from} .format=${ifDefined(this.format)}></fwc-datetime>
+          <fwc-datetime .date=${this.from} format=${ifDefined(this.format)}></fwc-datetime>
           <slot name="separator"><span>-</span></slot>
-          <fwc-datetime date=${this.to} .format=${ifDefined(this.format)}></fwc-datetime>
+          <fwc-datetime .date=${this.to} format=${ifDefined(this.format)}></fwc-datetime>
         </span>`;
     }
   }

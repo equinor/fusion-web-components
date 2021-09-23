@@ -1,4 +1,4 @@
-import { CSSResult } from 'lit-element';
+import { CSSResult } from 'lit';
 import { FormfieldBase } from '@material/mwc-formfield/mwc-formfield-base';
 import { styles as mdcStyle } from '@material/mwc-formfield/mwc-formfield.css';
 import style from './element.css';

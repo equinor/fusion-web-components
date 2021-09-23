@@ -1,14 +1,6 @@
-import {
-  LitElement,
-  CSSResult,
-  TemplateResult,
-  PropertyValues,
-  html,
-  property,
-  queryAsync,
-  eventOptions,
-} from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
+import { property, queryAsync, eventOptions } from 'lit/decorators';
+import { ifDefined } from 'lit/directives/if-defined';
 import Picture from '@equinor/fusion-wc-picture';
 import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
 import style from './element.css';

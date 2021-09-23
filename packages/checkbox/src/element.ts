@@ -1,4 +1,4 @@
-import { CSSResult } from 'lit-element';
+import { CSSResult } from 'lit';
 import { CheckboxBase } from '@material/mwc-checkbox/mwc-checkbox-base';
 import { styles as mdcStyle } from '@material/mwc-checkbox/mwc-checkbox.css';
 import style from './element.css';

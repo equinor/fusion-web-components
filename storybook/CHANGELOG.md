@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.8...@equinor/fusion-wc-storybook@1.9.9) (2021-09-23)
+
+
+### Bug Fixes
+
+* import of lit ([44137af](https://github.com/equinor/fusion-web-components/commit/44137afb8005ca17af94f14dabe4a427c31391df))
+
+
+
+
+
 ## [1.9.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.7...@equinor/fusion-wc-storybook@1.9.8) (2021-09-23)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

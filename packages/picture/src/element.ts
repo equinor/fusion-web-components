@@ -1,8 +1,8 @@
 import { html, LitElement, TemplateResult } from 'lit';
-import { property, state, eventOptions } from 'lit/decorators';
-import { styleMap } from 'lit/directives/style-map';
-import { repeat } from 'lit/directives/repeat';
-import { ifDefined } from 'lit/directives/if-defined';
+import { property, state, eventOptions } from 'lit/decorators.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { repeat } from 'lit/directives/repeat.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 import { observeIntersection, ObserverInfo } from '@equinor/fusion-wc-intersection';
 

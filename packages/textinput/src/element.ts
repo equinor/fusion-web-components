@@ -1,5 +1,5 @@
 import { html, CSSResult, TemplateResult, PropertyValues } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { TextFieldBase, TextFieldType } from '@material/mwc-textfield/mwc-textfield-base';
 import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';

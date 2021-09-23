@@ -1,5 +1,5 @@
 import { html, CSSResult, TemplateResult, PropertyValues } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 // import { classMap } from 'lit-html/directives/class-map';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';

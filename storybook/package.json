@@ -22,6 +22,7 @@
     "@equinor/fusion-wc-divider": "^0.2.3",
     "@equinor/fusion-wc-formfield": "^0.2.2",
     "@equinor/fusion-wc-icon": "^1.0.11",
+    "@equinor/fusion-wc-list": "^0.1.0",
     "@equinor/fusion-wc-picture": "^1.0.10",
     "@equinor/fusion-wc-popover": "^1.0.10",
     "@equinor/fusion-wc-radio": "^0.2.8",

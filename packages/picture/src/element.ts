@@ -130,7 +130,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
   }
 
   @eventOptions({ passive: true })
-  protected _onSourceChange(e: Event) {
+  protected _onSourceChange(e: Event): void {
     const img = e.target as HTMLImageElement;
     const { naturalHeight, naturalWidth, currentSrc } = img;
     if (this.currentSrc !== currentSrc && this._emitChange(img)) {
@@ -141,7 +141,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
     }
   }
 
-  protected _emitChange(img: HTMLImageElement, args?: CustomEventInit) {
+  protected _emitChange(img: HTMLImageElement, args?: CustomEventInit): boolean {
     const { naturalHeight, naturalWidth, currentSrc } = img;
     const detail = { naturalHeight, naturalWidth, currentSrc };
     const event = new PictureEvent('picture-load', { ...args, detail });

@@ -1,7 +1,7 @@
 import { CSSResult, TemplateResult, html } from 'lit';
-import { property } from 'lit/decorators';
-import { classMap } from 'lit/directives/class-map';
-import { ifDefined } from 'lit/directives/if-defined';
+import { property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { IconName } from '@equinor/fusion-wc-icon';
 import { RadioListItemBase } from '@material/mwc-list/mwc-radio-list-item-base';
 import Radio from '@equinor/fusion-wc-radio';

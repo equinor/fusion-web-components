@@ -1,5 +1,5 @@
 import { createPopper, Modifier, OptionsGeneric, StrictModifiers, Instance } from '@popperjs/core';
-import { directive, PartInfo, PartType, AttributePart, Directive, DirectiveParameters } from 'lit/directive';
+import { directive, PartInfo, PartType, AttributePart, Directive, DirectiveParameters } from 'lit/directive.js';
 import { noChange } from 'lit';
 
 type PopperInstance = Instance & {

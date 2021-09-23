@@ -1,5 +1,4 @@
-import { svg, SVGTemplateResult } from 'lit-element';
-
+import { svg, SVGTemplateResult } from 'lit';
 import * as edsIcons from '@equinor/eds-icons';
 import { IconData } from '@equinor/eds-icons';
 

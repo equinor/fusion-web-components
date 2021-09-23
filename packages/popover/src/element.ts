@@ -1,5 +1,6 @@
-import { eventOptions, html, LitElement, property, queryAsync, TemplateResult } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html, LitElement, TemplateResult } from 'lit';
+import { property, queryAsync, eventOptions } from 'lit/decorators';
+import { classMap } from 'lit/directives/class-map';
 
 import { Placement } from '@popperjs/core';
 
@@ -84,7 +85,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
       <span id="content" popperjs=${popperjs(this.popper, this.options)} @click=${this.handleClick}>
         <slot></slot>
       </span>
-      <span id="popper" class=${popperClasses}>
+      <span id="popper" .class=${popperClasses}>
         <slot name="popover"></slot>
       </span>
     `;

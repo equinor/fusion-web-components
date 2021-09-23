@@ -1,4 +1,4 @@
-import { css, unsafeCSS } from 'lit-element';
+import { css, unsafeCSS } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const style = css`

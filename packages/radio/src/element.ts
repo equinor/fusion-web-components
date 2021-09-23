@@ -1,4 +1,4 @@
-import { CSSResult } from 'lit-element';
+import { CSSResult } from 'lit';
 import { RadioBase } from '@material/mwc-radio/mwc-radio-base';
 import { styles as mdcStyle } from '@material/mwc-radio/mwc-radio.css';
 import { style } from './element.css';

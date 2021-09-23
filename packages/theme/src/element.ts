@@ -1,4 +1,4 @@
-import { html, LitElement, TemplateResult } from 'lit-element';
+import { html, LitElement, TemplateResult } from 'lit';
 
 import style from './element.css';
 

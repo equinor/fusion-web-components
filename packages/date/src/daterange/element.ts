@@ -1,5 +1,5 @@
 import { html, LitElement, PropertyValues, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { formatDistance, formatRelative } from 'date-fns';
 import { enGB } from 'date-fns/locale';

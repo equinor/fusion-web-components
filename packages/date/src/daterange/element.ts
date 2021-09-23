@@ -1,6 +1,6 @@
 import { html, LitElement, PropertyValues, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { formatDistance, formatRelative } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import { DateRangeVariant, DateTimeFormat, WeekDay } from '../types';

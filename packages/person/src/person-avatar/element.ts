@@ -1,5 +1,6 @@
-import { CSSResult, TemplateResult, PropertyValues, html, property } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { CSSResult, TemplateResult, PropertyValues, html } from 'lit';
+import { property } from 'lit/decorators';
+import { ifDefined } from 'lit/directives/if-defined';
 import { PersonElement, PersonElementProps } from '../person';
 import { Availability, AccountType } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';

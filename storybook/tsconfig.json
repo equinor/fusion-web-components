@@ -21,6 +21,7 @@
     { "path": "../packages/date" },
     { "path": "../packages/divider" },
     { "path": "../packages/icon" },
+    { "path": "../packages/list" },
     { "path": "../packages/formfield" },
     { "path": "../packages/popover" },
     { "path": "../packages/radio" },

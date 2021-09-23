@@ -1,0 +1,222 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import List, { ListContainer } from './Components/List';
+import Divider from './Components/Divider';
+
+export const DefaultTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-list-item>Item 1</fwc-list-item>
+      <fwc-list-item>Item 2</fwc-list-item>
+      <fwc-list-item>Item 3</fwc-list-item>
+      <fwc-list-item>Item 4</fwc-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+export const ActivatableTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-list-item>Item 1</fwc-list-item>
+      <fwc-list-item selected activated>
+        Item 2
+      </fwc-list-item>
+      <fwc-list-item>Item 3</fwc-list-item>
+      <fwc-list-item>Item 4</fwc-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+export const CheckListTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-check-list-item selected>Item 1</fwc-check-list-item>
+      <fwc-check-list-item>Item 2</fwc-check-list-item>
+      <fwc-check-list-item disabled>Item 3</fwc-check-list-item>
+      <fwc-divider variant="list"></fwc-divider>
+      <fwc-check-list-item selected left>
+        Item 4
+      </fwc-check-list-item>
+      <fwc-check-list-item left>Item 5</fwc-check-list-item>
+      <fwc-check-list-item left disabled>
+        Item 6
+      </fwc-check-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+export const RadioTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-radio-list-item group="a" selected>
+        Item 1
+      </fwc-radio-list-item>
+      <fwc-radio-list-item group="a">Item 2</fwc-radio-list-item>
+      <fwc-radio-list-item group="a" disabled>
+        Item 3
+      </fwc-radio-list-item>
+      <fwc-divider variant="list"></fwc-divider>
+      <fwc-radio-list-item group="b" selected left>
+        Item 4
+      </fwc-radio-list-item>
+      <fwc-radio-list-item group="b" left>
+        Item 5
+      </fwc-radio-list-item>
+      <fwc-radio-list-item group="b" left disabled>
+        Item 6
+      </fwc-radio-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+export const TwoLineTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-list-item twoline>
+        <span>Item 1</span>
+        <span slot="secondary">Secondary line</span>
+      </fwc-list-item>
+      <fwc-list-item twoline>
+        <span>Item 2</span>
+        <span slot="secondary">Secondary line</span>
+      </fwc-list-item>
+      <fwc-list-item twoline>
+        <span>Item 3</span>
+        <span slot="secondary">Secondary line</span>
+      </fwc-list-item>
+      <fwc-list-item twoline>
+        <span>Item 4</span>
+        <span slot="secondary">Secondary line</span>
+      </fwc-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+export const MetaIconTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-list-item>
+        <fwc-icon icon="settings" slot="meta"></fwc-icon>
+        <span>Item 1</span>
+      </fwc-list-item>
+      <fwc-list-item>
+        <fwc-icon icon="more_horizontal" slot="meta"></fwc-icon>
+        <span>Item 2</span>
+      </fwc-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+export const GraphicTemplate = (props) => (
+  <ListContainer>
+    <fwc-list {...props}>
+      <fwc-list-item graphic="icon">
+        <fwc-icon icon="settings" slot="graphic"></fwc-icon>
+        <span>Item 1</span>
+      </fwc-list-item>
+      <fwc-list-item graphic="avatar">
+        <fwc-avatar slot="graphic" size="small" src="https://i.imgur.com/GcZeeXX.jpeg" {...props}></fwc-avatar>
+        <span>Item 1</span>
+      </fwc-list-item>
+      <fwc-list-item graphic="medium">
+        <fwc-picture slot="graphic" src="https://i.imgur.com/GcZeeXX.jpeg" cover></fwc-picture>
+        <span>Item 1</span>
+      </fwc-list-item>
+      <fwc-list-item graphic="large">
+        <fwc-picture slot="graphic" src="https://i.imgur.com/GcZeeXX.jpeg" cover></fwc-picture>
+        <span>Item 1</span>
+      </fwc-list-item>
+    </fwc-list>
+  </ListContainer>
+);
+
+# List
+
+<Meta
+  title="Data/List"
+  component={List}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+  argTypes={{
+    icon: {
+      control: 'select',
+      options: iconNames,
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-list
+```
+
+## Playground
+
+<Canvas>
+  <Story name="Default" args={{ label: 'list' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {List.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Snapshots
+
+### Default
+
+<Story name="Normal" args={{}}>
+  {DefaultTemplate.bind({})}
+</Story>
+
+### Activatable
+
+<Story name="Activatable" args={{ activatable: true }}>
+  {ActivatableTemplate.bind({})}
+</Story>
+
+### Multi Activatable
+
+<Story name="Multi" args={{ multi: true, activatable: true }}>
+  {ActivatableTemplate.bind({})}
+</Story>
+
+### Non Interactive
+
+<Story name="NonInteractive" args={{ noninteractive: true }}>
+  {DefaultTemplate.bind({})}
+</Story>
+
+### Check list
+
+<Story name="CheckList" args={{ multi: true }}>
+  {CheckListTemplate.bind({})}
+</Story>
+
+### Radio list
+
+<Story name="RadioList" args={{}}>
+  {RadioTemplate.bind({})}
+</Story>
+
+### Two line
+
+<Story name="TwoLine" args={{}}>
+  {TwoLineTemplate.bind({})}
+</Story>
+
+### Meta Icon
+
+<Story name="MetaIcon" args={{}}>
+  {MetaIconTemplate.bind({})}
+</Story>
+
+### Graphic
+
+<Story name="Graphic" args={{}}>
+  {GraphicTemplate.bind({})}
+</Story>

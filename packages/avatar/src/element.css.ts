@@ -19,9 +19,15 @@ export const style = css`
     justify-content: center;
     background-color: var(--fwc-avatar-color);
   }
-  :host .fwc-avatar__picture-container {
+  :host([border]) .fwc-avatar__picture-container {
     width: calc(100% - 0.5rem);
     height: calc(100% - 0.5rem);
+  }
+  :host(:not([border])) .fwc-avatar__picture-container {
+    width: 100%;
+    height: 100%;
+  }
+  :host .fwc-avatar__picture-container {
     border-radius: 50%;
     overflow: hidden;
     display: flex;

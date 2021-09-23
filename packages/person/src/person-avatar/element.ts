@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { CSSResult, TemplateResult, html } from 'lit';
+=======
+import { CSSResult, TemplateResult, PropertyValues, html } from 'lit';
+>>>>>>> a2e18aa (fix: upgraded lit-element and lit-html to li 2.0.0)
 import { property } from 'lit/decorators';
 import { ifDefined } from 'lit/directives/if-defined';
 import { PersonElement, PersonElementProps } from '../person';

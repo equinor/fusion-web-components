@@ -16,7 +16,6 @@
     "@equinor/fusion-wc-avatar": "^1.0.17",
     "@equinor/fusion-wc-badge": "^0.2.5",
     "@equinor/fusion-wc-core": "1.0.2",
-    "@lit-labs/task": "^1.0.0",
     "lit": "2.0.0"
   },
   "devDependencies": {

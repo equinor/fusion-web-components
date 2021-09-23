@@ -1,6 +1,7 @@
 import { CSSResult, html } from 'lit';
-import { property, query } from 'lit/decorators';
-import { classMap } from 'lit/directives/class-map';
+import { property, query } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+
 import Checkbox from '@equinor/fusion-wc-checkbox';
 import { ListItemElement, ListItemElementProps } from '../list-item';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list-item.css';

@@ -1,4 +1,5 @@
-import { LitElement, property } from 'lit-element';
+import { LitElement } from 'lit';
+import { property } from 'lit/decorators';
 import { PersonResolver, PersonPresence, PersonDetails, PersonPicture } from '../types';
 import { PersonElementConnectEvent } from '../events';
 

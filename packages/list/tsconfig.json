@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "./lib"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../checkbox" },
+    { "path": "../core" },
+    { "path": "../icon" },
+    { "path": "../picture" },
+    { "path": "../radio" }
+  ]
+}

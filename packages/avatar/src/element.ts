@@ -18,6 +18,7 @@ export type AvatarElementProps = {
   value?: string;
   src?: string;
   clickable?: boolean;
+  border?: boolean;
   disabled?: boolean;
 };
 
@@ -38,6 +39,9 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
 
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
+
+  @property({ type: Boolean })
+  border?: boolean;
 
   @property({ type: Boolean })
   disabled?: boolean;

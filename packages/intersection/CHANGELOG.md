@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.9...@equinor/fusion-wc-intersection@1.0.10) (2021-09-23)
+
+
+### Bug Fixes
+
+* import of lit/directive ([e546c47](https://github.com/equinor/fusion-web-components/commit/e546c47ed439237a60457128d82136cff4e4830e))
+
+
+
+
+
 ## [1.0.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.8...@equinor/fusion-wc-intersection@1.0.9) (2021-09-23)
 
 

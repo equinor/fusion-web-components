@@ -91,8 +91,6 @@ export class PictureElement extends LitElement implements PictureElementProps {
     return this.hasAttribute('loaded');
   }
 
-  protected getStyleMap() {}
-
   protected render(): TemplateResult {
     const style = {
       backgroundImage: this.loaded ? `url(${this.currentSrc})` : '',

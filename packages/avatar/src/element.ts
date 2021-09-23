@@ -48,7 +48,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     return this.ripple;
   });
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('disabled')) {
       if (this.disabled) {
@@ -96,7 +96,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   }
 
   @eventOptions({ passive: true })
-  protected handleRippleActivate(evt?: Event) {
+  protected handleRippleActivate(evt?: Event): void {
     const onUp = () => {
       window.removeEventListener('mouseup', onUp);
 
@@ -107,23 +107,23 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     this.rippleHandlers.startPress(evt);
   }
 
-  protected handleRippleDeactivate() {
+  protected handleRippleDeactivate(): void {
     this.rippleHandlers.endPress();
   }
 
-  protected handleRippleMouseEnter() {
+  protected handleRippleMouseEnter(): void {
     this.rippleHandlers.startHover();
   }
 
-  protected handleRippleMouseLeave() {
+  protected handleRippleMouseLeave(): void {
     this.rippleHandlers.endHover();
   }
 
-  protected handleRippleFocus() {
+  protected handleRippleFocus(): void {
     this.rippleHandlers.startFocus();
   }
 
-  protected handleRippleBlur() {
+  protected handleRippleBlur(): void {
     this.rippleHandlers.endFocus();
   }
 }

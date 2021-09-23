@@ -35,7 +35,7 @@ export class ButtonElement extends ButtonBase implements ButtonElementProps {
   @property({ type: String, reflect: true })
   variant: ButtonVariant = 'contained';
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {
       switch (this.variant) {

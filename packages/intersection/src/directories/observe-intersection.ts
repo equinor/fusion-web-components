@@ -32,7 +32,7 @@ class ObserveIntersectionDirective extends Directive {
     }
   }
 
-  override render(observerInfo: ObserverInfo) {
+  override render(observerInfo: ObserverInfo): symbol {
     const { cb, disabled, opt } = observerInfo;
 
     if (this.element) {
@@ -53,7 +53,7 @@ class ObserveIntersectionDirective extends Directive {
     return noChange;
   }
 
-  override update(part: AttributePart, [observerInfo]: DirectiveParameters<this>) {
+  override update(part: AttributePart, [observerInfo]: DirectiveParameters<this>): symbol {
     this.element = part.element as HTMLElement;
     return this.render(observerInfo);
   }

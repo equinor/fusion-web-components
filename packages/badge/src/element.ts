@@ -50,7 +50,7 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
   @property({ type: Boolean })
   disabled?: boolean;
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('disabled')) {
       if (this.disabled) {

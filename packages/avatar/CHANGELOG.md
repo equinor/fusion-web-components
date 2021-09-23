@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.16...@equinor/fusion-wc-avatar@1.0.17) (2021-09-22)
+
+
+### Bug Fixes
+
+* minor avatar changes to styling and naming conventions according to person avatar requirements ([f3d99af](https://github.com/equinor/fusion-web-components/commit/f3d99af81e478ac65a987cc33a0928add645fbcc))
+
+
+
+
+
 ## [1.0.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.15...@equinor/fusion-wc-avatar@1.0.16) (2021-09-21)
 
 **Note:** Version bump only for package @equinor/fusion-wc-avatar

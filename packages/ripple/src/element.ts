@@ -1,4 +1,4 @@
-import { CSSResult } from 'lit-element';
+import { CSSResult } from 'lit';
 import { RippleBase } from '@material/mwc-ripple/mwc-ripple-base';
 import { styles as mdcStyle } from '@material/mwc-ripple/mwc-ripple.css';
 import style from './element.css';

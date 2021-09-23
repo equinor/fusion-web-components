@@ -1,14 +1,6 @@
-import {
-  LitElement,
-  CSSResult,
-  TemplateResult,
-  PropertyValues,
-  html,
-  property,
-  queryAsync,
-  eventOptions,
-} from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
+import { property, queryAsync, eventOptions } from 'lit/decorators';
+import { ifDefined } from 'lit/directives/if-defined';
 import Picture from '@equinor/fusion-wc-picture';
 import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
 import style from './element.css';
@@ -56,7 +48,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     return this.ripple;
   });
 
-  protected updated(changedProperties: PropertyValues) {
+  protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('disabled')) {
       if (this.disabled) {
@@ -104,7 +96,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   }
 
   @eventOptions({ passive: true })
-  protected handleRippleActivate(evt?: Event) {
+  protected handleRippleActivate(evt?: Event): void {
     const onUp = () => {
       window.removeEventListener('mouseup', onUp);
 
@@ -115,23 +107,23 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     this.rippleHandlers.startPress(evt);
   }
 
-  protected handleRippleDeactivate() {
+  protected handleRippleDeactivate(): void {
     this.rippleHandlers.endPress();
   }
 
-  protected handleRippleMouseEnter() {
+  protected handleRippleMouseEnter(): void {
     this.rippleHandlers.startHover();
   }
 
-  protected handleRippleMouseLeave() {
+  protected handleRippleMouseLeave(): void {
     this.rippleHandlers.endHover();
   }
 
-  protected handleRippleFocus() {
+  protected handleRippleFocus(): void {
     this.rippleHandlers.startFocus();
   }
 
-  protected handleRippleBlur() {
+  protected handleRippleBlur(): void {
     this.rippleHandlers.endFocus();
   }
 }

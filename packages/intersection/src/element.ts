@@ -1,5 +1,5 @@
-import { customElement, LitElement, property } from 'lit-element';
-
+import { LitElement } from 'lit';
+import { property, customElement } from 'lit/decorators';
 import { IntersectionEvent, IntersectionEventInit } from './events/intersection-event';
 
 // convert cvs to float array

@@ -1,4 +1,4 @@
-import { CSSResult } from 'lit-element';
+import { CSSResult } from 'lit';
 import { TextAreaBase } from '@material/mwc-textarea/mwc-textarea-base';
 import { styles as mdcStyle } from '@material/mwc-textarea/mwc-textarea.css';
 import {

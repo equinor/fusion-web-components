@@ -1,5 +1,6 @@
 import { createPopper, Modifier, OptionsGeneric, StrictModifiers, Instance } from '@popperjs/core';
-import { AttributePart, directive, Part, PropertyPart } from 'lit-html';
+import { directive, PartInfo, PartType, AttributePart, Directive, DirectiveParameters } from 'lit/directive';
+import { noChange } from 'lit';
 
 type PopperInstance = Instance & {
   resizeObserver: ResizeObserver;
@@ -14,41 +15,43 @@ export type Options<TModifier extends PopperModifier = StrictModifiers> = Partia
 
 const instances = new WeakMap<HTMLElement, PopperInstance>();
 
-export const popperjs = directive(
-  <TElement extends HTMLElement = HTMLElement, TModifier extends PopperModifier = StrictModifiers>(
-      popper: TElement | Promise<TElement>,
-      options?: Options<TModifier>
-    ) =>
-    async (part: Part): Promise<void> => {
-      if (
-        !(part instanceof AttributePart) ||
-        part instanceof PropertyPart ||
-        part.committer.name !== 'popperjs' ||
-        part.committer.parts.length > 1
-      ) {
-        throw new Error(
-          'The `popperjs` directive must be used in the popperjs attribute and must be the only part in the attribute.'
-        );
-      }
+class PopperJSDirective extends Directive {
+  reference?: HTMLElement;
 
-      const reference = part.committer.element as HTMLElement;
+  constructor(partInfo: PartInfo) {
+    super(partInfo);
+    if (
+      partInfo.type !== PartType.ATTRIBUTE ||
+      partInfo.name !== 'popperjs' ||
+      (partInfo.strings?.length as number) > 2
+    ) {
+      throw new Error(
+        'The `observeIntersection` directive must be used in the `popperjs` attribute and must be the only part in the attribute.'
+      );
+    }
+  }
+
+  override async render<TElement extends HTMLElement = HTMLElement, TModifier extends PopperModifier = StrictModifiers>(
+    popper: TElement | Promise<TElement>,
+    options?: Options<TModifier>
+  ) {
+    if (this.reference) {
       const target = await Promise.resolve(popper);
-
       const { enabled, ...popperArgs } = options || {};
 
       if (enabled) {
-        if (!instances.has(reference)) {
-          const instance = createPopper(reference, target, popperArgs) as PopperInstance;
+        if (!instances.has(this.reference)) {
+          const instance = createPopper(this.reference, target, popperArgs) as PopperInstance;
 
           // request update of posistion when size of reference or target changes
           instance.resizeObserver = new ResizeObserver(() => instance.update());
-          instance.resizeObserver.observe(reference);
+          instance.resizeObserver.observe(this.reference);
           instance.resizeObserver.observe(target);
 
-          instances.set(reference, instance);
+          instances.set(this.reference, instance);
         }
 
-        const instance = instances.get(reference);
+        const instance = instances.get(this.reference);
 
         // TODO: options are mutable and will always hit.
         if (instance && popperArgs && instance.state.options !== popperArgs) {
@@ -56,12 +59,22 @@ export const popperjs = directive(
         }
         // disabled, remove instance and clean up
       } else {
-        const instance = instances.get(reference);
+        const instance = instances.get(this.reference);
         instance?.destroy();
         instance?.resizeObserver.disconnect();
-        instances.delete(reference);
+        instances.delete(this.reference);
       }
     }
-);
+
+    return noChange;
+  }
+
+  override update(part: AttributePart, [observerInfo]: DirectiveParameters<this>) {
+    this.reference = part.element as HTMLElement;
+    return this.render(observerInfo);
+  }
+}
+
+export const popperjs = directive(PopperJSDirective);
 
 export default popperjs;

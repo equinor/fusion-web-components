@@ -14,14 +14,13 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "1.0.1",
-    "@popperjs/core": "^2.9.1",
-    "@types/resize-observer-browser": "^0.1.5",
-    "lit-element": "2.5.1",
-    "lit-html": "1.4.1"
+    "@popperjs/core": "^2.10.1",
+    "@types/resize-observer-browser": "^0.1.6",
+    "lit": "2.0.0"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.2",
-    "typescript": "^4.3.5",
+    "typescript": "^4.4.3",
     "web-component-analyzer": "^1.1.6"
   },
   "repository": {

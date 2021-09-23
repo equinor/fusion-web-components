@@ -1,4 +1,4 @@
-import { directive, Directive, PartInfo, PartType, AttributePart, DirectiveParameters } from 'lit/directive';
+import { directive, Directive, PartInfo, PartType, AttributePart, DirectiveParameters } from 'lit/directive.js';
 import { noChange } from 'lit';
 import * as equal from 'fast-deep-equal/es6';
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.16...@equinor/fusion-wc-button@1.1.17) (2021-09-24)
+
+
+### Bug Fixes
+
+* **button:** reflect color prop ([4165202](https://github.com/equinor/fusion-web-components/commit/4165202304146631c84b8fffa7025aa06eec3e34))
+
+
+
+
+
 ## [1.1.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.15...@equinor/fusion-wc-button@1.1.16) (2021-09-23)
 
 

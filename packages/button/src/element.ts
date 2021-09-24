@@ -1,10 +1,11 @@
-import { html, CSSResult, TemplateResult, PropertyValues } from 'lit';
+import { html, TemplateResult, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
-// import { classMap } from 'lit-html/directives/class-map';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
-import { styles as mdcStyle } from '@material/mwc-button/styles.css';
-import style from './element.css';
+
+import Icon, { IconName } from '@equinor/fusion-wc-icon';
+
+import styles from './element.css';
 
 // persist element
 Icon;
@@ -14,7 +15,6 @@ export type ButtonColor = 'primary' | 'secondary' | 'danger';
 export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
 export type ButtonElementProps = {
-  icon?: IconName;
   label?: string;
   variant?: ButtonVariant;
   color?: ButtonColor;
@@ -24,12 +24,10 @@ export type ButtonElementProps = {
 };
 
 export class ButtonElement extends ButtonBase implements ButtonElementProps {
-  static styles: CSSResult[] = [mdcStyle, style];
-
   @property({ type: String })
   icon: IconName = '';
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   color: ButtonColor = 'primary';
 
   @property({ type: String, reflect: true })
@@ -63,8 +61,10 @@ export class ButtonElement extends ButtonBase implements ButtonElementProps {
   }
 
   protected renderIcon(): TemplateResult {
-    return html`<fwc-icon class="mdc-button__icon" icon=${this.icon}></fwc-icon>`;
+    return html`<fwc-icon class="mdc-button__icon" .icon=${this.icon}></fwc-icon>`;
   }
 }
+
+ButtonElement.styles = styles;
 
 export default ButtonElement;

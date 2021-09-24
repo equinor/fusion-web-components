@@ -1,6 +1,8 @@
 import { css, unsafeCSS } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
+import { styles as mdcStyle } from '@material/mwc-button/styles.css';
+
 export const style = css`
   :host {
     --mdc-button-outline-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
@@ -51,4 +53,6 @@ export const style = css`
   }
 `;
 
-export default style;
+export const styles = [mdcStyle, style];
+
+export default styles;

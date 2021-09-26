@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-button",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

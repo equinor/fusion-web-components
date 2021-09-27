@@ -85,7 +85,7 @@ export class PopoverElement extends LitElement implements PopoverElementProps {
       <span id="content" popperjs=${popperjs(this.popper, this.options)} @click=${this.handleClick}>
         <slot></slot>
       </span>
-      <span id="popper" .class=${popperClasses}>
+      <span id="popper" class=${popperClasses}>
         <slot name="popover"></slot>
       </span>
     `;

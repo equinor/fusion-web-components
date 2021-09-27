@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.7...@equinor/fusion-wc-badge@0.2.8) (2021-09-26)
+
+
+### Bug Fixes
+
+* **badge:** remove unnecessary props ([7e470d5](https://github.com/equinor/fusion-web-components/commit/7e470d5e26671e52a2d1fc7376a67ca8c9963d92))
+
+
+
+
+
 ## [0.2.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.6...@equinor/fusion-wc-badge@0.2.7) (2021-09-26)
 
 

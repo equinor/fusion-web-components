@@ -6,43 +6,69 @@ import style from './element.css';
 
 export type BadgeSize = 'x-small' | 'small' | 'medium' | 'large';
 export type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
+export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
 
+/**
+ * Element for rendering a badge
+ *
+ * TODO: should have better behaviour for slotted elements
+ */
 export class BadgeElement extends LitElement {
-  /** Size of the badge */
+  /**
+   * Size of the badge
+   * @default medium
+   */
   @property({ type: String, reflect: true })
   size: BadgeSize = 'medium';
 
-  /** Absolute corner position for the badge */
+  /**
+   * Absolute corner position for the badge
+   * @default top-right
+   */
   @property({ type: String, reflect: true })
   position: BadgePosition = 'top-right';
 
-  /** Color of the badge */
+  /**
+   * Color of the badge
+   * @default secondary
+   */
   @property({ type: String, reflect: true })
   color: BadgeColor = 'secondary';
 
-  /** Text value to be rendered within the badge */
+  /**
+   * Text value to be rendered within the badge
+   */
   @property({ type: String })
   value?: string;
 
-  /** Icon to be rendered within the badge */
+  /**
+   * Icon to be rendered within the badge
+   */
   @property({ type: String, reflect: true })
   icon?: IconName;
 
-  /** Set to `true` if badge is placed within a circular wrapper for correct position */
+  /**
+   * Set to `true` if badge is placed within a circular wrapper for correct position
+   */
   @property({ type: Boolean, reflect: true })
   circular?: boolean;
 
-  /** Tooltip text to show on hover */
+  /**
+   * Tooltip text to show on hover
+   */
   @property({ type: String })
   tooltip?: string;
 
-  /** If the badge is clickable */
+  /**
+   * If the badge is clickable
+   */
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
 
-  /** If the badge is disabled */
-  @property({ type: Boolean })
+  /**
+   * If the badge is disabled
+   */
+  @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
   protected updated(changedProperties: PropertyValues): void {
@@ -50,9 +76,8 @@ export class BadgeElement extends LitElement {
     if (changedProperties.has('disabled')) {
       if (this.disabled) {
         this.clickable = false;
-        this.color = 'disabled';
+        this.requestUpdate('clickable');
       }
-      this.requestUpdate();
     }
   }
 
@@ -61,13 +86,11 @@ export class BadgeElement extends LitElement {
   }
 
   protected render(): TemplateResult {
-    if (this.icon) {
-      return this.renderIcon();
-    }
-    if (this.value) {
-      return html`<span>${this.value}</span>`;
-    }
-    return html`<span><slot></slot></span>`;
+    return html`
+      <span>
+        <slot>${this.icon ? this.renderIcon() : this.value}</slot>
+      </span>
+    `;
   }
 }
 

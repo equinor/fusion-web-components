@@ -27,11 +27,6 @@ const mockPersonResolver: PersonResolver = {
       availability: Availability.Available,
     });
   },
-  getPictureAsync: async (azureId: string) => {
-    return await Promise.resolve({
-      src: 'https://i.imgur.com/C4iPxwN.jpeg',
-    });
-  },
 };
 
 export const PersonAvatar = ({ children, ...props }: PropsWithChildren<PersonAvatarElementProps>): JSX.Element => {

@@ -1,7 +1,7 @@
 import { LitElement, PropertyValues } from 'lit';
 import { property } from 'lit/decorators';
 import { PersonResolver } from '../types';
-import { PersonElementConnectEvent } from '../events';
+import { PersonControllerConnectEvent } from '../events';
 
 export type PersonProviderProps = {
   resolver?: PersonResolver;
@@ -28,15 +28,15 @@ export class PersonProviderElement extends LitElement implements PersonProviderP
 
   override connectedCallback() {
     super.connectedCallback();
-    this.addEventListener(PersonElementConnectEvent.eventName, this.handleElementConnect);
+    this.addEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener(PersonElementConnectEvent.eventName, this.handleElementConnect);
+    this.removeEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
   }
 
-  protected handleElementConnect(event: PersonElementConnectEvent): void {
+  protected handleElementConnect(event: PersonControllerConnectEvent): void {
     const { disconnectedCallback, updateResolver } = event.detail;
 
     disconnectedCallback(() => {

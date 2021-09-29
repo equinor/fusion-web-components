@@ -1,86 +1,25 @@
 <!--prettier-ignore-start-->
-## `fusion-wc-badge` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-badge.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-badge)
+## `fusion-wc-list` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-list.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-list)
 
-[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-badge)
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-list)
 
 ## Installation
 ```sh
-npm install @equinor/fusion-wc-badge
+npm install @equinor/fusion-wc-list
 ```
 
-## Badge `<fwc-badge>`
-### Example Usage
-
-#### Default
-```ts
-return (
-  <fwc-badge>10</fwc-badge>
-);
-```
-
-#### Sizes
-```ts
-return (
-  <fwc-badge icon="settings" size="small" />
-  <fwc-badge icon="settings" size="medium" />
-  <fwc-badge icon="settings" size="large" />
-);
-```
-
-#### Positions
-```ts
-return (
-  <fwc-badge position="top-left" />
-  <fwc-badge position="top-right" />
-  <fwc-badge position="bottom-left" />
-  <fwc-badge position="bottom-right" />
-);
-```
-
-
-#### Icon
-```ts
-return (
-  <fwc-badge icon="settings" />
-);
-```
-
-#### Circular parent (Use if the parent component is circular instead of rectangular for correct positioning)
-```ts
-return (
-  <fwc-badge circular />
-);
-```
+## List `<fwc-list>`
 
 ### Properties/Attributes
 
-Name                    | Type                            | Default          | Description
----------------------   | --------------                  | -----------      | -----------------
-`size`                  | `BadgeSize*`                    | `medium`         | Size of the badge.
-`position`              | `BadgePosition**`               | `top-right`      | Absolute corner position for the badge.
-`color`                 | `BadgeColor***`                 | `secondary`      | Color of the badge.
-`value`                 | `string`                        | ``               | Text value to be rendered within the badge.
-`icon`                  | `IconName****`                  | ``               | Icon to be rendered within the badge.
-`circular`              | `boolean`                       | `false`          | Set to true if badge is placed within a circular wrapper for correct position.
-`tooltip`               | `string`                        | ``               | Tooltip text to show on hover.
-
-\*  `BadgeSize` is exported by `fwc-badge`.
-```ts
-type BadgeSize = 'small' | 'medium' | 'large';
-```
-
-\*\*  `BadgePosition` is exported by `fwc-badge`.
-```ts
-type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-```
-
-\*\*\*  `BadgeColor` is exported by `fwc-badge`.
-```ts
-type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
-```
-
-\*\*\*\*  `IconName` is exported by `fwc-icon` and is based on EDS icon tokens.
-```ts
-type IconName = 'calendar' | 'settings'...;
-```
+| Name             | Type           | Default | Description
+| ---------------- | -------------- | ------- |------------
+| `activatable`    | `boolean`      | `false` | Sets `activated` attribute on selected items which provides a focus-persistent highlight.
+| `rootTabbable`   | `boolean`      | `false` | When `true`, sets `tabindex="0"` on the internal list. Otherwise sets `tabindex="-1"`.
+| `multi`          | `boolean`      | `false` | When `true`, enables selection of multiple items.
+| `wrapFocus`      | `boolean`      | `false` | When `true`, pressing `up` on the keyboard when focused on the first item will focus the last item and `down` when focused on the last item will focus the first item.
+| `itemRoles`      | `string\|null` | `null`  | Determines what `role` attribute to set on all list items.
+| `innerAriaLabel` | `string\|null` | `null`  | ARIA label of the internal `<ul>` element.
+| `innerRole`      | `string\|null` | `null`  | Role of the internal `<ul>` element.
+| `noninteractive` | `boolean`      | `false` | When `true`, disables focus and pointer events (thus ripples) on the list. Used for display-only lists.
 <!--prettier-ignore-end-->

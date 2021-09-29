@@ -8,11 +8,11 @@ export type ListElementProps = {
   multi?: boolean;
   emptyMessage?: string;
   wrapFocus?: boolean;
+  itemRoles?: string | null;
   innerRole?: string | null;
   innerAriaLabel?: string | null;
   rootTabbable?: boolean;
   noninteractive?: boolean;
-  hasMeta?: boolean;
 };
 
 export class ListElement extends ListBase implements ListElementProps {

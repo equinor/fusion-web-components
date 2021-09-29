@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.23](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.22...@equinor/fusion-wc-avatar@1.0.23) (2021-09-29)
+
+
+### Bug Fixes
+
+* fixed props reflection for styling ([35ac052](https://github.com/equinor/fusion-web-components/commit/35ac0525ee58df621a831c323459234009e0000c))
+
+
+
+
+
 ## [1.0.22](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.21...@equinor/fusion-wc-avatar@1.0.22) (2021-09-23)
 
 **Note:** Version bump only for package @equinor/fusion-wc-avatar

@@ -55,7 +55,7 @@ export class DateRangeElement extends LitElement implements DateRangeElementProp
   /** date-fns/locale */
   locale: string = enGB.code as string;
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   variant: DateRangeVariant = 'datetime';
 
   @property({ type: Number })

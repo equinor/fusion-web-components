@@ -6,20 +6,18 @@ import { PersonControllerConnectEvent } from '../events';
 export interface PersonHost extends ReactiveControllerHost {
   azureId: string;
   dispatchEvent(event: Event): boolean;
-  presence?: Task<[string], PersonPresence>;
-  details?: Task<[string], PersonDetails>;
 }
 
 export class PersonController implements ReactiveController {
+  private resolver?: PersonResolver;
+
   constructor(private host: PersonHost) {
+    host.addController(this);
     this.host = host;
-    this.host.addController(this);
   }
 
   protected updateResolver = (resolver?: PersonResolver) => {
-    this.host.presence = this._peresenceTask(resolver);
-    this.host.details = this._detailsTask(resolver);
-    this.host.requestUpdate();
+    this.resolver = resolver;
   };
 
   hostConnected() {
@@ -44,35 +42,39 @@ export class PersonController implements ReactiveController {
     }
   }
 
-  protected disconnectProvider?: VoidFunction;
-
-  protected get azureId() {
+  get azureId() {
     return this.host.azureId;
   }
 
-  private _peresenceTask(resolver?: PersonResolver): Task<[string], PersonPresence> {
+  get presence(): Task<[string], PersonPresence> {
     return new Task<[string], PersonPresence>(
       this.host,
-      ([azureId]) => {
-        if (!resolver?.getPresenceAsync) {
+      async ([azureId]) => {
+        if (!this.resolver?.getPresenceAsync) {
           throw new Error('PersonResolver is undefined');
         }
-        return resolver.getPresenceAsync(azureId);
+        return await this.resolver.getPresenceAsync(azureId);
       },
       () => [this.azureId]
     );
   }
 
-  private _detailsTask(resolver?: PersonResolver): Task<[string], PersonDetails> {
+  get details(): Task<[string], PersonDetails> {
     return new Task<[string], PersonDetails>(
       this.host,
-      ([azureId]) => {
-        if (!resolver?.getDetailsAsync) {
-          throw new Error('PersonResolver is undefined');
-        }
-        return resolver.getDetailsAsync(azureId);
+      async ([azureId]) => {
+        // if (!this.resolver?.getDetailsAsync) {
+        //   console.log('HAJASA');
+        //   throw new Error('PersonResolver is undefined');
+        // }
+        //return await this.resolver.getDetailsAsync(azureId);
+        return {
+          azureUniqueId: azureId,
+        };
       },
       () => [this.azureId]
     );
   }
+
+  protected disconnectProvider?: VoidFunction;
 }

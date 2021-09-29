@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-import { CSSResult, TemplateResult, html } from 'lit';
-=======
 import { CSSResult, TemplateResult, PropertyValues, html } from 'lit';
->>>>>>> a2e18aa (fix: upgraded lit-element and lit-html to li 2.0.0)
 import { property } from 'lit/decorators';
 import { ifDefined } from 'lit/directives/if-defined';
 import { PersonElement, PersonElementProps } from '../person';
-import { Availability, PersonPresence, PersonDetails, AccountType } from '../types';
+import { Availability, AccountType, PersonPresence, PersonDetails } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
 import style from './element.css';
@@ -36,15 +32,29 @@ export type PersonAvatarElementProps = PersonElementProps & {
   disabled?: boolean;
   resolveDetails?: boolean;
   resolvePresence?: boolean;
-  resolvePicture?: boolean;
 };
 
 export class PersonAvatarElement extends PersonElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
 
-  /**
-   * Size of the avatar.
-   */
+  @property({ type: Boolean })
+  resolveDetails?: boolean = true;
+
+  @property({ type: Boolean })
+  resolvePresence?: boolean = true;
+
+  @property({ type: String, reflect: true })
+  name?: string;
+
+  @property({ type: String, reflect: true })
+  accountType?: AccountType;
+
+  @property({ type: String, reflect: true })
+  availability?: Availability;
+
+  @property({ type: String, reflect: true })
+  pictureSrc?: string;
+
   @property({ type: String, reflect: true })
   size: AvatarSize = 'medium';
 
@@ -60,10 +70,11 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   @property({ type: Boolean })
   disabled?: boolean;
 
-  /**
-   * Returns the badge color for the current presence availability
-   */
-  protected getBadgeColor(presence: PersonPresence): BadgeColor {
+  protected updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+  }
+
+  private getBadgeColor(presence: PersonPresence): BadgeColor {
     switch (presence.availability) {
       case Availability.Available:
       case Availability.AvailableIdle:
@@ -80,10 +91,7 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     }
   }
 
-  /**
-   * Returns the badge icon for the current presence availability
-   */
-  protected getBadgeIcon(presence: PersonPresence): IconName | undefined {
+  private getBadgeIcon(presence: PersonPresence): IconName | undefined {
     switch (presence.availability) {
       case Availability.Available:
         return 'check';
@@ -101,16 +109,10 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     }
   }
 
-  /**
-   * Returns the first character in the person's name as upper case initial
-   */
-  protected getInitial(name?: string): string | undefined {
+  private getInitial(name?: string): string | undefined {
     return name?.substr(0, 1)?.toUpperCase();
   }
 
-  /**
-   * Renders the badge
-   */
   protected renderBadge(presence: PersonPresence): TemplateResult {
     return html`<fwc-badge
       slot="badge"
@@ -123,9 +125,6 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     />`;
   }
 
-  /**
-   * Renders the avatar
-   */
   protected renderAvatar(details: PersonDetails): TemplateResult {
     return html`<fwc-avatar
       size=${ifDefined(this.size)}
@@ -134,32 +133,21 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
       ?clickable=${this.clickable}
       ?disabled=${this.disabled}
     >
-      ${this.presence?.render({
+      ${this.controller.presence.render({
         complete: (presence: PersonPresence) => this.renderBadge(presence),
       })}</fwc-avatar
     >`;
   }
 
-  /**
-   * Renders the avatar pending state
-   */
-  protected renderPending(): TemplateResult {
-    return html`<fwc-avatar pending></fwc-avatar>`;
+  protected renderLoader(): TemplateResult {
+    return html`<fwc-avatar ?disabled=${true}></fwc-avatar>`;
   }
 
-  /**
-   * Renders the avatar pending state
-   */
-  protected renderError(error: Error): TemplateResult {
-    return html`${error}`;
-  }
-
-  /** {@inheritDoc} */
   protected render(): TemplateResult {
-    return html`${this.details?.render({
+    return html`${this.controller.details.render({
       complete: (details: PersonDetails) => this.renderAvatar(details),
-      pending: () => this.renderPending(),
-      error: () => this.renderPending(),
+      pending: () => this.renderLoader(),
+      error: () => html`<span>ERROR</span>`,
     })}`;
   }
 }

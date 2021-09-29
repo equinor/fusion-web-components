@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.11...@equinor/fusion-wc-popover@1.0.12) (2021-09-27)
+
+
+### Bug Fixes
+
+* fixed classmap attribute ([dc1d1ab](https://github.com/equinor/fusion-web-components/commit/dc1d1ab48eb6b3ecda64d9a18d453e194c19877a))
+
+
+
+
+
 ## [1.0.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-popover@1.0.10...@equinor/fusion-wc-popover@1.0.11) (2021-09-23)
 
 

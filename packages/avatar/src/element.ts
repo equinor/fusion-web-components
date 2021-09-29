@@ -40,10 +40,10 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   border?: boolean;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
   @queryAsync('fwc-ripple') ripple!: Promise<Ripple | null>;

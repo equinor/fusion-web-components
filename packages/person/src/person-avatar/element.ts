@@ -2,7 +2,7 @@ import { CSSResult, TemplateResult, PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators';
 import { ifDefined } from 'lit/directives/if-defined';
 import { PersonElement, PersonElementProps } from '../person';
-import { Availability, AccountType } from '../types';
+import { Availability, AccountType, PersonPresence, PersonDetails } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
 import style from './element.css';
@@ -21,7 +21,6 @@ export type PersonAvatarElementProps = PersonElementProps & {
   disabled?: boolean;
   resolveDetails?: boolean;
   resolvePresence?: boolean;
-  resolvePicture?: boolean;
 };
 
 export class PersonAvatarElement extends PersonElement implements PersonAvatarElementProps {
@@ -32,9 +31,6 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
 
   @property({ type: Boolean })
   resolvePresence?: boolean = true;
-
-  @property({ type: Boolean })
-  resolvePicture?: boolean = true;
 
   @property({ type: String, reflect: true })
   name?: string;
@@ -59,53 +55,10 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
 
   protected updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
-    if (changedProperties.has('personResolver')) {
-      if (this.resolveDetails) {
-        this.resolveDetailsAsync();
-      }
-      if (this.resolvePresence) {
-        this.resolvePresenceAsync();
-      }
-      if (this.resolvePicture) {
-        this.resolvePictureAsync();
-      }
-    }
   }
 
-  protected async resolveDetailsAsync() {
-    if (!this.name || !this.accountType) {
-      const details = await this.getDetailsAsync();
-      if (details) {
-        if (!this.name) {
-          this.name = details.name;
-        }
-        if (!this.accountType) {
-          this.accountType = details.accountType;
-        }
-      }
-    }
-  }
-
-  protected async resolvePresenceAsync() {
-    if (!this.availability) {
-      const presence = await this.getPresenceAsync();
-      if (presence) {
-        this.availability = presence.availability;
-      }
-    }
-  }
-
-  protected async resolvePictureAsync() {
-    if (!this.pictureSrc) {
-      const picture = await this.getPictureAsync();
-      if (picture) {
-        this.pictureSrc = picture.src;
-      }
-    }
-  }
-
-  protected getBadgeColor(): BadgeColor {
-    switch (this.availability) {
+  private getBadgeColor(presence: PersonPresence): BadgeColor {
+    switch (presence.availability) {
       case Availability.Available:
       case Availability.AvailableIdle:
         return 'success';
@@ -121,8 +74,8 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     }
   }
 
-  protected getBadgeIcon(): IconName | undefined {
-    switch (this.availability) {
+  private getBadgeIcon(presence: PersonPresence): IconName | undefined {
+    switch (presence.availability) {
       case Availability.Available:
         return 'check';
       case Availability.AvailableIdle:
@@ -139,34 +92,46 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     }
   }
 
-  protected getInitial(): string | undefined {
-    return this.name?.substr(0, 1)?.toUpperCase();
+  private getInitial(name?: string): string | undefined {
+    return name?.substr(0, 1)?.toUpperCase();
   }
 
-  protected renderBadge(): TemplateResult | undefined {
-    if (this.availability) {
-      return html`<fwc-badge
-        slot="badge"
-        color=${this.getBadgeColor()}
-        icon=${ifDefined(this.getBadgeIcon())}
-        size=${ifDefined(this.size)}
-        position="bottom-right"
-        ?disabled=${this.disabled}
-        circular
-      />`;
-    }
-    return undefined;
+  protected renderBadge(presence: PersonPresence): TemplateResult {
+    return html`<fwc-badge
+      slot="badge"
+      color=${this.getBadgeColor(presence)}
+      icon=${ifDefined(this.getBadgeIcon(presence))}
+      size=${ifDefined(this.size)}
+      position="bottom-right"
+      ?disabled=${this.disabled}
+      circular
+    />`;
+  }
+
+  protected renderAvatar(details: PersonDetails): TemplateResult {
+    return html`<fwc-avatar
+      size=${ifDefined(this.size)}
+      src=${ifDefined(details.pictureSrc)}
+      value=${ifDefined(this.getInitial(details.name))}
+      ?clickable=${this.clickable}
+      ?disabled=${this.disabled}
+    >
+      ${this.controller.presence.render({
+        complete: (presence: PersonPresence) => this.renderBadge(presence),
+      })}</fwc-avatar
+    >`;
+  }
+
+  protected renderLoader(): TemplateResult {
+    return html`<fwc-avatar ?disabled=${true}></fwc-avatar>`;
   }
 
   protected render(): TemplateResult {
-    return html`<fwc-avatar
-      size=${ifDefined(this.size)}
-      src=${ifDefined(this.pictureSrc)}
-      value=${ifDefined(this.getInitial())}
-      ?clickable=${this.clickable}
-      ?disabled=${this.disabled}
-      >${this.renderBadge()}</fwc-avatar
-    >`;
+    return html`${this.controller.details.render({
+      complete: (details: PersonDetails) => this.renderAvatar(details),
+      pending: () => this.renderLoader(),
+      error: () => html`<span>ERROR</span>`,
+    })}`;
   }
 }
 

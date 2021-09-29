@@ -7,7 +7,7 @@ export type PersonDetails = {
   azureUniqueId: string;
   name?: string;
   accountType?: AccountType;
-  pictureUrl?: string;
+  pictureSrc?: string;
 };
 
 export type PersonPicture = {
@@ -15,9 +15,8 @@ export type PersonPicture = {
 };
 
 export interface PersonResolver {
-  getPresenceAsync?: (azureId: string) => Promise<PersonPresence>;
-  getDetailsAsync?: (azureId: string) => Promise<PersonDetails>;
-  getPictureAsync?: (azureId: string) => Promise<PersonPicture>;
+  getPresenceAsync: (azureId: string) => Promise<PersonPresence>;
+  getDetailsAsync: (azureId: string) => Promise<PersonDetails>;
 }
 
 export enum AccountType {

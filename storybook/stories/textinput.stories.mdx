@@ -1,6 +1,7 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Meta, Story, Canvas, Description } from '@storybook/addon-docs';
+import { CustomElement, PackageInfo } from './Components';
 
-import TextArea from './Components/TextArea';
+import '@equinor/fusion-wc-textinput';
 
 export const Container = ({children}) => (
   <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
@@ -8,69 +9,42 @@ export const Container = ({children}) => (
   </div>
 );
 
-<Meta
-  title="Input/TextArea"
-  component={TextArea}
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true },
-    },
-  }}
-/>
+<Meta title="Input/TextInput" />
 
+<PackageInfo pkg={require('@equinor/fusion-wc-textinput/package.json')}/>
 
-# TextArea
+<CustomElement tag="fwc-textinput" data={require('@equinor/fusion-wc-textinput/lib/custom-elements.json')} />
 
-```sh
-npm i @equinor/fusion-wc-textarea
-```
-
-<Canvas>
-  <Story
-    name="Basic"
-    args={{ 
-      label: 'TextInput',
-    }}
-    parameters={{chromatic: { disableSnapshot: true }}}
-  >
-    {TextArea.bind({})}
-  </Story>
-</Canvas>
-
-<ArgsTable story="Basic" />
-
-## Examples
+## Stories
 
 ### General
-TODO: outlined does not seem to work
 <Story name="General">
   <h4>Filled</h4>
   <Container>
-    <fwc-textarea label="default" />
-    <fwc-textarea label="readonly" readonly/>
-    <fwc-textarea label="disabled" disabled/>
+    <fwc-textinput label="default" />
+    <fwc-textinput label="readonly" readonly/>
+    <fwc-textinput label="disabled" disabled/>
   </Container>
   <h4>Outlined</h4>
   <Container>
-    <fwc-textarea label="default" variant="outlined" />
-    <fwc-textarea label="readonly" variant="outlined" readonly/>
-    <fwc-textarea label="disabled" variant="outlined" disabled/>
+    <fwc-textinput label="default" variant="outlined" />
+    <fwc-textinput label="readonly" variant="outlined" readonly/>
+    <fwc-textinput label="disabled" variant="outlined" disabled/>
   </Container>
 </Story>
 
 ### Helper text
 <Story name="Helper text">
   <Container>
-    <fwc-textarea label="Helper text" helper="Helper Text" helperpersistent/>
+    <fwc-textinput label="Helper text" helper="Helper Text" helperpersistent/>
   </Container>
 </Story>
 
 ### With Icon
 <Story name="With Icon">
   <Container>
-    <fwc-textarea label="With Icon" icon="settings"/>
-    <fwc-textarea label="With trailing icon" iconTrailing="settings"/>
+    <fwc-textinput label="With Icon" icon="settings"/>
+    <fwc-textinput label="With trailing icon" iconTrailing="settings"/>
   </Container>
 </Story>
 
@@ -78,14 +52,22 @@ TODO: outlined does not seem to work
 TOOD: missing validation of max length
 <Story name="Character limit">
   <Container>
-    <fwc-textarea label="Limit" maxlength="18" charCounter value="foo"/>
-    <fwc-textarea label="Limit" maxlength="3" charCounter value="foobar"/>
+    <fwc-textinput label="Limit" maxlength="18" charCounter value="foo"/>
+    <fwc-textinput label="Limit" maxlength="3" charCounter value="foobar"/>
+  </Container>
+</Story>
+
+### With error message
+<Story name="Error message">
+  <Container>
+    <fwc-textinput label="has error" errorMessage="this is a fixed error"/>
+    <fwc-textinput label="no error" errorMessage=""/>
   </Container>
 </Story>
 
 ### Fluid
 TODO: this does not seem to work
 <Story name="Fluid">
-  <fwc-textarea label="Fluid" fullwidth/>
+  <fwc-textinput label="Fluid" fullwidth/>
 </Story>
 

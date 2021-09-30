@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-theme",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-core": "^1.0.2",
+    "@equinor/fusion-wc-core": "^1.0.3",
     "@equinor/fusion-web-theme": "^0.1.5",
     "@material/theme": "^12.0.0",
     "lit": "2.0.0"

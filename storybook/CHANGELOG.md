@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.17...@equinor/fusion-wc-storybook@1.10.0) (2021-09-30)
+
+
+### Bug Fixes
+
+* **storybook:** add fusion style ([8507c86](https://github.com/equinor/fusion-web-components/commit/8507c863c99c5b540c8351913dba62658767e498))
+* **storybook:** allow jsx syntax ([cf98129](https://github.com/equinor/fusion-web-components/commit/cf9812925617a1f69595cd6a0446bb90c7a9e12b))
+* **storybook:** set doc as default view mode ([ed1bf55](https://github.com/equinor/fusion-web-components/commit/ed1bf5539c1d1248f63fb86c3d0e4bcf25b5bf6a))
+
+
+### Features
+
+* add package installation code ([934d6cf](https://github.com/equinor/fusion-web-components/commit/934d6cfc2f30e0cc2038cdf40d2b1b286c7a3014))
+* **storybook:** add elements to describe package ([4b30aee](https://github.com/equinor/fusion-web-components/commit/4b30aee7dd5a4cae38920dd347e4826b16eaee38))
+
+
+
+
+
 ## [1.9.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.16...@equinor/fusion-wc-storybook@1.9.17) (2021-09-29)
 
 

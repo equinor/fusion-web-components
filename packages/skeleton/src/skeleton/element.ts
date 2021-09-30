@@ -1,4 +1,4 @@
-import { LitElement, CSSResult, html } from 'lit';
+import { LitElement, CSSResult, TemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import style from './element.css';
 
@@ -50,15 +50,15 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
    * Disables the skeleton element's active animation.
    */
   @property({ type: Boolean, reflect: true })
-  inactive: boolean = false;
+  inactive = false;
 
   /**
    * Expands the skeleton element width to the width of the parent.
    */
   @property({ type: Boolean, reflect: true })
-  fluid: boolean = false;
+  fluid = false;
 
-  render() {
+  render(): TemplateResult<1> {
     return html`<span><slot class="fwc-skeleton__icon" name="icon"></slot></span>`;
   }
 }

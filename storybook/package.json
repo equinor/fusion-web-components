@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o ../docs",
-    "generate-web-components-manifests": "web-component-analyzer ../packages/**/src --format json --outFile custom-elements.json"
+    "build-storybook": "build-storybook -o ../docs"
   },
   "keywords": [],
   "author": "",
@@ -31,14 +30,15 @@
     "@equinor/fusion-wc-textarea": "^0.3.2",
     "@equinor/fusion-wc-textinput": "^0.3.2",
     "@equinor/fusion-wc-theme": "^0.2.14",
-    "@storybook/addon-actions": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
-    "@storybook/addon-links": "^6.3.8",
+    "@storybook/addon-docs": "^6.3.8",
+    "@storybook/builder-webpack5": "^6.3.8",
+    "@storybook/manager-webpack5": "^6.3.8",
     "@storybook/react": "^6.3.8",
     "babel-loader": "^8.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "web-component-analyzer": "^1.1.6"
+    "storybook": "^6.3.8",
+    "webpack": "^5.54.0"
   }
 }

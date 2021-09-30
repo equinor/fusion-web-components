@@ -1,21 +1,6 @@
-import { css, unsafeCSS } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { styles as mdcStyles } from '@material/mwc-textarea/mwc-textarea.css';
+import { styles as baseStyles } from '@equinor/fusion-wc-textinput';
 
-export const style = css`
-  :host {
-    --mdc-text-area-outlined-idle-border-color: ${unsafeCSS(
-      theme.colors.text.static_icons__tertiary.getVariable('color')
-    )};
-    --mdc-text-area-outlined-idle-border-color: ${unsafeCSS(
-      theme.colors.text.static_icons__tertiary.getVariable('color')
-    )};
-    --mdc-text-area-outlined-hover-border-color: ${unsafeCSS(
-      theme.colors.text.static_icons__tertiary.getVariable('color')
-    )};
-    --mdc-text-area-outlined-disabled-border-color: ${unsafeCSS(
-      theme.colors.text.static_icons__tertiary.getVariable('color')
-    )};
-  }
-`;
+export const styles = [mdcStyles, ...baseStyles];
 
-export default style;
+export default styles;

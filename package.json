@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "install": "lerna bootstrap",
     "start": "npm start --prefix storybook",
@@ -10,9 +13,9 @@
     "clean:typescript": "npm run build:typescript -- --clean",
     "bootstrap": "lerna bootstrap --hoist",
     "build": "lerna run build",
+    "typedoc": "lerna run typedoc",
     "build:clean": "npm run clean && npm run build",
     "build:typescript": "tsc -b",
-    "predocs": "del-cli ./docs && npm run build",
     "docs": "npm run build-storybook --prefix storybook -- --docs --loglevel warn",
     "prepublish": "lerna bootstrap --hoist",
     "prepack": "npm run build",
@@ -22,27 +25,25 @@
     "update": "npx lerna-update-wizard",
     "dedupe": "npx lerna-update-wizard --dedupe",
     "update:typescript": "npx lerna-update-wizard --non-interactive --dependency typescript@latest",
-    "update:lit": "npm run update:lit-element && npm run update:lit-html",
-    "update:lit-element": "npx lerna-update-wizard --non-interactive --dependency lit-element@latest",
-    "update:lit-html": "npx lerna-update-wizard --non-interactive --dependency lit-html@latest",
+    "update:lit": "npx lerna-update-wizard --non-interactive --dependency lit@latest",
     "test:pack": "lerna exec 'npm pack --dry-run'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "prettier": "^2.4.1"
   },
   "devDependencies": {
-    "del-cli": "^4.0.1",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@equinor/eslint-config-fusion": "0.1.2",
+    "del-cli": "^4.0.1",
     "eslint": "^7.32.0",
     "husky": "^7.0.2",
     "lerna": "^4.0.0",
     "lint-staged": "^11.1.2",
-    "prettier": "^2.4.1",
     "typescript": "^4.4.3"
   },
   "husky": {

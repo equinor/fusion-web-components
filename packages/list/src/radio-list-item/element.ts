@@ -39,7 +39,7 @@ export class RadioListItemElement extends RadioListItemBase implements RadioList
     return html`<slot name="avatar"></slot>`;
   }
 
-  override render() {
+  override render(): TemplateResult<1> {
     const radioClasses = {
       'fwc-list-item__radio-right': !this.left,
       'fwc-list-item__radio-left': this.left,

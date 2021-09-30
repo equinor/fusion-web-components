@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { html, TemplateResult, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 
@@ -24,8 +25,13 @@ export type ButtonElementProps = {
 };
 
 export class ButtonElement extends ButtonBase implements ButtonElementProps {
-  @property({ type: String })
-  icon: IconName = '';
+  /**
+   * Leading icon to display in input
+   * @See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon)
+   * @override
+   */
+  // @ts-ignore
+  override icon: IconName = '';
 
   @property({ type: String, reflect: true })
   color: ButtonColor = 'primary';

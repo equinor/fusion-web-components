@@ -2,7 +2,7 @@ import { svg, SVGTemplateResult } from 'lit';
 import * as edsIcons from '@equinor/eds-icons';
 import { IconData } from '@equinor/eds-icons';
 
-export type IconName = keyof typeof edsIcons | string;
+export type IconName = keyof typeof edsIcons;
 
 export const iconNames = Object.keys(edsIcons);
 
@@ -16,7 +16,7 @@ export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplate
   </svg>
 `;
 
-export const createIcon = (name: IconName, type: IconType = IconType.EDS): SVGTemplateResult => {
+export const createIcon = (name: IconName | string, type: IconType = IconType.EDS): SVGTemplateResult => {
   switch (type) {
     case IconType.EDS:
       return createSvg(edsIcons[name as keyof typeof edsIcons]);

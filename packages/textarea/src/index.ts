@@ -1,24 +1,15 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import TextAreaElement, { TextAreaElementProps } from './element';
-export * from './element';
-export * from '@equinor/fusion-wc-textinput';
+import { TextAreaElement } from './element';
 
 export const tag = 'fwc-textarea';
-
 @fusionElement(tag)
 export default class _ extends TextAreaElement {}
+
+export * from './element';
+export * from './element.css';
 
 declare global {
   interface HTMLElementTagNameMap {
     [tag]: TextAreaElement;
-  }
-
-  namespace JSX {
-    interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<TextAreaElementProps & React.HTMLAttributes<TextAreaElement>>,
-        TextAreaElement
-      >;
-    }
   }
 }

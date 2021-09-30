@@ -27,6 +27,7 @@
     "@equinor/fusion-wc-radio": "^0.2.9",
     "@equinor/fusion-wc-ripple": "^0.2.3",
     "@equinor/fusion-wc-switch": "^0.2.10",
+    "@equinor/fusion-wc-skeleton": "^0.1.0",
     "@equinor/fusion-wc-textarea": "^0.4.0",
     "@equinor/fusion-wc-textinput": "^0.4.0",
     "@equinor/fusion-wc-theme": "^0.2.15",

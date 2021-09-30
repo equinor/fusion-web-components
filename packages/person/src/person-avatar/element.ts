@@ -122,14 +122,16 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     >`;
   }
 
-  protected renderLoader(): TemplateResult {
-    return html`<fwc-avatar ?disabled=${true}></fwc-avatar>`;
+  protected renderPending(): TemplateResult {
+    return html`<fwc-avatar pending></fwc-avatar>`;
   }
 
   protected render(): TemplateResult {
+    console.log('avatar render');
     return html`${this.controller.details.render({
+      initial: () => html`<span>Initial</span>`,
       complete: (details: PersonDetails) => this.renderAvatar(details),
-      pending: () => this.renderLoader(),
+      pending: () => this.renderPending(),
       error: () => html`<span>ERROR</span>`,
     })}`;
   }

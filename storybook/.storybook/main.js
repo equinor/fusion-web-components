@@ -1,8 +1,16 @@
 module.exports = {
-  stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  core: {
+    builder: "webpack5",
+  },
+  stories: ['../stories/**/*.stories.@(ts|tsx|md|mdx)'],
   addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-  ],
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+      }
+    },
+  ]
 };

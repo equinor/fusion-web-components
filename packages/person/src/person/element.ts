@@ -17,7 +17,12 @@ export class PersonElement extends LitElement implements PersonHost {
    */
   @property({ type: String })
   azureId: string = '';
-  controller = new PersonController(this);
+  controller: PersonController;
+
+  constructor() {
+    super();
+    this.controller = new PersonController(this);
+  }
 }
 
 export default PersonElement;

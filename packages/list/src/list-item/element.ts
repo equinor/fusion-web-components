@@ -14,12 +14,12 @@ export type ListItemElementProps = {
 export class ListItemElement extends ListItemBase implements ListItemElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
 
-  protected renderText() {
-    const inner = this.twoline ? this.renderTwoline() : this.renderSingleLine();
+  protected renderText(): TemplateResult<1> {
+    const inner = this.twoline ? this.renderTwoLines() : this.renderSingleLine();
     return html` <span class="fwc-list-item__text"> ${inner} </span>`;
   }
 
-  protected renderTwoline() {
+  protected renderTwoLines(): TemplateResult<1> {
     return html`
       <span class="fwc-list-item__primary-text">
         <slot></slot>

@@ -1,4 +1,4 @@
-import { CSSResult, html } from 'lit';
+import { CSSResult, html, TemplateResult } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 
@@ -13,12 +13,16 @@ Checkbox;
 export class CheckListItemElement extends ListItemElement implements ListItemElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
 
-  @query('slot') protected override slotElement!: HTMLSlotElement | null;
-  @query('mwc-checkbox') protected checkboxElement!: Checkbox;
+  // TODO: @maoft missing description
+  @query('slot')
+  protected override slotElement!: HTMLSlotElement | null;
+
+  @query('mwc-checkbox')
+  protected checkboxElement!: Checkbox;
 
   @property({ type: Boolean }) left = false;
   @property({ type: String, reflect: true })
-  override render() {
+  override render(): TemplateResult<1> {
     const checkboxClasses = {
       'fwc-list-item__checkbox-right': !this.left,
       'fwc-list-item__checkbox-left': this.left,
@@ -41,7 +45,7 @@ export class CheckListItemElement extends ListItemElement implements ListItemEle
       ${this.left ? text : ''} <slot class="meta" name="meta"></slot>`;
   }
 
-  protected async onChange(evt: Event) {
+  protected async onChange(evt: Event): Promise<void> {
     const checkbox = evt.target as Checkbox;
     const changeFromProp = this.selected === checkbox.checked;
 

@@ -21,6 +21,7 @@ export class PersonController implements ReactiveController {
   };
 
   hostConnected() {
+    console.log('hostConnected');
     const event = new PersonControllerConnectEvent({
       detail: {
         disconnectedCallback: (callback) => {
@@ -63,6 +64,7 @@ export class PersonController implements ReactiveController {
     return new Task<[string], PersonDetails>(
       this.host,
       async ([azureId]) => {
+        console.log('azureId', azureId);
         // if (!this.resolver?.getDetailsAsync) {
         //   console.log('HAJASA');
         //   throw new Error('PersonResolver is undefined');

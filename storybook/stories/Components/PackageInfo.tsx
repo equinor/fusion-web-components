@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Subtitle, Description } from '@storybook/components';
+import { Title, Subtitle, Source } from '@storybook/components';
 
 import { styled } from '@storybook/theming';
 
@@ -59,6 +59,7 @@ export const PackageInfo = ({ pkg }: { pkg: Package }): React.ReactElement => {
       <Title>{pkg.name}</Title>
       <Subtitle>{pkg.description}</Subtitle>
       {renderDependencies(pkg.dependencies || {})}
+      <Source language="sh" code={`npm i ${pkg.name}`} />
     </div>
   );
 };

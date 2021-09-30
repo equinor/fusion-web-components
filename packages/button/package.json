@@ -6,9 +6,9 @@
   "customElements": "lib/custom-elements.json",
   "scripts": {
     "build": "tsc -b",
-    "prepack": "npm run build && fwc-build",
     "postbuild": "npm run typedoc",
-    "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib"
+    "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib",
+    "prepack": "npm run build && fwc-build"
   },
   "keywords": [
     "equinor",
@@ -27,8 +27,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.5",
     "@equinor/fusion-wc-builder": "^1.0.3",
-    "typescript": "^4.4.3",
-    "web-component-analyzer": "^1.1.6"
+    "typescript": "^4.4.3"
   },
   "repository": {
     "type": "git",

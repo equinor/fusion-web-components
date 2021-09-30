@@ -53,7 +53,6 @@ export const renderDependencies = (deps: Record<string, string>) => {
 };
 
 export const PackageInfo = ({ pkg }: { pkg: Package }): React.ReactElement => {
-  console.log(pkg.dependencies);
   return (
     <div>
       <Title>{pkg.name}</Title>

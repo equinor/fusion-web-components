@@ -6,9 +6,9 @@ export const style = css`
     display: block;
     position: relative;
     overflow: hidden;
-    --fwc-skeleton-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
-    --fwc-skeleton-font-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
-    background-color: var(--fwc-skeleton-color);
+    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
+    --fwc-skeleton-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    background-color: var(--fwc-skeleton-fill-color);
   }
   :host([variant='rectangle']) {
     border-radius: 0.25rem;
@@ -91,11 +91,11 @@ export const style = css`
     font-size: 0.875rem;
     line-height: 1em;
   }
-  :host([fullWidth]) {
+  :host([fluid]) {
     width: 100%;
   }
-  :host([fullWidth][variant='circle']) {
-    height: 100%;
+  :host([fluid][variant='circle']) {
+    height: auto;
   }
   :host([variant='circle']) {
     border-radius: 50%;
@@ -137,7 +137,7 @@ export const style = css`
     height: 100%;
     display: flex;
     align-items: center;
-    color: var(--fwc-skeleton-font-color);
+    color: var(--fwc-skeleton-ink-color);
     font-size: 0.875em;
   }
   :host([variant='text']) .fwc-skeleton__icon {

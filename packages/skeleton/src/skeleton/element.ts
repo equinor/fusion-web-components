@@ -14,23 +14,49 @@ export type SkeletonElementProps = {
   size?: SkeletonSize;
   variant?: SkeletonVariant;
   inactive?: boolean;
-  fullWidth?: boolean;
+  fluid?: boolean;
 };
 
+/**
+ * Element for rendering pending state placeholders for components
+ * {@inheritdoc}
+ *
+ * @tag fwc-skeleton
+ *
+ * @property {SkeletonSize} size - Sets the size of the skeleton element
+ * @property {SkeletonVariant} variant - Sets the skeleton element variant to render
+ * @property {boolean} inactive - Disables the skeleton element active animation
+ * @property {boolean} fluid - Sets the width of the element to fill the parent width.
+ *
+ * @cssprop {theme.colors.interactive.disabled__fill} --fwc-skeleton-fill-color - background color of the element
+ * @cssprop {theme.colors.interactive.disabled__text} --fwc-skeleton-ink-color - text color of the element
+ */
 export class SkeletonElement extends LitElement implements SkeletonElementProps {
   static styles: CSSResult[] = [style];
 
+  /**
+   * Size of the skeleton element.
+   */
   @property({ type: String, reflect: true })
   size: SkeletonSize = 'medium';
 
+  /**
+   * Variant of the skeleton element.
+   */
   @property({ type: String, reflect: true })
   variant: SkeletonVariant = SkeletonVariant.Rectangle;
 
+  /**
+   * Disables the skeleton element's active animation.
+   */
   @property({ type: Boolean, reflect: true })
   inactive: boolean = false;
 
+  /**
+   * Expands the skeleton element width to the width of the parent.
+   */
   @property({ type: Boolean, reflect: true })
-  fullWidth: boolean = false;
+  fluid: boolean = false;
 
   render() {
     return html`<span><slot class="fwc-skeleton__icon" name="icon"></slot></span>`;

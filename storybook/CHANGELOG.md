@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.10.0...@equinor/fusion-wc-storybook@1.11.0) (2021-10-01)
+
+
+### Features
+
+* added skeleton component ([24447d6](https://github.com/equinor/fusion-web-components/commit/24447d6e8c1714b3c08e887bcc398a4dca972e61))
+
+
+
+
+
 # [1.10.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.17...@equinor/fusion-wc-storybook@1.10.0) (2021-09-30)
 
 

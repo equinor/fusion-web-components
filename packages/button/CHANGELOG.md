@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.18](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.17...@equinor/fusion-wc-button@1.1.18) (2021-09-30)
+
+
+### Bug Fixes
+
+* **button:** icon namme ([6ba178a](https://github.com/equinor/fusion-web-components/commit/6ba178a394d2e28bd933b1a4878291d0d4fcf08b))
+
+
+
+
+
 ## [1.1.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.16...@equinor/fusion-wc-button@1.1.17) (2021-09-24)
 
 

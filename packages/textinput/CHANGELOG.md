@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.3.2...@equinor/fusion-wc-textinput@0.4.0) (2021-09-30)
+
+
+### Features
+
+* **textinput:** allow static error message ([60617b9](https://github.com/equinor/fusion-web-components/commit/60617b92caf79180b7b1c93be2fd57d981389d0a))
+
+
+
+
+
 ## [0.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.3.1...@equinor/fusion-wc-textinput@0.3.2) (2021-09-23)
 
 

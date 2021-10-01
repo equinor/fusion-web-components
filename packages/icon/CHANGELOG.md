@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-icon@1.0.11...@equinor/fusion-wc-icon@1.0.12) (2021-09-30)
+
+
+### Bug Fixes
+
+* **icon:** change typing of name for autocomplete ([6357819](https://github.com/equinor/fusion-web-components/commit/6357819a86770066eb01726dc6b2aa4e8c05c491))
+
+
+
+
+
 ## [1.0.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-icon@1.0.10...@equinor/fusion-wc-icon@1.0.11) (2021-09-23)
 
 

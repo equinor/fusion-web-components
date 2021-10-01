@@ -127,8 +127,8 @@ export const style = css`
   :host([color='warning'][clickable]:hover) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.warning__hover.getVariable('color'))};
   }
-  :host([disabled]) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
+  :host([color='disabled']) {
+    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
   }
   :host([clickable]:not([disabled]):hover) {
     cursor: pointer;

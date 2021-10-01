@@ -6,7 +6,7 @@ import style from './element.css';
 
 export type BadgeSize = 'x-small' | 'small' | 'medium' | 'large';
 export type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+export type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 
 /**
  * Element for rendering a badge
@@ -76,7 +76,9 @@ export class BadgeElement extends LitElement {
     if (changedProperties.has('disabled')) {
       if (this.disabled) {
         this.clickable = false;
+        this.color = 'disabled';
         this.requestUpdate('clickable');
+        this.requestUpdate('color');
       }
     }
   }

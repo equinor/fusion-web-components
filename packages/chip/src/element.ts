@@ -7,11 +7,31 @@ export type ChipSize = 'small' | 'medium' | 'large';
 export type ChipVariant = 'filled' | 'outlined';
 export type ChipColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 
+export type ChipElementProps = {
+  size?: ChipSize;
+  variant?: ChipVariant;
+  color?: ChipColor;
+  value?: string;
+  icon?: IconName;
+  tooltip?: string;
+  active?: boolean;
+  clickable?: boolean;
+  removeable?: boolean;
+  disabled?: boolean;
+};
+
 /**
  * @tag fwc-chip
  * @property {ChipSize} size - Set the size of the chip element
  * @property {ChipVariant} variant - Set the variant of the chip element
  * @property {ChipColor} size - Set the color of the chip element
+ * @property {string} value - Set the text value to render within the chip
+ * @property {IconName} icon - Set the icon to render within the chip
+ * @property {string} tooltip - Set a tooltip text to display on hover
+ * @property {boolean} active - Set the chip as active (selected)
+ * @property {boolean} clickable - Set the chip as clickable to render hover/click effects
+ * @property {boolean} removeable - Set the chip as removeable to render remove icon
+ * @property {boolean} disabled - Set the chip to render as disabled
  *
  * @cssprop {theme.colors.text.static_icons__tertiary} --fwc-chip-base-color - Base color of the element
  * @cssprop {theme.colors.ui.background__light} --fwc-chip-fill-color - Background color of element
@@ -23,7 +43,7 @@ export type ChipColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warnin
  *
  * @summary Component to render chips
  */
-export class ChipElement extends LitElement {
+export class ChipElement extends LitElement implements ChipElementProps {
   /**
    * Size of the chip
    * @default medium

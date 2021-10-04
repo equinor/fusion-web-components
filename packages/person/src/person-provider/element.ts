@@ -1,29 +1,20 @@
-import { LitElement, PropertyValues } from 'lit';
-import { property } from 'lit/decorators';
+import { LitElement } from 'lit';
 import { PersonResolver } from '../types';
 import { PersonControllerConnectEvent } from '../events';
 
-export type PersonProviderProps = {
-  resolver?: PersonResolver;
-};
+export type PersonProviderProps = {};
 
 export class PersonProviderElement extends LitElement implements PersonProviderProps {
-  @property({ type: Object })
-  resolver?: PersonResolver;
-
   protected updateCallbacks: Array<(resolver?: PersonResolver) => void> = [];
 
   createRenderRoot() {
     return this;
   }
 
-  protected updated(changedProperties: PropertyValues) {
-    super.updated(changedProperties);
-    if (changedProperties.has('resolver')) {
-      this.updateCallbacks.forEach((callback) => {
-        callback(this.resolver);
-      });
-    }
+  setResolver(resolver: PersonResolver) {
+    this.updateCallbacks.forEach((callback) => {
+      callback(resolver);
+    });
   }
 
   override connectedCallback() {

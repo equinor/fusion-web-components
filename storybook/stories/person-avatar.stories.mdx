@@ -65,13 +65,7 @@ npm i @equinor/fusion-wc-person-avatar
 ## Playground
 
 <Canvas>
-  <Story
-    name="Default"
-    args={{
-      azureId: '1234567890',
-    }}
-    parameters={{ chromatic: { disableSnapshot: true } }}
-  >
+  <Story name="Default" args={{ azureId: '1234' }} parameters={{ chromatic: { disableSnapshot: true } }}>
     {PersonAvatar.bind({})}
   </Story>
 </Canvas>
@@ -81,13 +75,3 @@ npm i @equinor/fusion-wc-person-avatar
 ## Snapshots
 
 ### Picture
-
-<Story name="Picture" args={{ pictureSrc: 'https://i.imgur.com/C4iPxwN.jpeg' }}>
-  {Template.bind({})}
-</Story>
-
-### Initial
-
-<Story name="Initial" args={{ name: 'Ben Dover' }}>
-  {Template.bind({})}
-</Story>

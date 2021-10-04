@@ -17,7 +17,7 @@ const mockPersonResolver: PersonResolver = {
   getDetailsAsync: async (azureId: string) => {
     return await Promise.resolve({
       azureUniqueId: azureId,
-      name: 'Ben Dover',
+      name: 'Albert Einstein',
       accountType: AccountType.Employee,
     });
   },
@@ -34,7 +34,7 @@ export const PersonAvatar = ({ children, ...props }: PropsWithChildren<PersonAva
 
   useEffect(() => {
     if (providerRef?.current) {
-      providerRef.current.resolver = mockPersonResolver;
+      providerRef.current.setResolver(mockPersonResolver);
     }
   }, [providerRef]);
 

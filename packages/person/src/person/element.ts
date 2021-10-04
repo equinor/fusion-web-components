@@ -1,5 +1,8 @@
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { Task } from '@lit-labs/task';
+import { property } from 'lit/decorators.js';
+import { PersonPresence, PersonDetails } from '../types';
+import { PersonHost } from '../person-provider';
 import { PersonController } from '../person-provider';
 
 export type PersonElementProps = {
@@ -17,7 +20,12 @@ export class PersonElement extends LitElement implements PersonHost {
    */
   @property({ type: String })
   azureId: string = '';
-  controller: PersonController;
+
+  protected controller: PersonController;
+
+  details?: Task<[string], PersonDetails>;
+
+  presence?: Task<[string], PersonPresence>;
 
   constructor() {
     super();

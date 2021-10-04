@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import { LitElement } from 'lit';
-=======
-import { LitElement, PropertyValues } from 'lit';
-import { property } from 'lit/decorators';
->>>>>>> a2e18aa (fix: upgraded lit-element and lit-html to li 2.0.0)
 import { PersonResolver } from '../types';
 import { PersonControllerConnectEvent } from '../events';
 

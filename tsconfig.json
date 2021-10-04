@@ -10,6 +10,7 @@
     { "path": "./packages/badge" },
     { "path": "./packages/button" },
     { "path": "./packages/checkbox" },
+    { "path": "./packages/chip" },
     { "path": "./packages/core" },
     { "path": "./packages/date" },
     { "path": "./packages/divider" },

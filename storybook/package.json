@@ -17,6 +17,7 @@
     "@equinor/fusion-wc-badge": "^0.2.10",
     "@equinor/fusion-wc-button": "^1.1.18",
     "@equinor/fusion-wc-checkbox": "^0.2.9",
+    "@equinor/fusion-wc-chip": "^0.1.0",
     "@equinor/fusion-wc-date": "^0.2.12",
     "@equinor/fusion-wc-divider": "^0.2.4",
     "@equinor/fusion-wc-formfield": "^0.2.3",

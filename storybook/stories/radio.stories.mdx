@@ -1,31 +1,74 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { CustomElement, PackageInfo } from './Components';
 
-import Radio from './Components/Radio';
+import '@equinor/fusion-wc-radio';
 
-<Meta
-  title="Input/Radio"
-  component={Radio}
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true },
-    },
-  }}
-/>
+export const Template = (args) => (
+  <div>
+    <h5>Standard</h5>
+    <div style={{display: 'flex', gap: 5}}>
+      <fwc-radio {...args} />
+      <fwc-radio {...args} checked/>
+      <fwc-radio {...args} indeterminate/>
+    </div>
+    <h5>Disabled</h5>
+    <div style={{display: 'flex', gap: 5}}>
+      <fwc-radio {...args} disabled/>
+      <fwc-radio {...args} disabled checked/>
+      <fwc-radio {...args} disabled indeterminate/>
+    </div>
+  </div>
+);
 
-```sh
-npm i @equinor/fusion-wc-radio
-```
+<Meta title="Input/Radio" />
 
-TODO check SingleSelectionController
+<PackageInfo pkg={require('@equinor/fusion-wc-radio/package.json')}/>
 
+<CustomElement tag="fwc-radio" data={require('@equinor/fusion-wc-radio/lib/custom-elements.json')} />
 
 <Canvas>
   <Story 
     name="Basic"
-    parameters={{chromatic: { disableSnapshot: true }}}
+    argTypes={{
+      size: {
+        type: 'number',
+        name: '--fwc-radio-size',
+        table: {
+          category: 'style'
+        }
+      },
+      spacing: {
+        type: 'number',
+        name: '--fwc-radio-spacing',
+        table: {
+          category: 'style'
+        }
+      },
+      color: {
+        control: 'color',
+        name: '--fwc-radio-color',
+        table: {
+          category: 'style'
+        }
+      }
+    }}
+    args={{
+      checked: false,
+      reducedTouchTarget: false,
+    }}
   >
-    {Radio.bind({})}
+    {({checked, reducedTouchTarget, size, spacing, color}) => {
+      const props = {};
+      checked && (props.checked = true);
+      reducedTouchTarget && (props.reducedTouchTarget = true);
+      
+      const style = {}
+      size && (style['--fwc-radio-size'] = size+'px');
+      spacing && (style['--fwc-radio-spacing'] = spacing+'px');
+      color && (style['--fwc-radio-color'] = color);
+      
+      return <fwc-radio {...props} style={style}/>;
+    }}
   </Story>
 </Canvas>
 
@@ -34,14 +77,24 @@ TODO check SingleSelectionController
 
 ### Unchecked
 <Story name="Unchecked">
-  <fwc-radio />
-  <fwc-radio checked/>
-  <fwc-radio indeterminate/>
+  <fwc-radio name="unchecked" />
+  <fwc-radio name="unchecked" checked/>
 </Story>
 
 ### Disabled
 <Story name="Disabled">
-  <fwc-radio disabled/>
-  <fwc-radio disabled checked/>
-  <fwc-radio disabled indeterminate/>
+  <fwc-radio name="disabled" disabled/>
+  <fwc-radio name="disabled" disabled checked/>
+</Story>
+
+
+### Size
+<Story name="Size">
+  <div style={{display: 'flex', alignItems: 'center'}}>
+    <fwc-radio name="size" style={{'--fwc-radio-size': '64px'}}/>
+    <fwc-radio name="size" style={{'--fwc-radio-size': '32px'}}/>
+    <fwc-radio name="size" style={{'--fwc-radio-size': '24px'}}/>
+    <fwc-radio name="size" style={{'--fwc-radio-size': '18px'}}/>
+    <fwc-radio name="size" style={{'--fwc-radio-size': '14px'}}/>
+  </div>
 </Story>

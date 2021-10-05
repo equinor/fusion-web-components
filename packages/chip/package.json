@@ -1,6 +1,6 @@
 {
-  "name": "@equinor/fusion-wc-badge",
-  "version": "0.2.11",
+  "name": "@equinor/fusion-wc-chip",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.3",
     "@equinor/fusion-wc-icon": "^1.0.12",
+    "@equinor/fusion-wc-ripple": "^0.2.3",
     "lit": "2.0.0"
   },
   "devDependencies": {

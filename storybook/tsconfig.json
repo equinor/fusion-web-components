@@ -18,6 +18,7 @@
     { "path": "../packages/badge" },
     { "path": "../packages/button" },
     { "path": "../packages/checkbox" },
+    { "path": "../packages/chip" },
     { "path": "../packages/date" },
     { "path": "../packages/divider" },
     { "path": "../packages/icon" },

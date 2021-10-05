@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.10...@equinor/fusion-wc-badge@0.2.11) (2021-10-04)
-
-
-### Bug Fixes
-
-* added disabled color ([c6c4ba2](https://github.com/equinor/fusion-web-components/commit/c6c4ba202fad710b24595918538d06b470b0eb41))
-
-
-
-
-
 ## [0.2.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.9...@equinor/fusion-wc-badge@0.2.10) (2021-09-30)
 
 **Note:** Version bump only for package @equinor/fusion-wc-badge

@@ -1,0 +1,93 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import Chip, { ChipWrapper } from './Components/Chip';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="Sizes">
+      <fwc-chip size="small" {...props} />
+      <fwc-chip size="medium" {...props} />
+      <fwc-chip size="large" {...props} />
+    </Container>
+    <Container title="Colors">
+      <fwc-chip color="primary" {...props} />
+      <fwc-chip color="secondary" {...props} />
+      <fwc-chip color="success" {...props} />
+      <fwc-chip color="danger" {...props} />
+      <fwc-chip color="warning" {...props} />
+      <fwc-chip color="disabled" {...props} />
+    </Container>
+    <Container title="Custom Colors">
+      <fwc-chip style={{ '--fwc-chip-base-color': '#495057' }} {...props} />
+      <fwc-chip style={{ '--fwc-chip-base-color': '#ffc6ff', '--fwc-chip-ink-color': '#000' }} {...props} />
+      <fwc-chip style={{ '--fwc-chip-fill-color': '#1d3557', '--fwc-chip-ink-color': '#ffc8dd' }} {...props} />
+    </Container>
+    <Container title="Icon">
+      <fwc-chip size="small" icon="settings" {...props} />
+      <fwc-chip size="medium" icon="settings" {...props} />
+      <fwc-chip size="large" icon="settings" {...props} />
+    </Container>
+    <Container title="Clickable">
+      <fwc-chip color="primary" clickable {...props} />
+      <fwc-chip color="secondary" clickable {...props} />
+      <fwc-chip color="success" clickable {...props} />
+      <fwc-chip color="danger" clickable {...props} />
+      <fwc-chip color="warning" clickable {...props} />
+      <fwc-chip color="disabled" clickable {...props} />
+    </Container>
+    <Container title="Removeable">
+      <fwc-chip size="small" removeable {...props} />
+      <fwc-chip size="medium" removeable {...props} />
+      <fwc-chip size="large" removeable {...props} />
+    </Container>
+    <Container title="Disabled">
+      <fwc-chip clickable disabled {...props} />
+    </Container>
+  </div>
+);
+
+# Chip
+
+<Meta
+  title="Data/Chip"
+  component={Chip}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-chip
+```
+
+<Canvas>
+  <Story name="Default" args={{ label: 'chip' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Chip.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Picture
+
+<Story name="Picture" args={{ variant: 'filled', value: 'Filled chip' }}>
+  {Template.bind({})}
+</Story>
+
+## Initial
+
+<Story name="Initial" args={{ variant: 'outlined', value: 'Outlined chip' }}>
+  {Template.bind({})}
+</Story>

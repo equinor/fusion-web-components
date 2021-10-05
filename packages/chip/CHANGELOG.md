@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-10-05)
+
+
+### Bug Fixes
+
+* added props type and docs ([a8b787f](https://github.com/equinor/fusion-web-components/commit/a8b787f3b2c44324343df58811a9367c67bc8457))
+
+
+### Features
+
+* added chip component ([92c7d5e](https://github.com/equinor/fusion-web-components/commit/92c7d5e1a8911c1fa6ca3a645c2bf88a433f58b3))
+
+
+
+
+
 ## [0.2.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.9...@equinor/fusion-wc-badge@0.2.10) (2021-09-30)
 
 **Note:** Version bump only for package @equinor/fusion-wc-badge

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.9...@equinor/fusion-wc-checkbox@0.3.0) (2021-10-05)
+
+
+### Features
+
+* **checkbox:** allow sizing of checkbox ([6cde535](https://github.com/equinor/fusion-web-components/commit/6cde535c6ec9f5a8ae13ccdbe0c0b0ea80cec150))
+
+
+
+
+
 ## [0.2.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.8...@equinor/fusion-wc-checkbox@0.2.9) (2021-09-30)
 
 **Note:** Version bump only for package @equinor/fusion-wc-checkbox

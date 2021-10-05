@@ -51,7 +51,7 @@
 | --------- | ------- | ------
 | [`<fwc-avatar>`](https://github.com/equinor/fusion-web-components/tree/main/packages/avatar) | `@equinor/fusion-wc-avatar` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-avatar.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-avatar)
 | [`<fwc-badge>`](https://github.com/equinor/fusion-web-components/tree/main/packages/badge) | `@equinor/fusion-wc-badge` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-badge.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-badge)
-| [`<fwc-chip>`](https://github.com/equinor/fusion-web-components/tree/main/packages/chip) | `@equinor/fusion-wc-chip` | TBD
+| [`<fwc-chip>`](https://github.com/equinor/fusion-web-components/tree/main/packages/chip) | `@equinor/fusion-wc-chip` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-chip.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-chip)
 | [`<fwc-date>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date) | `@equinor/fusion-wc-date` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-date.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-date)
 | [`<fwc-list>`](https://github.com/equinor/fusion-web-components/tree/main/packages/list) | `@equinor/fusion-wc-list` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-list.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-list)
 | [`<fwc-skeleton>`](https://github.com/equinor/fusion-web-components/tree/main/packages/skeleton) | `@equinor/fusion-wc-skeleton` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-skeleton.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-skeleton)

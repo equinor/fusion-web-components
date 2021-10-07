@@ -103,6 +103,13 @@ export class TextInputElement extends TextFieldBase {
   public errorMessage = '';
 
   /**
+   * Compact mode of element.
+   * can be adjusted with `--textinput-dense-size`
+   */
+  @property({ type: Boolean, reflect: true })
+  public dense?: boolean;
+
+  /**
    * Returns `true` if the textinput passes validity checks. Returns `false` and fires an [`invalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) event on the textinput otherwise.
    *
    * **NOTE:** When accessing any property or function that checks validity at textinput initial boot up, you may have to await `<fwc-textinput>.updateComplete`.

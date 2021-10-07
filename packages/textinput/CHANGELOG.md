@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.4.0...@equinor/fusion-wc-textinput@0.5.0) (2021-10-07)
+
+
+### Features
+
+* **textinput:** allow dense ([2640cfd](https://github.com/equinor/fusion-web-components/commit/2640cfdc13a6e61b901aff6de989e8a8ff13276f))
+
+
+
+
+
 # [0.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textinput@0.3.2...@equinor/fusion-wc-textinput@0.4.0) (2021-09-30)
 
 

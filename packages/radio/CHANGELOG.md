@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-radio@0.2.9...@equinor/fusion-wc-radio@0.2.10) (2021-10-07)
+
+
+### Bug Fixes
+
+* **radio:** allow adjustment of size ([fed166b](https://github.com/equinor/fusion-web-components/commit/fed166b2f59540c14c2042dcc7773d83938d9815))
+
+
+
+
+
 ## [0.2.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-radio@0.2.8...@equinor/fusion-wc-radio@0.2.9) (2021-09-30)
 
 **Note:** Version bump only for package @equinor/fusion-wc-radio

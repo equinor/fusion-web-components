@@ -30,6 +30,7 @@ export const Container = ({children}) => (
     <fwc-textinput label="default" variant="outlined" />
     <fwc-textinput label="readonly" variant="outlined" readonly/>
     <fwc-textinput label="disabled" variant="outlined" disabled/>
+    <fwc-textinput label="icon" variant="outlined" icon="settings" type="search"/>
   </Container>
 </Story>
 
@@ -64,6 +65,19 @@ TOOD: missing validation of max length
     <fwc-textinput label="no error" errorMessage=""/>
   </Container>
 </Story>
+
+### Dense
+<Story name="Dense">
+  <Container>
+    <fwc-textinput label="compact" dense type="search"/>
+    <fwc-textinput label="compact" dense type="search" icon="search"/>
+    <fwc-textinput label="compact" dense type="search" iconTrailing="search"/>
+    <fwc-textinput label="compact" dense variant="outlined"/>
+    <fwc-textinput label="compact" dense variant="outlined" icon="search" type="search"/>
+    <fwc-textinput label="compact" dense variant="outlined" iconTrailing="search" type="search"/>
+  </Container>
+</Story>
+
 
 ### Fluid
 TODO: this does not seem to work

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-list",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "@equinor/fusion-wc-core": "^1.0.3",
     "@equinor/fusion-wc-divider": "^0.2.4",
     "@equinor/fusion-wc-icon": "^1.0.12",
-    "@equinor/fusion-wc-radio": "^0.2.9",
+    "@equinor/fusion-wc-radio": "^0.2.10",
     "@material/mwc-list": "^0.25.1",
     "lit": "2.0.0"
   },

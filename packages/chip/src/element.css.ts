@@ -16,7 +16,7 @@ export const style = css`
     border-radius: var(--fwc-chip-font-size);
     position: relative;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -106,6 +106,17 @@ export const style = css`
   }
   :host([color='warning'][clickable]:hover) {
     --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.warning__hover.getVariable('color'))};
+  }
+  :host([color='disabled'][variant='filled']) {
+    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))} !important;
+    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
+  }
+  :host([color='disabled'][variant='outlined']) {
+    --fwc-chip-base-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
+    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
+  }
+  :host([color='disabled'][clickable]:hover) {
+    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
   }
   :host([disabled]) {
     --fwc-chip-base-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;

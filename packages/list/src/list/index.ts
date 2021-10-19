@@ -3,19 +3,19 @@ import { ListElement, ListElementProps } from './element';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 
-const tag = 'fwc-list';
+export const listTag = 'fwc-list';
 
-@fusionElement(tag)
+@fusionElement(listTag)
 export default class _ extends ListElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    [tag]: ListElement;
+    [listTag]: ListElement;
   }
 
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<
+      [listTag]: React.DetailedHTMLProps<
         React.PropsWithChildren<ListElementProps & React.HTMLAttributes<ListElement>>,
         ListElement
       >;

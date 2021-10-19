@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.0...@equinor/fusion-wc-chip@0.2.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* fixed disabled color and display ([85438a0](https://github.com/equinor/fusion-web-components/commit/85438a0e9fc382b96a60ae745526e21b5c828ea0))
+
+
+
+
+
 # 0.2.0 (2021-10-05)
 
 

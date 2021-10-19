@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.1.6...@equinor/fusion-wc-list@0.1.7) (2021-10-19)
+
+
+### Bug Fixes
+
+* fixed tag exports ([0da0968](https://github.com/equinor/fusion-web-components/commit/0da0968d9fe46a1e529b6c35fc16be02b6616be5))
+
+
+
+
+
 ## [0.1.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.1.5...@equinor/fusion-wc-list@0.1.6) (2021-10-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-list

@@ -107,6 +107,16 @@ export class ChipElement extends LitElement implements ChipElementProps {
   @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
+  protected handleOnClick(): void {
+    this.dispatchEvent(new Event('clicked'));
+  }
+
+  protected handleRemoveOnClick(): void {
+    if (this.removeable) {
+      this.dispatchEvent(new Event('remove'));
+    }
+  }
+
   protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('disabled')) {
@@ -127,9 +137,9 @@ export class ChipElement extends LitElement implements ChipElementProps {
 
   protected renderRemoveIcon(): TemplateResult {
     if (this.removeable) {
-      return html`<fwc-icon class="fwc-chip__remove" icon="close"></fwc-icon>`;
+      return html`<fwc-icon class="fwc-chip__remove" icon="close" onclick=${this.handleRemoveOnClick}></fwc-icon>`;
     }
-    return html`<slot class="fwc-chip__remove" name="remove"></slot>`;
+    return html`<slot class="fwc-chip__remove" name="remove" onclick=${this.handleRemoveOnClick}></slot>`;
   }
 
   protected renderContent(): TemplateResult {
@@ -140,7 +150,9 @@ export class ChipElement extends LitElement implements ChipElementProps {
   }
 
   protected render(): TemplateResult {
-    return html`${this.renderGraphic()} ${this.renderContent()} ${this.renderRemoveIcon()}`;
+    return html`<span class="fwc-chip"
+      >${this.renderGraphic()} ${this.renderContent()} ${this.renderRemoveIcon()}</span
+    >`;
   }
 }
 

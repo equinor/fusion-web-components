@@ -8,6 +8,8 @@ export const style = css`
     --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     --fwc-chip-size: 1.5rem;
     --fwc-chip-font-size: 0.75rem;
+  }
+  :host .fwc-chip {
     min-width: var(--fwc-chip-size);
     height: var(--fwc-chip-size);
     font-size: var(--fwc-chip-font-size);
@@ -23,6 +25,15 @@ export const style = css`
     overflow: hidden;
     padding: 0 0.75em;
   }
+  :host([variant='outlined']) .fwc-chip {
+    border: 1px solid var(--fwc-chip-base-color);
+  }
+  :host([variant='filled']) .fwc-chip {
+    background-color: var(--fwc-chip-fill-color);
+  }
+  :host([clickable]:not([disabled]):hover) .fwc-chip {
+    cursor: pointer;
+  }
   :host .fwc-chip__graphic {
     margin-right: 0.5em;
     font-size: 0.75em;
@@ -33,12 +44,6 @@ export const style = css`
   }
   :host .fwc-chip__remove:hover {
     cursor: pointer;
-  }
-  :host([variant='outlined']) {
-    border: 1px solid var(--fwc-chip-base-color);
-  }
-  :host([variant='filled']) {
-    background-color: var(--fwc-chip-fill-color);
   }
   :host([size='small']) {
     --fwc-chip-size: 1.25rem;
@@ -134,9 +139,6 @@ export const style = css`
   :host([disabled][variant='outlined']) {
     --fwc-chip-base-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
     --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
-  }
-  :host([clickable]:not([disabled]):hover) {
-    cursor: pointer;
   }
 `;
 

@@ -15,6 +15,9 @@ export type ListElementProps = {
   noninteractive?: boolean;
 };
 
+/**
+ * Element for rendering a list
+ */
 export class ListElement extends ListBase implements ListElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
 }

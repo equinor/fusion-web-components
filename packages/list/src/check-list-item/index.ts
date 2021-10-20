@@ -1,23 +1,22 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { CheckListItemElement } from './element';
-import { ListItemElementProps } from '../list-item';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 
-export const checkListItemTag = 'fwc-check-list-item';
+export const tag = 'fwc-check-list-item';
 
-@fusionElement(checkListItemTag)
+@fusionElement(tag)
 export default class _ extends CheckListItemElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    [checkListItemTag]: CheckListItemElement;
+    [tag]: CheckListItemElement;
   }
 
   namespace JSX {
     interface IntrinsicElements {
-      [checkListItemTag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<ListItemElementProps & React.HTMLAttributes<CheckListItemElement>>,
+      [tag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<React.HTMLAttributes<CheckListItemElement>>,
         CheckListItemElement
       >;
     }

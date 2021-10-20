@@ -3,19 +3,19 @@ import { RadioListItemElement, RadioListItemElementProps } from './element';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 
-export const radioListItemTag = 'fwc-radio-list-item';
+export const tag = 'fwc-radio-list-item';
 
-@fusionElement(radioListItemTag)
+@fusionElement(tag)
 export default class _ extends RadioListItemElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    [radioListItemTag]: RadioListItemElement;
+    [tag]: RadioListItemElement;
   }
 
   namespace JSX {
     interface IntrinsicElements {
-      [radioListItemTag]: React.DetailedHTMLProps<
+      [tag]: React.DetailedHTMLProps<
         React.PropsWithChildren<RadioListItemElementProps & React.HTMLAttributes<RadioListItemElement>>,
         RadioListItemElement
       >;

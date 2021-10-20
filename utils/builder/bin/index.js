@@ -48,45 +48,43 @@ var lodash_camelcase_1 = __importDefault(require("lodash.camelcase"));
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var filesize_1 = __importDefault(require("filesize"));
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 var pkg = require(process.cwd() + "/package.json");
 var outputOptions = {
-    name: lodash_camelcase_1.default(pkg.name),
-    format: "esm",
-    dir: "dist",
-    plugins: [rollup_plugin_terser_1.terser({ module: true }),]
+    name: (0, lodash_camelcase_1.default)(pkg.name),
+    format: 'esm',
+    dir: 'dist',
+    plugins: [(0, rollup_plugin_terser_1.terser)({ module: true })],
 };
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     var bundle, output, _i, output_1, _a, fileName, type, size;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4 /*yield*/, rollup_1.rollup({
+            case 0: return [4 /*yield*/, (0, rollup_1.rollup)({
                     input: pkg.main,
-                    plugins: [
-                        plugin_node_resolve_1.default(),
-                        plugin_commonjs_1.default(),
-                    ]
+                    plugins: [(0, plugin_node_resolve_1.default)(), (0, plugin_commonjs_1.default)()],
                 })];
             case 1:
                 bundle = _b.sent();
                 return [4 /*yield*/, bundle.write({
-                        name: lodash_camelcase_1.default(pkg.name),
-                        format: "esm",
-                        dir: "dist",
+                        name: (0, lodash_camelcase_1.default)(pkg.name),
+                        format: 'esm',
+                        dir: 'dist',
                         plugins: [
-                            rollup_plugin_terser_1.terser({
+                            (0, rollup_plugin_terser_1.terser)({
                                 module: true,
                                 format: {
-                                    comments: false
-                                }
-                            })
-                        ]
+                                    comments: false,
+                                },
+                            }),
+                        ],
                     })];
             case 2:
                 output = (_b.sent()).output;
                 for (_i = 0, output_1 = output; _i < output_1.length; _i++) {
                     _a = output_1[_i], fileName = _a.fileName, type = _a.type;
                     size = fs_1.default.statSync(path_1.default.join(outputOptions.dir, fileName)).size;
-                    console.log("[" + type + "]", fileName, filesize_1.default(size));
+                    console.log("[" + type + "]", fileName, (0, filesize_1.default)(size));
                 }
                 return [2 /*return*/];
         }

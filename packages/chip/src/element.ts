@@ -5,7 +5,7 @@ import style from './element.css';
 
 export type ChipSize = 'small' | 'medium' | 'large';
 export type ChipVariant = 'filled' | 'outlined';
-export type ChipColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
+export type ChipColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
 
 export type ChipElementProps = {
   size?: ChipSize;
@@ -112,7 +112,6 @@ export class ChipElement extends LitElement implements ChipElementProps {
     if (changedProperties.has('disabled')) {
       if (this.disabled) {
         this.clickable = false;
-        this.color = 'disabled';
         this.requestUpdate('clickable');
         this.requestUpdate('color');
       }
@@ -135,7 +134,7 @@ export class ChipElement extends LitElement implements ChipElementProps {
 
   protected renderContent(): TemplateResult {
     if (this.value) {
-      return html`${this.value}`;
+      return html`<span>${this.value}</span>`;
     }
     return html`<slot></slot>`;
   }

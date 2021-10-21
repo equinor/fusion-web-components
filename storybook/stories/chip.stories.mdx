@@ -24,17 +24,24 @@ export const Template = (props) => (
       <fwc-chip color="success" {...props} />
       <fwc-chip color="danger" {...props} />
       <fwc-chip color="warning" {...props} />
-      <fwc-chip color="disabled" {...props} />
     </Container>
     <Container title="Custom Colors">
-      <fwc-chip style={{ '--fwc-chip-base-color': '#495057' }} {...props} />
-      <fwc-chip style={{ '--fwc-chip-base-color': '#ffc6ff', '--fwc-chip-ink-color': '#000' }} {...props} />
-      <fwc-chip style={{ '--fwc-chip-fill-color': '#1d3557', '--fwc-chip-ink-color': '#ffc8dd' }} {...props} />
-    </Container>
-    <Container title="Icon">
-      <fwc-chip size="small" icon="settings" {...props} />
-      <fwc-chip size="medium" icon="settings" {...props} />
-      <fwc-chip size="large" icon="settings" {...props} />
+      <fwc-chip
+        style={{
+          '--fwc-chip-border-color': '#f72585',
+          '--fwc-chip-fill-color': '#f72585',
+          '--fwc-chip-ink-color': '#3a0ca3',
+        }}
+        {...props}
+      />
+      <fwc-chip
+        style={{
+          '--fwc-chip-border-color': '#003049',
+          '--fwc-chip-fill-color': '#faedcd',
+          '--fwc-chip-ink-color': '#003049',
+        }}
+        {...props}
+      />
     </Container>
     <Container title="Clickable">
       <fwc-chip color="primary" clickable {...props} />
@@ -42,12 +49,12 @@ export const Template = (props) => (
       <fwc-chip color="success" clickable {...props} />
       <fwc-chip color="danger" clickable {...props} />
       <fwc-chip color="warning" clickable {...props} />
-      <fwc-chip color="disabled" clickable {...props} />
     </Container>
-    <Container title="Removeable">
-      <fwc-chip size="small" removeable {...props} />
-      <fwc-chip size="medium" removeable {...props} />
-      <fwc-chip size="large" removeable {...props} />
+    <Container title="Icon">
+      <fwc-chip icon="settings" {...props} />
+    </Container>
+    <Container title="removable">
+      <fwc-chip removable {...props} />
     </Container>
     <Container title="Disabled">
       <fwc-chip clickable disabled {...props} />
@@ -80,13 +87,13 @@ npm i @equinor/fusion-wc-chip
 
 <ArgsTable story="Default" />
 
-## Picture
+## Filled
 
 <Story name="Picture" args={{ variant: 'filled', value: 'Filled chip' }}>
   {Template.bind({})}
 </Story>
 
-## Initial
+## Outlined
 
 <Story name="Initial" args={{ variant: 'outlined', value: 'Outlined chip' }}>
   {Template.bind({})}

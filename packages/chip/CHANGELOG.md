@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.1...@equinor/fusion-wc-chip@0.2.2) (2021-10-21)
+
+
+### Bug Fixes
+
+* fixed color and styling issues ([3afbdac](https://github.com/equinor/fusion-web-components/commit/3afbdac6a6f63938395b9619f5ad06895a42379a))
+* fixed render issue ([f76b483](https://github.com/equinor/fusion-web-components/commit/f76b4832f9a3b4310c801bb845f2f77e85f5f497))
+* styling fixes and addition of events ([7c50173](https://github.com/equinor/fusion-web-components/commit/7c50173f0a041c846e3e9037b9468de074229978))
+
+
+
+
+
 ## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.0...@equinor/fusion-wc-chip@0.2.1) (2021-10-18)
 
 

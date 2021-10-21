@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Tooltip from './Components/Tooltip';
+
+export const Container = ({ title, orientation, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: orientation === 'horizontal' ? 'column' : 'row',
+        height: orientation === 'vertical' ? '2rem' : 'auto',
+        gap: '10px',
+      }}
+    >
+      {children}
+    </div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container orientation={props.orientation} title="Color"></Container>
+  </div>
+);
+
+# Tooltip
+
+<Meta
+  title="Layout/Tooltip"
+  component={Tooltip}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+  argTypes={{}}
+/>
+
+```sh
+npm i @equinor/fusion-wc-tooltip
+```
+
+## Playground
+
+<Canvas>
+  <Story name="Default" args={{ label: 'tooltip' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Tooltip.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Snapshots
+
+### Horizontal
+
+<Story name="Horizontal" args={{ orientation: 'horizontal' }}>
+  {Template.bind({})}
+</Story>
+
+### Vertical
+
+<Story name="Vertical" args={{ orientation: 'vertical' }}>
+  {Template.bind({})}
+</Story>

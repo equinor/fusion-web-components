@@ -1,8 +1,8 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PopoverElement, PopoverElementProps } from './element';
 
-export * from './element';
-export * from './directories/popperjs';
+export * from './tooltip';
+export * from './directives/popperjs';
 
 export const tag = 'fwc-popover';
 

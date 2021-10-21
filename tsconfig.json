@@ -19,11 +19,13 @@
     { "path": "./packages/list" },
     { "path": "./packages/picture" },
     { "path": "./packages/popover" },
+    { "path": "./packages/popper" },
     { "path": "./packages/radio" },
     { "path": "./packages/ripple" },
     { "path": "./packages/skeleton" },
     { "path": "./packages/switch" },
     { "path": "./packages/theme" },
+    { "path": "./packages/tooltip" },
     { "path": "./packages/textarea" },
     { "path": "./packages/textinput" }
   ]

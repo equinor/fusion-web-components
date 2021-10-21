@@ -1,12 +1,15 @@
-import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
-import { property, queryAsync, eventOptions } from 'lit/decorators.js';
+import { LitElement, CSSResult, HTMLTemplateResult, PropertyValues, html } from 'lit';
+import { property, queryAsync, eventOptions, queryAssignedNodes } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import Picture from '@equinor/fusion-wc-picture';
+import { Placement } from 'tippy.js/headless';
 import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
 import style from './element.css';
 
-// persist element
+import Picture from '@equinor/fusion-wc-picture';
+import Tooltip from '@equinor/fusion-wc-tooltip';
+// persist elements
 Picture;
+Tooltip;
 
 export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large';
 
@@ -20,6 +23,8 @@ export type AvatarElementProps = {
   clickable?: boolean;
   border?: boolean;
   disabled?: boolean;
+  tooltip?: string;
+  tooltipPlacement?: Placement;
 };
 
 export class AvatarElement extends LitElement implements AvatarElementProps {
@@ -46,7 +51,17 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
-  @queryAsync('fwc-ripple') ripple!: Promise<Ripple | null>;
+  @property({ type: String })
+  tooltip?: string;
+
+  @property({ type: String })
+  tooltipPlacement?: Placement;
+
+  @queryAsync('fwc-ripple')
+  ripple!: Promise<Ripple | null>;
+
+  @queryAssignedNodes('tooltip', true)
+  tooltipSlot!: HTMLElement;
 
   protected rippleHandlers = new RippleHandlers(() => {
     return this.ripple;
@@ -63,21 +78,35 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     }
   }
 
-  protected renderPicture(): TemplateResult {
+  protected renderPicture(): HTMLTemplateResult {
     return html`<div class="fwc-avatar__picture-container">
       <fwc-picture class="fwc-avatar__picture" src=${ifDefined(this.src)} cover></fwc-picture>
     </div>`;
   }
 
-  protected renderValue(): TemplateResult {
+  protected renderValue(): HTMLTemplateResult {
     return html`<span class="fwc-avatar__value">${this.value}</span>`;
   }
 
-  protected renderSlot(): TemplateResult {
+  protected renderSlot(): HTMLTemplateResult {
     return html`<slot></slot>`;
   }
 
-  protected render(): TemplateResult {
+  protected renderTooltip(): HTMLTemplateResult {
+    return html`<fwc-tooltip
+      content=${ifDefined(this.tooltip)}
+      placement=${ifDefined(this.tooltipPlacement)}
+      .anchor=${this}
+    ></fwc-tooltip>`;
+  }
+
+  protected renderRipple(): HTMLTemplateResult | string {
+    return this.clickable
+      ? html`<fwc-ripple class="fwc-avatar__ripple" disabled="${ifDefined(this.disabled)}" unbounded></fwc-ripple>`
+      : '';
+  }
+
+  protected render(): HTMLTemplateResult {
     const content = this.src ? this.renderPicture() : this.value ? this.renderValue() : this.renderSlot();
     return html`<span
       class="fwc-avatar__container"
@@ -89,14 +118,8 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
       @touchstart="${this.handleRippleActivate}"
       @touchend="${this.handleRippleDeactivate}"
       @touchcancel="${this.handleRippleDeactivate}"
-      >${this.renderRipple()}<slot name="badge"></slot>${content}</span
+      >${this.renderRipple()}<slot name="badge"></slot>${content}${this.renderTooltip()}</span
     >`;
-  }
-
-  protected renderRipple(): TemplateResult | string {
-    return this.clickable
-      ? html`<fwc-ripple class="fwc-avatar__ripple" disabled="${ifDefined(this.disabled)}" unbounded></fwc-ripple>`
-      : '';
   }
 
   @eventOptions({ passive: true })

@@ -5,5 +5,11 @@
     "outDir": "./lib"
   },
   "include": ["src/**/*"],
-  "references": [{ "path": "../badge" }, { "path": "../core" }, { "path": "../picture" }, { "path": "../ripple" }]
+  "references": [
+    { "path": "../badge" },
+    { "path": "../core" },
+    { "path": "../picture" },
+    { "path": "../ripple" },
+    { "path": "../tooltip" }
+  ]
 }

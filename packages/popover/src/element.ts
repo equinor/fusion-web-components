@@ -5,7 +5,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { Placement } from '@popperjs/core';
 
 import style from './element.css';
-import { popperjs, Options, PopperModifier } from './directories/popperjs';
+import { popperjs, Options, PopperModifier } from './directives/popperjs';
 
 export type PopoverElementProps = {
   disabled?: boolean;

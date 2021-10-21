@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.3...@equinor/fusion-wc-storybook@1.14.4) (2021-10-21)
+
+
+### Bug Fixes
+
+* fixed color and styling issues ([3afbdac](https://github.com/equinor/fusion-web-components/commit/3afbdac6a6f63938395b9619f5ad06895a42379a))
+* fixed story headers ([a8e53d8](https://github.com/equinor/fusion-web-components/commit/a8e53d88b1860ece71cce5598a613fad561061a3))
+* styling fixes and addition of events ([7c50173](https://github.com/equinor/fusion-web-components/commit/7c50173f0a041c846e3e9037b9468de074229978))
+
+
+
+
+
 ## [1.14.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.2...@equinor/fusion-wc-storybook@1.14.3) (2021-10-20)
 
 

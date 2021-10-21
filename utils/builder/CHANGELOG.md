@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.3...@equinor/fusion-wc-builder@1.0.4) (2021-10-21)
+
+
+### Bug Fixes
+
+* fixed color and styling issues ([3afbdac](https://github.com/equinor/fusion-web-components/commit/3afbdac6a6f63938395b9619f5ad06895a42379a))
+
+
+
+
+
 ## [1.0.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.2...@equinor/fusion-wc-builder@1.0.3) (2021-09-23)
 
 

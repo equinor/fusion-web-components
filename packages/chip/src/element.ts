@@ -16,11 +16,12 @@ export type ChipElementProps = {
   tooltip?: string;
   active?: boolean;
   clickable?: boolean;
-  removeable?: boolean;
+  removable?: boolean;
   disabled?: boolean;
 };
 
 /**
+ * TODO: Chips that are set to both removable and clickable will not handle the 'click' and 'remove' events correctly.
  * @tag fwc-chip
  * @property {ChipSize} size - Set the size of the chip element
  * @property {ChipVariant} variant - Set the variant of the chip element
@@ -30,7 +31,7 @@ export type ChipElementProps = {
  * @property {string} tooltip - Set a tooltip text to display on hover
  * @property {boolean} active - Set the chip as active (selected)
  * @property {boolean} clickable - Set the chip as clickable to render hover/click effects
- * @property {boolean} removeable - Set the chip as removeable to render remove icon
+ * @property {boolean} removable - Set the chip as removable to render remove icon
  * @property {boolean} disabled - Set the chip to render as disabled
  *
  * @cssprop {theme.colors.text.static_icons__tertiary} --fwc-chip-base-color - Base color of the element
@@ -96,10 +97,10 @@ export class ChipElement extends LitElement implements ChipElementProps {
   clickable?: boolean;
 
   /**
-   * If the chip is removeable (renders clickable remove icon)
+   * If the chip is removable (renders clickable remove icon)
    */
   @property({ type: Boolean, reflect: true })
-  removeable?: boolean;
+  removable?: boolean;
 
   /**
    * If the chip is disabled
@@ -107,13 +108,15 @@ export class ChipElement extends LitElement implements ChipElementProps {
   @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
-  protected handleOnClick(): void {
-    this.dispatchEvent(new Event('clicked'));
+  protected handleOnClick(e: PointerEvent): void {
+    if (this.clickable) {
+      this.dispatchEvent(new PointerEvent('clicked', e));
+    }
   }
 
-  protected handleRemoveOnClick(): void {
-    if (this.removeable) {
-      this.dispatchEvent(new Event('remove'));
+  protected handleRemoveOnClick(e: PointerEvent): void {
+    if (this.removable) {
+      this.dispatchEvent(new PointerEvent('remove', e));
     }
   }
 
@@ -136,10 +139,10 @@ export class ChipElement extends LitElement implements ChipElementProps {
   }
 
   protected renderRemoveIcon(): TemplateResult {
-    if (this.removeable) {
-      return html`<fwc-icon class="fwc-chip__remove" icon="close" onclick=${this.handleRemoveOnClick}></fwc-icon>`;
+    if (this.removable) {
+      return html`<fwc-icon class="fwc-chip__remove" icon="close" @click=${this.handleRemoveOnClick}></fwc-icon>`;
     }
-    return html`<slot class="fwc-chip__remove" name="remove" onclick=${this.handleRemoveOnClick}></slot>`;
+    return html`<slot class="fwc-chip__remove" name="remove" @click=${this.handleRemoveOnClick}></slot>`;
   }
 
   protected renderContent(): TemplateResult {
@@ -150,7 +153,7 @@ export class ChipElement extends LitElement implements ChipElementProps {
   }
 
   protected render(): TemplateResult {
-    return html`<span class="fwc-chip"
+    return html`<span class="fwc-chip" @click=${this.handleOnClick}
       >${this.renderGraphic()} ${this.renderContent()} ${this.renderRemoveIcon()}</span
     >`;
   }

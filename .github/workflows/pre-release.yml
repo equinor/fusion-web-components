@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           registry-url: https://registry.npmjs.org
+          node-version: '14'
 
       - name: Config git user
         run: |

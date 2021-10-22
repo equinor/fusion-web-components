@@ -1,27 +1,41 @@
 import { CSSResult, html, TemplateResult } from 'lit';
-import { property, query } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 
 import Checkbox from '@equinor/fusion-wc-checkbox';
-import { ListItemElement, ListItemElementProps } from '../list-item';
+import { ListItemElement } from '../list-item';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list-item.css';
 import style from './element.css';
+import { GraphicType } from '@material/mwc-list/mwc-list-item-base';
 
 // persist elements
 Checkbox;
 
-export class CheckListItemElement extends ListItemElement implements ListItemElementProps {
+/**
+ * Element for check list item
+ * {@inheritdoc}
+ *
+ * @tag fwc-check-list-item
+ *
+ * @property {boolean} left - Displays the checkbox on the left. Overrides graphic.
+ *
+ * @summary Enhanced check list item element based on [FWC Checkbox](https://github.com/equinor/fusion-web-components/tree/main/packages/checkbox)
+ */
+export class CheckListItemElement extends ListItemElement {
   static styles: CSSResult[] = [mdcStyle, style];
 
-  // TODO: @maoft missing description
-  @query('slot')
-  protected override slotElement!: HTMLSlotElement | null;
+  /**
+   * Displays the checkbox on the left. Overrides graphic.
+   */
+  @property({ type: Boolean })
+  left = false;
 
-  @query('mwc-checkbox')
-  protected checkboxElement!: Checkbox;
-
-  @property({ type: Boolean }) left = false;
+  /**
+   * Determines which graphic layout to show and enables the graphic slot.
+   */
   @property({ type: String, reflect: true })
+  override graphic: GraphicType = 'control';
+
   override render(): TemplateResult<1> {
     const checkboxClasses = {
       'fwc-list-item__checkbox-right': !this.left,

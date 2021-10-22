@@ -3,8 +3,12 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const style = css`
   :host {
-    --mdc-list-vertical-padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
-    --mdc-list-side-padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
+    --fwc-list-vertical-padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    --fwc-list-side-padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
+    --fwc-list-inset-margin: calc(4 * ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))});
+    --mdc-list-vertical-padding: var(--fwc-list-vertical-padding);
+    --mdc-list-side-padding: var(--fwc-list-side-padding);
+    --mdc-list-inset-margin: var(--fwc-list-inset-margin);
   }
 `;
 

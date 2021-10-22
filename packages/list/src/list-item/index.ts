@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { ListItemElement, ListItemElementProps } from './element';
+import { ListItemElement } from './element';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 
@@ -15,10 +15,7 @@ declare global {
 
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<ListItemElementProps & React.HTMLAttributes<ListItemElement>>,
-        ListItemElement
-      >;
+      [tag]: React.DetailedHTMLProps<React.PropsWithChildren<React.HTMLAttributes<ListItemElement>>, ListItemElement>;
     }
   }
 }

@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { RadioListItemElement, RadioListItemElementProps } from './element';
+import { RadioListItemElement } from './element';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 
@@ -16,7 +16,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<RadioListItemElementProps & React.HTMLAttributes<RadioListItemElement>>,
+        React.PropsWithChildren<React.HTMLAttributes<RadioListItemElement>>,
         RadioListItemElement
       >;
     }

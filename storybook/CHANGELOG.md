@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.4...@equinor/fusion-wc-storybook@1.14.5) (2021-10-22)
+
+
+### Bug Fixes
+
+* added docs and fixed several bugs with refactoring ([85348c9](https://github.com/equinor/fusion-web-components/commit/85348c9ca4a3520b208375012e94cbec5064286a))
+
+
+
+
+
 ## [1.14.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.3...@equinor/fusion-wc-storybook@1.14.4) (2021-10-21)
 
 

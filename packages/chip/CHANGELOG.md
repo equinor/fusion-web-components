@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.3...@equinor/fusion-wc-chip@0.2.4) (2021-10-26)
+
+
+### Bug Fixes
+
+* **chip:** rendering of slots ([c50c707](https://github.com/equinor/fusion-web-components/commit/c50c7078c31504c34b99637ef9597edef50d98b0))
+
+
+
+
+
+## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.2...@equinor/fusion-wc-chip@0.2.3) (2021-10-22)
+
+
+### Bug Fixes
+
+* force release ([077adb6](https://github.com/equinor/fusion-web-components/commit/077adb64953e7e8b6b9ba2c60d64a3d4b4695546))
+
+
+
+
+
 ## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.1...@equinor/fusion-wc-chip@0.2.2) (2021-10-21)
 
 

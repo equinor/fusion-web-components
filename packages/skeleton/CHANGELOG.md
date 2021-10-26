@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.2...@equinor/fusion-wc-skeleton@0.2.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* added documentation and icon name attribute ([120732a](https://github.com/equinor/fusion-web-components/commit/120732a00448044f1b81694e3bd5496e324bc547))
+* missing package ([6de44af](https://github.com/equinor/fusion-web-components/commit/6de44af69adb1b1ad99f81711995e75b86690fed))
+
+
+
+
+
 ## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.1...@equinor/fusion-wc-skeleton@0.2.2) (2021-10-22)
 
 **Note:** Version bump only for package @equinor/fusion-wc-skeleton

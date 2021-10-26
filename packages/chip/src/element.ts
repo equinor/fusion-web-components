@@ -131,31 +131,26 @@ export class ChipElement extends LitElement implements ChipElementProps {
     }
   }
 
-  protected renderGraphic(): TemplateResult {
-    if (this.icon) {
-      return html`<fwc-icon class="fwc-chip__graphic" icon=${this.icon}></fwc-icon>`;
-    }
-    return html`<slot class="fwc-chip__graphic" name="graphic"></slot>`;
+  protected renderGraphic(): TemplateResult | null {
+    return this.icon ? html`<fwc-icon class="fwc-chip__graphic" icon=${this.icon}></fwc-icon>` : null;
   }
 
-  protected renderRemoveIcon(): TemplateResult {
-    if (this.removable) {
-      return html`<fwc-icon class="fwc-chip__remove" icon="close" @click=${this.handleRemoveOnClick}></fwc-icon>`;
-    }
-    return html`<slot class="fwc-chip__remove" name="remove" @click=${this.handleRemoveOnClick}></slot>`;
+  protected renderRemoveIcon(): TemplateResult | null {
+    return this.removable
+      ? html`<fwc-icon class="fwc-chip__remove" icon="close" @click=${this.handleRemoveOnClick}> </fwc-icon>`
+      : null;
   }
 
-  protected renderContent(): TemplateResult {
-    if (this.value) {
-      return html`<span>${this.value}</span>`;
-    }
-    return html`<slot></slot>`;
+  protected renderContent(): TemplateResult | string | null {
+    return this.value || null;
   }
 
   protected render(): TemplateResult {
-    return html`<span class="fwc-chip" @click=${this.handleOnClick}
-      >${this.renderGraphic()} ${this.renderContent()} ${this.renderRemoveIcon()}</span
-    >`;
+    return html`<span class="fwc-chip" @click=${this.handleOnClick}>
+      <slot class="fwc-chip__graphic" name="graphic">${this.renderGraphic()}</slot>
+      <slot>${this.renderContent()}</slot>
+      <slot class="fwc-chip__remove" name="remove" @click=${this.handleRemoveOnClick}>${this.renderRemoveIcon()}</slot>
+    </span>`;
   }
 }
 

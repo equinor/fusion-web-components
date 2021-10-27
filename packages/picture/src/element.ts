@@ -96,6 +96,8 @@ export class PictureElement extends LitElement implements PictureElementProps {
       backgroundImage: this.loaded ? `url(${this.currentSrc})` : '',
       backgroundPosition: this.position || '',
       backgroundSize: this.cover ? 'cover' : 'contain',
+      width: this.cover ? '100%' : undefined,
+      height: this.cover ? `'100%` : undefined,
     };
 
     const observerInfo: ObserverInfo = {

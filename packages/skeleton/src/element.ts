@@ -73,12 +73,15 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
   @property({ type: String })
   icon?: IconName;
 
-  renderIcon(): HTMLTemplateResult {
+  protected renderIcon(): HTMLTemplateResult {
+    if (this.variant === 'text') {
+      return html``;
+    }
     const icon = this.icon ? html`<fwc-icon icon=${ifDefined(this.icon)}></fwc-icon>` : undefined;
     return html`<slot class="fwc-skeleton__icon" name="icon">${icon}</slot>`;
   }
 
-  render(): HTMLTemplateResult {
+  protected override render(): HTMLTemplateResult {
     return html`<span>${this.renderIcon()}</span>`;
   }
 }

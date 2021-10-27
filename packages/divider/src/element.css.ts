@@ -4,18 +4,20 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 export const style = css`
   :host {
     display: flex;
+    --fwc-divider-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
   }
-  .divider {
+  :host .divider {
     border: none;
+    background-color: var(--fwc-divider-color);
   }
   :host([color='medium']) .divider {
-    background-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    --fwc-divider-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
   }
   :host([color='light']) .divider {
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    --fwc-divider-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
   :host([color='lighter']) .divider {
-    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
+    --fwc-divider-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
   }
   :host([orientation='horizontal']) .divider {
     width: 100%;

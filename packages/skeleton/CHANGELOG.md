@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.3...@equinor/fusion-wc-skeleton@0.2.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* changed render methods from public to protected and removed icon from text variant ([0d1f77f](https://github.com/equinor/fusion-web-components/commit/0d1f77fa509c8db3f79c5a4360425a19c949297e))
+
+
+
+
+
 ## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.2...@equinor/fusion-wc-skeleton@0.2.3) (2021-10-26)
 
 

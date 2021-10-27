@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-picture",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

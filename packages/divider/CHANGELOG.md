@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-divider@0.2.6...@equinor/fusion-wc-divider@0.2.7) (2021-10-27)
+
+
+### Bug Fixes
+
+* added docs and css variable ([7a26ee0](https://github.com/equinor/fusion-web-components/commit/7a26ee0359d9ce8442d08890388eac306b87d3f8))
+
+
+
+
+
 ## [0.2.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-divider@0.2.5...@equinor/fusion-wc-divider@0.2.6) (2021-10-22)
 
 **Note:** Version bump only for package @equinor/fusion-wc-divider

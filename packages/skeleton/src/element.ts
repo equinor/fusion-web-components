@@ -73,6 +73,9 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
   @property({ type: String })
   icon?: IconName;
 
+  /**
+   * Renders the icon provided by icon name or the slotted icon
+   */
   protected renderIcon(): HTMLTemplateResult {
     if (this.variant === 'text') {
       return html``;
@@ -81,6 +84,7 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
     return html`<slot class="fwc-skeleton__icon" name="icon">${icon}</slot>`;
   }
 
+  /** {@inheritDoc} */
   protected override render(): HTMLTemplateResult {
     return html`<span>${this.renderIcon()}</span>`;
   }

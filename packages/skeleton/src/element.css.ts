@@ -85,7 +85,6 @@ export const style = css`
   }
   :host([variant='text'][size='x-small']) {
     height: 1em;
-    font-size: 0.875rem;
     line-height: 1em;
   }
   :host([variant='text'][size='x-small']:not([fluid])) {
@@ -93,7 +92,6 @@ export const style = css`
   }
   :host([variant='text'][size='small']) {
     height: 1em;
-    font-size: 0.875rem;
     line-height: 1em;
   }
   :host([variant='text'][size='small']:not([fluid])) {
@@ -101,7 +99,6 @@ export const style = css`
   }
   :host([variant='text'][size='medium']) {
     height: 1em;
-    font-size: 0.875rem;
     line-height: 1em;
   }
   :host([variant='text'][size='medium']:not([fluid])) {
@@ -109,7 +106,6 @@ export const style = css`
   }
   :host([variant='text'][size='large']) {
     height: 1em;
-    font-size: 0.875rem;
     line-height: 1em;
   }
   :host([variant='text'][size='large']:not([fluid])) {

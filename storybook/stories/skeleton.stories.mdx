@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { SkeletonSize } from '@equinor/fusion-wc-skeleton';
-import Skeleton from './Components/Skeleton';
+import Skeleton, { SkeletonWrapper } from './Components/Skeleton';
 
 export const Container = ({ title, children }) => (
   <section>
@@ -32,10 +32,20 @@ export const Template = (props) => (
       </fwc-skeleton>
     </Container>
     <Container title="Inactive">
-      <fwc-skeleton size="x-small" inactive {...props} />
-      <fwc-skeleton size="small" inactive {...props} />
-      <fwc-skeleton size="medium" inactive {...props} />
-      <fwc-skeleton size="large" inactive {...props} />
+      <fwc-skeleton inactive {...props} />
+    </Container>
+    <Container title="Fluid">
+      <fwc-skeleton fluid {...props} />
+    </Container>
+    <Container title="Wrapper">
+      <fwc-skeleton-wrapper direction="horizontal">
+        <fwc-skeleton icon="image" {...props} />
+        <fwc-skeleton-wrapper direction="vertical">
+          <fwc-skeleton variant="text" size="large" />
+          <fwc-skeleton variant="text" />
+          <fwc-skeleton variant="text" size="large" />
+        </fwc-skeleton-wrapper>
+      </fwc-skeleton-wrapper>
     </Container>
   </div>
 );

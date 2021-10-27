@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.4...@equinor/fusion-wc-skeleton@0.2.5) (2021-10-27)
+
+
+### Bug Fixes
+
+* fixed fluid ([7d255e1](https://github.com/equinor/fusion-web-components/commit/7d255e19609ca9d539e15d36b1c3216c6d046a21))
+
+
+
+
+
 ## [0.2.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.3...@equinor/fusion-wc-skeleton@0.2.4) (2021-10-27)
 
 

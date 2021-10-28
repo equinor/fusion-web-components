@@ -1,6 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { DividerElement, DividerElementProps } from './element';
+import { DividerElement } from './element';
+import { DividerElementProps } from './types';
+
 export * from './element';
+export * from './types';
 
 export const tag = 'fwc-divider';
 

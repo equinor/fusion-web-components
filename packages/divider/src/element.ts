@@ -1,21 +1,7 @@
 import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators.js';
+import { DividerElementProps, DividerColor, DividerSpacing, DividerVariant, DividerOrientation } from './types';
 import style from './element.css';
-
-export type DividerColor = 'medium' | 'light' | 'lighter';
-
-export type DividerSpacing = 'small' | 'medium' | 'large';
-
-export type DividerVariant = 'full' | 'middle' | 'list';
-
-export type DividerOrientation = 'horizontal' | 'vertical';
-
-export type DividerElementProps = {
-  color?: DividerColor;
-  spacing?: DividerSpacing;
-  variant?: DividerVariant;
-  orientation?: DividerOrientation;
-};
 
 /**
  * Element for rendering a divider
@@ -37,32 +23,32 @@ export class DividerElement extends LitElement implements DividerElementProps {
    * Color of the divider.
    */
   @property({ type: String, reflect: true })
-  color: DividerColor = 'medium';
+  color: DividerColor = DividerColor.Medium;
 
   /**
    * Spacing of the divider.
    */
   @property({ type: String, reflect: true })
-  spacing: DividerSpacing = 'medium';
+  spacing: DividerSpacing = DividerSpacing.Medium;
 
   /**
    * Variant of the divider.
    */
   @property({ type: String, reflect: true })
-  variant: DividerVariant = 'full';
+  variant: DividerVariant = DividerVariant.Full;
 
   /**
    * Orientation of the divider.
    */
   @property({ type: String, reflect: true })
-  orientation: DividerOrientation = 'horizontal';
+  orientation: DividerOrientation = DividerOrientation.Horizontal;
 
   /** {@inheritDoc} */
   protected override updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {
       if (this.variant === 'list' && this.orientation === 'vertical') {
-        this.variant = 'full';
+        this.variant = DividerVariant.Full;
       }
       this.requestUpdate();
     }

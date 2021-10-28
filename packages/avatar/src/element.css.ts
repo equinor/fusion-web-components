@@ -5,19 +5,19 @@ export const style = css`
   :host {
     position: relative;
     display: inline-block;
-    --fwc-avatar-font-color: #fff;
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-avatar-ink-color: ${unsafeCSS(theme.colors.text.static_icons__primary_white.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
   :host .fwc-avatar__container {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    color: var(--fwc-avatar-font-color);
+    color: var(--fwc-avatar-ink-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--fwc-avatar-color);
+    background-color: var(--fwc-avatar-base-color);
   }
   :host([border]) .fwc-avatar__picture-container {
     width: calc(100% - 0.5rem);
@@ -39,7 +39,7 @@ export const style = css`
     height: 100%;
   }
   :host([disabled]) .fwc-avatar__picture {
-    opacity: 0.7;
+    opacity: 0.5;
   }
   :host .fwc-avatar__value {
     display: contents;
@@ -74,22 +74,22 @@ export const style = css`
     line-height: 5rem;
   }
   :host([color='primary']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
   :host([color='secondary']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
   }
   :host([color='success']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
   }
   :host([color='danger']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
   :host([color='warning']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
   }
   :host([color='disabled']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
   }
   :host([clickable]:hover) .fwc-avatar__container {
     cursor: pointer;

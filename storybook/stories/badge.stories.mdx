@@ -29,24 +29,16 @@ export const Template = (props) => (
     </Container>
     <Container title="Sizes">
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="x-small" {...props}>
-          xs
-        </fwc-badge>
+        <fwc-badge size="x-small" {...props}></fwc-badge>
       </BadgeWrapper>
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="small" {...props}>
-          S
-        </fwc-badge>
+        <fwc-badge size="small" {...props}></fwc-badge>
       </BadgeWrapper>
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="medium" {...props}>
-          M
-        </fwc-badge>
+        <fwc-badge size="medium" {...props}></fwc-badge>
       </BadgeWrapper>
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="large" {...props}>
-          L
-        </fwc-badge>
+        <fwc-badge size="large" {...props}></fwc-badge>
       </BadgeWrapper>
     </Container>
     <Container title="Colors">
@@ -69,38 +61,43 @@ export const Template = (props) => (
         <fwc-badge size="medium" color="disabled" {...props} />
       </BadgeWrapper>
     </Container>
-    <Container title="Content">
+    <Container title="Icon">
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge {...props} />
+        <fwc-badge size="small" icon="person" {...props}>
+          S
+        </fwc-badge>
       </BadgeWrapper>
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge value="10" {...props} />
+        <fwc-badge size="medium" icon="person" {...props}>
+          M
+        </fwc-badge>
       </BadgeWrapper>
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge icon="settings" {...props} />
+        <fwc-badge size="large" icon="person" {...props}>
+          L
+        </fwc-badge>
+      </BadgeWrapper>
+    </Container>
+    <Container title="Value">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="small" value="S" {...props}>
+          S
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" value="M" {...props}>
+          M
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="large" value="L" {...props}>
+          L
+        </fwc-badge>
       </BadgeWrapper>
     </Container>
     <Container title="Clickable">
       <BadgeWrapper circular={props.circular}>
-        <fwc-badge value="10" color="primary" clickable {...props} />
-      </BadgeWrapper>
-      <BadgeWrapper circular={props.circular}>
         <fwc-badge icon="settings" color="primary" clickable {...props} />
-      </BadgeWrapper>
-      <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="medium" color="primary" clickable {...props} />
-      </BadgeWrapper>
-      <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="medium" color="secondary" clickable {...props} />
-      </BadgeWrapper>
-      <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="medium" color="success" clickable {...props} />
-      </BadgeWrapper>
-      <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="medium" color="danger" clickable {...props} />
-      </BadgeWrapper>
-      <BadgeWrapper circular={props.circular}>
-        <fwc-badge size="medium" color="warning" clickable {...props} />
       </BadgeWrapper>
     </Container>
     <Container title="Disabled">

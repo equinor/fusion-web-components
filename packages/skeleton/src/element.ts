@@ -38,7 +38,7 @@ export type SkeletonElementProps = {
  * @cssprop {theme.colors.interactive.disabled__fill} --fwc-skeleton-fill-color - background color of the element.
  * @cssprop {theme.colors.interactive.disabled__text} --fwc-skeleton-ink-color - text color of the element.
  *
- * Icons can be slotted in with a slot named icon.
+ * Icons can be slotted in with a slot named 'icon'.
  */
 export class SkeletonElement extends LitElement implements SkeletonElementProps {
   static styles: CSSResult[] = [style];

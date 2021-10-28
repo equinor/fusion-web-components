@@ -6,48 +6,60 @@ export const style = css`
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     --fwc-badge-size: 1.5rem;
     --fwc-badge-font-size: 0.75rem;
+    --fwc-badge-icon-size: 0.685rem;
+    position: absolute;
+    z-index: 1;
+  }
+  :host .fwc-badge__container {
     background-color: var(--fwc-badge-color);
     min-width: var(--fwc-badge-size);
     height: var(--fwc-badge-size);
     font-size: var(--fwc-badge-font-size);
-    border-radius: var(--fwc-badge-font-size);
-    position: absolute;
+    border-radius: calc(var(--fwc-badge-size) / 2);
     box-sizing: border-box;
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
+    place-content: center;
     overflow: hidden;
     color: #fff;
-    z-index: 1;
   }
-  :host([size='x-small']:not([icon])) {
-    padding: 0 0.15rem;
+  :host .fwc-avatar__ripple {
+    z-index: 5;
   }
-  :host([size='small']:not([icon])) {
-    padding: 0 0.2rem;
+  :host .fwc-badge__icon {
+    font-size: var(--fwc-badge-icon-size);
   }
-  :host([size='medium']:not([icon])) {
-    padding: 0 0.35rem;
+  :host .fwc-badge__value {
+    font-size: var(--fwc-badge-icon-size);
   }
-  :host([size='large']:not([icon])) {
+  :host([size='small']) .fwc-badge__value {
+    padding: 0 0.125rem;
+  }
+  :host([size='medium']) .fwc-badge__value {
+    padding: 0 0.375rem;
+  }
+  :host([size='large']) .fwc-badge__value {
     padding: 0 0.5rem;
   }
   :host([size='x-small']) {
-    --fwc-badge-size: 0.75rem;
-    --fwc-badge-font-size: 0.375rem;
+    --fwc-badge-size: 0.375rem;
   }
   :host([size='small']) {
     --fwc-badge-size: 1rem;
     --fwc-badge-font-size: 0.5rem;
+    --fwc-badge-icon-size: 0.375rem;
   }
   :host([size='medium']) {
     --fwc-badge-size: 1.5rem;
     --fwc-badge-font-size: 0.75rem;
+    --fwc-badge-icon-size: 0.625rem;
   }
   :host([size='large']) {
     --fwc-badge-size: 2rem;
     --fwc-badge-font-size: 1rem;
+    --fwc-badge-icon-size: 0.875rem;
   }
   :host([position='top-left']) {
     transform: scale(1) translate(-50%, -50%);
@@ -100,32 +112,17 @@ export const style = css`
   :host([color='primary']) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
-  :host([color='primary'][clickable]:hover) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
-  }
   :host([color='secondary']) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-  }
-  :host([color='secondary'][clickable]:hover) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.secondary__link_hover.getVariable('color'))};
   }
   :host([color='success']) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
   }
-  :host([color='success'][clickable]:hover) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.success__hover.getVariable('color'))};
-  }
   :host([color='danger']) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
-  :host([color='danger'][clickable]:hover) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.danger__hover.getVariable('color'))};
-  }
   :host([color='warning']) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-  }
-  :host([color='warning'][clickable]:hover) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.warning__hover.getVariable('color'))};
   }
   :host([color='disabled']) {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};

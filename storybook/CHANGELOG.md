@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.11...@equinor/fusion-wc-storybook@1.14.12) (2021-10-27)
+
+
+### Bug Fixes
+
+* added wrapper component and fixed spacing ([9e3186b](https://github.com/equinor/fusion-web-components/commit/9e3186b5065ef04c354931fffaf68a293d905388))
+
+
+
+
+
 ## [1.14.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.10...@equinor/fusion-wc-storybook@1.14.11) (2021-10-27)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

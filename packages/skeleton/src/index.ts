@@ -1,6 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { SkeletonElement, SkeletonElementProps } from './element';
+import { SkeletonElement } from './element';
+import { SkeletonElementProps } from './types';
+
 export * from './element';
+export * from './types';
 
 export const tag = 'fwc-skeleton';
 

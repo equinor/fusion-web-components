@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.14.11",
+  "version": "1.14.12",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@equinor/fusion-wc-avatar": "^1.0.27",
     "@equinor/fusion-wc-badge": "^0.2.13",
     "@equinor/fusion-wc-button": "^1.1.20",
@@ -27,20 +27,20 @@
     "@equinor/fusion-wc-popover": "^1.0.15",
     "@equinor/fusion-wc-radio": "^0.2.12",
     "@equinor/fusion-wc-ripple": "^0.2.5",
-    "@equinor/fusion-wc-skeleton": "^0.2.5",
+    "@equinor/fusion-wc-skeleton": "^0.2.6",
     "@equinor/fusion-wc-switch": "^0.2.12",
     "@equinor/fusion-wc-textarea": "^0.4.3",
     "@equinor/fusion-wc-textinput": "^0.5.2",
     "@equinor/fusion-wc-theme": "^0.2.17",
-    "@storybook/addon-docs": "^6.3.8",
-    "@storybook/builder-webpack5": "^6.3.8",
-    "@storybook/manager-webpack5": "^6.3.8",
-    "@storybook/react": "^6.3.8",
-    "babel-loader": "^8.2.2",
+    "@storybook/addon-docs": "^6.3.12",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "babel-loader": "^8.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "storybook": "^6.3.8",
-    "webpack": "^5.54.0"
+    "storybook": "^6.3.12",
+    "webpack": "^5.60.0"
   }
 }

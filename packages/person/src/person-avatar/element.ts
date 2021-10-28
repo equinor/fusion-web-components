@@ -35,7 +35,7 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
    * Size of the avatar.
    */
   @property({ type: String, reflect: true })
-  size: AvatarSize = 'medium';
+  size: AvatarSize = AvatarSize.Medium;
 
   /**
    * Sets the avatar to be clickable to render hover/ripple effects.
@@ -56,16 +56,16 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     switch (presence.availability) {
       case Availability.Available:
       case Availability.AvailableIdle:
-        return 'success';
+        return BadgeColor.Success;
       case Availability.Away:
       case Availability.BeRightBack:
-        return 'warning';
+        return BadgeColor.Warning;
       case Availability.Busy:
       case Availability.BusyIdle:
       case Availability.DoNotDisturb:
-        return 'danger';
+        return BadgeColor.Danger;
       default:
-        return 'disabled';
+        return BadgeColor.Disabled;
     }
   }
 

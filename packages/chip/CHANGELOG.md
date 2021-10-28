@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.4...@equinor/fusion-wc-chip@0.2.5) (2021-10-28)
+
+
+### Bug Fixes
+
+* updated packages ([b752691](https://github.com/equinor/fusion-web-components/commit/b75269105063dfbb150432bd86426e33d67ba869))
+
+
+
+
+
 ## [0.2.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.3...@equinor/fusion-wc-chip@0.2.4) (2021-10-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-switch@0.2.12...@equinor/fusion-wc-switch@0.2.13) (2021-10-28)
+
+
+### Bug Fixes
+
+* updated packages ([b752691](https://github.com/equinor/fusion-web-components/commit/b75269105063dfbb150432bd86426e33d67ba869))
+
+
+
+
+
 ## [0.2.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-switch@0.2.11...@equinor/fusion-wc-switch@0.2.12) (2021-10-22)
 
 **Note:** Version bump only for package @equinor/fusion-wc-switch

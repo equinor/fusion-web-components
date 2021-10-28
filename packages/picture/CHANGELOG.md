@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-picture@1.0.16...@equinor/fusion-wc-picture@1.0.17) (2021-10-28)
+
+
+### Bug Fixes
+
+* updated packages ([b752691](https://github.com/equinor/fusion-web-components/commit/b75269105063dfbb150432bd86426e33d67ba869))
+
+
+
+
+
 ## [1.0.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-picture@1.0.15...@equinor/fusion-wc-picture@1.0.16) (2021-10-27)
 
 

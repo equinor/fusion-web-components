@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.28](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.27...@equinor/fusion-wc-avatar@1.0.28) (2021-10-28)
+
+
+### Bug Fixes
+
+* added docs, fixed styling, added events and fixed types ([2f1332a](https://github.com/equinor/fusion-web-components/commit/2f1332ac92945761c841364a0f00c42955a75608))
+* added documentation to avatar, renamed css variables and changed types to enum ([472d06b](https://github.com/equinor/fusion-web-components/commit/472d06b492642b87aea7c8d04fe2295f626ebb60))
+* updated packages ([b752691](https://github.com/equinor/fusion-web-components/commit/b75269105063dfbb150432bd86426e33d67ba869))
+
+
+
+
+
 ## [1.0.27](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.26...@equinor/fusion-wc-avatar@1.0.27) (2021-10-27)
 
 **Note:** Version bump only for package @equinor/fusion-wc-avatar

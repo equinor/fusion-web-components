@@ -39,7 +39,7 @@ export const style = css`
     height: 100%;
   }
   :host([disabled]) .fwc-avatar__picture {
-    opacity: 0.7;
+    opacity: 0.5;
   }
   :host .fwc-avatar__value {
     display: contents;

@@ -1,38 +1,13 @@
-import { LitElement, CSSResult, HTMLTemplateResult, PropertyValues, html } from 'lit';
+import { LitElement, HTMLTemplateResult, PropertyValues, html } from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { AvatarElementProps, AvatarSize, AvatarColor } from './types';
 import Picture from '@equinor/fusion-wc-picture';
 import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
 import style from './element.css';
 
 // Persist element
 Picture;
-
-export enum AvatarSize {
-  XSmall = 'x-small',
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
-
-export enum AvatarColor {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Success = 'success',
-  Danger = 'danger',
-  Warning = 'warning',
-  Disabled = 'disabled',
-}
-
-export type AvatarElementProps = {
-  size?: AvatarSize;
-  color?: AvatarColor;
-  value?: string;
-  src?: string;
-  clickable?: boolean;
-  border?: boolean;
-  disabled?: boolean;
-};
 
 /**
  * Element for rendering an avatar.
@@ -51,13 +26,14 @@ export type AvatarElementProps = {
  * @cssprop {theme.colors.text.static_icons__primary_white} --fwc-avatar-ink-color - text color of the element.
  * @cssprop {theme.colors.interactive.primary__resting} --fwc-avatar-base-color - base color of the element.
  *
+ * @fires click - When the element is clicked, only fires when 'clickable' is set to 'true'.
+ *
  * Content can be slotted in with a slot named 'content'.
  */
 export class AvatarElement extends LitElement implements AvatarElementProps {
-  static styles: CSSResult[] = [style];
-
   /**
    * Size of the element.
+   * @default AvatarSize.Medium
    */
   @property({ type: String, reflect: true })
   size: AvatarSize = AvatarSize.Medium;
@@ -110,6 +86,15 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     return this.ripple;
   });
 
+  /**
+   * Handle on click.
+   */
+  protected handleOnClick(e: PointerEvent): void {
+    if (this.clickable) {
+      this.dispatchEvent(new PointerEvent('clicked', e));
+    }
+  }
+
   /** {@inheritDoc} */
   protected override updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
@@ -139,6 +124,13 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   }
 
   /**
+   * Render slotted badge element.
+   */
+  protected renderBadge(): HTMLTemplateResult {
+    return html`<slot name="badge"></slot>`;
+  }
+
+  /**
    * Render the content. 'src' attribute overrides 'value' attribute.
    */
   protected renderContent(): HTMLTemplateResult {
@@ -150,6 +142,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
   protected override render(): HTMLTemplateResult {
     return html`<span
       class="fwc-avatar__container"
+      @click=${this.handleOnClick}
       @focus="${this.handleRippleFocus}"
       @blur="${this.handleRippleBlur}"
       @mousedown="${this.handleRippleActivate}"
@@ -158,7 +151,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
       @touchstart="${this.handleRippleActivate}"
       @touchend="${this.handleRippleDeactivate}"
       @touchcancel="${this.handleRippleDeactivate}"
-      >${this.renderRipple()}<slot name="badge"></slot>${this.renderContent()}</span
+      >${this.renderRipple()}${this.renderBadge()}${this.renderContent()}</span
     >`;
   }
 
@@ -221,5 +214,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     this.rippleHandlers.endFocus();
   }
 }
+
+AvatarElement.styles = [style];
 
 export default AvatarElement;

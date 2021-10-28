@@ -5,6 +5,7 @@ import extractProps from './extract-props';
 import { SkeletonElement, SkeletonElementProps } from '@equinor/fusion-wc-skeleton';
 import { SkeletonWrapperElement, SkeletonWrapperElementProps } from '@equinor/fusion-wc-skeleton/lib/skeleton-wrapper';
 
+// Persist elements
 SkeletonElement;
 SkeletonWrapperElement;
 

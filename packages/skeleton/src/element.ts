@@ -1,27 +1,12 @@
 import { LitElement, CSSResult, HTMLTemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { SkeletonElementProps, SkeletonSize, SkeletonVariant } from './types';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import style from './element.css';
 
 // Persist element
 Icon;
-
-export enum SkeletonVariant {
-  Circle = 'circle',
-  Rectangle = 'rectangle',
-  Square = 'square',
-  Text = 'text',
-}
-
-export type SkeletonSize = 'x-small' | 'small' | 'medium' | 'large';
-export type SkeletonElementProps = {
-  size?: SkeletonSize;
-  variant?: SkeletonVariant;
-  inactive?: boolean;
-  fluid?: boolean;
-  icon?: IconName;
-};
 
 /**
  * Element for rendering pending state placeholders for components.
@@ -45,24 +30,28 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
 
   /**
    * Size of the skeleton element.
+   * @default medium
    */
   @property({ type: String, reflect: true })
-  size: SkeletonSize = 'medium';
+  size: SkeletonSize = SkeletonSize.Medium;
 
   /**
    * Variant of the skeleton element.
+   * @default rectangle
    */
   @property({ type: String, reflect: true })
   variant: SkeletonVariant = SkeletonVariant.Rectangle;
 
   /**
    * Disables the skeleton element's active animation.
+   * @default false
    */
   @property({ type: Boolean, reflect: true })
   inactive = false;
 
   /**
    * Expands the skeleton element width to the width of the parent.
+   * @default false
    */
   @property({ type: Boolean, reflect: true })
   fluid = false;

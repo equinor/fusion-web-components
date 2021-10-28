@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.6...@equinor/fusion-wc-skeleton@0.2.7) (2021-10-28)
+
+
+### Bug Fixes
+
+* added documentation to avatar, renamed css variables and changed types to enum ([472d06b](https://github.com/equinor/fusion-web-components/commit/472d06b492642b87aea7c8d04fe2295f626ebb60))
+* upgraded package and fixed typings ([72a2269](https://github.com/equinor/fusion-web-components/commit/72a226969cd30445d608cc98be1e61806886936d))
+
+
+
+
+
 ## [0.2.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.5...@equinor/fusion-wc-skeleton@0.2.6) (2021-10-27)
 
 

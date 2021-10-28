@@ -13,15 +13,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-avatar": "^1.0.17",
-    "@equinor/fusion-wc-badge": "^0.2.5",
-    "@equinor/fusion-wc-core": "1.0.2",
+    "@equinor/fusion-wc-avatar": "^1.0.28",
+    "@equinor/fusion-wc-badge": "^0.2.14",
+    "@equinor/fusion-wc-core": "1.0.3",
     "@lit-labs/task": "^1.0.0",
-    "lit": "2.0.0"
+    "lit": "2.0.2"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.2",
-    "typescript": "^4.4.3",
+    "typescript": "^4.4.4",
     "web-component-analyzer": "^1.1.6"
   },
   "publishConfig": {

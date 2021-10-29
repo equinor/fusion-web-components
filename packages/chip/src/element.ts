@@ -108,18 +108,7 @@ export class ChipElement extends LitElement implements ChipElementProps {
   @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
-  protected handleOnClick(e: PointerEvent): void {
-    if (this.clickable) {
-      this.dispatchEvent(new PointerEvent('clicked', e));
-    }
-  }
-
-  protected handleRemoveOnClick(e: PointerEvent): void {
-    if (this.removable) {
-      this.dispatchEvent(new PointerEvent('remove', e));
-    }
-  }
-
+  /** {@inheritDoc} */
   protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('disabled')) {
@@ -131,26 +120,54 @@ export class ChipElement extends LitElement implements ChipElementProps {
     }
   }
 
+  /**
+   * Render the graphic element.
+   */
   protected renderGraphic(): TemplateResult | null {
     return this.icon ? html`<fwc-icon class="fwc-chip__graphic" icon=${this.icon}></fwc-icon>` : null;
   }
 
+  /**
+   * Render the remove icon.
+   */
   protected renderRemoveIcon(): TemplateResult | null {
     return this.removable
       ? html`<fwc-icon class="fwc-chip__remove" icon="close" @click=${this.handleRemoveOnClick}> </fwc-icon>`
       : null;
   }
 
+  /**
+   * Render the content.
+   */
   protected renderContent(): TemplateResult | string | null {
     return this.value || null;
   }
 
+  /** {@inheritDoc} */
   protected render(): TemplateResult {
     return html`<span class="fwc-chip" @click=${this.handleOnClick}>
       <slot class="fwc-chip__graphic" name="graphic">${this.renderGraphic()}</slot>
       <slot>${this.renderContent()}</slot>
       <slot class="fwc-chip__remove" name="remove" @click=${this.handleRemoveOnClick}>${this.renderRemoveIcon()}</slot>
     </span>`;
+  }
+
+  /**
+   * Handle element on click.
+   */
+  protected handleOnClick(e: PointerEvent): void {
+    if (this.clickable) {
+      this.dispatchEvent(new PointerEvent('click', e));
+    }
+  }
+
+  /**
+   * Handle remove icon on click.
+   */
+  protected handleRemoveOnClick(e: PointerEvent): void {
+    if (this.removable) {
+      this.dispatchEvent(new PointerEvent('remove', e));
+    }
   }
 }
 

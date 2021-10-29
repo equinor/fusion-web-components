@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { PersonResolver } from '../types';
+import { PersonResolver } from '../person-provider';
 import { PersonControllerConnectEvent } from '../events';
 
 export type PersonProviderProps = {};
@@ -11,9 +11,15 @@ export class PersonProviderElement extends LitElement implements PersonProviderP
     return this;
   }
 
-  setResolver(resolver: PersonResolver) {
+  setResolver(resolver?: PersonResolver) {
     this.updateCallbacks.forEach((callback) => {
       callback(resolver);
+    });
+  }
+
+  removeResolver() {
+    this.updateCallbacks.forEach((callback) => {
+      callback();
     });
   }
 

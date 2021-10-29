@@ -23,7 +23,7 @@ import style from './element.css';
  * @cssprop {0.75rem} --fwc-badge-font-size - Font size of the text value.
  * @cssprop {0.685em} --fwc-badge-icon-size - Size of the icon.
  *
- * @fires click - When the element is clicked, only fires when 'clickable' is set to 'true'.
+ * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
  *
  * Value can be slotted in with a slot named 'value'.
  * Icon can be slotted in with a slot named 'icon'. Overrides the 'value' slot.
@@ -110,15 +110,6 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
   protected rippleHandlers = new RippleHandlers(() => {
     return this.ripple;
   });
-
-  /**
-   * Handle on click.
-   */
-  protected handleOnClick(e: PointerEvent): void {
-    if (this.clickable) {
-      this.dispatchEvent(new PointerEvent('clicked', e));
-    }
-  }
 
   /** {@inheritDoc} */
   protected updated(changedProperties: PropertyValues): void {
@@ -227,6 +218,15 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
    */
   protected handleRippleBlur(): void {
     this.rippleHandlers.endFocus();
+  }
+
+  /**
+   * Handle on click.
+   */
+  protected handleOnClick(e: PointerEvent): void {
+    if (this.clickable && !this.disabled) {
+      this.dispatchEvent(new PointerEvent('click', e));
+    }
   }
 }
 

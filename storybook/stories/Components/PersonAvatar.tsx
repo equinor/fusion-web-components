@@ -1,4 +1,4 @@
-import { PropsWithChildren, createRef, useEffect } from 'react';
+import { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
 
 import extractProps from './extract-props';
 
@@ -6,41 +6,57 @@ import {
   PersonAvatarElement,
   PersonProviderElement,
   PersonAvatarElementProps,
-  Availability,
-  AccountType,
+  PersonAvailability,
+  PersonAccountType,
   PersonResolver,
 } from '@equinor/fusion-wc-person';
 PersonAvatarElement;
 PersonProviderElement;
 
 const mockPersonResolver: PersonResolver = {
-  getDetailsAsync: async (azureId: string) => {
+  getDetails: async (azureId: string) => {
+    await new Promise((res) => setTimeout(res, 3000));
     return await Promise.resolve({
-      azureUniqueId: azureId,
+      azureId: azureId,
       name: 'Albert Einstein',
-      accountType: AccountType.Employee,
+      pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+      accountType: PersonAccountType.Employee,
     });
   },
-  getPresenceAsync: async (azureId: string) => {
+  getPresence: async (azureId: string) => {
+    await new Promise((res) => setTimeout(res, 6000));
     return await Promise.resolve({
-      id: azureId,
-      availability: Availability.Available,
+      azureId: azureId,
+      availability: PersonAvailability.Available,
     });
   },
 };
 
-export const PersonAvatar = ({ children, ...props }: PropsWithChildren<PersonAvatarElementProps>): JSX.Element => {
-  const providerRef = createRef<PersonProviderElement>();
+const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<PersonProviderElement | null> => {
+  const providerRef = useRef<PersonProviderElement>(null);
 
   useEffect(() => {
     if (providerRef?.current) {
-      providerRef.current.setResolver(mockPersonResolver);
+      providerRef.current.setResolver(personResolver);
+
+      return () => {
+        providerRef.current?.removeResolver();
+      };
     }
   }, [providerRef]);
+
+  return providerRef;
+};
+
+export const PersonAvatar = ({ children, ...props }: PropsWithChildren<PersonAvatarElementProps>): JSX.Element => {
+  const providerRef = usePersonProviderRef(mockPersonResolver);
 
   return (
     <fwc-person-provider ref={providerRef}>
       <fwc-person-avatar {...extractProps<PersonAvatarElementProps>(props)}>{children}</fwc-person-avatar>
+      <fwc-person-provider ref={providerRef}>
+        <fwc-person-avatar {...extractProps<PersonAvatarElementProps>(props)}>{children}</fwc-person-avatar>
+      </fwc-person-provider>
     </fwc-person-provider>
   );
 };

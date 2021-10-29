@@ -86,15 +86,6 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     return this.ripple;
   });
 
-  /**
-   * Handle on click.
-   */
-  protected handleOnClick(e: PointerEvent): void {
-    if (this.clickable) {
-      this.dispatchEvent(new PointerEvent('clicked', e));
-    }
-  }
-
   /** {@inheritDoc} */
   protected override updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
@@ -212,6 +203,15 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
    */
   protected handleRippleBlur(): void {
     this.rippleHandlers.endFocus();
+  }
+
+  /**
+   * Handle on click.
+   */
+  protected handleOnClick(e: PointerEvent): void {
+    if (this.clickable) {
+      this.dispatchEvent(new PointerEvent('click', e));
+    }
   }
 }
 

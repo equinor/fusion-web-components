@@ -1,4 +1,4 @@
-import { PersonResolver } from './types';
+import { PersonResolver } from './person-provider';
 
 export type PersonControllerConnectEventDetails = {
   disconnectedCallback: (callback: VoidFunction) => void;

@@ -1,12 +1,12 @@
 export type PersonPresence = {
-  id: string;
-  availability: Availability;
+  azureId: string;
+  availability: PersonAvailability;
 };
 
 export type PersonDetails = {
-  azureUniqueId: string;
+  azureId: string;
   name?: string;
-  accountType?: AccountType;
+  accountType?: PersonAccountType;
   pictureSrc?: string;
 };
 
@@ -14,19 +14,14 @@ export type PersonPicture = {
   src: string;
 };
 
-export interface PersonResolver {
-  getPresenceAsync: (azureId: string) => Promise<PersonPresence>;
-  getDetailsAsync: (azureId: string) => Promise<PersonDetails>;
-}
-
-export enum AccountType {
+export enum PersonAccountType {
   Employee = 'Employee',
   ExternalHire = 'External hire',
   XExternal = 'X-External',
   JointVentureAffiliate = 'Joint venture/Affiliate',
 }
 
-export enum Availability {
+export enum PersonAvailability {
   Available = 'Available',
   AvailableIdle = 'AvailableIdle',
   Away = 'Away',
@@ -35,4 +30,5 @@ export enum Availability {
   BusyIdle = 'BusyIdle',
   DoNotDisturb = 'DoNotDisturb',
   Offline = 'Offline',
+  Pending = 'Pending',
 }

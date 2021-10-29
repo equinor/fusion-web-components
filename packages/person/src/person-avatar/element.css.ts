@@ -1,21 +1,21 @@
 import { css } from 'lit';
 
 export const style = css`
-  :host(:not([disabled])[accountType='Employee']) fwc-avatar {
-    --fwc-avatar-color: #771fdd;
-    --fwc-avatar-font-color: #fff;
+  :host(:not([disabled])) .fwc-person-avatar__employee {
+    --fwc-avatar-base-color: #771fdd;
+    --fwc-avatar-ink-color: #fff;
   }
-  :host(:not([disabled])[accountType='External hire']) fwc-avatar {
-    --fwc-avatar-color: #243746;
-    --fwc-avatar-font-color: #fff;
+  :host(:not([disabled])) .fwc-person-avatar__external-hire {
+    --fwc-avatar-base-color: #243746;
+    --fwc-avatar-ink-color: #fff;
   }
-  :host(:not([disabled])[accountType='X-External']) fwc-avatar {
-    --fwc-avatar-color: #ff1243;
-    --fwc-avatar-font-color: #fff;
+  :host(:not([disabled])) .fwc-person-avatar__x-external {
+    --fwc-avatar-base-color: #ff1243;
+    --fwc-avatar-ink-color: #fff;
   }
-  :host(:not([disabled])[accountType='Joint venture/Affiliate']) fwc-avatar {
-    --fwc-avatar-color: #ff93ee;
-    --fwc-avatar-font-color: #fff;
+  :host(:not([disabled])) .fwc-person-avatar__joint-venture-affiliate {
+    --fwc-avatar-base-color: #ff93ee;
+    --fwc-avatar-ink-color: #fff;
   }
 `;
 

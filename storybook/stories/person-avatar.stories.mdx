@@ -15,32 +15,16 @@ export const Container = ({ title, children }) => (
 export const Template = (props) => (
   <div>
     <Container title="Sizes">
-      <fwc-person-avatar size="x-small" {...props} />
-      <fwc-person-avatar size="small" {...props} />
-      <fwc-person-avatar size="medium" {...props} />
-      <fwc-person-avatar size="large" {...props} />
-    </Container>
-    <Container title="Account Types">
-      <fwc-person-avatar accountType={AccountType.Employee} {...props} />
-      <fwc-person-avatar accountType={AccountType.ExternalHire} {...props} />
-      <fwc-person-avatar accountType={AccountType.XExternal} {...props} />
-      <fwc-person-avatar accountType={AccountType.JointVentureAffiliate} {...props} />
-    </Container>
-    <Container title="Availability">
-      <fwc-person-avatar availability={Availability.Available} {...props} />
-      <fwc-person-avatar availability={Availability.AvailableIdle} {...props} />
-      <fwc-person-avatar availability={Availability.Away} {...props} />
-      <fwc-person-avatar availability={Availability.BeRightBack} {...props} />
-      <fwc-person-avatar availability={Availability.Busy} {...props} />
-      <fwc-person-avatar availability={Availability.BusyIdle} {...props} />
-      <fwc-person-avatar availability={Availability.DoNotDisturb} {...props} />
-      <fwc-person-avatar availability={Availability.Offline} {...props} />
+      <PersonAvatar size="x-small" {...props} />
+      <PersonAvatar size="small" {...props} />
+      <PersonAvatar size="medium" {...props} />
+      <PersonAvatar size="large" {...props} />
     </Container>
     <Container title="Clickable">
-      <fwc-person-avatar clickable {...props} />
+      <PersonAvatar clickable {...props} />
     </Container>
     <Container title="Disabled">
-      <fwc-person-avatar disabled {...props} />
+      <PersonAvatar disabled {...props} />
     </Container>
   </div>
 );
@@ -74,4 +58,6 @@ npm i @equinor/fusion-wc-person-avatar
 
 ## Snapshots
 
-### Picture
+<Story name="Snapshots" args={{}}>
+  {Template.bind({})}
+</Story>

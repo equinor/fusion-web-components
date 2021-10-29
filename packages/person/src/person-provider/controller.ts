@@ -1,14 +1,8 @@
-import { ReactiveController, ReactiveControllerHost } from 'lit';
+import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
-import { PersonResolver, PersonPresence, PersonDetails } from '../types';
+import { PersonHost, PersonResolver } from './types';
+import { PersonPresence, PersonDetails } from '../types';
 import { PersonControllerConnectEvent } from '../events';
-
-export interface PersonHost extends ReactiveControllerHost {
-  azureId: string;
-  dispatchEvent(event: Event): boolean;
-  presence?: Task<[string], PersonPresence>;
-  details?: Task<[string], PersonDetails>;
-}
 
 export class PersonController implements ReactiveController {
   constructor(private host: PersonHost) {
@@ -53,11 +47,11 @@ export class PersonController implements ReactiveController {
   private _peresenceTask(resolver?: PersonResolver): Task<[string], PersonPresence> {
     return new Task<[string], PersonPresence>(
       this.host,
-      ([azureId]) => {
-        if (!resolver?.getPresenceAsync) {
+      ([azureId]: [string]) => {
+        if (!resolver?.getPresence) {
           throw new Error('PersonResolver is undefined');
         }
-        return resolver.getPresenceAsync(azureId);
+        return Promise.resolve(resolver.getPresence(azureId));
       },
       () => [this.azureId]
     );
@@ -66,11 +60,11 @@ export class PersonController implements ReactiveController {
   private _detailsTask(resolver?: PersonResolver): Task<[string], PersonDetails> {
     return new Task<[string], PersonDetails>(
       this.host,
-      ([azureId]) => {
-        if (!resolver?.getDetailsAsync) {
+      ([azureId]: [string]) => {
+        if (!resolver?.getDetails) {
           throw new Error('PersonResolver is undefined');
         }
-        return resolver.getDetailsAsync(azureId);
+        return Promise.resolve(resolver.getDetails(azureId));
       },
       () => [this.azureId]
     );

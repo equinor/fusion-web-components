@@ -1,33 +1,37 @@
 import { CSSResult, TemplateResult, html } from 'lit';
-import { property } from 'lit/decorators';
-import { ifDefined } from 'lit/directives/if-defined';
-import { PersonElement, PersonElementProps } from '../person';
-import { Availability, PersonPresence, PersonDetails } from '../types';
+import { property } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { ClassInfo, classMap } from 'lit/directives/class-map.js';
+import { PersonElement } from '../person';
+import { PersonAvatarElementProps } from './types';
+import { PersonAccountType, PersonAvailability, PersonPresence, PersonDetails } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
+import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import style from './element.css';
 
 // persist elements
 Badge;
 Avatar;
+Skeleton;
 
 //TODO: Handle errors better in task error render function
 
 /**
+ * Element for displaying a persons avatar with presence badge.
+ * {@inheritdoc}
+ *
  * @tag fwc-person-avatar
+ *
  * @property {string} azureId - Azure unique id for the person.
  * @property {AvatarSize} size - Size of the avatar.
  * @property {boolean} clickable - Sets the avatar to be clickable to render hover/ripple effects.
  * @property {disabled} disabled - Sets the avatar to be rendered as disabled.
  *
- * @summary Base element for person elements implementing a reactive controller to resolve person data by 'azureId'.
+ * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
+ *
+ * @summary
  */
-export type PersonAvatarElementProps = PersonElementProps & {
-  size?: AvatarSize;
-  clickable?: boolean;
-  disabled?: boolean;
-};
-
 export class PersonAvatarElement extends PersonElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
 
@@ -50,19 +54,35 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   disabled?: boolean;
 
   /**
-   * Returns the badge color for the current presence availability
+   * Returns the badge color for the current presence
    */
-  protected getBadgeColor(presence: PersonPresence): BadgeColor {
-    switch (presence.availability) {
-      case Availability.Available:
-      case Availability.AvailableIdle:
+  protected getRenderClasses(accountType?: PersonAccountType): ClassInfo {
+    return {
+      'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
+      'fwc-person-avatar__external-hire': accountType === PersonAccountType.ExternalHire,
+      'fwc-person-avatar__x-external': accountType === PersonAccountType.XExternal,
+      'fwc-person-avatar__joint-venture-affiliate': accountType === PersonAccountType.JointVentureAffiliate,
+    };
+  }
+
+  /**
+   * Returns the badge color for the current presence
+   */
+  protected getBadgeColor(availability: PersonAvailability): BadgeColor {
+    if (this.disabled) {
+      return BadgeColor.Disabled;
+    }
+
+    switch (availability) {
+      case PersonAvailability.Available:
+      case PersonAvailability.AvailableIdle:
         return BadgeColor.Success;
-      case Availability.Away:
-      case Availability.BeRightBack:
+      case PersonAvailability.Away:
+      case PersonAvailability.BeRightBack:
         return BadgeColor.Warning;
-      case Availability.Busy:
-      case Availability.BusyIdle:
-      case Availability.DoNotDisturb:
+      case PersonAvailability.Busy:
+      case PersonAvailability.BusyIdle:
+      case PersonAvailability.DoNotDisturb:
         return BadgeColor.Danger;
       default:
         return BadgeColor.Disabled;
@@ -70,21 +90,23 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   }
 
   /**
-   * Returns the badge icon for the current presence availability
+   * Returns the badge icon for the current presence
    */
-  protected getBadgeIcon(presence: PersonPresence): IconName | undefined {
-    switch (presence.availability) {
-      case Availability.Available:
+  protected getBadgeIcon(availability: PersonAvailability): IconName | undefined {
+    switch (availability) {
+      case PersonAvailability.Available:
         return 'check';
-      case Availability.AvailableIdle:
-      case Availability.Away:
-      case Availability.BeRightBack:
-      case Availability.BusyIdle:
+      case PersonAvailability.AvailableIdle:
+      case PersonAvailability.Away:
+      case PersonAvailability.BeRightBack:
+      case PersonAvailability.BusyIdle:
         return 'time';
-      case Availability.DoNotDisturb:
+      case PersonAvailability.DoNotDisturb:
         return 'blocked';
-      case Availability.Offline:
+      case PersonAvailability.Offline:
         return 'close_circle_outlined';
+      case PersonAvailability.Pending:
+        return 'more_horizontal';
       default:
         return undefined;
     }
@@ -98,13 +120,13 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   }
 
   /**
-   * Renders the badge
+   * Renders the presence badge
    */
-  protected renderBadge(presence: PersonPresence): TemplateResult {
+  protected renderBadge(availability: PersonAvailability): TemplateResult {
     return html`<fwc-badge
       slot="badge"
-      color=${this.getBadgeColor(presence)}
-      icon=${ifDefined(this.getBadgeIcon(presence))}
+      color=${this.getBadgeColor(availability)}
+      icon=${ifDefined(this.getBadgeIcon(availability))}
       size=${ifDefined(this.size)}
       position="bottom-right"
       ?disabled=${this.disabled}
@@ -117,14 +139,19 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
    */
   protected renderAvatar(details: PersonDetails): TemplateResult {
     return html`<fwc-avatar
+      class=${classMap(this.getRenderClasses(details.accountType))}
       size=${ifDefined(this.size)}
       src=${ifDefined(details.pictureSrc)}
       value=${ifDefined(this.getInitial(details.name))}
       ?clickable=${this.clickable}
       ?disabled=${this.disabled}
+      ?border=${true}
+      @click=${this.handleOnClick}
     >
       ${this.presence?.render({
-        complete: (presence: PersonPresence) => this.renderBadge(presence),
+        complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
+        pending: () => this.renderBadge(PersonAvailability.Pending),
+        error: () => this.renderBadge(PersonAvailability.Offline),
       })}</fwc-avatar
     >`;
   }
@@ -132,8 +159,13 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Renders the avatar pending state
    */
-  protected renderPending(): TemplateResult {
-    return html`<fwc-avatar pending></fwc-avatar>`;
+  protected renderPlaceholder(inactive?: boolean): TemplateResult {
+    return html`<fwc-skeleton
+      size=${this.size}
+      variant=${SkeletonVariant.Circle}
+      icon="image"
+      ?inactive=${inactive}
+    ></fwc-skeleton>`;
   }
 
   /**
@@ -147,9 +179,18 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected render(): TemplateResult {
     return html`${this.details?.render({
       complete: (details: PersonDetails) => this.renderAvatar(details),
-      pending: () => this.renderPending(),
-      error: () => this.renderPending(),
+      pending: () => this.renderPlaceholder(),
+      error: () => this.renderPlaceholder(true),
     })}`;
+  }
+
+  /**
+   * Handle on click.
+   */
+  protected handleOnClick(e: PointerEvent): void {
+    if (this.clickable) {
+      this.dispatchEvent(new PointerEvent('click', e));
+    }
   }
 }
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.15...@equinor/fusion-wc-badge@0.2.16) (2021-10-29)
+
+
+### Bug Fixes
+
+* fixed styling, documentation and refactoring ([e9d8164](https://github.com/equinor/fusion-web-components/commit/e9d816498e839419af1cbc86041584ee87e59d26))
+
+
+
+
+
 ## [0.2.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.14...@equinor/fusion-wc-badge@0.2.15) (2021-10-29)
 
 **Note:** Version bump only for package @equinor/fusion-wc-badge

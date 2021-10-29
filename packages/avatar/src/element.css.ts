@@ -5,8 +5,6 @@ export const style = css`
   :host {
     position: relative;
     display: inline-block;
-    --fwc-avatar-ink-color: ${unsafeCSS(theme.colors.text.static_icons__primary_white.getVariable('color'))};
-    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
   }
   :host .fwc-avatar__container {
     width: 100%;
@@ -19,7 +17,19 @@ export const style = css`
     justify-content: center;
     background-color: var(--fwc-avatar-base-color);
   }
-  :host([border]) .fwc-avatar__picture-container {
+  :host([border][size='x-small']) .fwc-avatar__picture-container {
+    width: calc(100% - 0.0625rem);
+    height: calc(100% - 0.0625rem);
+  }
+  :host([border][size='small']) .fwc-avatar__picture-container {
+    width: calc(100% - 0.25rem);
+    height: calc(100% - 0.25rem);
+  }
+  :host([border][size='medium']) .fwc-avatar__picture-container {
+    width: calc(100% - 0.375rem);
+    height: calc(100% - 0.375rem);
+  }
+  :host([border][size='large']) .fwc-avatar__picture-container {
     width: calc(100% - 0.5rem);
     height: calc(100% - 0.5rem);
   }

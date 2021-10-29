@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-icon@1.0.15...@equinor/fusion-wc-icon@1.0.16) (2021-10-29)
+
+
+### Bug Fixes
+
+* **icon:** handle when no icon provided ([8f003a3](https://github.com/equinor/fusion-web-components/commit/8f003a3e61838ddd513f80d34d507254d1a54229))
+
+
+
+
+
 ## [1.0.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-icon@1.0.14...@equinor/fusion-wc-icon@1.0.15) (2021-10-28)
 
 

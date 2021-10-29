@@ -16,7 +16,7 @@ export class PersonElement extends LitElement implements PersonHost, PersonEleme
    * Unique Azure ID
    */
   @property({ type: String })
-  azureId: string = '';
+  azureId = '';
 
   protected controller: PersonController;
 

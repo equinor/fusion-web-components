@@ -2,33 +2,31 @@ import { LitElement } from 'lit';
 import { PersonResolver } from '../person-provider';
 import { PersonControllerConnectEvent } from '../events';
 
-export type PersonProviderProps = {};
-
-export class PersonProviderElement extends LitElement implements PersonProviderProps {
+export class PersonProviderElement extends LitElement {
   protected updateCallbacks: Array<(resolver?: PersonResolver) => void> = [];
 
-  createRenderRoot() {
+  createRenderRoot(): LitElement {
     return this;
   }
 
-  setResolver(resolver?: PersonResolver) {
+  setResolver(resolver?: PersonResolver): void {
     this.updateCallbacks.forEach((callback) => {
       callback(resolver);
     });
   }
 
-  removeResolver() {
+  removeResolver(): void {
     this.updateCallbacks.forEach((callback) => {
       callback();
     });
   }
 
-  override connectedCallback() {
+  override connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
   }
 
-  override disconnectedCallback() {
+  override disconnectedCallback(): void {
     super.disconnectedCallback();
     this.removeEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
   }

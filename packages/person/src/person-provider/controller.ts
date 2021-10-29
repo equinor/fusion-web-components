@@ -10,13 +10,13 @@ export class PersonController implements ReactiveController {
     this.host.addController(this);
   }
 
-  protected updateResolver = (resolver?: PersonResolver) => {
+  protected updateResolver = (resolver?: PersonResolver): void => {
     this.host.presence = this._peresenceTask(resolver);
     this.host.details = this._detailsTask(resolver);
     this.host.requestUpdate();
   };
 
-  hostConnected() {
+  hostConnected(): void {
     const event = new PersonControllerConnectEvent({
       detail: {
         disconnectedCallback: (callback) => {
@@ -32,7 +32,7 @@ export class PersonController implements ReactiveController {
     this.host.dispatchEvent(event);
   }
 
-  hostDisconnected() {
+  hostDisconnected(): void {
     if (this.disconnectProvider) {
       this.disconnectProvider();
     }
@@ -40,7 +40,7 @@ export class PersonController implements ReactiveController {
 
   protected disconnectProvider?: VoidFunction;
 
-  protected get azureId() {
+  protected get azureId(): string {
     return this.host.azureId;
   }
 

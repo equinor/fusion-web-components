@@ -24,6 +24,7 @@
     { "path": "../packages/icon" },
     { "path": "../packages/list" },
     { "path": "../packages/formfield" },
+    { "path": "../packages/person" },
     { "path": "../packages/popover" },
     { "path": "../packages/radio" },
     { "path": "../packages/ripple" },

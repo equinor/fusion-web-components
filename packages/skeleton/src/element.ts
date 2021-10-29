@@ -44,17 +44,15 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
 
   /**
    * Disables the skeleton element's active animation.
-   * @default false
    */
   @property({ type: Boolean, reflect: true })
-  inactive = false;
+  inactive?: boolean;
 
   /**
    * Expands the skeleton element width to the width of the parent.
-   * @default false
    */
   @property({ type: Boolean, reflect: true })
-  fluid = false;
+  fluid?: boolean;
 
   /**
    * Expands the skeleton element width to the width of the parent.

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.15...@equinor/fusion-wc-storybook@1.15.0) (2021-10-29)
+
+
+### Bug Fixes
+
+* added person to root readme ([c7b3521](https://github.com/equinor/fusion-web-components/commit/c7b3521f7413a842d8b7c416b9e1419b74c682dc))
+* added reactive controller with async tasks for person provider ([d2b9643](https://github.com/equinor/fusion-web-components/commit/d2b9643dc1e0653bbfe9b15cdcd09ffd8e20572a))
+* added reactive controller with async tasks for person provider ([b3259aa](https://github.com/equinor/fusion-web-components/commit/b3259aac989f3b7d2452bd187a9a5762f4ba6891))
+* fixed readme and storybook ([217734a](https://github.com/equinor/fusion-web-components/commit/217734a7b65ccba7f2002935826756466342b0b3))
+* fixed readme and storybook ([2e7378c](https://github.com/equinor/fusion-web-components/commit/2e7378ce2d4924e239a4e2d33d4a83c99d114897))
+* fixed rerender issue with tasks ([5bf833b](https://github.com/equinor/fusion-web-components/commit/5bf833b2409af2672e0ca3b4edf3c80c8ed7155a))
+* fixed rerender issue with tasks ([0c68f4c](https://github.com/equinor/fusion-web-components/commit/0c68f4c608e31ecdec055da7ecd3391a34d16c32))
+* fixed styling, documentation and refactoring ([e9d8164](https://github.com/equinor/fusion-web-components/commit/e9d816498e839419af1cbc86041584ee87e59d26))
+
+
+### Features
+
+* added person resolver and person avatar component ([36ac7df](https://github.com/equinor/fusion-web-components/commit/36ac7dfd6a0af41b884d80d72eaaf05f4908422d))
+* added person resolver and person avatar component ([cb12d4e](https://github.com/equinor/fusion-web-components/commit/cb12d4ea55925e818c96c05db80e2960686eafe0))
+
+
+
+
+
 ## [1.14.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.14...@equinor/fusion-wc-storybook@1.14.15) (2021-10-29)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

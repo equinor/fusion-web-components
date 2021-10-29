@@ -1,6 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { RippleElement, RippleElementProps } from './element';
+import { RippleElement } from './element';
+import { RippleElementProps } from './types';
+
 export * from './element';
+export * from './types';
 
 export const tag = 'fwc-ripple';
 

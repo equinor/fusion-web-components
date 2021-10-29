@@ -16,10 +16,16 @@ export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplate
   </svg>
 `;
 
-export const createIcon = (name: IconName | string, type: IconType = IconType.EDS): SVGTemplateResult => {
+export const createIcon = (name: IconName | string, type: IconType = IconType.EDS): SVGTemplateResult | null => {
   switch (type) {
-    case IconType.EDS:
+    case IconType.EDS: {
+      const icon = edsIcons[name as keyof typeof edsIcons];
+      if (!icon) {
+        console.warn('could not find icon', name);
+        return null;
+      }
       return createSvg(edsIcons[name as keyof typeof edsIcons]);
+    }
   }
 };
 

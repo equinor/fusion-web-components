@@ -5,7 +5,7 @@ import createIcon, { IconType } from './utils/create-icon';
 import { style } from './element.css';
 
 export type IconElementProps = {
-  icon: IconName;
+  icon?: IconName;
   type?: IconType;
 };
 
@@ -13,12 +13,12 @@ export class IconElement extends LitElement implements IconElementProps {
   static styles = [style];
 
   @property()
-  public icon!: IconName;
+  public icon?: IconName;
 
   @property()
   public type?: IconType;
 
-  render(): SVGTemplateResult {
-    return createIcon(this.icon);
+  render(): SVGTemplateResult | null {
+    return this.icon ? createIcon(this.icon) : null;
   }
 }

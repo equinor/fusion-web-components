@@ -1,6 +1,5 @@
 import { CSSResult, TemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { PersonElement } from '../person';
 import { PersonAvatarElementProps } from './types';

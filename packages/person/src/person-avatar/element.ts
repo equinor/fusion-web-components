@@ -125,9 +125,9 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected renderBadge(availability: PersonAvailability): TemplateResult {
     return html`<fwc-badge
       slot="badge"
-      color=${this.getBadgeColor(availability)}
-      icon=${ifDefined(this.getBadgeIcon(availability))}
-      size=${ifDefined(this.size)}
+      .color=${this.getBadgeColor(availability)}
+      .icon=${this.getBadgeIcon(availability)}
+      .size=${this.size}
       position="bottom-right"
       ?disabled=${this.disabled}
       circular
@@ -140,9 +140,9 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected renderAvatar(details: PersonDetails): TemplateResult {
     return html`<fwc-avatar
       class=${classMap(this.getRenderClasses(details.accountType))}
-      size=${ifDefined(this.size)}
-      src=${ifDefined(details.pictureSrc)}
-      value=${ifDefined(this.getInitial(details.name))}
+      .size=${this.size}
+      .src=${details.pictureSrc}
+      .value=${this.getInitial(details.name)}
       ?clickable=${this.clickable}
       ?disabled=${this.disabled}
       ?border=${true}

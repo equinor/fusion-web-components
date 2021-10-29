@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.19](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.18...@equinor/fusion-wc-theme@0.2.19) (2021-10-29)
+
+
+### Bug Fixes
+
+* fixed ripple docs and types ([6a12c96](https://github.com/equinor/fusion-web-components/commit/6a12c968f95d9a268a1a9de4678c09828687ed47))
+
+
+
+
+
 ## [0.2.18](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.17...@equinor/fusion-wc-theme@0.2.18) (2021-10-28)
 
 

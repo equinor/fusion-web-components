@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { PersonProviderElement, PersonProviderProps } from './element';
+import { PersonProviderElement } from './element';
 
 export * from './element';
 export * from './controller';
@@ -17,7 +17,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<PersonProviderProps & React.HTMLAttributes<PersonProviderElement>>,
+        React.PropsWithChildren<React.HTMLAttributes<PersonProviderElement>>,
         PersonProviderElement
       >;
     }

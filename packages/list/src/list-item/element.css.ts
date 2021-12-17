@@ -17,6 +17,7 @@ export const style = css`
     color: var(--fwc-list-item-ink-color);
     font-size: var(--fwc-list-item-font-size);
     font-weight: var(--fwc-list-item-font-weight);
+    overflow: hidden;
   }
   .fwc-list-item__primary-text {
     text-overflow: ellipsis;

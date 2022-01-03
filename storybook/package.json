@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -15,7 +15,7 @@
     "@babel/core": "^7.15.8",
     "@equinor/fusion-wc-avatar": "^1.0.30",
     "@equinor/fusion-wc-badge": "^0.2.17",
-    "@equinor/fusion-wc-button": "^1.1.22",
+    "@equinor/fusion-wc-button": "^1.1.23",
     "@equinor/fusion-wc-checkbox": "^0.3.3",
     "@equinor/fusion-wc-chip": "^0.2.8",
     "@equinor/fusion-wc-date": "^0.2.15",

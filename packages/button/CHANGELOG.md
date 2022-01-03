@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.23](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.22...@equinor/fusion-wc-button@1.1.23) (2022-01-03)
+
+
+### Bug Fixes
+
+* **Button:** replace old variables in button element css ([da4c0bc](https://github.com/equinor/fusion-web-components/commit/da4c0bc80ed63e77aea6f0636840da62d34992ae))
+
+
+
+
+
 ## [1.1.22](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.21...@equinor/fusion-wc-button@1.1.22) (2021-10-29)
 
 **Note:** Version bump only for package @equinor/fusion-wc-button

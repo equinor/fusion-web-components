@@ -169,6 +169,12 @@ PERFORMANCE OF THIS SOFTWARE.
  * SPDX-License-Identifier: Apache-2.0
  */
 
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 /** @license React v0.20.2
  * scheduler.production.min.js
  *

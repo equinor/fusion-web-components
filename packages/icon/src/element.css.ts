@@ -7,7 +7,7 @@ export const style = css`
     width: 1.5em;
   }
   svg {
-    height: auto;
+    height: 100%;
     width: auto;
     fill: currentColor;
   }

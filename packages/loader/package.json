@@ -1,0 +1,28 @@
+{
+  "name": "@equinor/fusion-wc-loader",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "prepack": "npm run build && fwc-build",
+    "postbuild": "npm run typedoc",
+    "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@equinor/fusion-wc-core": "^1.0.3",
+    "lit": "2.0.2"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.5.6",
+    "@equinor/fusion-wc-builder": "^1.0.6",
+    "typescript": "^4.4.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "lib/custom-elements.json"
+}

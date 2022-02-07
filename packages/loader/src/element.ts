@@ -44,8 +44,6 @@ export class LoaderElement extends LitElement implements LoaderElementProps {
   }
 }
 
-console.log(style.cssText);
-
 LoaderElement.styles = [style, graphicsStyles];
 
 export default LoaderElement;

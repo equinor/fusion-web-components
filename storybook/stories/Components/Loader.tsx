@@ -4,7 +4,6 @@ import { LoaderElement, LoaderElementProps } from '@equinor/fusion-wc-loader';
 LoaderElement;
 
 export const Loader = ({ children, ...props }: React.PropsWithChildren<LoaderElementProps>): JSX.Element => {
-  console.log(props);
   return <fwc-loader {...extractProps<LoaderElementProps>(props)}>{children}</fwc-loader>;
 };
 

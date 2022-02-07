@@ -5,5 +5,5 @@
     "outDir": "./lib"
   },
   "include": ["src/**/*"],
-  "references": [{ "path": "../core" }, { "path": "../icon" }, { "path": "../picture" }, { "path": "../ripple" }]
+  "references": [{ "path": "../core" }]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-chip",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -14,8 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.3",
-    "@equinor/fusion-wc-icon": "^1.0.18",
-    "@equinor/fusion-wc-ripple": "^0.2.7",
+    "@equinor/fusion-wc-icon": "^1.0.19",
+    "@equinor/fusion-wc-ripple": "^0.2.8",
     "lit": "2.0.2"
   },
   "devDependencies": {

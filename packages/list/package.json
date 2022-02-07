@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-list",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -13,11 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-checkbox": "^0.3.3",
+    "@equinor/fusion-wc-checkbox": "^0.3.4",
     "@equinor/fusion-wc-core": "^1.0.3",
-    "@equinor/fusion-wc-divider": "^0.2.9",
-    "@equinor/fusion-wc-icon": "^1.0.18",
-    "@equinor/fusion-wc-radio": "^0.2.13",
+    "@equinor/fusion-wc-divider": "^0.2.10",
+    "@equinor/fusion-wc-icon": "^1.0.19",
+    "@equinor/fusion-wc-radio": "^0.2.14",
     "@material/mwc-list": "^0.25.3",
     "lit": "2.0.2"
   },

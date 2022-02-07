@@ -16,7 +16,7 @@ export type LoaderElementProps = {
 };
 
 /**
- * Element for displaying a badge.
+ * Element for displaying a Equinor loader.
  * {@inheritdoc}
  *
  * @tag fwc-loader

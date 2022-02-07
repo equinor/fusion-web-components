@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Loader from './Components/Loader';
+
+export const Template = (props) => <Loader {...props} />
+
+<Meta
+  title="General/Loader"
+  component={Loader}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+
+<Canvas>
+  <Story 
+    name="Default" 
+    args={{ text: 'Loading Components...', size: 200 }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />

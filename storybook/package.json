@@ -23,6 +23,7 @@
     "@equinor/fusion-wc-formfield": "^0.2.6",
     "@equinor/fusion-wc-icon": "^1.0.18",
     "@equinor/fusion-wc-list": "^0.1.18",
+    "@equinor/fusion-wc-loader": "^0.0.0",
     "@equinor/fusion-wc-person": "^0.2.3",
     "@equinor/fusion-wc-picture": "^1.0.17",
     "@equinor/fusion-wc-popover": "^1.0.16",

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-skeleton",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.6",
     "@equinor/fusion-wc-builder": "^1.0.6",
-    "@equinor/fusion-wc-icon": "^1.0.17",
+    "@equinor/fusion-wc-icon": "^1.0.18",
     "typescript": "^4.4.4"
   },
   "publishConfig": {

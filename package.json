@@ -27,6 +27,7 @@
     "dedupe": "npx lerna-update-wizard --dedupe",
     "update:typescript": "npx lerna-update-wizard --non-interactive --dependency typescript@latest",
     "update:lit": "npx lerna-update-wizard --non-interactive --dependency lit@latest",
+    "npmignore": "for d in packages/*/; do cp .npmignore \"$d\"; done",
     "test:pack": "lerna exec 'npm pack --dry-run'"
   },
   "keywords": [],

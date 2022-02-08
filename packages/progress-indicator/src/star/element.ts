@@ -4,7 +4,7 @@ import style from './element.css';
 
 import { graphics, styles as graphicsStyles } from './graphics.svg';
 
-export type LoaderElementProps = {
+export type StarProgressElementProps = {
   /**
    * Size of loader
    */
@@ -19,10 +19,10 @@ export type LoaderElementProps = {
  * Element for displaying a Equinor loader.
  * {@inheritdoc}
  *
- * @tag fwc-loader
+ * @tag fwc-star-progress
  *
  */
-export class LoaderElement extends LitElement implements LoaderElementProps {
+export class StarProgressElement extends LitElement implements StarProgressElementProps {
   @property({ type: Number, reflect: true })
   size = 200;
 
@@ -32,7 +32,7 @@ export class LoaderElement extends LitElement implements LoaderElementProps {
   protected override render(): HTMLTemplateResult {
     const { size = 200, text } = this;
     return html`
-      <div class="container" style="--fwc-loader-size: ${size};">
+      <div class="container" style="--fwc-star-progress-size: ${size};">
         ${graphics}
         <header class="title">
           <slot>
@@ -44,6 +44,6 @@ export class LoaderElement extends LitElement implements LoaderElementProps {
   }
 }
 
-LoaderElement.styles = [style, graphicsStyles];
+StarProgressElement.styles = [style, graphicsStyles];
 
-export default LoaderElement;
+export default StarProgressElement;

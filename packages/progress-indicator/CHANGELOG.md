@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2022-02-08)
+
+
+### Features
+
+* rename loader to progress-indicator ([5459d2d](https://github.com/equinor/fusion-web-components/commit/5459d2d6f890447f7d741b17fcdd6604ff8c6ff5))
+
+
+
+
+
 ## [0.1.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-loader@0.1.0...@equinor/fusion-wc-loader@0.1.1) (2022-02-07)
 
 

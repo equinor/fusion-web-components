@@ -6,7 +6,7 @@ export * from './element';
 export const tag = 'fwc-star-progress';
 
 @fusionElement(tag)
-export default class _ extends StarProgressElement {}
+export default class HTMLStarIndicatorCustomElement extends StarProgressElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

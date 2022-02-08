@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.16...@equinor/fusion-wc-intersection@1.0.17) (2022-02-08)
+
+**Note:** Version bump only for package @equinor/fusion-wc-intersection
+
+
+
+
+
 ## [1.0.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-intersection@1.0.15...@equinor/fusion-wc-intersection@1.0.16) (2022-02-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-intersection

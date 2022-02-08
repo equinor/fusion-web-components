@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.20](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.1.19...@equinor/fusion-wc-list@0.1.20) (2022-02-08)
+
+**Note:** Version bump only for package @equinor/fusion-wc-list
+
+
+
+
+
 ## [0.1.19](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.1.18...@equinor/fusion-wc-list@0.1.19) (2022-02-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-list

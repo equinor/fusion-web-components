@@ -22,7 +22,7 @@
     { "path": "../packages/date" },
     { "path": "../packages/divider" },
     { "path": "../packages/icon" },
-    { "path": "../packages/loader" },
+    { "path": "../packages/progress-indicator" },
     { "path": "../packages/list" },
     { "path": "../packages/formfield" },
     { "path": "../packages/person" },

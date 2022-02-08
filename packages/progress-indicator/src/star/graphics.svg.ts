@@ -2,11 +2,11 @@ import { css, svg } from 'lit';
 
 export const styles = css`
   svg {
-    height: calc(var(--fwc-loader-size) * 1px);
-    width: calc(var(--fwc-loader-size) / 1.2px);
+    height: calc(var(--fwc-progress-indicator-size) * 1px);
+    width: calc(var(--fwc-progress-indicator-size) / 1.2px);
   }
   .graphics path {
-    animation: loader_animation 1.3s linear infinite;
+    animation: indicator_animation 1.3s linear infinite;
   }
   .graphics path:nth-child(2) {
     animation-delay: 0.3s;
@@ -24,7 +24,7 @@ export const styles = css`
     animation-delay: 1s;
   }
 
-  @keyframes loader_animation {
+  @keyframes indicator_animation {
     0% {
       opacity: 1;
     }

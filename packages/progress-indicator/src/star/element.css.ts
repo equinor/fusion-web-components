@@ -5,7 +5,7 @@ export const style = css`
   :host {
     display: flex;
     justify-content: center;
-    color: var(--fwc-loader-color, ${unsafeCSS(theme.colors.logo.fill_positive.getVariable('color'))});
+    color: var(--fwc-star-progress-color, ${unsafeCSS(theme.colors.logo.fill_positive.getVariable('color'))});
   }
   svg {
     fill: currentColor;
@@ -14,11 +14,11 @@ export const style = css`
     display: inline-flex;
     flex-flow: column;
     align-items: center;
-    gap: var(--fwc-loader-spacing, ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))});
+    gap: var(--fwc-star-progress-spacing, ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))});
   }
   .title {
     ${unsafeCSS(theme.typography.heading.h2.css)};
-    font-size: var(--fwc-loader-header-size, ${unsafeCSS(theme.typography.heading.h2.getVariable('fontSize'))});
+    font-size: var(--fwc-star-progress-header-size, ${unsafeCSS(theme.typography.heading.h2.getVariable('fontSize'))});
   }
 `;
 

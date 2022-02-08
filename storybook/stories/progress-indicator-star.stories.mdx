@@ -1,12 +1,12 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import Loader from './Components/Loader';
+import {StarIndicator} from './Components/ProgressIndicator';
 
-export const Template = (props) => <Loader {...props} />
+export const Template = (props) => <StarIndicator {...props} />
 
 <Meta
-  title="General/Loader"
-  component={Loader}
+  title="Progress Indicator/Star"
+  component={StarIndicator}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -18,11 +18,11 @@ export const Template = (props) => <Loader {...props} />
 
 <Canvas>
   <Story 
-    name="Default" 
+    name="Star" 
     args={{ text: 'Loading Components...', size: 200 }}
   >
     {Template.bind({})}
   </Story>
 </Canvas>
 
-<ArgsTable story="Default" />
+<ArgsTable story="Star" />

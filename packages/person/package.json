@@ -18,7 +18,7 @@
     "@equinor/fusion-wc-core": "^1.0.4",
     "@equinor/fusion-wc-skeleton": "^0.2.14",
     "@lit-labs/task": "^1.0.0",
-    "lit": "2.0.2"
+    "lit": "2.1.3"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.8",

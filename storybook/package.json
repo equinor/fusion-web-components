@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.15.7",
+  "version": "1.15.8",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -23,7 +23,7 @@
     "@equinor/fusion-wc-formfield": "^0.2.7",
     "@equinor/fusion-wc-icon": "^1.0.19",
     "@equinor/fusion-wc-list": "^0.1.19",
-    "@equinor/fusion-wc-progress-indicator": "^0.1.0",
+    "@equinor/fusion-wc-progress-indicator": "^0.1.1",
     "@equinor/fusion-wc-person": "^0.2.4",
     "@equinor/fusion-wc-picture": "^1.0.18",
     "@equinor/fusion-wc-popover": "^1.0.17",

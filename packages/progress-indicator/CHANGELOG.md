@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-loader@0.1.0...@equinor/fusion-wc-loader@0.1.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* **loader:** remove logging ([2208185](https://github.com/equinor/fusion-web-components/commit/22081856e05d34cce57ee54963bd125cf7fa6a73))
+
+
+
+
+
 # 0.1.0 (2022-02-07)
 
 

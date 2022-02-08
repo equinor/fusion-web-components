@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.7...@equinor/fusion-wc-storybook@1.15.8) (2022-02-07)
+
+
+### Bug Fixes
+
+* **loader:** remove logging ([2208185](https://github.com/equinor/fusion-web-components/commit/22081856e05d34cce57ee54963bd125cf7fa6a73))
+
+
+
+
+
 ## [1.15.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.6...@equinor/fusion-wc-storybook@1.15.7) (2022-02-07)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.2.0...@equinor/fusion-wc-progress-indicator@0.2.1) (2022-02-08)
+
+
+### Bug Fixes
+
+* export default class ([04083b0](https://github.com/equinor/fusion-web-components/commit/04083b06c0475de2a9d7ef8cf8b0f50be8fe42d4))
+
+
+
+
+
 # 0.2.0 (2022-02-08)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-core@1.0.3...@equinor/fusion-wc-core@1.0.4) (2022-02-08)
+
+
+### Bug Fixes
+
+* add npm ignore to packages ([8a9f436](https://github.com/equinor/fusion-web-components/commit/8a9f436f4d38c0fec431d9388ce3098853f8babc))
+
+
+
+
+
 ## [1.0.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-core@1.0.2...@equinor/fusion-wc-core@1.0.3) (2021-09-30)
 
 **Note:** Version bump only for package @equinor/fusion-wc-core

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.12...@equinor/fusion-wc-chip@0.2.13) (2022-02-08)
+
+
+### Bug Fixes
+
+* add npm ignore to packages ([8a9f436](https://github.com/equinor/fusion-web-components/commit/8a9f436f4d38c0fec431d9388ce3098853f8babc))
+
+
+
+
+
 ## [0.2.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-chip@0.2.11...@equinor/fusion-wc-chip@0.2.12) (2022-02-08)
 
 **Note:** Version bump only for package @equinor/fusion-wc-chip

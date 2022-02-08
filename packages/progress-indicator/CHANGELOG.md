@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.2.1...@equinor/fusion-wc-progress-indicator@0.2.2) (2022-02-08)
+
+
+### Bug Fixes
+
+* add npm ignore to packages ([8a9f436](https://github.com/equinor/fusion-web-components/commit/8a9f436f4d38c0fec431d9388ce3098853f8babc))
+
+
+
+
+
 ## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.2.0...@equinor/fusion-wc-progress-indicator@0.2.1) (2022-02-08)
 
 

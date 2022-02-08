@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.28](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.27...@equinor/fusion-wc-button@1.1.28) (2022-02-08)
+
+
+### Bug Fixes
+
+* add npm ignore to packages ([8a9f436](https://github.com/equinor/fusion-web-components/commit/8a9f436f4d38c0fec431d9388ce3098853f8babc))
+
+
+
+
+
 ## [1.1.27](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.26...@equinor/fusion-wc-button@1.1.27) (2022-02-08)
 
 **Note:** Version bump only for package @equinor/fusion-wc-button

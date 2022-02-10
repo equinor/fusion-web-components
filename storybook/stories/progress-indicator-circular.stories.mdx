@@ -1,0 +1,27 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { CircularIndicator } from './Components/ProgressIndicator';
+
+export const Template = (props) => <CircularIndicator {...props} />
+
+<Meta
+  title="Progress Indicator/Circular"
+  component={CircularIndicator}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+<Canvas>
+  <Story 
+    name="Circular" 
+    args={{ size: 50 }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Circular" />

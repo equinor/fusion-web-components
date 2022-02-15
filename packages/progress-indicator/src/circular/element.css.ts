@@ -5,9 +5,6 @@ export const style = css`
     display: flex;
     justify-content: center;
   }
-  svg {
-    fill: currentColor;
-  }
 `;
 
 export default style;

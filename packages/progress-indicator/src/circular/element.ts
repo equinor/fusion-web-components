@@ -1,25 +1,15 @@
 import { LitElement, HTMLTemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import style from './element.css';
+import { styles as theme } from '@equinor/fusion-web-theme';
 
 import { graphics, styles as graphicsStyles } from './graphics.svg';
-
-// export enum ColorVariant {
-//   primary,
-//   neutral,
-// }
-export type CircularVariantProps = 'determinate' | 'indeterminate';
 
 export type CircularSizeProps = 16 | 24 | 32 | 40 | 48;
 
 export type CircularColorProps = 'primary' | 'neutral';
 
 export type CircularProgressElementProps = {
-  /**  Use indeterminate when there is no progress value */
-  variant?: CircularVariantProps;
-  /**  The value of the progress indicator for determinate variant.
-   * Value between 0 and 100 */
-  value?: number;
   /** Size */
   size?: CircularSizeProps;
   /** Color */
@@ -34,12 +24,6 @@ export type CircularProgressElementProps = {
  *
  */
 export class CircularProgressElement extends LitElement implements CircularProgressElementProps {
-  @property({ type: String, reflect: true })
-  variant: CircularVariantProps = 'indeterminate';
-
-  @property({ type: Number, reflect: true })
-  value = 0;
-
   @property({ type: Number, reflect: true })
   size: CircularSizeProps = 24;
 
@@ -47,8 +31,29 @@ export class CircularProgressElement extends LitElement implements CircularProgr
   color: CircularColorProps = 'primary';
 
   protected override render(): HTMLTemplateResult {
-    const { size } = this;
-    return html` <div class="container" style="--fwc-circular-progress-size: ${size};">${graphics}</div> `;
+    const { size, color } = this;
+
+    const trackColor =
+      color === 'neutral'
+        ? theme.colors.ui.background__semitransparent.getVariable('color')
+        : theme.colors.infographic.primary__moss_green_13.getVariable('color');
+
+    const progressColor =
+      color === 'neutral'
+        ? theme.colors.interactive.icon_on_interactive_colors.getVariable('color')
+        : theme.colors.infographic.primary__moss_green_100.getVariable('color');
+
+    return html`
+      <div
+        class="container"
+        style="
+          --fwc-circular-progress-size: ${size}; 
+          --fwc-circular-progress-track-color: ${trackColor}; 
+          --fwc-circular-progress-color: ${progressColor};"
+      >
+        ${graphics}
+      </div>
+    `;
   }
 }
 

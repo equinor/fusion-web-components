@@ -3,19 +3,19 @@ import { CircularProgressElement, CircularProgressElementProps } from './element
 
 export * from './element';
 
-export const starTag = 'fwc-circular-progress';
+export const tagCircular = 'fwc-circular-progress';
 
-@fusionElement(starTag)
+@fusionElement(tagCircular)
 export default class HTMLCircularIndicatorCustomElement extends CircularProgressElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
-    [starTag]: CircularProgressElement;
+    [tagCircular]: CircularProgressElement;
   }
 
   namespace JSX {
     interface IntrinsicElements {
-      [starTag]: React.DetailedHTMLProps<
+      [tagCircular]: React.DetailedHTMLProps<
         React.PropsWithChildren<CircularProgressElementProps & React.HTMLAttributes<CircularProgressElement>>,
         CircularProgressElement
       >;

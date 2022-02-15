@@ -2,19 +2,17 @@ import { css, svg } from 'lit';
 
 export const styles = css`
   svg {
-    height: calc(var(--fwc-progress-indicator-size) * 1px);
-    width: calc(var(--fwc-progress-indicator-size) / 1.2px);
+    height: calc(var(--fwc-circular-progress-size) * 1px);
+    width: calc(var(--fwc-circular-progress-size) / 1.2px);
+    animation: spin 1.3s linear infinite;
   }
-  circle {
-    cx: calc(var(--fwc-progress-indicator-size) * 1px);
-    cy: calc(var(--fwc-progress-indicator-size) / 1.2px);
-  }
-  .graphics path {
-    animation: indicator_animation 1.3s linear infinite;
-  }
-
-  @keyframes indicator_animation {
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
     100% {
+      -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
   }
@@ -22,30 +20,27 @@ export const styles = css`
 
 export const graphics = svg`
   <svg 
-    viewBox="24 24 48 48" 
+    viewBox="0 0 48 48" 
     role="progressbar" 
     preserveAspectRatio="xMidYMid meet" 
-    class="CircularProgress__Svg"
   >
     <circle 
-      cx="48" 
-      cy="48" 
-      r="22" 
+      cx="50%" 
+      cy="50%" 
+      r="22"
       fill="none" 
-      stroke-width="4" 
-      stroke="var(--eds_infographic_primary__moss_green_13, rgba(222, 237, 238, 1))" 
-      class="CircularProgress__TrackCircle">
+      stroke-width="4"
+      stroke="var(--eds_infographic_primary__moss_green_13, rgba(222, 237, 238, 1))">
     </circle>
     <circle 
-      cx="48" 
-      cy="48" 
-      r="22" 
+      cx="50%" 
+      cy="50%" 
+      r="22"
       fill="none" 
+      stroke-width="4"
       stroke-linecap="round" 
-      stroke-width="4" 
       stroke-dasharray="48" 
-      stroke="var(--eds_infographic_primary__moss_green_100, rgba(0, 112, 121, 1))" 
-      class="CircularProgress__ProgressCircle">
+      stroke="var(--eds_infographic_primary__moss_green_100, rgba(0, 112, 121, 1))">
     </circle>
   </svg>
 `;

@@ -25,7 +25,7 @@ export type CircularProgressElementProps = {
  */
 export class CircularProgressElement extends LitElement implements CircularProgressElementProps {
   @property({ type: Number, reflect: true })
-  size: CircularSizeProps = 24;
+  size: CircularSizeProps = 32;
 
   @property({ type: String, reflect: true })
   color: CircularColorProps = 'primary';

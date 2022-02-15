@@ -6,6 +6,12 @@ export const styles = css`
     width: calc(var(--fwc-circular-progress-size) / 1.2px);
     animation: spin 1.3s linear infinite;
   }
+  .track {
+    stroke: var(--fwc-circular-progress-track-color);
+  }
+  .progress {
+    stroke: var(--fwc-circular-progress-color);
+  }
   @keyframes spin {
     0% {
       -webkit-transform: rotate(0deg);
@@ -18,6 +24,8 @@ export const styles = css`
   }
 `;
 
+const thickness = 4;
+
 export const graphics = svg`
   <svg 
     viewBox="0 0 48 48" 
@@ -27,20 +35,20 @@ export const graphics = svg`
     <circle 
       cx="50%" 
       cy="50%" 
-      r="22"
+      r="${(48 - thickness) / 2}"
       fill="none" 
-      stroke-width="4"
-      stroke="var(--eds_infographic_primary__moss_green_13, rgba(222, 237, 238, 1))">
+      stroke-width="${thickness}"
+      class="track">
     </circle>
     <circle 
       cx="50%" 
       cy="50%" 
-      r="22"
+      r="${(48 - thickness) / 2}"
       fill="none" 
-      stroke-width="4"
+      stroke-width="${thickness}"
       stroke-linecap="round" 
       stroke-dasharray="48" 
-      stroke="var(--eds_infographic_primary__moss_green_100, rgba(0, 112, 121, 1))">
+      class="progress">
     </circle>
   </svg>
 `;

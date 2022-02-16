@@ -1,9 +1,8 @@
-import { LitElement, HTMLTemplateResult, html } from 'lit';
+import { LitElement, PropertyValues, svg, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import style from './element.css';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import styles from './element.css';
 
-import { graphics, styles as graphicsStyles } from './graphics.svg';
+// import { graphics, styles as graphicsStyles } from './graphics.svg';
 
 export type CircularSizeProps = 16 | 24 | 32 | 40 | 48;
 
@@ -25,38 +24,49 @@ export type CircularProgressElementProps = {
  */
 export class CircularProgressElement extends LitElement implements CircularProgressElementProps {
   @property({ type: Number, reflect: true })
-  size: CircularSizeProps = 32;
+  size?: CircularSizeProps;
 
   @property({ type: String, reflect: true })
-  color: CircularColorProps = 'primary';
+  color?: CircularColorProps;
 
-  protected override render(): HTMLTemplateResult {
-    const { size, color } = this;
+  protected updated(changedProperties: PropertyValues): void {
+    super.updated(changedProperties);
+    if (changedProperties.has('size')) {
+      this.style.setProperty('--fwc-circular-progress-size', this.size + 'px');
+    }
+  }
 
-    const trackColor =
-      color === 'neutral'
-        ? theme.colors.ui.background__semitransparent.getVariable('color')
-        : theme.colors.infographic.primary__moss_green_13.getVariable('color');
-
-    const progressColor =
-      color === 'neutral'
-        ? theme.colors.interactive.icon_on_interactive_colors.getVariable('color')
-        : theme.colors.infographic.primary__moss_green_100.getVariable('color');
-
-    return html`
-      <div
-        class="container"
-        style="
-          --fwc-circular-progress-size: ${size}; 
-          --fwc-circular-progress-track-color: ${trackColor}; 
-          --fwc-circular-progress-color: ${progressColor};"
-      >
-        ${graphics}
-      </div>
+  protected override render(): TemplateResult {
+    const thickness = 4;
+    return svg`
+        <svg 
+          viewBox="0 0 48 48" 
+          role="progressbar" 
+          preserveAspectRatio="xMidYMid meet" 
+        >
+          <circle 
+            cx="50%" 
+            cy="50%" 
+            r="${(48 - thickness) / 2}"
+            fill="none" 
+            stroke-width="${thickness}"
+            class="track">
+          </circle>
+          <circle 
+            cx="50%" 
+            cy="50%" 
+            r="${(48 - thickness) / 2}"
+            fill="none" 
+            stroke-width="${thickness}"
+            stroke-linecap="round" 
+            stroke-dasharray="48" 
+            class="progress">
+          </circle>
+        </svg>
     `;
   }
 }
 
-CircularProgressElement.styles = [style, graphicsStyles];
+CircularProgressElement.styles = styles;
 
 export default CircularProgressElement;

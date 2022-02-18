@@ -27,17 +27,15 @@ export type DotsProgressElementProps = {
 export class DotsProgressElement extends LitElement implements DotsProgressElementProps {
   /**
    * Size of the element.
-   * @default DotsSize.Small
    */
   @property({ type: String, reflect: true })
-  size: DotsSize = DotsSize.Small;
+  size?: DotsSize;
 
   /**
    * Color of the element.
-   * @default 'primary'
    */
   @property({ type: String, reflect: true })
-  color: DotsColorProps = 'primary';
+  color?: DotsColorProps;
 
   protected override render(): TemplateResult {
     return svg`

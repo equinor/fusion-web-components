@@ -19,21 +19,21 @@ export const style = css`
 
 const sizeStyle = css`
   :host([size='small']) {
-    --fwc-circular-progress-size: 32px;
+    --fwc-dots-progress-size: 32px;
   }
   :host([size='medium']) {
-    --fwc-circular-progress-size: 48px;
+    --fwc-dots-progress-size: 48px;
   }
   :host([size='large']) {
-    --fwc-circular-progress-size: 64px;
+    --fwc-dots-progress-size: 64px;
   }
 `;
 
 const graphicsStyles = css`
   svg {
     fill: var(--fwc-dots-progress-color, currentColor);
-    height: var(calc(--fwc-circular-progress-size / 4), calc(1.2em / 4));
-    width: var(--fwc-circular-progress-size, 1.2em);
+    height: var(calc(--fwc-dots-progress-size / 4), calc(1.2em / 4));
+    width: var(--fwc-dots-progress-size, 1.2em);
   }
 
   circle:nth-child(1) {

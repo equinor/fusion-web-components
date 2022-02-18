@@ -1,0 +1,88 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { CircularIndicator } from './Components/ProgressIndicator';
+
+export const Component = (props) => <CircularIndicator {...props} />;
+
+export const Container = ({ children }) => (
+  <section>
+    <div style={{ display: 'flex', gap: '2rem' }}>{children}</div>
+  </section>
+);
+
+export const Colors = (props) => (
+  <Container>
+    <div>
+      <h5>Primary</h5>
+      <div style={{ padding: '10px 0' }}>
+        <CircularIndicator size="medium" color="primary" />
+      </div>
+    </div>
+    <div>
+      <h5>Neutral</h5>
+      <div style={{ borderRadius: '3px', backgroundColor: '#DCDCDC', padding: '10px' }}>
+        <CircularIndicator size="medium" color="neutral" />
+      </div>
+    </div>
+  </Container>
+);
+
+export const Sizes = (props) => (
+  <Container>
+    <div>
+      <h5>X Large</h5>
+      <CircularIndicator color="primary" size="x-large" />
+    </div>
+    <div>
+      <h5>Large</h5>
+      <CircularIndicator color="primary" size="large" />
+    </div>
+    <div>
+      <h5>Medium</h5>
+      <CircularIndicator color="primary" size="medium" />
+    </div>
+    <div>
+      <h5>Small</h5>
+      <CircularIndicator color="primary" size="small" />
+    </div>
+    <div>
+      <h5>X Small</h5>
+      <CircularIndicator color="primary" size="x-small" />
+    </div>
+  </Container>
+);
+
+<Meta
+  title="Progress Indicator/Circular"
+  component={CircularIndicator}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Circular
+
+Progress indicators are animated helpers that indicate waiting time as content loads.  
+Circular progress indicators are great for places like icons and empty pages.  
+They should be used for short waiting times.
+
+<Canvas>
+  <Story name="Default" args={{ size: 'medium', color: 'primary' }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Snapshots
+
+### Colors
+
+<Story name="Colors">{Colors.bind({})}</Story>
+
+### Sizes
+
+<Story name="Sizes">{Sizes.bind({})}</Story>

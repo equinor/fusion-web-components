@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.2.2...@equinor/fusion-wc-progress-indicator@0.3.0) (2022-02-18)
+
+
+### Bug Fixes
+
+* **circular:** removed unused code and cleaned ([d7af467](https://github.com/equinor/fusion-web-components/commit/d7af46786e4fec0a1017ba2c55e1fc910f60eed7))
+* make styling more dynamic ([29d48e4](https://github.com/equinor/fusion-web-components/commit/29d48e4bf41219111415f2da762baf67abb5707d))
+
+
+### Features
+
+* **circular:** added circular progress indicator ([0465646](https://github.com/equinor/fusion-web-components/commit/0465646c412429c7be42819fbcaaefb68548e9e1))
+* **circular:** colors of loader added ([f124c6f](https://github.com/equinor/fusion-web-components/commit/f124c6fef580b5b026e47243c961dfb928cb93ff))
+* **circular:** default args for story ([568baba](https://github.com/equinor/fusion-web-components/commit/568babac61959a342c95ff46c14a3b8f504eb7cd))
+* **circular:** sizes ([f4ce1a8](https://github.com/equinor/fusion-web-components/commit/f4ce1a84f52f9d4990b1db64a14812b6c6532121))
+* **circular:** Sizes in small, medium etc ([d2305fc](https://github.com/equinor/fusion-web-components/commit/d2305fc525c609c9947cfdcc01518c8b217e5a2d))
+
+
+
+
+
 ## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.2.1...@equinor/fusion-wc-progress-indicator@0.2.2) (2022-02-08)
 
 

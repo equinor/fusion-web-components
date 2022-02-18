@@ -18,8 +18,23 @@ export const style = css`
   }
 `;
 
-// TODOO @sstangeland add css host selectors for small medium .... see avatar size
-const sizeStyle = css``;
+const sizeStyle = css`
+  :host([size='x-small']) {
+    --fwc-circular-progress-size: 16px;
+  }
+  :host([size='small']) {
+    --fwc-circular-progress-size: 24px;
+  }
+  :host([size='medium']) {
+    --fwc-circular-progress-size: 32px;
+  }
+  :host([size='large']) {
+    --fwc-circular-progress-size: 40px;
+  }
+  :host([size='x-large']) {
+    --fwc-circular-progress-size: 48px;
+  }
+`;
 
 const graphicStyles = css`
   svg {

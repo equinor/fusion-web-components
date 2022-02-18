@@ -16,7 +16,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-intersection": "^1.0.20",
-    "lit": "2.0.2"
+    "lit": "2.2.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.6",

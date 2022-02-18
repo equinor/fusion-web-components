@@ -6,7 +6,7 @@ export const Component = (props) => <CircularIndicator {...props} />;
 
 export const Container = ({ children }) => (
   <section>
-    <div style={{ display: 'flex', gap: '15px' }}>{children}</div>
+    <div style={{ display: 'flex', gap: '2rem' }}>{children}</div>
   </section>
 );
 
@@ -14,22 +14,41 @@ export const Colors = (props) => (
   <Container>
     <div>
       <h5>Primary</h5>
-      <CircularIndicator color="primary" />
+      <div style={{ padding: '10px 0' }}>
+        <CircularIndicator size="medium" color="primary" />
+      </div>
     </div>
-    <div style={{ borderRadius: '3px', backgroundColor: '#7C7C7C', padding: '0 10px 10px' }}>
-      <h5 style={{ color: 'white' }}>Neutral</h5>
-      <CircularIndicator color="neutral" />
+    <div>
+      <h5>Neutral</h5>
+      <div style={{ borderRadius: '3px', backgroundColor: '#DCDCDC', padding: '10px' }}>
+        <CircularIndicator size="medium" color="neutral" />
+      </div>
     </div>
   </Container>
 );
 
 export const Sizes = (props) => (
   <Container>
-    <CircularIndicator size={48} />
-    <CircularIndicator size={40} />
-    <CircularIndicator size={32} />
-    <CircularIndicator size={24} />
-    <CircularIndicator size={16} />
+    <div>
+      <h5>X Large</h5>
+      <CircularIndicator color="primary" size="x-large" />
+    </div>
+    <div>
+      <h5>Large</h5>
+      <CircularIndicator color="primary" size="large" />
+    </div>
+    <div>
+      <h5>Medium</h5>
+      <CircularIndicator color="primary" size="medium" />
+    </div>
+    <div>
+      <h5>Small</h5>
+      <CircularIndicator color="primary" size="small" />
+    </div>
+    <div>
+      <h5>X Small</h5>
+      <CircularIndicator color="primary" size="x-small" />
+    </div>
   </Container>
 );
 
@@ -44,8 +63,14 @@ export const Sizes = (props) => (
   }}
 />
 
+# Circular
+
+Progress indicators are animated helpers that indicate waiting time as content loads.  
+Circular progress indicators are great for places like icons and empty pages.  
+They should be used for short waiting times.
+
 <Canvas>
-  <Story name="Default" args={{ size: '32', color: 'primary' }}>
+  <Story name="Default" args={{ size: 'medium', color: 'primary' }}>
     {Component.bind({})}
   </Story>
 </Canvas>

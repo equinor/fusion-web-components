@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.17.0...@equinor/fusion-wc-storybook@1.18.0) (2022-02-21)
+
+
+### Bug Fixes
+
+* **dots:** removed default prop values ([cf0cd79](https://github.com/equinor/fusion-web-components/commit/cf0cd7954ad9e843608dd23991daac58c5dfb69a))
+
+
+### Features
+
+* **dots:** dots progress indicator component ([34eebf2](https://github.com/equinor/fusion-web-components/commit/34eebf2e1b2f0a2379b38037ff594dbf61280ecd))
+
+
+
+
+
 # [1.17.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.16.2...@equinor/fusion-wc-storybook@1.17.0) (2022-02-18)
 
 

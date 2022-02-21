@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.29](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.28...@equinor/fusion-wc-button@1.1.29) (2022-02-18)
+
+**Note:** Version bump only for package @equinor/fusion-wc-button
+
+
+
+
+
 ## [1.1.28](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.27...@equinor/fusion-wc-button@1.1.28) (2022-02-08)
 
 

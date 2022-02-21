@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-divider@0.2.12...@equinor/fusion-wc-divider@0.2.13) (2022-02-18)
+
+**Note:** Version bump only for package @equinor/fusion-wc-divider
+
+
+
+
+
 ## [0.2.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-divider@0.2.11...@equinor/fusion-wc-divider@0.2.12) (2022-02-08)
 
 

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.16.2...@equinor/fusion-wc-storybook@1.17.0) (2022-02-18)
+
+
+### Bug Fixes
+
+* **circular:** removed unused code and cleaned ([d7af467](https://github.com/equinor/fusion-web-components/commit/d7af46786e4fec0a1017ba2c55e1fc910f60eed7))
+
+
+### Features
+
+* **circular:** added circular progress indicator ([0465646](https://github.com/equinor/fusion-web-components/commit/0465646c412429c7be42819fbcaaefb68548e9e1))
+* **circular:** added stories for colors and sizes ([846ad33](https://github.com/equinor/fusion-web-components/commit/846ad336740ccf4d795a207814d5e93d2ba1577b))
+* **circular:** Added story component ([fbb7366](https://github.com/equinor/fusion-web-components/commit/fbb73661c2afc7af07e621b5de7a42b45ab830ae))
+* **circular:** default args for story ([568baba](https://github.com/equinor/fusion-web-components/commit/568babac61959a342c95ff46c14a3b8f504eb7cd))
+* **circular:** sizes ([f4ce1a8](https://github.com/equinor/fusion-web-components/commit/f4ce1a84f52f9d4990b1db64a14812b6c6532121))
+* **circular:** Sizes in small, medium etc ([d2305fc](https://github.com/equinor/fusion-web-components/commit/d2305fc525c609c9947cfdcc01518c8b217e5a2d))
+
+
+
+
+
 ## [1.16.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.16.1...@equinor/fusion-wc-storybook@1.16.2) (2022-02-08)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

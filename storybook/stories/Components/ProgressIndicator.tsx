@@ -16,6 +16,7 @@ export const StarIndicator = ({ children, ...props }: React.PropsWithChildren<St
 
 export const DotsIndicator = ({ children, ...props }: React.PropsWithChildren<DotsProgressElement>): JSX.Element => {
   return <fwc-dots-progress {...extractProps<DotsProgressElementProps>(props)}>{children}</fwc-dots-progress>;
+};
 
 export const CircularIndicator = ({
   children,

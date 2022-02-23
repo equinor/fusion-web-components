@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.4.0...@equinor/fusion-wc-progress-indicator@0.4.1) (2022-02-23)
+
+**Note:** Version bump only for package @equinor/fusion-wc-progress-indicator
+
+
+
+
+
 # [0.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-progress-indicator@0.3.0...@equinor/fusion-wc-progress-indicator@0.4.0) (2022-02-21)
 
 

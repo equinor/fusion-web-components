@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
@@ -13,10 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-avatar": "^1.0.35",
-    "@equinor/fusion-wc-badge": "^0.2.24",
+    "@equinor/fusion-wc-avatar": "^1.0.36",
+    "@equinor/fusion-wc-badge": "^0.2.25",
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-skeleton": "^0.2.16",
+    "@equinor/fusion-wc-skeleton": "^0.2.17",
     "@lit-labs/task": "^1.0.0",
     "lit": "2.2.0"
   },

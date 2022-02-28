@@ -32,11 +32,10 @@ export class MenuElement extends MenuBase implements MenuElementProps {
       this.listElement_ = this.renderRoot.querySelector('fwc-list');
       return this.listElement_;
     }
-
     return this.listElement_;
   }
   override render(): HTMLTemplateResult {
-    return html` <mwc-menu-surface
+    return html`<mwc-menu-surface
       ?hidden=${!this.open}
       .anchor=${this.anchor}
       .open=${this.open}
@@ -54,12 +53,12 @@ export class MenuElement extends MenuBase implements MenuElementProps {
       @opened=${this.onOpened}
       @keydown=${this.onKeydown}
     >
-      ${this.renderList}
+      ${this.renderList()}
     </mwc-menu-surface>`;
   }
   protected renderList(): HTMLTemplateResult {
     const itemRoles = this.innerRole === 'menu' ? 'menuitem' : 'option';
-    return html` <fwc-list
+    return html`<fwc-list
       rootTabbable
       .innerAriaLabel=${this.innerAriaLabel}
       .innerRole=${this.innerRole}

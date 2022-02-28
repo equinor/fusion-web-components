@@ -8,29 +8,28 @@ import './Components/List';
 export const Container = ({ title, children }) => (
   <section>
     <h4>{title}</h4>
-    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+    <div style={{ position: 'relative' }}>{children}</div>
   </section>
 );
 
 export const Template = ({ children, ...props }) => {
   const [open, setOpen] = useState();
   const buttonRef = useRef();
-  const menuRef = useRef();
   const onClick = useCallback(() => {
     setOpen(true);
   }, [setOpen]);
   return (
-    <div>
-      <Container title="standard">
+    <div style={{ display: 'flex', justifyContent: 'center', height: '200px' }}>
+      <div style={{ position: 'relative' }}>
         <Button ref={buttonRef} onClick={onClick}>
           Menu
         </Button>
-        <Menu anchor={buttonRef.current} open={open} onClosed={() => setOpen(false)} {...props}>
+        <Menu {...props} anchor={buttonRef.current} open={open} onClosed={() => setOpen(false)}>
           <fwc-list-item>Item 0</fwc-list-item>
           <fwc-list-item>Item 1</fwc-list-item>
-          <fwc-check-list-item>Item 2</fwc-check-list-item>
+          <fwc-list-item>Item 2</fwc-list-item>
         </Menu>
-      </Container>
+      </div>
     </div>
   );
 };
@@ -54,26 +53,16 @@ export const Template = ({ children, ...props }) => {
 
 <Canvas>
   <Story name="Default" parameters={{ chromatic: { disableSnapshot: true } }}>
-    {(props) => <Menu {...props} />}
+    {Template.bind({})}
   </Story>
 </Canvas>
 
-<ArgsTable story="Standard" />
+<ArgsTable story="Default" />
 
-## Basic
+## Snapshots
 
-<Story name="Basic">{Template.bind({})}</Story>
+### Basic
 
-Grains mushroom risotto vitamin glow overflowing berries chocolate Bulgarian carrot scotch bonnet pepper lemon red lentil soup cherry raspberries banana strawberries butternut mix pumpkin mint cozy cinnamon oatmeal lemon soup instant pot fiery fruit green pepper Thai miso turmeric glazed aubergine. Tofu lentils sweet potato naga viper lime mango crisp oranges zesty tofu pad thai açai almonds apples chili frosted gingerbread bites vine tomatoes. Chocolate cookie crispy maple orange tempeh cranberry spritzer creamiest shiitake mushrooms green grapes appetizer Southern Italian blueberry pops lemonade zest black bean wraps creamy cauliflower alfredo edamame hummus quinoa flatbread potato farro platter.
-
-Apricot peanut butter crunch cashew green onions Mexican fiesta lavender lemonade peppermint pasta dessert vegan plums burritos summer. Candy cane winter alfalfa sprouts springtime strawberry soba noodles hemp seeds artichoke hearts matcha ghost pepper homemade balsamic second course coconut sugar soy milk cherries pineapple salsa coriander sesame soba noodles garlic sriracha noodles Caribbean red habanero chai tea.
-
-Shallots balsamic vinaigrette roasted butternut squash fruit smash walnut pesto tart sriracha pecans Bolivian rainbow pepper ginger lemongrass agave green tea walnut mushroom tart guacamole peaches cocoa pinch of yum chili pepper sparkling pomegranate punch tabasco pepper samosa peach strawberry mango. Pomegranate overflowing Thai sun pepper roasted peanuts hummus red amazon pepper mint lime taco salsa Indian spiced red lentil curry hearty lingonberry leek street style Thai basil tacos.
-
-Italian linguine puttanesca summer fruit salad coconut rice bento box mediterranean banana bread cayenne enchiladas salted basmati fresh dragon fruit heat smoky maple tempeh glaze cauliflower ultimate smoked tofu sweet potato avocado roasted brussel sprouts. Strawberry mango smoothie blackberries bruschetta cinnamon jalapeño blood orange smash spring picnic red grapes broccoli tempeh simmer casserole Italian pepperoncini.
-
-Cool falafel bites pesto mediterranean luxury bowl hazelnut shiitake hot arugula salad almond milk chai latte shaved almonds red pepper citrusy seasonal sandwiches. Sweet potato black bean burrito edamame chilies ultra creamy avocado pesto refreshing cucumber splash delightful blueberry scones earl grey latte basil mangos Thai curry apple vinaigrette sleepy morning tea paprika entree Thai super chili fig arugula cashew salad double dark chocolate creamy cauliflower alfredo sauce green tea lime one bowl cozy butternut lemon lime minty kimchi crunchy seaweed.
-
-Grapefruit cumin dark chocolate muffins salad spiced pumpkin chili Sicilian pistachio pesto veggie burgers coconut ginger carrot spiced juice four-layer figs summertime kale peanut butter bananas avocado dressing drizzle comforting pumpkin spice latte dill lemongrass parsley cilantro black bean chili dip pine nuts. Lime hummus falafel bowl tasty kale caesar salad green tea chocolate peanut butter dip portobello mushrooms main course ginger tofu black beans hearts of palm crunchy bite sized tomato and basil.
-
-Chia seeds seeds cilantro lime vinaigrette a delicious meal asian pear cinnamon toast tahini drizzle miso dressing habanero golden rich coconut cream Malaysian picnic salad udon noodles onion dark and stormy orange eating together Thai dragon pepper seitan salty golden cayenne pepper avocado basil pesto crumbled lentils kung pao pepper blueberry chia seed jam. Green papaya salad cookies cool off lemon tahini dressing cherry bomb morning smoothie bowl spicy mocha chocolate winter cremini mushrooms raspberry fizz grenadillo Thai basil curry macadamia nut cookies.
+<Story name="Basic" args={{ corner: 'BOTTOM_START' }}>
+  {Template.bind({})}
+</Story>

@@ -11,3 +11,5 @@
 npm install @equinor/fusion-wc-menu
 
 ```
+
+Menus display a list of choices on temporary surfaces.

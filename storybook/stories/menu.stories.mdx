@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback } from 'react';
 import { Meta, Story, Canvas, ArgsTable, Description } from '@storybook/addon-docs';
 import readme from '@equinor/fusion-wc-menu/README.md';
+import { PackageInfo } from './Components';
 import Menu from './Components/Menu';
 import Button from './Components/Button';
 import './Components/List';
@@ -44,6 +45,8 @@ export const Template = ({ children, ...props }) => {
     },
   }}
 />
+
+<PackageInfo pkg={require('@equinor/fusion-wc-menu/package.json')}/>
 
 <Description markdown={readme} />
 

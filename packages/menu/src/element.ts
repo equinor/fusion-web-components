@@ -1,6 +1,5 @@
 import { MenuBase, MenuCorner, Corner } from '@material/mwc-menu/mwc-menu-base';
 import { html, HTMLTemplateResult } from 'lit-html';
-import styles from './element.css';
 import { ListElement } from '@equinor/fusion-wc-list';
 
 export type MenuElementProps = {
@@ -126,7 +125,5 @@ export class MenuElement extends MenuBase implements MenuElementProps {
     </fwc-list>`;
   }
 }
-
-MenuElement.styles = styles;
 
 export default MenuElement;

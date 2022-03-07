@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-radio",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "Radio web component based on Material UI",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

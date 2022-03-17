@@ -2,8 +2,8 @@ import { css, svg } from 'lit';
 
 export const styles = css`
   svg {
-    height: calc(var(--fwc-progress-indicator-size) * 1px);
-    width: calc(var(--fwc-progress-indicator-size) / 1.2px);
+    height: calc(var(--fwc-star-progress-size) * 1px);
+    width: calc(var(--fwc-star-progress-size) / 1.2px);
   }
   .graphics path {
     animation: indicator_animation 1.3s linear infinite;

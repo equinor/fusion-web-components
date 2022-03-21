@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.1.24...@equinor/fusion-wc-list@0.2.0) (2022-03-21)
+
+
+### Features
+
+* **menu:** initial menu component creation ([17dbdf1](https://github.com/equinor/fusion-web-components/commit/17dbdf103086a85b98698ad7e5ce9322f80b005a))
+
+
+
+
+
 ## [0.1.24](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.1.23...@equinor/fusion-wc-list@0.1.24) (2022-02-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-list

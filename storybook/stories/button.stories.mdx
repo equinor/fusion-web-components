@@ -5,28 +5,42 @@ import readme from '@equinor/fusion-wc-button/README.md';
 
 import Button from './Components/Button';
 
-export const Container = ({ title, children}) => (
-  <section >
+export const Container = ({ title, children }) => (
+  <section>
     <h4>{title}</h4>
-    <div style={{display: 'flex', gap: '10px'}}> 
-      {children}
-    </div>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
   </section>
 );
 
-export const Template = ({children,...props}) => (
+export const Template = ({ children, ...props }) => (
   <div>
     <Container title="standard">
-      <fwc-button label="Primary" color="primary" {...props} >{children}</fwc-button>
-      <fwc-button label="Secondary" color="secondary" {...props} >{children}</fwc-button>
-      <fwc-button label="Danger" color="danger" {...props}>{children}</fwc-button>
-      <fwc-button label="Disabled" {...props} disabled >{children}</fwc-button>
+      <fwc-button label="Primary" color="primary" {...props}>
+        {children}
+      </fwc-button>
+      <fwc-button label="Secondary" color="secondary" {...props}>
+        {children}
+      </fwc-button>
+      <fwc-button label="Danger" color="danger" {...props}>
+        {children}
+      </fwc-button>
+      <fwc-button label="Disabled" {...props} disabled>
+        {children}
+      </fwc-button>
     </Container>
     <Container title="dense">
-      <fwc-button label="Primary" color="primary" {...props} dense >{children}</fwc-button>
-      <fwc-button label="Secondary" color="secondary" {...props} dense >{children}</fwc-button>
-      <fwc-button label="Danger" color="danger" {...props} dense >{children}</fwc-button>
-      <fwc-button label="Disabled" {...props} disabled dense >{children}</fwc-button>
+      <fwc-button label="Primary" color="primary" {...props} dense>
+        {children}
+      </fwc-button>
+      <fwc-button label="Secondary" color="secondary" {...props} dense>
+        {children}
+      </fwc-button>
+      <fwc-button label="Danger" color="danger" {...props} dense>
+        {children}
+      </fwc-button>
+      <fwc-button label="Disabled" {...props} disabled dense>
+        {children}
+      </fwc-button>
     </Container>
   </div>
 );
@@ -41,26 +55,22 @@ export const Template = ({children,...props}) => (
     },
   }}
   argTypes={{
-    icon: { 
+    icon: {
       control: 'select',
       options: iconNames,
-      },
+    },
   }}
 />
 
 <Description markdown={readme} />
 
-<br/>
+<br />
 
 ## Playground
 
 <Canvas>
-  <Story 
-    name="Basic" 
-    args={{label: 'button'}}
-    parameters={{chromatic: { disableSnapshot: true }}}
-  >
-    {Button.bind({})}
+  <Story name="Basic" args={{ label: 'button' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {(props) => <Button {...props} />}
   </Story>
 </Canvas>
 
@@ -72,7 +82,10 @@ export const Template = ({children,...props}) => (
   <Story name="Custom">
     <fwc-button variant="outlined">
       <svg slot="icon" viewBox="0 0 1024 1024">
-        <path fill="currentColor" d="M666.857 365.714c7.429 76-24.571 121.714-74.857 147.429 83.429 20 136 69.714 125.714 181.143-13.143 138.857-116 176-263.429 184v145.714h-88v-143.429c-22.286 0-45.714 0-69.714-0.571v144h-88v-145.714c-20.571 0-41.143-0.571-62.286-0.571h-114.286l17.714-104.571c64.571 1.143 63.429 0 63.429 0 24.571 0 31.429-17.714 33.143-29.143v-229.714h9.143c-3.429-0.571-6.857-0.571-9.143-0.571v-164c-3.429-18.286-14.857-38.857-50.857-38.857 0 0 1.143-1.143-63.429 0v-93.714l121.143 0.571c17.714 0 36.571 0 55.429-0.571v-144h88v141.143c23.429-0.571 46.857-1.143 69.714-1.143v-140h88v144c113.143 9.714 202.857 44.571 212.571 148.571zM544 677.143c0-113.143-186.286-96.571-245.714-96.571v193.143c59.429 0 245.714 12.571 245.714-96.571zM503.429 405.143c0-103.429-155.429-88-205.143-88v175.429c49.714 0 205.143 11.429 205.143-87.429z"/>
+        <path
+          fill="currentColor"
+          d="M666.857 365.714c7.429 76-24.571 121.714-74.857 147.429 83.429 20 136 69.714 125.714 181.143-13.143 138.857-116 176-263.429 184v145.714h-88v-143.429c-22.286 0-45.714 0-69.714-0.571v144h-88v-145.714c-20.571 0-41.143-0.571-62.286-0.571h-114.286l17.714-104.571c64.571 1.143 63.429 0 63.429 0 24.571 0 31.429-17.714 33.143-29.143v-229.714h9.143c-3.429-0.571-6.857-0.571-9.143-0.571v-164c-3.429-18.286-14.857-38.857-50.857-38.857 0 0 1.143-1.143-63.429 0v-93.714l121.143 0.571c17.714 0 36.571 0 55.429-0.571v-144h88v141.143c23.429-0.571 46.857-1.143 69.714-1.143v-140h88v144c113.143 9.714 202.857 44.571 212.571 148.571zM544 677.143c0-113.143-186.286-96.571-245.714-96.571v193.143c59.429 0 245.714 12.571 245.714-96.571zM503.429 405.143c0-103.429-155.429-88-205.143-88v175.429c49.714 0 205.143 11.429 205.143-87.429z"
+        />
       </svg>
       <span>Label</span>
       <span slot="trailingIcon">🚀</span>
@@ -83,67 +96,74 @@ export const Template = ({children,...props}) => (
 ## Basic
 
 ### Contained
-<Story name="Contained" args={{variant: 'contained'}}>
-  { Template.bind({}) }
+
+<Story name="Contained" args={{ variant: 'contained' }}>
+  {Template.bind({})}
 </Story>
 
 ### Outlined
-<Story name="Outlined" args={{variant: 'outlined'}}>
-  { Template.bind({}) }
+
+<Story name="Outlined" args={{ variant: 'outlined' }}>
+  {Template.bind({})}
 </Story>
 
 ### Ghost
-<Story name="Ghost" args={{variant: 'ghost'}}>
-  { Template.bind({}) }
+
+<Story name="Ghost" args={{ variant: 'ghost' }}>
+  {Template.bind({})}
 </Story>
 
 ## Icon
+
 see full list of icon names in `@equinor/fusion-wc-icon`
+
 ### Contained
-<Story name="Icon Contained" args={{variant: 'contained', icon:'settings'}}>
-  { Template.bind({}) }
+
+<Story name="Icon Contained" args={{ variant: 'contained', icon: 'settings' }}>
+  {Template.bind({})}
 </Story>
 
 ### Contained Trailing
-<Story name="Icon Contained Trailing" args={{variant: 'contained', icon:'settings', trailingIcon: true}}>
-  { Template.bind({}) }
+
+<Story name="Icon Contained Trailing" args={{ variant: 'contained', icon: 'settings', trailingIcon: true }}>
+  {Template.bind({})}
 </Story>
 
 ### Outlined
-<Story name="Icon Outlined" args={{variant: 'outlined', icon:'settings'}}>
-  { Template.bind({}) }
+
+<Story name="Icon Outlined" args={{ variant: 'outlined', icon: 'settings' }}>
+  {Template.bind({})}
 </Story>
 
 ### Outlined Trailing
-<Story name="Icon Outlined Trailing" args={{variant: 'outlined', icon:'settings', trailingIcon: true}}>
-  { Template.bind({}) }
+
+<Story name="Icon Outlined Trailing" args={{ variant: 'outlined', icon: 'settings', trailingIcon: true }}>
+  {Template.bind({})}
 </Story>
 
 ### Ghost
-<Story name="Icon Ghost" args={{variant: 'ghost', icon:'settings'}}>
-  { Template.bind({}) }
+
+<Story name="Icon Ghost" args={{ variant: 'ghost', icon: 'settings' }}>
+  {Template.bind({})}
 </Story>
 
 ### Ghost Traling
-<Story name="Icon Ghost Traling" args={{variant: 'ghost', icon:'settings', trailingIcon: true}}>
-  { Template.bind({}) }
+
+<Story name="Icon Ghost Traling" args={{ variant: 'ghost', icon: 'settings', trailingIcon: true }}>
+  {Template.bind({})}
 </Story>
 
-### Custom 
-<Story name="Icon Custom" args={{variant: 'ghost', trailingIcon: true, children: <span slot="icon">🚀</span>}}>
-  { Template.bind({}) }
+### Custom
+
+<Story name="Icon Custom" args={{ variant: 'ghost', trailingIcon: true, children: <span slot="icon">🚀</span> }}>
+  {Template.bind({})}
 </Story>
 
 ### Custom Trailing
-<Story name="Icon Custom Trailing" args={{variant: 'ghost', trailingIcon: true, children: <span slot="trailingIcon">🚀</span>}}>
-  { Template.bind({}) }
+
+<Story
+  name="Icon Custom Trailing"
+  args={{ variant: 'ghost', trailingIcon: true, children: <span slot="trailingIcon">🚀</span> }}
+>
+  {Template.bind({})}
 </Story>
-
-
-
-
-
-
-
-
-

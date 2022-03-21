@@ -23,6 +23,7 @@
     "@equinor/fusion-wc-formfield": "^0.2.12",
     "@equinor/fusion-wc-icon": "^1.0.24",
     "@equinor/fusion-wc-list": "^0.1.24",
+    "@equinor/fusion-wc-menu": "^0.0.0",
     "@equinor/fusion-wc-person": "^0.2.9",
     "@equinor/fusion-wc-picture": "^1.0.23",
     "@equinor/fusion-wc-popover": "^1.0.22",
@@ -44,5 +45,8 @@
     "react-is": "^17.0.2",
     "storybook": "^6.3.12",
     "webpack": "^5.60.0"
+  },
+  "dependencies": {
+    "@equinor/fusion-react-utils": "^1.2.6"
   }
 }

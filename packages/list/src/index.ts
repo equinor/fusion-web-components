@@ -3,6 +3,10 @@ import { ListElement, ListElementProps } from './element';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 
+export * from './check-list-item';
+export * from './radio-list-item';
+export * from './list-item';
+
 export const tag = 'fwc-list';
 
 @fusionElement(tag)

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.18.2",
+  "version": "1.18.3",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -23,10 +23,11 @@
     "@equinor/fusion-wc-formfield": "^0.2.12",
     "@equinor/fusion-wc-icon": "^1.0.24",
     "@equinor/fusion-wc-list": "^0.1.24",
+    "@equinor/fusion-wc-menu": "^0.0.0",
     "@equinor/fusion-wc-person": "^0.2.9",
     "@equinor/fusion-wc-picture": "^1.0.23",
     "@equinor/fusion-wc-popover": "^1.0.22",
-    "@equinor/fusion-wc-progress-indicator": "^0.4.2",
+    "@equinor/fusion-wc-progress-indicator": "^0.4.3",
     "@equinor/fusion-wc-radio": "^0.2.19",
     "@equinor/fusion-wc-ripple": "^0.2.13",
     "@equinor/fusion-wc-skeleton": "^0.2.17",
@@ -44,5 +45,8 @@
     "react-is": "^17.0.2",
     "storybook": "^6.3.12",
     "webpack": "^5.60.0"
+  },
+  "dependencies": {
+    "@equinor/fusion-react-utils": "^1.2.6"
   }
 }

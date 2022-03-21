@@ -1,12 +1,10 @@
-import { PropsWithChildren } from 'react';
+import { createComponent } from '@equinor/fusion-react-utils';
 
-import extractProps from './extract-props';
+import { ButtonElement, ButtonElementProps, tag } from '@equinor/fusion-wc-button';
 
-import { ButtonElement, ButtonElementProps } from '@equinor/fusion-wc-button';
 ButtonElement;
 
-export const Button = ({ children, ...props }: PropsWithChildren<ButtonElementProps>): JSX.Element => (
-  <fwc-button {...extractProps<ButtonElementProps>(props)}>{children}</fwc-button>
-);
+export const Button = createComponent<ButtonElement, ButtonElementProps>(ButtonElement, tag);
+export type ButtonProps = React.ComponentProps<typeof Button>;
 
 export default Button;

@@ -30,6 +30,7 @@
     "@equinor/fusion-wc-progress-indicator": "^0.4.3",
     "@equinor/fusion-wc-radio": "^0.2.19",
     "@equinor/fusion-wc-ripple": "^0.2.13",
+    "@equinor/fusion-wc-select": "^0.0.0",
     "@equinor/fusion-wc-skeleton": "^0.2.17",
     "@equinor/fusion-wc-switch": "^0.2.19",
     "@equinor/fusion-wc-textarea": "^0.4.13",

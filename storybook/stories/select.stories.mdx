@@ -1,0 +1,69 @@
+import { useRef, useState, useCallback } from 'react';
+import { Meta, Story, Canvas, ArgsTable, Description } from '@storybook/addon-docs';
+import readme from '@equinor/fusion-wc-select/README.md';
+import { PackageInfo } from './Components';
+import Select from './Components/Select';
+// import Input from './Components/Input';
+import './Components/List';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ position: 'relative' }}>{children}</div>
+  </section>
+);
+
+export const Template = ({ children, ...props }) => {
+  const [open, setOpen] = useState();
+  const inputRef = useRef();
+  const onClick = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', height: '200px' }}>
+      <div style={{ position: 'relative' }}>
+        {/* <Input ref={inputRef} onClick={onClick}>
+          Menu
+        </Input> */}
+        <Select {...props} anchor={inputRef.current} open={open} onClosed={() => setOpen(false)}>
+          <fwc-list-item>Item 0</fwc-list-item>
+          <fwc-list-item>Item 1</fwc-list-item>
+          <fwc-list-item>Item 2</fwc-list-item>
+        </Select>
+      </div>
+    </div>
+  );
+};
+
+<Meta
+  title="Input/Select"
+  component={Select}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+<PackageInfo pkg={require('@equinor/fusion-wc-select/package.json')}/>
+
+<Description markdown={readme} />
+
+## Playground
+
+<Canvas>
+  <Story name="Default" parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+<!-- ## Snapshots
+
+### Basic
+
+<Story name="Basic" args={{ corner: 'BOTTOM_START' }}>
+  {Template.bind({})}
+</Story> -->

@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import SelectElement, { SelectElementProps } from './element';
+import SelectElement from './element';
 export * from './element';
 
 export const tag = 'fwc-select';
@@ -13,10 +13,7 @@ declare global {
   }
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<SelectElementProps & React.HTMLAttributes<SelectElement>>,
-        SelectElement
-      >;
+      [tag]: React.DetailedHTMLProps<React.PropsWithChildren<React.HTMLAttributes<SelectElement>>, SelectElement>;
     }
   }
 }

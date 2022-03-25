@@ -1,11 +1,7 @@
-import { useRef, useState, useCallback } from 'react';
 import { Meta, Story, Canvas, ArgsTable, Description } from '@storybook/addon-docs';
 import readme from '@equinor/fusion-wc-select/README.md';
 import { PackageInfo } from './Components';
 import Select from './Components/Select';
-// import Input from './Components/Input';
-import './Components/List';
-
 export const Container = ({ title, children }) => (
   <section>
     <h4>{title}</h4>
@@ -14,18 +10,10 @@ export const Container = ({ title, children }) => (
 );
 
 export const Template = ({ children, ...props }) => {
-  const [open, setOpen] = useState();
-  const inputRef = useRef();
-  const onClick = useCallback(() => {
-    setOpen(true);
-  }, [setOpen]);
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: '200px' }}>
       <div style={{ position: 'relative' }}>
-        {/* <Input ref={inputRef} onClick={onClick}>
-          Menu
-        </Input> */}
-        <Select {...props} anchor={inputRef.current} open={open} onClosed={() => setOpen(false)}>
+        <Select {...props}>
           <fwc-list-item>Item 0</fwc-list-item>
           <fwc-list-item>Item 1</fwc-list-item>
           <fwc-list-item>Item 2</fwc-list-item>
@@ -46,7 +34,7 @@ export const Template = ({ children, ...props }) => {
   }}
 />
 
-<PackageInfo pkg={require('@equinor/fusion-wc-select/package.json')}/>
+<PackageInfo pkg={require('@equinor/fusion-wc-select/package.json')} />
 
 <Description markdown={readme} />
 
@@ -59,11 +47,3 @@ export const Template = ({ children, ...props }) => {
 </Canvas>
 
 <ArgsTable story="Default" />
-
-<!-- ## Snapshots
-
-### Basic
-
-<Story name="Basic" args={{ corner: 'BOTTOM_START' }}>
-  {Template.bind({})}
-</Story> -->

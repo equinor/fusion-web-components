@@ -2,10 +2,10 @@ import { SelectBase } from '@material/mwc-select/mwc-select-base';
 import { html, HTMLTemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { styles } from '@material/mwc-select/mwc-select.css';
 
-export type SelectElementProps = {};
-
-export class SelectElement extends SelectBase implements SelectElementProps {
+export class SelectElement extends SelectBase {
+  static styles = styles;
   override render(): HTMLTemplateResult {
     const classes = {
       'mdc-select--disabled': this.disabled,
@@ -69,7 +69,7 @@ export class SelectElement extends SelectBase implements SelectElementProps {
           </span>
           ${this.renderLineRipple()}
         </div>
-        <mwc-menu
+        <fwc-menu
           innerRole="listbox"
           wrapFocus
           class="mdc-select__menu mdc-menu mdc-menu-surface ${classMap(menuClasses)}"
@@ -85,7 +85,7 @@ export class SelectElement extends SelectBase implements SelectElementProps {
           @keydown=${this.handleTypeahead}
         >
           <slot></slot>
-        </mwc-menu>
+        </fwc-menu>
       </div>
       ${this.renderHelperText()}`;
   }

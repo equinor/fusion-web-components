@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas, ArgsTable, Description } from '@storybook/addon-docs';
+import readme from '@equinor/fusion-wc-searchable-select/README.md';
+import { PackageInfo } from './Components';
+import SearchableSelect from './Components/SearchableSelect';
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ position: 'relative' }}>{children}</div>
+  </section>
+);
+
+export const Template = ({ children, ...props }) => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', height: '200px' }}>
+      <div style={{ position: 'relative' }}>
+        <SearchableSelect {...props}>
+          <fwc-list-item>Item 0</fwc-list-item>
+          <fwc-list-item>Item 1</fwc-list-item>
+          <fwc-list-item>Item 2</fwc-list-item>
+        </SearchableSelect>
+      </div>
+    </div>
+  );
+};
+
+<Meta
+  title="Input/SearhcableSelect"
+  component={SearchableSelect}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+<PackageInfo pkg={require('@equinor/fusion-wc-searchable-select/package.json')} />
+
+<Description markdown={readme} />
+
+## Playground
+
+<Canvas>
+  <Story name="Default" parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />

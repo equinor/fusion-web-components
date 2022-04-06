@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-select@0.1.0...@equinor/fusion-wc-select@0.1.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **select:** import missing import for menu wc ([63fccb9](https://github.com/equinor/fusion-web-components/commit/63fccb9da04ea52d0f42eaf7481a3f000348cd57))
+
+
+
+
+
 # 0.1.0 (2022-04-05)
 
 

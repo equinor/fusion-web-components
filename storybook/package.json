@@ -48,6 +48,6 @@
     "webpack": "^5.60.0"
   },
   "dependencies": {
-    "@equinor/fusion-react-utils": "^1.2.6"
+    "@equinor/fusion-react-utils": "^2.0.0"
   }
 }

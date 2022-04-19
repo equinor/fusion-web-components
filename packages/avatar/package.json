@@ -17,7 +17,7 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-picture": "^1.0.23",
     "@equinor/fusion-wc-ripple": "^0.2.13",
-    "lit": "2.2.0"
+    "lit": "2.2.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.6",

@@ -18,7 +18,7 @@
     "@equinor/fusion-wc-divider": "^0.2.15",
     "@equinor/fusion-wc-icon": "^1.0.24",
     "@equinor/fusion-wc-radio": "^0.2.19",
-    "@material/mwc-list": "^0.25.3",
+    "@material/mwc-list": "^0.26.1",
     "lit": "2.2.2"
   },
   "devDependencies": {

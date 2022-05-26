@@ -17,7 +17,7 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@popperjs/core": "^2.10.2",
     "@types/resize-observer-browser": "^0.1.6",
-    "lit": "2.2.2"
+    "lit": "2.2.5"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.6",

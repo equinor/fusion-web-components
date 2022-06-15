@@ -22,7 +22,7 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-icon": "^1.0.24",
     "@material/mwc-button": "^0.25.3",
-    "lit": "2.2.2"
+    "lit": "2.2.6"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.6",

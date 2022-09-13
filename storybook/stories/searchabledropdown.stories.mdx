@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, ArgsTable, Description } from '@storybook/addon-docs';
+import readme from '@equinor/fusion-wc-searchable-dropdown/README.md';
+import { PackageInfo } from './Components';
+import SearchableDropdown, {apiQuery, _handleEvent} from './Components/SearchableDropdown';
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ position: 'relative' }}>{children}</div>
+  </section>
+);
+
+export const Template = ({ children, ...props }) => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '250px' }}>
+      <SearchableDropdown {...props} />
+    </div>
+  );
+};
+
+<Meta
+  title="Data/SearchableDropdown"
+  component={SearchableDropdown}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    }
+  }}
+/>
+
+<PackageInfo pkg={require('@equinor/fusion-wc-searchable-dropdown/package.json')} />
+
+<Description markdown={readme} />
+
+## Playground
+
+<Canvas>
+  <Story name="Default" parameters={{ chromatic: { disableSnapshot: true } }} args={{placeholder: 'Start to type to search...', id: 'fwc-sdd-test', variant: 'outlined', meta: 'add'}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## How to use
+
+The ``fwc-searchable-dropdown`` component is built up of 2 lit elements, ``fwc-searchable-dropdown`` and ``fwc-searchable-dropdown-provider``.
+
+Wrap the dropdown component in the provider and add a ref to the provider element by using the hook ``useSearchableDropdownProviderRef`` with the resolver as parameter.
+The resolver must be of type ``SearchableDropdownResolver``. 
+
+The resolver has the method ``searchQuery`` which is called by the controlers [Lit task](https://github.com/lit/lit/tree/main/packages/labs/task) 
+that fires on keyup event from the textinput element. So place your API call on the resolvers searchQuery method.
+Your API call should return an array of type ``SearchabledropdownResult`` where each item is of type ``SearchableDropdownResultItem`` with the following properties.
+
+```typescript
+interface SearchableDropdownResultItem {
+  id: string;
+  title: string;
+  subTitle?: string;
+  isDisabled?: boolean;
+  isSelected?: boolean;
+  isError?: boolean;
+  meta?: string;
+}
+```
+
+When the user selects and item from the result list the ``action`` event gets triggered. The ``action`` events detail object contains the selected item. 
+
+Listen for the ``action`` event and save the selected item in your context/state handler. Also update the searchQuery items and set the property ``isSelected: true`` 
+on the selected item. 
+
+Set the attribute ``selected`` on the ``fwc-searchable-dropdown`` element to update the UI with the selection. You can also set selected with save result from context/cache before user performs a search.

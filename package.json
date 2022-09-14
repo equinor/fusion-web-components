@@ -34,6 +34,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^18.0.19",
     "lerna": "^4.0.0",
     "prettier": "^2.4.1"
   },

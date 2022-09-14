@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-ripple@0.2.13...@equinor/fusion-wc-ripple@0.2.14) (2022-09-14)
+
+**Note:** Version bump only for package @equinor/fusion-wc-ripple
+
+
+
+
+
 ## [0.2.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-ripple@0.2.12...@equinor/fusion-wc-ripple@0.2.13) (2022-02-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-ripple

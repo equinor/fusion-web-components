@@ -24,7 +24,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-list": "^0.2.1",
-    "@material/mwc-menu": "^0.25.3",
+    "@material/mwc-menu": "^0.27.0",
     "lit": "2.2.2"
   },
   "devDependencies": {

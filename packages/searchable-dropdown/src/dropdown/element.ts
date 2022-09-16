@@ -21,6 +21,8 @@ import { styles as CSSstyles } from './element.css';
  * @property {filled: string} variant Set variant to filled|outlined on fwc-textinput and fwc-list elements. defaults to filled
  * @property {string} meta Icon to show after each fwc-list-item. If ypu want icon only on one list-item then use the meta property on the result item
  * @property {string} selected Display selected item's title
+ * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @property {string} trailingIcon Traling Icon to display in fwc-text-input
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  */
@@ -52,6 +54,14 @@ export class SearchableDropdownElement
   /* The selected items title property */
   @property()
   selected = '';
+
+  /* The initial text in the dropdown before keyup event */
+  @property()
+  initialText = 'Start typing to search';
+
+  /* The trailing icon to display in fwc-textinput */
+  @property()
+  trailingIcon = 'search';
 
   /* Tasks to bind from controller */
   pendingQuery?: Task<[string], SearchableDropdownResult>;
@@ -104,7 +114,7 @@ export class SearchableDropdownElement
         /* Inital state */
         initial: () =>
           html`<fwc-list-item disabled=${true}>
-            <span class="fwc-sdd-list-item-text">Input a search term...</span>
+            <span class="fwc-sdd-list-item-text">${this.initialText}</span>
           </fwc-list-item>`,
         /* Loader item */
         pending: () => html`<fwc-list-item><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
@@ -135,7 +145,7 @@ export class SearchableDropdownElement
             variant=${this.variant}
             value=${this.selected}
             name="searchabledropdown"
-            iconTrailing="chevron_down"
+            iconTrailing=${this.trailingIcon}
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}
             @keyup=${this.controller.handleKeyup}

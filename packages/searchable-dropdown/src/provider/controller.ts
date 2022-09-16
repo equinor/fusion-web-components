@@ -98,15 +98,6 @@ export class SearchableDropdownController implements ReactiveController {
     );
   }
 
-  /**
-   * Set the string to filter items by
-   * @param event
-   */
-  public handleKeyup(event: KeyboardEvent): void {
-    const target = event.target as HTMLInputElement;
-    this.query = target.value.trim().toLowerCase();
-  }
-
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this.query = '';
@@ -117,6 +108,15 @@ export class SearchableDropdownController implements ReactiveController {
   /* Getter: Open/Closed state for host */
   public get isOpen(): boolean {
     return this._isOpen;
+  }
+
+  /**
+   * Set the string to filter items by
+   * @param event
+   */
+  public handleKeyup(event: KeyboardEvent): void {
+    const target = event.target as HTMLInputElement;
+    this.query = target.value.trim().toLowerCase();
   }
 
   /* set controller query string and bounce 250ms from last keyup */

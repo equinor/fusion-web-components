@@ -32,7 +32,7 @@ export class SearchableDropdownController implements ReactiveController {
     this.host.requestUpdate();
   };
 
-  hostConnected(): void {
+  public hostConnected(): void {
     const event = new SearchableDropdownConnectEvent({
       detail: {
         disconnectedCallback: (callback) => {
@@ -46,15 +46,15 @@ export class SearchableDropdownController implements ReactiveController {
     });
     this.host.dispatchEvent(event);
 
-    // add click event to window
+    /* add click event to window */
     window.addEventListener('click', this._handleWindowClick);
   }
 
-  hostDisconnected(): void {
+  public hostDisconnected(): void {
     if (this.disconnectProvider) {
       this.disconnectProvider();
     }
-    // remove click event to window
+    /* remove click event to window */
     window.removeEventListener('click', this._handleWindowClick);
   }
 
@@ -62,7 +62,7 @@ export class SearchableDropdownController implements ReactiveController {
    * Close dropdown when click oustside host
    */
   private _handleWindowClick = (e: Event): void => {
-    // make sure we have a target to check against
+    /* make sure we have a target to check against */
     if (!e.target) return;
     if ((e.target as HTMLElement).nodeName !== this.host.nodeName) {
       this.isOpen = false;
@@ -74,20 +74,20 @@ export class SearchableDropdownController implements ReactiveController {
    * Fires on the action event for fwc-list
    * @param action Custonevent with details property
    */
-  handleAction(action: CustomEvent<ActionDetail>): void {
+  public handleAction(action: CustomEvent<ActionDetail>): void {
     const { index } = action.detail;
     if (this.result) {
       this._selected = this.result[index];
       this.host.selected = this.result[index].title;
     }
 
-    // close the dropdown
+    /* close the dropdown */
     this.isOpen = false;
 
     // dont bubble fwc-list action event since we want more details
     action.stopPropagation();
 
-    // re-dispatch action event with our details
+    /* re-dispatch action event with our details */
     this.host.dispatchEvent(
       new CustomEvent('action', {
         detail: {
@@ -107,20 +107,20 @@ export class SearchableDropdownController implements ReactiveController {
     this.query = target.value.trim().toLowerCase();
   }
 
-  // Settter: Open/Closed state for host
-  set isOpen(state: boolean) {
+  /* Settter: Open/Closed state for host */
+  public set isOpen(state: boolean) {
     this.query = '';
     this._isOpen = state;
     this.host.requestUpdate();
   }
 
-  // Getter: Open/Closed state for host
-  get isOpen(): boolean {
+  /* Getter: Open/Closed state for host */
+  public get isOpen(): boolean {
     return this._isOpen;
   }
 
-  // set controller query string and bounce 250ms from last keyup
-  set query(search: string) {
+  /* set controller query string and bounce 250ms from last keyup */
+  public set query(search: string) {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -131,8 +131,8 @@ export class SearchableDropdownController implements ReactiveController {
     }, 250);
   }
 
-  // return controller query string
-  get query(): string {
+  /* return controller query string */
+  public get query(): string {
     return this._query;
   }
 
@@ -142,11 +142,11 @@ export class SearchableDropdownController implements ReactiveController {
       this.host,
       async ([query]) => {
         if (!query) {
-          // See @https://github.com/lit/lit/tree/main/packages/labs/task
+          /* See @https://github.com/lit/lit/tree/main/packages/labs/task */
           return initialState;
         }
         if (!resolver?.searchQuery) {
-          // resolver is not setup the right way
+          /* resolver is not setup the right way */
           throw new Error('SeachableDropdownResolver is undefined');
         }
         this.result = await resolver.searchQuery(query);

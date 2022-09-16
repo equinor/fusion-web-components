@@ -28,20 +28,20 @@ export class SearchableDropdownElement
   extends LitElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
-  // style object css
+  /* style object css */
   static styles = [CSSstyles];
 
   controller = new SearchableDropdownController(this);
 
-  /** Label passed to the fwc-text-input component */
+  /* Label passed to the fwc-text-input component */
   @property()
   label = '';
 
-  /** Placeholder passe to fwc-textinput */
+  /* Placeholder passe to fwc-textinput */
   @property()
   placeholder = '';
 
-  /** Textinput variant passed to the fwc-text-input component */
+  /* Textinput variant passed to the fwc-text-input component */
   @property()
   variant = 'filled';
 
@@ -49,11 +49,11 @@ export class SearchableDropdownElement
   @property()
   meta = '';
 
-  // The selected items title property
+  /* The selected items title property */
   @property()
   selected = '';
 
-  /** Tasks to bind from controller */
+  /* Tasks to bind from controller */
   pendingQuery?: Task<[string], SearchableDropdownResult>;
 
   /**
@@ -70,7 +70,7 @@ export class SearchableDropdownElement
         'fwc-sdd-list-item-text': true,
         'fwc-sdd-list-item-text-error': item.isError !== undefined,
       };
-      // show meta icon for list item, either for all items or for single item.
+      /* show meta icon for list item, either for all items or for single item. */
       const metaSlot = () => {
         if (!item.isDisabled) {
           if (this.meta || item.meta) {
@@ -88,7 +88,7 @@ export class SearchableDropdownElement
     };
     return html`<fwc-list @action=${this.controller.handleAction} activatable=${true}>
       ${this.pendingQuery?.render({
-        // any result from resolvers serachQuery
+        /* any result from resolvers serachQuery */
         complete: (result) =>
           result?.map(
             (item) =>
@@ -101,14 +101,14 @@ export class SearchableDropdownElement
                 ${renderItemText(item)}
               </fwc-list-item>`
           ),
-        // Inital state
+        /* Inital state */
         initial: () =>
           html`<fwc-list-item disabled=${true}>
             <span class="fwc-sdd-list-item-text">Input a search term...</span>
           </fwc-list-item>`,
-        // Loader item
+        /* Loader item */
         pending: () => html`<fwc-list-item><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
-        // Error from resolvers searchQuery Promise
+        /* Error from resolvers searchQuery Promise */
         error: (e: unknown) =>
           html`<fwc-list-item disabled=${true}>
             <span class="fwc-sdd-list-item-text fwc-sdd-list-item-error">${e}</span>

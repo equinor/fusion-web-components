@@ -1,8 +1,8 @@
 import { html, LitElement, HTMLTemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { Task } from '@lit-labs/task';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { Task } from '@lit-labs/task';
 import { SearchableDropdownController } from '../provider';
 import {
   SearchableDropdownProps,
@@ -15,12 +15,14 @@ import { styles as CSSstyles } from './element.css';
 /**
  * Element for SearchableDropdown
  * @tag fwc-searchabledropdown
- * @property {string} label Label for the fwc-textinput
- * @property {string} placeholder Palceholder text for the fwc-textinput
- * @property {string} variant Set variant, filled|outlined, on fwc-textinput and dropdown. defaults to filled.
- * @property {string} meta Icon name to show after each list-item textContent
- * @property {string} selected The selected items title property.
- * @fires action Fires when a selection has been made via click or keyboard action.
+ *
+ * @property {string} label Label for fwc-textinput element
+ * @property {string} placeholder Placeholder text for fwc-textinput element
+ * @property {filled: string} variant Set variant to filled|outlined on fwc-textinput and fwc-list elements. defaults to filled
+ * @property {string} meta Icon to show after each fwc-list-item. If ypu want icon only on one list-item then use the meta property on the result item
+ * @property {string} selected Display selected item's title
+ *
+ * @fires action Fires when a selection has been made on the fwc-list element
  */
 export class SearchableDropdownElement
   extends LitElement
@@ -128,7 +130,7 @@ export class SearchableDropdownElement
         <div class="fwc-sdd-input">
           <slot name="leading"></slot>
           <fwc-textinput
-            label=${this.label}
+            label=${ifDefined(this.label)}
             type="search"
             variant=${this.variant}
             value=${this.selected}

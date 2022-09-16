@@ -7,7 +7,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "install": "husky-init && lerna bootstrap",
+    "install": "npx husky-init && lerna bootstrap",
     "start": "npm start --prefix storybook",
     "clean": "lerna clean --yes && del-cli packages/*/package-lock.json && npm run clean:build",
     "clean:build": "npm run clean:typescript && del-cli packages/*/dist packages/*/lib",

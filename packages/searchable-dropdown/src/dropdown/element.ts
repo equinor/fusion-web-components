@@ -84,7 +84,9 @@ export class SearchableDropdownElement
       const metaSlot = () => {
         if (!item.isDisabled) {
           if (this.meta || item.meta) {
-            return html`<fwc-icon icon=${item.meta ? item.meta : this.meta} slot="meta" />`;
+            return html`<span class=${classMap(itemClasses)} slot="meta">
+              <fwc-icon icon=${item.meta ? item.meta : this.meta} color="pink" />
+            </span>`;
           }
         }
         return html``;
@@ -100,16 +102,14 @@ export class SearchableDropdownElement
       ${this.pendingQuery?.render({
         /* any result from resolvers serachQuery */
         complete: (result) =>
-          result?.map(
-            (item) =>
-              html`<fwc-list-item
-                key=${item.id}
-                disabled=${ifDefined(item.isDisabled)}
-                selected=${ifDefined(item.isSelected)}
-                twoline=${ifDefined(item.subTitle)}
-              >
-                ${renderItemText(item)}
-              </fwc-list-item>`
+          result?.map((item) => html`<fwc-list-item
+              key=${item.id}
+              disabled=${ifDefined(item.isDisabled || item.isError)}
+              selected=${ifDefined(item.isSelected)}
+              twoline=${ifDefined(item.subTitle)}
+            >
+              ${renderItemText(item)}
+            </fwc-list-item>`
           ),
         /* Inital state */
         initial: () =>

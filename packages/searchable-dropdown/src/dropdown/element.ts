@@ -102,7 +102,8 @@ export class SearchableDropdownElement
       ${this.pendingQuery?.render({
         /* any result from resolvers serachQuery */
         complete: (result) =>
-          result?.map((item) => html`<fwc-list-item
+          result?.map(
+            (item) => html`<fwc-list-item
               key=${item.id}
               disabled=${ifDefined(item.isDisabled || item.isError)}
               selected=${ifDefined(item.isSelected)}

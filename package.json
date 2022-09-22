@@ -28,7 +28,8 @@
     "update:typescript": "npx lerna-update-wizard --non-interactive --dependency typescript@latest",
     "update:lit": "npx lerna-update-wizard --non-interactive --dependency lit@latest",
     "npmignore": "for d in packages/*/; do cp .npmignore \"$d\"; done",
-    "test:pack": "lerna exec 'npm pack --dry-run'"
+    "test:pack": "lerna exec 'npm pack --dry-run'",
+    "deps:typereact": "node utils/dependencies/bin/index.js"
   },
   "keywords": [],
   "author": "",

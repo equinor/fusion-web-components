@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.20.1...@equinor/fusion-wc-storybook@1.21.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* **chromatic:** removed disable snapshot on default story ([12595d1](https://github.com/equinor/fusion-web-components/commit/12595d1b0242ae9223d580094c9c12193f615734))
+
+
+### Features
+
+* **searchabledropdown:** added package to storybook/packages.json ([06d8b27](https://github.com/equinor/fusion-web-components/commit/06d8b27965987121dee4092197125f976e10b204))
+* **searchabledropdown:** Added storybook for component ([c5fd64b](https://github.com/equinor/fusion-web-components/commit/c5fd64b3079c4d1a2eed87b747cabee34684ebaa))
+* **searchabledropdown:** Added storybook/tsconfig.json reference for component ([77d3008](https://github.com/equinor/fusion-web-components/commit/77d300824769ee9350295d8c0df9e61ff631f724))
+
+
+
+
+
 ## [1.20.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.20.0...@equinor/fusion-wc-storybook@1.20.1) (2022-04-06)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

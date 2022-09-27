@@ -49,7 +49,7 @@ jobs:
       - name: Commit changes
         continue-on-error: true
         run: |
-          git add packages/*/package.json 
+          git add package.json 
           git add package-lock.json 
           git commit -m'chore(prerelease): bumped version with tag ${{ github.event.inputs.tag }}'
           git push

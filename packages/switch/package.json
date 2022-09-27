@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-switch",
-  "version": "0.2.20",
+  "version": "0.2.21-switch.fix.1.0.0",
   "description": "Switch web component based on Material UI",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

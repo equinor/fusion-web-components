@@ -7,6 +7,8 @@ export type SearchableDropdownProps = {
   variant?: string;
   meta?: string;
   selected?: string;
+  initialText?: string;
+  trailingIcon?: string;
 };
 
 export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;

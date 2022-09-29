@@ -1,8 +1,8 @@
 import { html, LitElement, HTMLTemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { Task } from '@lit-labs/task';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { Task } from '@lit-labs/task';
 import { SearchableDropdownController } from '../provider';
 import {
   SearchableDropdownProps,
@@ -15,31 +15,35 @@ import { styles as CSSstyles } from './element.css';
 /**
  * Element for SearchableDropdown
  * @tag fwc-searchabledropdown
- * @property {string} label Label for the fwc-textinput
- * @property {string} placeholder Palceholder text for the fwc-textinput
- * @property {string} variant Set variant, filled|outlined, on fwc-textinput and dropdown. defaults to filled.
- * @property {string} meta Icon name to show after each list-item textContent
- * @property {string} selected The selected items title property.
- * @fires action Fires when a selection has been made via click or keyboard action.
+ *
+ * @property {string} label Label for fwc-textinput element
+ * @property {string} placeholder Placeholder text for fwc-textinput element
+ * @property {filled: string} variant Set variant to filled|outlined on fwc-textinput and fwc-list elements. defaults to filled
+ * @property {string} meta Icon to show after each fwc-list-item. If ypu want icon only on one list-item then use the meta property on the result item
+ * @property {string} selected Display selected item's title
+ * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @property {string} trailingIcon Traling Icon to display in fwc-text-input
+ *
+ * @fires action Fires when a selection has been made on the fwc-list element
  */
 export class SearchableDropdownElement
   extends LitElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
-  // style object css
+  /* style object css */
   static styles = [CSSstyles];
 
   controller = new SearchableDropdownController(this);
 
-  /** Label passed to the fwc-text-input component */
+  /* Label passed to the fwc-text-input component */
   @property()
   label = '';
 
-  /** Placeholder passe to fwc-textinput */
+  /* Placeholder passe to fwc-textinput */
   @property()
   placeholder = '';
 
-  /** Textinput variant passed to the fwc-text-input component */
+  /* Textinput variant passed to the fwc-text-input component */
   @property()
   variant = 'filled';
 
@@ -47,11 +51,19 @@ export class SearchableDropdownElement
   @property()
   meta = '';
 
-  // The selected items title property
+  /* The selected items title property */
   @property()
   selected = '';
 
-  /** Tasks to bind from controller */
+  /* The initial text in the dropdown before keyup event */
+  @property()
+  initialText = 'Start typing to search';
+
+  /* The trailing icon to display in fwc-textinput */
+  @property()
+  trailingIcon = 'search';
+
+  /* Tasks to bind from controller */
   pendingQuery?: Task<[string], SearchableDropdownResult>;
 
   /**
@@ -68,11 +80,13 @@ export class SearchableDropdownElement
         'fwc-sdd-list-item-text': true,
         'fwc-sdd-list-item-text-error': item.isError !== undefined,
       };
-      // show meta icon for list item, either for all items or for single item.
+      /* show meta icon for list item, either for all items or for single item. */
       const metaSlot = () => {
         if (!item.isDisabled) {
           if (this.meta || item.meta) {
-            return html`<fwc-icon icon=${item.meta ? item.meta : this.meta} slot="meta" />`;
+            return html`<span class=${classMap(itemClasses)} slot="meta">
+              <fwc-icon icon=${item.meta ? item.meta : this.meta} color="pink" />
+            </span>`;
           }
         }
         return html``;
@@ -86,27 +100,26 @@ export class SearchableDropdownElement
     };
     return html`<fwc-list @action=${this.controller.handleAction} activatable=${true}>
       ${this.pendingQuery?.render({
-        // any result from resolvers serachQuery
+        /* any result from resolvers serachQuery */
         complete: (result) =>
           result?.map(
-            (item) =>
-              html`<fwc-list-item
-                key=${item.id}
-                disabled=${ifDefined(item.isDisabled)}
-                selected=${ifDefined(item.isSelected)}
-                twoline=${ifDefined(item.subTitle)}
-              >
-                ${renderItemText(item)}
-              </fwc-list-item>`
+            (item) => html`<fwc-list-item
+              key=${item.id}
+              disabled=${ifDefined(item.isDisabled || item.isError)}
+              selected=${ifDefined(item.isSelected)}
+              twoline=${ifDefined(item.subTitle)}
+            >
+              ${renderItemText(item)}
+            </fwc-list-item>`
           ),
-        // Inital state
+        /* Inital state */
         initial: () =>
           html`<fwc-list-item disabled=${true}>
-            <span class="fwc-sdd-list-item-text">Input a search term...</span>
+            <span class="fwc-sdd-list-item-text">${this.initialText}</span>
           </fwc-list-item>`,
-        // Loader item
+        /* Loader item */
         pending: () => html`<fwc-list-item><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
-        // Error from resolvers searchQuery Promise
+        /* Error from resolvers searchQuery Promise */
         error: (e: unknown) =>
           html`<fwc-list-item disabled=${true}>
             <span class="fwc-sdd-list-item-text fwc-sdd-list-item-error">${e}</span>
@@ -128,12 +141,12 @@ export class SearchableDropdownElement
         <div class="fwc-sdd-input">
           <slot name="leading"></slot>
           <fwc-textinput
-            label=${this.label}
+            label=${ifDefined(this.label)}
             type="search"
             variant=${this.variant}
             value=${this.selected}
             name="searchabledropdown"
-            iconTrailing="chevron_down"
+            iconTrailing=${this.trailingIcon}
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}
             @keyup=${this.controller.handleKeyup}

@@ -1,7 +1,7 @@
 <!--prettier-ignore-start-->
 # `fusion-wc-searchable-dropdown` [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-searchable-dropdown.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-searchable-dropdown)
 
-[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-searchable-dropdown) for component
+[Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-searchabledropdown--default-story) for component
 
 ## Usage
 

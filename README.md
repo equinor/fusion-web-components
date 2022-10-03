@@ -54,6 +54,7 @@
 | [`<fwc-chip>`](https://github.com/equinor/fusion-web-components/tree/main/packages/chip) | `@equinor/fusion-wc-chip` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-chip.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-chip)
 | [`<fwc-date>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date) | `@equinor/fusion-wc-date` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-date.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-date)
 | [`<fwc-list>`](https://github.com/equinor/fusion-web-components/tree/main/packages/list) | `@equinor/fusion-wc-list` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-list.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-list)
+| [`<fwc-searchable-dropdown>`](https://github.com/equinor/fusion-web-components/tree/main/packages/searchable-dropdown) | `@equinor/fusion-wc-searchable-dropdown` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-searchable-dropdown.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-searchable-dropdown)
 | [`<fwc-skeleton>`](https://github.com/equinor/fusion-web-components/tree/main/packages/skeleton) | `@equinor/fusion-wc-skeleton` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-skeleton.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-skeleton)
 
 ## Context

@@ -45,7 +45,6 @@ export class SearchableDropdownProviderElement extends LitElement {
     });
 
     this.updateCallbacks.push(updateResolver);
-
     event.preventDefault();
     event.stopPropagation();
   }

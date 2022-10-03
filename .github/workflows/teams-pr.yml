@@ -1,0 +1,15 @@
+name: Post PRs to Teams
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Notify
+        uses: davidwengier/PostAdaptiveCard@v1.0.0
+        with:
+          webhook-uri: ${{ secrets.TEAMS_PR_WEBHOOK }}

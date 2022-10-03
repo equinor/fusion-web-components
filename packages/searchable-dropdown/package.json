@@ -17,7 +17,7 @@
     "@equinor/fusion-wc-list": "^0.2.1",
     "@equinor/fusion-wc-textinput": "^0.5.13",
     "@lit-labs/task": "^1.0.0",
-    "lit": "2.2.2"
+    "lit": "2.3.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.5.6",

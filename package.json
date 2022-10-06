@@ -4,10 +4,10 @@
   "description": "",
   "private": true,
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
-    "install": "npx husky-init && lerna bootstrap",
+    "install": "lerna bootstrap",
     "start": "npm start --prefix storybook",
     "clean": "lerna clean --yes && del-cli packages/*/package-lock.json && npm run clean:build",
     "clean:build": "npm run clean:typescript && del-cli packages/*/dist packages/*/lib",

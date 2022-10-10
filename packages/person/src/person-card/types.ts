@@ -9,11 +9,3 @@ export enum PersonCardAccountType {
   Consultant = 'Consultant',
   External = 'External',
 }
-
-export enum BadgeCardColor {
-  affiliate = 'affiliate',
-  consultant = 'consultant',
-  employee = 'employee',
-  externalHire = 'externalHire',
-  default = 'default',
-}

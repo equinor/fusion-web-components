@@ -55,7 +55,7 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Returns the badge color for the current presence
    */
-  protected getRenderClasses(accountType?: PersonAccountType): ClassInfo {
+  protected getRenderClasses(accountType?: string): ClassInfo {
     return {
       'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
       'fwc-person-avatar__external-hire': accountType === PersonAccountType.ExternalHire,

@@ -8,16 +8,6 @@ export const style = css`
       ${unsafeCSS(theme.typography.paragraph.body_long.getVariable('fontSize'))} * var(--content-resize, 1)
     );
   }
-  :host header {
-    font-size: calc(${unsafeCSS(theme.typography.heading.h3.getVariable('fontSize'))} * var(--content-resize, 1));
-    font-weight: 500;
-  }
-  :host a {
-    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-  }
-  :host a:hover {
-    color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
-  }
   :host([size='x-small']) {
     --content-resize: 0.7;
   }
@@ -30,7 +20,17 @@ export const style = css`
   :host([size='large']) {
     --content-resize: 1.2;
   }
-  :host .fwc-status-icon__icon {
+  header {
+    font-size: calc(${unsafeCSS(theme.typography.heading.h3.getVariable('fontSize'))} * var(--content-resize, 1));
+    font-weight: 500;
+  }
+  a {
+    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+  }
+  a:hover {
+    color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
+  }
+  .fwc-status-icon__icon {
     border-radius: 50%;
     border: 2px solid #fff;
     color: #fff;
@@ -38,52 +38,52 @@ export const style = css`
     background-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
     outline: 1px solid ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
   }
-  :host .fwc-status-icon__success {
+  .fwc-status-icon__success {
     background-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
     outline: 1px solid ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
   }
-  :host .fwc-status-icon__warning {
+  .fwc-status-icon__warning {
     background-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
     outline: 1px solid ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
   }
-  :host .fwc-status-icon__danger {
+  .fwc-status-icon__danger {
     background-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
     outline: 1px solid ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
-  :host .fwc-person-badge__employee {
+  .fwc-person-badge__employee {
     --fwc-badge-color: ${unsafeCSS(theme.colors.infographic.substitute__purple_berry.getVariable('color'))};
   }
-  :host .fwc-person-badge__consultant {
+  .fwc-person-badge__consultant {
     --fwc-badge-color: ${unsafeCSS(theme.colors.infographic.primary__energy_red_100.getVariable('color'))};
   }
-  :host .fwc-person-badge__external {
+  .fwc-person-badge__external {
     --fwc-badge-color: ${unsafeCSS(theme.colors.infographic.substitute__pink_salmon.getVariable('color'))};
   }
-  :host .fwc-person-section {
+  .fwc-person-section {
     display: flex;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
   }
-  :host .fwc-person-status {
+  .fwc-person-status {
     flex: 1;
     display: flex;
     flex-direction: column;
     row-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
   }
-  :host .fwc-person-status__heading,
+  .fwc-person-status__heading,
   .fwc-person-status__profession,
   .fwc-person-status__info {
     display: flex;
     flex-direction: column;
     row-gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
   }
-  :host .fwc-person-status__row {
+  .fwc-person-status__row {
     display: flex;
     align-items: center;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
   }
-  :host .fwc-person-status__badge {
+  .fwc-person-status__badge {
   }
-  :host .fwc-person-status__icon {
+  .fwc-person-status__icon {
     position: relative;
   }
 `;

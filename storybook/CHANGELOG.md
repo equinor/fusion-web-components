@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.21.1...@equinor/fusion-wc-storybook@1.22.0) (2022-10-11)
+
+
+### Features
+
+* **person-card:** created web component ([f81dc53](https://github.com/equinor/fusion-web-components/commit/f81dc53089d1bd27ebef63a2d2d3c45cfe1d50dc))
+
+
+
+
+
 ## [1.21.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.21.0...@equinor/fusion-wc-storybook@1.21.1) (2022-09-29)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

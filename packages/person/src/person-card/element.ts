@@ -175,7 +175,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
    * Returns name of the account type
    */
   protected getAccountTypeName(person: PersonDetails): string {
-    switch (person.accountType) {
+    switch (person.accountType as unknown as PersonCardAccountType) {
       case PersonCardAccountType.Consultant:
         return 'Contractor/Enterprise';
       case PersonCardAccountType.External:

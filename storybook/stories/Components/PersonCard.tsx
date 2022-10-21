@@ -8,7 +8,7 @@ import {
   PersonResolver,
   PersonDetails,
   PersonPresence,
-  PersonAccountType
+  PersonAccountType,
 } from '@equinor/fusion-wc-person';
 import extractProps from './extract-props';
 PersonCardElement;

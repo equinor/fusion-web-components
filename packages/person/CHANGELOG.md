@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.0...@equinor/fusion-wc-person@0.3.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* **person:** update account type ([feee3fd](https://github.com/equinor/fusion-web-components/commit/feee3fd76a4f523e7047802f6cd1f3836d8fab97))
+* **person:** update check of account type name ([70e074b](https://github.com/equinor/fusion-web-components/commit/70e074b81228e19b6ed82dc3337d483806fe4ae2))
+* **person:** update typing and export ([3b20559](https://github.com/equinor/fusion-web-components/commit/3b205592c45e6534ccb1a1930a71a0b9dfd11d12))
+
+
+
+
+
 # [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.2.10...@equinor/fusion-wc-person@0.3.0) (2022-10-11)
 
 

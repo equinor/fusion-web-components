@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "engines": {
-    "node": ">=16"
-  },
   "scripts": {
     "install": "lerna bootstrap",
     "start": "npm start --prefix storybook",
@@ -29,6 +26,7 @@
     "update:lit": "npx lerna-update-wizard --non-interactive --dependency lit@latest",
     "npmignore": "for d in packages/*/; do cp .npmignore \"$d\"; done",
     "test:pack": "lerna exec 'npm pack --dry-run'",
+    "predeps:typereact": "npm run build --prefix utils/dependencies",
     "deps:typereact": "node utils/dependencies/bin/index.js",
     "prepare": "husky install"
   },
@@ -49,7 +47,7 @@
     "husky": "^8.0.0",
     "lerna": "^4.0.0",
     "lint-staged": "^12.3.3",
-    "typescript": "4.6.3"
+    "typescript": "^4.8.4"
   },
   "husky": {
     "hooks": {

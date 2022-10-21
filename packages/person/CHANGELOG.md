@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.2.10...@equinor/fusion-wc-person@0.3.0) (2022-10-11)
+
+
+### Bug Fixes
+
+* **person-card:** readme update ([69a9ed6](https://github.com/equinor/fusion-web-components/commit/69a9ed6ce5999fff96ef6f41469e47c1d981541f))
+* **person-card:** remove badge type color ([c2f5047](https://github.com/equinor/fusion-web-components/commit/c2f504758d291d5c380226b849ff3e570f338cf1))
+* **person-card:** removed host from css ([97efa02](https://github.com/equinor/fusion-web-components/commit/97efa029647e638147e90d6b1295816b58ac716a))
+
+
+### Features
+
+* **person-card:** created web component ([f81dc53](https://github.com/equinor/fusion-web-components/commit/f81dc53089d1bd27ebef63a2d2d3c45cfe1d50dc))
+
+
+
+
+
 ## [0.2.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.2.9...@equinor/fusion-wc-person@0.2.10) (2022-09-14)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

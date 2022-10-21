@@ -12,7 +12,7 @@ export type PersonDetails = {
   mail?: string;
   company?: string;
   mobilePhone?: string;
-  accountType?: string;
+  accountType?: PersonAccountType;
   officeLocation?: string;
 };
 

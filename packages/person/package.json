@@ -1,8 +1,29 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "",
   "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./person-card": "./lib/person-card/index.js",
+    "./person-avatar": "./lib/person-avatar/index.js",
+    "./person-provider": "./lib/person-provider/index.js"
+  },
+  "types": "lib/types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "person": [
+        "lib/types/person/index.d.ts"
+      ],
+      "person-card": [
+        "lib/types/person-card/index.d.ts"
+      ],
+      "person-provider": [
+        "lib/types/person-provider/index.d.ts"
+      ]
+    }
+  },
+  "files": ["lib"],
   "customElements": "lib/custom-elements.json",
   "scripts": {
     "build": "tsc -b",

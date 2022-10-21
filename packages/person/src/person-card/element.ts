@@ -5,9 +5,9 @@ import { CSSResult, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { PersonElement } from '../person';
-import { PersonAvailability, PersonDetails, PersonPresence } from '../types';
+import { PersonAccountType, PersonAvailability, PersonDetails, PersonPresence } from '../types';
 import style from './element.css';
-import { PersonCardAccountType, PersonCardElementProps } from './types';
+import { PersonCardElementProps } from './types';
 
 /**
  * Element for displaying a persons card with person avatar and person info.
@@ -105,7 +105,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
     };
   }
   /**
-   * Returns the staus icon for the current availability of the person
+   * Returns the status icon for the current availability of the person
    */
   protected getStatusIcon(availability: PersonAvailability): IconName | undefined {
     switch (availability) {
@@ -165,40 +165,20 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
       })}
     </div>`;
   }
-  /**
-   * Checks if job title starts with 'ext' for external hire
-   */
-  protected isExternalHire(person: PersonDetails): boolean {
-    return !!(person.jobTitle && person.jobTitle.toLowerCase().startsWith('ext'));
-  }
-  /**
-   * Returns name of the account type
-   */
-  protected getAccountTypeName(person: PersonDetails): string {
-    switch (person.accountType as unknown as PersonCardAccountType) {
-      case PersonCardAccountType.Consultant:
-        return 'Contractor/Enterprise';
-      case PersonCardAccountType.External:
-        return 'External/Affiliate';
-      case PersonCardAccountType.Employee:
-        if (this.isExternalHire(person)) {
-          return 'External hire/Consultant';
-        }
-        return 'Employee';
-      default:
-        return String(person.accountType);
-    }
-  }
 
   /**
    * Returns the badge color classes for the account type
    */
-  protected getBadgeColorClasses(accountType?: string): ClassInfo {
-    return {
-      'fwc-person-badge__employee': accountType === PersonCardAccountType.Employee,
-      'fwc-person-badge__consultant': accountType === PersonCardAccountType.Consultant,
-      'fwc-person-badge__external': accountType === PersonCardAccountType.External,
-    };
+  protected getBadgeColorClass(accountType?: PersonAccountType): string | void {
+    switch (accountType) {
+      case PersonAccountType.Employee:
+        return 'fwc-person-badge__employee';
+      case PersonAccountType.ExternalHire:
+      case PersonAccountType.XExternal:
+        return 'fwc-person-badge__external';
+      case PersonAccountType.JointVentureAffiliate:
+        return 'fwc-person-badge__consultant';
+    }
   }
 
   /**
@@ -206,7 +186,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
    */
   protected renderBadge(details: PersonDetails, position?: BadgePosition): TemplateResult {
     return html`<fwc-badge
-      class=${classMap(this.getBadgeColorClasses(details.accountType))}
+      class=${this.getBadgeColorClass(details.accountType)}
       slot="badge"
       icon="person"
       .size=${this.size}
@@ -219,7 +199,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
    * Returns the first character in the person's name as upper case initial
    */
   protected getInitial(name?: string): string | undefined {
-    return name?.substr(0, 1)?.toUpperCase();
+    return name?.substring(0, 1)?.toUpperCase();
   }
 
   /**
@@ -236,7 +216,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
    */
   protected renderTypeBadge(details: PersonDetails): TemplateResult {
     return html`<fwc-badge
-      class="fwc-person-status__icon ${classMap(this.getBadgeColorClasses(details.accountType))}"
+      class="fwc-person-status__icon ${this.getBadgeColorClass(details.accountType)}"
       size=${this.getStatusIconSize(this.size)}
       icon="person"
       position
@@ -249,8 +229,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   protected renderTypeStatus(): TemplateResult {
     return html`<div class="fwc-person-status__row">
       ${this.details?.render({
-        complete: (details: PersonDetails) =>
-          html`${this.renderTypeBadge(details)} ${this.getAccountTypeName(details)}`,
+        complete: (details: PersonDetails) => html`${this.renderTypeBadge(details)} ${details.accountType}`,
         pending: () =>
           html`${this.renderStatusIcon(PersonAvailability.Pending)}
           ${this.renderTextPlaceholder(false, SkeletonSize.small)}`,

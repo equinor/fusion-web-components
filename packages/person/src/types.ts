@@ -1,6 +1,6 @@
 export type PersonPresence = {
   azureId: string;
-  availability: PersonAvailability | string;
+  availability: PersonAvailability;
 };
 
 export type PersonDetails = {
@@ -12,7 +12,7 @@ export type PersonDetails = {
   mail?: string;
   company?: string;
   mobilePhone?: string;
-  accountType?: PersonAccountType | string;
+  accountType?: PersonAccountType;
   officeLocation?: string;
 };
 

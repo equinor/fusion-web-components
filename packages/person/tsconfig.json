@@ -3,7 +3,6 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "./lib",
-    "declarationDir": "./lib/types",
   },
   "include": ["src/**/*"],
   "references": [{ "path": "../avatar" }, { "path": "../badge" }, { "path": "../skeleton" }]

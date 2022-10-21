@@ -8,7 +8,7 @@ import {
   PersonResolver,
   PersonDetails,
   PersonPresence,
-  PersonCardAccountType,
+  PersonAccountType
 } from '@equinor/fusion-wc-person';
 import extractProps from './extract-props';
 PersonCardElement;
@@ -28,7 +28,7 @@ const mockPersonResolver: PersonResolver = {
               azureId: azureId,
               name: 'Albert Einstein',
               pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
-              accountType: PersonCardAccountType.Consultant,
+              accountType: PersonAccountType.Employee,
               jobTitle: 'X-Bouvet ASA (PX)',
               department: 'FOIT CON PDP',
               mail: 'example@email.com',

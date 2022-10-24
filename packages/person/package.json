@@ -12,8 +12,8 @@
   "types": "lib/types/index.d.ts",
   "typesVersions": {
     "*": {
-      "person": [
-        "lib/types/person/index.d.ts"
+      "person-avatar": [
+        "lib/types/person-avatar/index.d.ts"
       ],
       "person-card": [
         "lib/types/person-card/index.d.ts"

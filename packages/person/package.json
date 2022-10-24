@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "",
   "main": "lib/index.js",
   "exports": {
@@ -12,8 +12,8 @@
   "types": "lib/types/index.d.ts",
   "typesVersions": {
     "*": {
-      "person": [
-        "lib/types/person/index.d.ts"
+      "person-avatar": [
+        "lib/types/person-avatar/index.d.ts"
       ],
       "person-card": [
         "lib/types/person-card/index.d.ts"

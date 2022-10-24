@@ -5,7 +5,7 @@ export * from './element';
 export * from './controller';
 export * from './types';
 
-const tag = 'fwc-person-provider';
+export const tag = 'fwc-person-provider';
 
 @fusionElement(tag)
 export default class _ extends PersonProviderElement {}

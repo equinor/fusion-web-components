@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.2...@equinor/fusion-wc-person@0.3.3) (2022-10-24)
+
+
+### Bug Fixes
+
+* **person:** fix export of tags ([3a43c96](https://github.com/equinor/fusion-web-components/commit/3a43c968dc9f30a43e25db4b4c04601ca6aa06c7))
+
+
+
+
+
 ## [0.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.1...@equinor/fusion-wc-person@0.3.2) (2022-10-21)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

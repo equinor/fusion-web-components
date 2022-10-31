@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.4...@equinor/fusion-wc-storybook@1.22.5) (2022-10-31)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
 ## [1.22.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.3...@equinor/fusion-wc-storybook@1.22.4) (2022-10-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

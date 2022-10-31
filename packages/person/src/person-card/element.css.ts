@@ -9,10 +9,10 @@ export const style = css`
     );
   }
   :host([size='x-small']) {
-    --content-resize: 0.7;
+    --content-resize: 0.8;
   }
   :host([size='small']) {
-    --content-resize: 0.8;
+    --content-resize: 0.9;
   }
   :host([size='medium']) {
     --content-resize: 1;
@@ -32,23 +32,18 @@ export const style = css`
   }
   .fwc-status-icon__icon {
     border-radius: 50%;
-    border: 2px solid #fff;
     color: #fff;
-    font-size: calc(0.6rem * var(--content-resize, 1));
+    font-size: calc(0.7rem * var(--content-resize, 1));
     background-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
-    outline: 1px solid ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
   }
   .fwc-status-icon__success {
     background-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
-    outline: 1px solid ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
   }
   .fwc-status-icon__warning {
     background-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-    outline: 1px solid ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
   }
   .fwc-status-icon__danger {
     background-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    outline: 1px solid ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
   .fwc-person-badge__employee {
     --fwc-badge-color: ${unsafeCSS(theme.colors.infographic.substitute__purple_berry.getVariable('color'))};

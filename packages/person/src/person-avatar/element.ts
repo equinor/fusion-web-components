@@ -94,20 +94,21 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected getBadgeIcon(availability: PersonAvailability): IconName | undefined {
     switch (availability) {
       case PersonAvailability.Available:
-        return 'check';
+        return 'check_circle_outlined';
       case PersonAvailability.AvailableIdle:
       case PersonAvailability.Away:
       case PersonAvailability.BeRightBack:
       case PersonAvailability.BusyIdle:
         return 'time';
       case PersonAvailability.DoNotDisturb:
+      case PersonAvailability.Busy:
         return 'blocked';
       case PersonAvailability.Offline:
         return 'close_circle_outlined';
       case PersonAvailability.Pending:
         return 'more_horizontal';
       default:
-        return undefined;
+        return 'do_not_disturb';
     }
   }
 

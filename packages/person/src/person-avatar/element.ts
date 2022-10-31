@@ -101,6 +101,7 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
       case PersonAvailability.BusyIdle:
         return 'time';
       case PersonAvailability.DoNotDisturb:
+      case PersonAvailability.Busy:
         return 'blocked';
       case PersonAvailability.Offline:
         return 'close_circle_outlined';

@@ -6,6 +6,7 @@ export type SearchableDropdownProps = {
   placeholder?: string;
   variant?: string;
   meta?: string;
+  graphic?: string;
   selected?: string;
   initialText?: string;
   trailingIcon?: string;
@@ -15,12 +16,16 @@ export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
 
 export interface SearchableDropdownResultItem {
   id: string;
-  title: string;
+  title?: string;
   subTitle?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
   isError?: boolean;
   meta?: string;
+  graphic?: string;
+  type?: 'section' | 'divider' | null;
+  children?: SearchableDropdownResult;
+  section?: SearchableDropdownResultItem;
 }
 
 export interface SearchableDropdownResolver {

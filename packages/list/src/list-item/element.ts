@@ -60,20 +60,10 @@ export class ListItemElement extends ListItemBase implements Omit<ListItemBase, 
     `;
   }
 
-  /**
-   * Render graphic slot
-   */
-  protected override renderGraphic(): HTMLTemplateResult {
-    if (this.graphic) {
-      return html`<span class="fwc-list-item__graphic"><slot name="graphic"></slot></span>`;
-    }
-    return html``;
-  }
-
   /** {@inheritDoc} */
   override render(): HTMLTemplateResult {
     const text = this.renderText();
-    return html`${this.renderRipple()}${this.renderGraphic()}${text}
+    return html` ${this.renderRipple()}<span class="fwc-list-item__graphic"><slot name="graphic"></slot></span>${text}
       <slot class="fwc-list-item__meta" name="meta"></slot>`;
   }
 }

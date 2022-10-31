@@ -29,13 +29,27 @@ export const style = css`
   }
   .fwc-sdd-list-item-text,
   .fwc-sdd-list-item-subtext {
-    font-size: 12px;
+    display: block;
+    height: 1.6em;
+    overflow: hidden;
+    font-size: 14px;
   }
   .fwc-sdd-list-item-subtext {
     font-style: italic;
+    font-size: 12px;
   }
   .fwc-sdd-list-item-text-error {
     color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+  }
+  fwc-divider {
+    display: flex;
+    align-items: center;
+    height: 1em;
+  }
+  .section-title {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 1em;
   }
 `;
 

@@ -1,4 +1,4 @@
-import { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
+import React, { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
 import extractProps from './extract-props';
 import {
   SearchableDropdownElement,
@@ -11,56 +11,58 @@ import {
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
+// import json from '../resources/context_reduced.json';
+import allItems from '../resources/sections.json';
+
+// map items to SearchableDropdownResult
+// const allItems: SearchableDropdownResult = json.map((item) => {
+//   return {
+//     id: item.id,
+//     title: item.title,
+//     // isError: item.isDeleted,
+//     // isSelected: !item.isActive,
+//     type: item.type,
+//     children: item.children,
+//   };
+// });
+
 /* generate single SearchableDropdownResult item */
 const singleItem = (props: unknown): SearchableDropdownResultItem => {
   return Object.assign({ id: '0', title: 'Dummy title' }, props);
 };
-/* Dummy api handler */
-const apiItems = (query: string): SearchableDropdownResult => {
-  // min length
-  const min = 3;
-  const items = [];
-  if (!query || query.length < min) {
-    items.push(singleItem({ title: `Need ${min - query.length} more chars`, isDisabled: true }));
-    return items;
-  }
-  const allResults = [
-    {
-      id: '0001',
-      title: 'Johan Castberg',
-      isError: true,
-    },
-    {
-      id: '0002',
-      title: 'Johan Sverdrup Business Case',
-      subTitle: 'some project description...',
-      isSelected: true,
-      meta: 'check',
-    },
-    {
-      id: '0003',
-      title: 'Johan Sverdrup Phase 2',
-    },
-    {
-      id: '0004',
-      title: 'Johan Castberg Prosjektportal',
-    },
-  ];
 
-  for (const item of allResults) {
-    if (item.title.toLowerCase().indexOf(query) > -1) {
-      items.push(item);
+/* Dummy api handler */
+
+const apiItems = (query: string): SearchableDropdownResult => {
+  /* min length of query string */
+  const min = 3;
+  const matched = [];
+  if (!query || query.length < min) {
+    matched.push(singleItem({ title: `Need ${min - query.length} more chars`, isDisabled: true }));
+    return matched;
+  }
+
+  /* Recursive func for matching in children  */
+  for (const item of allItems as SearchableDropdownResult) {
+    const entry = { ...item };
+    if (entry.type === 'section' && entry.children?.length) {
+      entry.children = entry.children.filter((i) => i.title && i.title.toLowerCase().indexOf(query) > -1);
+      if (entry.children.length) {
+        matched.push(entry);
+      }
+    } else if (entry.title && entry.title.toLowerCase().indexOf(query) > -1) {
+      matched.push(entry);
     }
   }
 
-  if (!items.length) {
-    items.push(singleItem({ title: 'No matches...', isDisabled: true }));
+  if (!matched.length) {
+    matched.push(singleItem({ title: 'No matches...', isDisabled: true }));
   }
 
-  return items;
+  return matched;
 };
 
-const sddResolver: SearchableDropdownResolver = {
+const resolver: SearchableDropdownResolver = {
   searchQuery: async (query: string) => {
     try {
       // Dummy api call returning matches
@@ -77,9 +79,10 @@ const useSearchableDropdownProviderRef = (
   const providerRef = useRef<SearchableDropdownProviderElement>(null);
   useEffect(() => {
     if (providerRef?.current) {
-      window.addEventListener('action', (e) => console.log('Event', e));
+      providerRef?.current.addEventListener('action', (e) => console.log('Event', e));
       providerRef.current.setResolver(resolver);
       return () => {
+        providerRef.current?.removeEventListener('action', (e) => console.log('Event', e));
         providerRef.current?.removeResolver();
       };
     }
@@ -89,7 +92,7 @@ const useSearchableDropdownProviderRef = (
 };
 
 export const SearchableDropdown = ({ children, ...props }: PropsWithChildren<SearchableDropdownProps>): JSX.Element => {
-  const providerRef = useSearchableDropdownProviderRef(sddResolver);
+  const providerRef = useSearchableDropdownProviderRef(resolver);
 
   return (
     <fwc-searchable-dropdown-provider ref={providerRef}>

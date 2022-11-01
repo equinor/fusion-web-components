@@ -4,7 +4,7 @@ import { styles as mdcStyle } from '@material/mwc-switch/styles.css';
 import style from './element.css';
 
 export type SwitchElementProps = {
-  checked?: boolean;
+  selected?: boolean;
   disabled?: boolean;
 };
 

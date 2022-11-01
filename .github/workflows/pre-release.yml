@@ -1,10 +1,10 @@
 name: Pre-release
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Realse tag (PR)'     
+        description: 'Realse tag (PR)'
         required: true
 
 jobs:
@@ -12,7 +12,6 @@ jobs:
     name: Publish to PR
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout project
         uses: actions/checkout@v2
         with:
@@ -48,10 +47,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Commit changes
+        continue-on-error: true
         run: |
-            git add packages/*/package.json 
-            git commit -m'chore(prerelease): bumped version with tag ${{ github.event.inputs.tag }}'
-            git push
+          git add -A
+
+          git commit -m'chore(prerelease): bumped version with tag ${{ github.event.inputs.tag }}'
+          git push
         env:
           GH_TOKEN: ${{ github.token }}
 

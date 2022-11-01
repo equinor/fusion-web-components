@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.4...@equinor/fusion-wc-person@0.3.5) (2022-10-31)
+
+
+### Bug Fixes
+
+* **person-card:** added busy to badge ([4508a7e](https://github.com/equinor/fusion-web-components/commit/4508a7e61630a1d7f41c793f06a5c0f001cf8481))
+* **person-card:** availability icon ([f6d4058](https://github.com/equinor/fusion-web-components/commit/f6d4058967a38f46d43668b6fa7a08800deea36c))
+
+
+
+
+
 ## [0.3.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.3...@equinor/fusion-wc-person@0.3.4) (2022-10-24)
 
 

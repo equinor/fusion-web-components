@@ -55,7 +55,7 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Returns the badge color for the current presence
    */
-  protected getRenderClasses(accountType?: PersonAccountType): ClassInfo {
+  protected getRenderClasses(accountType?: string): ClassInfo {
     return {
       'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
       'fwc-person-avatar__external-hire': accountType === PersonAccountType.ExternalHire,
@@ -94,20 +94,21 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected getBadgeIcon(availability: PersonAvailability): IconName | undefined {
     switch (availability) {
       case PersonAvailability.Available:
-        return 'check';
+        return 'check_circle_outlined';
       case PersonAvailability.AvailableIdle:
       case PersonAvailability.Away:
       case PersonAvailability.BeRightBack:
       case PersonAvailability.BusyIdle:
         return 'time';
       case PersonAvailability.DoNotDisturb:
+      case PersonAvailability.Busy:
         return 'blocked';
       case PersonAvailability.Offline:
         return 'close_circle_outlined';
       case PersonAvailability.Pending:
         return 'more_horizontal';
       default:
-        return undefined;
+        return 'do_not_disturb';
     }
   }
 

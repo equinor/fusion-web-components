@@ -6,8 +6,14 @@ export type PersonPresence = {
 export type PersonDetails = {
   azureId: string;
   name?: string;
-  accountType?: PersonAccountType;
   pictureSrc?: string;
+  jobTitle?: string;
+  department?: string;
+  mail?: string;
+  company?: string;
+  mobilePhone?: string;
+  accountType?: PersonAccountType;
+  officeLocation?: string;
 };
 
 export type PersonPicture = {

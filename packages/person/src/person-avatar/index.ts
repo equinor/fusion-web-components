@@ -6,7 +6,7 @@ export * from './element';
 export * from './types';
 export { AvatarSize } from '@equinor/fusion-wc-avatar';
 
-const tag = 'fwc-person-avatar';
+export const tag = 'fwc-person-avatar';
 
 @fusionElement(tag)
 export default class _ extends PersonAvatarElement {}

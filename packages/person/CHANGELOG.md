@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.4...@equinor/fusion-wc-person@0.3.5) (2022-10-31)
+
+
+### Bug Fixes
+
+* **person-card:** added busy to badge ([4508a7e](https://github.com/equinor/fusion-web-components/commit/4508a7e61630a1d7f41c793f06a5c0f001cf8481))
+* **person-card:** availability icon ([f6d4058](https://github.com/equinor/fusion-web-components/commit/f6d4058967a38f46d43668b6fa7a08800deea36c))
+
+
+
+
+
+## [0.3.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.3...@equinor/fusion-wc-person@0.3.4) (2022-10-24)
+
+
+### Bug Fixes
+
+* **person:** update type exports ([e16cf55](https://github.com/equinor/fusion-web-components/commit/e16cf5524fe51b52d46ca4cfa2831a3d0445dda6))
+
+
+
+
+
+## [0.3.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.2...@equinor/fusion-wc-person@0.3.3) (2022-10-24)
+
+
+### Bug Fixes
+
+* **person:** fix export of tags ([3a43c96](https://github.com/equinor/fusion-web-components/commit/3a43c968dc9f30a43e25db4b4c04601ca6aa06c7))
+
+
+
+
+
+## [0.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.1...@equinor/fusion-wc-person@0.3.2) (2022-10-21)
+
+**Note:** Version bump only for package @equinor/fusion-wc-person
+
+
+
+
+
+## [0.3.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.0...@equinor/fusion-wc-person@0.3.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* **person:** update account type ([feee3fd](https://github.com/equinor/fusion-web-components/commit/feee3fd76a4f523e7047802f6cd1f3836d8fab97))
+* **person:** update check of account type name ([70e074b](https://github.com/equinor/fusion-web-components/commit/70e074b81228e19b6ed82dc3337d483806fe4ae2))
+* **person:** update typing and export ([3b20559](https://github.com/equinor/fusion-web-components/commit/3b205592c45e6534ccb1a1930a71a0b9dfd11d12))
+
+
+
+
+
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.2.10...@equinor/fusion-wc-person@0.3.0) (2022-10-11)
+
+
+### Bug Fixes
+
+* **person-card:** readme update ([69a9ed6](https://github.com/equinor/fusion-web-components/commit/69a9ed6ce5999fff96ef6f41469e47c1d981541f))
+* **person-card:** remove badge type color ([c2f5047](https://github.com/equinor/fusion-web-components/commit/c2f504758d291d5c380226b849ff3e570f338cf1))
+* **person-card:** removed host from css ([97efa02](https://github.com/equinor/fusion-web-components/commit/97efa029647e638147e90d6b1295816b58ac716a))
+
+
+### Features
+
+* **person-card:** created web component ([f81dc53](https://github.com/equinor/fusion-web-components/commit/f81dc53089d1bd27ebef63a2d2d3c45cfe1d50dc))
+
+
+
+
+
 ## [0.2.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.2.9...@equinor/fusion-wc-person@0.2.10) (2022-09-14)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

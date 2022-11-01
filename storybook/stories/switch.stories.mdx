@@ -18,25 +18,23 @@ npm i @equinor/fusion-wc-switch
 ```
 
 <Canvas>
-  <Story 
-    name="Basic"
-    parameters={{chromatic: { disableSnapshot: true }}}
-  >
+  <Story name="Basic" parameters={{ chromatic: { disableSnapshot: true } }}>
     {Switch.bind({})}
   </Story>
 </Canvas>
 
 <ArgsTable story="Basic" />
 
-
 ### Unchecked
+
 <Story name="Unchecked">
   <fwc-switch />
-  <fwc-switch checked/>
+  <fwc-switch selected />
 </Story>
 
 ### Disabled
+
 <Story name="Disabled">
-  <fwc-switch disabled/>
-  <fwc-switch disabled checked/>
+  <fwc-switch disabled />
+  <fwc-switch disabled selected />
 </Story>

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.22](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-switch@0.2.20...@equinor/fusion-wc-switch@0.2.22) (2022-11-01)
+
+
+### Bug Fixes
+
+* **switch:** No event on switch change ([3a12f02](https://github.com/equinor/fusion-web-components/commit/3a12f023418219b09bab18cc320b271a43688039))
+* **switch:** remove tag ([7a22e23](https://github.com/equinor/fusion-web-components/commit/7a22e239cd0dbd0785386f4f23f11d881c8f039a))
+
+
+
+
+
 ## [0.2.20](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-switch@0.2.19...@equinor/fusion-wc-switch@0.2.20) (2022-09-14)
 
 **Note:** Version bump only for package @equinor/fusion-wc-switch

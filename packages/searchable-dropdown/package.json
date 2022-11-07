@@ -16,13 +16,13 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-list": "^0.2.1",
     "@equinor/fusion-wc-textinput": "^0.5.13",
-    "@lit-labs/task": "^1.0.0",
-    "lit": "2.2.2"
+    "@lit-labs/task": "^2.0.0",
+    "lit": "2.4.1"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.5.6",
+    "@custom-elements-manifest/analyzer": "^0.6.6",
     "@equinor/fusion-wc-builder": "^1.0.11",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.4"
   },
   "publishConfig": {
     "access": "public"

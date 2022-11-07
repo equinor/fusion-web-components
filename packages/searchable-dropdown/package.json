@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-searchable-dropdown",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Searchable dropdown element",
   "main": "lib/index.js",
   "scripts": {
@@ -14,8 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-list": "^0.2.1",
-    "@equinor/fusion-wc-textinput": "^0.5.13",
+    "@equinor/fusion-wc-list": "^0.2.2",
+    "@equinor/fusion-wc-textinput": "^0.5.14",
     "@lit-labs/task": "^2.0.0",
     "lit": "2.4.1"
   },

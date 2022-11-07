@@ -41,12 +41,12 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-icon": "^1.0.25",
     "@equinor/fusion-wc-skeleton": "^0.2.18",
-    "@lit-labs/task": "^1.0.0",
-    "lit": "2.2.2"
+    "@lit-labs/task": "^2.0.0",
+    "lit": "2.4.1"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^1.0.11",
-    "typescript": "^4.5.5",
+    "typescript": "^4.8.4",
     "web-component-analyzer": "^1.1.6"
   },
   "publishConfig": {

@@ -11,20 +11,22 @@ import {
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
-// import json from '../resources/context_reduced.json';
-import allItems from '../resources/sections.json';
-
+/* 
+import json from '../resources/context.json';
 // map items to SearchableDropdownResult
-// const allItems: SearchableDropdownResult = json.map((item) => {
-//   return {
-//     id: item.id,
-//     title: item.title,
-//     // isError: item.isDeleted,
-//     // isSelected: !item.isActive,
-//     type: item.type,
-//     children: item.children,
-//   };
-// });
+const allItems: SearchableDropdownResult = json.map((item) => {
+  return {
+    id: item.id,
+    title: item.title,
+    subTitle: item.type.id,
+    // isError: item.isDeleted,
+    // isSelected: !item.isActive,
+    // type: item.type,
+    // children: item.children,
+  };
+});
+*/
+import allItems from '../resources/sections.json';
 
 /* generate single SearchableDropdownResult item */
 const singleItem = (props: unknown): SearchableDropdownResultItem => {
@@ -79,10 +81,10 @@ const useSearchableDropdownProviderRef = (
   const providerRef = useRef<SearchableDropdownProviderElement>(null);
   useEffect(() => {
     if (providerRef?.current) {
-      providerRef?.current.addEventListener('action', (e) => console.log('Event', e));
+      providerRef?.current.addEventListener('select', (e) => console.log('Event', e));
       providerRef.current.setResolver(resolver);
       return () => {
-        providerRef.current?.removeEventListener('action', (e) => console.log('Event', e));
+        providerRef.current?.removeEventListener('select', (e) => console.log('Event', e));
         providerRef.current?.removeResolver();
       };
     }

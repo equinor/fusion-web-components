@@ -67,7 +67,6 @@ export class SearchableDropdownElement
   initialText = 'Start typing to search';
 
   /* The trailing icon to display in fwc-textinput */
-  @property()
   trailingIcon = 'search';
 
   /* Tasks to bind from controller */
@@ -75,37 +74,37 @@ export class SearchableDropdownElement
 
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
-    const renderItemText = (item: SearchableDropdownResultItem) => {
-      const itemClasses = {
-        'fwc-sdd-list-item-text': true,
-        'fwc-sdd-list-item-text-error': item.isError !== undefined && item.isError !== false,
-      };
-      /* show meta icon for list item, either for all items or for single item. */
-      const metaSlot = () => {
-        if (!item.isDisabled) {
-          if (this.meta || item.meta || this.graphic || item.graphic) {
-            const icons = [];
-            if (this.meta || item.meta) {
-              icons.push(html`<span class=${classMap(itemClasses)} slot="meta">
-                <fwc-icon icon=${item.meta ? item.meta : this.meta} />
-              </span>`);
-            }
-            if (this.graphic || item.graphic) {
-              icons.push(html`<span class=${classMap(itemClasses)} slot="graphic">
-                <fwc-icon icon=${item.graphic ? item.graphic : this.graphic} />
-              </span>`);
-            }
-            return icons;
-          }
+    const itemClasses = {
+      'list-item': true,
+      'item-selected': item.isSelected !== undefined && item.isSelected,
+      'item-error': item.isError !== undefined && item.isError,
+    };
+    const renderItemText = () => {
+      /* Geticonf for either meta or graphic slot */
+      const getIconSlot = (type: 'meta' | 'graphic') => {
+        if (this[type] || item[type]) {
+          return html`<span class="slot-${type}" slot=${type}>
+            <fwc-icon icon=${item[type] ? item[type] : this[type]} />
+          </span>`;
         }
         return html``;
       };
-      if (item.subTitle) {
-        return html`<span class=${classMap(itemClasses)}>${item.title}</span>
-          <span slot="secondary" class="fwc-sdd-list-item-subtext">${item.subTitle}</span>
-          ${metaSlot()}`;
-      }
-      return html`<span class=${classMap(itemClasses)}>${item.title}</span>${metaSlot()}`;
+
+      /* title and subtitle slots */
+      const generateTextContent = () => {
+        const text = [];
+        if (item.title) {
+          text.push(html`<span class="item-title">${item.title}</span>`);
+        }
+        if (item.subTitle) {
+          text.push(html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span></span>`);
+        }
+        return text;
+      };
+
+      return html`${getIconSlot('graphic')}
+        <span class="item-text">${generateTextContent()}</span>
+        ${getIconSlot('meta')}`;
     };
 
     const disabled = item.isDisabled || item.isError ? true : undefined;
@@ -114,14 +113,14 @@ export class SearchableDropdownElement
 
     /* Sett checkmark on selected items */
     // item.meta = selected ? 'check' : '';
-
     return html`<fwc-list-item
       key=${item.id}
+      class=${classMap(itemClasses)}
       disabled=${ifDefined(disabled)}
       selected=${ifDefined(selected)}
       twoline=${ifDefined(item.subTitle)}
     >
-      ${renderItemText(item)}
+      ${renderItemText()}
     </fwc-list-item>`;
   }
 
@@ -134,11 +133,13 @@ export class SearchableDropdownElement
       return html``;
     }
 
-    return html`<fwc-list multi="" @action=${this.controller.handleSelect} activatable=${true}>
+    return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true}>
       ${this.pendingQuery?.render({
-        /* any result from resolvers serachQuery */
         complete: (result) => {
-          /* clear previous render items */
+          /*
+           * clear previous render items.
+           * we need to save rendered items in state to be able to select them by index from action event
+           */
           this.controller._listItems = [];
           return result.map((item) => {
             if (item.type === 'section') {
@@ -162,18 +163,32 @@ export class SearchableDropdownElement
         /* Inital state */
         initial: () =>
           html`<fwc-list-item disabled=${true}>
-            <span class="fwc-sdd-list-item-text">${this.initialText}</span>
+            <span class="item-text"><span class="item-title">${this.initialText}</span></span>
           </fwc-list-item>`,
         /* Loader item */
-        pending: () => html`<fwc-list-item><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
+        pending: () =>
+          html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
         /* Error from resolvers searchQuery Promise */
         error: (e: unknown) =>
-          html`<fwc-list-item disabled=${true}>
-            <span class="fwc-sdd-list-item-text fwc-sdd-list-item-error">${e}</span>
+          html`<fwc-list-item disabled=${true} class="item-error">
+            <span class="item-text"><span class="item-title">${e}</span></span>
           </fwc-list-item>`,
       })}
     </fwc-list>`;
   }
+
+  protected trailingClick(): void {
+    const input = this.renderRoot.querySelector('fwc-textinput') as HTMLInputElement;
+    if (!this.controller.isOpen) {
+      this.controller.isOpen = true;
+      if (input) {
+        input.focus();
+      }
+    } else {
+      this.controller.isOpen = false;
+    }
+  }
+
   /**
    * The main render function
    * @returns HTMLTemplateResult
@@ -193,12 +208,13 @@ export class SearchableDropdownElement
             variant=${this.variant}
             value=${this.selected}
             name="searchabledropdown"
-            iconTrailing=${this.trailingIcon}
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}
             @keyup=${this.controller.handleKeyup}
           ></fwc-textinput>
-          <slot name="trailing"></slot>
+          <slot name="trailing"
+            ><fwc-icon @click=${this.trailingClick} class="trailing-slot" icon=${this.trailingIcon} />
+          </slot>
         </div>
         <div class="fwc-sdd-list">${this.renderList()}</div>
       </div>

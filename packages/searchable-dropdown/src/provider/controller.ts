@@ -24,7 +24,6 @@ export class SearchableDropdownController implements ReactiveController {
   constructor(host: SearchableDropdownControllerHost) {
     this.host = host;
     this.host.addController(this);
-    this.handleAction = this.handleAction.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleKeyup = this.handleKeyup.bind(this);
   }
@@ -72,17 +71,14 @@ export class SearchableDropdownController implements ReactiveController {
   };
 
   /**
-   * Sets the value on fwc-textinput when user selects an item
-   * Fires on the action event for fwc-list
-   * @param action Custonevent with details property
+   * Fires the select event to listener on host.
+   * using the action event from the fwc-list element.
+   * @param action Customevent with details property
+   * @return SearchableDropdownResult the selected item in array.
    */
-  public handleAction(action: CustomEvent<ActionDetail>): void {
-    // dont bubble fwc-list action event since we want more details
-    action.stopPropagation();
-  }
-
   public handleSelect(action: CustomEvent<ActionDetail>): void {
-    // e.stopPropagation();
+    action.stopPropagation();
+
     if (this.result && this._listItems) {
       const id = this._listItems[action.detail.index];
 
@@ -111,23 +107,21 @@ export class SearchableDropdownController implements ReactiveController {
 
       /*  Set active state and save selected item in state */
       if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
+        /*  Already selected so clear it from selections */
         selectedItem.isSelected = false;
         this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
         this.host.selected = '';
-        console.log('unSelecting', selectedItem);
       } else {
+        /*  Adds new item to selections */
         selectedItem.isSelected = true;
         this._selectedItems.push(selectedItem);
         this.host.selected = selectedItem?.title || '';
-        console.log('Selecting', selectedItem);
       }
     } else {
       /* Clear selected states */
       this._selectedItems = [];
       this.host.selected = '';
     }
-
-    console.log('selectedItems', this._selectedItems);
 
     /* Dispatch custom select event with our details */
     this.host.dispatchEvent(
@@ -147,6 +141,7 @@ export class SearchableDropdownController implements ReactiveController {
   public set isOpen(state: boolean) {
     this.query = '';
     this._isOpen = state;
+    this.host.trailingIcon = state ? 'close' : 'search';
     this.host.requestUpdate();
   }
 

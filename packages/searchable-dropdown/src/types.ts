@@ -9,7 +9,6 @@ export type SearchableDropdownProps = {
   graphic?: string;
   selected?: string;
   initialText?: string;
-  trailingIcon?: string;
 };
 
 export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
@@ -37,4 +36,5 @@ export interface SearchableDropdownControllerHost extends ReactiveControllerHost
   pendingQuery?: Task<[string], SearchableDropdownResult>;
   nodeName: string;
   selected: string;
+  trailingIcon: string;
 }

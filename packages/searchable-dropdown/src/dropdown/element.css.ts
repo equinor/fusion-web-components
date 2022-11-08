@@ -13,6 +13,13 @@ export const style = css`
   .fwc-sdd-input {
     display: flex;
     align-items: center;
+    posistion: relative;
+  }
+  .trailing-slot {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    height: 100%;
   }
   .fwc-sdd-list {
     position: absolute;
@@ -27,15 +34,39 @@ export const style = css`
   .fwc-sdd-outlined .fwc-sdd-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
   }
-  .fwc-sdd-list-item-text,
-  .fwc-sdd-list-item-subtext {
-    font-size: 12px;
+  .item-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
   }
-  .fwc-sdd-list-item-subtext {
+  .item-title {
+    height: 1.4em;
+    font-size: 1em;
+    line-height: 1.6;
+  }
+  .item-subtitle {
+    font-size: 0.8em;
     font-style: italic;
+    line-height: 1.6;
   }
-  .fwc-sdd-list-item-text-error {
-    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+  [slot='graphic'] {
+    display: flex;
+    font-size: 0.8em;
+    padding-right: 6px;
+  }
+  fwc-divider {
+    display: flex;
+    align-items: center;
+    height: 1em;
+  }
+  .section-title {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 1em;
+    margin: 1em 0 0;
+  }
+  .item-error {
+    background-color: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
   }
 `;
 

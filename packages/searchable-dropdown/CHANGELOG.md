@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@0.2.1...@equinor/fusion-wc-searchable-dropdown@0.3.0) (2022-11-08)
+
+
+### Features
+
+* **searchabledropdown:** multiple selections and section and icons ([7adf375](https://github.com/equinor/fusion-web-components/commit/7adf375fee31430d627bd8bb0b205c1079b2dc9b))
+* **searchabledropdown:** open-close icon in traling slot ([bfbe200](https://github.com/equinor/fusion-web-components/commit/bfbe20034e72dfc8addd25ac040ceb7ba11e0e10))
+
+
+
+
+
 ## [0.2.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@0.2.0...@equinor/fusion-wc-searchable-dropdown@0.2.1) (2022-11-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-searchable-dropdown

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.27](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.26...@equinor/fusion-wc-theme@0.2.27) (2022-11-07)
+
+**Note:** Version bump only for package @equinor/fusion-wc-theme
+
+
+
+
+
 ## [0.2.26](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.25...@equinor/fusion-wc-theme@0.2.26) (2022-09-14)
 
 **Note:** Version bump only for package @equinor/fusion-wc-theme

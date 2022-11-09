@@ -12,6 +12,17 @@ import {
   SearchableDropdownResult,
   SearchableDropdownResultItem,
 } from '../types';
+
+import { ListElement, ListItemElement } from '@equinor/fusion-wc-list';
+import { TextInputElement } from '@equinor/fusion-wc-textinput';
+import { DividerElement } from '@equinor/fusion-wc-divider';
+import { IconElement } from '@equinor/fusion-wc-icon';
+ListElement;
+ListItemElement;
+TextInputElement;
+DividerElement;
+IconElement;
+
 import { styles as CSSstyles } from './element.css';
 
 /**

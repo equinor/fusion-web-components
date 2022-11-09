@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.2.2...@equinor/fusion-wc-list@0.3.0) (2022-11-08)
+
+
+### Features
+
+* **searchabledropdown:** multiple selections and section and icons ([7adf375](https://github.com/equinor/fusion-web-components/commit/7adf375fee31430d627bd8bb0b205c1079b2dc9b))
+
+
+
+
+
 ## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-list@0.2.1...@equinor/fusion-wc-list@0.2.2) (2022-11-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-list

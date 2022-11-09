@@ -5,5 +5,5 @@
     "outDir": "./lib"
   },
   "include": ["src/**/*"],
-  "references": [{ "path": "../core" }, { "path": "../list" }, { "path": "../textinput" }]
+  "references": [{ "path": "../core" }, { "path": "../list" }, { "path": "../textinput" }, { "path": "../divider" }, { "path": "../icon" }]
 }

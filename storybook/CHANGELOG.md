@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.7...@equinor/fusion-wc-storybook@1.23.0) (2022-11-08)
+
+
+### Features
+
+* **searchabledropdown:** multiple selections and section and icons ([7adf375](https://github.com/equinor/fusion-web-components/commit/7adf375fee31430d627bd8bb0b205c1079b2dc9b))
+* **searchabledropdown:** open-close icon in traling slot ([bfbe200](https://github.com/equinor/fusion-web-components/commit/bfbe20034e72dfc8addd25ac040ceb7ba11e0e10))
+
+
+
+
+
 ## [1.22.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.6...@equinor/fusion-wc-storybook@1.22.7) (2022-11-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

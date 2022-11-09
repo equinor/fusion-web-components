@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "1.23.0",
+  "version": "1.23.1",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -30,7 +30,7 @@
     "@equinor/fusion-wc-progress-indicator": "^0.4.5",
     "@equinor/fusion-wc-radio": "^0.2.21",
     "@equinor/fusion-wc-ripple": "^0.2.15",
-    "@equinor/fusion-wc-searchable-dropdown": "^0.3.0",
+    "@equinor/fusion-wc-searchable-dropdown": "^0.3.1",
     "@equinor/fusion-wc-select": "^0.1.4",
     "@equinor/fusion-wc-skeleton": "^0.2.19",
     "@equinor/fusion-wc-switch": "^0.2.23",

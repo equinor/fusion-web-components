@@ -189,7 +189,7 @@ export class SearchableDropdownElement
   }
 
   protected trailingClick(): void {
-    const input = this.renderRoot.querySelector('fwc-textinput') as HTMLInputElement;
+    const input = this.renderRoot.querySelector('fwc-textinput') as TextInputElement;
     if (!this.controller.isOpen) {
       this.controller.isOpen = true;
       if (input) {

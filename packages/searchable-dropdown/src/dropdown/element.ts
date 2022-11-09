@@ -12,6 +12,17 @@ import {
   SearchableDropdownResult,
   SearchableDropdownResultItem,
 } from '../types';
+
+import { ListElement, ListItemElement } from '@equinor/fusion-wc-list';
+import { TextInputElement } from '@equinor/fusion-wc-textinput';
+import { DividerElement } from '@equinor/fusion-wc-divider';
+import { IconElement } from '@equinor/fusion-wc-icon';
+ListElement;
+ListItemElement;
+TextInputElement;
+DividerElement;
+IconElement;
+
 import { styles as CSSstyles } from './element.css';
 
 /**
@@ -178,7 +189,7 @@ export class SearchableDropdownElement
   }
 
   protected trailingClick(): void {
-    const input = this.renderRoot.querySelector('fwc-textinput') as HTMLInputElement;
+    const input = this.renderRoot.querySelector('fwc-textinput') as TextInputElement;
     if (!this.controller.isOpen) {
       this.controller.isOpen = true;
       if (input) {

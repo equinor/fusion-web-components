@@ -2,7 +2,6 @@ import { html, LitElement, HTMLTemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { Task } from '@lit-labs/task';
 import { v4 as uuid } from 'uuid';
 
 import { SearchableDropdownController } from '../provider';
@@ -80,9 +79,6 @@ export class SearchableDropdownElement
   /* The trailing icon to display in fwc-textinput */
   trailingIcon = 'search';
 
-  /* Tasks to bind from controller */
-  pendingQuery?: Task<[string], SearchableDropdownResult>;
-
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
     const itemClasses = {
@@ -145,8 +141,8 @@ export class SearchableDropdownElement
     }
 
     return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true}>
-      ${this.pendingQuery?.render({
-        complete: (result) => {
+      ${this.controller.task.render({
+        complete: (result: SearchableDropdownResult) => {
           /*
            * clear previous render items.
            * we need to save rendered items in state to be able to select them by index from action event
@@ -176,7 +172,6 @@ export class SearchableDropdownElement
           html`<fwc-list-item disabled=${true}>
             <span class="item-text"><span class="item-title">${this.initialText}</span></span>
           </fwc-list-item>`,
-        /* Loader item */
         pending: () =>
           html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
         /* Error from resolvers searchQuery Promise */
@@ -209,7 +204,7 @@ export class SearchableDropdownElement
       'fwc-sdd-column': true,
       'fwc-sdd-outlined': this.variant === 'outlined',
     };
-    return html`<div>
+    return html`<div id="sdd">
       <div class=${classMap(cssClasses)}>
         <div class="fwc-sdd-input">
           <slot name="leading"></slot>

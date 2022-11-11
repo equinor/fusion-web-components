@@ -1,5 +1,4 @@
 import { ReactiveControllerHost } from 'lit';
-import { Task } from '@lit-labs/task';
 
 /**
  * Properties/Attributes for web component
@@ -59,9 +58,10 @@ export interface SearchableDropdownResolver {
  * The element the controller is conected to
  */
 export interface SearchableDropdownControllerHost extends ReactiveControllerHost {
+  renderRoot: any;
   dispatchEvent(event: Event): boolean;
-  pendingQuery?: Task<[string], SearchableDropdownResult>;
   nodeName: string;
   selected: string;
   trailingIcon: string;
+  initialText: string;
 }

@@ -37,7 +37,7 @@ const singleItem = (props: unknown): SearchableDropdownResultItem => {
 
 const apiItems = (query: string): SearchableDropdownResult => {
   /* min length of query string */
-  const min = 3;
+  const min = 2;
   const matched = [];
   if (!query || query.length < min) {
     matched.push(singleItem({ title: `Need ${min - query.length} more chars`, isDisabled: true }));

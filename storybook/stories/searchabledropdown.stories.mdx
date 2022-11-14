@@ -11,7 +11,7 @@ export const Container = ({ title, children }) => (
 
 export const Template = ({ children, ...props }) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '250px' }}>
+    <div style={{ width: '98%', maxWidth: '420px', height: '250px', margin: '0 auto' }}>
       <SearchableDropdown {...props} />
     </div>
   );

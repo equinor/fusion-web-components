@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.1...@equinor/fusion-wc-storybook@1.23.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** task improvement, keydown navigation, styles ([d847638](https://github.com/equinor/fusion-web-components/commit/d8476385643fb42d3c99b45393ccf1a1434644f6))
+
+
+
+
+
 ## [1.23.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.0...@equinor/fusion-wc-storybook@1.23.1) (2022-11-09)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

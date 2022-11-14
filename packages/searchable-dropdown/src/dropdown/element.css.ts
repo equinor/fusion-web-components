@@ -4,8 +4,13 @@ import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
 
 export const style = css`
   :host {
-    --fwc-list-item-secondary-font-size: 10px;
-    --fwc-list-item-font-size: 12px;
+    width: 100%;
+  }
+  fwc-searchable-dropdown {
+    width: 100%;
+  }
+  fwc-textinput {
+    width: 100%;
   }
   .fwc-sdd-column {
     position: relative;
@@ -30,6 +35,7 @@ export const style = css`
     border-radius: 4px;
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    z-index: 99;
   }
   .fwc-sdd-outlined .fwc-sdd-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};

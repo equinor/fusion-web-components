@@ -1,4 +1,4 @@
-import { LitElement } from 'lit';
+import { LitElement, css } from 'lit';
 import { SearchableDropdownResolver } from '../types';
 import { SearchableDropdownConnectEvent } from '../events';
 
@@ -6,6 +6,15 @@ import { SearchableDropdownConnectEvent } from '../events';
  * Provider element for the searchabledropdown component
  */
 export class SearchableDropdownProviderElement extends LitElement {
+  static styles = css`
+    :host {
+      width: 100%;
+    }
+    fwc-searchable-dropdown-provider {
+      width: 100%;
+    }
+  `;
+
   protected updateCallbacks: Array<(resolver?: SearchableDropdownResolver) => void> = [];
 
   protected createRenderRoot(): LitElement {

@@ -1,5 +1,5 @@
 import { ReactiveController } from 'lit';
-import { Task, initialState } from '@lit-labs/task';
+import { Task } from '@lit-labs/task';
 import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
@@ -8,29 +8,48 @@ import {
 } from '../types';
 import { SearchableDropdownConnectEvent } from '../events';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { v4 as uuid } from 'uuid';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
-  protected _query = '';
-  public _listItems: Array<string> = [];
-  public _selectedItems: SearchableDropdownResult = [];
   protected resolver?: SearchableDropdownResolver;
 
-  public host: SearchableDropdownControllerHost;
+  public _listItems: Array<string> = [];
+  public _selectedItems: SearchableDropdownResult = [];
   public result?: SearchableDropdownResult;
+  public task!: Task<[string], SearchableDropdownResult>;
+
+  #queryString = '';
+  #host: SearchableDropdownControllerHost;
 
   constructor(host: SearchableDropdownControllerHost) {
-    this.host = host;
-    this.host.addController(this);
+    this.#host = host;
+    this.#host.addController(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleKeyup = this.handleKeyup.bind(this);
+
+    this.task = new Task<[string], SearchableDropdownResult>(
+      this.#host,
+      async ([qs]: [string]): Promise<SearchableDropdownResult> => {
+        if (!qs) {
+          return [{ id: uuid(), title: this.#host.initialText }];
+        }
+        if (!this.resolver?.searchQuery) {
+          /* resolver is not setup the right way */
+          throw new Error('SeachableDropdownResolver is missing searchQuery handler');
+        }
+        this.result = await this.resolver.searchQuery(qs);
+        return this.result;
+      },
+      () => [this.#queryString]
+    );
   }
 
   protected updateResolver = (resolver?: SearchableDropdownResolver): void => {
     this.resolver = resolver;
-    this.host.requestUpdate();
+    this.#host.requestUpdate();
   };
 
   public hostConnected(): void {
@@ -45,8 +64,7 @@ export class SearchableDropdownController implements ReactiveController {
       composed: true,
       cancelable: false,
     });
-    this.host.dispatchEvent(event);
-
+    this.#host.dispatchEvent(event);
     /* add click event to window */
     window.addEventListener('click', this._handleWindowClick);
   }
@@ -65,7 +83,7 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowClick = (e: Event): void => {
     /* make sure we have a target to check against */
     if (!e.target) return;
-    if ((e.target as HTMLElement).nodeName !== this.host.nodeName) {
+    if ((e.target as HTMLElement).nodeName !== this.#host.nodeName) {
       this.isOpen = false;
     }
   };
@@ -91,7 +109,6 @@ export class SearchableDropdownController implements ReactiveController {
         } else if (item.children) {
           for (const childItem of item.children) {
             if (childItem.id === id) {
-              item.section = { id: item.id, title: item.title };
               selectedItem = childItem;
             }
           }
@@ -110,21 +127,21 @@ export class SearchableDropdownController implements ReactiveController {
         /*  Already selected so clear it from selections */
         selectedItem.isSelected = false;
         this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-        this.host.selected = '';
+        this.#host.selected = '';
       } else {
         /*  Adds new item to selections */
         selectedItem.isSelected = true;
         this._selectedItems.push(selectedItem);
-        this.host.selected = selectedItem?.title || '';
+        this.#host.selected = selectedItem?.title || '';
       }
     } else {
       /* Clear selected states */
       this._selectedItems = [];
-      this.host.selected = '';
+      this.#host.selected = '';
     }
 
     /* Dispatch custom select event with our details */
-    this.host.dispatchEvent(
+    this.#host.dispatchEvent(
       new CustomEvent('select', {
         detail: {
           selected: this._selectedItems,
@@ -134,15 +151,15 @@ export class SearchableDropdownController implements ReactiveController {
     );
 
     /* Refresh host */
-    this.host.requestUpdate();
+    this.#host.requestUpdate();
   }
 
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
-    this.query = '';
+    this.#queryString = '';
     this._isOpen = state;
-    this.host.trailingIcon = state ? 'close' : 'search';
-    this.host.requestUpdate();
+    this.#host.trailingIcon = state ? 'close' : 'search';
+    this.#host.requestUpdate();
   }
 
   /* Getter: Open/Closed state for host */
@@ -156,43 +173,19 @@ export class SearchableDropdownController implements ReactiveController {
    */
   public handleKeyup(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
-    this.query = target.value.trim().toLowerCase();
-  }
-
-  /* set controller query string and bounce 250ms from last keyup */
-  public set query(search: string) {
+    if (event.key === 'ArrowDown') {
+      if (this._isOpen && this.result?.length) {
+        this.#host.renderRoot.querySelector('fwc-list').focus();
+      }
+      return;
+    }
     if (this.timer) {
       clearTimeout(this.timer);
     }
     this.timer = setTimeout(() => {
-      this._query = search;
-      this.host.pendingQuery = this._searchQueryTask(this.resolver);
-      this.host.requestUpdate();
+      this.#queryString = target.value.trim().toLowerCase();
+      // this.host.pendingQuery = this._searchQueryTask(this.resolver);
+      this.#host.requestUpdate();
     }, 250);
-  }
-
-  /* return controller query string */
-  public get query(): string {
-    return this._query;
-  }
-
-  /* Setup task to handle resolvers searchQuery */
-  private _searchQueryTask(resolver?: SearchableDropdownResolver): Task<[string], SearchableDropdownResult> {
-    return new Task<[string], SearchableDropdownResult>(
-      this.host,
-      async ([query]) => {
-        if (!query) {
-          /* See @https://github.com/lit/lit/tree/main/packages/labs/task */
-          return initialState;
-        }
-        if (!resolver?.searchQuery) {
-          /* resolver is not setup the right way */
-          throw new Error('SeachableDropdownResolver is missing searchQuery handler');
-        }
-        this.result = await resolver.searchQuery(query);
-        return this.result;
-      },
-      () => [this._query]
-    );
   }
 }

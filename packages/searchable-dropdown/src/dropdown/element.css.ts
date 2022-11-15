@@ -24,7 +24,14 @@ export const style = css`
     position: absolute;
     right: 5px;
     top: 0;
-    height: 100%;
+    height: calc(100% - 16px);
+    cursor: pointer;
+    margin: 8px 0;
+    padding: 0 8px;
+  }
+  .trailing-slot:hover {
+    background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.getVariable('color'))};
+    border-radius: 50%;
   }
   .fwc-sdd-list {
     position: absolute;

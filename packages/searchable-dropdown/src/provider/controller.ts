@@ -158,7 +158,7 @@ export class SearchableDropdownController implements ReactiveController {
   public set isOpen(state: boolean) {
     this.#queryString = '';
     this._isOpen = state;
-    this.#host.trailingIcon = state ? 'close' : 'search';
+    this.#host.trailingIcon = state ? 'close' : '';
     this.#host.requestUpdate();
   }
 

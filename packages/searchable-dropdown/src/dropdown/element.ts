@@ -35,7 +35,8 @@ import { styles as CSSstyles } from './element.css';
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
  * @property {string} selected Display selected item's title
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
- * @property {string} trailingIcon Traling Icon to display in fwc-text-input
+ * @property {string} trailingIcon Trailing Icon to display in fwc-text-input
+ * @property {string} leadingIcon Leading Icon to display in fwc-text-input
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  */
@@ -76,8 +77,12 @@ export class SearchableDropdownElement
   @property()
   initialText = 'Start typing to search';
 
+  /* The leading icon to display in fwc-textinput */
+  @property()
+  leadingIcon = 'search';
+
   /* The trailing icon to display in fwc-textinput */
-  trailingIcon = 'none';
+  trailingIcon = '';
 
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
@@ -209,7 +214,7 @@ export class SearchableDropdownElement
         <div class="fwc-sdd-input">
           <slot name="leading"></slot>
           <fwc-textinput
-            icon="search"
+            icon=${this.leadingIcon}
             label=${ifDefined(this.label)}
             type="search"
             variant=${this.variant}
@@ -222,7 +227,7 @@ export class SearchableDropdownElement
           <slot name="trailing"
             ><fwc-icon
               @click=${this.trailingClick}
-              class=${classMap({ 'trailing-slot': true, 'no-hover': this.trailingIcon === 'none' })}
+              class=${classMap({ 'trailing-slot': true, 'no-hover': this.trailingIcon === '' })}
               icon=${this.trailingIcon}
             />
           </slot>

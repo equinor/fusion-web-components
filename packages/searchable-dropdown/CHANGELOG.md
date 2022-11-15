@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@0.3.2...@equinor/fusion-wc-searchable-dropdown@0.3.3) (2022-11-15)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** expose leadingicon through props ([796d31f](https://github.com/equinor/fusion-web-components/commit/796d31f2a65b6adbfdc1143278d48179cd5fcb5f))
+
+
+
+
+
 ## [0.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@0.3.1...@equinor/fusion-wc-searchable-dropdown@0.3.2) (2022-11-14)
 
 

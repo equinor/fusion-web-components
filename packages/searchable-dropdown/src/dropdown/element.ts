@@ -77,7 +77,7 @@ export class SearchableDropdownElement
   initialText = 'Start typing to search';
 
   /* The trailing icon to display in fwc-textinput */
-  trailingIcon = 'search';
+  trailingIcon = 'none';
 
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
@@ -209,6 +209,7 @@ export class SearchableDropdownElement
         <div class="fwc-sdd-input">
           <slot name="leading"></slot>
           <fwc-textinput
+            icon="search"
             label=${ifDefined(this.label)}
             type="search"
             variant=${this.variant}
@@ -219,7 +220,11 @@ export class SearchableDropdownElement
             @keyup=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing"
-            ><fwc-icon @click=${this.trailingClick} class="trailing-slot" icon=${this.trailingIcon} />
+            ><fwc-icon
+              @click=${this.trailingClick}
+              class=${classMap({ 'trailing-slot': true, 'no-hover': this.trailingIcon === 'none' })}
+              icon=${this.trailingIcon}
+            />
           </slot>
         </div>
         <div class="fwc-sdd-list">${this.renderList()}</div>

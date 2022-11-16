@@ -1,0 +1,64 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import IconButton from './Components/IconButton';
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+export const Template = ({ children, size, color, ...props }) => {
+  const style = {
+    fontSize: size + 'px',
+    color,
+  };
+  return <fusion-icon-button icon="accessible">{children}</fusion-icon-button>;
+};
+
+export const Container = ({children}) => (
+  <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+    {children}
+  </div>
+);
+
+<Meta
+  title="General/IconButton"
+  component={IconButton}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+  argTypes={{
+    size: {
+      control: {
+        type: 'range',
+        min: 8,
+        max: 120,
+        step: 8,
+      },
+    },
+    icon: {
+      control: 'select',
+      options: iconNames,
+    },
+  }}
+/>
+
+
+## Icon
+<Canvas>
+  <Story
+    name="Basic"
+    argTypes={{
+      icon: {
+        control: {
+          type: 'select',
+          options: iconNames,
+        },
+      },
+    }}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Basic" />

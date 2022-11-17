@@ -30,8 +30,10 @@ import { styles as CSSstyles } from './element.css';
  *
  * @property {string} label Label for fwc-textinput element
  * @property {string} placeholder Placeholder text for fwc-textinput element
+ * @property {string} value Inital preselected value for TextInput element
  * @property {filled: string} variant Set variant to filled|outlined on fwc-textinput and fwc-list elements. defaults to filled
  * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
+ * @property {string} multiple Able to select multiple items
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
  * @property {string} selected Display selected item's title
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
@@ -65,6 +67,9 @@ export class SearchableDropdownElement
   @property()
   meta = '';
 
+  @property()
+  value = '';
+
   /* The icon string to render in result list items on the graphic slot */
   @property()
   graphic = '';
@@ -80,6 +85,10 @@ export class SearchableDropdownElement
   /* The leading icon to display in fwc-textinput */
   @property()
   leadingIcon = 'search';
+
+  /* The leading icon to display in fwc-textinput */
+  @property()
+  multiple = false;
 
   /* The trailing icon to display in fwc-textinput */
   trailingIcon = '';
@@ -145,7 +154,7 @@ export class SearchableDropdownElement
       return html``;
     }
 
-    return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true}>
+    return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true} multi=${this.multiple}>
       ${this.controller.task.render({
         complete: (result: SearchableDropdownResult) => {
           /*
@@ -153,8 +162,6 @@ export class SearchableDropdownElement
            * we need to save rendered items in state to be able to select them by index from action event
            */
           this.controller._listItems = [];
-          console.log('Result =>', result);
-          
           return result.map((item) => {
             if (item.type === 'section') {
               if (item.children?.length) {
@@ -174,11 +181,6 @@ export class SearchableDropdownElement
             return this.buildListItem(item);
           });
         },
-        /* Inital state */
-        initial: () =>
-          html`<fwc-list-item disabled=${true}>
-            <span class="item-text"><span class="item-title">${this.initialText}</span></span>
-          </fwc-list-item>`,
         pending: () =>
           html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
         /* Error from resolvers searchQuery Promise */
@@ -220,7 +222,7 @@ export class SearchableDropdownElement
             label=${ifDefined(this.label)}
             type="search"
             variant=${this.variant}
-            value=${this.selected}
+            value=${this.selected || this.value}
             name="searchabledropdown"
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}

@@ -11,21 +11,6 @@ import {
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
-/* 
-import json from '../resources/context.json';
-// map items to SearchableDropdownResult
-const allItems: SearchableDropdownResult = json.map((item) => {
-  return {
-    id: item.id,
-    title: item.title,
-    subTitle: item.type.id,
-    // isError: item.isDeleted,
-    // isSelected: !item.isActive,
-    // type: item.type,
-    // children: item.children,
-  };
-});
-*/
 import allItems from '../resources/sections.json';
 
 /* generate single SearchableDropdownResult item */
@@ -47,6 +32,7 @@ const apiItems = (query: string): SearchableDropdownResult => {
   /* Recursive func for matching in children  */
   for (const item of allItems as SearchableDropdownResult) {
     const entry = { ...item };
+    // loop over children to creta sections
     if (entry.type === 'section' && entry.children?.length) {
       entry.children = entry.children.filter((i) => i.title && i.title.toLowerCase().indexOf(query) > -1);
       if (entry.children.length) {
@@ -72,15 +58,6 @@ const resolver: SearchableDropdownResolver = {
     } catch {
       return [singleItem({ title: 'Error while searcing', isDisabled: true, isError: true })];
     }
-  },
-  initialResult: () => {
-    return [
-      singleItem({
-        id: 'my-initial-result',
-        title: 'My initialSelection',
-        isSelected: true,
-      }),
-    ];
   },
 };
 

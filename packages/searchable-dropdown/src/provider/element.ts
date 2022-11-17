@@ -45,14 +45,9 @@ export class SearchableDropdownProviderElement extends LitElement {
 
   protected handleElementConnect(event: SearchableDropdownConnectEvent): void {
     const { disconnectedCallback, updateResolver } = event.detail;
-
     disconnectedCallback(() => {
-      const index = this.updateCallbacks.indexOf(updateResolver);
-      if (index > 0) {
-        this.updateCallbacks.splice(index, 1);
-      }
+      this.updateCallbacks.filter((callback) => callback !== updateResolver);
     });
-
     this.updateCallbacks.push(updateResolver);
     event.preventDefault();
     event.stopPropagation();

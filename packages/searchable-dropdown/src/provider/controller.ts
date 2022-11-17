@@ -1,5 +1,5 @@
 import { ReactiveController } from 'lit';
-import { initialState, Task } from '@lit-labs/task';
+import { Task } from '@lit-labs/task';
 import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
@@ -8,7 +8,6 @@ import {
 } from '../types';
 import { SearchableDropdownConnectEvent } from '../events';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
-import { v4 as uuid } from 'uuid';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
@@ -33,14 +32,7 @@ export class SearchableDropdownController implements ReactiveController {
     this.task = new Task<[string], SearchableDropdownResult>(
       this.#host,
       async ([qs]: [string]): Promise<SearchableDropdownResult> => {
-        console.log('Setting resolver', this.resolver?.initialResult);
-
         if (!qs) {
-          if (this.resolver?.initialResult) {
-            console.log('Running, Data=>', this.resolver?.initialResult(), '@', Date.now());
-            return this.resolver?.initialResult();
-          }
-
           return [{ id: 'initial', title: this.#host.initialText, isDisabled: true }];
         }
         if (!this.resolver?.searchQuery) {
@@ -58,7 +50,7 @@ export class SearchableDropdownController implements ReactiveController {
     this.resolver = resolver;
     this.#host.requestUpdate();
   };
-  
+
   public hostConnected(): void {
     const event = new SearchableDropdownConnectEvent({
       detail: {
@@ -130,15 +122,21 @@ export class SearchableDropdownController implements ReactiveController {
       }
 
       /*  Set active state and save selected item in state */
-      if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
-        /*  Already selected so clear it from selections */
-        selectedItem.isSelected = false;
-        this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-        this.#host.selected = '';
+      if (this.#host.multiple) {
+        if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
+          /*  Already selected so clear it from selections */
+          selectedItem.isSelected = false;
+          this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
+          this.#host.selected = '';
+        } else {
+          /*  Adds new item to selections */
+          selectedItem.isSelected = true;
+          this._selectedItems.push(selectedItem);
+          this.#host.selected = selectedItem?.title || '';
+        }
       } else {
         /*  Adds new item to selections */
-        selectedItem.isSelected = true;
-        this._selectedItems.push(selectedItem);
+        this._selectedItems = [selectedItem];
         this.#host.selected = selectedItem?.title || '';
       }
     } else {
@@ -191,7 +189,6 @@ export class SearchableDropdownController implements ReactiveController {
     }
     this.timer = setTimeout(() => {
       this.#queryString = target.value.trim().toLowerCase();
-      // this.host.pendingQuery = this._searchQueryTask(this.resolver);
       this.#host.requestUpdate();
     }, 250);
   }

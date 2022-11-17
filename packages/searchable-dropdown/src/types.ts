@@ -14,8 +14,10 @@ import { ReactiveControllerHost } from 'lit';
 export type SearchableDropdownProps = {
   label?: string;
   placeholder?: string;
+  value?: string;
   variant?: string;
   meta?: string;
+  multiple?: boolean;
   graphic?: string;
   selected?: string;
   initialText?: string;
@@ -58,7 +60,6 @@ export interface SearchableDropdownResultItem {
  */
 export interface SearchableDropdownResolver {
   searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
-  initialResult?: () => SearchableDropdownResult;
 }
 
 /**
@@ -68,6 +69,7 @@ export interface SearchableDropdownControllerHost extends ReactiveControllerHost
   renderRoot: any;
   dispatchEvent(event: Event): boolean;
   nodeName: string;
+  multiple: boolean;
   selected: string;
   trailingIcon: string;
   initialText: string;

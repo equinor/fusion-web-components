@@ -29,7 +29,7 @@ const allItems: SearchableDropdownResult = json.map((item) => {
 import allItems from '../resources/sections.json';
 
 /* generate single SearchableDropdownResult item */
-const singleItem = (props: unknown): SearchableDropdownResultItem => {
+const singleItem = (props: Partial<SearchableDropdownResultItem>): SearchableDropdownResultItem => {
   return Object.assign({ id: '0', title: 'Dummy title' }, props);
 };
 
@@ -65,13 +65,22 @@ const apiItems = (query: string): SearchableDropdownResult => {
 };
 
 const resolver: SearchableDropdownResolver = {
-  searchQuery: async (query: string) => {
+  searchQuery: (query: string) => {
     try {
       // Dummy api call returning matches
       return apiItems(query);
     } catch {
       return [singleItem({ title: 'Error while searcing', isDisabled: true, isError: true })];
     }
+  },
+  initialResult: () => {
+    return [
+      singleItem({
+        id: 'my-initial-result',
+        title: 'My initialSelection',
+        isSelected: true,
+      }),
+    ];
   },
 };
 

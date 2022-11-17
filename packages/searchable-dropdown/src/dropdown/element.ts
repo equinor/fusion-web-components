@@ -153,6 +153,8 @@ export class SearchableDropdownElement
            * we need to save rendered items in state to be able to select them by index from action event
            */
           this.controller._listItems = [];
+          console.log('Result =>', result);
+          
           return result.map((item) => {
             if (item.type === 'section') {
               if (item.children?.length) {

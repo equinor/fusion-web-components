@@ -1,5 +1,5 @@
 import { ReactiveController } from 'lit';
-import { Task } from '@lit-labs/task';
+import { initialState, Task } from '@lit-labs/task';
 import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
@@ -33,8 +33,15 @@ export class SearchableDropdownController implements ReactiveController {
     this.task = new Task<[string], SearchableDropdownResult>(
       this.#host,
       async ([qs]: [string]): Promise<SearchableDropdownResult> => {
+        console.log('Setting resolver', this.resolver?.initialResult);
+
         if (!qs) {
-          return [{ id: uuid(), title: this.#host.initialText }];
+          if (this.resolver?.initialResult) {
+            console.log('Running, Data=>', this.resolver?.initialResult(), '@', Date.now());
+            return this.resolver?.initialResult();
+          }
+
+          return [{ id: 'initial', title: this.#host.initialText, isDisabled: true }];
         }
         if (!this.resolver?.searchQuery) {
           /* resolver is not setup the right way */
@@ -51,7 +58,7 @@ export class SearchableDropdownController implements ReactiveController {
     this.resolver = resolver;
     this.#host.requestUpdate();
   };
-
+  
   public hostConnected(): void {
     const event = new SearchableDropdownConnectEvent({
       detail: {

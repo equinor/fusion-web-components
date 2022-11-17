@@ -58,6 +58,7 @@ export interface SearchableDropdownResultItem {
  */
 export interface SearchableDropdownResolver {
   searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
+  initialResult?: () => SearchableDropdownResult;
 }
 
 /**

@@ -17,9 +17,12 @@ Icon;
  * @tag fwc-icon-button
  *
  * @property {IconName} icon - Sets the icon of the icon button element.
- * @property {ButtonColor} color - Sets the color of the icon button element.
+ * @property {IconButtonSize} size - Sets the size of the icon button element.
+ * @property {IconButtonColor} color - Sets the color of the icon button element.
  * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
  * @property {boolean} disabled - Sets the icon button to disabled.
+ * @property {string} ariaLabel - Sets the accessible label for the button. Uses icon+'_icon-button' when not defined.
+ * @property {string} ariaHasPopup - Indicates the availability and type of an interactive popup element, such as menu or dialog, that can be triggered by the button.
  *
  */
 
@@ -34,6 +37,7 @@ export type IconButtonElementProps = {
 };
 
 export class IconButtonElement extends IconButtonBase implements IconButtonElementProps {
+  /* styles object css */
   static styles: CSSResult[] = [style, mwcStyle];
 
   @property({ type: String })
@@ -45,14 +49,23 @@ export class IconButtonElement extends IconButtonBase implements IconButtonEleme
   @property({ type: Boolean })
   public rounded?: boolean;
 
+  /* override icon for the icon type change */
   override icon: IconName | string = '';
 
-  renderRipple(): HTMLTemplateResult | string {
+  /**
+   * override rendering of the ripple
+   * @returns the ripple for setting up 'unbounded' as an additional property
+   */
+  override renderRipple(): HTMLTemplateResult | string {
     return this.shouldRenderRipple
       ? html` <mwc-ripple .disabled="${this.disabled}" .unbounded="${this.rounded}"> </mwc-ripple>`
       : '';
   }
 
+  /**
+   * override render of the icon button
+   * @returns full render of IconButtonBase with fwc-icon used instead of alredy used material icon
+   */
   override render(): HTMLTemplateResult {
     return html`<button
       class="mdc-icon-button mdc-icon-button--display-flex"

@@ -1,11 +1,14 @@
 import { property } from 'lit/decorators.js';
-import styles from './element.css';
+import style from './element.css';
 import { IconButtonBase } from '@material/mwc-icon-button/mwc-icon-button-base';
-import { IconElement } from '@equinor/fusion-wc-icon';
-// import { IconName } from '@equinor/fusion-wc-icon';
+import { styles as mwcStyle } from '@material/mwc-icon-button/mwc-icon-button.css';
+import { CSSResult, html, HTMLTemplateResult } from 'lit';
+import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { IconButtonColor, IconButtonSize } from './types';
 
 // Persist element
-IconElement;
+Icon;
 
 /**
  * Element for rendering an icon button.
@@ -15,45 +18,61 @@ IconElement;
  *
  * @property {IconName} icon - Sets the icon of the icon button element.
  * @property {ButtonColor} color - Sets the color of the icon button element.
- * @property {String} shape - Sets the shape of the icon button element to rounded or square.
+ * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
  * @property {boolean} disabled - Sets the icon button to disabled.
  *
- * @cssprop {theme.colors.text.static_icons__primary_white} --fwc-avatar-ink-color - text color of the element.
- * @cssprop {theme.colors.interactive.primary__resting} --fwc-avatar-base-color - base color of the element.
- *
- * @fires click - When the element is clicked
- *
- * Content can be slotted in with a slot named 'icon'.
  */
 
-export type ButtonColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
-export type ButtonSize = 'x-small' | 'small' | 'medium' | 'large';
-
 export type IconButtonElementProps = {
+  icon?: IconName | string;
   ariaLabel?: string;
   ariaHasPopup?: string;
-  color?: ButtonColor;
-  shape?: 'rounded' | 'square';
+  color?: IconButtonColor;
+  size?: IconButtonSize;
+  rounded?: boolean;
   disabled?: boolean;
 };
 
 export class IconButtonElement extends IconButtonBase implements IconButtonElementProps {
-  /**
-   * Leading icon to display in input
-   * @See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon)
-   * @override
-   */
+  static styles: CSSResult[] = [style, mwcStyle];
 
   @property({ type: String })
-  public color?: ButtonColor = 'primary';
+  public color?: IconButtonColor = IconButtonColor.Primary;
 
   @property({ type: String })
-  public size?: ButtonSize = 'medium';
+  public size?: IconButtonSize = IconButtonSize.Medium;
 
-  @property({ type: String })
-  public shape?: 'rounded' | 'square' = 'rounded';
+  @property({ type: Boolean })
+  public rounded?: boolean;
+
+  override icon: IconName | string = '';
+
+  renderRipple(): HTMLTemplateResult | string {
+    return this.shouldRenderRipple
+      ? html` <mwc-ripple .disabled="${this.disabled}" .unbounded="${this.rounded}"> </mwc-ripple>`
+      : '';
+  }
+
+  override render(): HTMLTemplateResult {
+    return html`<button
+      class="mdc-icon-button mdc-icon-button--display-flex"
+      aria-label="${this.ariaLabel || this.icon + '_icon-button'}"
+      aria-haspopup="${ifDefined(this.ariaHasPopup)}"
+      ?disabled="${this.disabled}"
+      @focus="${this.handleRippleFocus}"
+      @blur="${this.handleRippleBlur}"
+      @mousedown="${this.handleRippleMouseDown}"
+      @mouseenter="${this.handleRippleMouseEnter}"
+      @mouseleave="${this.handleRippleMouseLeave}"
+      @touchstart="${this.handleRippleTouchStart}"
+      @touchend="${this.handleRippleDeactivate}"
+      @touchcancel="${this.handleRippleDeactivate}"
+    >
+      ${this.renderRipple()}
+      ${this.icon ? html`<fwc-icon class="mdc-icon-button__icon" .icon=${this.icon}></fwc-icon>` : ''}
+      <span><slot></slot></span>
+    </button>`;
+  }
 }
-
-IconButtonElement.styles = styles;
 
 export default IconButtonElement;

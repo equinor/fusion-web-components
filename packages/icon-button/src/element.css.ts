@@ -1,8 +1,6 @@
 import { css, unsafeCSS } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-console.log('theme.colors.interactive.primary__resting', theme.colors.interactive.primary__resting);
-
 export const style = css`
   :host {
     font-size: calc(

@@ -12,6 +12,7 @@
         "main",
         "feat/*",
         "feat/**/*",
+        "feat/**",
         "feature/*",
         "fix/*"
       ],

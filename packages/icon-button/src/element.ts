@@ -27,12 +27,19 @@ Icon;
  */
 
 export type IconButtonElementProps = {
+  /** Icon to display */
   icon?: IconName | string;
+  /** Accessible label for the button */
   ariaLabel?: string;
+  /** Indicates the availability and type of an interactive popup element */
   ariaHasPopup?: string;
+  /** Sets the color */
   color?: IconButtonColor;
+  /** Sets the size */
   size?: IconButtonSize;
+  /** Sets the shape of ripple */
   rounded?: boolean;
+  /** Sets the icon button to disabled */
   disabled?: boolean;
 };
 

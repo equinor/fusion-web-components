@@ -11,6 +11,7 @@ export const style = css`
   }
   fwc-textinput {
     width: 100%;
+    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
   .fwc-sdd-column {
     position: relative;
@@ -40,15 +41,25 @@ export const style = css`
   .fwc-sdd-list {
     position: absolute;
     top: calc(100% + 4px);
-    right: 0;
     left: 0;
+    width: 100%;
     height: auto;
-    border-radius: 4px;
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
     z-index: 99;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
   }
-  .fwc-sdd-outlined .fwc-sdd-list {
+  .fwc-sdd-list-scroll {
+    width: calc(100% + 16px);
+    height: auto;
+    max-height: 220px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  fwc-list {
+    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+  }
+  .variant-header fwc-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
   }
   .item-text {

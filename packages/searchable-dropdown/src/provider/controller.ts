@@ -33,7 +33,6 @@ export class SearchableDropdownController implements ReactiveController {
     this.task = new Task<[string], SearchableDropdownResult>(
       this.#host,
       async ([qs]: [string]): Promise<SearchableDropdownResult> => {
-        console.log('TASK RUNNING');
         if (!qs) {
           if (this.#initialItems.length) {
             this.result = this.#initialItems;
@@ -208,7 +207,7 @@ export class SearchableDropdownController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
-    this.#host.trailingIcon = state ? 'close' : '';
+    this.#host.trailingIcon = state ? 'close' : this.#host.variant === 'page' ? 'search' : 'arrow_drop_down';
 
     /* Sets items isSelected */
     this.mutateResult();

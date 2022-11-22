@@ -4,7 +4,7 @@ import { ReactiveControllerHost } from 'lit';
  * Properties/Attributes for web component
  * @label TextInput Label
  * @placeholder TextInput placeholder
- * @variant Set variant to filled|outlined on fwc-textinput and fwc-list elements
+ * @variant Set variant to header|page style
  * @meta Icon to show after each fwc-list-item.
  * @graphic Icon to show before each fwc-list-item.
  * @selected Display selected item's title
@@ -74,4 +74,5 @@ export interface SearchableDropdownControllerHost extends ReactiveControllerHost
   selected: string;
   trailingIcon: string;
   initialText: string;
+  variant: string;
 }

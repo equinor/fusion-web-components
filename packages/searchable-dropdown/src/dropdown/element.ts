@@ -97,8 +97,8 @@ export class SearchableDropdownElement
     this.controller._listItems.push(item.id);
     const itemClasses = {
       'list-item': true,
-      'item-selected': item.isSelected !== undefined && item.isSelected,
-      'item-error': item.isError !== undefined && item.isError,
+      'item-selected': !!item.isSelected,
+      'item-error': !!item.isError,
     };
     const renderItemText = () => {
       /* Geticonf for either meta or graphic slot */
@@ -129,8 +129,7 @@ export class SearchableDropdownElement
     };
 
     const disabled = item.isDisabled || item.isError ? true : undefined;
-    const selected =
-      item.isSelected || this.controller._selectedItems.find((si) => si.id === item.id) ? true : undefined;
+    const selected = item.isSelected ? true : undefined;
 
     /* Sett checkmark on selected items */
     // item.meta = selected ? 'check' : '';
@@ -157,11 +156,14 @@ export class SearchableDropdownElement
     return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true} multi=${this.multiple}>
       ${this.controller.task.render({
         complete: (result: SearchableDropdownResult) => {
+          console.log('COMPONENT RENDERING TASK');
           /*
            * clear previous render items.
            * we need to save rendered items in state to be able to select them by index from action event
            */
           this.controller._listItems = [];
+
+          /* Loop over task result */
           return result.map((item) => {
             if (item.type === 'section') {
               if (item.children?.length) {
@@ -178,6 +180,7 @@ export class SearchableDropdownElement
             if (item.type === 'divider') {
               return html`<fwc-divider key=${item.id} variant="list" color="medium"></fwc-divider>`;
             }
+
             return this.buildListItem(item);
           });
         },

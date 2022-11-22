@@ -19,7 +19,6 @@ const singleItem = (props: Partial<SearchableDropdownResultItem>): SearchableDro
 };
 
 /* Dummy api handler */
-
 const apiItems = (query: string): SearchableDropdownResult => {
   /* min length of query string */
   const min = 2;
@@ -32,7 +31,7 @@ const apiItems = (query: string): SearchableDropdownResult => {
   /* Recursive func for matching in children  */
   for (const item of allItems as SearchableDropdownResult) {
     const entry = { ...item };
-    // loop over children to creta sections
+    // Match against children in sections
     if (entry.type === 'section' && entry.children?.length) {
       entry.children = entry.children.filter((i) => i.title && i.title.toLowerCase().indexOf(query) > -1);
       if (entry.children.length) {
@@ -59,6 +58,19 @@ const resolver: SearchableDropdownResolver = {
       return [singleItem({ title: 'Error while searcing', isDisabled: true, isError: true })];
     }
   },
+  initialResult: [
+    singleItem({
+      id: '123',
+      title: 'Initial Items',
+      type: 'section',
+      children: [
+        singleItem({ id: '456', title: 'Initial Item 1', graphic: 'list' }),
+        singleItem({ id: '654', title: 'Initial Item 2', graphic: 'list' }),
+        singleItem({ id: '789', title: 'Initial Item 3', graphic: 'list' }),
+        singleItem({ id: '321', title: 'Initial Item 4', graphic: 'list' }),
+      ],
+    }),
+  ],
 };
 
 const useSearchableDropdownProviderRef = (
@@ -67,11 +79,11 @@ const useSearchableDropdownProviderRef = (
   const providerRef = useRef<SearchableDropdownProviderElement>(null);
   useEffect(() => {
     if (providerRef?.current) {
+      providerRef.current.connectResolver(resolver);
       providerRef?.current.addEventListener('select', (e) => console.log('Event', e));
-      providerRef.current.setResolver(resolver);
       return () => {
-        providerRef.current?.removeEventListener('select', (e) => console.log('Event', e));
         providerRef.current?.removeResolver();
+        providerRef.current?.removeEventListener('select', (e) => console.log('Event', e));
       };
     }
   }, [providerRef]);

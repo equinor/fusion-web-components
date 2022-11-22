@@ -15,20 +15,21 @@ export class SearchableDropdownProviderElement extends LitElement {
     }
   `;
 
-  protected updateCallbacks: Array<(resolver?: SearchableDropdownResolver) => void> = [];
+  protected resolverCallbacks: Array<(resolver?: SearchableDropdownResolver) => void> = [];
 
   protected createRenderRoot(): LitElement {
     return this;
   }
 
-  public setResolver(resolver: SearchableDropdownResolver): void {
-    this.updateCallbacks.forEach((callback) => {
+  /* Called in the useSearchableDropdownProviderRef */
+  public connectResolver(resolver: SearchableDropdownResolver): void {
+    this.resolverCallbacks.forEach((callback) => {
       callback(resolver);
     });
   }
 
   public removeResolver(): void {
-    this.updateCallbacks.forEach((callback) => {
+    this.resolverCallbacks.forEach((callback) => {
       callback();
     });
   }
@@ -46,9 +47,9 @@ export class SearchableDropdownProviderElement extends LitElement {
   protected handleElementConnect(event: SearchableDropdownConnectEvent): void {
     const { disconnectedCallback, updateResolver } = event.detail;
     disconnectedCallback(() => {
-      this.updateCallbacks.filter((callback) => callback !== updateResolver);
+      this.resolverCallbacks.filter((callback) => callback !== updateResolver);
     });
-    this.updateCallbacks.push(updateResolver);
+    this.resolverCallbacks.push(updateResolver);
     event.preventDefault();
     event.stopPropagation();
   }

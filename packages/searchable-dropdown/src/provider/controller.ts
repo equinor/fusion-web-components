@@ -180,7 +180,8 @@ export class SearchableDropdownController implements ReactiveController {
     const target = event.target as HTMLInputElement;
     if (event.key === 'ArrowDown') {
       if (this._isOpen && this.result?.length) {
-        this.#host.renderRoot.querySelector('fwc-list').focus();
+        // focus on the fwc-list
+        this.#host.renderRoot.querySelector('fwc-list')?.focus();
       }
       return;
     }

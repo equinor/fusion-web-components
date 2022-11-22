@@ -66,8 +66,7 @@ export interface SearchableDropdownResolver {
  * The element the controller is conected to
  */
 export interface SearchableDropdownControllerHost extends ReactiveControllerHost {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  renderRoot: any;
+  renderRoot: HTMLElement | ShadowRoot;
   dispatchEvent(event: Event): boolean;
   nodeName: string;
   multiple: boolean;

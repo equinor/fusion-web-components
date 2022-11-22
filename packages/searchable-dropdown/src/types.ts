@@ -4,7 +4,12 @@ import { ReactiveControllerHost } from 'lit';
  * Properties/Attributes for web component
  * @label TextInput Label
  * @placeholder TextInput placeholder
- * @placeholder TextInput placeholder
+ * @variant Set variant to filled|outlined on fwc-textinput and fwc-list elements
+ * @meta Icon to show after each fwc-list-item.
+ * @graphic Icon to show before each fwc-list-item.
+ * @selected Display selected item's title
+ * @initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @leadingIcon Leading Icon to display in fwc-text-input
  */
 export type SearchableDropdownProps = {
   label?: string;
@@ -14,6 +19,7 @@ export type SearchableDropdownProps = {
   graphic?: string;
   selected?: string;
   initialText?: string;
+  leadingIcon?: string;
 };
 
 /**

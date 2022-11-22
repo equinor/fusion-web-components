@@ -20,11 +20,22 @@ export const style = css`
     align-items: center;
     posistion: relative;
   }
+  .no-hover {
+    pointer-events: none;
+  }
   .trailing-slot {
     position: absolute;
     right: 5px;
     top: 0;
-    height: 100%;
+    height: calc(100% - 16px);
+    cursor: pointer;
+    margin: 8px 0;
+    padding: 0 8px;
+    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+  }
+  .trailing-slot:hover {
+    background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.getVariable('color'))};
+    border-radius: 50%;
   }
   .fwc-sdd-list {
     position: absolute;

@@ -53,5 +53,5 @@ jobs:
         run: |
           echo "!docs/" >> .gitignore
           git add docs 
-          git commit -m'docs: Build of storybook'
+          git commit -m'docs: build of storybook'
           git push --force

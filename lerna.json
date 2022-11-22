@@ -8,6 +8,13 @@
   ],
   "command": {
     "version": {
+      "allowBranch": [
+        "main",
+        "feat/*",
+        "feat/**/*",
+        "feature/*",
+        "fix/*"
+      ],
       "conventionalCommits": true,
       "ignoreChanges": [
         "*.spec.ts",

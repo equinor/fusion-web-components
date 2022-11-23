@@ -34,16 +34,27 @@ Icon;
  */
 
 export type IconButtonToggleElementProps = {
+  /** Use toggle active state */
   on?: boolean;
+  /** The icon for button "on" state */
   onIcon?: IconName | string;
+  /** The icon for button "off" state */
   offIcon?: IconName | string;
+  /** Accessible label for the button */
   ariaLabel?: string;
+  /** aria-label of the button when on is true */
   ariaLabelOn?: string;
+  /** aria-label of the button when on is false */
   ariaLabelOff?: string;
+  /** Sets the color of "on" state */
   onColor?: IconButtonToggleColor;
+  /** Sets the color of "off" state */
   offColor?: IconButtonToggleColor;
+  /** Sets the size */
   size?: IconButtonToggleSize;
+  /** Sets the shape of ripple */
   rounded?: boolean;
+  /** Sets the icon button to disabled */
   disabled?: boolean;
 };
 

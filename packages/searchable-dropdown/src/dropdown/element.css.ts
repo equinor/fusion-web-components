@@ -2,43 +2,44 @@ import { css, unsafeCSS } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
 
-export const style = css`
+export const fwcsdd = css`
   :host {
-    width: 100%;
-  }
-  fwc-searchable-dropdown {
-    width: 100%;
-  }
-  fwc-textinput {
-    width: 100%;
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-  }
-  .fwc-sdd-column {
     position: relative;
+    width: 100%;
+    --textinput-dense-size: 32px;
   }
-  .fwc-sdd-input {
-    display: flex;
-    align-items: center;
+  .input {
     posistion: relative;
   }
-  .no-hover {
-    pointer-events: none;
+  fwc-textinput {
+    --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
+    --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    --fwc-text-field-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
+    --fwc-text-field-disabled-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
+    width: 100%;
   }
-  .trailing-slot {
-    position: absolute;
-    right: 5px;
-    top: 0;
-    height: calc(100% - 16px);
+  fwc-textinput[dense] {
+    --mdc-text-field-outlined-idle-border-color: transparent;
+  }
+  fwc-textinput[dense] mwc-notched-outline {
+    border-bottom-width: 20px;
+  }
+  .interactive {
     cursor: pointer;
-    margin: 8px 0;
-    padding: 0 8px;
+  }
+  [slot='trailing'] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--textinput-dense-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    font-size: 0.8em;
   }
-  .trailing-slot:hover {
-    background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.getVariable('color'))};
-    border-radius: 50%;
-  }
-  .fwc-sdd-list {
+  .list {
     position: absolute;
     top: calc(100% + 4px);
     left: 0;
@@ -49,17 +50,15 @@ export const style = css`
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
   }
-  .fwc-sdd-list-scroll {
+  .list-scroll {
     width: calc(100% + 16px);
     height: auto;
-    max-height: 220px;
-    overflow: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
   }
   fwc-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
-  .variant-header fwc-list {
+  .variant-outlined fwc-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
   }
   .item-text {
@@ -98,6 +97,6 @@ export const style = css`
   }
 `;
 
-export const styles = [mdcStyle, style];
+export const styles = [mdcStyle, fwcsdd];
 
 export default styles;

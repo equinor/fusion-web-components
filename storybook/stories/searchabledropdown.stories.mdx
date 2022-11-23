@@ -11,7 +11,7 @@ export const Container = ({ title, children }) => (
 
 export const Template = ({ children, ...props }) => {
   return (
-    <div style={{ width: '98%', maxWidth: '420px', height: '250px', margin: '0 auto' }}>
+    <div style={{ width: '98%', maxWidth: '420px', height: '350px', margin: '0 auto' }}>
       <SearchableDropdown {...props} />
     </div>
   );
@@ -35,7 +35,53 @@ export const Template = ({ children, ...props }) => {
 ## Playground
 
 <Canvas>
-  <Story name="Default" args={{placeholder: 'Start to type to search...', initialText: 'The initial text result', id: 'fwc-sdd-test', variant: 'page'}}>
+  <Story name="Default" args={{
+      placeholder: 'Start to type to search...',
+      initialText: 'The initial text result',
+      id: 'sdd-test',
+      variant: 'page',
+      dropdownHeight: '300px'
+    }}
+    argTypes={{
+      id: {
+        type: 'string',
+        description: 'HTML ID for component',
+      },
+      placeholder: {
+        description: 'TextInput placeholder string',
+      },
+      initialText: {
+        type: 'string',
+        description: 'First item in dropdown before any search is done',
+      },
+      variant: {
+        type: 'string',
+        description: 'The type of Searchabledropdown to render, multiple variants for header or page usage',
+        control: 'select',
+        options: [
+          'page', 'page-outlined', 'page-dense', 'header', 'header-filled'
+        ]
+      },
+      dropdownHeight: {
+        description: 'The scroll height for dropdown result list'
+      },
+      label: {
+        description: 'Textinput label'
+      },
+      value: {
+        description: 'The selected value do display in TextInput'
+      },
+      meta: {
+        description: 'A fwc-icon name to show AFTER each list item. may also be set per result item.'
+      },
+      graphic: {
+        description: 'A fwc-icon name to show BEFORE each list item. may also be set per result item.'
+      },
+      multiple: {
+        description: 'Flag for selecting multiple items.'
+      }
+    }}
+    >
     {Template.bind({})}
   </Story>
 </Canvas>

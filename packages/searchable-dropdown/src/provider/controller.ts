@@ -44,12 +44,7 @@ export class SearchableDropdownController implements ReactiveController {
           /* resolver is not setup the right way */
           throw new Error('SeachableDropdownResolver is missing searchQuery handler');
         }
-        const apiResults = await this.resolver.searchQuery(qs);
-        if (this.#initialItems.length) {
-          this.result = [...this.#initialItems, ...apiResults];
-        } else {
-          this.result = apiResults;
-        }
+        this.result = await this.resolver.searchQuery(qs);
         return this.result;
       },
       () => [this.#queryString]
@@ -169,22 +164,22 @@ export class SearchableDropdownController implements ReactiveController {
           /*  Already selected so clear it from selections */
           selectedItem.isSelected = false;
           this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-          this.#host.selected = '';
+          this.#host.value = '';
         } else {
           /*  Adds new item to selections */
           selectedItem.isSelected = true;
           this._selectedItems.push(selectedItem);
-          this.#host.selected = selectedItem?.title || '';
+          this.#host.value = selectedItem?.title || '';
         }
       } else {
         /*  Adds new item to selections */
         this._selectedItems = [selectedItem];
-        this.#host.selected = selectedItem?.title || '';
+        this.#host.value = selectedItem?.title || '';
       }
     } else {
       /* Clear selected states */
       this._selectedItems = [];
-      this.#host.selected = '';
+      this.#host.value = '';
     }
 
     /* Dispatch custom select event with our details */
@@ -207,7 +202,7 @@ export class SearchableDropdownController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
-    this.#host.trailingIcon = state ? 'close' : this.#host.variant === 'page' ? 'search' : 'arrow_drop_down';
+    this.#host.trailingIcon = state ? 'close' : 'search';
 
     /* Sets items isSelected */
     this.mutateResult();

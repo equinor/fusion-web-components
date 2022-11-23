@@ -4,12 +4,12 @@ import { ReactiveControllerHost } from 'lit';
  * Properties/Attributes for web component
  * @label TextInput Label
  * @placeholder TextInput placeholder
- * @variant Set variant to header|page style
+ * @variant Set variant to 'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'
  * @meta Icon to show after each fwc-list-item.
  * @graphic Icon to show before each fwc-list-item.
- * @selected Display selected item's title
  * @initialText Text to display in dropdown before/without querystring in fwc-textinput
  * @leadingIcon Leading Icon to display in fwc-text-input
+ * @dropdownHeight Sets max-height of the dropdown
  */
 export type SearchableDropdownProps = {
   label?: string;
@@ -19,9 +19,9 @@ export type SearchableDropdownProps = {
   meta?: string;
   multiple?: boolean;
   graphic?: string;
-  selected?: string;
   initialText?: string;
   leadingIcon?: string;
+  dropdownHeight?: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export interface SearchableDropdownControllerHost extends ReactiveControllerHost
   dispatchEvent(event: Event): boolean;
   nodeName: string;
   multiple: boolean;
-  selected: string;
+  value: string;
   trailingIcon: string;
   initialText: string;
   variant: string;

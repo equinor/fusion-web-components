@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@0.3.3...@equinor/fusion-wc-searchable-dropdown@2.0.0) (2022-11-24)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** disable linting for ts any type ([d9c6501](https://github.com/equinor/fusion-web-components/commit/d9c6501a3083ee313b15ccfb9027c441385f9e52))
+* **searchable-dropdown:** multiple prop on list, and value prop ([766ef7d](https://github.com/equinor/fusion-web-components/commit/766ef7de5a827f03c5eac4f97b9b69413b80cfaf))
+* **searchable-dropdown:** type on controllerHost renderRoot ([c945f90](https://github.com/equinor/fusion-web-components/commit/c945f90ee9678e6acff294cb947995e5e492345c))
+
+
+### Features
+
+* **earchabledropdown:** resolver has initialResult object, remembers selected items ([c400985](https://github.com/equinor/fusion-web-components/commit/c4009851982b32913c24a35044d69126fb8d18d9))
+* **searchable-dropdown:** inital value in resolver ([1e3ba78](https://github.com/equinor/fusion-web-components/commit/1e3ba78a637adc450b8800883079fdb31e394950))
+* **Searchable-dropdown:** variants for difrent uses and better style handling ([3eaba04](https://github.com/equinor/fusion-web-components/commit/3eaba049381158f2d39b336cd505461645314e56))
+* **serchable-dropdown:** style variants from eds design ([8cfa51c](https://github.com/equinor/fusion-web-components/commit/8cfa51c03894157220aed2827f1809611378c6b4))
+
+
+### BREAKING CHANGES
+
+* **Searchable-dropdown:** new attributes and styles in resolver and element
+
+
+
+
+
 ## [0.3.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@0.3.2...@equinor/fusion-wc-searchable-dropdown@0.3.3) (2022-11-15)
 
 

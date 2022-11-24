@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.3...@equinor/fusion-wc-storybook@2.0.0) (2022-11-24)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** multiple prop on list, and value prop ([766ef7d](https://github.com/equinor/fusion-web-components/commit/766ef7de5a827f03c5eac4f97b9b69413b80cfaf))
+* **storybook:** bumping searchabledropdown version ([f0d47bd](https://github.com/equinor/fusion-web-components/commit/f0d47bdcc6ba1ba865e5432e2913999e925b970e))
+
+
+### Features
+
+* **earchabledropdown:** resolver has initialResult object, remembers selected items ([c400985](https://github.com/equinor/fusion-web-components/commit/c4009851982b32913c24a35044d69126fb8d18d9))
+* **searchable-dropdown:** inital value in resolver ([1e3ba78](https://github.com/equinor/fusion-web-components/commit/1e3ba78a637adc450b8800883079fdb31e394950))
+* **Searchable-dropdown:** variants for difrent uses and better style handling ([3eaba04](https://github.com/equinor/fusion-web-components/commit/3eaba049381158f2d39b336cd505461645314e56))
+* **serchable-dropdown:** style variants from eds design ([8cfa51c](https://github.com/equinor/fusion-web-components/commit/8cfa51c03894157220aed2827f1809611378c6b4))
+
+
+### BREAKING CHANGES
+
+* **Searchable-dropdown:** new attributes and styles in resolver and element
+
+
+
+
+
 ## [1.23.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.2...@equinor/fusion-wc-storybook@1.23.3) (2022-11-15)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

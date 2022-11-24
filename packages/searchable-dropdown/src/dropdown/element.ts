@@ -22,7 +22,7 @@ TextInputElement;
 DividerElement;
 IconElement;
 
-import { styles as CSSstyles } from './element.css';
+import { styles as sddStyles } from './element.css';
 
 /**
  * Element for SearchableDropdown
@@ -30,13 +30,14 @@ import { styles as CSSstyles } from './element.css';
  *
  * @property {string} label Label for fwc-textinput element
  * @property {string} placeholder Placeholder text for fwc-textinput element
- * @property {filled: string} variant Set variant to filled|outlined on fwc-textinput and fwc-list elements. defaults to filled
+ * @property {string} value value for TextInput element
+ * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
  * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
+ * @property {string} multiple Able to select multiple items
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
- * @property {string} selected Display selected item's title
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
- * @property {string} trailingIcon Trailing Icon to display in fwc-text-input
  * @property {string} leadingIcon Leading Icon to display in fwc-text-input
+ * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  */
@@ -45,7 +46,7 @@ export class SearchableDropdownElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
   /* style object css */
-  static styles = [CSSstyles];
+  static styles = [sddStyles];
 
   controller = new SearchableDropdownController(this);
 
@@ -59,19 +60,23 @@ export class SearchableDropdownElement
 
   /* Textinput variant passed to the fwc-text-input component */
   @property()
-  variant = 'filled';
+  variant = 'page';
+
+  /* The trailing icon to display in fwc-textinput */
+  @property({ attribute: false, state: true })
+  trailingIcon = 'search';
 
   /* The icon string to render in result list items on the meta slot */
   @property()
   meta = '';
 
+  /* value passed to textinput */
+  @property()
+  value = '';
+
   /* The icon string to render in result list items on the graphic slot */
   @property()
   graphic = '';
-
-  /* The selected item(s) title property */
-  @property()
-  selected = '';
 
   /* The initial text in the dropdown before keyup event */
   @property()
@@ -81,15 +86,21 @@ export class SearchableDropdownElement
   @property()
   leadingIcon = 'search';
 
-  /* The trailing icon to display in fwc-textinput */
-  trailingIcon = '';
+  /* The leading icon to display in fwc-textinput */
+  @property()
+  multiple = false;
 
+  /* Label passed to the fwc-text-input component */
+  @property()
+  dropdownHeight = '250px';
+
+  /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
     const itemClasses = {
       'list-item': true,
-      'item-selected': item.isSelected !== undefined && item.isSelected,
-      'item-error': item.isError !== undefined && item.isError,
+      'item-selected': !!item.isSelected,
+      'item-error': !!item.isError,
     };
     const renderItemText = () => {
       /* Geticonf for either meta or graphic slot */
@@ -120,8 +131,7 @@ export class SearchableDropdownElement
     };
 
     const disabled = item.isDisabled || item.isError ? true : undefined;
-    const selected =
-      item.isSelected || this.controller._selectedItems.find((si) => si.id === item.id) ? true : undefined;
+    const selected = item.isSelected ? true : undefined;
 
     /* Sett checkmark on selected items */
     // item.meta = selected ? 'check' : '';
@@ -145,7 +155,7 @@ export class SearchableDropdownElement
       return html``;
     }
 
-    return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true}>
+    return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true} multi=${this.multiple}>
       ${this.controller.task.render({
         complete: (result: SearchableDropdownResult) => {
           /*
@@ -153,6 +163,8 @@ export class SearchableDropdownElement
            * we need to save rendered items in state to be able to select them by index from action event
            */
           this.controller._listItems = [];
+
+          /* Loop over task result */
           return result.map((item) => {
             if (item.type === 'section') {
               if (item.children?.length) {
@@ -169,14 +181,10 @@ export class SearchableDropdownElement
             if (item.type === 'divider') {
               return html`<fwc-divider key=${item.id} variant="list" color="medium"></fwc-divider>`;
             }
+
             return this.buildListItem(item);
           });
         },
-        /* Inital state */
-        initial: () =>
-          html`<fwc-list-item disabled=${true}>
-            <span class="item-text"><span class="item-title">${this.initialText}</span></span>
-          </fwc-list-item>`,
         pending: () =>
           html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
         /* Error from resolvers searchQuery Promise */
@@ -192,10 +200,12 @@ export class SearchableDropdownElement
     const input = this.renderRoot.querySelector('fwc-textinput') as TextInputElement;
     if (!this.controller.isOpen) {
       this.controller.isOpen = true;
+      this.trailingIcon = 'close';
       if (input) {
         input.focus();
       }
     } else {
+      this.trailingIcon = this.variant === 'page' ? 'search' : 'arrow_drop_down';
       this.controller.isOpen = false;
     }
   }
@@ -205,36 +215,44 @@ export class SearchableDropdownElement
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
+    const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
+    const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const cssClasses = {
-      'fwc-sdd-column': true,
-      'fwc-sdd-outlined': this.variant === 'outlined',
+      'fwc-sdd': true,
+      'list-open': this.controller.isOpen,
+      dense: dense == true,
+      'variant-filled': variant === 'filled',
+      'variant-outlined': variant === 'outlined',
     };
-    return html`<div id="sdd">
-      <div class=${classMap(cssClasses)}>
-        <div class="fwc-sdd-input">
+    return html`<div id=${this.id} class=${classMap(cssClasses)}>
+        <div class="input">
           <slot name="leading"></slot>
           <fwc-textinput
-            icon=${this.leadingIcon}
             label=${ifDefined(this.label)}
             type="search"
-            variant=${this.variant}
-            value=${this.selected}
+            value=${this.value}
             name="searchabledropdown"
+            variant=${variant}
+            dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}
             @keyup=${this.controller.handleKeyup}
           ></fwc-textinput>
-          <slot name="trailing"
-            ><fwc-icon
-              @click=${this.trailingClick}
-              class=${classMap({ 'trailing-slot': true, 'no-hover': this.trailingIcon === '' })}
-              icon=${this.trailingIcon}
-            />
+          <slot name="trailing">
+            <span slot="trailing">
+              <fwc-icon class="interactive" @click=${this.trailingClick} icon=${this.trailingIcon} />
+            </span>
           </slot>
         </div>
-        <div class="fwc-sdd-list">${this.renderList()}</div>
+        <div class="list">
+          <div class="list-scroll">${this.renderList()}</div>
+        </div>
       </div>
-    </div>`;
+      <style>
+        .list-scroll {
+          max-height: ${this.dropdownHeight};
+        }
+      </style>`;
   }
 }
 

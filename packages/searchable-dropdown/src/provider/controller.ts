@@ -8,7 +8,6 @@ import {
 } from '../types';
 import { SearchableDropdownConnectEvent } from '../events';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
-import { v4 as uuid } from 'uuid';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
@@ -21,6 +20,7 @@ export class SearchableDropdownController implements ReactiveController {
   public result?: SearchableDropdownResult;
   public task!: Task<[string], SearchableDropdownResult>;
 
+  #initialItems: SearchableDropdownResult = [];
   #queryString = '';
   #host: SearchableDropdownControllerHost;
 
@@ -34,7 +34,11 @@ export class SearchableDropdownController implements ReactiveController {
       this.#host,
       async ([qs]: [string]): Promise<SearchableDropdownResult> => {
         if (!qs) {
-          return [{ id: uuid(), title: this.#host.initialText }];
+          if (this.#initialItems.length) {
+            this.result = this.#initialItems;
+            return this.result;
+          }
+          return [{ id: 'initial', title: this.#host.initialText, isDisabled: true }];
         }
         if (!this.resolver?.searchQuery) {
           /* resolver is not setup the right way */
@@ -49,6 +53,12 @@ export class SearchableDropdownController implements ReactiveController {
 
   protected updateResolver = (resolver?: SearchableDropdownResolver): void => {
     this.resolver = resolver;
+
+    if (resolver?.initialResult) {
+      this.#initialItems = resolver.initialResult;
+      this.task.run();
+    }
+
     this.#host.requestUpdate();
   };
 
@@ -88,6 +98,31 @@ export class SearchableDropdownController implements ReactiveController {
     }
   };
 
+  private mutateResult() {
+    if (this._selectedItems.length && this.result) {
+      for (let i = 0; i < this.result.length; i++) {
+        const item = this.result[i];
+        if (item.type === 'section' && item.children?.length) {
+          for (let x = 0; x < item.children.length; x++) {
+            const kid = item.children[x];
+            if (this._selectedItems.find((s) => s.id === kid.id)) {
+              kid.isSelected = true;
+            } else {
+              kid.isSelected = false;
+            }
+          }
+        } else {
+          if (this._selectedItems.find((s) => s.id === item.id)) {
+            item.isSelected = true;
+          } else {
+            item.isSelected = false;
+          }
+        }
+      }
+      /* trigger task reload */
+      this.task.run();
+    }
+  }
   /**
    * Fires the select event to listener on host.
    * using the action event from the fwc-list element.
@@ -102,6 +137,7 @@ export class SearchableDropdownController implements ReactiveController {
 
       /* Find selected item in resolver result list */
       let selectedItem: SearchableDropdownResultItem | undefined;
+
       // get selected item from result
       for (const item of this.result) {
         if (item.id === id) {
@@ -123,21 +159,27 @@ export class SearchableDropdownController implements ReactiveController {
       }
 
       /*  Set active state and save selected item in state */
-      if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
-        /*  Already selected so clear it from selections */
-        selectedItem.isSelected = false;
-        this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-        this.#host.selected = '';
+      if (this.#host.multiple) {
+        if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
+          /*  Already selected so clear it from selections */
+          selectedItem.isSelected = false;
+          this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
+          this.#host.value = '';
+        } else {
+          /*  Adds new item to selections */
+          selectedItem.isSelected = true;
+          this._selectedItems.push(selectedItem);
+          this.#host.value = selectedItem?.title || '';
+        }
       } else {
         /*  Adds new item to selections */
-        selectedItem.isSelected = true;
-        this._selectedItems.push(selectedItem);
-        this.#host.selected = selectedItem?.title || '';
+        this._selectedItems = [selectedItem];
+        this.#host.value = selectedItem?.title || '';
       }
     } else {
       /* Clear selected states */
       this._selectedItems = [];
-      this.#host.selected = '';
+      this.#host.value = '';
     }
 
     /* Dispatch custom select event with our details */
@@ -150,15 +192,22 @@ export class SearchableDropdownController implements ReactiveController {
       })
     );
 
+    /* Sets items isSelected */
+    this.mutateResult();
+
     /* Refresh host */
     this.#host.requestUpdate();
   }
 
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
-    this.#queryString = '';
     this._isOpen = state;
-    this.#host.trailingIcon = state ? 'close' : '';
+    this.#host.trailingIcon = state ? 'close' : 'search';
+
+    /* Sets items isSelected */
+    this.mutateResult();
+
+    /* Refresh host */
     this.#host.requestUpdate();
   }
 
@@ -175,7 +224,8 @@ export class SearchableDropdownController implements ReactiveController {
     const target = event.target as HTMLInputElement;
     if (event.key === 'ArrowDown') {
       if (this._isOpen && this.result?.length) {
-        this.#host.renderRoot.querySelector('fwc-list').focus();
+        // focus on the fwc-list
+        this.#host.renderRoot.querySelector('fwc-list')?.focus();
       }
       return;
     }
@@ -184,7 +234,6 @@ export class SearchableDropdownController implements ReactiveController {
     }
     this.timer = setTimeout(() => {
       this.#queryString = target.value.trim().toLowerCase();
-      // this.host.pendingQuery = this._searchQueryTask(this.resolver);
       this.#host.requestUpdate();
     }, 250);
   }

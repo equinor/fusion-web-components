@@ -33,18 +33,22 @@ export class SearchableDropdownController implements ReactiveController {
     this.task = new Task<[string], SearchableDropdownResult>(
       this.#host,
       async ([qs]: [string]): Promise<SearchableDropdownResult> => {
+        if (!this.resolver?.searchQuery) {
+          /* resolver is not available */
+          return [];
+        }
+        let result;
         if (!qs) {
           if (this.#initialItems.length) {
-            this.result = this.#initialItems;
-            return this.result;
+            result = this.#initialItems;
+          } else {
+            result = [{ id: 'initial', title: this.#host.initialText, isDisabled: true }];
           }
-          return [{ id: 'initial', title: this.#host.initialText, isDisabled: true }];
+        } else {
+          result = await this.resolver.searchQuery(qs);
         }
-        if (!this.resolver?.searchQuery) {
-          /* resolver is not setup the right way */
-          throw new Error('SeachableDropdownResolver is missing searchQuery handler');
-        }
-        this.result = await this.resolver.searchQuery(qs);
+        // set isSelected on result items
+        this.result = this.mutateResult(result);
         return this.result;
       },
       () => [this.#queryString]
@@ -98,10 +102,10 @@ export class SearchableDropdownController implements ReactiveController {
     }
   };
 
-  private mutateResult() {
-    if (this._selectedItems.length && this.result) {
-      for (let i = 0; i < this.result.length; i++) {
-        const item = this.result[i];
+  private mutateResult(result: SearchableDropdownResult) {
+    if (this._selectedItems.length && result) {
+      for (let i = 0; i < result.length; i++) {
+        const item = result[i];
         if (item.type === 'section' && item.children?.length) {
           for (let x = 0; x < item.children.length; x++) {
             const kid = item.children[x];
@@ -119,10 +123,11 @@ export class SearchableDropdownController implements ReactiveController {
           }
         }
       }
-      /* trigger task reload */
-      this.task.run();
     }
+
+    return result;
   }
+
   /**
    * Fires the select event to listener on host.
    * using the action event from the fwc-list element.
@@ -133,11 +138,12 @@ export class SearchableDropdownController implements ReactiveController {
     action.stopPropagation();
 
     if (this.result && this._listItems) {
+      
       const id = this._listItems[action.detail.index];
-
+      
       /* Find selected item in resolver result list */
       let selectedItem: SearchableDropdownResultItem | undefined;
-
+      
       // get selected item from result
       for (const item of this.result) {
         if (item.id === id) {
@@ -150,14 +156,15 @@ export class SearchableDropdownController implements ReactiveController {
           }
         }
       }
-
+      
+      
       /* Set Error if none matched the resolver result */
       if (!selectedItem?.id) {
         throw new Error(
           'SearchableDropdownControlloer could not find match  in selectedItem to result provided by resolver.'
-        );
+         );
       }
-
+        
       /*  Set active state and save selected item in state */
       if (this.#host.multiple) {
         if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
@@ -192,8 +199,8 @@ export class SearchableDropdownController implements ReactiveController {
       })
     );
 
-    /* Sets items isSelected */
-    this.mutateResult();
+    /* Sets items isSelected in task */
+    this.task.run();
 
     /* Refresh host */
     this.#host.requestUpdate();
@@ -204,8 +211,10 @@ export class SearchableDropdownController implements ReactiveController {
     this._isOpen = state;
     this.#host.trailingIcon = state ? 'close' : 'search';
 
-    /* Sets items isSelected */
-    this.mutateResult();
+    /* Sets items isSelected in result list */
+    if (this._selectedItems) {
+      this.task.run();
+    }
 
     /* Refresh host */
     this.#host.requestUpdate();

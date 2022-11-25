@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.11...@equinor/fusion-wc-checkbox@0.3.12) (2022-11-24)
+
+**Note:** Version bump only for package @equinor/fusion-wc-checkbox
+
+
+
+
+
 ## [0.3.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.10...@equinor/fusion-wc-checkbox@0.3.11) (2022-11-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-checkbox

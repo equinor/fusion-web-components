@@ -139,12 +139,11 @@ export class SearchableDropdownController implements ReactiveController {
     action.stopPropagation();
 
     if (this.result && this._listItems) {
-      
       const id = this._listItems[action.detail.index];
-      
+
       /* Find selected item in resolver result list */
       let selectedItem: SearchableDropdownResultItem | undefined;
-      
+
       // get selected item from result
       for (const item of this.result) {
         if (item.id === id) {
@@ -157,15 +156,14 @@ export class SearchableDropdownController implements ReactiveController {
           }
         }
       }
-      
-      
+
       /* Set Error if none matched the resolver result */
       if (!selectedItem?.id) {
         throw new Error(
           'SearchableDropdownControlloer could not find match  in selectedItem to result provided by resolver.'
-         );
+        );
       }
-        
+
       /*  Set active state and save selected item in state */
       if (this.#host.multiple) {
         if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {

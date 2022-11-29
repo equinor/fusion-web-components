@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.0...@equinor/fusion-wc-storybook@2.0.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** show selected item on sectioned and flat result list ([415938f](https://github.com/equinor/fusion-web-components/commit/415938fc2243fcdc70cee68b130e17264e38416a))
+
+
+
+
+
 # [2.0.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.3...@equinor/fusion-wc-storybook@2.0.0) (2022-11-24)
 
 

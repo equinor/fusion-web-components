@@ -76,3 +76,14 @@ export interface SearchableDropdownControllerHost extends ReactiveControllerHost
   initialText: string;
   variant: string;
 }
+
+declare type SearchableDropdownSelectEventDetail = {
+  selected: SearchableDropdownResult;
+};
+
+export class SearchableDropdownSelectEvent extends CustomEvent<SearchableDropdownSelectEventDetail> {
+  static readonly eventName = 'select';
+  constructor(args: CustomEventInit<SearchableDropdownSelectEventDetail>) {
+    super(SearchableDropdownSelectEvent.eventName, args);
+  }
+}

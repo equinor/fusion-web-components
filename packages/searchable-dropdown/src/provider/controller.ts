@@ -5,6 +5,7 @@ import {
   SearchableDropdownResolver,
   SearchableDropdownControllerHost,
   SearchableDropdownResultItem,
+  SearchableDropdownSelectEvent,
 } from '../types';
 import { SearchableDropdownConnectEvent } from '../events';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
@@ -191,7 +192,7 @@ export class SearchableDropdownController implements ReactiveController {
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
-      new CustomEvent('select', {
+      new SearchableDropdownSelectEvent({
         detail: {
           selected: this._selectedItems,
         },

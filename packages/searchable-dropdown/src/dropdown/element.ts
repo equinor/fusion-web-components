@@ -62,9 +62,13 @@ export class SearchableDropdownElement
   @property()
   variant = 'page';
 
+  /* The leading icon to display in fwc-textinput */
+  @property()
+  leadingIcon = 'search';
+
   /* The trailing icon to display in fwc-textinput */
   @property({ attribute: false, state: true })
-  trailingIcon = 'search';
+  trailingIcon = '';
 
   /* The icon string to render in result list items on the meta slot */
   @property()
@@ -81,10 +85,6 @@ export class SearchableDropdownElement
   /* The initial text in the dropdown before keyup event */
   @property()
   initialText = 'Start typing to search';
-
-  /* The leading icon to display in fwc-textinput */
-  @property()
-  leadingIcon = 'search';
 
   /* The leading icon to display in fwc-textinput */
   @property()
@@ -107,7 +107,7 @@ export class SearchableDropdownElement
       const getIconSlot = (type: 'meta' | 'graphic') => {
         if (this[type] || item[type]) {
           return html`<span class="slot-${type}" slot=${type}>
-            <fwc-icon icon=${item[type] ? item[type] : this[type]} />
+            <fwc-icon icon=${item[type] ? item[type] : this[type]}></fwc-icon>
           </span>`;
         }
         return html``;
@@ -196,20 +196,6 @@ export class SearchableDropdownElement
     </fwc-list>`;
   }
 
-  protected trailingClick(): void {
-    const input = this.renderRoot.querySelector('fwc-textinput') as TextInputElement;
-    if (!this.controller.isOpen) {
-      this.controller.isOpen = true;
-      this.trailingIcon = 'close';
-      if (input) {
-        input.focus();
-      }
-    } else {
-      this.trailingIcon = this.variant === 'page' ? 'search' : 'arrow_drop_down';
-      this.controller.isOpen = false;
-    }
-  }
-
   /**
    * The main render function
    * @returns HTMLTemplateResult
@@ -224,6 +210,7 @@ export class SearchableDropdownElement
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
     };
+
     return html`<div id=${this.id} class=${classMap(cssClasses)}>
         <div class="input">
           <slot name="leading"></slot>
@@ -233,6 +220,7 @@ export class SearchableDropdownElement
             value=${this.value}
             name="searchabledropdown"
             variant=${variant}
+            icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}
@@ -240,7 +228,11 @@ export class SearchableDropdownElement
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
-              <fwc-icon class="interactive" @click=${this.trailingClick} icon=${this.trailingIcon} />
+              <fwc-icon
+                class="trailing interactive"
+                @click=${this.controller.closeClick}
+                icon=${this.trailingIcon}
+              ></fwc-icon>
             </span>
           </slot>
         </div>

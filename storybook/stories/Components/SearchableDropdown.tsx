@@ -11,24 +11,24 @@ import {
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
-import allItems from '../resources/sections.json';
+// import allItems from '../resources/sections.json';
 
-/* import rawItems from '../resources/context.json';
+import rawItems from '../resources/context.json';
 
-const mapper = (src): SearchableDropdownResult => {
+const mapper = (src: Array<{ id: string; title: string; type: { id: string } }>): SearchableDropdownResult => {
   const dst = src.map((i) => {
-      return {
-          id: i.id,
-          title: i.title,
-          subTitle: i.type.id,
-          graphic: i.type.id === 'OrgChart' ? 'list' : undefined,
-      };
+    return {
+      id: i.id,
+      title: i.title,
+      // subTitle: i.type.id,
+      graphic: i.type.id === 'OrgChart' ? 'list' : undefined,
+    };
   });
 
   return dst;
 };
 
-const allItems = mapper(rawItems); */
+const allItems = mapper(rawItems);
 
 /* generate single SearchableDropdownResult item */
 const singleItem = (props: Partial<SearchableDropdownResultItem>): SearchableDropdownResultItem => {
@@ -88,6 +88,9 @@ const resolver: SearchableDropdownResolver = {
       ],
     }),
   ],
+  closeHandler: (e: MouseEvent) => {
+    console.log('closeEvent fired', e);
+  },
 };
 
 const useSearchableDropdownProviderRef = (

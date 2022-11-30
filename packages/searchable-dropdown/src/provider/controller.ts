@@ -170,9 +170,7 @@ export class SearchableDropdownController implements ReactiveController {
 
       /* Set Error if none matched the resolver result */
       if (!selectedItem?.id) {
-        throw new Error(
-          'SearchableDropdownControlloer could not find match  in selectedItem to result provided by resolver.'
-        );
+        throw new Error('SearchableDropdownController could not find match  in result provided by resolver.');
       }
 
       /*  Set active state and save selected item in state */

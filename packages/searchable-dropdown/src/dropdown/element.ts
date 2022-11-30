@@ -12,12 +12,13 @@ import {
   SearchableDropdownResultItem,
 } from '../types';
 
-import { ListElement, ListItemElement } from '@equinor/fusion-wc-list';
+import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
 ListElement;
 ListItemElement;
+CheckListItemElement;
 TextInputElement;
 DividerElement;
 IconElement;
@@ -105,7 +106,7 @@ export class SearchableDropdownElement
     const renderItemText = () => {
       /* Geticonf for either meta or graphic slot */
       const getIconSlot = (type: 'meta' | 'graphic') => {
-        if (this[type] || item[type]) {
+        if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
           return html`<span class="slot-${type}" slot=${type}>
             <fwc-icon icon=${item[type] ? item[type] : this[type]}></fwc-icon>
           </span>`;
@@ -134,7 +135,17 @@ export class SearchableDropdownElement
     const selected = item.isSelected ? true : undefined;
 
     /* Sett checkmark on selected items */
-    // item.meta = selected ? 'check' : '';
+    if (item.meta === 'check') {
+      return html`<fwc-check-list-item
+        key=${item.id}
+        class=${classMap(itemClasses)}
+        disabled=${ifDefined(disabled)}
+        selected=${ifDefined(selected)}
+        twoline=${ifDefined(item.subTitle)}
+      >
+        ${renderItemText()}
+      </fwc-check-list-item>`;
+    }
     return html`<fwc-list-item
       key=${item.id}
       class=${classMap(itemClasses)}
@@ -165,14 +176,16 @@ export class SearchableDropdownElement
           this.controller._listItems = [];
 
           /* Loop over task result */
-          return result.map((item) => {
+          return result.map((item, index) => {
             if (item.type === 'section') {
               if (item.children?.length) {
                 const kids = item.children.map((i) => this.buildListItem(i));
                 return html`
                   <p key=${uuid()} class="section-title">${item.title}</p>
                   ${kids}
-                  <fwc-divider key=${uuid()} variant="list" color="medium"></fwc-divider>
+                  ${index + 1 < result.length
+                    ? html`<fwc-divider key=${uuid()} variant="list" color="medium"></fwc-divider>`
+                    : html``}
                 `;
               }
             }
@@ -216,7 +229,7 @@ export class SearchableDropdownElement
           <slot name="leading"></slot>
           <fwc-textinput
             label=${ifDefined(this.label)}
-            type="search"
+            type="text"
             value=${this.value}
             name="searchabledropdown"
             variant=${variant}

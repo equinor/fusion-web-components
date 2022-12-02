@@ -11,24 +11,24 @@ import {
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
-import allItems from '../resources/sections.json';
+// import allItems from '../resources/sections.json';
 
-/* import rawItems from '../resources/context.json';
+import rawItems from '../resources/context.json';
 
-const mapper = (src): SearchableDropdownResult => {
+const mapper = (src: Array<{ id: string; title: string; type: { id: string } }>): SearchableDropdownResult => {
   const dst = src.map((i) => {
-      return {
-          id: i.id,
-          title: i.title,
-          subTitle: i.type.id,
-          graphic: i.type.id === 'OrgChart' ? 'list' : undefined,
-      };
+    return {
+      id: i.id,
+      title: i.title,
+      // subTitle: i.type.id,
+      graphic: i.type.id === 'OrgChart' ? 'list' : undefined,
+    };
   });
 
   return dst;
 };
 
-const allItems = mapper(rawItems); */
+const allItems = mapper(rawItems);
 
 /* generate single SearchableDropdownResult item */
 const singleItem = (props: Partial<SearchableDropdownResultItem>): SearchableDropdownResultItem => {
@@ -78,16 +78,30 @@ const resolver: SearchableDropdownResolver = {
   initialResult: [
     singleItem({
       id: '123',
-      title: 'Initial Items',
+      title: 'Context',
       type: 'section',
       children: [
-        singleItem({ id: '456', title: 'Initial Item 1', graphic: 'list' }),
-        singleItem({ id: '654', title: 'Initial Item 2', graphic: 'list' }),
-        singleItem({ id: '789', title: 'Initial Item 3', graphic: 'list' }),
-        singleItem({ id: '321', title: 'Initial Item 4', graphic: 'list' }),
+        singleItem({ id: '456', title: 'Context 1', graphic: 'list' }),
+        singleItem({ id: '654', title: 'Context 2', graphic: 'list' }),
+        singleItem({ id: '789', title: 'Context 3', graphic: 'list' }),
+        singleItem({ id: '321', title: 'Context 4', graphic: 'list' }),
+      ],
+    }),
+    singleItem({
+      id: '456',
+      title: 'Favourites',
+      type: 'section',
+      children: [
+        singleItem({ id: '456456', title: 'Favourite 1', meta: 'check' }),
+        singleItem({ id: '654654', title: 'Favourite 2', meta: 'check' }),
+        singleItem({ id: '789789', title: 'Favourite 3', meta: 'check' }),
+        singleItem({ id: '321321', title: 'Favourite 4', meta: 'check' }),
       ],
     }),
   ],
+  closeHandler: (e: MouseEvent) => {
+    console.log('closeEvent fired', e);
+  },
 };
 
 const useSearchableDropdownProviderRef = (

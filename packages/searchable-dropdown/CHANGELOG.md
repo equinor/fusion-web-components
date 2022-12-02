@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1-alpha.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.0.2...@equinor/fusion-wc-searchable-dropdown@2.1.1-alpha.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** dispatching the right event type ([fc4fa9a](https://github.com/equinor/fusion-web-components/commit/fc4fa9a445f784ac6a33a6de44a343d31c2bd7e8))
+* **searchabledropdown:** hover border color, double close icon chrome ([3d48581](https://github.com/equinor/fusion-web-components/commit/3d48581e2b46f19bae7331449080e3b867658e03))
+* **searchabledropdown:** manual version bump ([f14f70a](https://github.com/equinor/fusion-web-components/commit/f14f70ae0f0d60f2eb633f79e8e501784b0594dd))
+
+
+### Features
+
+* **searchabledropdown:** css style adjustments for element ([383b69a](https://github.com/equinor/fusion-web-components/commit/383b69aa6ea3c238db2dc841280fe08502569823))
+* **searchabledropdown:** resolver typehint for callback when closing list ([ccc4658](https://github.com/equinor/fusion-web-components/commit/ccc465841e0595837f6c41beb6775168ae14485e))
+* **searchabledropdown:** storybook resolvers using closeHandler ([da12a64](https://github.com/equinor/fusion-web-components/commit/da12a64ebd290704cce5ed6a6f97b6124d679bc6))
+
+
+
+
+
 ## [2.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.0.1...@equinor/fusion-wc-searchable-dropdown@2.0.2) (2022-11-29)
 
 

@@ -5,9 +5,11 @@ import {
   SearchableDropdownResolver,
   SearchableDropdownControllerHost,
   SearchableDropdownResultItem,
+  SearchableDropdownSelectEvent,
 } from '../types';
 import { SearchableDropdownConnectEvent } from '../events';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { TextInputElement } from '@equinor/fusion-wc-textinput';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
@@ -20,9 +22,10 @@ export class SearchableDropdownController implements ReactiveController {
   public result?: SearchableDropdownResult;
   public task!: Task<[string], SearchableDropdownResult>;
 
-  #initialItems: SearchableDropdownResult = [];
-  #queryString = '';
+  #externaCloseHandler?: (e: MouseEvent) => void;
   #host: SearchableDropdownControllerHost;
+  #queryString = '';
+  #initialItems: SearchableDropdownResult = [];
 
   constructor(host: SearchableDropdownControllerHost) {
     this.#host = host;
@@ -61,6 +64,10 @@ export class SearchableDropdownController implements ReactiveController {
     if (resolver?.initialResult) {
       this.#initialItems = resolver.initialResult;
       this.task.run();
+    }
+
+    if (resolver?.closeHandler) {
+      this.#externaCloseHandler = resolver.closeHandler;
     }
 
     this.#host.requestUpdate();
@@ -102,6 +109,11 @@ export class SearchableDropdownController implements ReactiveController {
     }
   };
 
+  /**
+   * Mutates result to set parameters like isSelected.
+   * @param result SearchableDropdownResult
+   * @returns result
+   */
   private mutateResult(result: SearchableDropdownResult) {
     if (this._selectedItems.length && result) {
       for (let i = 0; i < result.length; i++) {
@@ -138,12 +150,11 @@ export class SearchableDropdownController implements ReactiveController {
     action.stopPropagation();
 
     if (this.result && this._listItems) {
-      
       const id = this._listItems[action.detail.index];
-      
+
       /* Find selected item in resolver result list */
       let selectedItem: SearchableDropdownResultItem | undefined;
-      
+
       // get selected item from result
       for (const item of this.result) {
         if (item.id === id) {
@@ -156,15 +167,12 @@ export class SearchableDropdownController implements ReactiveController {
           }
         }
       }
-      
-      
+
       /* Set Error if none matched the resolver result */
       if (!selectedItem?.id) {
-        throw new Error(
-          'SearchableDropdownControlloer could not find match  in selectedItem to result provided by resolver.'
-         );
+        throw new Error('SearchableDropdownController could not find match  in result provided by resolver.');
       }
-        
+
       /*  Set active state and save selected item in state */
       if (this.#host.multiple) {
         if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
@@ -191,7 +199,7 @@ export class SearchableDropdownController implements ReactiveController {
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
-      new CustomEvent('select', {
+      new SearchableDropdownSelectEvent({
         detail: {
           selected: this._selectedItems,
         },
@@ -205,11 +213,28 @@ export class SearchableDropdownController implements ReactiveController {
     /* Refresh host */
     this.#host.requestUpdate();
   }
+  /**
+   * Fires on click on close icon in textinput
+   * Calls closeHandler callback set in resolver
+   */
+  public closeClick = (e: MouseEvent): void => {
+    this.#host.value = '';
+    /* needed to clear user input */
+    const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
+    if (input) {
+      input.value = '';
+    }
+    this.isOpen = false;
+    /* call resolvers handleclick if defined */
+    if (this.#externaCloseHandler) {
+      this.#externaCloseHandler(e);
+    }
+  };
 
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
-    this.#host.trailingIcon = state ? 'close' : 'search';
+    this.#host.trailingIcon = state ? 'close' : '';
 
     /* Sets items isSelected in result list */
     if (this._selectedItems) {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.0.1...@equinor/fusion-wc-searchable-dropdown@2.0.2) (2022-11-29)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** typehinting for select event ([1844bd8](https://github.com/equinor/fusion-web-components/commit/1844bd8e9e55b0e1c787bad3ac3405e9922113be))
+
+
+
+
+
 ## [2.0.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.0.0...@equinor/fusion-wc-searchable-dropdown@2.0.1) (2022-11-25)
 
 

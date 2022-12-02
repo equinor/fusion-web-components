@@ -7,35 +7,36 @@ export const fwcsdd = css`
     position: relative;
     width: 100%;
     --textinput-dense-size: 32px;
+    --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
+    --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    --fwc-text-field-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
+    --fwc-text-field-disabled-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
   }
   .input {
     posistion: relative;
   }
   fwc-textinput {
-    --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
-    --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    --fwc-text-field-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
-    --fwc-text-field-disabled-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
     width: 100%;
   }
   fwc-textinput[dense] {
     --mdc-text-field-outlined-idle-border-color: transparent;
-  }
-  fwc-textinput[dense] mwc-notched-outline {
-    border-bottom-width: 20px;
+    --mdc-shape-small: 0;
+    --mdc-text-field-outlined-hover-border-color: ${unsafeCSS(
+      theme.colors.interactive.primary__resting.getVariable('color')
+    )};
   }
   .interactive {
     cursor: pointer;
   }
   [slot='trailing'] {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
     bottom: 0;
-    width: var(--textinput-dense-size);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: var(--textinput-dense-size);
     color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     font-size: 0.8em;
   }
@@ -51,9 +52,11 @@ export const fwcsdd = css`
     border-radius: 4px;
   }
   .list-scroll {
-    width: calc(100% + 16px);
+    width: 100%;
     height: auto;
     overflow: hidden auto;
+    scrollbar-width: thin;
+    scrollbar-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))} transparent;
   }
   fwc-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};

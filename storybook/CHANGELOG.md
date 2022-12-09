@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.2...@equinor/fusion-wc-storybook@2.11.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** hover border color, double close icon chrome ([3d48581](https://github.com/equinor/fusion-web-components/commit/3d48581e2b46f19bae7331449080e3b867658e03))
+
+
+### Features
+
+* **searchabledropdown:** storybook resolvers using closeHandler ([da12a64](https://github.com/equinor/fusion-web-components/commit/da12a64ebd290704cce5ed6a6f97b6124d679bc6))
+
+
+
+
+
 ## [2.0.3-alpha.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.2...@equinor/fusion-wc-storybook@2.0.3-alpha.0) (2022-12-02)
 
 

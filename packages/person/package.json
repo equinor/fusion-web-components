@@ -42,7 +42,7 @@
     "@equinor/fusion-wc-icon": "^1.0.27",
     "@equinor/fusion-wc-skeleton": "^0.2.20",
     "@lit-labs/task": "^2.0.0",
-    "lit": "2.4.1"
+    "lit": "2.5.0"
   },
   "devDependencies": {
     "@equinor/fusion-wc-builder": "^2.0.0",

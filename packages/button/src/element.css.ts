@@ -50,6 +50,16 @@ export const style = css`
   .trailing-icon ::slotted(fwc-icon) {
     display: inline-flex;
   }
+  ::slotted(a) {
+    color: var(--mdc-theme-primary);
+    text-decoration: none;
+  }
+  :host([variant='contained']) ::slotted(a) {
+    color: var(--mdc-theme-on-primary);
+  }
+  :host([disabled]) ::slotted(a) {
+    color: var(--mdc-button-disabled-ink-color);
+  }
 `;
 
 export const styles = [mdcStyle, style];

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { html, TemplateResult, PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
 
@@ -39,6 +39,19 @@ export class ButtonElement extends ButtonBase implements ButtonElementProps {
   @property({ type: String, reflect: true })
   variant: ButtonVariant = 'contained';
 
+  @queryAssignedElements({ selector: 'a' })
+  links?: Array<HTMLLinkElement>;
+
+  public connectedCallback(): void {
+    super.connectedCallback();
+    this.addEventListener('click', this._onClick);
+  }
+
+  public disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this._onClick);
+  }
+
   protected updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (changedProperties.has('variant')) {
@@ -68,6 +81,12 @@ export class ButtonElement extends ButtonBase implements ButtonElementProps {
 
   protected renderIcon(): TemplateResult {
     return html`<fwc-icon class="mdc-button__icon" .icon=${this.icon}></fwc-icon>`;
+  }
+
+  protected _onClick() {
+    if (this.links) {
+      this.links[0].click();
+    }
   }
 }
 

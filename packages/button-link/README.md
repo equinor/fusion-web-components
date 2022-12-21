@@ -15,9 +15,9 @@ npm install @equinor/fusion-wc-link-button
 
 ### Usage
 ```html
-<fwc-link-button label="default"></fwc-link-button>
-<fwc-link-button label="default" icon="settings"></fwc-link-button>
-<fwc-link-button label="default"><span slot="icon">🚀</span></fwc-link-button>
+<fwc-link-button label="default" href="#link-here" terget="_blank"></fwc-link-button>
+<fwc-link-button label="default" href="#link-here" terget="_blank" icon="settings"></fwc-link-button>
+<fwc-link-button label="default" href="#link-here" terget="_blank"><span slot="icon">🚀</span></fwc-link-button>
 ```
 
 ### Slots
@@ -30,6 +30,8 @@ npm install @equinor/fusion-wc-link-button
 ### Properties/Attributes
 | Name | Type | Default | Description
 | ---- | ---- | ------- | -----------
+| `href` | `string` | `''` | Sets the underlying `HTMLAnchorElement`'s `href` resource attribute.
+| `target` | `string` | `''` | Sets the underlying `HTMLAnchorElement`'s `target` attribute.
 | `icon` | `string` | `''` | Icon to display, and `aria-label` value when `label` is not defined.
 | `label` | `string` | `''` | Label to display for the button, and `aria-label`.
 | `variant` | `ButtonVariant*` | `'contained'` | Button variant to render, defaults to `contained` if no variant is defined.

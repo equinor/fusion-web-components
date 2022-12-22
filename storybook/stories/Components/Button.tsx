@@ -1,6 +1,6 @@
 import { createComponent } from '@equinor/fusion-react-utils';
 
-import { ButtonElement, ButtonElementProps, tag } from '@equinor/fusion-wc-button';
+import { ButtonElement, ButtonElementProps, tag } from '@equinor/fusion-wc-button/button';
 
 ButtonElement;
 

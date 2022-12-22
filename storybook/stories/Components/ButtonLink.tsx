@@ -1,6 +1,6 @@
 import { createComponent } from '@equinor/fusion-react-utils';
 
-import { LinkButtonElement, LinkButtonElementProps, tag } from '@equinor/fusion-wc-link-button';
+import { LinkButtonElement, LinkButtonElementProps, tag } from '@equinor/fusion-wc-button/link-button';
 
 LinkButtonElement;
 

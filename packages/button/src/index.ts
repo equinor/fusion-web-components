@@ -1,23 +1,2 @@
-import { fusionElement } from '@equinor/fusion-wc-core';
-import ButtonElement, { ButtonElementProps } from './element';
-export * from './element';
-
-export const tag = 'fwc-button';
-
-@fusionElement(tag)
-export default class _ extends ButtonElement {}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    [tag]: ButtonElement;
-  }
-
-  namespace JSX {
-    interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<ButtonElementProps & React.HTMLAttributes<ButtonElement>>,
-        ButtonElement
-      >;
-    }
-  }
-}
+export { ButtonColor, ButtonElement, ButtonElementProps, ButtonVariant, tag as buttonTag } from './button';
+export { LinkButtonElement, LinkButtonElementProps, LinkButtonTarget, tag as buttonLinkTag } from './link-button';

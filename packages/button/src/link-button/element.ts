@@ -13,15 +13,15 @@ import { classMap } from 'lit/directives/class-map.js';
 // persist element
 Icon;
 
-export type ButtonColor = 'primary' | 'secondary' | 'danger';
+// export type ButtonColor = 'primary' | 'secondary' | 'danger';
 
-export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
+import type { ButtonColor, ButtonVariant } from '../button';
 
-export type LinkTarget = '_blank' | '_parent' | '_self' | '_top';
+export type LinkButtonTarget = '_blank' | '_parent' | '_self' | '_top';
 
 export type LinkButtonElementProps = {
   href: string;
-  target: LinkTarget;
+  target: LinkButtonTarget;
   label?: string;
   variant?: ButtonVariant;
   color?: ButtonColor;
@@ -43,7 +43,7 @@ export class LinkButtonElement extends ButtonBase implements LinkButtonElementPr
   href!: string;
 
   @property({ type: String })
-  target!: LinkTarget;
+  target!: LinkButtonTarget;
 
   @property({ type: String, reflect: true })
   color: ButtonColor = 'primary';

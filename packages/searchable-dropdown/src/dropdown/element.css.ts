@@ -29,10 +29,11 @@ export const fwcsdd = css`
     cursor: pointer;
   }
   [slot='trailing'] {
+    display: block;
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
     display: flex;
     justify-content: center;
     align-items: center;

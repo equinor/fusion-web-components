@@ -197,6 +197,10 @@ export class SearchableDropdownController implements ReactiveController {
       this.#host.value = '';
     }
 
+    if (!this.#host.multiple) {
+      this.isOpen = false;
+    }
+
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
       new SearchableDropdownSelectEvent({

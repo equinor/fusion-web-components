@@ -146,8 +146,14 @@ export class SearchableDropdownController implements ReactiveController {
    * @param action Customevent with details property
    * @return SearchableDropdownResult the selected item in array.
    */
-  public handleSelect(action: CustomEvent<ActionDetail>): void {
+  // public handleSelect(action: CustomEvent<ActionDetail>): void {
+  public handleSelect(action: any): void {
     action.stopPropagation();
+
+    /* dont fire select event when child checkbox is clicked, for ex. a favourit checkbox */
+    if (action.explicitOriginalTarget && action.explicitOriginalTarget.type === 'checkbox') {
+      return;
+    }
 
     if (this.result && this._listItems) {
       const id = this._listItems[action.detail.index];

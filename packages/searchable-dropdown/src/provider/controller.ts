@@ -7,8 +7,7 @@ import {
   SearchableDropdownResultItem,
   SearchableDropdownSelectEvent,
 } from '../types';
-import { SearchableDropdownConnectEvent } from '../events';
-import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 
 export class SearchableDropdownController implements ReactiveController {
@@ -142,21 +141,21 @@ export class SearchableDropdownController implements ReactiveController {
 
   /**
    * Fires the select event to listener on host.
-   * using the action event from the fwc-list element.
-   * @param action Customevent with details property
+   * using the event event from the fwc-list element.
+   * @param event fwc-list action event with details property
    * @return SearchableDropdownResult the selected item in array.
    */
-  // public handleSelect(action: CustomEvent<ActionDetail>): void {
-  public handleSelect(action: any): void {
-    action.stopPropagation();
+  // public handleSelect(event: CustomEvent<eventDetail>): void {
+  public handleSelect(event: ExplicitEventTarget): void {
+    event.stopPropagation();
 
-    /* dont fire select event when child checkbox is clicked, for ex. a favourit checkbox */
-    if (action.explicitOriginalTarget && action.explicitOriginalTarget.type === 'checkbox') {
+    /* dont fire select event when li child checkbox is clicked, for ex. a favourit checkbox */
+    if (event.explicitOriginalTarget && event.explicitOriginalTarget.type === 'checkbox') {
       return;
     }
 
     if (this.result && this._listItems) {
-      const id = this._listItems[action.detail.index];
+      const id = this._listItems[event.detail.index];
 
       /* Find selected item in resolver result list */
       let selectedItem: SearchableDropdownResultItem | undefined;

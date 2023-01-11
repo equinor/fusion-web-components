@@ -1,6 +1,5 @@
 import { LitElement } from 'lit';
-import { SearchableDropdownResolver } from '../types';
-import { SearchableDropdownConnectEvent } from '../events';
+import { SearchableDropdownResolver, SearchableDropdownConnectEvent } from '../types';
 
 /**
  * Provider element for the searchabledropdown component

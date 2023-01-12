@@ -95,6 +95,7 @@ export class SearchableDropdownController implements ReactiveController {
     }
     /* remove click event to window */
     window.removeEventListener('click', this._handleWindowClick);
+    window.removeEventListener('keyup', this._handleWindowKeyUp);
   }
 
   /**
@@ -104,6 +105,18 @@ export class SearchableDropdownController implements ReactiveController {
     /* make sure we have a target to check against */
     if (!e.target) return;
     if ((e.target as HTMLElement).nodeName !== this.#host.nodeName) {
+      this.isOpen = false;
+    }
+  };
+
+  /**
+   * Close dropdown on escape key
+   */
+  private _handleWindowKeyUp = (e: KeyboardEvent): void => {
+    console.log('FIRED EVENT', e.type);
+
+    /* Close on Escape */
+    if (e.key === 'Escape') {
       this.isOpen = false;
     }
   };
@@ -251,6 +264,13 @@ export class SearchableDropdownController implements ReactiveController {
     /* Sets items isSelected in result list */
     if (this._selectedItems) {
       this.task.run();
+    }
+
+    /* Close on escape key */
+    if (this._isOpen) {
+      window.addEventListener('keyup', this._handleWindowKeyUp);
+    } else {
+      window.removeEventListener('keyup', this._handleWindowKeyUp);
     }
 
     /* Refresh host */

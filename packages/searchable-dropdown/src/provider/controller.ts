@@ -113,10 +113,14 @@ export class SearchableDropdownController implements ReactiveController {
    * Close dropdown on escape key
    */
   private _handleWindowKeyUp = (e: KeyboardEvent): void => {
-    console.log('FIRED EVENT', e.type);
-
     /* Close on Escape */
     if (e.key === 'Escape') {
+      /* unfocus */
+      const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
+      if (input) {
+        input.blur();
+      }
+      /* Close element */
       this.isOpen = false;
     }
   };

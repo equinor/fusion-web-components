@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.36](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.35...@equinor/fusion-wc-button@1.1.36) (2023-01-12)
+
+
+### Bug Fixes
+
+* **button:** adding changelog to exports ([50e63d9](https://github.com/equinor/fusion-web-components/commit/50e63d9616ce05727e31f4476b632b2a13c71bf6))
+
+
+
+
+
 ## [1.1.35](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.34...@equinor/fusion-wc-button@1.1.35) (2022-12-22)
 
 

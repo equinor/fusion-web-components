@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.2...@equinor/fusion-wc-storybook@2.12.0) (2022-12-22)
+
+
+### Bug Fixes
+
+* **button:** move link button to same package ([bae0bd7](https://github.com/equinor/fusion-web-components/commit/bae0bd7358585d46084413c5cdb82d36cc8e26c3))
+
+
+### Features
+
+* :zap: link button strorybook ([531221a](https://github.com/equinor/fusion-web-components/commit/531221aed896ffe81bf3df886ef3438957641ec7))
+
+
+
+
+
 ## [2.11.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.1...@equinor/fusion-wc-storybook@2.11.2) (2022-12-20)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

@@ -77,7 +77,7 @@ const resolver: SearchableDropdownResolver = {
   },
   initialResult: [
     singleItem({
-      id: '123',
+      id: 'ctx-123',
       title: 'Context',
       type: 'section',
       children: [
@@ -88,7 +88,7 @@ const resolver: SearchableDropdownResolver = {
       ],
     }),
     singleItem({
-      id: '456',
+      id: 'fav-123',
       title: 'Favourites',
       type: 'section',
       children: [

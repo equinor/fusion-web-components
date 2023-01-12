@@ -164,10 +164,12 @@ export class SearchableDropdownController implements ReactiveController {
       for (const item of this.result) {
         if (item.id === id) {
           selectedItem = item;
+          break;
         } else if (item.children) {
           for (const childItem of item.children) {
             if (childItem.id === id) {
               selectedItem = childItem;
+              break;
             }
           }
         }
@@ -197,6 +199,7 @@ export class SearchableDropdownController implements ReactiveController {
         this.#host.value = selectedItem?.title || '';
       }
     } else {
+      /* FALSE === this.result && this._listItems */
       /* Clear selected states */
       this._selectedItems = [];
       this.#host.value = '';

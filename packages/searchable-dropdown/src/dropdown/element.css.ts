@@ -71,7 +71,9 @@ export const fwcsdd = css`
     font-size: 1em;
   }
   .item-title {
-    height: 1.4em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 1em;
     line-height: 1.6;
   }

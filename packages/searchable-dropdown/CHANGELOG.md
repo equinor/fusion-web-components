@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.2.0...@equinor/fusion-wc-searchable-dropdown@2.3.0) (2023-01-13)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** textoverflow ellipses in list items ([bb53c64](https://github.com/equinor/fusion-web-components/commit/bb53c64d3162be83d53c74dd1690f5f62e27367f))
+* **searchabledropdown:** closing dropdown on select event if no multiple flag ([f64181b](https://github.com/equinor/fusion-web-components/commit/f64181b889d928b6c43185a8c9f56805c465baa9))
+* **searchabledropdown:** saving resolver in provider instance for a more reliable init ([b7350bd](https://github.com/equinor/fusion-web-components/commit/b7350bd4c14dc0654b2609e86f73d55629aaa821))
+* **searchabledropdown:** stop select event when target is child checkbox ([b111fa8](https://github.com/equinor/fusion-web-components/commit/b111fa8d408ab89f37715e404123720a30001add))
+
+
+### Features
+
+* **context-selector:** escape also blurs focus on sdd ([6281950](https://github.com/equinor/fusion-web-components/commit/6281950dff2384ba0f4e4838dd1435b4d0b7c564))
+* **searchable-dropdown:** event closing dropdown on escape key ([02ef6e4](https://github.com/equinor/fusion-web-components/commit/02ef6e4941e1d6cdb011eb2f3e3b3db9df0a8576))
+
+
+
+
+
 # [2.2.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.0.2...@equinor/fusion-wc-searchable-dropdown@2.2.0) (2022-12-02)
 
 

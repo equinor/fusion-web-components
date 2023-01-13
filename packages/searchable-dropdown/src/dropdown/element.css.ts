@@ -29,10 +29,11 @@ export const fwcsdd = css`
     cursor: pointer;
   }
   [slot='trailing'] {
+    display: block;
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,11 +71,16 @@ export const fwcsdd = css`
     font-size: 1em;
   }
   .item-title {
-    height: 1.4em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 1em;
     line-height: 1.6;
   }
   .item-subtitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 0.8em;
     font-style: italic;
     line-height: 1.6;

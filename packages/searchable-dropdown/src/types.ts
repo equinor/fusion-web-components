@@ -1,4 +1,5 @@
 import { ReactiveControllerHost } from 'lit';
+import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
 /**
  * Properties/Attributes for web component
@@ -78,7 +79,12 @@ export interface SearchableDropdownControllerHost extends ReactiveControllerHost
   variant: string;
 }
 
-declare type SearchableDropdownSelectEventDetail = {
+export interface ExplicitEventTarget extends Event {
+  readonly explicitOriginalTarget: HTMLInputElement;
+  readonly detail: ActionDetail;
+}
+
+type SearchableDropdownSelectEventDetail = {
   selected: SearchableDropdownResult;
 };
 
@@ -86,5 +92,23 @@ export class SearchableDropdownSelectEvent extends CustomEvent<SearchableDropdow
   static readonly eventName = 'select';
   constructor(args: CustomEventInit<SearchableDropdownSelectEventDetail>) {
     super(SearchableDropdownSelectEvent.eventName, args);
+  }
+}
+
+type SearchableDropdownConnectEventDetails = {
+  disconnectedCallback: (callback: VoidFunction) => void;
+  updateResolver: (resolver?: SearchableDropdownResolver) => void;
+};
+
+export class SearchableDropdownConnectEvent extends CustomEvent<SearchableDropdownConnectEventDetails> {
+  static readonly eventName = 'fwc-searchabledropdown-controller-connect';
+  constructor(args: CustomEventInit<SearchableDropdownConnectEventDetails>) {
+    super(SearchableDropdownConnectEvent.eventName, args);
+  }
+}
+
+declare global {
+  interface ElementEventMap {
+    [SearchableDropdownConnectEvent.eventName]: SearchableDropdownConnectEvent;
   }
 }

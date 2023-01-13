@@ -1,19 +1,19 @@
 import { LitElement } from 'lit';
-import { SearchableDropdownResolver } from '../types';
-import { SearchableDropdownConnectEvent } from '../events';
+import { SearchableDropdownResolver, SearchableDropdownConnectEvent } from '../types';
 
 /**
  * Provider element for the searchabledropdown component
  */
 export class SearchableDropdownProviderElement extends LitElement {
   protected resolverCallbacks: Array<(resolver?: SearchableDropdownResolver) => void> = [];
-
+  #resolver?: SearchableDropdownResolver;
   protected createRenderRoot(): LitElement {
     return this;
   }
 
   /* Called in the useSearchableDropdownProviderRef */
   public connectResolver(resolver: SearchableDropdownResolver): void {
+    this.#resolver = resolver;
     this.resolverCallbacks.forEach((callback) => {
       callback(resolver);
     });
@@ -40,6 +40,7 @@ export class SearchableDropdownProviderElement extends LitElement {
     disconnectedCallback(() => {
       this.resolverCallbacks.filter((callback) => callback !== updateResolver);
     });
+    this.#resolver && updateResolver(this.#resolver);
     this.resolverCallbacks.push(updateResolver);
     event.preventDefault();
     event.stopPropagation();

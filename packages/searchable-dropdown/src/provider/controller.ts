@@ -7,8 +7,7 @@ import {
   SearchableDropdownResultItem,
   SearchableDropdownSelectEvent,
 } from '../types';
-import { SearchableDropdownConnectEvent } from '../events';
-import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 
 export class SearchableDropdownController implements ReactiveController {
@@ -96,6 +95,7 @@ export class SearchableDropdownController implements ReactiveController {
     }
     /* remove click event to window */
     window.removeEventListener('click', this._handleWindowClick);
+    window.removeEventListener('keyup', this._handleWindowKeyUp);
   }
 
   /**
@@ -105,6 +105,22 @@ export class SearchableDropdownController implements ReactiveController {
     /* make sure we have a target to check against */
     if (!e.target) return;
     if ((e.target as HTMLElement).nodeName !== this.#host.nodeName) {
+      this.isOpen = false;
+    }
+  };
+
+  /**
+   * Close dropdown on escape key
+   */
+  private _handleWindowKeyUp = (e: KeyboardEvent): void => {
+    /* Close on Escape */
+    if (e.key === 'Escape') {
+      /* unfocus */
+      const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
+      if (input) {
+        input.blur();
+      }
+      /* Close element */
       this.isOpen = false;
     }
   };
@@ -142,15 +158,21 @@ export class SearchableDropdownController implements ReactiveController {
 
   /**
    * Fires the select event to listener on host.
-   * using the action event from the fwc-list element.
-   * @param action Customevent with details property
+   * using the event event from the fwc-list element.
+   * @param event fwc-list action event with details property
    * @return SearchableDropdownResult the selected item in array.
    */
-  public handleSelect(action: CustomEvent<ActionDetail>): void {
-    action.stopPropagation();
+  // public handleSelect(event: CustomEvent<eventDetail>): void {
+  public handleSelect(event: ExplicitEventTarget): void {
+    event.stopPropagation();
+
+    /* dont fire select event when li child checkbox is clicked, for ex. a favourit checkbox */
+    if (event.explicitOriginalTarget && event.explicitOriginalTarget.type === 'checkbox') {
+      return;
+    }
 
     if (this.result && this._listItems) {
-      const id = this._listItems[action.detail.index];
+      const id = this._listItems[event.detail.index];
 
       /* Find selected item in resolver result list */
       let selectedItem: SearchableDropdownResultItem | undefined;
@@ -159,10 +181,12 @@ export class SearchableDropdownController implements ReactiveController {
       for (const item of this.result) {
         if (item.id === id) {
           selectedItem = item;
+          break;
         } else if (item.children) {
           for (const childItem of item.children) {
             if (childItem.id === id) {
               selectedItem = childItem;
+              break;
             }
           }
         }
@@ -192,9 +216,14 @@ export class SearchableDropdownController implements ReactiveController {
         this.#host.value = selectedItem?.title || '';
       }
     } else {
+      /* FALSE === this.result && this._listItems */
       /* Clear selected states */
       this._selectedItems = [];
       this.#host.value = '';
+    }
+
+    if (!this.#host.multiple) {
+      this.isOpen = false;
     }
 
     /* Dispatch custom select event with our details */
@@ -239,6 +268,13 @@ export class SearchableDropdownController implements ReactiveController {
     /* Sets items isSelected in result list */
     if (this._selectedItems) {
       this.task.run();
+    }
+
+    /* Close on escape key */
+    if (this._isOpen) {
+      window.addEventListener('keyup', this._handleWindowKeyUp);
+    } else {
+      window.removeEventListener('keyup', this._handleWindowKeyUp);
     }
 
     /* Refresh host */

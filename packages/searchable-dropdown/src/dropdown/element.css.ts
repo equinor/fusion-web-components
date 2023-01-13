@@ -78,6 +78,9 @@ export const fwcsdd = css`
     line-height: 1.6;
   }
   .item-subtitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 0.8em;
     font-style: italic;
     line-height: 1.6;

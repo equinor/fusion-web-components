@@ -16,6 +16,7 @@ export class SearchableDropdownController implements ReactiveController {
   protected _isOpen = false;
   protected resolver?: SearchableDropdownResolver;
 
+  public textInput: TextInputElement | null = null;
   public _listItems: Array<string> = [];
   public _selectedItems: SearchableDropdownResult = [];
   public result?: SearchableDropdownResult;
@@ -73,6 +74,15 @@ export class SearchableDropdownController implements ReactiveController {
   };
 
   public hostConnected(): void {
+    requestAnimationFrame(() => {
+      this.textInput = this.#host.renderRoot.querySelector('fwc-textinput');
+      if (this.textInput) {
+        if (this.#host.autofocus) {
+          this.textInput.focus();
+        }
+      }
+    });
+
     const event = new SearchableDropdownConnectEvent({
       detail: {
         disconnectedCallback: (callback) => {
@@ -85,6 +95,7 @@ export class SearchableDropdownController implements ReactiveController {
       cancelable: false,
     });
     this.#host.dispatchEvent(event);
+
     /* add click event to window */
     window.addEventListener('click', this._handleWindowClick);
   }
@@ -115,10 +126,10 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowKeyUp = (e: KeyboardEvent): void => {
     /* Close on Escape */
     if (e.key === 'Escape') {
-      /* unfocus */
-      const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
-      if (input) {
-        input.blur();
+      this.textInput = this.textInput ?? this.#host.renderRoot.querySelector('fwc-textinput');
+      if (this.textInput) {
+        /* unfocus */
+        this.textInput.blur();
       }
       /* Close element */
       this.isOpen = false;
@@ -242,6 +253,7 @@ export class SearchableDropdownController implements ReactiveController {
     /* Refresh host */
     this.#host.requestUpdate();
   }
+
   /**
    * Fires on click on close icon in textinput
    * Calls closeHandler callback set in resolver
@@ -263,6 +275,7 @@ export class SearchableDropdownController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
+    // toogle close icon
     this.#host.trailingIcon = state ? 'close' : '';
 
     /* Sets items isSelected in result list */

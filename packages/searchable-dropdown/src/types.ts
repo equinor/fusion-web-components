@@ -12,7 +12,8 @@ import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
  * @leadingIcon Leading Icon to display in fwc-text-input
  * @dropdownHeight Sets max-height of the dropdown
  */
-export type SearchableDropdownProps = {
+export interface SearchableDropdownProps {
+  autofocus: boolean;
   label?: string;
   placeholder?: string;
   value?: string;
@@ -23,10 +24,10 @@ export type SearchableDropdownProps = {
   initialText?: string;
   leadingIcon?: string;
   dropdownHeight?: string;
-};
+}
 
 /**
- * Array of SearchableDropdownResultItem
+ * Array of SearchableDropdownResultItem's
  */
 export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
 
@@ -68,15 +69,11 @@ export interface SearchableDropdownResolver {
 /**
  * The element the controller is conected to
  */
-export interface SearchableDropdownControllerHost extends ReactiveControllerHost {
+export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost {
   renderRoot: HTMLElement | ShadowRoot;
   dispatchEvent(event: Event): boolean;
   nodeName: string;
-  multiple: boolean;
-  value: string;
   trailingIcon: string;
-  initialText: string;
-  variant: string;
 }
 
 export interface ExplicitEventTarget extends Event {

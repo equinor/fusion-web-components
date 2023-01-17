@@ -29,6 +29,7 @@ import { styles as sddStyles } from './element.css';
  * Element for SearchableDropdown
  * @tag fwc-searchabledropdown
  *
+ * @property {boolean} autofocus Focus the tetinput on hostconnect
  * @property {string} label Label for fwc-textinput element
  * @property {string} placeholder Placeholder text for fwc-textinput element
  * @property {string} value value for TextInput element
@@ -94,6 +95,9 @@ export class SearchableDropdownElement
   /* Label passed to the fwc-text-input component */
   @property()
   dropdownHeight = '250px';
+
+  @property()
+  autofocus = false;
 
   /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {

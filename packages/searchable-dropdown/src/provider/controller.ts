@@ -1,5 +1,6 @@
 import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
+
 import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
@@ -8,7 +9,6 @@ import {
   SearchableDropdownSelectEvent,
 } from '../types';
 import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
-import { TextInputElement } from '@equinor/fusion-wc-textinput';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
@@ -16,7 +16,6 @@ export class SearchableDropdownController implements ReactiveController {
   protected _isOpen = false;
   protected resolver?: SearchableDropdownResolver;
 
-  public textInput: TextInputElement | null = null;
   public _listItems: Array<string> = [];
   public _selectedItems: SearchableDropdownResult = [];
   public result?: SearchableDropdownResult;
@@ -75,11 +74,8 @@ export class SearchableDropdownController implements ReactiveController {
 
   public hostConnected(): void {
     requestAnimationFrame(() => {
-      this.textInput = this.#host.renderRoot.querySelector('fwc-textinput');
-      if (this.textInput) {
-        if (this.#host.autofocus) {
-          this.textInput.focus();
-        }
+      if (this.#host.textInputElement && this.#host.autofocus) {
+        this.#host.textInputElement.focus();
       }
     });
 
@@ -115,7 +111,8 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowClick = (e: Event): void => {
     /* make sure we have a target to check against */
     if (!e.target) return;
-    if ((e.target as HTMLElement).nodeName !== this.#host.nodeName) {
+    const target = e.target as HTMLElement;
+    if (target.nodeName !== this.#host.nodeName) {
       this.isOpen = false;
     }
   };
@@ -126,13 +123,12 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowKeyUp = (e: KeyboardEvent): void => {
     /* Close on Escape */
     if (e.key === 'Escape') {
-      this.textInput = this.textInput ?? this.#host.renderRoot.querySelector('fwc-textinput');
-      if (this.textInput) {
+      if (this.#host.textInputElement) {
         /* unfocus */
-        this.textInput.blur();
+        this.#host.textInputElement.blur();
+        /* Close element */
+        this.isOpen = false;
       }
-      /* Close element */
-      this.isOpen = false;
     }
   };
 
@@ -142,7 +138,7 @@ export class SearchableDropdownController implements ReactiveController {
    * @returns result
    */
   private mutateResult(result: SearchableDropdownResult) {
-    if (this._selectedItems.length && result) {
+    if (result) {
       for (let i = 0; i < result.length; i++) {
         const item = result[i];
         if (item.type === 'section' && item.children?.length) {
@@ -259,13 +255,18 @@ export class SearchableDropdownController implements ReactiveController {
    * Calls closeHandler callback set in resolver
    */
   public closeClick = (e: MouseEvent): void => {
-    this.#host.value = '';
     /* needed to clear user input */
-    const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
-    if (input) {
-      input.value = '';
+    if (this.#host.textInputElement) {
+      this.#host.textInputElement.value = '';
     }
+
+    this.#host.value = '';
+    this._selectedItems = [];
+    this.#queryString = '';
+
+    /* also runs task */
     this.isOpen = false;
+
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
@@ -278,7 +279,7 @@ export class SearchableDropdownController implements ReactiveController {
     // toogle close icon
     this.#host.trailingIcon = state ? 'close' : '';
 
-    /* Sets items isSelected in result list */
+    /* syncs dropdown list with textinput */
     if (this._selectedItems) {
       this.task.run();
     }

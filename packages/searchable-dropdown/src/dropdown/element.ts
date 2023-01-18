@@ -1,5 +1,8 @@
 import { html, LitElement, HTMLTemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
+
+import { query } from 'lit/decorators/query.js';
+
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { v4 as uuid } from 'uuid';
@@ -98,6 +101,9 @@ export class SearchableDropdownElement
 
   @property()
   autofocus = false;
+
+  @query('fwc-textinput')
+  textInputElement: TextInputElement | undefined;
 
   /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {

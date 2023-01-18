@@ -1,6 +1,6 @@
 import { ReactiveControllerHost } from 'lit';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
-
+import { TextInputElement } from '@equinor/fusion-wc-textinput';
 /**
  * Properties/Attributes for web component
  * @label TextInput Label
@@ -13,7 +13,7 @@ import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
  * @dropdownHeight Sets max-height of the dropdown
  */
 export interface SearchableDropdownProps {
-  autofocus: boolean;
+  autofocus?: boolean;
   label?: string;
   placeholder?: string;
   value?: string;
@@ -24,6 +24,7 @@ export interface SearchableDropdownProps {
   initialText?: string;
   leadingIcon?: string;
   dropdownHeight?: string;
+  textInputElement: TextInputElement | undefined;
 }
 
 /**

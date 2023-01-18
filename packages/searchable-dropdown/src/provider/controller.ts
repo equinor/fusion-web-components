@@ -111,8 +111,10 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowClick = (e: Event): void => {
     /* make sure we have a target to check against */
     if (!e.target) return;
-    const target = e.target as HTMLElement;
-    if (target.nodeName !== this.#host.nodeName) {
+    if (
+      (e.target as HTMLElement).nodeName !== this.#host.nodeName &&
+      document.activeElement?.nodeName !== this.#host.nodeName
+    ) {
       this.isOpen = false;
     }
   };
@@ -258,6 +260,7 @@ export class SearchableDropdownController implements ReactiveController {
     /* needed to clear user input */
     if (this.#host.textInputElement) {
       this.#host.textInputElement.value = '';
+      this.#host.textInputElement.blur();
     }
 
     this.#host.value = '';

@@ -127,7 +127,7 @@ export const SearchableDropdown = ({ children, ...props }: PropsWithChildren<Sea
 
   return (
     <fwc-searchable-dropdown-provider ref={providerRef}>
-      <fwc-searchable-dropdown {...extractProps<SearchableDropdownProps>(props)}>{children}</fwc-searchable-dropdown>
+      <fwc-searchable-dropdown {...extractProps(props)}>{children}</fwc-searchable-dropdown>
     </fwc-searchable-dropdown-provider>
   );
 };

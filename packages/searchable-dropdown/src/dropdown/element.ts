@@ -50,6 +50,8 @@ export class SearchableDropdownElement
   extends LitElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
+  static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
+
   /* style object css */
   static styles = [sddStyles];
 
@@ -264,6 +266,9 @@ export class SearchableDropdownElement
         </div>
       </div>
       <style>
+        input[name='eik']:focus {
+          background: red;
+        }
         .list-scroll {
           max-height: ${this.dropdownHeight};
         }

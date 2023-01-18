@@ -24,7 +24,7 @@ export interface SearchableDropdownProps {
   initialText?: string;
   leadingIcon?: string;
   dropdownHeight?: string;
-  textInputElement: TextInputElement | undefined;
+  textInputElement?: TextInputElement;
 }
 
 /**

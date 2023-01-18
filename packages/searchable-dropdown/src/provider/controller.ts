@@ -274,6 +274,14 @@ export class SearchableDropdownController implements ReactiveController {
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
     }
+
+    /* fire event for sdd closed */
+    const event = new CustomEvent('searchable-dropdown-closed', {
+      bubbles: true,
+      composed: true,
+      cancelable: false,
+    });
+    this.#host.dispatchEvent(event);
   };
 
   /* Settter: Open/Closed state for host */

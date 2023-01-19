@@ -7,6 +7,7 @@ import { SearchableDropdownResolver, SearchableDropdownConnectEvent } from '../t
 export class SearchableDropdownProviderElement extends LitElement {
   protected resolverCallbacks: Array<(resolver?: SearchableDropdownResolver) => void> = [];
   #resolver?: SearchableDropdownResolver;
+
   protected createRenderRoot(): LitElement {
     return this;
   }

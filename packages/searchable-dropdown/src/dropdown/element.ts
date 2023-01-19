@@ -1,5 +1,8 @@
 import { html, LitElement, HTMLTemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
+
+import { query } from 'lit/decorators/query.js';
+
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { v4 as uuid } from 'uuid';
@@ -29,6 +32,7 @@ import { styles as sddStyles } from './element.css';
  * Element for SearchableDropdown
  * @tag fwc-searchabledropdown
  *
+ * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
  * @property {string} label Label for fwc-textinput element
  * @property {string} placeholder Placeholder text for fwc-textinput element
  * @property {string} value value for TextInput element
@@ -46,6 +50,8 @@ export class SearchableDropdownElement
   extends LitElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
+  static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
+
   /* style object css */
   static styles = [sddStyles];
 
@@ -94,6 +100,12 @@ export class SearchableDropdownElement
   /* Label passed to the fwc-text-input component */
   @property()
   dropdownHeight = '250px';
+
+  @property()
+  autofocus = false;
+
+  @query('fwc-textinput')
+  textInputElement: TextInputElement | undefined;
 
   /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
@@ -254,6 +266,9 @@ export class SearchableDropdownElement
         </div>
       </div>
       <style>
+        input[name='eik']:focus {
+          background: red;
+        }
         .list-scroll {
           max-height: ${this.dropdownHeight};
         }

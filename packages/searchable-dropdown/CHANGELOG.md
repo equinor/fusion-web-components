@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.3.0...@equinor/fusion-wc-searchable-dropdown@2.4.0) (2023-01-19)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** input element close, delegatefocus, [@query](https://github.com/query) decorator ([66987d0](https://github.com/equinor/fusion-web-components/commit/66987d0c8989bbc2f9961593b7ae2f46b62ddf83))
+* **searchabledropdown:** open/close  syncs dropdown list ([fe5e3bc](https://github.com/equinor/fusion-web-components/commit/fe5e3bc3568e03edefe77c82b3eaa921581620ed))
+
+
+### Features
+
+* **searchable-dropdown:** fires customevent when closing dropdown ([efc41ce](https://github.com/equinor/fusion-web-components/commit/efc41ce7b57f1b30fad7d648109fb784df308f17))
+* **searchabledropdown:** adding autofocus property for textinput ([ac65f27](https://github.com/equinor/fusion-web-components/commit/ac65f270ab627781442a177c6296b8d44c7520c3))
+* **searchabledropdown:** dispatchEvent dropdownClosed when closing dropdown ([8143586](https://github.com/equinor/fusion-web-components/commit/81435866a4211af2b1342671fbcb3883e9f4dfa8))
+
+
+
+
+
 # [2.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.2.0...@equinor/fusion-wc-searchable-dropdown@2.3.0) (2023-01-13)
 
 

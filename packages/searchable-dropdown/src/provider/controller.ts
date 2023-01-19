@@ -276,12 +276,13 @@ export class SearchableDropdownController implements ReactiveController {
     }
 
     /* fire event for sdd closed */
-    const event = new CustomEvent('searchable-dropdown-closed', {
+    const ddClosedEvent = new CustomEvent<{ date: number }>('dropdownClosed', {
+      detail: {
+        date: Date.now(),
+      },
       bubbles: true,
-      composed: true,
-      cancelable: false,
     });
-    this.#host.dispatchEvent(event);
+    this.#host.dispatchEvent(ddClosedEvent);
   };
 
   /* Settter: Open/Closed state for host */

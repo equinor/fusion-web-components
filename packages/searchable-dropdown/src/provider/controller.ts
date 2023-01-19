@@ -1,5 +1,6 @@
 import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
+
 import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
@@ -8,7 +9,6 @@ import {
   SearchableDropdownSelectEvent,
 } from '../types';
 import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
-import { TextInputElement } from '@equinor/fusion-wc-textinput';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
@@ -73,6 +73,12 @@ export class SearchableDropdownController implements ReactiveController {
   };
 
   public hostConnected(): void {
+    requestAnimationFrame(() => {
+      if (this.#host.textInputElement && this.#host.autofocus) {
+        this.#host.textInputElement.focus();
+      }
+    });
+
     const event = new SearchableDropdownConnectEvent({
       detail: {
         disconnectedCallback: (callback) => {
@@ -85,6 +91,7 @@ export class SearchableDropdownController implements ReactiveController {
       cancelable: false,
     });
     this.#host.dispatchEvent(event);
+
     /* add click event to window */
     window.addEventListener('click', this._handleWindowClick);
   }
@@ -104,7 +111,10 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowClick = (e: Event): void => {
     /* make sure we have a target to check against */
     if (!e.target) return;
-    if ((e.target as HTMLElement).nodeName !== this.#host.nodeName) {
+    if (
+      (e.target as HTMLElement).nodeName !== this.#host.nodeName &&
+      document.activeElement?.nodeName !== this.#host.nodeName
+    ) {
       this.isOpen = false;
     }
   };
@@ -115,13 +125,12 @@ export class SearchableDropdownController implements ReactiveController {
   private _handleWindowKeyUp = (e: KeyboardEvent): void => {
     /* Close on Escape */
     if (e.key === 'Escape') {
-      /* unfocus */
-      const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
-      if (input) {
-        input.blur();
+      if (this.#host.textInputElement) {
+        /* unfocus */
+        this.#host.textInputElement.blur();
+        /* Close element */
+        this.isOpen = false;
       }
-      /* Close element */
-      this.isOpen = false;
     }
   };
 
@@ -131,7 +140,7 @@ export class SearchableDropdownController implements ReactiveController {
    * @returns result
    */
   private mutateResult(result: SearchableDropdownResult) {
-    if (this._selectedItems.length && result) {
+    if (result) {
       for (let i = 0; i < result.length; i++) {
         const item = result[i];
         if (item.type === 'section' && item.children?.length) {
@@ -242,30 +251,47 @@ export class SearchableDropdownController implements ReactiveController {
     /* Refresh host */
     this.#host.requestUpdate();
   }
+
   /**
    * Fires on click on close icon in textinput
    * Calls closeHandler callback set in resolver
    */
   public closeClick = (e: MouseEvent): void => {
-    this.#host.value = '';
     /* needed to clear user input */
-    const input: TextInputElement | null = this.#host.renderRoot.querySelector('fwc-textinput');
-    if (input) {
-      input.value = '';
+    if (this.#host.textInputElement) {
+      this.#host.textInputElement.value = '';
+      this.#host.textInputElement.blur();
     }
+
+    this.#host.value = '';
+    this._selectedItems = [];
+    this.#queryString = '';
+
+    /* also runs task */
     this.isOpen = false;
+
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
     }
+
+    /* fire event for sdd closed */
+    const ddClosedEvent = new CustomEvent<{ date: number }>('dropdownClosed', {
+      detail: {
+        date: Date.now(),
+      },
+      bubbles: true,
+    });
+    this.#host.dispatchEvent(ddClosedEvent);
   };
 
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
+    // toogle close icon
     this.#host.trailingIcon = state ? 'close' : '';
 
-    /* Sets items isSelected in result list */
+    /* syncs dropdown list with textinput */
     if (this._selectedItems) {
       this.task.run();
     }

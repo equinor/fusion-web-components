@@ -112,6 +112,7 @@ const useSearchableDropdownProviderRef = (
     if (providerRef?.current) {
       providerRef.current.connectResolver(resolver);
       providerRef?.current.addEventListener('select', (e) => console.log('Event', e));
+      providerRef?.current.addEventListener('dropdownClosed', (e) => console.log('Event', e));
       return () => {
         providerRef.current?.removeResolver();
         providerRef.current?.removeEventListener('select', (e) => console.log('Event', e));
@@ -127,7 +128,7 @@ export const SearchableDropdown = ({ children, ...props }: PropsWithChildren<Sea
 
   return (
     <fwc-searchable-dropdown-provider ref={providerRef}>
-      <fwc-searchable-dropdown {...extractProps<SearchableDropdownProps>(props)}>{children}</fwc-searchable-dropdown>
+      <fwc-searchable-dropdown {...extractProps(props)}>{children}</fwc-searchable-dropdown>
     </fwc-searchable-dropdown-provider>
   );
 };

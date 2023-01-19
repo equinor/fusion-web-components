@@ -1,7 +1,8 @@
 import { Meta, Story, Canvas, ArgsTable, Description } from '@storybook/addon-docs';
 import readme from '@equinor/fusion-wc-searchable-dropdown/README.md';
 import { PackageInfo } from './Components';
-import SearchableDropdown, {apiQuery, _handleEvent} from './Components/SearchableDropdown';
+import SearchableDropdown from './Components/SearchableDropdown';
+
 export const Container = ({ title, children }) => (
   <section>
     <h4>{title}</h4>
@@ -77,6 +78,10 @@ export const Template = ({ children, ...props }) => {
       },
       graphic: {
         description: 'A fwc-icon name to show BEFORE each list item. may also be set per result item.'
+      },
+      autofocus: {
+        type: 'boolean',
+        description: 'Flag for setting focus on textInput on component mount',
       },
       multiple: {
         description: 'Flag for selecting multiple items.'

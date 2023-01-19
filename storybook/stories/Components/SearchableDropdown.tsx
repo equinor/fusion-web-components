@@ -112,7 +112,7 @@ const useSearchableDropdownProviderRef = (
     if (providerRef?.current) {
       providerRef.current.connectResolver(resolver);
       providerRef?.current.addEventListener('select', (e) => console.log('Event', e));
-      providerRef?.current.addEventListener('searchable-dropdown-closed', (e) => console.log('Event', e));
+      providerRef?.current.addEventListener('dropdownClosed', (e) => console.log('Event', e));
       return () => {
         providerRef.current?.removeResolver();
         providerRef.current?.removeEventListener('select', (e) => console.log('Event', e));

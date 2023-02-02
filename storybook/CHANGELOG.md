@@ -3,6 +3,146 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.2...@equinor/fusion-wc-storybook@2.13.0) (2023-01-19)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** input element close, delegatefocus, [@query](https://github.com/query) decorator ([66987d0](https://github.com/equinor/fusion-web-components/commit/66987d0c8989bbc2f9961593b7ae2f46b62ddf83))
+
+
+### Features
+
+* **searchable-dropdown:** fires customevent when closing dropdown ([efc41ce](https://github.com/equinor/fusion-web-components/commit/efc41ce7b57f1b30fad7d648109fb784df308f17))
+
+
+
+
+
+## [2.12.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.1...@equinor/fusion-wc-storybook@2.12.2) (2023-01-13)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+## [2.12.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.0...@equinor/fusion-wc-storybook@2.12.1) (2023-01-12)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+# [2.12.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.2...@equinor/fusion-wc-storybook@2.12.0) (2022-12-22)
+
+
+### Bug Fixes
+
+* **button:** move link button to same package ([bae0bd7](https://github.com/equinor/fusion-web-components/commit/bae0bd7358585d46084413c5cdb82d36cc8e26c3))
+
+
+### Features
+
+* :zap: link button strorybook ([531221a](https://github.com/equinor/fusion-web-components/commit/531221aed896ffe81bf3df886ef3438957641ec7))
+
+
+
+
+
+## [2.11.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.1...@equinor/fusion-wc-storybook@2.11.2) (2022-12-20)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+## [2.11.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.0...@equinor/fusion-wc-storybook@2.11.1) (2022-12-09)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+# [2.11.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.2...@equinor/fusion-wc-storybook@2.11.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** hover border color, double close icon chrome ([3d48581](https://github.com/equinor/fusion-web-components/commit/3d48581e2b46f19bae7331449080e3b867658e03))
+
+
+### Features
+
+* **searchabledropdown:** storybook resolvers using closeHandler ([da12a64](https://github.com/equinor/fusion-web-components/commit/da12a64ebd290704cce5ed6a6f97b6124d679bc6))
+
+
+
+
+
+## [2.0.3-alpha.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.2...@equinor/fusion-wc-storybook@2.0.3-alpha.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** hover border color, double close icon chrome ([3d48581](https://github.com/equinor/fusion-web-components/commit/3d48581e2b46f19bae7331449080e3b867658e03))
+
+
+### Features
+
+* **searchabledropdown:** storybook resolvers using closeHandler ([da12a64](https://github.com/equinor/fusion-web-components/commit/da12a64ebd290704cce5ed6a6f97b6124d679bc6))
+
+
+
+
+
+## [2.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.1...@equinor/fusion-wc-storybook@2.0.2) (2022-11-29)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+## [2.0.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.0...@equinor/fusion-wc-storybook@2.0.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* **searchabledropdown:** show selected item on sectioned and flat result list ([415938f](https://github.com/equinor/fusion-web-components/commit/415938fc2243fcdc70cee68b130e17264e38416a))
+
+
+
+
+
+# [2.0.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.3...@equinor/fusion-wc-storybook@2.0.0) (2022-11-24)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** multiple prop on list, and value prop ([766ef7d](https://github.com/equinor/fusion-web-components/commit/766ef7de5a827f03c5eac4f97b9b69413b80cfaf))
+* **storybook:** bumping searchabledropdown version ([f0d47bd](https://github.com/equinor/fusion-web-components/commit/f0d47bdcc6ba1ba865e5432e2913999e925b970e))
+
+
+### Features
+
+* **earchabledropdown:** resolver has initialResult object, remembers selected items ([c400985](https://github.com/equinor/fusion-web-components/commit/c4009851982b32913c24a35044d69126fb8d18d9))
+* **searchable-dropdown:** inital value in resolver ([1e3ba78](https://github.com/equinor/fusion-web-components/commit/1e3ba78a637adc450b8800883079fdb31e394950))
+* **Searchable-dropdown:** variants for difrent uses and better style handling ([3eaba04](https://github.com/equinor/fusion-web-components/commit/3eaba049381158f2d39b336cd505461645314e56))
+* **serchable-dropdown:** style variants from eds design ([8cfa51c](https://github.com/equinor/fusion-web-components/commit/8cfa51c03894157220aed2827f1809611378c6b4))
+
+
+### BREAKING CHANGES
+
+* **Searchable-dropdown:** new attributes and styles in resolver and element
+
+
+
+
+
 ## [1.23.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.2...@equinor/fusion-wc-storybook@1.23.3) (2022-11-15)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "0.3.6",
+  "version": "0.3.8",
   "description": "",
   "main": "lib/index.js",
   "exports": {
@@ -36,16 +36,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-avatar": "^1.0.38",
-    "@equinor/fusion-wc-badge": "^0.2.27",
+    "@equinor/fusion-wc-avatar": "^1.0.39",
+    "@equinor/fusion-wc-badge": "^0.2.28",
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-icon": "^1.0.26",
-    "@equinor/fusion-wc-skeleton": "^0.2.19",
+    "@equinor/fusion-wc-icon": "^1.0.27",
+    "@equinor/fusion-wc-skeleton": "^0.2.20",
     "@lit-labs/task": "^2.0.0",
     "lit": "2.4.1"
   },
   "devDependencies": {
-    "@equinor/fusion-wc-builder": "^1.0.11",
+    "@equinor/fusion-wc-builder": "^2.0.0",
     "typescript": "^4.8.4",
     "web-component-analyzer": "^1.1.6"
   },

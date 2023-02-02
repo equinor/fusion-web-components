@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.29](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.28...@equinor/fusion-wc-theme@0.2.29) (2022-12-09)
+
+
+### Bug Fixes
+
+* **fwc-style:** font family ([10b71d4](https://github.com/equinor/fusion-web-components/commit/10b71d4549e4098cd6f0d25450b9e4f94d728334))
+
+
+
+
+
+## [0.2.28](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.27...@equinor/fusion-wc-theme@0.2.28) (2022-11-24)
+
+**Note:** Version bump only for package @equinor/fusion-wc-theme
+
+
+
+
+
 ## [0.2.27](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-theme@0.2.26...@equinor/fusion-wc-theme@0.2.27) (2022-11-07)
 
 **Note:** Version bump only for package @equinor/fusion-wc-theme

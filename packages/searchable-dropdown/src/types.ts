@@ -1,29 +1,34 @@
 import { ReactiveControllerHost } from 'lit';
-
+import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { TextInputElement } from '@equinor/fusion-wc-textinput';
 /**
  * Properties/Attributes for web component
  * @label TextInput Label
  * @placeholder TextInput placeholder
- * @variant Set variant to filled|outlined on fwc-textinput and fwc-list elements
+ * @variant Set variant to 'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'
  * @meta Icon to show after each fwc-list-item.
  * @graphic Icon to show before each fwc-list-item.
- * @selected Display selected item's title
  * @initialText Text to display in dropdown before/without querystring in fwc-textinput
  * @leadingIcon Leading Icon to display in fwc-text-input
+ * @dropdownHeight Sets max-height of the dropdown
  */
-export type SearchableDropdownProps = {
+export interface SearchableDropdownProps {
+  autofocus?: boolean;
   label?: string;
   placeholder?: string;
+  value?: string;
   variant?: string;
   meta?: string;
+  multiple?: boolean;
   graphic?: string;
-  selected?: string;
   initialText?: string;
   leadingIcon?: string;
-};
+  dropdownHeight?: string;
+  textInputElement?: TextInputElement;
+}
 
 /**
- * Array of SearchableDropdownResultItem
+ * Array of SearchableDropdownResultItem's
  */
 export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
 
@@ -58,16 +63,50 @@ export interface SearchableDropdownResultItem {
  */
 export interface SearchableDropdownResolver {
   searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
+  initialResult?: SearchableDropdownResult;
+  closeHandler?: (e: MouseEvent) => void;
 }
 
 /**
  * The element the controller is conected to
  */
-export interface SearchableDropdownControllerHost extends ReactiveControllerHost {
-  renderRoot: any;
+export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost {
+  renderRoot: HTMLElement | ShadowRoot;
   dispatchEvent(event: Event): boolean;
   nodeName: string;
-  selected: string;
   trailingIcon: string;
-  initialText: string;
+}
+
+export interface ExplicitEventTarget extends Event {
+  readonly explicitOriginalTarget: HTMLInputElement;
+  readonly detail: ActionDetail;
+}
+
+type SearchableDropdownSelectEventDetail = {
+  selected: SearchableDropdownResult;
+};
+
+export class SearchableDropdownSelectEvent extends CustomEvent<SearchableDropdownSelectEventDetail> {
+  static readonly eventName = 'select';
+  constructor(args: CustomEventInit<SearchableDropdownSelectEventDetail>) {
+    super(SearchableDropdownSelectEvent.eventName, args);
+  }
+}
+
+type SearchableDropdownConnectEventDetails = {
+  disconnectedCallback: (callback: VoidFunction) => void;
+  updateResolver: (resolver?: SearchableDropdownResolver) => void;
+};
+
+export class SearchableDropdownConnectEvent extends CustomEvent<SearchableDropdownConnectEventDetails> {
+  static readonly eventName = 'fwc-searchabledropdown-controller-connect';
+  constructor(args: CustomEventInit<SearchableDropdownConnectEventDetails>) {
+    super(SearchableDropdownConnectEvent.eventName, args);
+  }
+}
+
+declare global {
+  interface ElementEventMap {
+    [SearchableDropdownConnectEvent.eventName]: SearchableDropdownConnectEvent;
+  }
 }

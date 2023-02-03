@@ -8,19 +8,37 @@
   ],
   "command": {
     "version": {
-      "allowBranch": ["main", "feat/*", "feature/*", "fix/*"],
+      "allowBranch": [
+        "main",
+        "feat/*",
+        "feat/**/*",
+        "feature/*",
+        "fix/*"
+      ],
       "conventionalCommits": true,
-      "ignoreChanges": ["*.spec.ts", "*.md"]
+      "ignoreChanges": [
+        "*.spec.ts",
+        "*.md"
+      ]
     },
     "bootstrap": {
       "hoist": true,
-      "npmClientArgs": ["--no-package-lock"]
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
     },
     "publish": {
       "conventionalCommits": true,
-      "ignoreChanges": ["*.spec.ts", "*.md"],
+      "ignoreChanges": [
+        "*.spec.ts",
+        "*.md"
+      ],
       "message": "chore(release): publish"
     }
   },
-  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"]
+  "ignoreChanges": [
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/*.md"
+  ]
 }

@@ -7,8 +7,10 @@
     ".": "./lib/index.js",
     "./README.button.md": "./README.button.md",
     "./README.link-button.md": "./README.link-button.md",
+    "./README.icon-button.md": "./README.icon-button.md",
     "./button": "./lib/button/index.js",
     "./link-button": "./lib/link-button/index.js",
+    "./icon-button": "./lib/icon-button/index.js",
     "./CHANGELOG.md": "./CHANGELOG.md"
   },
   "types": "lib/index.d.ts",
@@ -22,6 +24,9 @@
       ],
       "link-button": [
         "lib/link-button/index.d.ts"
+      ],
+      "icon-button": [
+        "lib/icon-button/index.d.ts"
       ]
     }
   },
@@ -36,7 +41,9 @@
     "equinor",
     "fusion",
     "web components",
-    "button"
+    "button",
+    "link button",
+    "icon button"
   ],
   "author": "",
   "license": "ISC",
@@ -44,6 +51,7 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-icon": "^1.0.27",
     "@material/mwc-button": "^0.27.0",
+    "@material/mwc-icon-button": "^0.27.0",
     "lit": "2.4.1"
   },
   "devDependencies": {

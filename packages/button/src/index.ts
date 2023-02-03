@@ -2,3 +2,8 @@ export { ButtonColor, ButtonElement, ButtonElementProps, ButtonVariant, tag as b
 export { LinkButtonElement, LinkButtonElementProps, LinkButtonTarget, tag as buttonLinkTag } from './link-button';
 export { IconButtonElement, IconButtonElementProps, tag as iconButtonTag } from './icon-button';
 export { IconButtonSize, IconButtonColor } from './icon-button/types';
+export {
+  IconButtonToggleElement,
+  IconButtonToggleElementProps,
+  tag as iconButtonToggleTag,
+} from './icon-button-toggle';

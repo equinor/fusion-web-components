@@ -5,7 +5,7 @@ import { styles as mwcStyle } from '@material/mwc-icon-button/mwc-icon-button.cs
 import { CSSResult, html, HTMLTemplateResult } from 'lit';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { IconButtonToggleColor, IconButtonToggleSize } from './types';
+import { IconButtonColor, IconButtonSize } from '../icon-button/types';
 import { classMap } from 'lit/directives/class-map.js';
 
 // Persist element
@@ -20,9 +20,9 @@ Icon;
  * @property {boolean} on - true to use whether the toggle is activated.
  * @property {IconName} onIcon - Sets the icon of the icon buttons element "on" state.
  * @property {IconName} offIcon - Sets the icon of the icon button element "off" state.
- * @property {IconButtonToggleSize} size - Sets the size of the icon button element.
- * @property {IconButtonToggleColor} onColor - Sets the color of the on icon buttons element "on" state.
- * @property {IconButtonToggleColor} offColor - Sets the color of the on icon buttons element "off" state. Used for primary color change.
+ * @property {IconButtonSize} size - Sets the size of the icon button element.
+ * @property {IconButtonColor} onColor - Sets the color of the on icon buttons element "on" state.
+ * @property {IconButtonColor} offColor - Sets the color of the on icon buttons element "off" state. Used for primary color change.
  * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
  * @property {boolean} disabled - Sets the icon button to disabled.
  * @property {string} ariaLabel - Accessible label for the button. Used if ariaLabelOn and ariaLabelOff is set.
@@ -47,11 +47,11 @@ export type IconButtonToggleElementProps = {
   /** aria-label of the button when on is false */
   ariaLabelOff?: string;
   /** Sets the color of "on" state */
-  onColor?: IconButtonToggleColor;
+  onColor?: IconButtonColor;
   /** Sets the color of "off" state */
-  offColor?: IconButtonToggleColor;
+  offColor?: IconButtonColor;
   /** Sets the size */
-  size?: IconButtonToggleSize;
+  size?: IconButtonSize;
   /** Sets the shape of ripple */
   rounded?: boolean;
   /** Sets the icon button to disabled */
@@ -63,13 +63,13 @@ export class IconButtonToggleElement extends IconButtonToggleBase implements Ico
   static styles: CSSResult[] = [style, mwcStyle];
 
   @property({ type: String })
-  public onColor?: IconButtonToggleColor = IconButtonToggleColor.Primary;
+  public onColor?: IconButtonColor = IconButtonColor.Primary;
 
   @property({ type: String })
-  public offColor?: IconButtonToggleColor = IconButtonToggleColor.Primary;
+  public offColor?: IconButtonColor = IconButtonColor.Primary;
 
   @property({ type: String })
-  public size?: IconButtonToggleSize = IconButtonToggleSize.Medium;
+  public size?: IconButtonSize = IconButtonSize.Medium;
 
   @property({ type: Boolean })
   public rounded?: boolean;

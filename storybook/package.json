@@ -22,7 +22,6 @@
     "@equinor/fusion-wc-divider": "^0.2.18",
     "@equinor/fusion-wc-formfield": "^0.2.15",
     "@equinor/fusion-wc-icon": "^1.0.27",
-    "@equinor/fusion-wc-icon-button": "^0.1.0",
     "@equinor/fusion-wc-list": "^0.3.1",
     "@equinor/fusion-wc-menu": "^0.1.4",
     "@equinor/fusion-wc-person": "^0.3.8",

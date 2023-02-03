@@ -3,6 +3,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { iconNames } from '@equinor/fusion-wc-icon';
 import IconButton from './Components/IconButton';
 
+
 export const Template = ({ children, ...props }) => {
   return (
     <fwc-icon-button {...props}>{children}</fwc-icon-button>
@@ -17,7 +18,7 @@ export const Container = ({ title, children }) => (
 );
 
 <Meta
-  title="General/IconButton"
+  title="Input/Button/Icon Button"
   component={IconButton}
   parameters={{
     viewMode: 'docs',
@@ -30,6 +31,10 @@ export const Container = ({ title, children }) => (
       control: 'select',
       options: iconNames,
     },
+    color: {
+      control: 'select',
+      options: ['primary','secondary','success','danger','warning','disabled'],
+    }
   }}
 />
 

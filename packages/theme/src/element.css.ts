@@ -13,7 +13,8 @@ export const style = css`
     --fwc-theme-on-surface: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
     --fwc-theme-secondary: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     --fwc-theme-surface: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    --fwc-typography-font-family: Equinor;
+    --fwc-typography-font-family: ${unsafeCSS(theme.typography.paragraph.body_long.getVariable('fontFamily'))},
+      sans-serif;
 
     --mdc-ripple-color: var(--fwc-ripple-color);
     --mdc-ripple-hover-opacity: var(--fwc-ripple-hover-opacity);
@@ -26,6 +27,7 @@ export const style = css`
     --mdc-theme-secondary: var(--fwc-theme-secondary);
     --mdc-theme-surface: var(--fwc-theme-surface);
     --mdc-typography-font-family: var(--fwc-typography-font-family);
+    font-family: var(--fwc-typography-font-family);
   }
 `;
 

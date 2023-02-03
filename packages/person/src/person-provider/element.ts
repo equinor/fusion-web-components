@@ -3,6 +3,7 @@ import { PersonResolver } from '../person-provider';
 import { PersonControllerConnectEvent } from '../events';
 
 export class PersonProviderElement extends LitElement {
+  protected resolver: PersonResolver | undefined = undefined;
   protected updateCallbacks: Array<(resolver?: PersonResolver) => void> = [];
 
   createRenderRoot(): LitElement {
@@ -10,6 +11,7 @@ export class PersonProviderElement extends LitElement {
   }
 
   setResolver(resolver?: PersonResolver): void {
+    this.resolver = resolver;
     this.updateCallbacks.forEach((callback) => {
       callback(resolver);
     });
@@ -45,6 +47,10 @@ export class PersonProviderElement extends LitElement {
 
     event.preventDefault();
     event.stopPropagation();
+
+    if (this.resolver) {
+      updateResolver(this.resolver);
+    }
   }
 }
 

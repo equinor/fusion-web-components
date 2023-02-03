@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.11...@equinor/fusion-wc-builder@2.0.0) (2022-11-24)
+
+
+### Features
+
+* **Searchable-dropdown:** variants for difrent uses and better style handling ([3eaba04](https://github.com/equinor/fusion-web-components/commit/3eaba049381158f2d39b336cd505461645314e56))
+
+
+### BREAKING CHANGES
+
+* **Searchable-dropdown:** new attributes and styles in resolver and element
+
+
+
+
+
 ## [1.0.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.10...@equinor/fusion-wc-builder@1.0.11) (2022-09-14)
 
 **Note:** Version bump only for package @equinor/fusion-wc-builder

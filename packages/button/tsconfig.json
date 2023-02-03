@@ -4,13 +4,19 @@
     "rootDir": "src",
     "outDir": "./lib"
   },
-  "include": ["src/**/*", "types/*.d.ts"],
+  "include": [
+    "src/**/*",
+    "types/*.d.ts"
+  ],
   "references": [
     {
       "path": "../core"
     },
     {
       "path": "../icon"
-    }
+    },
+    {
+      "path": "../ripple"
+    },
   ]
 }

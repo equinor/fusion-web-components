@@ -1,8 +1,35 @@
 {
   "name": "@equinor/fusion-wc-button",
-  "version": "1.1.33",
+  "version": "1.2.0",
   "description": "",
   "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./README.button.md": "./README.button.md",
+    "./README.link-button.md": "./README.link-button.md",
+    "./README.icon-button.md": "./README.icon-button.md",
+    "./button": "./lib/button/index.js",
+    "./link-button": "./lib/link-button/index.js",
+    "./icon-button": "./lib/icon-button/index.js",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
+  "types": "lib/index.d.ts",
+  "typesVersions": {
+    ">=4.2": {
+      ".": [
+        "lib/index.d.ts"
+      ],
+      "button": [
+        "lib/button/index.d.ts"
+      ],
+      "link-button": [
+        "lib/link-button/index.d.ts"
+      ],
+      "icon-button": [
+        "lib/icon-button/index.d.ts"
+      ]
+    }
+  },
   "customElements": "lib/custom-elements.json",
   "scripts": {
     "build": "tsc -b",
@@ -14,19 +41,22 @@
     "equinor",
     "fusion",
     "web components",
-    "button"
+    "button",
+    "link button",
+    "icon button"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-icon": "^1.0.26",
+    "@equinor/fusion-wc-icon": "^1.0.27",
     "@material/mwc-button": "^0.27.0",
+    "@material/mwc-icon-button": "^0.27.0",
     "lit": "2.4.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.6.6",
-    "@equinor/fusion-wc-builder": "^1.0.11",
+    "@equinor/fusion-wc-builder": "^2.0.0",
     "typescript": "^4.8.4"
   },
   "repository": {

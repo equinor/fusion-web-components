@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.13.0...@equinor/fusion-wc-storybook@2.14.0) (2023-02-03)
+
+
+### Bug Fixes
+
+* **icon-button:** added changelog ([503032a](https://github.com/equinor/fusion-web-components/commit/503032ab6d86db6e49acf4d51122c8be4a36352a))
+* **icon-button:** down version ([d2e24c6](https://github.com/equinor/fusion-web-components/commit/d2e24c6a9437ccb3a5b098e437801816bea5ab26))
+* **icon-button:** readme and info ([1a6a700](https://github.com/equinor/fusion-web-components/commit/1a6a7001525aba7288b6892d8b72afc2503f0b33))
+* **web-components:** icon-button storybook ([27953b4](https://github.com/equinor/fusion-web-components/commit/27953b42e38285632a9155b3e735efd73e69e8ae))
+
+
+### Features
+
+* :sparkles: icon button ([a263e16](https://github.com/equinor/fusion-web-components/commit/a263e16867e60db57da05593b1915242a4897a2e))
+* **web-components:** icon-button ([c39cdb3](https://github.com/equinor/fusion-web-components/commit/c39cdb3e3b74ae5e07f4295d84babfce6e46b9ba))
+* **web-components:** icon-button start ([9487354](https://github.com/equinor/fusion-web-components/commit/9487354bf4dcae34ff173c65339ae508d5a7219a))
+
+
+
+
+
 # [2.13.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.2...@equinor/fusion-wc-storybook@2.13.0) (2023-01-19)
 
 

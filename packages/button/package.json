@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-button",
-  "version": "1.1.36",
+  "version": "1.2.0",
   "description": "",
   "main": "lib/index.js",
   "exports": {
@@ -11,6 +11,7 @@
     "./button": "./lib/button/index.js",
     "./link-button": "./lib/link-button/index.js",
     "./icon-button": "./lib/icon-button/index.js",
+    "./icon-button-toggle": "./lib/icon-button/index.js",
     "./CHANGELOG.md": "./CHANGELOG.md"
   },
   "types": "lib/index.d.ts",
@@ -27,6 +28,9 @@
       ],
       "icon-button": [
         "lib/icon-button/index.d.ts"
+      ],
+      "icon-button-toggle": [
+        "lib/icon-button-toggle/index.d.ts"
       ]
     }
   },
@@ -43,7 +47,9 @@
     "web components",
     "button",
     "link button",
-    "icon button"
+    "icon button",
+    "icon toggle",
+    "icon button toggle"
   ],
   "author": "",
   "license": "ISC",
@@ -52,6 +58,7 @@
     "@equinor/fusion-wc-icon": "^1.0.27",
     "@material/mwc-button": "^0.27.0",
     "@material/mwc-icon-button": "^0.27.0",
+    "@material/mwc-icon-button-toggle": "^0.27.0",
     "lit": "2.4.1"
   },
   "devDependencies": {

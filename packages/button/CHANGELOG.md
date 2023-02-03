@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.36...@equinor/fusion-wc-button@1.2.0) (2023-02-03)
+
+
+### Features
+
+* :sparkles: icon button ([a263e16](https://github.com/equinor/fusion-web-components/commit/a263e16867e60db57da05593b1915242a4897a2e))
+
+
+
+
+
 ## [1.1.36](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.35...@equinor/fusion-wc-button@1.1.36) (2023-01-12)
 
 

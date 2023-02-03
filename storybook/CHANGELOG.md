@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.2...@equinor/fusion-wc-storybook@2.13.0) (2023-01-19)
+
+
+### Bug Fixes
+
+* **searchable-dropdown:** input element close, delegatefocus, [@query](https://github.com/query) decorator ([66987d0](https://github.com/equinor/fusion-web-components/commit/66987d0c8989bbc2f9961593b7ae2f46b62ddf83))
+
+
+### Features
+
+* **searchable-dropdown:** fires customevent when closing dropdown ([efc41ce](https://github.com/equinor/fusion-web-components/commit/efc41ce7b57f1b30fad7d648109fb784df308f17))
+
+
+
+
+
 ## [2.12.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.1...@equinor/fusion-wc-storybook@2.12.2) (2023-01-13)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

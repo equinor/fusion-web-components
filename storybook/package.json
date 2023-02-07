@@ -49,7 +49,7 @@
     "webpack": "^5.75.0"
   },
   "dependencies": {
-    "@equinor/fusion-react-utils": "^2.0.3",
+    "@equinor/fusion-react-utils": "^2.0.4",
     "typescript": "^4.9.5"
   }
 }

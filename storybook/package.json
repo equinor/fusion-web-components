@@ -46,10 +46,10 @@
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "storybook": "^6.5.16",
-    "webpack": "^5.74.0"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "@equinor/fusion-react-utils": "^2.0.3",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.5"
   }
 }

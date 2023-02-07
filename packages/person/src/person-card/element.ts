@@ -46,7 +46,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
     return html`${this.details?.render({
       complete: (_details: PersonDetails) => html`${_details.jobTitle ? html`<div>${_details.jobTitle}</div>` : null}`,
       pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderPlaceholder(true),
+      error: () => this.renderTextPlaceholder(true),
     })}`;
   }
   /**
@@ -57,7 +57,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
       complete: (_details: PersonDetails) =>
         html`${_details.department ? html`<div>${_details.department}</div>` : null}`,
       pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderPlaceholder(true),
+      error: () => this.renderTextPlaceholder(true),
     })}`;
   }
   /**
@@ -68,7 +68,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
       complete: (_details: PersonDetails) =>
         html`${_details.mail ? html`<div><a href="mailto:${_details.mail}">${_details.mail}</a></div>` : null}`,
       pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderPlaceholder(true),
+      error: () => this.renderTextPlaceholder(true),
     })}`;
   }
   /**
@@ -79,7 +79,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
       complete: (_details: PersonDetails) =>
         html`${_details.mobilePhone ? html`<div>${_details.mobilePhone}</div>` : null}`,
       pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderPlaceholder(true),
+      error: () => this.renderTextPlaceholder(true),
     })}`;
   }
   /**
@@ -90,7 +90,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
       complete: (_details: PersonDetails) =>
         html`${_details.officeLocation ? html`<div>${_details.officeLocation}</div>` : null}`,
       pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderPlaceholder(true),
+      error: () => this.renderTextPlaceholder(true),
     })}`;
   }
   /**
@@ -208,7 +208,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
    */
   protected renderAvatar(details: PersonDetails): TemplateResult {
     return html`<fwc-avatar .size=${this.size} .src=${details.pictureSrc} .value=${this.getInitial(details.name)}>
-      ${this.renderBadge(details, BadgePosition.BottomRight)}</fwc-avatar
+      ${details.accountType ? this.renderBadge(details, BadgePosition.BottomRight) : null}</fwc-avatar
     >`;
   }
 
@@ -230,11 +230,12 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   protected renderTypeStatus(): TemplateResult {
     return html`<div class="fwc-person-status__row">
       ${this.details?.render({
-        complete: (details: PersonDetails) => html`${this.renderTypeBadge(details)} ${details.accountType}`,
+        complete: (details: PersonDetails) =>
+          html`${details.accountType ? html`${this.renderTypeBadge(details)} ${details.accountType}` : null}`,
         pending: () =>
           html`${this.renderStatusIcon(PersonAvailability.Pending)}
           ${this.renderTextPlaceholder(false, SkeletonSize.small)}`,
-        error: () => html`${this.renderStatusIcon(PersonAvailability.Offline)} ${this.renderTextPlaceholder(true)}`,
+        error: () => html`${this.renderStatusIcon(PersonAvailability.Error)} ${this.renderTextPlaceholder(true)}`,
       })}
     </div>`;
   }

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.14.0...@equinor/fusion-wc-storybook@2.15.0) (2023-02-03)
+
+
+### Features
+
+* :sparkles: icon button toggle ([4d00232](https://github.com/equinor/fusion-web-components/commit/4d002320abd242a5ba9931f997faaa243fe013a7))
+* **web-components:** icon-button-toggle ([25fb8a5](https://github.com/equinor/fusion-web-components/commit/25fb8a586c5c63839f6c151addf3d42569a02225))
+
+
+
+
+
 # [2.14.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.13.0...@equinor/fusion-wc-storybook@2.14.0) (2023-02-03)
 
 

@@ -12,29 +12,30 @@ export const Template = ({ icon, size, color }) => {
 };
 
 export const Container = ({children}) => (
-  <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+  <div style={{display: 'flex', rowGap: '25px', flexWrap: 'wrap'}}>
     {children}
   </div>
 );
 
 export const IconInfo = (props) => {
   const style = {
-    display: 'inline-flex',
+    display: 'flex',
     flexFlow: 'column',
     alignItems: 'center',
-    border: '1px solid',
     borderRadius: '.25rem',
+    flex: '1 1 140px',
+    padding: '0 5px',
   };
   return (
     <div style={style}>
       <Template {...props} />
-      <span>{props.icon}</span>
+      <span style={{fontSize: '14px', marginTop: '5px'}}>{props.icon}</span>
     </div>
   );
 }
 
 <Meta
-  title="General/icon"
+  title="General/Icon"
   argTypes={{
     size: {
       control: {
@@ -105,7 +106,7 @@ use the style attribute `font-size` for adjusting the size of the icon. Normally
 
 ## All Icons
 Below are all registered icons listed out, copy the name and use on the `icon` attribute
-<Story name="Icon List" args={{size:32}}>
+<Story name="Icon List" args={{size:24}}>
   {(args) => {
     return (
       <Container>

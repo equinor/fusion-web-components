@@ -34,20 +34,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^18.0.25",
-    "lerna": "^6.0.1",
-    "prettier": "^2.7.1"
+    "@types/react": "^18.0.27",
+    "lerna": "^6.4.1",
+    "prettier": "^2.8.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
-    "@equinor/eslint-config-fusion": "^1.0.2",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@equinor/eslint-config-fusion": "^2.0.0",
     "del-cli": "^5.0.0",
-    "eslint": "^8.26.0",
-    "husky": "^8.0.1",
-    "lerna": "^6.0.1",
-    "lint-staged": "^13.0.3",
-    "typescript": "^4.8.4"
+    "eslint": "^8.33.0",
+    "husky": "^8.0.3",
+    "lerna": "^6.4.1",
+    "lint-staged": "^13.1.1",
+    "typescript": "^4.9.5"
   },
   "husky": {
     "hooks": {

@@ -25,11 +25,11 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-list": "^0.3.2",
     "@material/mwc-menu": "^0.27.0",
-    "lit": "2.4.1"
+    "lit": "2.6.1"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.6.6",
+    "@custom-elements-manifest/analyzer": "^0.6.8",
     "@equinor/fusion-wc-builder": "^2.0.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.5"
   }
 }

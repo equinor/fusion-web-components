@@ -1,4 +1,5 @@
 import '@equinor/fusion-wc-theme';
+import './custom_element'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

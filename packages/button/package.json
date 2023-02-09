@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-button",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "",
   "main": "lib/index.js",
   "exports": {
@@ -55,7 +55,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-icon": "^1.0.28",
+    "@equinor/fusion-wc-icon": "^1.0.29",
     "@material/mwc-button": "^0.27.0",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-icon-button-toggle": "^0.27.0",

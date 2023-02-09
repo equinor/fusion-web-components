@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-searchable-dropdown",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Searchable dropdown element",
   "main": "lib/index.js",
   "scripts": {
@@ -14,10 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-divider": "^0.2.18",
-    "@equinor/fusion-wc-icon": "^1.0.28",
-    "@equinor/fusion-wc-list": "^0.3.2",
-    "@equinor/fusion-wc-textinput": "^0.5.16",
+    "@equinor/fusion-wc-divider": "^0.2.19",
+    "@equinor/fusion-wc-icon": "^1.0.29",
+    "@equinor/fusion-wc-list": "^0.3.3",
+    "@equinor/fusion-wc-textinput": "^0.5.17",
     "@lit-labs/task": "^2.0.0",
     "@types/uuid": "^9.0.0",
     "lit": "2.6.1",

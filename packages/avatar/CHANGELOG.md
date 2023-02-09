@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.40](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.39...@equinor/fusion-wc-avatar@1.0.40) (2023-02-08)
+
+**Note:** Version bump only for package @equinor/fusion-wc-avatar
+
+
+
+
+
 ## [1.0.39](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-avatar@1.0.38...@equinor/fusion-wc-avatar@1.0.39) (2022-11-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-avatar

@@ -1,7 +1,7 @@
 import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
 import { PersonHost, PersonResolver } from './types';
-import { PersonPresence, PersonDetails } from '../types';
+import { PersonPresence, PersonDetails, PersonAvailability } from '../types';
 import { PersonControllerConnectEvent } from '../events';
 
 export class PersonController implements ReactiveController {
@@ -51,7 +51,13 @@ export class PersonController implements ReactiveController {
         if (!resolver?.getPresence) {
           throw new Error('PersonResolver is undefined');
         }
-        return Promise.resolve(resolver.getPresence(azureId));
+        return Promise.resolve(resolver.getPresence(azureId)).catch((err) => {
+          console.error(err);
+          return {
+            azureId,
+            availability: PersonAvailability.Error,
+          };
+        });
       },
       () => [this.azureId]
     );
@@ -64,7 +70,14 @@ export class PersonController implements ReactiveController {
         if (!resolver?.getDetails) {
           throw new Error('PersonResolver is undefined');
         }
-        return Promise.resolve(resolver.getDetails(azureId));
+
+        return Promise.resolve(resolver.getDetails(azureId)).catch((err) => {
+          console.error(err);
+          return {
+            azureId,
+            jobTitle: `Failed to load user ${azureId}`,
+          };
+        });
       },
       () => [this.azureId]
     );

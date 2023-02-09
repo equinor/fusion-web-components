@@ -37,4 +37,5 @@ export enum PersonAvailability {
   DoNotDisturb = 'DoNotDisturb',
   Offline = 'Offline',
   Pending = 'Pending',
+  Error = 'Error',
 }

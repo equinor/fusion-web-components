@@ -37,12 +37,12 @@ export const Template = ({ children, ...props }) => {
 
 <Canvas>
   <Story name="Default" args={{
-      dropdownHeight: '300px',
-      id: 'sdd-test',
-      initialText: 'The initial text result',
-      leadingIcon: 'search'
       placeholder: 'Start to type to search...',
+      initialText: 'The initial text result',
+      id: 'sdd-test',
       variant: 'header',
+      dropdownHeight: '300px',
+      leadingIcon: 'search',
     }}
     argTypes={{
       id: {
@@ -88,12 +88,12 @@ export const Template = ({ children, ...props }) => {
       },
       disabled: {
         type: 'boolean',
-        description: 'disable TextInput'
+        description: 'disabled TextInput'
       },
       selectedId: {
         type: 'string',
-        description: 'The pre-selected item id to highlight in dropdown'
-      }
+        description: 'The pre-selected id to higlight',
+      },
     }}
     >
     {Template.bind({})}

@@ -1,10 +1,10 @@
 import { createComponent } from '@equinor/fusion-react-utils';
 
-import { IconButtonElement, IconButtonElementProps, tag } from '@equinor/fusion-wc-button/icon-button';
+import { IconButtonElement, IconButtonElementProps, iconButtonTag } from '@equinor/fusion-wc-button';
 
 IconButtonElement;
 
-export const IconButton = createComponent<IconButtonElement, IconButtonElementProps>(IconButtonElement, tag);
+export const IconButton = createComponent<IconButtonElement, IconButtonElementProps>(IconButtonElement, iconButtonTag);
 export type IconButtonProps = React.ComponentProps<typeof IconButton>;
 
 export default IconButton;

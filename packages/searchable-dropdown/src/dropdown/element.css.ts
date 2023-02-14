@@ -18,6 +18,9 @@ export const fwcsdd = css`
   fwc-textinput {
     width: 100%;
   }
+  fwc-textinput[disabled] {
+    opacity: 0.5;
+  }
   fwc-textinput[dense] {
     --mdc-text-field-outlined-idle-border-color: transparent;
     --mdc-shape-small: 0;

@@ -141,19 +141,21 @@ export class SearchableDropdownController implements ReactiveController {
    */
   private mutateResult(result: SearchableDropdownResult) {
     if (result) {
+      const { selectedId } = this.#host;
       for (let i = 0; i < result.length; i++) {
         const item = result[i];
+
         if (item.type === 'section' && item.children?.length) {
           for (let x = 0; x < item.children.length; x++) {
             const kid = item.children[x];
-            if (this._selectedItems.find((s) => s.id === kid.id)) {
+            if (this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id) {
               kid.isSelected = true;
             } else {
               kid.isSelected = false;
             }
           }
         } else {
-          if (this._selectedItems.find((s) => s.id === item.id)) {
+          if (this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id) {
             item.isSelected = true;
           } else {
             item.isSelected = false;

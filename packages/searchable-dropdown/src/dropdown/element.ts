@@ -33,16 +33,18 @@ import { styles as sddStyles } from './element.css';
  * @tag fwc-searchabledropdown
  *
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
- * @property {string} label Label for fwc-textinput element
- * @property {string} placeholder Placeholder text for fwc-textinput element
- * @property {string} value value for TextInput element
- * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
- * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
- * @property {string} multiple Able to select multiple items
+ * @property {boolean} disabled disable TextInput element
+ * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @property {string} label Label for fwc-textinput element
  * @property {string} leadingIcon Leading Icon to display in fwc-text-input
- * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
+ * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
+ * @property {string} multiple Able to select multiple items
+ * @property {string} placeholder Placeholder text for fwc-textinput element
+ * @property {string} selectedId ID that should be highlighted in dropdown
+ * @property {string} value value for TextInput element
+ * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  */
@@ -100,6 +102,12 @@ export class SearchableDropdownElement
   /* Label passed to the fwc-text-input component */
   @property()
   dropdownHeight = '250px';
+
+  @property()
+  disabled = false;
+
+  @property()
+  selectedId = '';
 
   @property()
   autofocus = false;
@@ -228,6 +236,7 @@ export class SearchableDropdownElement
   protected render(): HTMLTemplateResult {
     const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
+    const disabled = this.disabled ? true : undefined;
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controller.isOpen,
@@ -245,6 +254,7 @@ export class SearchableDropdownElement
             value=${this.value}
             name="searchabledropdown"
             variant=${variant}
+            disabled=${ifDefined(disabled)}
             icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}

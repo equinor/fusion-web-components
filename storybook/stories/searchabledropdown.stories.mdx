@@ -85,7 +85,15 @@ export const Template = ({ children, ...props }) => {
       },
       multiple: {
         description: 'Flag for selecting multiple items.'
-      }
+      },
+      disabled: {
+        type: 'boolean',
+        description: 'disabled TextInput'
+      },
+      selectedId: {
+        type: 'string',
+        description: 'The pre-selected id to higlight',
+      },
     }}
     >
     {Template.bind({})}

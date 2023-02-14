@@ -104,10 +104,10 @@ export class SearchableDropdownElement
   dropdownHeight = '250px';
 
   @property()
-  disabled = undefined;
+  disabled = false;
 
   @property()
-  selectedId = undefined;
+  selectedId = '';
 
   @property()
   autofocus = false;
@@ -236,6 +236,7 @@ export class SearchableDropdownElement
   protected render(): HTMLTemplateResult {
     const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
+    const disabled = this.disabled ? true : undefined;
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controller.isOpen,
@@ -253,7 +254,7 @@ export class SearchableDropdownElement
             value=${this.value}
             name="searchabledropdown"
             variant=${variant}
-            disabled=${ifDefined(this.disabled)}
+            disabled=${ifDefined(disabled)}
             icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}

@@ -52,7 +52,7 @@ export class SearchableDropdownElement
   extends LitElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
-  static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
+  // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
 
   /* style object css */
   static styles = [sddStyles];
@@ -115,6 +115,9 @@ export class SearchableDropdownElement
   @query('fwc-textinput')
   textInputElement: TextInputElement | undefined;
 
+  @query('fwc-list')
+  listElement: ListElement | undefined;
+
   /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
@@ -167,6 +170,8 @@ export class SearchableDropdownElement
       </fwc-check-list-item>`;
     }
     return html`<fwc-list-item
+      rootTabbable=${true}
+      wrapFocus=${true}
       key=${item.id}
       class=${classMap(itemClasses)}
       disabled=${ifDefined(disabled)}
@@ -186,7 +191,7 @@ export class SearchableDropdownElement
       return html``;
     }
 
-    return html`<fwc-list @action=${this.controller.handleSelect} activatable=${true} multi=${this.multiple}>
+    return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controller.handleSelect}>
       ${this.controller.task.render({
         complete: (result: SearchableDropdownResult) => {
           /*
@@ -264,8 +269,10 @@ export class SearchableDropdownElement
           <slot name="trailing">
             <span slot="trailing">
               <fwc-icon
+                tabindex="1"
                 class="trailing interactive"
                 @click=${this.controller.closeClick}
+                @keydown=${this.controller.closeClick}
                 icon=${this.trailingIcon}
               ></fwc-icon>
             </span>

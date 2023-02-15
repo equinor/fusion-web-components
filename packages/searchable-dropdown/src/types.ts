@@ -1,6 +1,7 @@
 import { ReactiveControllerHost } from 'lit';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
+import { ListElement } from '@equinor/fusion-wc-list';
 /**
  * Properties/Attributes for web component
  * @autofocus Sets focus on textinput when mounted
@@ -31,6 +32,7 @@ export interface SearchableDropdownProps {
   placeholder?: string;
   selectedId?: string;
   textInputElement?: TextInputElement;
+  listElement?: ListElement;
   value?: string;
   variant?: string;
 }

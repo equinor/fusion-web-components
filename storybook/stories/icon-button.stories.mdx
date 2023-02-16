@@ -34,7 +34,7 @@ export const Container = ({ title, children }) => (
     color: {
       control: 'select',
       options: ['primary','secondary','success','danger','warning','disabled'],
-    }
+    },
   }}
 />
 
@@ -86,6 +86,13 @@ npm i @equinor/fusion-wc-button
     <fwc-icon-button color="danger" size="large" rounded>
       <img src="https://i.imgur.com/Qq8jj5I.png" />
     </fwc-icon-button>
+  </Story>
+</Canvas>
+
+## Link Icon
+<Canvas>
+  <Story name="Link Icon">
+    <fwc-icon-button href="#link" target="_top" color="warning" size="medium" icon="touch" rounded />
   </Story>
 </Canvas>
 

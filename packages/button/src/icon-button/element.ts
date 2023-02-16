@@ -6,6 +6,7 @@ import { CSSResult, html, HTMLTemplateResult } from 'lit';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { IconButtonColor, IconButtonSize } from './types';
+import { LinkButtonTarget } from '../link-button';
 
 // Persist element
 Icon;
@@ -16,6 +17,8 @@ Icon;
  *
  * @tag fwc-icon-button
  *
+ * @property {string} href - Sets the link of the icon button element.
+ * @property {LinkButtonTarget} target - Sets how it will open link of the icon button element.
  * @property {IconName} icon - Sets the icon of the icon button element.
  * @property {IconButtonSize} size - Sets the size of the icon button element.
  * @property {IconButtonColor} color - Sets the color of the icon button element.
@@ -27,6 +30,10 @@ Icon;
  */
 
 export type IconButtonElementProps = {
+  /** If not empty, it is going to */
+  href?: string;
+  /** Target for link */
+  target?: LinkButtonTarget;
   /** Icon to display */
   icon?: IconName | string;
   /** Accessible label for the button */
@@ -46,6 +53,12 @@ export type IconButtonElementProps = {
 export class IconButtonElement extends IconButtonBase implements IconButtonElementProps {
   /* styles object css */
   static styles: CSSResult[] = [style, mwcStyle];
+
+  @property({ type: String })
+  href?: string;
+
+  @property({ type: String })
+  target?: LinkButtonTarget;
 
   @property({ type: String })
   public color?: IconButtonColor = IconButtonColor.Primary;
@@ -74,8 +87,10 @@ export class IconButtonElement extends IconButtonBase implements IconButtonEleme
    * @returns full render of IconButtonBase with fwc-icon used instead of alredy used material icon
    */
   override render(): HTMLTemplateResult {
-    return html`<button
+    return html`<a
       class="mdc-icon-button mdc-icon-button--display-flex"
+      href="${ifDefined(this.href)}"
+      target="${ifDefined(this.target)}"
       aria-label="${this.ariaLabel || this.icon + '_icon-button'}"
       aria-haspopup="${ifDefined(this.ariaHasPopup)}"
       ?disabled="${this.disabled}"
@@ -91,7 +106,7 @@ export class IconButtonElement extends IconButtonBase implements IconButtonEleme
       ${this.renderRipple()}
       ${this.icon ? html`<fwc-icon class="mdc-icon-button__icon" .icon=${this.icon}></fwc-icon>` : ''}
       <span><slot></slot></span>
-    </button>`;
+    </a>`;
   }
 }
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.5...@equinor/fusion-wc-storybook@2.16.0) (2023-02-16)
+
+
+### Features
+
+* :sparkles: link icon button ([70129de](https://github.com/equinor/fusion-web-components/commit/70129de257fc87b6e267fad221ef6d4eaf275f12))
+
+
+
+
+
 ## [2.15.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.4...@equinor/fusion-wc-storybook@2.15.5) (2023-02-15)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

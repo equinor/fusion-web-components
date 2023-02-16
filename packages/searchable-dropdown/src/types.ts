@@ -1,30 +1,40 @@
 import { ReactiveControllerHost } from 'lit';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
+import { ListElement } from '@equinor/fusion-wc-list';
 /**
  * Properties/Attributes for web component
- * @label TextInput Label
- * @placeholder TextInput placeholder
- * @variant Set variant to 'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'
- * @meta Icon to show after each fwc-list-item.
+ * @autofocus Sets focus on textinput when mounted
+ * @disabled Disable TextInput
+ * @dropdownHeight Sets max-height of the dropdown
  * @graphic Icon to show before each fwc-list-item.
  * @initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @label TextInput Label
  * @leadingIcon Leading Icon to display in fwc-text-input
- * @dropdownHeight Sets max-height of the dropdown
+ * @meta Icon to show after each fwc-list-item.
+ * @multiple Allow for multiple selections
+ * @placeholder TextInput placeholder
+ * @selectedId Preselected item id
+ * @textInputElement the html node of input
+ * @value The preselected value. shoudl be combined with value
+ * @variant Set variant to 'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'
  */
 export interface SearchableDropdownProps {
   autofocus?: boolean;
-  label?: string;
-  placeholder?: string;
-  value?: string;
-  variant?: string;
-  meta?: string;
-  multiple?: boolean;
+  disabled?: boolean;
+  dropdownHeight?: string;
   graphic?: string;
   initialText?: string;
+  label?: string;
   leadingIcon?: string;
-  dropdownHeight?: string;
+  meta?: string;
+  multiple?: boolean;
+  placeholder?: string;
+  selectedId?: string;
   textInputElement?: TextInputElement;
+  listElement?: ListElement;
+  value?: string;
+  variant?: string;
 }
 
 /**
@@ -46,40 +56,40 @@ export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
  * @children The children if type is section
  */
 export interface SearchableDropdownResultItem {
-  id: string;
-  title?: string;
-  subTitle?: string;
-  isDisabled?: boolean;
-  isSelected?: boolean;
-  isError?: boolean;
-  meta?: string;
-  graphic?: string;
-  type?: 'section' | 'divider' | null;
   children?: SearchableDropdownResult;
+  graphic?: string;
+  id: string;
+  isDisabled?: boolean;
+  isError?: boolean;
+  isSelected?: boolean;
+  meta?: string;
+  subTitle?: string;
+  title?: string;
+  type?: 'section' | 'divider' | null;
 }
 
 /**
  * The resolver methods
  */
 export interface SearchableDropdownResolver {
-  searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
-  initialResult?: SearchableDropdownResult;
   closeHandler?: (e: MouseEvent) => void;
+  initialResult?: SearchableDropdownResult;
+  searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
 }
 
 /**
  * The element the controller is conected to
  */
 export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost {
-  renderRoot: HTMLElement | ShadowRoot;
   dispatchEvent(event: Event): boolean;
   nodeName: string;
+  renderRoot: HTMLElement | ShadowRoot;
   trailingIcon: string;
 }
 
 export interface ExplicitEventTarget extends Event {
-  readonly explicitOriginalTarget: HTMLInputElement;
   readonly detail: ActionDetail;
+  readonly explicitOriginalTarget: HTMLInputElement;
 }
 
 type SearchableDropdownSelectEventDetail = {

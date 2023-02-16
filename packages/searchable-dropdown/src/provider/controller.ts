@@ -92,23 +92,23 @@ export class SearchableDropdownController implements ReactiveController {
     });
     this.#host.dispatchEvent(event);
 
-    /* add click event to window */
-    window.addEventListener('click', this._handleWindowClick);
+    /* add click event to body */
+    document.body.addEventListener('click', this._handleGlobalClick);
   }
 
   public hostDisconnected(): void {
     if (this.disconnectProvider) {
       this.disconnectProvider();
     }
-    /* remove click event to window */
-    window.removeEventListener('click', this._handleWindowClick);
-    window.removeEventListener('keyup', this._handleWindowKeyUp);
+    /* remove global event listeners */
+    document.body.removeEventListener('click', this._handleGlobalClick);
+    document.body.removeEventListener('keyup', this._handleGlobalKeyUp);
   }
 
   /**
    * Close dropdown when click oustside host
    */
-  private _handleWindowClick = (e: Event): void => {
+  private _handleGlobalClick = (e: Event): void => {
     /* make sure we have a target to check against */
     if (!e.target) return;
     if (
@@ -122,8 +122,9 @@ export class SearchableDropdownController implements ReactiveController {
   /**
    * Close dropdown on escape key
    */
-  private _handleWindowKeyUp = (e: KeyboardEvent): void => {
+  private _handleGlobalKeyUp = (e: KeyboardEvent): void => {
     /* Close on Escape */
+
     if (e.key === 'Escape') {
       if (this.#host.textInputElement) {
         /* unfocus */
@@ -141,19 +142,21 @@ export class SearchableDropdownController implements ReactiveController {
    */
   private mutateResult(result: SearchableDropdownResult) {
     if (result) {
+      const { selectedId } = this.#host;
       for (let i = 0; i < result.length; i++) {
         const item = result[i];
+
         if (item.type === 'section' && item.children?.length) {
           for (let x = 0; x < item.children.length; x++) {
             const kid = item.children[x];
-            if (this._selectedItems.find((s) => s.id === kid.id)) {
+            if (this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id) {
               kid.isSelected = true;
             } else {
               kid.isSelected = false;
             }
           }
         } else {
-          if (this._selectedItems.find((s) => s.id === item.id)) {
+          if (this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id) {
             item.isSelected = true;
           } else {
             item.isSelected = false;
@@ -257,6 +260,7 @@ export class SearchableDropdownController implements ReactiveController {
    * Calls closeHandler callback set in resolver
    */
   public closeClick = (e: MouseEvent): void => {
+
     /* needed to clear user input */
     if (this.#host.textInputElement) {
       this.#host.textInputElement.value = '';
@@ -273,6 +277,14 @@ export class SearchableDropdownController implements ReactiveController {
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
+    }
+
+    /* clear focus on closeicon if trigger with keyboard */
+    if (e.type === 'keydown') {
+      const closeIcon = this.#host.renderRoot.querySelector('.trailing');
+      if (closeIcon) {
+        (closeIcon as HTMLSpanElement).blur();
+      }
     }
 
     /* fire event for sdd closed */
@@ -298,9 +310,9 @@ export class SearchableDropdownController implements ReactiveController {
 
     /* Close on escape key */
     if (this._isOpen) {
-      window.addEventListener('keyup', this._handleWindowKeyUp);
+      document.body.addEventListener('keyup', this._handleGlobalKeyUp);
     } else {
-      window.removeEventListener('keyup', this._handleWindowKeyUp);
+      document.body.removeEventListener('keyup', this._handleGlobalKeyUp);
     }
 
     /* Refresh host */
@@ -318,13 +330,17 @@ export class SearchableDropdownController implements ReactiveController {
    */
   public handleKeyup(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
+
     if (event.key === 'ArrowDown') {
+      /* focus on the fwc-list' */
       if (this._isOpen && this.result?.length) {
-        // focus on the fwc-list
-        this.#host.renderRoot.querySelector('fwc-list')?.focus();
+        // this.#host.listElement?.focus();
+        this.#host.listElement?.focusItemAtIndex(0);
       }
       return;
     }
+
+    /* Trigger searchQuery task */
     if (this.timer) {
       clearTimeout(this.timer);
     }

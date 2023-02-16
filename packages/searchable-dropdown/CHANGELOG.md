@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.4.4...@equinor/fusion-wc-searchable-dropdown@2.5.0) (2023-02-15)
+
+
+### Features
+
+* **Searchable-Dropdown:** added type listElement on SearchableDropdownProps ([7cfc35f](https://github.com/equinor/fusion-web-components/commit/7cfc35f0d0679a538ba18e9aeec40cccf5016fe1))
+* **Searchable-Dropdown:** better event handling in controller for keyboard navigation ([4ee195f](https://github.com/equinor/fusion-web-components/commit/4ee195f5eb58ec1841356abcb6cdb4e4f2573e6b))
+* **searchable-dropdown:** improving keyboard navigation and removing delegatefocus ([8926d37](https://github.com/equinor/fusion-web-components/commit/8926d37e010c9d4f446faff2fdf31f1dc9ed6fa7))
+
+
+
+
+
 ## [2.4.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.4.3...@equinor/fusion-wc-searchable-dropdown@2.4.4) (2023-02-14)
 
 **Note:** Version bump only for package @equinor/fusion-wc-searchable-dropdown

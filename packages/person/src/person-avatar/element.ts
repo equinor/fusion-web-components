@@ -6,7 +6,7 @@ import { PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability, PersonPresence, PersonDetails } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
-import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+import Skeleton from '@equinor/fusion-wc-skeleton';
 import style from './element.css';
 
 // persist elements
@@ -113,13 +113,6 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   }
 
   /**
-   * Returns the first character in the person's name as upper case initial
-   */
-  protected getInitial(name?: string): string | undefined {
-    return name?.substr(0, 1)?.toUpperCase();
-  }
-
-  /**
    * Renders the presence badge
    */
   protected renderBadge(availability: PersonAvailability): TemplateResult {
@@ -159,18 +152,6 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Renders the avatar pending state
    */
-  protected renderPlaceholder(inactive?: boolean): TemplateResult {
-    return html`<fwc-skeleton
-      size=${this.size}
-      variant=${SkeletonVariant.Circle}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
-  }
-
-  /**
-   * Renders the avatar pending state
-   */
   protected renderError(error: Error): TemplateResult {
     return html`${error}`;
   }
@@ -179,8 +160,8 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected render(): TemplateResult {
     return html`${this.details?.render({
       complete: (details: PersonDetails) => this.renderAvatar(details),
-      pending: () => this.renderPlaceholder(),
-      error: () => this.renderPlaceholder(true),
+      pending: () => this.renderImagePlaceholder(false, this.size),
+      error: () => this.renderImagePlaceholder(true),
     })}`;
   }
 

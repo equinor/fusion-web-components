@@ -12,7 +12,7 @@ export const style = css`
     width: 3rem;
     height: 3rem;
   }
-  .person-list__section {
+  .person-list__item {
     display: flex;
     justify-content: space-between;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
@@ -24,10 +24,19 @@ export const style = css`
     transition: box-shadow 0.2s ease;
     -webkit-transition: box-shadow 0.2s ease;
   }
-  .person-list__section:hover {
+  .person-list__item:hover {
     box-shadow: ${unsafeCSS(theme.elevation.raised.getVariable('shadow'))};
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     cursor: pointer;
+  }
+  .person-list__about {
+    display: flex;
+    align-items: center;
+    column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
+  }
+  .person-list__content {
+    display: flex;
+    flex-direction: column;
   }
   .person-list__heading {
     font-size: calc(${unsafeCSS(theme.typography.heading.h6.getVariable('fontSize'))} * var(--content-resize, 1));
@@ -41,6 +50,9 @@ export const style = css`
     display: flex;
     align-items: center;
     gap: ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))};
+  }
+  .fwc-person-avatar-badge {
+    --fwc-badge-size: calc(0.58rem * var(--content-resize, 1));
   }
 `;
 

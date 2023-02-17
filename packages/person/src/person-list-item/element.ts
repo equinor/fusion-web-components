@@ -1,9 +1,8 @@
 import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { CSSResult, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ClassInfo } from 'lit/directives/class-map.js';
 import { PersonElement } from '../person';
-import { PersonAccountType, PersonAvailability, PersonDetails, PersonItemSize, PersonPresence } from '../types';
+import { PersonAvailability, PersonDetails, PersonItemSize, PersonPresence } from '../types';
 import style from './element.css';
 import personStyle from '../style.css';
 import { delveIcon, teamsIcon } from './icons';
@@ -55,18 +54,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   }
 
   /**
-   * Returns the status color for the current availability of the person
-   */
-  protected getStatusColor(availability?: PersonAvailability): ClassInfo {
-    return {
-      'fwc-status-icon__success': availability === (PersonAvailability.Available || PersonAvailability.AvailableIdle),
-      'fwc-status-icon__warning': availability === (PersonAvailability.Away || PersonAvailability.BeRightBack),
-      'fwc-status-icon__danger':
-        availability === (PersonAvailability.Busy || PersonAvailability.BusyIdle || PersonAvailability.DoNotDisturb),
-    };
-  }
-
-  /**
    * Returns the badge color for the current presence
    */
   protected getAvatarBadgeColor(availability: PersonAvailability): BadgeColor {
@@ -96,21 +83,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
         return 'medium';
       default:
         return 'small';
-    }
-  }
-
-  /**
-   * Returns color classes for the account type
-   */
-  protected getAccountTypeColorClass(accountType?: PersonAccountType): string | void {
-    switch (accountType) {
-      case PersonAccountType.Employee:
-        return 'fwc-person-badge__employee';
-      case PersonAccountType.ExternalHire:
-      case PersonAccountType.XExternal:
-        return 'fwc-person-badge__external';
-      case PersonAccountType.JointVentureAffiliate:
-        return 'fwc-person-badge__consultant';
     }
   }
 
@@ -191,20 +163,18 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   }
 
   protected render(): TemplateResult {
-    return html`<section class="person-list__section">
-      <div class="fwc-person-content">
-        <div class="fwc-person-avatar">
+    return html`<div class="person-list__item">
+      <div class="person-list__about">
+        <div class="person-list__avatar">
           ${this.details?.render({
             complete: (details: PersonDetails) => this.renderAvatar(details),
             pending: () => this.renderImagePlaceholder(false, this.size),
             error: () => this.renderImagePlaceholder(true),
           })}
         </div>
-        <div class="fwc-person-status">
-          <div class="fwc-person-status__heading">${this.renderTitle()} ${this.renderDepartment()}</div>
-        </div>
+        <div class="person-list__content">${this.renderTitle()} ${this.renderDepartment()}</div>
       </div>
       <div class="person-list__toolbar">${this.renderDelveIcon()}${this.renderTeamsIcon()}</div>
-    </section>`;
+    </div>`;
   }
 }

@@ -3,7 +3,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { iconNames } from '@equinor/fusion-wc-icon';
 
 import PersonCard from './Components/PersonCard';
-import { Availability, AccountType } from '@equinor/fusion-wc-person';
+import { Availability, AccountType, PersonItemSize } from '@equinor/fusion-wc-person';
 
 export const DefaultTemplate = ({ children, ...props }) => {
   return (
@@ -35,6 +35,43 @@ export const Template = (props) => (
 <Meta
   title="People/PersonCard"
   component={PersonCard}
+  argTypes={{
+    azureId: {
+      description: 'Unique person Azure ID',
+      type: { name: 'string', required: true },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    size: {
+      description: 'Size of the component',
+      control: 'radio',
+      options: PersonItemSize,
+      table: {
+        type: { summary: 'PersonItemSize' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    maxWidth: {
+      description: 'Maximum width of the component (px)',
+      type: { name: 'number' },
+      defaultValue: 300,
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '300px' },
+      },
+    },
+    contentHeight: {
+      description: 'Height of content (px)',
+      type: { name: 'number' },
+      defaultValue: 150,
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '150px' },
+      },
+    },
+  }}
   parameters={{
     viewMode: 'docs',
     previewTabs: {

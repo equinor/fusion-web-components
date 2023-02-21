@@ -18,24 +18,28 @@ import style from './element.css';
  * @property {string} azureId - Azure unique id for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {number} maxWidth - Set maximum width of person card in pixels, default value 300
- * @property {number} conteHeight - Set height of person content in pixels, default value 150
+ * @property {number} contentHeight - Set height of person content in pixels, default value 150
  *
  */
 
 export class PersonCardElement extends PersonElement implements PersonCardElementProps {
   static styles: CSSResult[] = [style, personStyle];
 
+  /** Azure unique id */
   @property({ type: String, reflect: true })
   azureId!: string;
 
+  /** Size of the component */
   @property({ type: String, reflect: true })
   size: PersonItemSize = 'medium';
 
+  /** Maximum width of the component */
   @property({ type: Number, reflect: true })
   maxWidth = 300;
 
+  /** Height of content */
   @property({ type: Number, reflect: true })
-  conteHeight = 150;
+  contentHeight = 150;
 
   /**
    * Renders person name
@@ -128,8 +132,8 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   protected renderProjects(details: PersonDetails): TemplateResult {
     const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
     return html`${filterProjects.length > 0
-      ? html`<div class="person-card-projects__section">
-          <div class="person-card-projects__title">Projects</div>
+      ? html`<div class="person-card__projects">
+          <div class="person-card-projects__heading">Projects</div>
           <div class="person-card-projects__projects">
             ${filterProjects.map((p) => {
               return html`<div class="person-card-projects__project">${p}</div>`;
@@ -145,25 +149,13 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   protected renderPositions(details: PersonDetails): TemplateResult {
     const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
     return html`${filterPositions.length > 0
-      ? html` <div class="person-card-projects__section">
-          <div class="person-card-projects__title">Positions</div>
+      ? html`<div class="person-card__projects">
+          <div class="person-card-projects__heading">Positions</div>
           <div class="person-card-projects__projects">
             ${filterPositions.map((p) => {
               return html`<div class="person-card-projects__project">${p}</div>`;
             })}
           </div>
-        </div>`
-      : null}`;
-  }
-
-  /**
-   * Render person projects and positions
-   */
-  protected renderTasks(details: PersonDetails): TemplateResult {
-    return html`${details.positions != undefined && details.positions.length > 0
-      ? html`<div class="person-card__projects">
-          <div class="person-card-projects__heading">Tasks</div>
-          ${this.renderProjects(details)} ${this.renderPositions(details)}
         </div>`
       : null}`;
   }
@@ -304,12 +296,12 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
                 ${this.renderName(details)} ${this.renderDepartment(details)} ${this.renderJobTitle(details)}
               </div>
             </div>
-            <div class="person-card__content" style="max-height:${this.conteHeight}px">
+            <div class="person-card__content" style="max-height:${this.contentHeight}px">
               <div class="person-card__info">
                 <div class="person-card-info__heading">Contact</div>
                 ${this.renderMobile(details)} ${this.renderEmail(details)}
               </div>
-              ${this.renderTasks(details)} ${this.renderManager(details)}
+              ${this.renderProjects(details)} ${this.renderPositions(details)} ${this.renderManager(details)}
             </div>`;
         },
         pending: () => {

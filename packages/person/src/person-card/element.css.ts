@@ -101,7 +101,9 @@ export const style = css`
     display: flex;
     align-items: center;
     column-gap: var(--small-size-space);
-
+    font-size: calc(
+      ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
+    );
     padding: var(--small-size-space) var(--medium-size-space);
   }
   .person-card-info__icon {
@@ -134,12 +136,16 @@ export const style = css`
   .person-card-projects__projects {
     display: flex;
     flex-wrap: wrap;
-    column-gap: var(--medium-size-space);
+    gap: var(--small-size-space);
   }
   .person-card-projects__project {
     font-size: calc(
       ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
     );
+    padding: 2px 6px;
+    border: 1px solid;
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-radius: 4px;
   }
   .person-card__manager {
     display: flex;

@@ -1,13 +1,13 @@
-import { AvatarSize } from '@equinor/fusion-wc-avatar';
-import { BadgePosition, IconName } from '@equinor/fusion-wc-badge';
-import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+import { BadgeColor } from '@equinor/fusion-wc-badge';
+import { SkeletonSize } from '@equinor/fusion-wc-skeleton';
 import { CSSResult, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { PersonElement } from '../person';
-import { PersonAccountType, PersonAvailability, PersonDetails, PersonPresence } from '../types';
-import style from './element.css';
+import { PersonAvailability, PersonDetails, PersonItemSize, PersonPresence } from '../types';
 import { PersonCardElementProps } from './types';
+
+import personStyle from '../style.css';
+import style from './element.css';
 
 /**
  * Element for displaying a persons card with person avatar and person info.
@@ -16,252 +16,274 @@ import { PersonCardElementProps } from './types';
  * @tag fwc-person-card
  *
  * @property {string} azureId - Azure unique id for the person.
- * @property {AvatarSize} size - Size of the avatar, also used for font size
+ * @property {PersonItemSize} size - Size of the avatar, also used for font size
+ * @property {number} maxWidth - Set maximum width of person card in pixels, default value 300
+ * @property {number} conteHeight - Set height of person content in pixels, default value 150
  *
  */
 
 export class PersonCardElement extends PersonElement implements PersonCardElementProps {
-  static styles: CSSResult[] = [style];
+  static styles: CSSResult[] = [style, personStyle];
 
   @property({ type: String, reflect: true })
   azureId!: string;
 
   @property({ type: String, reflect: true })
-  size: AvatarSize = AvatarSize.Medium;
+  size: PersonItemSize = 'medium';
+
+  @property({ type: Number, reflect: true })
+  maxWidth = 300;
+
+  @property({ type: Number, reflect: true })
+  conteHeight = 150;
+
   /**
    * Renders person name
    */
-  protected renderTitle(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) => html`${_details.name ? html`<header>${_details.name}</header>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
+  private renderName(details: PersonDetails): TemplateResult {
+    return html`${details.name
+      ? html`<header title="${details.name}" class="person-card__name">${details.name}</header>`
+      : null}`;
+  }
+
+  /**
+   * Render person job department
+   */
+  private renderDepartment(details: PersonDetails): TemplateResult {
+    return html`${details.department ? html`<div class="person-card__department">${details.department}</div>` : null}`;
   }
 
   /**
    * Render person job title
    */
-  protected renderJobTitle(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) => html`${_details.jobTitle ? html`<div>${_details.jobTitle}</div>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
-  }
-  /**
-   * Render person job department
-   */
-  protected renderDepartment(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.department ? html`<div>${_details.department}</div>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
-  }
-  /**
-   * Render person email
-   */
-  protected renderEmail(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.mail ? html`<div><a href="mailto:${_details.mail}">${_details.mail}</a></div>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
-  }
-  /**
-   * Render person mobile phone
-   */
-  protected renderMobile(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.mobilePhone ? html`<div>${_details.mobilePhone}</div>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
-  }
-  /**
-   * Render person office location
-   */
-  protected renderLocation(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.officeLocation ? html`<div>${_details.officeLocation}</div>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
-  }
-  /**
-   * Returns the status color for the current availability of the person
-   */
-  protected getStatusColor(availability?: PersonAvailability): ClassInfo {
-    return {
-      'fwc-status-icon__success': availability === (PersonAvailability.Available || PersonAvailability.AvailableIdle),
-      'fwc-status-icon__warning': availability === (PersonAvailability.Away || PersonAvailability.BeRightBack),
-      'fwc-status-icon__danger':
-        availability === (PersonAvailability.Busy || PersonAvailability.BusyIdle || PersonAvailability.DoNotDisturb),
-    };
-  }
-  /**
-   * Returns the status icon for the current availability of the person
-   */
-  protected getStatusIcon(availability: PersonAvailability): IconName | undefined {
-    switch (availability) {
-      case PersonAvailability.Available:
-        return 'check_circle_outlined';
-      case PersonAvailability.AvailableIdle:
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
-      case PersonAvailability.BusyIdle:
-        return 'time';
-      case PersonAvailability.DoNotDisturb:
-      case PersonAvailability.Busy:
-        return 'blocked';
-      case PersonAvailability.Offline:
-        return 'close_circle_outlined';
-      case PersonAvailability.Pending:
-        return 'more_horizontal';
-      default:
-        return 'do_not_disturb';
-    }
-  }
-  /**
-   * Returns the icon size deppending on the avatar
-   */
-  protected getStatusIconSize(size: AvatarSize): AvatarSize {
-    switch (size) {
-      case AvatarSize.XSmall:
-      case AvatarSize.Small:
-      case AvatarSize.Medium:
-        return AvatarSize.Small;
-      case AvatarSize.Large:
-        return AvatarSize.Medium;
-      default:
-        return AvatarSize.Small;
-    }
-  }
-  /**
-   * Renders the status icon for availability
-   */
-  protected renderStatusIcon(availability: PersonAvailability): TemplateResult {
-    return html`<fwc-icon
-      class="fwc-status-icon__icon ${classMap(this.getStatusColor(availability))}"
-      .icon=${this.getStatusIcon(availability)}
-    />`;
-  }
-  /**
-   * Render AVAILABILITY status badge
-   */
-  protected renderAvailabilityStatus(): TemplateResult {
-    return html`<div class="fwc-person-status__row">
-      ${this.presence?.render({
-        complete: (presence: PersonPresence) =>
-          html`${this.renderStatusIcon(presence.availability)} ${presence.availability}`,
-        pending: () =>
-          html`${this.renderStatusIcon(PersonAvailability.Pending)}
-          ${this.renderTextPlaceholder(false, SkeletonSize.XSmall)}`,
-        error: () => html`${this.renderStatusIcon(PersonAvailability.Offline)} ${this.renderTextPlaceholder(true)}`,
-      })}
-    </div>`;
+  protected renderJobTitle(details: PersonDetails): TemplateResult {
+    return html`${details.jobTitle ? html`<div class="person-card__jobtitle">${details.jobTitle}</div>` : null}`;
   }
 
   /**
-   * Returns the badge color classes for the account type
+   * Render the account TYPE status
    */
-  protected getBadgeColorClass(accountType?: PersonAccountType): string | void {
-    switch (accountType) {
-      case PersonAccountType.Employee:
-        return 'fwc-person-badge__employee';
-      case PersonAccountType.ExternalHire:
-      case PersonAccountType.XExternal:
-        return 'fwc-person-badge__external';
-      case PersonAccountType.JointVentureAffiliate:
-        return 'fwc-person-badge__consultant';
+  protected renderTypeStatus(details: PersonDetails): TemplateResult {
+    return html`<div class="person-card-type__row">
+      ${details.accountType
+        ? html`<div class="person-card-type__icon ${this.getAccountTypeColorClass(details.accountType)}"></div>
+            ${details.accountType}`
+        : null}
+    </div>`;
+  }
+
+  protected copyToClipboard = (textToCopy: string | undefined) => {
+    if (textToCopy) {
+      navigator.clipboard.writeText(textToCopy);
+    }
+  };
+
+  /**
+   * Render person email
+   */
+  protected renderEmail(details: PersonDetails): TemplateResult {
+    return html`${details.mail
+      ? html`<div class="person-card-info__row">
+          <div class="person-card-info__link">
+            <fwc-icon title="Email: ${details.mail}" class="person-card-info__icon" icon="email"></fwc-icon>
+            <a title="Email: ${details.mail}" href="mailto:${details.mail}">${details.mail}</a>
+          </div>
+          <fwc-icon-button
+            class="person-card-info__copy"
+            title="Copy email"
+            @click=${{ handleEvent: () => this.copyToClipboard(details.mail) }}
+            icon="copy"
+            rounded
+            size="x-small"
+          />
+        </div>`
+      : null}`;
+  }
+
+  /**
+   * Render person mobile phone
+   */
+  protected renderMobile(details: PersonDetails): TemplateResult {
+    return html`${details.mobilePhone
+      ? html`<div class="person-card-info__row">
+          <div class="person-card-info__link">
+            <fwc-icon title="Mobile: ${details.mobilePhone}" class="person-card-info__icon" icon="phone"></fwc-icon>
+            <a title="Mobile: ${details.mobilePhone}" href="callto:${details.mobilePhone}">${details.mobilePhone}</a>
+          </div>
+          <fwc-icon-button
+            class="person-card-info__copy"
+            title="Copy phone number"
+            @click=${{ handleEvent: () => this.copyToClipboard(details.mobilePhone) }}
+            icon="copy"
+            rounded
+            size="x-small"
+          />
+        </div>`
+      : null}`;
+  }
+
+  /**
+   * Render person projects
+   */
+  protected renderProjects(details: PersonDetails): TemplateResult {
+    const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
+    return html`${filterProjects.length > 0
+      ? html`<div class="person-card-projects__section">
+          <div class="person-card-projects__title">Projects</div>
+          <div class="person-card-projects__projects">
+            ${filterProjects.map((p) => {
+              return html`<div class="person-card-projects__project">${p}</div>`;
+            })}
+          </div>
+        </div>`
+      : null}`;
+  }
+
+  /**
+   * Render person positions
+   */
+  protected renderPositions(details: PersonDetails): TemplateResult {
+    const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
+    return html`${filterPositions.length > 0
+      ? html` <div class="person-card-projects__section">
+          <div class="person-card-projects__title">Positions</div>
+          <div class="person-card-projects__projects">
+            ${filterPositions.map((p) => {
+              return html`<div class="person-card-projects__project">${p}</div>`;
+            })}
+          </div>
+        </div>`
+      : null}`;
+  }
+
+  /**
+   * Render person projects and positions
+   */
+  protected renderTasks(details: PersonDetails): TemplateResult {
+    return html`${details.positions != undefined && details.positions.length > 0
+      ? html`<div class="person-card__projects">
+          <div class="person-card-projects__heading">Tasks</div>
+          ${this.renderProjects(details)} ${this.renderPositions(details)}
+        </div>`
+      : null}`;
+  }
+
+  /**
+   * Renders manager name
+   */
+  private renderManagerName(details: PersonDetails): TemplateResult {
+    return html`${details.manager?.name
+      ? html`<header title="${details.manager?.name}" class="person-manager__name">${details.manager?.name}</header>`
+      : null}`;
+  }
+
+  /**
+   * Render manager job department
+   */
+  private renderManagerDepartment(details: PersonDetails): TemplateResult {
+    return html`${details.manager?.department
+      ? html`<div class="person-card-manager__department">${details.manager?.department}</div>`
+      : null}`;
+  }
+
+  /**
+   * Renders the avatar for manager
+   */
+  protected renderManagerAvatar(details: PersonDetails): TemplateResult {
+    return html`<fwc-avatar
+      title="${details.manager?.accountType}"
+      class="person-card-manager__avatar ${this.getAccountTypeColorClass(details.manager?.accountType)}"
+      .size="${this.size}"
+      .src=${details.manager?.pictureSrc}
+      .value=${this.getInitial(details.manager?.name)}
+      border=${true}
+    ></fwc-avatar>`;
+  }
+
+  /**
+   * Renders the manager
+   */
+  protected renderManager(details: PersonDetails): TemplateResult {
+    return html`${details.manager
+      ? html`<div class="person-card__manager">
+          <div class="person-card-manager__heading">Reports to</div>
+          <div class="person-card__manager-avatar">
+            <div class="person-card-manager__avatar">${this.renderManagerAvatar(details)}</div>
+            <div class="person-card-manager__content">
+              ${this.renderManagerName(details)} ${this.renderManagerDepartment(details)}
+            </div>
+          </div>
+        </div>`
+      : null}`;
+  }
+
+  /**
+   * Returns the badge color for the current presence
+   */
+  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeColor {
+    switch (availability) {
+      case PersonAvailability.Available:
+      case PersonAvailability.AvailableIdle:
+        return BadgeColor.Success;
+      case PersonAvailability.Away:
+      case PersonAvailability.BeRightBack:
+        return BadgeColor.Warning;
+      case PersonAvailability.Busy:
+      case PersonAvailability.BusyIdle:
+      case PersonAvailability.DoNotDisturb:
+        return BadgeColor.Danger;
+      default:
+        return BadgeColor.Disabled;
+    }
+  }
+
+  /**
+   * Returns the icon size deppending on the avatar
+   */
+  public getStatusIconSize(size: PersonItemSize): PersonItemSize {
+    switch (size) {
+      case 'small':
+      case 'medium':
+        return 'medium';
+      case 'large':
+        return 'medium';
+      default:
+        return 'small';
     }
   }
 
   /**
    * Renders the avatar badge
    */
-  protected renderBadge(details: PersonDetails, position?: BadgePosition): TemplateResult {
+  protected renderBadge(availability: PersonAvailability): TemplateResult {
     return html`<fwc-badge
-      class=${this.getBadgeColorClass(details.accountType)}
+      class="fwc-person-avatar-badge"
       slot="badge"
-      icon="person"
+      .color=${this.getAvatarBadgeColor(availability)}
       .size=${this.size}
-      .position=${position}
+      position="bottom-right"
       circular
     />`;
-  }
-
-  /**
-   * Returns the first character in the person's name as upper case initial
-   */
-  protected getInitial(name?: string): string | undefined {
-    return name?.substring(0, 1)?.toUpperCase();
   }
 
   /**
    * Renders the avatar
    */
   protected renderAvatar(details: PersonDetails): TemplateResult {
-    return html`<fwc-avatar .size=${this.size} .src=${details.pictureSrc} .value=${this.getInitial(details.name)}>
-      ${details.accountType ? this.renderBadge(details, BadgePosition.BottomRight) : null}</fwc-avatar
+    return html`<fwc-avatar
+      title="${details.accountType}"
+      class="${this.getAccountTypeColorClass(details.accountType)}"
+      .size=${this.size}
+      .src=${details.pictureSrc}
+      .value=${this.getInitial(details.name)}
+      border=${true}
+    >
+      ${this.presence?.render({
+        complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
+        pending: () => this.renderBadge(PersonAvailability.Pending),
+        error: () => this.renderBadge(PersonAvailability.Offline),
+      })}</fwc-avatar
     >`;
-  }
-
-  /**
-   * Renders the account type badge
-   */
-  protected renderTypeBadge(details: PersonDetails): TemplateResult {
-    return html`<fwc-badge
-      class="fwc-person-status__icon ${this.getBadgeColorClass(details.accountType)}"
-      size=${this.getStatusIconSize(this.size)}
-      icon="person"
-      position
-    />`;
-  }
-
-  /**
-   * Render the account TYPE status
-   */
-  protected renderTypeStatus(): TemplateResult {
-    return html`<div class="fwc-person-status__row">
-      ${this.details?.render({
-        complete: (details: PersonDetails) =>
-          html`${details.accountType ? html`${this.renderTypeBadge(details)} ${details.accountType}` : null}`,
-        pending: () =>
-          html`${this.renderStatusIcon(PersonAvailability.Pending)}
-          ${this.renderTextPlaceholder(false, SkeletonSize.small)}`,
-        error: () => html`${this.renderStatusIcon(PersonAvailability.Error)} ${this.renderTextPlaceholder(true)}`,
-      })}
-    </div>`;
-  }
-
-  /**
-   * Renders pending state for avatar
-   */
-  protected renderPlaceholder(inactive?: boolean): TemplateResult {
-    return html`<fwc-skeleton
-      size=${this.size}
-      variant=${SkeletonVariant.Circle}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
-  }
-
-  /**
-   * Renders pending state for content
-   */
-  protected renderTextPlaceholder(inactive?: boolean, size?: SkeletonSize): TemplateResult {
-    return html`<fwc-skeleton
-      size=${size}
-      variant=${SkeletonVariant.Text}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
   }
 
   /**
@@ -273,21 +295,40 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
-    return html`<section class="fwc-person-section">
-      <div class="fwc-person-status">
-        <div class="fwc-person-status__heading">${this.renderTitle()} ${this.renderAvailabilityStatus()}</div>
-        <div class="fwc-person-status__profession">
-          ${this.renderJobTitle()} ${this.renderDepartment()} ${this.renderTypeStatus()}
-        </div>
-        <div class="fwc-person-status__info">${this.renderEmail()} ${this.renderMobile()} ${this.renderLocation()}</div>
-      </div>
-      <div class="fwc-person-avatar">
-        ${this.details?.render({
-          complete: (details: PersonDetails) => this.renderAvatar(details),
-          pending: () => this.renderPlaceholder(),
-          error: () => this.renderPlaceholder(true),
-        })}
-      </div>
-    </section>`;
+    return html`<div class="person-card__section" style="max-width:${this.maxWidth}px">
+      ${this.details?.render({
+        complete: (details: PersonDetails) => {
+          return html`<div class="person-card__heading">
+              <div class="fwc-person-avatar">${this.renderAvatar(details)}</div>
+              <div class="person-card__header">
+                ${this.renderName(details)} ${this.renderDepartment(details)} ${this.renderJobTitle(details)}
+              </div>
+            </div>
+            <div class="person-card__content" style="max-height:${this.conteHeight}px">
+              <div class="person-card__info">
+                <div class="person-card-info__heading">Contact</div>
+                ${this.renderMobile(details)} ${this.renderEmail(details)}
+              </div>
+              ${this.renderTasks(details)} ${this.renderManager(details)}
+            </div>`;
+        },
+        pending: () => {
+          return html` <fwc-skeleton-wrapper direction="vertical">
+            <fwc-skeleton-wrapper direction="horizontal">
+              ${this.renderImagePlaceholder(false, this.size)}
+              <fwc-skeleton-wrapper direction="vertical">
+                ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+              </fwc-skeleton-wrapper>
+            </fwc-skeleton-wrapper>
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+          </fwc-skeleton-wrapper>`;
+        },
+        error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+      })}
+    </div>`;
   }
 }

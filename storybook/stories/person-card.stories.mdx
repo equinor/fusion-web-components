@@ -7,7 +7,7 @@ import { Availability, AccountType } from '@equinor/fusion-wc-person';
 
 export const DefaultTemplate = ({ children, ...props }) => {
   return (
-    <div style={{ width: '325px', margin: '0 auto' }}>
+    <div style={{ margin: '0 auto' }}>
       <PersonCard {...props} />
     </div>
   );
@@ -16,14 +16,13 @@ export const DefaultTemplate = ({ children, ...props }) => {
 export const Container = ({ title, children }) => (
   <section>
     <h4>{title}</h4>
-    <div style={{ display: 'flex', gap: '40px' }}>{children}</div>
+    <div style={{ display: 'flex', gap: '30px' }}>{children}</div>
   </section>
 );
 
 export const Template = (props) => (
   <div>
     <Container title="Sizes">
-      <PersonCard size="x-small" {...props} />
       <PersonCard size="small" {...props} />
       <PersonCard size="medium" {...props} />
       <PersonCard size="large" {...props} />
@@ -45,7 +44,7 @@ export const Template = (props) => (
 />
 
 ```sh
-npm i @equinor/fusion-wc-person-card
+npm i @equinor/fusion-wc-person
 ```
 
 ## Usage

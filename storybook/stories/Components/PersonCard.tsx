@@ -26,15 +26,42 @@ const mockPersonResolver: PersonResolver = {
           setTimeout(() => {
             res({
               azureId: azureId,
-              name: 'Albert Einstein',
+              name: 'Anders Emil Sommerfeldt (Bouvet ASA)',
               pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
-              accountType: PersonAccountType.Employee,
+              accountType: PersonAccountType.JointVentureAffiliate,
               jobTitle: 'X-Bouvet ASA (PX)',
               department: 'FOIT CON PDP',
               mail: 'example@email.com',
               officeLocation: 'Stavanger',
+              mobilePhone: '+47 999999999',
+              manager: {
+                azureId: '1234-1324-1235',
+                name: 'Lagertha Kristensen',
+                department: 'Leader Techn Mgmt',
+                pictureSrc:
+                  'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/814.jpg',
+                accountType: PersonAccountType.Employee,
+              },
+              positions: [
+                {
+                  id: '123-123',
+                  name: 'Developer Frontend',
+                  project: {
+                    id: '1234-1234',
+                    name: 'Fusion',
+                  },
+                },
+                {
+                  id: '234-234',
+                  name: 'Developer Frontend',
+                  project: {
+                    id: '2345-2345',
+                    name: 'Fusion org v2',
+                  },
+                },
+              ],
             });
-          }, 3000)
+          }, 0)
         ),
       };
     }
@@ -50,7 +77,7 @@ const mockPersonResolver: PersonResolver = {
               azureId: azureId,
               availability: PersonAvailability.Available,
             });
-          }, 4000)
+          }, 0)
         ),
       };
     }

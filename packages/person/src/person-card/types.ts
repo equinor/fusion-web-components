@@ -1,5 +1,5 @@
-import { AvatarSize } from '@equinor/fusion-wc-avatar';
+import { PersonItemSize } from '../types';
 
 export type PersonCardElementProps = {
-  size?: AvatarSize;
+  size?: PersonItemSize;
 };

@@ -24,9 +24,11 @@ export const style = css`
     transition: box-shadow 0.2s ease;
     -webkit-transition: box-shadow 0.2s ease;
   }
-  .person-list__item:hover {
+  .person-list__item.person-list__item-clickable:hover {
     box-shadow: ${unsafeCSS(theme.elevation.raised.getVariable('shadow'))};
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+  }
+  .person-list__item-clickable {
     cursor: pointer;
   }
   .person-list__about {

@@ -5,7 +5,6 @@ import { PersonElement } from '../person';
 import { PersonAvailability, PersonDetails, PersonItemSize, PersonPresence } from '../types';
 import style from './element.css';
 import personStyle from '../style.css';
-import { delveIcon, teamsIcon } from './icons';
 import { PersonListItemElementProps } from './types';
 import { SkeletonSize } from '@equinor/fusion-wc-skeleton';
 
@@ -17,17 +16,24 @@ import { SkeletonSize } from '@equinor/fusion-wc-skeleton';
  *
  * @property {string} azureId - Azure unique id for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
+ * @property {boolean} clickable - Make whole List Item clickable
  *
  */
 
 export class PersonListItemElement extends PersonElement implements PersonListItemElementProps {
   static styles: CSSResult[] = [style, personStyle];
 
+  /** Unique person Azure ID */
   @property({ type: String, reflect: true })
   azureId!: string;
 
+  /** Size of component */
   @property({ type: String, reflect: true })
   size: PersonItemSize = 'medium';
+
+  /** Clickable List Item */
+  @property({ type: Boolean, reflect: true })
+  clickable = false;
 
   /**
    * Renders person name
@@ -109,8 +115,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
       .src=${details.pictureSrc}
       .value=${this.getInitial(details.name)}
       border=${true}
-      clickable
-      @click=${this.handleOnClick}
     >
       ${this.presence?.render({
         complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
@@ -120,33 +124,7 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
     >`;
   }
 
-  protected renderDelveIcon(): TemplateResult {
-    return html`${this.details?.render({
-      complete: () =>
-        html`<fwc-icon-button
-          href="https://eur.delve.office.com/?u=${this.azureId}&v=work"
-          target="_new"
-          rounded
-        />${delveIcon}</fwc-icon-button>`,
-      pending: () => this.renderImagePlaceholder(false, this.getToolbarPlaceholderIconSize(this.size)),
-      error: () => this.renderImagePlaceholder(true, this.getToolbarPlaceholderIconSize(this.size)),
-    })}`;
-  }
-
-  protected renderTeamsIcon(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.mail
-          ? html`<fwc-icon-button
-              href="msteams:/l/chat/0/0?users=${_details.mail}"
-              target="_new"
-              rounded
-            />${teamsIcon}</fwc-icon-button>`
-          : null}`,
-      pending: () => this.renderImagePlaceholder(false, this.getToolbarPlaceholderIconSize(this.size)),
-      error: () => this.renderImagePlaceholder(true, this.getToolbarPlaceholderIconSize(this.size)),
-    })}`;
-  }
+  // protected re;
 
   /**
    * Renders the error
@@ -159,11 +137,16 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
    * Handle on click.
    */
   protected handleOnClick(e: PointerEvent): void {
-    this.dispatchEvent(new PointerEvent('click', e));
+    if (this.clickable) {
+      this.dispatchEvent(new PointerEvent('click', e));
+    }
   }
 
   protected render(): TemplateResult {
-    return html`<div class="person-list__item">
+    return html`<div
+      class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}"
+      @click=${this.handleOnClick}
+    >
       <div class="person-list__about">
         <div class="person-list__avatar">
           ${this.details?.render({
@@ -174,7 +157,7 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
         </div>
         <div class="person-list__content">${this.renderTitle()} ${this.renderDepartment()}</div>
       </div>
-      <div class="person-list__toolbar">${this.renderDelveIcon()}${this.renderTeamsIcon()}</div>
+      <slot class="person-list__toolbar"></slot>
     </div>`;
   }
 }

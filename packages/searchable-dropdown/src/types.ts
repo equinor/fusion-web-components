@@ -85,6 +85,7 @@ export interface SearchableDropdownControllerHost extends SearchableDropdownProp
   nodeName: string;
   renderRoot: HTMLElement | ShadowRoot;
   trailingIcon: string;
+  id: string;
 }
 
 export interface ExplicitEventTarget extends Event {

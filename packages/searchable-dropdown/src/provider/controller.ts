@@ -106,15 +106,10 @@ export class SearchableDropdownController implements ReactiveController {
   }
 
   /**
-   * Close dropdown when click oustside host
+   * Close dropdown when click oustside host id
    */
   private _handleGlobalClick = (e: Event): void => {
-    /* make sure we have a target to check against */
-    if (!e.target) return;
-    if (
-      (e.target as HTMLElement).nodeName !== this.#host.nodeName &&
-      document.activeElement?.nodeName !== this.#host.nodeName
-    ) {
+    if (e.target && (e.target as HTMLElement).id !== this.#host.id) {
       this.isOpen = false;
     }
   };
@@ -234,9 +229,9 @@ export class SearchableDropdownController implements ReactiveController {
       this.#host.value = '';
     }
 
-    if (!this.#host.multiple) {
-      this.isOpen = false;
-    }
+    // if (!this.#host.multiple) {
+    //   this.isOpen = false;
+    // }
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
@@ -260,7 +255,6 @@ export class SearchableDropdownController implements ReactiveController {
    * Calls closeHandler callback set in resolver
    */
   public closeClick = (e: MouseEvent): void => {
-
     /* needed to clear user input */
     if (this.#host.textInputElement) {
       this.#host.textInputElement.value = '';

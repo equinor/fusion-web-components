@@ -264,6 +264,7 @@ export class SearchableDropdownElement
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
             @focus=${() => (this.controller.isOpen = true)}
+            @blur=${() => (this.controller.isOpen = false)}
             @keyup=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">

@@ -21,7 +21,7 @@ export class SearchableDropdownController implements ReactiveController {
   public result?: SearchableDropdownResult;
   public task!: Task<[string], SearchableDropdownResult>;
 
-  #externaCloseHandler?: (e: MouseEvent) => void;
+  #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
   #host: SearchableDropdownControllerHost;
   #queryString = '';
   #initialItems: SearchableDropdownResult = [];
@@ -108,23 +108,25 @@ export class SearchableDropdownController implements ReactiveController {
   /**
    * Close dropdown when click oustside host id
    */
-  private _handleGlobalClick = (e: Event): void => {
+  private _handleGlobalClick = (e: MouseEvent): void => {
     if (e.target && (e.target as HTMLElement).id !== this.#host.id) {
       this.isOpen = false;
     }
   };
 
   /**
-   * Close dropdown on escape key
+   * Close dropdown on escape key.
+   * only called when isOpen === true
    */
   private _handleGlobalKeyUp = (e: KeyboardEvent): void => {
     /* Close on Escape */
-
     if (e.key === 'Escape') {
       if (this.#host.textInputElement) {
-        /* unfocus */
-        this.#host.textInputElement.blur();
         /* Close element */
+        this.isOpen = false;
+      }
+    } else if (e.key === 'Tab') {
+      if (document.activeElement?.id !== this.#host.id) {
         this.isOpen = false;
       }
     }
@@ -229,9 +231,9 @@ export class SearchableDropdownController implements ReactiveController {
       this.#host.value = '';
     }
 
-    // if (!this.#host.multiple) {
-    //   this.isOpen = false;
-    // }
+    if (!this.#host.multiple) {
+      this.isOpen = false;
+    }
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
@@ -254,7 +256,21 @@ export class SearchableDropdownController implements ReactiveController {
    * Fires on click on close icon in textinput
    * Calls closeHandler callback set in resolver
    */
-  public closeClick = (e: MouseEvent): void => {
+  public closeClick = (e: MouseEvent | KeyboardEvent): void => {    
+    if (e.type === 'keydown') {
+      /* only close on enter or space not tab */
+      const me = e as KeyboardEvent;
+      if (me.key !== 'Enter' && me.key !== 'Space') {
+        return;
+      }
+
+      /* blur closeicon if focused */
+      const closeIcon = this.#host.renderRoot.querySelector('.trailing');
+      if (closeIcon) {
+        (closeIcon as HTMLSpanElement).blur();
+      }
+    }
+
     /* needed to clear user input */
     if (this.#host.textInputElement) {
       this.#host.textInputElement.value = '';
@@ -271,14 +287,6 @@ export class SearchableDropdownController implements ReactiveController {
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
-    }
-
-    /* clear focus on closeicon if trigger with keyboard */
-    if (e.type === 'keydown') {
-      const closeIcon = this.#host.renderRoot.querySelector('.trailing');
-      if (closeIcon) {
-        (closeIcon as HTMLSpanElement).blur();
-      }
     }
 
     /* fire event for sdd closed */
@@ -307,6 +315,9 @@ export class SearchableDropdownController implements ReactiveController {
       document.body.addEventListener('keyup', this._handleGlobalKeyUp);
     } else {
       document.body.removeEventListener('keyup', this._handleGlobalKeyUp);
+
+      /* unfocus */
+      this.#host.textInputElement?.blur();
     }
 
     /* Refresh host */
@@ -319,12 +330,12 @@ export class SearchableDropdownController implements ReactiveController {
   }
 
   /**
-   * Set the string to filter items by
+   * Keyup handler to textinputelement
+   * Set the string to filter items by and jump to dropdown list on arrowdown
    * @param event
    */
   public handleKeyup(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
-
     if (event.key === 'ArrowDown') {
       /* focus on the fwc-list' */
       if (this._isOpen && this.result?.length) {
@@ -334,7 +345,7 @@ export class SearchableDropdownController implements ReactiveController {
       return;
     }
 
-    /* Trigger searchQuery task */
+    /* Trigger searchQuery task with debounce very 250 ms */
     if (this.timer) {
       clearTimeout(this.timer);
     }

@@ -72,7 +72,7 @@ export interface SearchableDropdownResultItem {
  * The resolver methods
  */
 export interface SearchableDropdownResolver {
-  closeHandler?: (e: MouseEvent) => void;
+  closeHandler?: (e: MouseEvent | KeyboardEvent) => void;
   initialResult?: SearchableDropdownResult;
   searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
 }

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.5.0...@equinor/fusion-wc-searchable-dropdown@2.5.1) (2023-02-24)
+
+
+### Bug Fixes
+
+* **searchable-dd:** better tab navigation ([b7d8952](https://github.com/equinor/fusion-web-components/commit/b7d8952e9c75d8f1da6ca9faf6ccabcef650d29a))
+* **searchable-dd:** closing on click outside works with multiple sdd elements ([d0bcbbd](https://github.com/equinor/fusion-web-components/commit/d0bcbbdec9368e5ab364f1bca94df1c2dfb63a66))
+* **searchable-dd:** tab navigation closes element on blur ([2bbed43](https://github.com/equinor/fusion-web-components/commit/2bbed4376c5ad1b75d935aad067aee8bde9e3662))
+
+
+
+
+
 # [2.5.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-searchable-dropdown@2.4.4...@equinor/fusion-wc-searchable-dropdown@2.5.0) (2023-02-15)
 
 

@@ -1,0 +1,122 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import PersonListItem from './Components/PersonListItem';
+import IconButton from './Components/IconButton';
+import { Availability, AccountType, PersonItemSize } from '@equinor/fusion-wc-person';
+
+export const DefaultTemplate = ({ children, ...props }) => {
+  return (
+    <div style={{ height: '400px' }}>
+      <PersonListItem {...props} >
+        <IconButton color="secondary" icon="more_horizontal" rounded size="small" />
+      </PersonListItem>
+    </div>
+  );
+};
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '30px', flexDirection: 'column' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="Sizes">
+      <PersonListItem size="small" {...props} />
+      <PersonListItem size="medium" {...props} />
+      <PersonListItem size="large" {...props} />
+    </Container>
+  </div>
+);
+
+# PersonListItem
+
+<Meta
+  title="People/PersonListItem"
+  component={PersonListItem}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-person
+```
+
+## Usage
+
+```html
+<fwc-person-provider>
+  <fwc-person-list-item azureId="1234" />
+</fwc-person-provider>
+```
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{ azureId: '1234', size: 'medium' }}
+    argTypes={{
+    azureId: {
+      description: 'Unique person Azure ID',
+      type: { name: 'string', required: true },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    size: {
+      description: 'Size of the component',
+      control: 'radio',
+      options: PersonItemSize,
+      table: {
+        type: { summary: 'PersonItemSize' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    clickable: {
+      description: 'Make item clickable',
+      type: { name: 'boolean'},
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    }
+  }}
+    parameters={{ chromatic: { disableSnapshot: true } }}
+  >
+    {DefaultTemplate.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Snapshots
+
+<Story name="Snapshots" args={{}}>
+  {Template.bind({})}
+</Story>
+
+<Story name="Clickable">
+  <Container title="Clickable">
+      <PersonListItem size="medium" clickable/>
+    </Container>
+</Story>
+
+<Story name="Toolbar">
+  <Container title="Toolbar">
+      <PersonListItem size="medium" clickable >
+        <IconButton color="primary" icon="account_circle" rounded size="small" />
+        <IconButton color="secondary" icon="microsoft_outlook" rounded size="small" />
+        <IconButton color="success" icon="whats_app" rounded size="small" />
+      </PersonListItem>
+    </Container>
+</Story>

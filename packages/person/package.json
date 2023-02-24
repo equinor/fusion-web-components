@@ -38,6 +38,7 @@
   "dependencies": {
     "@equinor/fusion-wc-avatar": "^1.0.40",
     "@equinor/fusion-wc-badge": "^0.2.30",
+    "@equinor/fusion-wc-button": "^1.4.0",
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-wc-icon": "^1.0.29",
     "@equinor/fusion-wc-skeleton": "^0.2.22",

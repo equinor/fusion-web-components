@@ -99,7 +99,7 @@ const resolver: SearchableDropdownResolver = {
       ],
     }),
   ],
-  closeHandler: (e: MouseEvent) => {
+  closeHandler: (e: MouseEvent | KeyboardEvent) => {
     console.log('closeEvent fired', e);
   },
 };

@@ -269,11 +269,11 @@ export class SearchableDropdownElement
           <slot name="trailing">
             <span slot="trailing">
               <fwc-icon
-                tabindex="1"
+                tabindex=${this.controller.isOpen ? '0' : '-1'}
                 class="trailing interactive"
+                icon=${this.trailingIcon}
                 @click=${this.controller.closeClick}
                 @keydown=${this.controller.closeClick}
-                icon=${this.trailingIcon}
               ></fwc-icon>
             </span>
           </slot>
@@ -283,9 +283,6 @@ export class SearchableDropdownElement
         </div>
       </div>
       <style>
-        input[name='eik']:focus {
-          background: red;
-        }
         .list-scroll {
           max-height: ${this.dropdownHeight};
         }

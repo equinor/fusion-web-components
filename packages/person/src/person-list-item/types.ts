@@ -1,5 +1,5 @@
 import { PersonItemSize } from '../types';
 
-export type PersonCardElementProps = {
+export type PersonListItemElementProps = {
   size?: PersonItemSize;
 };

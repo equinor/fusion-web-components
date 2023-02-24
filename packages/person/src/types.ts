@@ -3,6 +3,23 @@ export type PersonPresence = {
   availability: PersonAvailability;
 };
 
+export type Position = {
+  id: string;
+  name: string;
+  project: {
+    id: string;
+    name: string;
+  };
+};
+
+export type Manager = {
+  azureId: string;
+  name?: string;
+  pictureSrc?: string;
+  department?: string;
+  accountType?: PersonAccountType;
+};
+
 export type PersonDetails = {
   azureId: string;
   name?: string;
@@ -14,6 +31,8 @@ export type PersonDetails = {
   mobilePhone?: string;
   accountType?: PersonAccountType;
   officeLocation?: string;
+  positions?: Position[];
+  manager?: Manager;
 };
 
 export type PersonPicture = {
@@ -39,3 +58,5 @@ export enum PersonAvailability {
   Pending = 'Pending',
   Error = 'Error',
 }
+
+export type PersonItemSize = 'small' | 'medium' | 'large';

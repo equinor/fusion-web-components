@@ -1,17 +1,18 @@
 import { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
 
 import {
-  PersonCardElement,
+  PersonListItemElement,
   PersonProviderElement,
-  PersonCardElementProps,
   PersonAvailability,
   PersonResolver,
   PersonDetails,
   PersonPresence,
   PersonAccountType,
+  PersonListItemElementProps,
 } from '@equinor/fusion-wc-person';
 import extractProps from './extract-props';
-PersonCardElement;
+
+PersonListItemElement;
 PersonProviderElement;
 
 const mapDetails: Record<string, { lastUpdated: number; data: Promise<PersonDetails> }> = {};
@@ -28,38 +29,11 @@ const mockPersonResolver: PersonResolver = {
               azureId: azureId,
               name: 'Anders Emil Sommerfeldt (Bouvet ASA)',
               pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
-              accountType: PersonAccountType.JointVentureAffiliate,
+              accountType: PersonAccountType.Employee,
               jobTitle: 'X-Bouvet ASA (PX)',
               department: 'FOIT CON PDP',
               mail: 'example@email.com',
               officeLocation: 'Stavanger',
-              mobilePhone: '+47 999999999',
-              manager: {
-                azureId: '1234-1324-1235',
-                name: 'Lagertha Kristensen',
-                department: 'Leader Techn Mgmt',
-                pictureSrc:
-                  'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/814.jpg',
-                accountType: PersonAccountType.Employee,
-              },
-              positions: [
-                {
-                  id: '123-123',
-                  name: 'Developer Frontend',
-                  project: {
-                    id: '1234-1234',
-                    name: 'Fusion',
-                  },
-                },
-                {
-                  id: '234-234',
-                  name: 'Developer Frontend',
-                  project: {
-                    id: '2345-2345',
-                    name: 'Fusion org v2',
-                  },
-                },
-              ],
             });
           }, 0)
         ),
@@ -101,13 +75,13 @@ const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<
   return providerRef;
 };
 
-export const PersonCard = ({ children, ...props }: PropsWithChildren<PersonCardElementProps>): JSX.Element => {
+export const PersonListItem = ({ children, ...props }: PropsWithChildren<PersonListItemElementProps>): JSX.Element => {
   const providerRef = usePersonProviderRef(mockPersonResolver);
   return (
     <fwc-person-provider ref={providerRef}>
-      <fwc-person-card {...extractProps<PersonCardElementProps>(props)}>{children}</fwc-person-card>
+      <fwc-person-list-item {...extractProps<PersonListItemElementProps>(props)}>{children}</fwc-person-list-item>
     </fwc-person-provider>
   );
 };
 
-export default PersonCard;
+export default PersonListItem;

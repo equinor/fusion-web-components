@@ -3,11 +3,12 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const personStyle = css`
   :host {
-    font-family: ${unsafeCSS(theme.typography.paragraph.body_long.getVariable('fontFamily'))};
+    font-family: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontFamily'))};
     font-size: calc(
       ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))} * var(--content-resize, 1)
     );
     color: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('color'))};
+    line-height: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('lineHeight'))};
   }
   :host([size='x-small']) {
     --content-resize: 0.6;

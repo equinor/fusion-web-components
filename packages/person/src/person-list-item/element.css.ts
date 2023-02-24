@@ -18,7 +18,9 @@ export const style = css`
     column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
     border: 1px solid;
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-    padding: calc(${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))} * var(--content-resize, 1))
+    padding: calc(
+        ${unsafeCSS(theme.spacing.comfortable.medium_small.getVariable('padding'))} * var(--content-resize, 1)
+      )
       calc(${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} * var(--content-resize, 1));
     border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     transition: box-shadow 0.2s ease;
@@ -42,6 +44,7 @@ export const style = css`
   }
   .person-list__heading {
     font-size: calc(${unsafeCSS(theme.typography.heading.h6.getVariable('fontSize'))} * var(--content-resize, 1));
+    line-height: calc(${unsafeCSS(theme.typography.heading.h6.getVariable('lineHeight'))} * var(--content-resize, 1));
   }
   .person-list__sub-heading {
     font-size: calc(

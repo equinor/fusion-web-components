@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.16.1...@equinor/fusion-wc-storybook@2.17.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* **person-card:** redesign - 1.1 ([490439e](https://github.com/equinor/fusion-web-components/commit/490439ef2fc14800d9e42b845f552e0c92f9b559))
+* **person-card:** redesign - draft v1 ([f55f973](https://github.com/equinor/fusion-web-components/commit/f55f9730f58b50e92809276aa0fa8987f5f92196))
+
+
+### Features
+
+* :sparkles: link icon button ([63a979f](https://github.com/equinor/fusion-web-components/commit/63a979f27b460706f14d2b0520178f0e7d7b7421))
+* **person-list-item:** toolbar slot ([c9c3492](https://github.com/equinor/fusion-web-components/commit/c9c34921359ce33a550cf95fec42b0447e982634))
+* **person:** person list item - single ([9234484](https://github.com/equinor/fusion-web-components/commit/9234484342e72659b81bcca35c570785c44ebd04))
+
+
+
+
+
 ## [2.16.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.16.0...@equinor/fusion-wc-storybook@2.16.1) (2023-02-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

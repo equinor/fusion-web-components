@@ -46,9 +46,22 @@ export class PersonElement extends LitElement implements PersonHost, PersonEleme
   /**
    * Renders pending state for avatar
    */
-  public renderImagePlaceholder(inactive?: boolean, size?: string): TemplateResult {
+  public getToolbarPlaceholderIconSize(size: string): string {
+    switch (size) {
+      case 'small':
+        return 'x-small';
+      case 'medium':
+      case 'large':
+        return 'small';
+      default:
+        return 'small';
+    }
+  }
+
+  public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {
     return html`<fwc-skeleton
-      size=${size}
+      class="${list ? 'person-list__avatar' : ''}"
+      size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
       variant=${SkeletonVariant.Circle}
       icon="image"
       ?inactive=${inactive}

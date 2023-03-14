@@ -110,20 +110,8 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
     return html`${error}`;
   }
 
-  /**
-   * Handle on click.
-   */
-  protected handleOnClick(e: PointerEvent): void {
-    if (this.clickable) {
-      this.dispatchEvent(new PointerEvent('click', e));
-    }
-  }
-
   protected render(): TemplateResult {
-    return html`<div
-      class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}"
-      @click=${this.handleOnClick}
-    >
+    return html`<div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
       ${this.details?.render({
         complete: (details: PersonDetails) => {
           return html`<div class="person-list__about">

@@ -35,7 +35,7 @@ const mockPersonResolver: PersonResolver = {
               mail: 'example@email.com',
               officeLocation: 'Stavanger',
             });
-          }, 0)
+          }, 2000)
         ),
       };
     }
@@ -51,7 +51,7 @@ const mockPersonResolver: PersonResolver = {
               azureId: azureId,
               availability: PersonAvailability.Available,
             });
-          }, 0)
+          }, 2000)
         ),
       };
     }

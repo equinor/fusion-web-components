@@ -41,14 +41,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   protected renderTitle(details: PersonDetails): TemplateResult {
     return html`${details.name ? html`<header class="person-list__heading">${details.name}</header>` : null}`;
   }
-  // private renderTitle(): TemplateResult {
-  //   return html`${this.details?.render({
-  //     complete: (_details: PersonDetails) =>
-  //       html`${_details.name ? html`<header class="person-list__heading">${_details.name}</header>` : null}`,
-  //     pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-  //     error: () => this.renderTextPlaceholder(true),
-  //   })}`;
-  // }
 
   /**
    * Render person job department
@@ -56,14 +48,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   private renderDepartment(details: PersonDetails): TemplateResult {
     return html`${details.department ? html`<div class="person-list__sub-heading">${details.department}</div>` : null}`;
   }
-  // private renderDepartment(): TemplateResult {
-  //   return html`${this.details?.render({
-  //     complete: (_details: PersonDetails) =>
-  //       html`${_details.department ? html`<div class="person-list__sub-heading">${_details.department}</div>` : null}`,
-  //     pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-  //     error: () => this.renderTextPlaceholder(true),
-  //   })}`;
-  // }
 
   /**
    * Returns the badge color for the current presence

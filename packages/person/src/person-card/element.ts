@@ -305,19 +305,25 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
             </div>`;
         },
         pending: () => {
-          return html` <fwc-skeleton-wrapper direction="vertical">
-            <fwc-skeleton-wrapper direction="horizontal">
-              ${this.renderImagePlaceholder(false, this.size)}
-              <fwc-skeleton-wrapper direction="vertical">
-                ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+          return html` <div class="person-card__heading">
+              <fwc-skeleton-wrapper direction="horizontal">
+                ${this.renderImagePlaceholder(false, this.size)}
+                <fwc-skeleton-wrapper direction="vertical">
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                </fwc-skeleton-wrapper>
               </fwc-skeleton-wrapper>
-            </fwc-skeleton-wrapper>
-            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-          </fwc-skeleton-wrapper>`;
+            </div>
+            <div class="person-card__content">
+              <div class="person-card-info__heading">
+                <fwc-skeleton-wrapper direction="vertical">
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                </fwc-skeleton-wrapper>
+              </div>
+            </div>`;
         },
         error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
       })}

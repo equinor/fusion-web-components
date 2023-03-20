@@ -8,8 +8,8 @@ import { Availability, AccountType, PersonItemSize } from '@equinor/fusion-wc-pe
 
 export const DefaultTemplate = ({ children, ...props }) => {
   return (
-    <div style={{ height: '400px' }}>
-      <PersonListItem {...props} >
+    <div>
+      <PersonListItem clickable {...props} >
         <IconButton color="secondary" icon="more_horizontal" rounded size="small" />
       </PersonListItem>
     </div>

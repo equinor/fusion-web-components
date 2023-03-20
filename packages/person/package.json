@@ -5,8 +5,9 @@
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
-    "./person-card": "./lib/person-card/index.js",
     "./person-avatar": "./lib/person-avatar/index.js",
+    "./person-card": "./lib/person-card/index.js",
+    "./person-list-item": "./lib/person-list-item/index.js",
     "./person-provider": "./lib/person-provider/index.js"
   },
   "types": "lib/types/index.d.ts",
@@ -17,6 +18,9 @@
       ],
       "person-card": [
         "lib/types/person-card/index.d.ts"
+      ],
+      "person-list-item": [
+        "lib/types/person-list-item/index.d.ts"
       ],
       "person-provider": [
         "lib/types/person-provider/index.d.ts"

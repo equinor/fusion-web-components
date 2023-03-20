@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.0...@equinor/fusion-wc-person@0.4.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **person-card:** pending look ([9276807](https://github.com/equinor/fusion-web-components/commit/9276807413d298b08e500b76021b4cf8f7809fd8))
+* **person-list-item:** comented code cleanup ([a3dc9a2](https://github.com/equinor/fusion-web-components/commit/a3dc9a2b511c49ba1d759c31d02131dbcebc3f4a))
+* **person-list-item:** export shortcuts ([73f1b43](https://github.com/equinor/fusion-web-components/commit/73f1b43c65461c3b8d4cf48f08bc983919213ec5))
+* **person-list-item:** icon size ([c402f3c](https://github.com/equinor/fusion-web-components/commit/c402f3cf9013a1d284ce086fed3034c491ec99e5))
+* **person-list-item:** pending skeleton ([d2594d0](https://github.com/equinor/fusion-web-components/commit/d2594d016ed82199c2c8b253d02ccdab01fcede6))
+* **person-list-item:** pending slot ([5760526](https://github.com/equinor/fusion-web-components/commit/57605269d1d86b8d3b34ae93d6f39bf723316144))
+* **person-list-item:** remove click handle ([7b69d89](https://github.com/equinor/fusion-web-components/commit/7b69d89f2fb719ead9b5ecf90c08b148dd899022))
+
+
+
+
+
 # [0.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.11...@equinor/fusion-wc-person@0.4.0) (2023-02-24)
 
 

@@ -101,8 +101,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
     >`;
   }
 
-  // protected re;
-
   /**
    * Renders the error
    */
@@ -115,24 +113,25 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
       ${this.details?.render({
         complete: (details: PersonDetails) => {
           return html`<div class="person-list__about">
-            <div class="person-list__avatar">${this.renderAvatar(details)}</div>
-            <div class="person-list__content">${this.renderTitle(details)} ${this.renderDepartment(details)}</div>
-          </div>`;
+              <div class="person-list__avatar">${this.renderAvatar(details)}</div>
+              <div class="person-list__content">${this.renderTitle(details)} ${this.renderDepartment(details)}</div>
+            </div>
+            <slot class="person-list__toolbar"></slot>`;
         },
         pending: () => {
           return html`<div class="person-list__about">
-            <div class="person-list__avatar">${this.renderImagePlaceholder(false, this.size, true)}</div>
-            <div class="person-list__content">
-              <fwc-skeleton-wrapper direction="vertical">
-                ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-              </fwc-skeleton-wrapper>
+              <div class="person-list__avatar">${this.renderImagePlaceholder(false, this.size, true)}</div>
+              <div class="person-list__content">
+                <fwc-skeleton-wrapper direction="vertical">
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                </fwc-skeleton-wrapper>
+              </div>
             </div>
-          </div>`;
+            <div class="person-list__toolbar">${this.renderCirclePlaceholder(false, SkeletonSize.small)}</div>`;
         },
         error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
       })}
-      <slot class="person-list__toolbar"></slot>
     </div>`;
   }
 }

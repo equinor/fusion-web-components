@@ -35,12 +35,14 @@ export class PersonElement extends LitElement implements PersonHost, PersonEleme
    * Renders pending state for content
    */
   public renderTextPlaceholder(inactive?: boolean, size?: SkeletonSize): TemplateResult {
-    return html`<fwc-skeleton
-      size=${size}
-      variant=${SkeletonVariant.Text}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
+    return html`<fwc-skeleton size="${size}" variant=${SkeletonVariant.Text} ?inactive=${inactive}></fwc-skeleton>`;
+  }
+
+  /**
+   * Renders pending state for toolbar
+   */
+  public renderCirclePlaceholder(inactive?: boolean, size?: SkeletonSize): TemplateResult {
+    return html`<fwc-skeleton size="${size}" variant=${SkeletonVariant.Circle} ?inactive=${inactive}></fwc-skeleton>`;
   }
 
   /**

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.11...@equinor/fusion-wc-person@0.4.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* **person-avatar:** use person placeholder ([9b6bfb4](https://github.com/equinor/fusion-web-components/commit/9b6bfb42df870548a2ab29556ab0beeb021ee393))
+* **person-card:** redesign - 1.1 ([490439e](https://github.com/equinor/fusion-web-components/commit/490439ef2fc14800d9e42b845f552e0c92f9b559))
+* **person-card:** redesign - draft v1 ([f55f973](https://github.com/equinor/fusion-web-components/commit/f55f9730f58b50e92809276aa0fa8987f5f92196))
+* **person-list-item:** design ([5097374](https://github.com/equinor/fusion-web-components/commit/5097374c532f4b1266eaa5b4ba5235a413e387a4))
+* **person-list-item:** style rework ([df2102c](https://github.com/equinor/fusion-web-components/commit/df2102c88ec1a4fc52536b5a4d9b4080ce48dd1a))
+
+
+### Features
+
+* **person-list-item:** toolbar slot ([c9c3492](https://github.com/equinor/fusion-web-components/commit/c9c34921359ce33a550cf95fec42b0447e982634))
+* **person:** person list item - single ([9234484](https://github.com/equinor/fusion-web-components/commit/9234484342e72659b81bcca35c570785c44ebd04))
+* **person:** public placeholders ([3674581](https://github.com/equinor/fusion-web-components/commit/3674581200eaa381a66653275b5f8ca3fe64b1ce))
+
+
+
+
+
 ## [0.3.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.3.10...@equinor/fusion-wc-person@0.3.11) (2023-02-09)
 
 

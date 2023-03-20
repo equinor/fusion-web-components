@@ -38,25 +38,15 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   /**
    * Renders person name
    */
-  private renderTitle(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.name ? html`<header class="person-list__heading">${_details.name}</header>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
+  protected renderTitle(details: PersonDetails): TemplateResult {
+    return html`${details.name ? html`<header class="person-list__heading">${details.name}</header>` : null}`;
   }
 
   /**
    * Render person job department
    */
-  private renderDepartment(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (_details: PersonDetails) =>
-        html`${_details.department ? html`<div class="person-list__sub-heading">${_details.department}</div>` : null}`,
-      pending: () => this.renderTextPlaceholder(false, SkeletonSize.small),
-      error: () => this.renderTextPlaceholder(true),
-    })}`;
+  private renderDepartment(details: PersonDetails): TemplateResult {
+    return html`${details.department ? html`<div class="person-list__sub-heading">${details.department}</div>` : null}`;
   }
 
   /**
@@ -76,19 +66,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
         return BadgeColor.Danger;
       default:
         return BadgeColor.Disabled;
-    }
-  }
-
-  protected getToolbarPlaceholderIconSize(size: PersonItemSize): string {
-    switch (size) {
-      case 'small':
-        return 'x-small';
-      case 'medium':
-        return 'small';
-      case 'large':
-        return 'medium';
-      default:
-        return 'small';
     }
   }
 
@@ -124,8 +101,6 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
     >`;
   }
 
-  // protected re;
-
   /**
    * Renders the error
    */
@@ -133,31 +108,30 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
     return html`${error}`;
   }
 
-  /**
-   * Handle on click.
-   */
-  protected handleOnClick(e: PointerEvent): void {
-    if (this.clickable) {
-      this.dispatchEvent(new PointerEvent('click', e));
-    }
-  }
-
   protected render(): TemplateResult {
-    return html`<div
-      class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}"
-      @click=${this.handleOnClick}
-    >
-      <div class="person-list__about">
-        <div class="person-list__avatar">
-          ${this.details?.render({
-            complete: (details: PersonDetails) => this.renderAvatar(details),
-            pending: () => this.renderImagePlaceholder(false, this.size),
-            error: () => this.renderImagePlaceholder(true),
-          })}
-        </div>
-        <div class="person-list__content">${this.renderTitle()} ${this.renderDepartment()}</div>
-      </div>
-      <slot class="person-list__toolbar"></slot>
+    return html`<div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
+      ${this.details?.render({
+        complete: (details: PersonDetails) => {
+          return html`<div class="person-list__about">
+              <div class="person-list__avatar">${this.renderAvatar(details)}</div>
+              <div class="person-list__content">${this.renderTitle(details)} ${this.renderDepartment(details)}</div>
+            </div>
+            <slot class="person-list__toolbar"></slot>`;
+        },
+        pending: () => {
+          return html`<div class="person-list__about">
+              <div class="person-list__avatar">${this.renderImagePlaceholder(false, this.size, true)}</div>
+              <div class="person-list__content">
+                <fwc-skeleton-wrapper direction="vertical">
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                </fwc-skeleton-wrapper>
+              </div>
+            </div>
+            <div class="person-list__toolbar">${this.renderCirclePlaceholder(false, SkeletonSize.small)}</div>`;
+        },
+        error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+      })}
     </div>`;
   }
 }

@@ -35,20 +35,35 @@ export class PersonElement extends LitElement implements PersonHost, PersonEleme
    * Renders pending state for content
    */
   public renderTextPlaceholder(inactive?: boolean, size?: SkeletonSize): TemplateResult {
-    return html`<fwc-skeleton
-      size=${size}
-      variant=${SkeletonVariant.Text}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
+    return html`<fwc-skeleton size="${size}" variant=${SkeletonVariant.Text} ?inactive=${inactive}></fwc-skeleton>`;
+  }
+
+  /**
+   * Renders pending state for toolbar
+   */
+  public renderCirclePlaceholder(inactive?: boolean, size?: SkeletonSize): TemplateResult {
+    return html`<fwc-skeleton size="${size}" variant=${SkeletonVariant.Circle} ?inactive=${inactive}></fwc-skeleton>`;
   }
 
   /**
    * Renders pending state for avatar
    */
-  public renderImagePlaceholder(inactive?: boolean, size?: string): TemplateResult {
+  public getToolbarPlaceholderIconSize(size: string): string {
+    switch (size) {
+      case 'small':
+        return 'x-small';
+      case 'medium':
+      case 'large':
+        return 'small';
+      default:
+        return 'small';
+    }
+  }
+
+  public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {
     return html`<fwc-skeleton
-      size=${size}
+      class="${list ? 'person-list__avatar' : ''}"
+      size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
       variant=${SkeletonVariant.Circle}
       icon="image"
       ?inactive=${inactive}

@@ -1,0 +1,55 @@
+{
+  "name": "@equinor/fusion-wc-markdown",
+  "version": "0.0.0",
+  "description": "Markdown editor created from ProseMirrir markdown",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./markdown-editor": "./lib/markdown-editor/index.js"
+  },
+  "types": "lib/types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "markdown-editor": [
+        "lib/types/markdown-editor/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "customElements": "lib/custom-elements.json",
+  "scripts": {
+    "build": "tsc -b",
+    "postbuild": "npm run typedoc",
+    "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib",
+    "prepack": "npm run build && fwc-build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@equinor/fusion-wc-core": "^1.0.5",
+    "@equinor/fusion-wc-icon": "^1.0.29",
+    "@types/prosemirror-model": "^1.17.0",
+    "@types/prosemirror-state": "^1.4.0",
+    "@types/prosemirror-view": "^1.24.0",
+    "lit": "2.6.1",
+    "prosemirror-commands": "^1.5.1",
+    "prosemirror-history": "^1.3.0",
+    "prosemirror-inputrules": "^1.2.0",
+    "prosemirror-keymap": "^1.2.1",
+    "prosemirror-markdown": "^1.10.1",
+    "prosemirror-schema-basic": "^1.2.1",
+    "prosemirror-schema-list": "^1.2.2",
+    "prosemirror-state": "^1.4.2",
+    "prosemirror-view": "^1.30.2"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.6.8",
+    "typescript": "^4.9.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

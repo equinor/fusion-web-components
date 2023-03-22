@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.17.0...@equinor/fusion-wc-storybook@2.17.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **person-list-item:** pending skeleton ([d2594d0](https://github.com/equinor/fusion-web-components/commit/d2594d016ed82199c2c8b253d02ccdab01fcede6))
+* **person-list-item:** remove clickable ([8027722](https://github.com/equinor/fusion-web-components/commit/8027722cd72a5882f055cba5c46d83a91e8fc043))
+
+
+
+
+
 # [2.17.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.16.1...@equinor/fusion-wc-storybook@2.17.0) (2023-02-24)
 
 

@@ -1,0 +1,154 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import MarkdownEditor, { MenuSizes } from './Components/MarkdownEditor';
+
+
+export const Template = ({ children, ...props }) => {
+  return (
+    <fwc-markdown-editor {...props}>{children}</fwc-markdown-editor>
+  );
+};
+
+export const InitalTemplate = ({ ...props }) => {
+  const initialMarkdown = `# This is markdown \n ## This is also markdown \n ### This is also markdown \n\n * Some \n * List \n * Items`;
+  return (
+    <fwc-markdown-editor {...props}>{initialMarkdown}</fwc-markdown-editor>
+  )
+}
+
+export const SizesTemplate = ({ ...props }) => {
+  return (
+    <div style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
+      <fwc-markdown-editor menuSize="small" {...props}></fwc-markdown-editor>
+      <fwc-markdown-editor menuSize="medium" {...props}></fwc-markdown-editor>
+      <fwc-markdown-editor menuSize="large" {...props}></fwc-markdown-editor>
+    </div>
+  );
+};
+
+export const Container = ({ children }) => (
+  <div style={{ display: 'flex', gap: '20px', flexDirection: 'row' }}>{children}</div>
+);
+
+<Meta
+  title="Input/Markdown/Editor"
+  component={MarkdownEditor}
+  argTypes={{
+    menuSize: {
+      description: 'Size of the menu buttons',
+      control: 'radio',
+      options: MenuSizes,
+      table: {
+        type: { summary: 'MenuSizes' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    menuItems: {
+      description: 'List of visible menu buttons',
+      table: {
+        defaultValue: { summary: ["string", "em", "bullet_list", "order_list"] },
+      },
+    },
+    minHeight: {
+      description: 'Markdown Editor minimum height',
+    },
+    value: {
+      description: 'Markdown editors value',
+      control: 'text',
+      table: {
+        type: { summary: 'Markdown' },
+      },
+    },
+  }}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Markdown Editor
+
+```sh
+npm i @equinor/fusion-wc-markdown
+```
+
+## Example
+
+```html
+<fusion-wc-markdown-editor props>
+  **some** markdown *text*
+</fusion-wc-markdown-editor>
+```
+
+## Usage
+```js 
+const markdown = "# my heading here";
+<fwc-markdown-editor value={markdown} onInput={(e)=>{console.log(e.target._value)}} change={console.log} />
+```
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Basic"
+    args={{ 
+      minHeight: '150px', 
+      menuItems: [
+                    'strong',
+                    'em',
+                    'bullet_list',
+                    'ordered_list',
+                    'blockquote',
+                    'h1',
+                    'h2',
+                    'h3',
+                    'paragraph',
+                ]
+    }}
+    parameters={{chromatic: { disableSnapshot: true }}}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Basic" />
+
+## Initial Markdown
+<Canvas>
+  <Story name="Initial Markdown" args={{ 
+      minHeight: '150px', 
+      menuItems: [
+                    'strong',
+                    'em',
+                    'bullet_list',
+                    'h1',
+                    'h2',
+                    'h3',
+                    'paragraph',
+                ]
+    }}>
+    {InitalTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Menu Button Sizes
+<Canvas>
+  <Story name="Menu Sizes" args={{ 
+      minHeight: '50px', 
+      menuItems: [
+                    'strong',
+                    'em',
+                    'bullet_list',
+                    'ordered_list',
+                    'blockquote',
+                    'h1',
+                    'h2',
+                    'h3',
+                    'paragraph',
+                ]
+    }}>
+    {SizesTemplate.bind({})}
+  </Story>
+</Canvas>

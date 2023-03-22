@@ -45,6 +45,9 @@
       "path": "../packages/list"
     },
     {
+      "path": "../packages/markdown"
+    },
+    {
       "path": "../packages/menu"
     },
     {

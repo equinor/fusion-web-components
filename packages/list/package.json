@@ -19,7 +19,7 @@
     "@equinor/fusion-wc-icon": "^1.0.29",
     "@equinor/fusion-wc-radio": "^0.2.23",
     "@material/mwc-list": "^0.27.0",
-    "lit": "2.6.1"
+    "lit": "2.7.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.6.8",

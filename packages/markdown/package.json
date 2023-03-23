@@ -1,7 +1,7 @@
 {
   "name": "@equinor/fusion-wc-markdown",
-  "version": "0.0.0",
-  "description": "Markdown editor created from ProseMirrir markdown",
+  "version": "0.1.0",
+  "description": "Markdown editor created from ProseMirror markdown",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",

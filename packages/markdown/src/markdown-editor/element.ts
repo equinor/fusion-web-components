@@ -46,15 +46,15 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
   static styles = styles;
 
   /** List of visible menu buttons */
-  @property({ reflect: false, type: Array, converter: (a) => a?.split(',') })
+  @property({ reflect: true, type: Array, converter: (a) => a?.split(',') })
   menuItems: Array<MdMenuItemType> = defaultMenuItem;
 
   /** Markdown Editor minimum height */
-  @property({ type: String, reflect: false })
+  @property({ type: String, reflect: true })
   minHeight: string | undefined;
 
   /** Markdown editors value */
-  @property({ type: String, reflect: false })
+  @property({ type: String, reflect: true })
   value = '';
 
   /** Size of the menu buttons */

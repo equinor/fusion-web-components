@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.19](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textarea@0.4.18...@equinor/fusion-wc-textarea@0.4.19) (2023-03-24)
+
+**Note:** Version bump only for package @equinor/fusion-wc-textarea
+
+
+
+
+
 ## [0.4.18](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-textarea@0.4.17...@equinor/fusion-wc-textarea@0.4.18) (2023-02-08)
 
 **Note:** Version bump only for package @equinor/fusion-wc-textarea

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-builder",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "description": "",
   "main": "index.js",
@@ -15,9 +15,9 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
-    "@rollup/plugin-json": "^6.0.0",
     "@types/lodash.camelcase": "^4.3.7",
     "@types/rollup-plugin-progress": "^1.1.1",
     "filesize": "^10.0.6",

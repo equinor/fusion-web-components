@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-markdown@0.2.2...@equinor/fusion-wc-markdown@0.2.3) (2023-03-24)
+
+
+### Bug Fixes
+
+* **markdown-editor:** typo ([3c19abf](https://github.com/equinor/fusion-web-components/commit/3c19abf88133479efd80f68ea7f8ef4f15d1a323))
+
+
+
+
+
 ## [0.2.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-markdown@0.2.1...@equinor/fusion-wc-markdown@0.2.2) (2023-03-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-markdown

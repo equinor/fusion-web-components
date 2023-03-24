@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@2.0.0...@equinor/fusion-wc-builder@2.1.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* **wc-builder:** moved plugin-json to --dev ([b4302f3](https://github.com/equinor/fusion-web-components/commit/b4302f3549e26450e93e5261315f6df28bc3f9e3))
+* **wc-builder:** update and added plugin-json ([1f4e6ad](https://github.com/equinor/fusion-web-components/commit/1f4e6ad0fa76c28808cf9300e45e23c54549ede9))
+
+
+
+
+
 # [2.0.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-builder@1.0.11...@equinor/fusion-wc-builder@2.0.0) (2022-11-24)
 
 

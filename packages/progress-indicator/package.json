@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-progress-indicator",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",
-    "@equinor/fusion-wc-builder": "^2.1.0",
+    "@equinor/fusion-wc-builder": "^2.1.1",
     "typescript": "^4.9.5"
   },
   "publishConfig": {

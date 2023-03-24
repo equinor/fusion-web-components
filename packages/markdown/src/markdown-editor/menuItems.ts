@@ -23,7 +23,7 @@ const icon = (text: string, name: string) => {
   return button;
 };
 
-export const MenuIcon = (icon: IconName) => {
+const MenuIcon = (icon: IconName) => {
   return `<fwc-icon class="menu_icon" icon="${icon}" />`;
 };
 

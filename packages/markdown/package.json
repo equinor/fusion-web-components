@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-markdown",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Markdown editor created from ProseMirror markdown",
   "main": "lib/index.js",
   "exports": {
@@ -30,7 +30,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-icon": "^1.0.29",
+    "@equinor/fusion-wc-icon": "^1.0.30",
     "@types/prosemirror-model": "^1.17.0",
     "@types/prosemirror-state": "^1.4.0",
     "@types/prosemirror-view": "^1.24.0",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",
-    "@equinor/fusion-wc-builder": "^2.1.0",
+    "@equinor/fusion-wc-builder": "^2.1.1",
     "typescript": "^4.9.5"
   },
   "publishConfig": {

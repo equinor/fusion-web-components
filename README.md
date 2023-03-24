@@ -23,8 +23,11 @@
 ## Inputs
 | Component | Package | Status
 | --------- | ------- | ------
-| [`<fwc-button>`](https://github.com/equinor/fusion-web-components/tree/main/packages/button) | `@equinor/fusion-wc-button` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-button.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-button)
+| [`<fwc-button>`](https://github.com/equinor/fusion-web-components/tree/main/packages/button/src/button) <br /> [`<fwc-link-button>`](https://github.com/equinor/fusion-web-components/tree/main/packages/button/src/link-button) <br /> [`<fwc-icon-button>`](https://github.com/equinor/fusion-web-components/tree/main/packages/button/src/icon-button) <br /> [`<fwc-icon-button-toggle>`](https://github.com/equinor/fusion-web-components/tree/main/packages/button/src/icon-button-toggle) | `@equinor/fusion-wc-button` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-button.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-button)
 | [`<fwc-checkbox>`](https://github.com/equinor/fusion-web-components/tree/main/packages/checkbox) | `@equinor/fusion-wc-checkbox` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-checkbox.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-checkbox)
+| [`<fwc-formfield>`](https://github.com/equinor/fusion-web-components/tree/main/packages/formfield) | `@equinor/fusion-wc-formfield` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-formfield.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-formfield)
+| [`<fwc-markdown-editor>`](https://github.com/equinor/fusion-web-components/tree/main/packages/markdown/src/markdown-editor) | `@equinor/fusion-wc-markdown` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-markdown.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-markdown)
+| [`<fwc-menur>`](https://github.com/equinor/fusion-web-components/tree/main/packages/menu) | `@equinor/fusion-wc-menu` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-menu.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-menu)
 | [`<fwc-radio>`](https://github.com/equinor/fusion-web-components/tree/main/packages/radio) | `@equinor/fusion-wc-radio` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-radio.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-radio)
 | [`<fwc-select>`](https://github.com/equinor/fusion-web-components/tree/main/packages/select) | `@equinor/fusion-wc-select` | TBD
 | [`<fwc-switch>`](https://github.com/equinor/fusion-web-components/tree/main/packages/switch) | `@equinor/fusion-wc-switch` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-switch.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-switch)
@@ -52,13 +55,18 @@
 | [`<fwc-avatar>`](https://github.com/equinor/fusion-web-components/tree/main/packages/avatar) | `@equinor/fusion-wc-avatar` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-avatar.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-avatar)
 | [`<fwc-badge>`](https://github.com/equinor/fusion-web-components/tree/main/packages/badge) | `@equinor/fusion-wc-badge` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-badge.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-badge)
 | [`<fwc-chip>`](https://github.com/equinor/fusion-web-components/tree/main/packages/chip) | `@equinor/fusion-wc-chip` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-chip.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-chip)
-| [`<fwc-date>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date) | `@equinor/fusion-wc-date` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-date.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-date)
+| [`<fwc-daterange>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date/src/daterange) <br /> [`<fwc-datetime>`](https://github.com/equinor/fusion-web-components/tree/main/packages/date/src/datetime) | `@equinor/fusion-wc-date` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-date.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-date)
 | [`<fwc-list>`](https://github.com/equinor/fusion-web-components/tree/main/packages/list) | `@equinor/fusion-wc-list` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-list.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-list)
 | [`<fwc-searchable-dropdown>`](https://github.com/equinor/fusion-web-components/tree/main/packages/searchable-dropdown) | `@equinor/fusion-wc-searchable-dropdown` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-searchable-dropdown.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-searchable-dropdown)
 | [`<fwc-skeleton>`](https://github.com/equinor/fusion-web-components/tree/main/packages/skeleton) | `@equinor/fusion-wc-skeleton` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-skeleton.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-skeleton)
 
-## Context
+## People
 | Component | Package | Status
 | --------- | ------- | ------
-| [`<fwc-person>`](https://github.com/equinor/fusion-web-components/tree/main/packages/person) | `@equinor/fusion-wc-person` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-person.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-person)
+| [`<fwc-person-avatar>`](https://github.com/equinor/fusion-web-components/tree/main/packages/person/src/person-avatar) <br /> [`<fwc-person-card>`](https://github.com/equinor/fusion-web-components/tree/main/packages/person/src/person-card) <br /> [`<fwc-person-list-item>`](https://github.com/equinor/fusion-web-components/tree/main/packages/person/src/person-list-item) | `@equinor/fusion-wc-person` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-person.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-person)
+
+## Progress Indicator
+| Component | Package | Status
+| --------- | ------- | ------
+| [`<fwc-circular-progress>`](https://github.com/equinor/fusion-web-components/tree/main/packages/progress-indicator/src/circular) <br /> [`<fwc-dots-progress>`](https://github.com/equinor/fusion-web-components/tree/main/packages/progress-indicator/src/dots) <br /> [`<fwc-star-progress>`](https://github.com/equinor/fusion-web-components/tree/main/packages/progress-indicator/src/star) | `@equinor/fusion-wc-progress-indicator` | [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-progress-indicator.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-progress-indicator)
 <!--prettier-ignore-end-->

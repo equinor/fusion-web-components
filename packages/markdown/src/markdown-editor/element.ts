@@ -30,7 +30,7 @@ const defaultMenuItem: Array<MdMenuItemType> = ['strong', 'em', 'bullet_list', '
  *
  * ```js
  * const md = '#my heading';
- * <fwc-markdown-editor value="md" change=${console.log} onInput={(e)=>{console.log(e)}}></fwc-markdown-editor>
+ * <fwc-markdown-editor value="md" change={console.log} onInput={(e)=>{console.log(e)}}></fwc-markdown-editor>
  * ```
  *
  * @tag fwc-markdown-editor

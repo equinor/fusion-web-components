@@ -23,7 +23,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
     "date-fns": "^2.29.3",
-    "lit": "2.7.0"
+    "lit": "2.7.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",

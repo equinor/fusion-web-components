@@ -16,7 +16,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
     "@material/mwc-ripple": "^0.27.0",
-    "lit": "2.7.0"
+    "lit": "2.7.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",

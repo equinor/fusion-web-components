@@ -17,7 +17,7 @@
     "@equinor/fusion-wc-core": "^1.0.5",
     "@equinor/fusion-web-theme": "^0.1.7",
     "@material/theme": "^14.0.0",
-    "lit": "2.7.0"
+    "lit": "2.7.3"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",

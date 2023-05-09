@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-markdown@0.2.3...@equinor/fusion-wc-markdown@0.3.0) (2023-05-09)
+
+
+### Features
+
+* **markdown:** add markdown-viewer ([32ee915](https://github.com/equinor/fusion-web-components/commit/32ee91591e3bb10b1bbbbe21ff9970867d56b30d)), closes [#592](https://github.com/equinor/fusion-web-components/issues/592)
+
+
+
+
+
 ## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-markdown@0.2.2...@equinor/fusion-wc-markdown@0.2.3) (2023-03-24)
 
 

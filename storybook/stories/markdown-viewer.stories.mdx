@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import MarkdownViewer from './Components/MarkdownViewer';
+import markdownExample from './resources/markdown.example.ts';
+
+
+export const Template = ({ ...props }) => {
+  return (
+    <fwc-markdown-viewer value={props.value}></fwc-markdown-viewer>
+  );
+};
+
+<Meta
+  title="Input/Markdown/Viewer"
+  component={MarkdownViewer}
+  argTypes={{
+    value: {
+      description: 'Markdown editors value',
+      control: 'text',
+      table: {
+        type: { summary: 'Markdown' },
+      },
+    },
+  }}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Markdown Viewer
+
+```sh
+npm i @equinor/fusion-wc-markdown
+```
+
+## Example
+
+```html
+<fusion-wc-markdown-viewer>
+  **some** markdown *text*
+</fusion-wc-markdown-viewer>
+
+<fusion-wc-markdown-viewer value="**some** markdown *text*">
+</fusion-wc-markdown-viewer>
+```
+
+## Usage
+```js
+const markdown = "# my heading here";
+<fwc-markdown-editor value={markdown} />
+```
+
+```html
+<fusion-wc-markdown-viewer>
+  **some** markdown *text*
+</fusion-wc-markdown-viewer>
+```
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Basic"
+    parameters={{chromatic: { disableSnapshot: true }}}
+    argTypes={{
+        value: {
+            description: 'Markdown content',
+            control: 'text',
+            table: {
+                type: { summary: 'Markdown' },
+            },
+            defaultValue: markdownExample,
+        }
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Basic" />
+
+# Snapshots
+
+<Story
+    name="InlineViewer"
+>
+    <fwc-markdown-viewer>{markdownExample}</fwc-markdown-viewer>
+</Story>
+
+<Story
+    name="AttrViewer"
+>
+    <fwc-markdown-viewer value={markdownExample}></fwc-markdown-viewer>
+</Story>

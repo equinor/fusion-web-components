@@ -5,13 +5,17 @@
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
-    "./markdown-editor": "./lib/markdown-editor/index.js"
+    "./markdown-editor": "./lib/markdown-editor/index.js",
+    "./markdown-viewer": "./lib/markdown-viewer/index.js"
   },
   "types": "lib/types/index.d.ts",
   "typesVersions": {
     "*": {
       "markdown-editor": [
         "lib/types/markdown-editor/index.d.ts"
+      ],
+      "markdown-viewer": [
+        "lib/types/markdown-viewer/index.d.ts"
       ]
     }
   },

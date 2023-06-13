@@ -8,6 +8,7 @@ import {
   SearchableDropdownResult,
   SearchableDropdownResultItem,
 } from '@equinor/fusion-wc-searchable-dropdown';
+
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
@@ -77,14 +78,55 @@ const resolver: SearchableDropdownResolver = {
   },
   initialResult: [
     singleItem({
+      id: 'people-123',
+      title: 'People',
+      type: 'section',
+      children: [
+        singleItem({
+          id: '456',
+          title: 'Doge dogface',
+          subTitle: 'doge@equivoff.com',
+          graphic: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=025',
+        }),
+        singleItem({
+          id: '567',
+          title: 'Shiba uno',
+          subTitle: 'shibadoge@equivoff.com',
+          graphic: 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png?v=025',
+        }),
+        singleItem({
+          id: '678',
+          title: 'Uni',
+          subTitle: 'uni@equivoff.com',
+          graphic: 'https://cryptologos.cc/logos/uniswap-uni-logo.png?v=025',
+        }),
+      ],
+    }),
+    singleItem({
       id: 'ctx-123',
       title: 'Context',
       type: 'section',
       children: [
-        singleItem({ id: '456', title: 'Context 1', graphic: 'list' }),
-        singleItem({ id: '654', title: 'Context 2', graphic: 'list' }),
-        singleItem({ id: '789', title: 'Context 3', graphic: 'list' }),
-        singleItem({ id: '321', title: 'Context 4', graphic: 'list' }),
+        singleItem({
+          id: '456',
+          title: 'Context 1',
+          graphic: 'list',
+        }),
+        singleItem({
+          id: '654',
+          title: 'Context 2',
+          graphic: 'list',
+        }),
+        singleItem({
+          id: '789',
+          title: 'Context 3',
+          graphic: 'list',
+        }),
+        singleItem({
+          id: '321',
+          title: 'Context 4',
+          graphic: 'list',
+        }),
       ],
     }),
     singleItem({

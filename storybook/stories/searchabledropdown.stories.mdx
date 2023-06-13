@@ -3,21 +3,6 @@ import readme from '@equinor/fusion-wc-searchable-dropdown/README.md';
 import { PackageInfo } from './Components';
 import SearchableDropdown from './Components/SearchableDropdown';
 
-export const Container = ({ title, children }) => (
-  <section>
-    <h4>{title}</h4>
-    <div style={{ position: 'relative' }}>{children}</div>
-  </section>
-);
-
-export const Template = ({ children, ...props }) => {
-  return (
-    <div style={{ width: '98%', maxWidth: '420px', height: '350px', margin: '0 auto' }}>
-      <SearchableDropdown id="sdd-test-1" {...props} />
-    </div>
-  );
-};
-
 <Meta
   title="Data/SearchableDropdown"
   component={SearchableDropdown}
@@ -29,12 +14,26 @@ export const Template = ({ children, ...props }) => {
   }}
 />
 
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ position: 'relative' }}>{children}</div>
+  </section>
+);
+
+export const Template = ({ children, ...props }) => {
+  return (
+    <div style={{ width: '98%', maxWidth: '420px', height: '350px', margin: '0 auto' }}>
+      <SearchableDropdown id="sdd-test-1" {...props}>{children}</SearchableDropdown>
+    </div>
+  );
+};
+
 <PackageInfo pkg={require('@equinor/fusion-wc-searchable-dropdown/package.json')} />
 
 <Description markdown={readme} />
 
 ## Playground
-
 <Canvas>
   <Story name="Default" args={{
       placeholder: 'Start to type to search...',

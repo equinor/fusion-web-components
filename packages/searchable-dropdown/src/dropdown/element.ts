@@ -19,12 +19,14 @@ import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fus
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
+import { AvatarElement } from '@equinor/fusion-wc-avatar';
 ListElement;
 ListItemElement;
 CheckListItemElement;
 TextInputElement;
 DividerElement;
 IconElement;
+AvatarElement;
 
 import { styles as sddStyles } from './element.css';
 
@@ -35,7 +37,7 @@ import { styles as sddStyles } from './element.css';
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
  * @property {boolean} disabled disable TextInput element
  * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
- * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
+ * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the graphic property on the SearchableDropdownResultItem
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
  * @property {string} label Label for fwc-textinput element
  * @property {string} leadingIcon Leading Icon to display in fwc-text-input
@@ -125,14 +127,20 @@ export class SearchableDropdownElement
       'list-item': true,
       'item-selected': !!item.isSelected,
       'item-error': !!item.isError,
+      'item-multiline': !!item.subTitle,
+      'item-avatar': (item.graphic ?? '').indexOf('http') > -1,
     };
+    console.log('ITEM.TYPE.PERSON', item);
     const renderItemText = () => {
-      /* Geticonf for either meta or graphic slot */
+      /* Get icon for either meta or graphic slot */
       const getIconSlot = (type: 'meta' | 'graphic') => {
         if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
-          return html`<span class="slot-${type}" slot=${type}>
-            <fwc-icon icon=${item[type] ? item[type] : this[type]}></fwc-icon>
-          </span>`;
+          const iconRef = item[type] ?? this[type];
+          const iconSlot = (): HTMLTemplateResult =>
+            iconRef.indexOf('http')
+              ? html`<fwc-icon icon=${iconRef} />`
+              : html`<fwc-avatar src=${iconRef} size="small" />`;
+          return html`<span class="slot-${type}" slot=${type}>${iconSlot()}</span>`;
         }
         return html``;
       };

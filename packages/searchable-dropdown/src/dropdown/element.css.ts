@@ -88,6 +88,9 @@ export const fwcsdd = css`
     font-style: italic;
     line-height: 1.6;
   }
+  .item-avatar [slot='graphic'] {
+    padding-right: 12px;
+  }
   [slot='graphic'] {
     display: flex;
     font-size: 0.8em;

@@ -2,6 +2,7 @@ import { ReactiveControllerHost } from 'lit';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { ListElement } from '@equinor/fusion-wc-list';
+
 /**
  * Properties/Attributes for web component
  * @autofocus Sets focus on textinput when mounted
@@ -51,7 +52,7 @@ export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
  * @isDisabled The element is not selectable
  * @isError The element is Un-selectable and red
  * @meta The fwc-icon class to show after item text
- * @graphic The fwc-icon class to show after item text
+ * @graphic The fwc-icon class to show after item text or React.Component
  * @type Type of list item
  * @children The children if type is section
  */
@@ -65,7 +66,7 @@ export interface SearchableDropdownResultItem {
   meta?: string;
   subTitle?: string;
   title?: string;
-  type?: 'section' | 'divider' | null;
+  type?: 'section' | 'divider' | 'person' | null;
 }
 
 /**

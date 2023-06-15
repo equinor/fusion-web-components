@@ -130,18 +130,21 @@ export class SearchableDropdownElement
       'item-multiline': !!item.subTitle,
       'item-avatar': (item.graphic ?? '').indexOf('http') > -1,
     };
-    console.log('ITEM.TYPE.PERSON', item);
+
+    console.log('fwc::searchabledropdown::item', item);
+
     const renderItemText = () => {
       /* Get icon for either meta or graphic slot */
       const getIconSlot = (type: 'meta' | 'graphic') => {
         if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
           const iconRef = item[type] ?? this[type];
           const iconSlot = (): HTMLTemplateResult =>
-            iconRef.indexOf('http')
-              ? html`<fwc-icon icon=${iconRef} />`
-              : html`<fwc-avatar src=${iconRef} size="small" />`;
+            iconRef.indexOf('http') > -1
+              ? html`<fwc-avatar src=${iconRef} size="small" />`
+              : html`<fwc-icon icon=${iconRef} />`;
           return html`<span class="slot-${type}" slot=${type}>${iconSlot()}</span>`;
         }
+
         return html``;
       };
 

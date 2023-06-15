@@ -27,6 +27,8 @@ export const style = css`
     border: 1px solid;
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
     border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    min-width: 220px;
+    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
   }
   .person-card__heading {
     display: flex;

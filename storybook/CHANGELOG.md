@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.0...@equinor/fusion-wc-storybook@2.20.1) (2023-06-16)
+
+
+### Bug Fixes
+
+* **person-card:** card background and minimum width ([b38db94](https://github.com/equinor/fusion-web-components/commit/b38db945d18c42bbfecebaa96b8af8782a995f8d))
+
+
+
+
+
 # [2.20.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.19.3...@equinor/fusion-wc-storybook@2.20.0) (2023-05-09)
 
 

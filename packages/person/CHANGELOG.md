@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.2...@equinor/fusion-wc-person@0.4.3) (2023-06-16)
+
+
+### Bug Fixes
+
+* **person-card:** card background and minimum width ([b38db94](https://github.com/equinor/fusion-web-components/commit/b38db945d18c42bbfecebaa96b8af8782a995f8d))
+
+
+
+
+
 ## [0.4.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.1...@equinor/fusion-wc-person@0.4.2) (2023-03-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

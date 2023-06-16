@@ -54,8 +54,9 @@ export const Template = (props) => (
       },
     },
     maxWidth: {
-      description: 'Maximum width of the component (px)',
+      description: 'Maximum width of the component (minimum 220px)',
       type: { name: 'number' },
+      control: { min:220 },
       defaultValue: 300,
       table: {
         type: { summary: 'number' },

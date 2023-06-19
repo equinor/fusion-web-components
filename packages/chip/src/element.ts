@@ -131,9 +131,7 @@ export class ChipElement extends LitElement implements ChipElementProps {
    * Render the remove icon.
    */
   protected renderRemoveIcon(): TemplateResult | null {
-    return this.removable
-      ? html`<fwc-icon class="fwc-chip__remove" icon="close" @click=${this.handleRemoveOnClick}> </fwc-icon>`
-      : null;
+    return this.removable ? html`<fwc-icon class="fwc-chip__remove" icon="close"></fwc-icon>` : null;
   }
 
   /**
@@ -165,6 +163,7 @@ export class ChipElement extends LitElement implements ChipElementProps {
    * Handle remove icon on click.
    */
   protected handleRemoveOnClick(e: PointerEvent): void {
+    e.stopPropagation();
     if (this.removable) {
       this.dispatchEvent(new PointerEvent('remove', e));
     }

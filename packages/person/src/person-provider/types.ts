@@ -10,6 +10,7 @@ export interface PersonHost extends ReactiveControllerHost {
 }
 
 export interface PersonResolver {
+  getPerson: (query: string) => Promise<PersonDetails> | PersonDetails;
   getPresence: (azureId: string) => Promise<PersonPresence> | PersonPresence;
   getDetails: (azureId: string) => Promise<PersonDetails> | PersonDetails;
 }

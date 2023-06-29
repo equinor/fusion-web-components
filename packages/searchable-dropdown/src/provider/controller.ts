@@ -79,6 +79,7 @@ export class SearchableDropdownController implements ReactiveController {
       }
     });
 
+    /* Connect provider to controller's updateResolver method */
     const event = new SearchableDropdownConnectEvent({
       detail: {
         disconnectedCallback: (callback) => {

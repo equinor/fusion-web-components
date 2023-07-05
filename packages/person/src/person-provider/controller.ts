@@ -54,7 +54,7 @@ export class PersonController implements ReactiveController {
         return Promise.resolve(resolver.getPresence(azureId)).catch((err) => {
           console.error(err);
           return {
-            azureId,
+            id: azureId,
             availability: PersonAvailability.Error,
           };
         });
@@ -74,7 +74,7 @@ export class PersonController implements ReactiveController {
         return Promise.resolve(resolver.getDetails(azureId)).catch((err) => {
           console.error(err);
           return {
-            azureId,
+            azureUniqueId: azureId,
             jobTitle: `Failed to load user ${azureId}`,
           };
         });

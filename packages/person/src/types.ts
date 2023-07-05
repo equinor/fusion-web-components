@@ -1,8 +1,7 @@
 export type PersonPresence = {
-  azureId: string;
+  id: string;
   availability: PersonAvailability;
 };
-
 export type Position = {
   id: string;
   name: string;
@@ -11,42 +10,45 @@ export type Position = {
     name: string;
   };
 };
-
-export type Manager = {
-  azureId: string;
-  name?: string;
-  pictureSrc?: string;
-  department?: string;
-  accountType?: PersonAccountType;
-};
-
 export type PersonDetails = {
-  azureId: string;
+  azureUniqueId: string;
   name?: string;
   pictureSrc?: string;
   jobTitle?: string;
   department?: string;
+  fullDepartment?: string;
   mail?: string;
   company?: string;
   mobilePhone?: string;
   accountType?: PersonAccountType;
+  accountClassification?: string;
   officeLocation?: string;
   positions?: Position[];
-  manager?: Manager;
+  manager?: PersonDetails;
+  upn?: string;
+  equinorUserTypeV1?: string;
+  isExpired?: boolean;
+  isResourceOwner?: boolean;
+  managerAzureId?: string;
 };
-
+export type PersonSearchResult = {
+  count: number;
+  continuationToken?: string;
+  results: Array<{
+    '@search.score': number;
+    document: PersonDetails;
+  }>;
+};
 export type PersonPicture = {
-  src: string;
+  imageSrc?: string;
 };
-
-export enum PersonAccountType {
+export declare enum PersonAccountType {
   Employee = 'Employee',
   ExternalHire = 'External hire',
   XExternal = 'X-External',
   JointVentureAffiliate = 'Joint venture/Affiliate',
 }
-
-export enum PersonAvailability {
+export declare enum PersonAvailability {
   Available = 'Available',
   AvailableIdle = 'AvailableIdle',
   Away = 'Away',
@@ -58,5 +60,4 @@ export enum PersonAvailability {
   Pending = 'Pending',
   Error = 'Error',
 }
-
 export type PersonItemSize = 'small' | 'medium' | 'large';

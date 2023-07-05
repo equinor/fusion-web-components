@@ -140,10 +140,10 @@ export class SearchableDropdownController implements ReactiveController {
    */
   private mutateResult(result: SearchableDropdownResult) {
     if (result) {
+      console.log('SDD::MUTATING-RESULT', result);
       const { selectedId } = this.#host;
       for (let i = 0; i < result.length; i++) {
         const item = result[i];
-
         if (item.type === 'section' && item.children?.length) {
           for (let x = 0; x < item.children.length; x++) {
             const kid = item.children[x];

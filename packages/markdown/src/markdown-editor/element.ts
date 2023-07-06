@@ -201,9 +201,16 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
   protected handleTransaction(tr: Transaction): void {
     const state = this.view.state.apply(tr);
     this.view.updateState(state);
+
+    // console.log('handleTransaction solo', tr);
     if (tr.docChanged) {
-      this.dispatchEvent(new CustomEvent('input', { detail: tr }));
-      this.handleChange(tr);
+      console.log('handleTransaction', tr);
+      const { markdown } = this;
+      this._value = markdown;
+
+      // add new mardownEvent
+      const inputEvent = new CustomEvent('markdownEvent', { detail: this });
+      this.dispatchEvent(inputEvent);
     }
   }
 
@@ -217,8 +224,9 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
   protected handleChange(_tr: Transaction): void {
     const { markdown } = this;
     this._value = markdown;
-    const event = new CustomEvent('change', { detail: markdown });
-    this.dispatchEvent(event);
+
+    // const event = new CustomEvent('change', { detail: markdown });
+    // this.dispatchEvent(event);
   }
 
   private setMinHeight(): TemplateResult {

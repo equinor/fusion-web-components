@@ -1,10 +1,6 @@
 import { createComponent } from '@equinor/fusion-react-utils';
 
-import {
-  MarkdownEditorElementProps,
-  MarkdownEditorElement,
-  tag as MarkdownEditorTag,
-} from '@equinor/fusion-wc-markdown';
+import { MarkdownEditorElementProps, MarkdownEditorElement, markdownEditorTag } from '@equinor/fusion-wc-markdown';
 
 export { MenuSizes } from '@equinor/fusion-wc-markdown';
 
@@ -12,7 +8,7 @@ MarkdownEditorElement;
 
 export const MarkdownEditor = createComponent<MarkdownEditorElement, MarkdownEditorElementProps>(
   MarkdownEditorElement,
-  MarkdownEditorTag
+  markdownEditorTag
 );
 
 export type MarkdownEditorProps = React.ComponentProps<typeof MarkdownEditor>;

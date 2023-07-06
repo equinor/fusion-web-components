@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.24](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.23...@equinor/fusion-wc-skeleton@0.2.24) (2023-06-19)
+
+**Note:** Version bump only for package @equinor/fusion-wc-skeleton
+
+
+
+
+
 ## [0.2.23](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-skeleton@0.2.22...@equinor/fusion-wc-skeleton@0.2.23) (2023-03-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-skeleton

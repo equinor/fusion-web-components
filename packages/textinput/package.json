@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-textinput",
-  "version": "0.5.18",
+  "version": "0.5.19",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
@@ -15,13 +15,13 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "^1.0.5",
-    "@equinor/fusion-wc-icon": "^1.0.30",
+    "@equinor/fusion-wc-icon": "^1.0.31",
     "@material/mwc-textfield": "^0.27.0",
     "lit": "2.7.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",
-    "@equinor/fusion-wc-builder": "^2.1.1",
+    "@equinor/fusion-wc-builder": "^2.1.2",
     "typescript": "^4.9.5"
   },
   "repository": {

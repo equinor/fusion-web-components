@@ -30,7 +30,7 @@ const defaultMenuItem: Array<MdMenuItemType> = ['strong', 'em', 'bullet_list', '
  *
  * ```js
  * const md = '#my heading';
- * <fwc-markdown-editor value="md" change={console.log} onInput={(e)=>{console.log(e)}}></fwc-markdown-editor>
+ * <fwc-markdown-editor value="md" onInput={(e)=>{console.log(e)}}></fwc-markdown-editor>
  * ```
  *
  * @tag fwc-markdown-editor
@@ -202,7 +202,6 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
     const state = this.view.state.apply(tr);
     this.view.updateState(state);
 
-    // console.log('handleTransaction solo', tr);
     if (tr.docChanged) {
       console.log('handleTransaction', tr);
       const { markdown } = this;
@@ -215,18 +214,11 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
   }
 
   /**
-   * this should actually only be handle on blur
-   * throttle incase some one two-way binds this component
-   * cache the current markdown, to compare with incoming values
-   *
-   * // TODO this value might need to be increased
+   * handle change event
    */
   protected handleChange(_tr: Transaction): void {
     const { markdown } = this;
     this._value = markdown;
-
-    // const event = new CustomEvent('change', { detail: markdown });
-    // this.dispatchEvent(event);
   }
 
   private setMinHeight(): TemplateResult {

@@ -20,7 +20,7 @@
     "@equinor/fusion-wc-textinput": "^0.5.19",
     "@lit-labs/task": "^2.1.0",
     "@types/uuid": "^9.0.1",
-    "lit": "2.7.0",
+    "lit": "2.7.6",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

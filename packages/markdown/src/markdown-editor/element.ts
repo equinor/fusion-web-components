@@ -203,7 +203,6 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
     this.view.updateState(state);
 
     if (tr.docChanged) {
-      console.log('handleTransaction', tr);
       const { markdown } = this;
       this._value = markdown;
 

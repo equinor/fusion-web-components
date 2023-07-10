@@ -61,10 +61,10 @@ export class IconButtonElement extends IconButtonBase implements IconButtonEleme
   target?: LinkButtonTarget;
 
   @property({ type: String })
-  public color?: IconButtonColor = IconButtonColor.Primary;
+  public color?: IconButtonColor = 'primary';
 
   @property({ type: String })
-  public size?: IconButtonSize = IconButtonSize.Medium;
+  public size?: IconButtonSize = 'medium';
 
   @property({ type: Boolean })
   public rounded?: boolean;

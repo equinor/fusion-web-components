@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.4.2...@equinor/fusion-wc-button@1.4.3) (2023-07-10)
+
+
+### Bug Fixes
+
+* **icon-button:** default values ([f81dba0](https://github.com/equinor/fusion-web-components/commit/f81dba079ccb0aced4b8f784ce63a78292b6a518))
+* **icon-button:** types ([162ff27](https://github.com/equinor/fusion-web-components/commit/162ff2772ad4f53cdc3882285bfa7ee99d71b2a9))
+
+
+
+
+
 ## [1.4.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.4.1...@equinor/fusion-wc-button@1.4.2) (2023-06-19)
 
 **Note:** Version bump only for package @equinor/fusion-wc-button

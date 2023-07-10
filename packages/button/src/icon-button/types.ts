@@ -1,16 +1,3 @@
-export enum IconButtonSize {
-  XSmall = 'x-small',
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  XLarge = 'x-large',
-}
+export type IconButtonSize = 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
 
-export enum IconButtonColor {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Success = 'success',
-  Danger = 'danger',
-  Warning = 'warning',
-  Disabled = 'disabled',
-}
+export type IconButtonColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';

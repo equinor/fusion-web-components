@@ -63,13 +63,13 @@ export class IconButtonToggleElement extends IconButtonToggleBase implements Ico
   static styles: CSSResult[] = [style, mwcStyle];
 
   @property({ type: String })
-  public onColor?: IconButtonColor = IconButtonColor.Primary;
+  public onColor?: IconButtonColor = 'primary';
 
   @property({ type: String })
-  public offColor?: IconButtonColor = IconButtonColor.Primary;
+  public offColor?: IconButtonColor = 'primary';
 
   @property({ type: String })
-  public size?: IconButtonSize = IconButtonSize.Medium;
+  public size?: IconButtonSize = 'medium';
 
   @property({ type: Boolean })
   public rounded?: boolean;

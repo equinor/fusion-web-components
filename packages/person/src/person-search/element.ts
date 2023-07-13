@@ -8,6 +8,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { v4 as uuid } from 'uuid';
 
 import { PersonSearchController } from './controller';
+
 import {
   SearchableDropdownProps,
   SearchableDropdownControllerHost,

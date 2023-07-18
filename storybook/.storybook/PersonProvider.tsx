@@ -3,17 +3,16 @@ import React, { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'r
 import {
   PersonProviderElement,
   PersonResolver,
-  PersonAccountType,
-  PersonAvailability,
   PersonSearchResult,
+  PersonDetails,
 } from '@equinor/fusion-wc-person';
 PersonProviderElement;
 
-const userDetails = {
+const userDetails: PersonDetails = {
   azureUniqueId: '49132c24-6ea4-41fe-8221-112f314573f0',
   name: 'Anders Emil Sommerfeldt (Bouvet ASA)',
-  pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
-  accountType: PersonAccountType.JointVentureAffiliate,
+  pictureSrc: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=025',
+  accountType: 'Employee',
   jobTitle: 'X-Bouvet ASA (PX)',
   department: 'FOIT CON PDP',
   mail: 'example@email.com',
@@ -25,7 +24,7 @@ const userDetails = {
     department: 'Leader Techn Mgmt',
     pictureSrc:
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/814.jpg',
-    accountType: PersonAccountType.Employee,
+    accountType: "Employee",
   },
   positions: [
     {
@@ -50,7 +49,7 @@ const userDetails = {
 const mockPersonResolver: PersonResolver = {
   getPerson: async (query: string) => {
     console.debug('Person Search query:', query);
-    await new Promise((res) => setTimeout(res, 3000));
+    await new Promise((res) => setTimeout(res, 1000));
     return await Promise.resolve({
       count: 1,
       results: [
@@ -59,24 +58,17 @@ const mockPersonResolver: PersonResolver = {
           document: userDetails,
         },
       ],
-    } as PersonSearchResult);
-  },
-  getPhoto: async (azureId: string) => {
-    await new Promise((res) => setTimeout(res, 1000));
-    console.log('Fetching image for azureid:', azureId);
-    return await Promise.resolve({
-      imageSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
     });
   },
   getDetails: async (azureId: string) => {
-    await new Promise((res) => setTimeout(res, 3000));
+    await new Promise((res) => setTimeout(res, 1000));
     return await Promise.resolve(userDetails);
   },
   getPresence: async (azureId: string) => {
-    await new Promise((res) => setTimeout(res, 6000));
+    await new Promise((res) => setTimeout(res, 3000));
     return await Promise.resolve({
       id: azureId,
-      availability: PersonAvailability.Available,
+      availability: 'Available',
     });
   },
 };

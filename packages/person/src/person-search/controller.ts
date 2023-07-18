@@ -10,7 +10,7 @@ import {
   SearchableDropdownControllerHost,
   SearchableDropdownResultItem,
   SearchableDropdownSelectEvent,
-  ExplicitEventTarget
+  ExplicitEventTarget,
 } from '@equinor/fusion-wc-searchable-dropdown';
 
 export class PersonSearchController implements ReactiveController {
@@ -144,6 +144,7 @@ export class PersonSearchController implements ReactiveController {
         id: item.document.azureUniqueId,
         title: item.document.name,
         subTitle: item.document.mail,
+        graphic: item.document.pictureSrc,
       };
     });
   }

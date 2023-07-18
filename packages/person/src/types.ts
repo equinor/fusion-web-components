@@ -1,6 +1,6 @@
 export type PersonPresence = {
   id: string;
-  availability: PersonAvailability;
+  availability: PersonAvailabilities;
 };
 export type Position = {
   id: string;
@@ -20,7 +20,7 @@ export type PersonDetails = {
   mail?: string;
   company?: string;
   mobilePhone?: string;
-  accountType?: PersonAccountType;
+  accountType?: PersonAccountTypes;
   accountClassification?: string;
   officeLocation?: string;
   positions?: Position[];
@@ -42,12 +42,27 @@ export type PersonSearchResult = {
 export type PersonPicture = {
   imageSrc?: string;
 };
+
+export type PersonAccountTypes = 'Employee' | 'External hire' | 'X-External' | 'Joint venture/Affiliate';
+
 export declare enum PersonAccountType {
   Employee = 'Employee',
   ExternalHire = 'External hire',
   XExternal = 'X-External',
   JointVentureAffiliate = 'Joint venture/Affiliate',
 }
+export type PersonAvailabilities =
+  | 'Available'
+  | 'AvailableIdle'
+  | 'Away'
+  | 'BeRightBack'
+  | 'Busy'
+  | 'BusyIdle'
+  | 'DoNotDisturb'
+  | 'Offline'
+  | 'Pending'
+  | 'Error';
+
 export declare enum PersonAvailability {
   Available = 'Available',
   AvailableIdle = 'AvailableIdle',

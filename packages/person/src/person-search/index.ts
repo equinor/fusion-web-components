@@ -1,7 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import PersonSearchElement from './element';
-import { SearchableDropdownProps as PersonSearchProps } from '@equinor/fusion-wc-searchable-dropdown';
+import { type SearchableDropdownProps } from '@equinor/fusion-wc-searchable-dropdown';
 export * from './element';
+
+export type PersonSearchElementProps = Partial<SearchableDropdownProps>;
 
 export const tag = 'fwc-person-search';
 
@@ -15,7 +17,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<PersonSearchProps & React.HTMLAttributes<PersonSearchElement>>,
+        React.PropsWithChildren<PersonSearchElementProps & React.HTMLAttributes<PersonSearchElement>>,
         PersonSearchElement
       >;
     }

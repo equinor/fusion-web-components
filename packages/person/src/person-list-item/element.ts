@@ -2,7 +2,7 @@ import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { CSSResult, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { PersonElement } from '../person';
-import { PersonAvailability, PersonDetails, PersonItemSize, PersonPresence } from '../types';
+import { PersonAvailabilities, PersonDetails, PersonItemSize, PersonPresence } from '../types';
 import style from './element.css';
 import personStyle from '../style.css';
 import { PersonListItemElementProps } from './types';
@@ -52,17 +52,17 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   /**
    * Returns the badge color for the current presence
    */
-  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeColor {
+  protected getAvatarBadgeColor(availability: PersonAvailabilities): BadgeColor {
     switch (availability) {
-      case PersonAvailability.Available:
-      case PersonAvailability.AvailableIdle:
+      case 'Available':
+      case 'AvailableIdle':
         return BadgeColor.Success;
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
+      case 'Away':
+      case 'BeRightBack':
         return BadgeColor.Warning;
-      case PersonAvailability.Busy:
-      case PersonAvailability.BusyIdle:
-      case PersonAvailability.DoNotDisturb:
+      case 'Busy':
+      case 'BusyIdle':
+      case 'DoNotDisturb':
         return BadgeColor.Danger;
       default:
         return BadgeColor.Disabled;
@@ -72,7 +72,7 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
   /**
    * Renders the avatar badge
    */
-  protected renderBadge(availability: PersonAvailability): TemplateResult {
+  protected renderBadge(availability: PersonAvailabilities): TemplateResult {
     return html`<fwc-badge
       class="fwc-person-avatar-badge"
       slot="badge"
@@ -95,8 +95,8 @@ export class PersonListItemElement extends PersonElement implements PersonListIt
     >
       ${this.presence?.render({
         complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
-        pending: () => this.renderBadge(PersonAvailability.Pending),
-        error: () => this.renderBadge(PersonAvailability.Offline),
+        pending: () => this.renderBadge('Pending'),
+        error: () => this.renderBadge('Offline'),
       })}</fwc-avatar
     >`;
   }

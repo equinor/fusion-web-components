@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { PersonElement } from '../person';
 import { PersonAvatarElementProps } from './types';
-import { PersonAccountType, PersonAvailability, PersonPresence, PersonDetails } from '../types';
+import { PersonAccountTypes, PersonAvailabilities, PersonPresence, PersonDetails } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
 import Skeleton from '@equinor/fusion-wc-skeleton';
@@ -55,33 +55,33 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Returns the badge color for the current presence
    */
-  protected getRenderClasses(accountType?: string): ClassInfo {
+  protected getRenderClasses(accountType?: PersonAccountTypes): ClassInfo {
     return {
-      'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
-      'fwc-person-avatar__external-hire': accountType === PersonAccountType.ExternalHire,
-      'fwc-person-avatar__x-external': accountType === PersonAccountType.XExternal,
-      'fwc-person-avatar__joint-venture-affiliate': accountType === PersonAccountType.JointVentureAffiliate,
+      'fwc-person-avatar__employee': accountType === 'Employee',
+      'fwc-person-avatar__external-hire': accountType === 'External hire',
+      'fwc-person-avatar__x-external': accountType === 'X-External',
+      'fwc-person-avatar__joint-venture-affiliate': accountType === 'Joint venture/Affiliate',
     };
   }
 
   /**
    * Returns the badge color for the current presence
    */
-  protected getBadgeColor(availability: PersonAvailability): BadgeColor {
+  protected getBadgeColor(availability: PersonAvailabilities): BadgeColor {
     if (this.disabled) {
       return BadgeColor.Disabled;
     }
 
     switch (availability) {
-      case PersonAvailability.Available:
-      case PersonAvailability.AvailableIdle:
+      case 'Available':
+      case 'AvailableIdle':
         return BadgeColor.Success;
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
+      case 'Away':
+      case 'BeRightBack':
         return BadgeColor.Warning;
-      case PersonAvailability.Busy:
-      case PersonAvailability.BusyIdle:
-      case PersonAvailability.DoNotDisturb:
+      case 'Busy':
+      case 'BusyIdle':
+      case 'DoNotDisturb':
         return BadgeColor.Danger;
       default:
         return BadgeColor.Disabled;
@@ -91,21 +91,21 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Returns the badge icon for the current presence
    */
-  protected getBadgeIcon(availability: PersonAvailability): IconName | undefined {
+  protected getBadgeIcon(availability: PersonAvailabilities): IconName | undefined {
     switch (availability) {
-      case PersonAvailability.Available:
+      case 'Available':
         return 'check_circle_outlined';
-      case PersonAvailability.AvailableIdle:
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
-      case PersonAvailability.BusyIdle:
+      case 'AvailableIdle':
+      case 'Away':
+      case 'BeRightBack':
+      case 'BusyIdle':
         return 'time';
-      case PersonAvailability.DoNotDisturb:
-      case PersonAvailability.Busy:
+      case 'DoNotDisturb':
+      case 'Busy':
         return 'blocked';
-      case PersonAvailability.Offline:
+      case 'Offline':
         return 'close_circle_outlined';
-      case PersonAvailability.Pending:
+      case 'Pending':
         return 'more_horizontal';
       default:
         return 'do_not_disturb';
@@ -115,7 +115,7 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   /**
    * Renders the presence badge
    */
-  protected renderBadge(availability: PersonAvailability): TemplateResult {
+  protected renderBadge(availability: PersonAvailabilities): TemplateResult {
     return html`<fwc-badge
       slot="badge"
       .color=${this.getBadgeColor(availability)}
@@ -143,8 +143,8 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
     >
       ${this.presence?.render({
         complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
-        pending: () => this.renderBadge(PersonAvailability.Pending),
-        error: () => this.renderBadge(PersonAvailability.Offline),
+        pending: () => this.renderBadge('Pending'),
+        error: () => this.renderBadge('Offline'),
       })}</fwc-avatar
     >`;
   }

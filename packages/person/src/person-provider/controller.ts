@@ -1,7 +1,7 @@
 import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
 import { PersonHost, PersonResolver } from './types';
-import { PersonPresence, PersonDetails, PersonAvailability } from '../types';
+import { PersonPresence, PersonDetails } from '../types';
 import { PersonControllerConnectEvent } from '../events';
 
 export class PersonController implements ReactiveController {
@@ -55,8 +55,8 @@ export class PersonController implements ReactiveController {
           console.error(err);
           return {
             id: azureId,
-            availability: PersonAvailability.Error,
-          };
+            availability: 'Error',
+          } as PersonPresence;
         });
       },
       () => [this.azureId]

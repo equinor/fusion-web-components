@@ -2,7 +2,7 @@ import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
 
 import { PersonResolver } from '../person-provider';
-import { PersonSearchResult } from '../types';
+import { PersonSearchResponse } from '../types';
 import { PersonControllerConnectEvent } from '../events';
 
 import {
@@ -37,12 +37,22 @@ export class PersonSearchController implements ReactiveController {
     this.task = new Task<[string], SearchableDropdownResult>(
       this.#host,
       async ([qs]: [string]): Promise<SearchableDropdownResult> => {
+        let result: PersonSearchResponse;
         if (!this.resolver?.getPerson) {
           /* resolver is not available */
-          return [];
-        }
-        let result: PersonSearchResult;
-        if (!qs) {
+          result = {
+            count: 1,
+            results: [
+              {
+                '@search.score': 1,
+                document: {
+                  azureUniqueId: 'error',
+                  name: 'PersonResolver is not accessible',
+                },
+              },
+            ],
+          };
+        } else if (!qs) {
           result = {
             count: 1,
             results: [
@@ -57,7 +67,22 @@ export class PersonSearchController implements ReactiveController {
             ],
           };
         } else {
-          result = await this.resolver.getPerson(qs);
+          result = await this.resolver?.getPerson(qs);
+          if (result.count < 1) {
+            result = {
+              count: 1,
+              results: [
+                {
+                  '@search.score': 0,
+                  document: {
+                    azureUniqueId: 'nomatch',
+                    name: 'No matching person found',
+                    isExpired: true,
+                  },
+                },
+              ],
+            };
+          }
         }
         // set isSelected on result items
         this.result = this.mutateResult(this.mapPersonSearchResult(result));
@@ -138,13 +163,15 @@ export class PersonSearchController implements ReactiveController {
    * @param result SearchableDropdownResult
    * @returns result
    */
-  private mapPersonSearchResult(result: PersonSearchResult): SearchableDropdownResult {
+  private mapPersonSearchResult(result: PersonSearchResponse): SearchableDropdownResult {
     return result.results.map((item) => {
       return {
         id: item.document.azureUniqueId,
         title: item.document.name,
         subTitle: item.document.mail,
         graphic: item.document.pictureSrc,
+        isDisabled: item.document.isExpired,
+        isError: item.document.azureUniqueId === 'error',
       };
     });
   }

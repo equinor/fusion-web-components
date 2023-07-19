@@ -3,7 +3,7 @@ import React, { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'r
 import {
   PersonProviderElement,
   PersonResolver,
-  PersonSearchResult,
+  PersonSearchResponse,
   PersonDetails,
 } from '@equinor/fusion-wc-person';
 PersonProviderElement;
@@ -45,20 +45,28 @@ const userDetails: PersonDetails = {
     },
   ],
 };
-
+const personSearchResult = (query : string): PersonSearchResponse => {
+  const result: PersonSearchResponse = {
+    count: 0,
+    results: [],
+  };
+  if (
+    (userDetails.name || '').indexOf(query) > -1 ||
+    (userDetails.mobilePhone || '').indexOf(query) > -1 ||
+    (userDetails.mail || '').indexOf(query) > -1
+  ) {
+    result.results.push({
+      "@search.score": 999,
+      document: userDetails
+    });
+  }
+  return result;
+};
 const mockPersonResolver: PersonResolver = {
   getPerson: async (query: string) => {
     console.debug('Person Search query:', query);
     await new Promise((res) => setTimeout(res, 1000));
-    return await Promise.resolve({
-      count: 1,
-      results: [
-        {
-          '@search.score': 59.123,
-          document: userDetails,
-        },
-      ],
-    });
+    return await Promise.resolve(personSearchResult(query));
   },
   getDetails: async (azureId: string) => {
     await new Promise((res) => setTimeout(res, 1000));

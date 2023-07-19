@@ -14,6 +14,7 @@ import {
   SearchableDropdownControllerHost,
   SearchableDropdownResult,
   SearchableDropdownResultItem,
+  sddStyles,
 } from '@equinor/fusion-wc-searchable-dropdown';
 
 import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
@@ -28,8 +29,6 @@ TextInputElement;
 DividerElement;
 IconElement;
 AvatarElement;
-
-import { styles as sddStyles } from './element.css';
 
 /**
  * Element for SearchableDropdown

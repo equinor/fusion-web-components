@@ -31,14 +31,18 @@ export type PersonDetails = {
   isResourceOwner?: boolean;
   managerAzureId?: string;
 };
-export type PersonSearchResult = {
+
+export type PersonSearchResult = Array<{
+  '@search.score': number;
+  document: PersonDetails;
+}>;
+
+export type PersonSearchResponse = {
   count: number;
   continuationToken?: string;
-  results: Array<{
-    '@search.score': number;
-    document: PersonDetails;
-  }>;
+  results: PersonSearchResult;
 };
+
 export type PersonPicture = {
   imageSrc?: string;
 };

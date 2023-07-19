@@ -32,15 +32,15 @@ export type PersonDetails = {
   managerAzureId?: string;
 };
 
-export type PersonSearchResult = Array<{
+export type PersonSearchResult = {
   '@search.score': number;
   document: PersonDetails;
-}>;
+};
 
 export type PersonSearchResponse = {
   count: number;
   continuationToken?: string;
-  results: PersonSearchResult;
+  results: PersonSearchResult[];
 };
 
 export type PersonPicture = {

@@ -131,14 +131,11 @@ export class PersonSearchElement
       'item-avatar': (item.graphic ?? '').indexOf('http') > -1,
     };
 
-    console.log('fwc::searchabledropdown::item', item);
-
     const renderItemText = () => {
       /* Get icon for either meta or graphic slot */
       const getIconSlot = (type: 'meta' | 'graphic') => {
         if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
           const iconRef = item[type] ?? this[type];
-          console.debug('ICONREF', iconRef);
           const iconSlot = (): HTMLTemplateResult => 
             iconRef.indexOf('http') > -1
               ? html`<fwc-avatar src=${iconRef} size="small"></fwc-avatar>`

@@ -1,7 +1,9 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import SearchableDropdownElement from './element';
 import { SearchableDropdownProps } from '../types';
+
 export * from './element';
+export { sddStyles } from './element.css';
 
 export const tag = 'fwc-searchable-dropdown';
 

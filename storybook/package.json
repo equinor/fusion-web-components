@@ -1,10 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-<<<<<<< HEAD
   "version": "2.20.6",
-=======
-  "version": "2.20.1-beta.0",
->>>>>>> b151f5b (chore(prerelease): bumped version with tag beta)
   "description": "",
   "main": "index.js",
   "private": true,
@@ -35,7 +31,7 @@
     "@equinor/fusion-wc-progress-indicator": "^0.4.9",
     "@equinor/fusion-wc-radio": "^0.2.25",
     "@equinor/fusion-wc-ripple": "^0.2.19",
-    "@equinor/fusion-wc-searchable-dropdown": "^2.6.0-beta.0",
+    "@equinor/fusion-wc-searchable-dropdown": "^2.5.2",
     "@equinor/fusion-wc-select": "^0.1.9",
     "@equinor/fusion-wc-skeleton": "^0.2.24",
     "@equinor/fusion-wc-switch": "^0.2.27",

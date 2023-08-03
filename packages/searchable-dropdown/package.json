@@ -18,7 +18,7 @@
     "@equinor/fusion-wc-icon": "^1.0.31",
     "@equinor/fusion-wc-list": "^0.3.5",
     "@equinor/fusion-wc-textinput": "^0.5.19",
-    "@lit-labs/task": "^2.1.0",
+    "@lit-labs/task": "^3.0.0",
     "@types/uuid": "^9.0.1",
     "lit": "2.7.0",
     "uuid": "^9.0.0"

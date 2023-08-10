@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.5...@equinor/fusion-wc-person@0.4.6) (2023-08-10)
+
+
+### Bug Fixes
+
+* **person:** account type background ([000f2b8](https://github.com/equinor/fusion-web-components/commit/000f2b81f37dcb1fe545ecdd3c1e26d9d57289f3))
+
+
+
+
+
 ## [0.4.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.4...@equinor/fusion-wc-person@0.4.5) (2023-07-10)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

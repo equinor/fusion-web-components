@@ -58,9 +58,9 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   protected getRenderClasses(accountType?: string): ClassInfo {
     return {
       'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
+      'fwc-person-avatar__consultant': accountType === PersonAccountType.Consultant || PersonAccountType.Enterprise,
+      'fwc-person-avatar__external': accountType === PersonAccountType.External,
       'fwc-person-avatar__external-hire': accountType === PersonAccountType.ExternalHire,
-      'fwc-person-avatar__x-external': accountType === PersonAccountType.XExternal,
-      'fwc-person-avatar__joint-venture-affiliate': accountType === PersonAccountType.JointVentureAffiliate,
     };
   }
 

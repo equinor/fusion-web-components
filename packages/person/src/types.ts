@@ -13,7 +13,7 @@ export type Position = {
 };
 
 export type Manager = {
-  azureId: string;
+  azureUniqueId: string;
   name?: string;
   pictureSrc?: string;
   department?: string;
@@ -33,6 +33,7 @@ export type PersonDetails = {
   officeLocation?: string;
   positions?: Position[];
   manager?: Manager;
+  managerAzureUniqueId?: string;
 };
 
 export type PersonPicture = {
@@ -41,9 +42,10 @@ export type PersonPicture = {
 
 export enum PersonAccountType {
   Employee = 'Employee',
-  ExternalHire = 'External hire',
-  XExternal = 'X-External',
-  JointVentureAffiliate = 'Joint venture/Affiliate',
+  Consultant = 'Consultant',
+  Enterprise = 'Enterprise',
+  External = 'External',
+  ExternalHire = 'External Hire',
 }
 
 export enum PersonAvailability {

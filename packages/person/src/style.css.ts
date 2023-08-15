@@ -34,15 +34,19 @@ export const personStyle = css`
     border-radius: 50%;
   }
   .fwc-person-type__employee {
-    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.infographic.substitute__purple_berry.getVariable('color'))};
+    --fwc-avatar-base-color: #8c1159;
     --fwc-avatar-ink-color: #fff;
   }
   .fwc-person-type__consultant {
-    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.infographic.primary__energy_red_100.getVariable('color'))};
+    --fwc-avatar-base-color: #eb0037;
     --fwc-avatar-ink-color: #fff;
   }
   .fwc-person-type__external {
-    --fwc-avatar-base-color: ${unsafeCSS(theme.colors.infographic.substitute__pink_salmon.getVariable('color'))};
+    --fwc-avatar-base-color: #ff92a8;
+    --fwc-avatar-ink-color: #fff;
+  }
+  .fwc-person-type__external-hire {
+    --fwc-avatar-base-color: #000;
     --fwc-avatar-ink-color: #fff;
   }
 `;

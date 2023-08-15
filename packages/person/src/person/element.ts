@@ -85,6 +85,7 @@ export class PersonElement extends LitElement implements PersonHost, PersonEleme
       case 'Employee':
         return 'fwc-person-type__employee';
       case 'External hire':
+        return 'fwc-person-type__external-hire';
       case 'X-External':
         return 'fwc-person-type__external';
       case 'Joint venture/Affiliate':

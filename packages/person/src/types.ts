@@ -51,9 +51,10 @@ export type PersonAccountTypes = 'Employee' | 'External hire' | 'X-External' | '
 
 export declare enum PersonAccountType {
   Employee = 'Employee',
-  ExternalHire = 'External hire',
-  XExternal = 'X-External',
-  JointVentureAffiliate = 'Joint venture/Affiliate',
+  Consultant = 'Consultant',
+  Enterprise = 'Enterprise',
+  External = 'External',
+  ExternalHire = 'External Hire',
 }
 export type PersonAvailabilities =
   | 'Available'

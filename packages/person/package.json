@@ -44,11 +44,16 @@
     "@equinor/fusion-wc-badge": "^0.2.32",
     "@equinor/fusion-wc-button": "^1.4.3",
     "@equinor/fusion-wc-core": "^1.0.5",
+    "@equinor/fusion-wc-divider": "^0.2.21",
     "@equinor/fusion-wc-icon": "^1.0.31",
-    "@equinor/fusion-wc-skeleton": "^0.2.24",
+    "@equinor/fusion-wc-list": "^0.3.5",
     "@equinor/fusion-wc-searchable-dropdown": "^2.5.2",
+    "@equinor/fusion-wc-skeleton": "^0.2.24",
+    "@equinor/fusion-wc-textinput": "^0.5.19",
     "@lit-labs/task": "^2.1.0",
-    "lit": "2.7.0"
+    "@types/uuid": "^9.0.2",
+    "lit": "2.7.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",

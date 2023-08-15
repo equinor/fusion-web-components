@@ -4,7 +4,6 @@ import { iconNames } from '@equinor/fusion-wc-icon';
 
 import PersonListItem from './Components/PersonListItem';
 import IconButton from './Components/IconButton';
-import { Availability, AccountType, PersonItemSize } from '@equinor/fusion-wc-person';
 
 export const DefaultTemplate = ({ children, ...props }) => {
   return (
@@ -76,7 +75,7 @@ npm i @equinor/fusion-wc-person
     size: {
       description: 'Size of the component',
       control: 'radio',
-      options: PersonItemSize,
+      options: ['small', 'medium', 'large'],
       table: {
         type: { summary: 'PersonItemSize' },
         defaultValue: { summary: 'medium' },

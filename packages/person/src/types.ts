@@ -25,6 +25,7 @@ export type PersonDetails = {
   officeLocation?: string;
   positions?: Position[];
   manager?: PersonDetails;
+  managerAzureUniqueId: string,
   upn?: string;
   equinorUserTypeV1?: string;
   isExpired?: boolean;

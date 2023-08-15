@@ -59,7 +59,7 @@ export class PersonController implements ReactiveController {
           } as PersonPresence;
         });
       },
-      () => [this.azureId]
+      () => [this.azureId],
     );
   }
 
@@ -79,7 +79,7 @@ export class PersonController implements ReactiveController {
           };
         });
       },
-      () => [this.azureId]
+      () => [this.azureId],
     );
   }
 }

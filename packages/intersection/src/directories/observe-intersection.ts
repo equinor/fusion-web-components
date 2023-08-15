@@ -9,7 +9,10 @@ export interface ObserverInfo {
 }
 
 class Observer extends IntersectionObserver {
-  constructor(public callback: IntersectionObserverCallback, public options?: IntersectionObserverInit) {
+  constructor(
+    public callback: IntersectionObserverCallback,
+    public options?: IntersectionObserverInit,
+  ) {
     super(callback, options);
   }
 }
@@ -27,7 +30,7 @@ class ObserveIntersectionDirective extends Directive {
       (partInfo.strings?.length as number) > 2
     ) {
       throw new Error(
-        'The `observeIntersection` directive must be used in the `intersection` attribute and must be the only part in the attribute.'
+        'The `observeIntersection` directive must be used in the `intersection` attribute and must be the only part in the attribute.',
       );
     }
   }

@@ -136,7 +136,7 @@ export class SearchableDropdownElement
       const getIconSlot = (type: 'meta' | 'graphic') => {
         if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
           const iconRef = item[type] ?? this[type];
-          const iconSlot = (): HTMLTemplateResult => 
+          const iconSlot = (): HTMLTemplateResult =>
             iconRef.indexOf('http') > -1
               ? html`<fwc-avatar src=${iconRef} size="small"></fwc-avatar>`
               : html`<fwc-icon icon=${iconRef}></fwc-icon>`;

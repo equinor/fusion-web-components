@@ -35,18 +35,18 @@
   "license": "ISC",
   "dependencies": {
     "@types/react": "^18.0.28",
-    "lerna": "^6.6.0",
-    "prettier": "^2.8.7"
+    "lerna": "^6.6.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.0",
     "@commitlint/config-conventional": "^17.4.4",
-    "@equinor/eslint-config-fusion": "^2.0.0",
+    "@equinor/eslint-config-fusion": "^2.1.4",
     "del-cli": "^5.0.0",
     "eslint": "^8.36.0",
     "husky": "^8.0.3",
     "lerna": "^6.6.0",
     "lint-staged": "^13.2.0",
+    "prettier": "^3.0.1",
     "typescript": "^4.9.5"
   },
   "husky": {

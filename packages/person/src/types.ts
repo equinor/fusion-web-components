@@ -48,7 +48,7 @@ export type PersonPicture = {
   imageSrc?: string;
 };
 
-export type PersonAccountTypes = 'Employee' | 'External hire' | 'X-External' | 'Joint venture/Affiliate';
+export type PersonAccountTypes = 'Employee' | 'Consultant' | 'Enterprise'| 'External' | 'External hire';
 
 export declare enum PersonAccountType {
   Employee = 'Employee',

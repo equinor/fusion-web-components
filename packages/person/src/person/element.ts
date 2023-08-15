@@ -84,12 +84,13 @@ export class PersonElement extends LitElement implements PersonHost, PersonEleme
     switch (accountType) {
       case 'Employee':
         return 'fwc-person-type__employee';
+      case 'Consultant' || 'Enterprise':
+        return 'fwc-person-type__consultant';
+      case 'External':
+        return 'fwc-person-type__external';
       case 'External hire':
         return 'fwc-person-type__external-hire';
-      case 'X-External':
-        return 'fwc-person-type__external';
-      case 'Joint venture/Affiliate':
-        return 'fwc-person-type__consultant';
+      
     }
   }
 

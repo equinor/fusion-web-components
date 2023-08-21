@@ -12,6 +12,7 @@ export type Position = {
 };
 export type PersonDetails = {
   azureUniqueId: string;
+  azureId?: string;
   name?: string;
   pictureSrc?: string;
   jobTitle?: string;
@@ -25,7 +26,7 @@ export type PersonDetails = {
   officeLocation?: string;
   positions?: Position[];
   manager?: PersonDetails;
-  managerAzureUniqueId: string,
+  managerAzureUniqueId?: string;
   upn?: string;
   equinorUserTypeV1?: string;
   isExpired?: boolean;

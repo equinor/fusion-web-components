@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import MarkdownEditor from './Components/MarkdownEditor';
+import MarkdownEditor, { MenuSizes } from './Components/MarkdownEditor';
 
 
 export const Template = ({ children, ...props }) => {
@@ -37,7 +37,7 @@ export const Container = ({ children }) => (
     menuSize: {
       description: 'Size of the menu buttons',
       control: 'radio',
-      options: ['small', 'medium', 'large'],
+      options: MenuSizes,
       table: {
         type: { summary: 'MenuSizes' },
         defaultValue: { summary: 'medium' },

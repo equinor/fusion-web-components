@@ -6,7 +6,7 @@ MarkdownEditorElement;
 
 export const MarkdownEditor = createComponent<MarkdownEditorElement, MarkdownEditorElementProps>(
   MarkdownEditorElement,
-  markdownEditorTag
+  markdownEditorTag,
 );
 
 export type MarkdownEditorProps = React.ComponentProps<typeof MarkdownEditor>;

@@ -6,7 +6,7 @@ import { MdMenuItemType, getMenuItemByType } from './menuItems';
 export type MenuItem = {
   command: Command;
   dom: HTMLButtonElement;
-  type: any;
+  type: MarkType;
 };
 
 export class MenuView {

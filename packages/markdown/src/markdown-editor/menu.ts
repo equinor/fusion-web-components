@@ -6,7 +6,7 @@ import { MdMenuItemType, getMenuItemByType } from './menuItems';
 export type MenuItem = {
   command: Command;
   dom: HTMLButtonElement;
-  type: MarkType;
+  type: unknown;
 };
 
 export class MenuView {
@@ -43,7 +43,7 @@ export class MenuView {
 
   protected updateMeuItem() {
     this.items.forEach(({ command, dom, type }) => {
-      const activeMark = this.isMarkActive(this.editorView.state, type);
+      const activeMark = this.isMarkActive(this.editorView.state, type as MarkType);
       const applicable = command(this.editorView.state, undefined, this.editorView);
 
       if (applicable) {

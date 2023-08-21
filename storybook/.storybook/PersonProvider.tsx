@@ -45,21 +45,24 @@ const userDetails: PersonDetails = {
     },
   ],
 };
+
 const personSearchResult = (query : string): PersonSearchResponse => {
   const result: PersonSearchResponse = {
     count: 0,
     results: [],
   };
   if (
-    (userDetails.name || '').indexOf(query) > -1 ||
+    (userDetails.name || '').toLowerCase().indexOf(query) > -1 ||
     (userDetails.mobilePhone || '').indexOf(query) > -1 ||
-    (userDetails.mail || '').indexOf(query) > -1
+    (userDetails.mail || '').toLowerCase().indexOf(query) > -1
   ) {
+    result.count += 1;
     result.results.push({
       "@search.score": 999,
       document: userDetails
     });
   }
+
   return result;
 };
 const mockPersonResolver: PersonResolver = {

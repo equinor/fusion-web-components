@@ -26,6 +26,13 @@ export const Template = (props) => (
     <Container title="Disabled">
       <PersonAvatar disabled {...props} />
     </Container>
+    <Container title="With datasource">
+      <PersonAvatar dataSource={{
+         pictureSrc: 'https://avatars.githubusercontent.com/u/525862',
+         name: 'Tux Penguin',
+         accountType: 'Employee',
+     }} />
+    </Container>
   </div>
 );
 
@@ -58,6 +65,6 @@ npm i @equinor/fusion-wc-person-avatar
 
 ## Snapshots
 
-<Story name="Snapshots" args={{}}>
+<Story name="Snapshots" args={{ azureId: '1234' }}>
   {Template.bind({})}
 </Story>

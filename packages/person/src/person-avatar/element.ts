@@ -1,13 +1,13 @@
-import { CSSResult, TemplateResult, html } from 'lit';
+import { CSSResult, TemplateResult, html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
-import { PersonElement } from '../person';
 import { PersonAvatarElementProps } from './types';
-import { PersonAccountType, PersonAvailability, PersonPresence, PersonDetails } from '../types';
+import { PersonAccountType, PersonAvailability } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
-import Skeleton from '@equinor/fusion-wc-skeleton';
+import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import style from './element.css';
+import { AvatarData, PersonControllerHost, PersonAvatarTask } from './task';
 
 // persist elements
 Badge;
@@ -31,8 +31,19 @@ Skeleton;
  *
  * @summary
  */
-export class PersonAvatarElement extends PersonElement implements PersonAvatarElementProps {
+export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps, PersonControllerHost {
   static styles: CSSResult[] = [style];
+
+  @property({ type: String })
+  public azureId?: string;
+
+  @property({ type: String })
+  public upn?: string;
+
+  @property({ type: String })
+  public dataSource?: AvatarData;
+
+  private task = new PersonAvatarTask(this);
 
   /**
    * Size of the avatar.
@@ -128,25 +139,28 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
   }
 
   /**
+   * Returns the first character in the person's name as upper case initial
+   */
+  public getInitial(name?: string): string | undefined {
+    return name?.substring(0, 1)?.toUpperCase();
+  }
+
+  /**
    * Renders the avatar
    */
-  protected renderAvatar(details: PersonDetails): TemplateResult {
-    return html`<fwc-avatar
-      class=${classMap(this.getRenderClasses(details.accountType))}
-      .size=${this.size}
-      .src=${details.pictureSrc}
-      .value=${this.getInitial(details.name)}
-      ?clickable=${this.clickable}
-      ?disabled=${this.disabled}
-      ?border=${true}
-      @click=${this.handleOnClick}
-    >
-      ${this.presence?.render({
-        complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
-        pending: () => this.renderBadge(PersonAvailability.Pending),
-        error: () => this.renderBadge(PersonAvailability.Offline),
-      })}</fwc-avatar
-    >`;
+  protected renderAvatar(details: AvatarData): TemplateResult {
+    return html`
+      <fwc-avatar
+        class=${classMap(this.getRenderClasses(details.accountType))}
+        .size=${this.size}
+        .src=${details.pictureSrc}
+        .value=${this.getInitial(details.name)}
+        ?clickable=${this.clickable}
+        ?disabled=${this.disabled}
+        ?border=${true}
+        @click=${this.handleOnClick}
+      ></fwc-avatar>
+    `;
   }
 
   /**
@@ -158,11 +172,31 @@ export class PersonAvatarElement extends PersonElement implements PersonAvatarEl
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
-    return html`${this.details?.render({
-      complete: (details: PersonDetails) => this.renderAvatar(details),
+    return html`${this.task.render({
+      complete: (details: AvatarData) => this.renderAvatar(details),
       pending: () => this.renderImagePlaceholder(false, this.size),
       error: () => this.renderImagePlaceholder(true),
     })}`;
+  }
+
+  public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {
+    return html`<fwc-skeleton
+      class="${list ? 'person-list__avatar' : ''}"
+      size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
+      variant=${SkeletonVariant.Circle}
+      icon="image"
+      ?inactive=${inactive}
+    ></fwc-skeleton>`;
+  }
+
+  /**
+   * Renders pending state for avatar
+   */
+  public getToolbarPlaceholderIconSize(size: string): string {
+    if (size === 'small') {
+      return 'x-small';
+    }
+    return 'small';
   }
 
   /**

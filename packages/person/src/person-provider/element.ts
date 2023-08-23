@@ -1,6 +1,7 @@
 import { LitElement } from 'lit';
 import { PersonResolver } from '../person-provider';
 import { PersonControllerConnectEvent } from '../events';
+import { RequestResolvePersonAvatarEvent } from '../person-avatar/event';
 
 export class PersonProviderElement extends LitElement {
   protected resolver: PersonResolver | undefined = undefined;
@@ -26,11 +27,13 @@ export class PersonProviderElement extends LitElement {
   override connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
+    this.addEventListener(RequestResolvePersonAvatarEvent.eventName, this.handleResolvePersonAvatar);
   }
 
   override disconnectedCallback(): void {
     super.disconnectedCallback();
     this.removeEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
+    this.removeEventListener(RequestResolvePersonAvatarEvent.eventName, this.handleResolvePersonAvatar);
   }
 
   protected handleElementConnect(event: PersonControllerConnectEvent): void {
@@ -50,6 +53,17 @@ export class PersonProviderElement extends LitElement {
 
     if (this.resolver) {
       updateResolver(this.resolver);
+    }
+  }
+
+  protected handleResolvePersonAvatar(e: RequestResolvePersonAvatarEvent) {
+    if (this.resolver) {
+      if (e.detail.azureId) {
+        e.detail.result = this.resolver.getImageByAzureId(e.detail.azureId);
+      } else if (e.detail.upn) {
+        e.detail.result = this.resolver.getImageByUpn(e.detail.upn);
+      }
+      e.stopPropagation();
     }
   }
 }

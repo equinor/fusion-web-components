@@ -30,6 +30,23 @@ const mockPersonResolver: PersonResolver = {
       availability: PersonAvailability.Available,
     });
   },
+  getImageByAzureId: async (azureId: string) => {
+    await new Promise((res) => setTimeout(res, 3000));
+    return await Promise.resolve({
+      azureId: azureId,
+      name: 'Albert Einstein',
+      pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+      accountType: PersonAccountType.Employee,
+    });
+  },
+  getImageByUpn: async (_upn: string) => {
+    await new Promise((res) => setTimeout(res, 3000));
+    return await Promise.resolve({
+      name: 'Albert Einstein',
+      pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+      accountType: PersonAccountType.Employee,
+    });
+  },
 };
 
 const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<PersonProviderElement | null> => {
@@ -43,20 +60,27 @@ const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<
         providerRef.current?.removeResolver();
       };
     }
-  }, [providerRef]);
+  }, [providerRef, personResolver]);
 
   return providerRef;
 };
 
 export const PersonAvatar = ({ children, ...props }: PropsWithChildren<PersonAvatarElementProps>): JSX.Element => {
   const providerRef = usePersonProviderRef(mockPersonResolver);
+  const avatarRef = useRef<PersonAvatarElement>(null);
+
+  useEffect(() => {
+    for (const [name, value] of Object.entries(extractProps<PersonAvatarElementProps>(props))) {
+        if (avatarRef.current) {
+            // @ts-ignore
+            avatarRef.current[name] = value;
+        }
+    }
+  }, []);
 
   return (
     <fwc-person-provider ref={providerRef}>
-      <fwc-person-avatar {...extractProps<PersonAvatarElementProps>(props)}>{children}</fwc-person-avatar>
-      <fwc-person-provider ref={providerRef}>
-        <fwc-person-avatar {...extractProps<PersonAvatarElementProps>(props)}>{children}</fwc-person-avatar>
-      </fwc-person-provider>
+      <fwc-person-avatar ref={avatarRef}>{children}</fwc-person-avatar>
     </fwc-person-provider>
   );
 };

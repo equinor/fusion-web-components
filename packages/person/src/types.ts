@@ -36,6 +36,9 @@ export type PersonDetails = {
   managerAzureUniqueId?: string;
 };
 
+export type RequiredAndOptionalPick<T, R extends keyof T, O extends keyof Omit<T, R>> = Required<Pick<T, R>> &
+  Pick<T, O>;
+
 export type PersonPicture = {
   src: string;
 };

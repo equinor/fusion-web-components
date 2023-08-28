@@ -17,6 +17,17 @@ export const style = css`
     --fwc-avatar-base-color: #000;
     --fwc-avatar-ink-color: #fff;
   }
+
+  #floating {
+    position: absolute;
+
+    & > * {
+      position: inherit;
+      left: inherit;
+      top: inherit;
+      z-index: 2;
+    }
+  }
 `;
 
 export default style;

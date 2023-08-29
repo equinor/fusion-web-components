@@ -1,5 +1,6 @@
 import '@equinor/fusion-wc-theme';
 import './custom_element'
+import { PersonProvider } from './PersonProvider';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -9,4 +10,4 @@ export const parameters = {
   },
 };
 
-export const decorators = [(Story) => <fwc-theme>{Story()}</fwc-theme>];
+export const decorators = [(Story) => <fwc-theme><PersonProvider>{Story()}</PersonProvider></fwc-theme>];

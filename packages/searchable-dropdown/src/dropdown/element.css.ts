@@ -2,7 +2,7 @@ import { css, unsafeCSS } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
 
-export const fwcsdd = css`
+const fwcSdd = css`
   :host {
     position: relative;
     width: 100%;
@@ -52,7 +52,10 @@ export const fwcsdd = css`
     height: auto;
     overflow: hidden;
     z-index: 99;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    box-shadow:
+      0px 1px 5px rgba(0, 0, 0, 0.2),
+      0px 3px 4px rgba(0, 0, 0, 0.12),
+      0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
   }
   .list-scroll {
@@ -109,6 +112,5 @@ export const fwcsdd = css`
   }
 `;
 
-export const styles = [mdcStyle, fwcsdd];
-
-export default styles;
+export const sddStyles = [mdcStyle, fwcSdd];
+export default sddStyles;

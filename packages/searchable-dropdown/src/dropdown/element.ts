@@ -26,7 +26,7 @@ TextInputElement;
 DividerElement;
 IconElement;
 
-import { styles as sddStyles } from './element.css';
+import { sddStyles } from './element.css';
 
 /**
  * Element for SearchableDropdown

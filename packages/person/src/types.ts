@@ -21,7 +21,7 @@ export type Manager = {
 };
 
 export type PersonDetails = {
-  azureId: string;
+  azureUniqueId: string;
   name?: string;
   pictureSrc?: string;
   jobTitle?: string;
@@ -34,7 +34,10 @@ export type PersonDetails = {
   positions?: Position[];
   manager?: Manager;
   managerAzureUniqueId?: string;
+  isExpired?: boolean;
 };
+
+export type PersonQueryDetails = PersonDetails[];
 
 export type RequiredAndOptionalPick<T, R extends keyof T, O extends keyof Omit<T, R>> = Required<Pick<T, R>> &
   Pick<T, O>;

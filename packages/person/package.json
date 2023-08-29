@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "0.4.7",
+  "version": "0.4.7-beta.18",
   "description": "",
   "main": "lib/index.js",
   "exports": {
@@ -8,7 +8,8 @@
     "./person-avatar": "./lib/person-avatar/index.js",
     "./person-card": "./lib/person-card/index.js",
     "./person-list-item": "./lib/person-list-item/index.js",
-    "./person-provider": "./lib/person-provider/index.js"
+    "./person-provider": "./lib/person-provider/index.js",
+    "./person-search": "./lib/person-search/index.js"
   },
   "types": "lib/types/index.d.ts",
   "typesVersions": {
@@ -24,6 +25,9 @@
       ],
       "person-provider": [
         "lib/types/person-provider/index.d.ts"
+      ],
+      "person-search": [
+        "lib/types/person-search/index.d.ts"
       ]
     }
   },
@@ -44,8 +48,12 @@
     "@equinor/fusion-wc-badge": "^0.2.32",
     "@equinor/fusion-wc-button": "^1.4.3",
     "@equinor/fusion-wc-core": "^1.0.5",
+    "@equinor/fusion-wc-divider": "^0.2.21",
     "@equinor/fusion-wc-icon": "^1.0.31",
+    "@equinor/fusion-wc-list": "^0.3.5",
+    "@equinor/fusion-wc-searchable-dropdown": "^2.5.3-beta.10",
     "@equinor/fusion-wc-skeleton": "^0.2.24",
+    "@equinor/fusion-wc-textinput": "^0.5.19",
     "@lit-labs/task": "^3.0.1",
     "lit": "2.7.0"
   },

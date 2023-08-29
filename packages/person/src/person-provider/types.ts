@@ -1,6 +1,6 @@
 import { ReactiveControllerHost } from 'lit';
 import { Task } from '@lit-labs/task';
-import { PersonPresence, PersonDetails } from '../types';
+import { PersonPresence, PersonDetails, PersonQueryDetails } from '../types';
 import { AvatarData } from '../person-avatar/task';
 
 export interface PersonHost extends ReactiveControllerHost {
@@ -11,6 +11,7 @@ export interface PersonHost extends ReactiveControllerHost {
 }
 
 export interface PersonResolver {
+  getQuery: (query: string) => Promise<PersonQueryDetails> | PersonQueryDetails;
   getPresence: (azureId: string) => Promise<PersonPresence> | PersonPresence;
   getDetails: (azureId: string) => Promise<PersonDetails> | PersonDetails;
   getImageByAzureId: (azureId: string) => Promise<AvatarData> | AvatarData;

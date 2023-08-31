@@ -21,6 +21,7 @@ export type Manager = {
 };
 
 export type PersonDetails = {
+  azureId?: string;
   azureUniqueId: string;
   name?: string;
   pictureSrc?: string;

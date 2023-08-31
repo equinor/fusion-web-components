@@ -25,7 +25,7 @@ const fwcSdd = css`
     --mdc-text-field-outlined-idle-border-color: transparent;
     --mdc-shape-small: 0;
     --mdc-text-field-outlined-hover-border-color: ${unsafeCSS(
-      theme.colors.interactive.primary__resting.getVariable('color')
+      theme.colors.interactive.primary__resting.getVariable('color'),
     )};
   }
   .interactive {

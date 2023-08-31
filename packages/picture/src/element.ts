@@ -120,7 +120,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
       ${repeat(
         this.srcSets,
         (src) => src.srcset || src.src,
-        (src) => src
+        (src) => src,
       )}
       <img
         src="${this.src}"

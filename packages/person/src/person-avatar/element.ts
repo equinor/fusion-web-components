@@ -1,11 +1,14 @@
-import { CSSResult, TemplateResult, html, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit';
+import { property, queryAssignedElements, queryAsync } from 'lit/decorators.js';
+import { when } from 'lit/directives/when.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+import '../person-card';
+import { computePosition, flip, shift, offset } from '@floating-ui/dom';
 import style from './element.css';
 import { AvatarData, PersonControllerHost, PersonAvatarTask } from './task';
 
@@ -13,6 +16,16 @@ import { AvatarData, PersonControllerHost, PersonAvatarTask } from './task';
 Badge;
 Avatar;
 Skeleton;
+
+const clickOutside = (e: MouseEvent) => {
+  PersonAvatarElement.openedPersonAvatars.forEach((el) => {
+    if (el !== e.target) {
+      PersonAvatarElement.hideFloating(el);
+    }
+  });
+};
+
+export type PersonAvatarShowCardOnType = 'click' | 'hover';
 
 //TODO: Handle errors better in task error render function
 
@@ -43,7 +56,8 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   @property({ type: String })
   public dataSource?: AvatarData;
 
-  private task = new PersonAvatarTask(this);
+  @property({ type: Boolean, attribute: false, reflect: false })
+  isFloatingOpen: boolean = false;
 
   /**
    * Size of the avatar.
@@ -57,11 +71,40 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
 
+  @property({ type: String, attribute: true, reflect: true })
+  showFloatingOn: PersonAvatarShowCardOnType = 'click';
+
   /**
    * Sets the avatar to be rendered as disabled.
    */
   @property({ type: Boolean })
   disabled?: boolean;
+
+  @queryAsync('#floating')
+  public floating!: Promise<HTMLSlotElement>;
+
+  @queryAssignedElements({ slot: 'floating', flatten: true })
+  private assignedFloating!: Array<HTMLElement>;
+
+  private task = new PersonAvatarTask(this);
+
+  static openedPersonAvatars: PersonAvatarElement[] = [];
+
+  async updated(props: PropertyValues) {
+    if (props.has('isFloatingOpen') && this.isFloatingOpen && (await this.floating) instanceof HTMLElement) {
+      await this.updateComplete;
+      computePosition(this, await this.floating, {
+        placement: 'bottom-start',
+        middleware: [offset(10), flip(), shift({ padding: 10 })],
+      }).then(async ({ x, y }) => {
+        // use 3d translate
+        Object.assign((await this.floating).style, {
+          left: `${x}px`,
+          top: `${y}px`,
+        });
+      });
+    }
+  }
 
   /**
    * Returns the badge color for the current presence
@@ -159,7 +202,13 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
         ?disabled=${this.disabled}
         ?border=${true}
         @click=${this.handleOnClick}
+        @mouseover=${this.handleMouseOver}
+        @mouseout=${this.handleMouseOut}
       ></fwc-avatar>
+
+      <slot id="floating" name="floating">
+        ${when(this.isFloatingOpen, () => html`<fwc-person-card .azureId="${this.azureId}"></fwc-person-card>`)}
+      </slot>
     `;
   }
 
@@ -199,12 +248,100 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     return 'small';
   }
 
+  static hideFloating(el: PersonAvatarElement): void {
+    window.removeEventListener('click', clickOutside);
+    el.isFloatingOpen = false;
+    const index = PersonAvatarElement.openedPersonAvatars.indexOf(el);
+    if (index != -1) {
+      delete PersonAvatarElement.openedPersonAvatars[index];
+    }
+  }
+
+  static hideAllFloating(): void {
+    PersonAvatarElement.openedPersonAvatars.forEach((el) => {
+      PersonAvatarElement.hideFloating(el);
+    });
+  }
+
+  showFloating(): void {
+    PersonAvatarElement.openedPersonAvatars.push(this);
+    window.addEventListener('click', clickOutside);
+    this.isFloatingOpen = true;
+  }
+
   /**
    * Handle on click.
    */
   protected handleOnClick(e: PointerEvent): void {
-    if (this.clickable) {
-      this.dispatchEvent(new PointerEvent('click', e));
+    if (this.showFloatingOn === 'click') {
+      PersonAvatarElement.hideAllFloating();
+
+      if (
+        e.target &&
+        (e.target as Node).getRootNode() instanceof ShadowRoot &&
+        ((e.target as Node).getRootNode() as ShadowRoot).host === this
+      ) {
+        e.stopPropagation();
+      }
+
+      this.showFloating.bind(this)();
+    }
+  }
+
+  protected handleMouseOver(_e: MouseEvent): void {
+    if (this.showFloatingOn === 'hover' && this.isFloatingOpen === false) {
+      PersonAvatarElement.hideAllFloating();
+
+      const timeout = setTimeout(() => {
+        this.showFloating.bind(this)();
+        this.removeEventListener('mouseout', listenerForMouseOut);
+      }, 500);
+
+      const listenerForMouseOut = (_e: MouseEvent) => {
+        clearTimeout(timeout);
+        this.removeEventListener('mouseout', listenerForMouseOut);
+      };
+
+      this.addEventListener('mouseout', listenerForMouseOut);
+    }
+  }
+
+  protected handleMouseOut(_e: MouseEvent): void {
+    if (this.showFloatingOn === 'hover' && this.isFloatingOpen) {
+      const timeoutMouseOverAssignerFloating = setTimeout(() => {
+        PersonAvatarElement.hideAllFloating();
+
+        this.assignedFloating.forEach((el) => {
+          el.removeEventListener('mouseover', listenerForMouseOverAssignedFloating);
+        });
+      }, 500);
+
+      const listenerForMouseOverAssignedFloating = (_e: MouseEvent) => {
+        clearTimeout(timeoutMouseOverAssignerFloating);
+        this.assignedFloating.forEach((el) => {
+          el.removeEventListener('mouseover', listenerForMouseOverAssignedFloating);
+
+          this.assignedFloating.forEach((el) => {
+            el.addEventListener('mouseout', () => {
+              const timeoutMouseOutAssignerFloating = setTimeout(() => {
+                PersonAvatarElement.hideAllFloating();
+                this.removeEventListener('mouseover', listenerForMouseOutAssignedFloating);
+              }, 500);
+
+              const listenerForMouseOutAssignedFloating = (_e: MouseEvent) => {
+                clearTimeout(timeoutMouseOutAssignerFloating);
+                this.removeEventListener('mouseover', listenerForMouseOutAssignedFloating);
+              };
+
+              this.addEventListener('mouseover', listenerForMouseOutAssignedFloating);
+            });
+          });
+        });
+      };
+
+      this.assignedFloating.forEach((el) => {
+        el.addEventListener('mouseover', listenerForMouseOverAssignedFloating);
+      });
     }
   }
 }

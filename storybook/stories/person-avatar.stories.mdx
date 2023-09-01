@@ -23,6 +23,10 @@ export const Template = (props) => (
     <Container title="Clickable">
       <PersonAvatar clickable {...props} />
     </Container>
+    <Container title="Card on hover">
+      <PersonAvatar showFloatingOn="hover" {...props} />
+      <PersonAvatar showFloatingOn="hover" {...props} />
+    </Container>
     <Container title="Disabled">
       <PersonAvatar disabled {...props} />
     </Container>

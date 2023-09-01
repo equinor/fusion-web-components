@@ -9,7 +9,7 @@ export type AzureIdOrUpnObj =
   | { azureId: string; upn?: string }
   | { azureId: string; upn: string };
 
-export type AvatarData = RequiredAndOptionalPick<PersonDetails, 'azureUniqueId' | 'name' | 'pictureSrc', 'accountType'>;
+export type AvatarData = RequiredAndOptionalPick<PersonDetails, 'azureUniqueId' | 'name', 'accountType' | 'pictureSrc'>;
 
 export type PersonControllerHostAttributes = {
   azureId?: string;

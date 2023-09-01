@@ -11,9 +11,9 @@ export interface PersonHost extends ReactiveControllerHost {
 }
 
 export interface PersonResolver {
-  getQuery: (query: string) => Promise<PersonQueryDetails> | PersonQueryDetails;
-  getPresence: (azureId: string) => Promise<PersonPresence> | PersonPresence;
-  getDetails: (azureId: string) => Promise<PersonDetails> | PersonDetails;
-  getImageByAzureId: (azureId: string) => Promise<AvatarData> | AvatarData;
-  getImageByUpn: (upn: string) => Promise<AvatarData> | AvatarData;
+  getQuery: (query: string, controller?: AbortController) => Promise<PersonQueryDetails> | PersonQueryDetails;
+  getPresence: (azureId: string, controller?: AbortController) => Promise<PersonPresence> | PersonPresence;
+  getDetails: (azureId: string, controller?: AbortController) => Promise<PersonDetails> | PersonDetails;
+  getImageByAzureId: (azureId: string, controller?: AbortController) => Promise<AvatarData> | AvatarData;
+  getImageByUpn: (upn: string, controller?: AbortController) => Promise<AvatarData> | AvatarData;
 }

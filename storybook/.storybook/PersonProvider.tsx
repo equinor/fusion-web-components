@@ -21,7 +21,7 @@ const userDetails: PersonQueryDetails = [{
   department: 'FOIT CON PDP',
   mail: 'abby@sience.com',
   officeLocation: 'Stavanger',
-  mobilePhone: '+47 999999999',
+  mobilePhone: '+47 555 55 555',
   managerAzureUniqueId: '1234-1324-1235',
   manager: {
     azureUniqueId: '1234-1324-1235',

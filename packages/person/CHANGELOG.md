@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.7...@equinor/fusion-wc-person@0.5.0) (2023-09-04)
+
+
+### Features
+
+* **person-avatar:** show person-card when avatar is clicked or hovered ([a85e61d](https://github.com/equinor/fusion-web-components/commit/a85e61d85ef0bba821416e7e2b1a5309c6875703))
+
+
+
+
+
 ## [0.4.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.6...@equinor/fusion-wc-person@0.4.7) (2023-08-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

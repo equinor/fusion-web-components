@@ -1,5 +1,5 @@
 import { html, LitElement, HTMLTemplateResult } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 
 import { query } from 'lit/decorators/query.js';
 
@@ -8,10 +8,10 @@ import { classMap } from 'lit/directives/class-map.js';
 import { v4 as uuid } from 'uuid';
 
 import { PersonSearchController } from './controller';
+import { PersonSearchHost } from './types';
+import { PersonSearchTask } from './task';
 
 import {
-  SearchableDropdownProps,
-  SearchableDropdownControllerHost,
   SearchableDropdownResult,
   SearchableDropdownResultItem,
   sddStyles,
@@ -50,20 +50,21 @@ AvatarElement;
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  */
-export class PersonSearchElement
-  extends LitElement
-  implements SearchableDropdownProps, SearchableDropdownControllerHost
-{
+export class PersonSearchElement extends LitElement implements PersonSearchHost {
   // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
 
   /* style object css */
   static styles = [sddStyles];
+
+  #task = new PersonSearchTask(this);
 
   controller = new PersonSearchController(this);
 
   /* Label passed to the fwc-text-input component */
   @property()
   label = '';
+  @state()
+  queryString = '';
 
   /* Placeholder passe to fwc-textinput */
   @property()
@@ -202,7 +203,7 @@ export class PersonSearchElement
     }
 
     return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controller.handleSelect}>
-      ${this.controller.task.render({
+      ${this.#task.render({
         complete: (result: SearchableDropdownResult) => {
           /*
            * clear previous render items.

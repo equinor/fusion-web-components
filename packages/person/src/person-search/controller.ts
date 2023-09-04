@@ -2,12 +2,11 @@ import { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
 
 import { PersonResolver } from '../person-provider';
-import { PersonQueryDetails } from '../types';
 import { PersonControllerConnectEvent } from '../events';
+import { PersonSearchHost } from './types';
 
 import {
   SearchableDropdownResult,
-  SearchableDropdownControllerHost,
   SearchableDropdownResultItem,
   SearchableDropdownSelectEvent,
   ExplicitEventTarget,
@@ -25,53 +24,13 @@ export class PersonSearchController implements ReactiveController {
   public task!: Task<[string], SearchableDropdownResult>;
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
-  #host: SearchableDropdownControllerHost;
-  #queryString = '';
+  #host: PersonSearchHost;
 
-  constructor(host: SearchableDropdownControllerHost) {
+  constructor(host: PersonSearchHost) {
     this.#host = host;
     this.#host.addController(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleKeyup = this.handleKeyup.bind(this);
-
-    this.task = new Task<[string], SearchableDropdownResult>(
-      this.#host,
-      async ([query]: [string]): Promise<SearchableDropdownResult> => {
-        let result: PersonQueryDetails;
-        if (!this.resolver?.getQuery) {
-          result = [
-            {
-              azureUniqueId: 'resolver',
-              name: 'Start typing to search',
-              isExpired: true,
-            },
-          ];
-        } else if (!query) {
-          result = [
-            {
-              azureUniqueId: 'initial',
-              name: this.#host.initialText,
-              isExpired: true,
-            },
-          ];
-        } else {
-          result = await this.resolver?.getQuery(query);
-          if (result.length < 1) {
-            result = [
-              {
-                azureUniqueId: 'nomatch',
-                name: 'No matching person found',
-                isExpired: true,
-              },
-            ];
-          }
-        }
-        // set isSelected on result items
-        this.result = this.setSelected(this.mapPersonSearchResult(result));
-        return this.result;
-      },
-      () => [this.#queryString],
-    );
   }
 
   protected updateResolver = (resolver?: PersonResolver): void => {
@@ -141,52 +100,19 @@ export class PersonSearchController implements ReactiveController {
     }
   };
 
-  /**
-   * Mutates result to set parameters like isSelected.
-   * @param result SearchableDropdownResult
-   * @returns result
-   */
-  private mapPersonSearchResult(result: PersonQueryDetails): SearchableDropdownResult {
-    return result.map((item) => {
-      const person = {
-        id: item.azureUniqueId,
-        title: item.name,
-        subTitle: item.mail,
-        // graphic: item.azureUniqueId.match(/[a-z0-9-]/) ? item.azureUniqueId : undefined, // to only load avatar on real results
-        graphic: item.mail ?? undefined, // to only load avatar on real results
-        isDisabled: item.isExpired,
-        isError: item.azureUniqueId === 'error',
-      };
-      return person;
-    });
-  }
-
-  private setSelected(searchableDropdownResult: SearchableDropdownResult) {
-    if (searchableDropdownResult) {
-      const { selectedId } = this.#host;
-      for (let i = 0; i < searchableDropdownResult.length; i++) {
-        const item = searchableDropdownResult[i];
-        if (item.type === 'section' && item.children?.length) {
-          for (let x = 0; x < item.children.length; x++) {
-            const kid = item.children[x];
-            if (this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id) {
-              kid.isSelected = true;
-            } else {
-              kid.isSelected = false;
-            }
-          }
-        } else {
-          if (this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id) {
-            item.isSelected = true;
-          } else {
-            item.isSelected = false;
-          }
-        }
-      }
-    }
-
-    return searchableDropdownResult;
-  }
+  // private setSelected(searchableDropdownResult: SearchableDropdownResult) {
+  //   const { selectedId } = this.#host;
+  //   return searchableDropdownResult.map((item) => {
+  //     if (item.type === 'section' && item.children?.length) {
+  //       item.children.map((kid) => {
+  //         kid.isSelected = !!(this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id);
+  //       });
+  //     } else {
+  //       item.isSelected = !!(this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id);
+  //     }
+  //     return item;
+  //   });
+  // }
 
   /**
    * Fires the select event to listener on host.
@@ -302,7 +228,8 @@ export class PersonSearchController implements ReactiveController {
 
     this.#host.value = '';
     this._selectedItems = [];
-    this.#queryString = '';
+    // this.#queryString = '';
+    this.#host.queryString = '';
 
     /* also runs task */
     this.isOpen = false;
@@ -373,8 +300,10 @@ export class PersonSearchController implements ReactiveController {
       clearTimeout(this.timer);
     }
     this.timer = setTimeout(() => {
-      this.#queryString = target.value.trim().toLowerCase();
+      const value = target.value.trim().toLowerCase();
+      // this.#queryString = value;
+      this.#host.queryString = value;
       this.#host.requestUpdate();
-    }, 250);
+    }, 500);
   }
 }

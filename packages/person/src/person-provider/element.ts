@@ -2,6 +2,7 @@ import { LitElement } from 'lit';
 import { PersonResolver } from '../person-provider';
 import { PersonControllerConnectEvent } from '../events';
 import { RequestResolvePersonAvatarEvent } from '../person-avatar/event';
+import { RequestResolvePersonSearchEvent } from '../person-search/event';
 
 export class PersonProviderElement extends LitElement {
   protected resolver: PersonResolver | undefined = undefined;
@@ -28,12 +29,14 @@ export class PersonProviderElement extends LitElement {
     super.connectedCallback();
     this.addEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
     this.addEventListener(RequestResolvePersonAvatarEvent.eventName, this.handleResolvePersonAvatar);
+    this.addEventListener(RequestResolvePersonSearchEvent.eventName, this.handleResolvePersonSearch);
   }
 
   override disconnectedCallback(): void {
     super.disconnectedCallback();
     this.removeEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
     this.removeEventListener(RequestResolvePersonAvatarEvent.eventName, this.handleResolvePersonAvatar);
+    this.removeEventListener(RequestResolvePersonSearchEvent.eventName, this.handleResolvePersonSearch);
   }
 
   protected handleElementConnect(event: PersonControllerConnectEvent): void {
@@ -63,6 +66,13 @@ export class PersonProviderElement extends LitElement {
       } else if (e.detail.upn) {
         e.detail.result = this.resolver.getImageByUpn(e.detail.upn);
       }
+      e.stopPropagation();
+    }
+  }
+
+  protected handleResolvePersonSearch(e: RequestResolvePersonSearchEvent) {
+    if (this.resolver) {
+      e.detail.result = this.resolver.getQuery(e.detail.query);
       e.stopPropagation();
     }
   }

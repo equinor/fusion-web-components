@@ -100,7 +100,7 @@ export class PersonSearchController implements ReactiveController {
     }
   };
 
-  // private setSelected(searchableDropdownResult: SearchableDropdownResult) {
+  // private setSelected(searchableDropdownResult: SearchableDropdownResult): SearchableDropdownResult {
   //   const { selectedId } = this.#host;
   //   return searchableDropdownResult.map((item) => {
   //     if (item.type === 'section' && item.children?.length) {

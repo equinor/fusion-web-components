@@ -1,4 +1,4 @@
-import { html, LitElement, HTMLTemplateResult } from 'lit';
+import { html, LitElement, HTMLTemplateResult, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 import { query } from 'lit/decorators/query.js';
@@ -132,12 +132,12 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
       'item-avatar': (item.graphic ?? '').indexOf('http') > -1,
     };
 
-    const renderItemText = () => {
+    const renderItemText = (): TemplateResult => {
       /* Get icon for either meta or graphic slot */
       const getIconSlot = (type: 'meta' | 'graphic') => {
         if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
           const iconRef = item[type] ?? this[type];
-          const iconSlot = (): HTMLTemplateResult =>
+          const iconSlot = (): TemplateResult =>
             type === 'graphic'
               ? html`<fwc-person-avatar upn=${iconRef} size="small"></fwc-person-avatar>`
               : html`<fwc-icon icon=${iconRef}></fwc-icon>`;
@@ -149,13 +149,13 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
       };
 
       /* title and subtitle slots */
-      const generateTextContent = () => {
+      const generateTextContent = (): TemplateResult[] => {
         const text = [];
         if (item.title) {
           text.push(html`<span class="item-title">${item.title}</span>`);
         }
         if (item.subTitle) {
-          text.push(html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span></span>`);
+          text.push(html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span>`);
         }
         return text;
       };

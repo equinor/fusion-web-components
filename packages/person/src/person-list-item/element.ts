@@ -4,9 +4,9 @@ import { property } from 'lit/decorators.js';
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../types';
 import style from './element.css';
 import personStyle from '../style.css';
-import { PersonListItemElementProps } from './types';
+import { ListItemData, PersonListItemElementProps } from './types';
 import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import { ListItemData, PersonListItemTask } from './task';
+import { PersonListItemTask } from './task';
 
 /**
  * Element for displaying a persons card with person avatar and person info.

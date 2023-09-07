@@ -1,4 +1,5 @@
-import { AzureIdOrUpnObj, ListItemData } from './task';
+import { AzureIdOrUpnObj } from './task';
+import { ListItemData } from './types';
 
 export class RequestResolvePersonListItemEvent extends CustomEvent<
   AzureIdOrUpnObj & { result?: ListItemData | Promise<ListItemData> }

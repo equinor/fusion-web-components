@@ -1,4 +1,5 @@
-import { AvatarData, AzureIdOrUpnObj } from './task';
+import { AzureIdOrUpnObj } from './task';
+import { AvatarData } from './types';
 
 export class RequestResolvePersonAvatarEvent extends CustomEvent<
   AzureIdOrUpnObj & { result?: AvatarData | Promise<AvatarData> }

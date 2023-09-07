@@ -1,9 +1,9 @@
 import { ReactiveControllerHost } from 'lit';
 import { Task } from '@lit-labs/task';
 import { PersonPresence, PersonDetails } from '../types';
-import { AvatarData } from '../person-avatar/task';
-import { CardData } from '../person-card/task';
-import { ListItemData } from '../person-list-item/task';
+import { AvatarData } from '../person-avatar';
+import { CardData } from '../person-card';
+import { ListItemData } from '../person-list-item';
 
 export interface PersonHost extends ReactiveControllerHost {
   azureId: string;

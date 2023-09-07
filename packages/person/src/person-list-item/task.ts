@@ -1,15 +1,13 @@
 import { Task } from '@lit-labs/task';
 import { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from '../task';
-import { PersonDetails, RequiredAndOptionalPick } from '../types';
 import { RequestResolvePersonListItemEvent } from './event';
+import { ListItemData } from './types';
 
 export type AzureIdOrUpnObj =
   | { azureId?: string; upn: string }
   | { azureId: string; upn?: string }
   | { azureId: string; upn: string };
-
-export type ListItemData = RequiredAndOptionalPick<PersonDetails, 'name' | 'accountType', 'department' | 'pictureSrc'>;
 
 export type PersonControllerHostAttributes = {
   azureId?: string;

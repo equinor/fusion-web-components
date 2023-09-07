@@ -1,4 +1,5 @@
-import { AzureIdOrUpnObj, CardData } from './task';
+import { AzureIdOrUpnObj } from './task';
+import { CardData } from './types';
 
 export class RequestResolvePersonCardEvent extends CustomEvent<
   AzureIdOrUpnObj & { result?: CardData | Promise<CardData> }

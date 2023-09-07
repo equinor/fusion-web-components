@@ -3,6 +3,7 @@ import { PersonResolver } from '../person-provider';
 import { PersonControllerConnectEvent } from '../events';
 import { RequestResolvePersonAvatarEvent } from '../person-avatar/event';
 import { RequestResolvePersonCardEvent } from '../person-card/event';
+import { RequestResolvePersonListItemEvent } from '../person-list-item/event';
 
 export class PersonProviderElement extends LitElement {
   protected resolver: PersonResolver | undefined = undefined;
@@ -30,6 +31,7 @@ export class PersonProviderElement extends LitElement {
     this.addEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
     this.addEventListener(RequestResolvePersonAvatarEvent.eventName, this.handleResolvePersonAvatar);
     this.addEventListener(RequestResolvePersonCardEvent.eventName, this.handleResolvePersonCard);
+    this.addEventListener(RequestResolvePersonListItemEvent.eventName, this.handleResolvePersonListItem);
   }
 
   override disconnectedCallback(): void {
@@ -37,6 +39,7 @@ export class PersonProviderElement extends LitElement {
     this.removeEventListener(PersonControllerConnectEvent.eventName, this.handleElementConnect);
     this.removeEventListener(RequestResolvePersonAvatarEvent.eventName, this.handleResolvePersonAvatar);
     this.removeEventListener(RequestResolvePersonCardEvent.eventName, this.handleResolvePersonCard);
+    this.removeEventListener(RequestResolvePersonListItemEvent.eventName, this.handleResolvePersonListItem);
   }
 
   protected handleElementConnect(event: PersonControllerConnectEvent): void {
@@ -76,6 +79,17 @@ export class PersonProviderElement extends LitElement {
         e.detail.result = this.resolver.getCardDetailsByAzureId(e.detail.azureId);
       } else if (e.detail.upn) {
         e.detail.result = this.resolver.getCardDetailsByUpn(e.detail.upn);
+      }
+      e.stopPropagation();
+    }
+  }
+
+  protected handleResolvePersonListItem(e: RequestResolvePersonListItemEvent) {
+    if (this.resolver) {
+      if (e.detail.azureId) {
+        e.detail.result = this.resolver.getListItemDetailsByAzureId(e.detail.azureId);
+      } else if (e.detail.upn) {
+        e.detail.result = this.resolver.getListItemDetailsByUpn(e.detail.upn);
       }
       e.stopPropagation();
     }

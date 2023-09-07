@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.6.0...@equinor/fusion-wc-person@0.6.1) (2023-09-07)
+
+
+### Bug Fixes
+
+* **person:** update namesapce ([22d05aa](https://github.com/equinor/fusion-web-components/commit/22d05aab6c0da2fb7201c964369dc1b676efe72b))
+
+
+
+
+
 # [0.6.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.5.1...@equinor/fusion-wc-person@0.6.0) (2023-09-07)
 
 

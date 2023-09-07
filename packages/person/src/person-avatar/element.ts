@@ -2,7 +2,7 @@ import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit
 import { property, queryAssignedElements, queryAsync } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
-import { PersonAvatarElementProps } from './types';
+import { AvatarData, PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability } from '../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
@@ -10,7 +10,7 @@ import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import '../person-card';
 import { computePosition, flip, shift, offset } from '@floating-ui/dom';
 import style from './element.css';
-import { AvatarData, PersonControllerHost, PersonAvatarTask } from './task';
+import { PersonControllerHost, PersonAvatarTask } from './task';
 
 // persist elements
 Badge;

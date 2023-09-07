@@ -3,11 +3,11 @@ import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { property } from 'lit/decorators.js';
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../types';
-import { PersonCardElementProps } from './types';
+import { CardData, PersonCardElementProps } from './types';
 
 import personStyle from '../style.css';
 import style from './element.css';
-import { CardData, PersonCardTask } from './task';
+import { PersonCardTask } from './task';
 
 /**
  * Element for displaying a persons card with person avatar and person info.

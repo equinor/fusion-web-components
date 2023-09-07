@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.5.1...@equinor/fusion-wc-person@0.6.0) (2023-09-07)
+
+
+### Features
+
+* **person:** move task types to typings file ([5389a57](https://github.com/equinor/fusion-web-components/commit/5389a57abfc37dd18cd8625f9cf5e6a96511632d))
+
+
+
+
+
 ## [0.5.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.5.0...@equinor/fusion-wc-person@0.5.1) (2023-09-04)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

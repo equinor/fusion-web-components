@@ -12,6 +12,7 @@ import {
 } from '@equinor/fusion-wc-person';
 import extractProps from './extract-props';
 import { CardData } from '@equinor/fusion-wc-person/src/person-card/task';
+import { ListItemData } from '@equinor/fusion-wc-person/src/person-list-item/task';
 PersonCardElement;
 PersonProviderElement;
 
@@ -176,6 +177,27 @@ const mockPersonResolver: PersonResolver = {
                 },
             },
         ],
+    });
+  },
+  getListItemDetailsByAzureId: async (azureId: string): Promise<ListItemData> => {
+    await new Promise((res) => setTimeout(res, 3000));
+    return await Promise.resolve({
+        azureId,
+        name: 'Anders Emil Sommerfeldt (Bouvet ASA)',
+        pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+        accountType: PersonAccountType.Consultant,
+        jobTitle: 'X-Bouvet ASA (PX)',
+        department: 'FOIT CON PDP',
+    });
+  },
+  getListItemDetailsByUpn: async (_upn: string): Promise<ListItemData> => {
+    await new Promise((res) => setTimeout(res, 3000));
+    return await Promise.resolve({
+        name: 'Anders Emil Sommerfeldt (Bouvet ASA)',
+        pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+        accountType: PersonAccountType.Consultant,
+        jobTitle: 'X-Bouvet ASA (PX)',
+        department: 'FOIT CON PDP',
     });
   },
 };

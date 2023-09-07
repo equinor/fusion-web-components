@@ -4,7 +4,7 @@ import { iconNames } from '@equinor/fusion-wc-icon';
 
 import PersonListItem from './Components/PersonListItem';
 import IconButton from './Components/IconButton';
-import { Availability, AccountType, PersonItemSize } from '@equinor/fusion-wc-person';
+import { Availability, PersonAccountType, PersonItemSize } from '@equinor/fusion-wc-person';
 
 export const DefaultTemplate = ({ children, ...props }) => {
   return (
@@ -29,6 +29,15 @@ export const Template = (props) => (
       <PersonListItem size="small" {...props} />
       <PersonListItem size="medium" {...props} />
       <PersonListItem size="large" {...props} />
+    </Container>
+    <Container title="With datasource">
+      <PersonListItem dataSource={{
+        name: 'Tux Penguin (Bouvet ASA)',
+        pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+        accountType: PersonAccountType.Consultant,
+        jobTitle: 'X-Bouvet ASA (PX)',
+        department: 'FOIT CON PDP',
+      }} />
     </Container>
   </div>
 );
@@ -101,19 +110,19 @@ npm i @equinor/fusion-wc-person
 
 ## Snapshots
 
-<Story name="Snapshots" args={{}}>
+<Story name="Snapshots" args={{ azureId: '1234' }}>
   {Template.bind({})}
 </Story>
 
 <Story name="Clickable">
   <Container title="Clickable">
-      <PersonListItem size="medium" clickable/>
+      <PersonListItem size="medium" clickable azureId="1234" />
     </Container>
 </Story>
 
 <Story name="Toolbar">
   <Container title="Toolbar">
-      <PersonListItem size="medium" clickable >
+      <PersonListItem size="medium" clickable azureId="1234">
         <IconButton color="primary" icon="account_circle" rounded size="small" />
         <IconButton color="secondary" icon="microsoft_outlook" rounded size="small" />
         <IconButton color="success" icon="whats_app" rounded size="small" />

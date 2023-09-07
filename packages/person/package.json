@@ -5,6 +5,10 @@
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
+    "./avatar": "./lib/person-avatar/index.js",
+    "./card": "./lib/person-card/index.js",
+    "./list-item": "./lib/person-list-item/index.js",
+    "./provider": "./lib/person-provider/index.js",
     "./person-avatar": "./lib/person-avatar/index.js",
     "./person-card": "./lib/person-card/index.js",
     "./person-list-item": "./lib/person-list-item/index.js",
@@ -13,16 +17,16 @@
   "types": "lib/types/index.d.ts",
   "typesVersions": {
     "*": {
-      "person-avatar": [
+      "avatar": [
         "lib/types/person-avatar/index.d.ts"
       ],
-      "person-card": [
+      "card": [
         "lib/types/person-card/index.d.ts"
       ],
-      "person-list-item": [
+      "list-item": [
         "lib/types/person-list-item/index.d.ts"
       ],
-      "person-provider": [
+      "provider": [
         "lib/types/person-provider/index.d.ts"
       ]
     }

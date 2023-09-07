@@ -22,9 +22,6 @@ import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
 import { AvatarElement } from '@equinor/fusion-wc-avatar';
-import { PersonSearchListItemElement } from './list-item';
-
-PersonSearchListItemElement;
 ListElement;
 ListItemElement;
 CheckListItemElement;
@@ -151,11 +148,20 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
         return html``;
       };
 
+      /* title and subtitle slots */
+      const generateTextContent = (): TemplateResult[] => {
+        const text = [];
+        if (item.title) {
+          text.push(html`<span class="item-title">${item.title}</span>`);
+        }
+        if (item.subTitle) {
+          text.push(html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span>`);
+        }
+        return text;
+      };
+
       return html`${getIconSlot('graphic')}
-        <span class="item-text">
-          ${item.title && html`<span class="item-title">${item.title}</span>`}
-          ${item.subTitle && html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span>`}
-        </span>
+        <span class="item-text">${generateTextContent()}</span>
         ${getIconSlot('meta')}`;
     };
 
@@ -225,8 +231,7 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
               return html`<fwc-divider key=${item.id} variant="list" color="medium"></fwc-divider>`;
             }
 
-            return html`<fwc-person-search-list-item item=${item} />`;
-            // return this.buildListItem(item);
+            return this.buildListItem(item);
           });
         },
         pending: () =>

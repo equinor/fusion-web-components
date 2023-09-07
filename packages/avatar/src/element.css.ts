@@ -45,7 +45,6 @@ export const style = css`
     justify-content: center;
   }
   :host .fwc-avatar__picture {
-    width: 100%;
     height: 100%;
   }
   :host([disabled]) .fwc-avatar__picture {

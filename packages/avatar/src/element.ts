@@ -103,7 +103,7 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
    */
   protected renderPicture(): HTMLTemplateResult {
     return html`<div class="fwc-avatar__picture-container">
-      <fwc-picture class="fwc-avatar__picture" src=${ifDefined(this.src)} cover></fwc-picture>
+      <img class="fwc-avatar__picture" src=${ifDefined(this.src)} loading="lazy" />
     </div>`;
   }
 

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.21.2...@equinor/fusion-wc-storybook@2.21.3) (2023-09-07)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+## [2.21.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.21.1...@equinor/fusion-wc-storybook@2.21.2) (2023-09-07)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+## [2.21.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.21.0...@equinor/fusion-wc-storybook@2.21.1) (2023-09-04)
+
+**Note:** Version bump only for package @equinor/fusion-wc-storybook
+
+
+
+
+
+# [2.21.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.8...@equinor/fusion-wc-storybook@2.21.0) (2023-09-04)
+
+
+### Features
+
+* **person-avatar:** show person-card when avatar is clicked or hovered ([a85e61d](https://github.com/equinor/fusion-web-components/commit/a85e61d85ef0bba821416e7e2b1a5309c6875703))
+
+
+
+
+
 ## [2.20.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.7...@equinor/fusion-wc-storybook@2.20.8) (2023-08-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-storybook

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.6.0...@equinor/fusion-wc-person@0.6.1) (2023-09-07)
+
+
+### Bug Fixes
+
+* **person:** update namesapce ([22d05aa](https://github.com/equinor/fusion-web-components/commit/22d05aab6c0da2fb7201c964369dc1b676efe72b))
+
+
+
+
+
+# [0.6.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.5.1...@equinor/fusion-wc-person@0.6.0) (2023-09-07)
+
+
+### Features
+
+* **person:** move task types to typings file ([5389a57](https://github.com/equinor/fusion-web-components/commit/5389a57abfc37dd18cd8625f9cf5e6a96511632d))
+
+
+
+
+
+## [0.5.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.5.0...@equinor/fusion-wc-person@0.5.1) (2023-09-04)
+
+**Note:** Version bump only for package @equinor/fusion-wc-person
+
+
+
+
+
+# [0.5.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.7...@equinor/fusion-wc-person@0.5.0) (2023-09-04)
+
+
+### Features
+
+* **person-avatar:** show person-card when avatar is clicked or hovered ([a85e61d](https://github.com/equinor/fusion-web-components/commit/a85e61d85ef0bba821416e7e2b1a5309c6875703))
+
+
+
+
+
 ## [0.4.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-person@0.4.6...@equinor/fusion-wc-person@0.4.7) (2023-08-24)
 
 **Note:** Version bump only for package @equinor/fusion-wc-person

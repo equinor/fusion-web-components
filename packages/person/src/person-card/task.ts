@@ -1,8 +1,8 @@
 import { Task } from '@lit-labs/task';
 import { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from '../task';
-import { RequestResolvePersonAvatarEvent } from '../person-avatar/event';
-import { AvatarData } from './types';
+import { RequestResolvePersonCardEvent } from './event';
+import { CardData } from './types';
 
 export type AzureIdOrUpnObj =
   | { azureId?: string; upn: string }
@@ -12,18 +12,18 @@ export type AzureIdOrUpnObj =
 export type PersonControllerHostAttributes = {
   azureId?: string;
   upn?: string;
-  dataSource?: AvatarData;
+  dataSource?: CardData;
 };
 
 export type PersonControllerHost = PersonControllerHostAttributes & ReactiveControllerHost & EventTarget;
 
-type TaskArgs = [AvatarData | undefined, string | undefined, string | undefined];
+type TaskArgs = [CardData | undefined, string | undefined, string | undefined];
 
-export class PersonAvatarTask extends Task<TaskArgs, AvatarData> {
+export class PersonCardTask extends Task<TaskArgs, CardData> {
   constructor(public host: PersonControllerHost) {
     super(
       host,
-      ([dataSource, azureId, upn]: TaskArgs): Promise<AvatarData> => {
+      ([dataSource, azureId, upn]: TaskArgs): Promise<CardData> => {
         if (dataSource) {
           return Promise.resolve(dataSource);
         }
@@ -33,7 +33,7 @@ export class PersonAvatarTask extends Task<TaskArgs, AvatarData> {
           throw new Error('The host must have either a azureId or a upn property');
         }
 
-        return resolveTaskEvent(host, new RequestResolvePersonAvatarEvent(data));
+        return resolveTaskEvent(host, new RequestResolvePersonCardEvent(data));
       },
       (): TaskArgs => [host.dataSource, host.azureId, host.upn],
     );

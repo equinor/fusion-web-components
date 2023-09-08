@@ -1,13 +1,13 @@
+import { CSSResult, html, TemplateResult, LitElement } from 'lit';
 import { BadgeColor } from '@equinor/fusion-wc-badge';
-import { SkeletonSize } from '@equinor/fusion-wc-skeleton';
-import { CSSResult, html, TemplateResult } from 'lit';
+import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { property } from 'lit/decorators.js';
-import { PersonElement } from '../person';
-import { PersonAvailability, PersonDetails, PersonItemSize, PersonPresence } from '../types';
-import { PersonCardElementProps } from './types';
+import { PersonAccountType, PersonAvailability, PersonItemSize } from '../types';
+import { CardData, PersonCardElementProps } from './types';
 
 import personStyle from '../style.css';
 import style from './element.css';
+import { PersonCardTask } from './task';
 
 /**
  * Element for displaying a persons card with person avatar and person info.
@@ -22,12 +22,20 @@ import style from './element.css';
  *
  */
 
-export class PersonCardElement extends PersonElement implements PersonCardElementProps {
+export class PersonCardElement extends LitElement implements PersonCardElementProps {
   static styles: CSSResult[] = [style, personStyle];
 
   /** Azure unique id */
-  @property({ type: String, reflect: true })
-  azureId!: string;
+  @property({ type: String })
+  public azureId?: string;
+
+  @property({ type: String })
+  public upn?: string;
+
+  @property({ type: String })
+  public dataSource?: CardData;
+
+  private task = new PersonCardTask(this);
 
   /** Size of the component */
   @property({ type: String, reflect: true })
@@ -44,7 +52,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Renders person name
    */
-  private renderName(details: PersonDetails): TemplateResult {
+  private renderName(details: CardData): TemplateResult {
     return html`${details.name
       ? html`<header title="${details.name}" class="person-card__name">${details.name}</header>`
       : null}`;
@@ -53,21 +61,21 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Render person job department
    */
-  private renderDepartment(details: PersonDetails): TemplateResult {
+  private renderDepartment(details: CardData): TemplateResult {
     return html`${details.department ? html`<div class="person-card__department">${details.department}</div>` : null}`;
   }
 
   /**
    * Render person job title
    */
-  protected renderJobTitle(details: PersonDetails): TemplateResult {
+  protected renderJobTitle(details: CardData): TemplateResult {
     return html`${details.jobTitle ? html`<div class="person-card__jobtitle">${details.jobTitle}</div>` : null}`;
   }
 
   /**
    * Render the account TYPE status
    */
-  protected renderTypeStatus(details: PersonDetails): TemplateResult {
+  protected renderTypeStatus(details: CardData): TemplateResult {
     return html`<div class="person-card-type__row">
       ${details.accountType
         ? html`<div class="person-card-type__icon ${this.getAccountTypeColorClass(details.accountType)}"></div>
@@ -85,7 +93,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Render person email
    */
-  protected renderEmail(details: PersonDetails): TemplateResult {
+  protected renderEmail(details: CardData): TemplateResult {
     return html`${details.mail
       ? html`<div class="person-card-info__row">
           <div class="person-card-info__link">
@@ -107,7 +115,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Render person mobile phone
    */
-  protected renderMobile(details: PersonDetails): TemplateResult {
+  protected renderMobile(details: CardData): TemplateResult {
     return html`${details.mobilePhone
       ? html`<div class="person-card-info__row">
           <div class="person-card-info__link">
@@ -129,7 +137,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Render person projects
    */
-  protected renderProjects(details: PersonDetails): TemplateResult {
+  protected renderProjects(details: CardData): TemplateResult {
     const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
     return html`${filterProjects.length > 0
       ? html`<div class="person-card__projects">
@@ -146,7 +154,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Render person positions
    */
-  protected renderPositions(details: PersonDetails): TemplateResult {
+  protected renderPositions(details: CardData): TemplateResult {
     const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
     return html`${filterPositions.length > 0
       ? html`<div class="person-card__projects">
@@ -163,7 +171,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Renders manager name
    */
-  private renderManagerName(details: PersonDetails): TemplateResult {
+  private renderManagerName(details: CardData): TemplateResult {
     return html`${details.manager?.name
       ? html`<header title="${details.manager?.name}" class="person-manager__name">${details.manager?.name}</header>`
       : null}`;
@@ -172,7 +180,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Render manager job department
    */
-  private renderManagerDepartment(details: PersonDetails): TemplateResult {
+  private renderManagerDepartment(details: CardData): TemplateResult {
     return html`${details.manager?.department
       ? html`<div class="person-card-manager__department">${details.manager?.department}</div>`
       : null}`;
@@ -181,7 +189,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Renders the avatar for manager
    */
-  protected renderManagerAvatar(details: PersonDetails): TemplateResult {
+  protected renderManagerAvatar(details: CardData): TemplateResult {
     return html`<fwc-avatar
       title="${details.manager?.accountType}"
       class="person-card-manager__avatar ${this.getAccountTypeColorClass(details.manager?.accountType)}"
@@ -195,7 +203,7 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Renders the manager
    */
-  protected renderManager(details: PersonDetails): TemplateResult {
+  protected renderManager(details: CardData): TemplateResult {
     return html`${details.manager
       ? html`<div class="person-card__manager">
           <div class="person-card-manager__heading">Reports to</div>
@@ -261,21 +269,17 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
   /**
    * Renders the avatar
    */
-  protected renderAvatar(details: PersonDetails): TemplateResult {
-    return html`<fwc-avatar
-      title="${details.accountType}"
-      class="${this.getAccountTypeColorClass(details.accountType)}"
-      .size=${this.size}
-      .src=${details.pictureSrc}
-      .value=${this.getInitial(details.name)}
-      border=${true}
-    >
-      ${this.presence?.render({
-        complete: (presence: PersonPresence) => this.renderBadge(presence.availability),
-        pending: () => this.renderBadge(PersonAvailability.Pending),
-        error: () => this.renderBadge(PersonAvailability.Offline),
-      })}</fwc-avatar
-    >`;
+  protected renderAvatar(details: CardData): TemplateResult {
+    return html`
+      <fwc-avatar
+        title="${details.accountType}"
+        class="${this.getAccountTypeColorClass(details.accountType)}"
+        .size=${this.size}
+        .src=${details.pictureSrc}
+        .value=${this.getInitial(details.name)}
+        border=${true}
+      ></fwc-avatar>
+    `;
   }
 
   /**
@@ -287,46 +291,99 @@ export class PersonCardElement extends PersonElement implements PersonCardElemen
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
-    return html`<div class="person-card__section" style="max-width:${this.maxWidth}px">
-      ${this.details?.render({
-        complete: (details: PersonDetails) => {
-          return html`<div class="person-card__heading">
-              <div class="fwc-person-avatar">${this.renderAvatar(details)}</div>
-              <div class="person-card__header">
-                ${this.renderName(details)} ${this.renderDepartment(details)} ${this.renderJobTitle(details)}
+    return html`
+      <div class="person-card__section" style="max-width:${this.maxWidth}px">
+        ${this.task.render({
+          complete: (details: CardData) => {
+            return html`<div class="person-card__heading">
+                <div class="fwc-person-avatar">${this.renderAvatar(details)}</div>
+                <div class="person-card__header">
+                  ${this.renderName(details)} ${this.renderDepartment(details)} ${this.renderJobTitle(details)}
+                </div>
               </div>
-            </div>
-            <div class="person-card__content" style="max-height:${this.contentHeight}px">
-              <div class="person-card__info">
-                <div class="person-card-info__heading">Contact</div>
-                ${this.renderMobile(details)} ${this.renderEmail(details)}
-              </div>
-              ${this.renderProjects(details)} ${this.renderPositions(details)} ${this.renderManager(details)}
-            </div>`;
-        },
-        pending: () => {
-          return html` <div class="person-card__heading">
-              <fwc-skeleton-wrapper direction="horizontal">
-                ${this.renderImagePlaceholder(false, this.size)}
-                <fwc-skeleton-wrapper direction="vertical">
-                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                </fwc-skeleton-wrapper>
-              </fwc-skeleton-wrapper>
-            </div>
-            <div class="person-card__content">
-              <div class="person-card-info__heading">
-                <fwc-skeleton-wrapper direction="vertical">
-                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+              <div class="person-card__content" style="max-height:${this.contentHeight}px">
+                <div class="person-card__info">
+                  <div class="person-card-info__heading">Contact</div>
+                  ${this.renderMobile(details)} ${this.renderEmail(details)}
+                </div>
+                ${this.renderProjects(details)} ${this.renderPositions(details)} ${this.renderManager(details)}
+              </div>`;
+          },
+          pending: () => {
+            return html` <div class="person-card__heading">
+                <fwc-skeleton-wrapper direction="horizontal">
+                  ${this.renderImagePlaceholder(false, this.size)}
+                  <fwc-skeleton-wrapper direction="vertical">
+                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  </fwc-skeleton-wrapper>
                 </fwc-skeleton-wrapper>
               </div>
-            </div>`;
-        },
-        error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-      })}
-    </div>`;
+              <div class="person-card__content">
+                <div class="person-card-info__heading">
+                  <fwc-skeleton-wrapper direction="vertical">
+                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+                  </fwc-skeleton-wrapper>
+                </div>
+              </div>`;
+          },
+          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+        })}
+      </div>
+    `;
+  }
+
+  public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {
+    return html`<fwc-skeleton
+      class="${list ? 'person-list__avatar' : ''}"
+      size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
+      variant=${SkeletonVariant.Circle}
+      icon="image"
+      ?inactive=${inactive}
+    ></fwc-skeleton>`;
+  }
+
+  /**
+   * Renders pending state for content
+   */
+  public renderTextPlaceholder(inactive?: boolean, size?: SkeletonSize): TemplateResult {
+    return html`<fwc-skeleton size="${size}" variant=${SkeletonVariant.Text} ?inactive=${inactive}></fwc-skeleton>`;
+  }
+
+  /**
+   * Renders pending state for avatar
+   */
+  public getToolbarPlaceholderIconSize(size: string): string {
+    if (size === 'small') {
+      return 'x-small';
+    }
+    return 'small';
+  }
+
+  /**
+   * Returns color classes for the account type
+   */
+  public getAccountTypeColorClass(accountType?: PersonAccountType): string | void {
+    switch (accountType) {
+      case PersonAccountType.Employee:
+        return 'fwc-person-type__employee';
+      case PersonAccountType.Consultant:
+      case PersonAccountType.Enterprise:
+        return 'fwc-person-type__consultant';
+      case PersonAccountType.External:
+        return 'fwc-person-type__external';
+      case PersonAccountType.ExternalHire:
+        return 'fwc-person-type__external-hire';
+    }
+  }
+
+  /**
+   * Returns the first character in the person's name as upper case initial
+   */
+  public getInitial(name?: string): string | undefined {
+    return name?.substring(0, 1)?.toUpperCase();
   }
 }

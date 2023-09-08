@@ -1,4 +1,4 @@
-import { html, LitElement, HTMLTemplateResult, TemplateResult } from 'lit';
+import { html, LitElement, HTMLTemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 import { query } from 'lit/decorators/query.js';
@@ -11,22 +11,18 @@ import { PersonSearchController } from './controller';
 import { PersonSearchHost } from './types';
 import { PersonSearchTask } from './task';
 
-import {
-  SearchableDropdownResult,
-  SearchableDropdownResultItem,
-  sddStyles,
-} from '@equinor/fusion-wc-searchable-dropdown';
+import { SearchableDropdownResult, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
 
-import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
+import { CheckListItemElement, ListElement } from '@equinor/fusion-wc-list';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
 import { AvatarElement } from '@equinor/fusion-wc-avatar';
 import { PersonSearchListItemElement } from './list-item';
-
+import { PersonSearchCheckListItemElement } from './check-list-item';
 PersonSearchListItemElement;
+PersonSearchCheckListItemElement;
 ListElement;
-ListItemElement;
 CheckListItemElement;
 TextInputElement;
 DividerElement;
@@ -124,69 +120,6 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
   @query('fwc-list')
   listElement: ListElement | undefined;
 
-  /* Build fwc-list-items */
-  protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
-    this.controller._listItems.push(item.id);
-    const itemClasses = {
-      'list-item': true,
-      'item-selected': !!item.isSelected,
-      'item-error': !!item.isError,
-      'item-multiline': !!item.subTitle,
-      'item-avatar': (item.graphic ?? '').indexOf('http') > -1 || (item.graphic ?? '').indexOf('blob') > -1,
-    };
-
-    const renderItemText = (): TemplateResult => {
-      /* Get icon for either meta or graphic slot */
-      const getIconSlot = (type: 'meta' | 'graphic') => {
-        if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
-          const iconRef = item[type] ?? this[type];
-          const iconSlot = (): TemplateResult =>
-            type === 'graphic'
-              ? html`<fwc-person-avatar upn=${iconRef} size="small"></fwc-person-avatar>`
-              : html`<fwc-icon icon=${iconRef}></fwc-icon>`;
-
-          return html`<span class="slot-${type}" slot=${type}>${iconSlot()}</span>`;
-        }
-
-        return html``;
-      };
-
-      return html`${getIconSlot('graphic')}
-        <span class="item-text">
-          ${item.title && html`<span class="item-title">${item.title}</span>`}
-          ${item.subTitle && html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span>`}
-        </span>
-        ${getIconSlot('meta')}`;
-    };
-
-    const disabled = item.isDisabled || item.isError ? true : undefined;
-    const selected = item.isSelected ? true : undefined;
-
-    /* Sett checkmark on selected items */
-    if (item.meta === 'check') {
-      return html`<fwc-check-list-item
-        key=${item.id}
-        class=${classMap(itemClasses)}
-        disabled=${ifDefined(disabled)}
-        selected=${ifDefined(selected)}
-        twoline=${ifDefined(item.subTitle)}
-      >
-        ${renderItemText()}
-      </fwc-check-list-item>`;
-    }
-    return html`<fwc-list-item
-      rootTabbable=${true}
-      wrapFocus=${true}
-      key=${item.id}
-      class=${classMap(itemClasses)}
-      disabled=${ifDefined(disabled)}
-      selected=${ifDefined(selected)}
-      twoline=${ifDefined(item.subTitle)}
-    >
-      ${renderItemText()}
-    </fwc-list-item>`;
-  }
-
   /**
    * Render the menu if state is open
    * @returns HTMLTemplateResult
@@ -201,7 +134,6 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
         complete: (result: SearchableDropdownResult) => {
           /*
            * clear previous render items.
-           * we need to save rendered items in state to be able to select them by index from action event
            */
           this.controller._listItems = [];
 
@@ -209,7 +141,16 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
           return result.map((item, index) => {
             if (item.type === 'section') {
               if (item.children?.length) {
-                const kids = item.children.map((i) => this.buildListItem(i));
+                const kids = item.children.map((i) => {
+                  // we need to save rendered items in state to be able to select them by index from action event
+                  this.controller._listItems.push(i.id);
+
+                  // display list item or check list item
+                  return i.meta === 'check'
+                    ? html`<fwc-person-search-check-list-item .item=${i} />`
+                    : html`<fwc-person-search-list-item .item=${i} />`;
+                });
+
                 return html`
                   <p key=${uuid()} class="section-title">${item.title}</p>
                   ${kids}
@@ -225,8 +166,13 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
               return html`<fwc-divider key=${item.id} variant="list" color="medium"></fwc-divider>`;
             }
 
-            return html`<fwc-person-search-list-item item=${item} />`;
-            // return this.buildListItem(item);
+            // we need to save rendered item in state to be able to select them by index from action event
+            this.controller._listItems.push(item.id);
+
+            // display list item or checklist item
+            return item.meta === 'check'
+              ? html`<fwc-person-search-check-list-item .item=${item} />`
+              : html`<fwc-person-search-list-item .item=${item} />`;
           });
         },
         pending: () =>

@@ -1,6 +1,6 @@
 import { PersonAccountType, PersonResolver } from '@equinor/fusion-wc-person';
 
-const fakeResponseTime = () => new Promise((res) => setTimeout(res, 1000));
+const fakeResponseTime = () => new Promise((res) => setTimeout(res, 3000));
 
 export const mockPersonResolver: PersonResolver = {
   getDetails: ({ azureId, upn }) =>

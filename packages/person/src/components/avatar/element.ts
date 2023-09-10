@@ -1,7 +1,8 @@
 import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit';
-import { property, queryAssignedElements, queryAsync } from 'lit/decorators.js';
+import { property, queryAssignedElements, queryAsync, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
+import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { AvatarData, PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability } from '../../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
@@ -93,9 +94,29 @@ export class PersonAvatarElement
   @queryAssignedElements({ slot: 'floating', flatten: true })
   private assignedFloating!: Array<HTMLElement>;
 
-  private tasks = {
-    info: new PersonInfoTask(this),
-    photo: new PersonPhotoTask(this),
+  private tasks?: {
+    info: PersonInfoTask;
+    photo: PersonPhotoTask;
+  };
+
+  @state()
+  protected intersected = false;
+
+  protected controllers = {
+    observer: new IntersectionController(this, {
+      callback: (e) => {
+        if (!this.intersected) {
+          this.intersected = !!e.find((x) => x.isIntersecting);
+          if (this.intersected) {
+            this.controllers.observer.unobserve(this);
+            this.tasks = {
+              info: new PersonInfoTask(this),
+              photo: new PersonPhotoTask(this),
+            };
+          }
+        }
+      },
+    }),
   };
 
   static openedPersonAvatars: PersonAvatarElement[] = [];
@@ -204,7 +225,7 @@ export class PersonAvatarElement
   protected renderAvatar(details: AvatarData): TemplateResult {
     // TODO - make own component for the image!
     return html`
-      ${this.tasks.photo.render({
+      ${this.tasks?.photo.render({
         complete: (pictureSrc: string) =>
           html`<fwc-avatar
             class=${classMap(this.getRenderClasses(details.accountType))}
@@ -248,6 +269,9 @@ export class PersonAvatarElement
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
+    if (!this.tasks) {
+      return this.renderImagePlaceholder(false, this.size);
+    }
     return html`${this.tasks.info.render({
       complete: (details: AvatarData) => this.renderAvatar(details),
       pending: () => this.renderImagePlaceholder(false, this.size),

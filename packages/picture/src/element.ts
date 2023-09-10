@@ -4,8 +4,6 @@ import { styleMap } from 'lit/directives/style-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import { observeIntersection, ObserverInfo } from '@equinor/fusion-wc-intersection';
-
 import PictureEvent from './events/picture-event';
 import style from './element.css';
 
@@ -100,19 +98,7 @@ export class PictureElement extends LitElement implements PictureElementProps {
       height: this.cover ? `'100%` : undefined,
     };
 
-    const observerInfo: ObserverInfo = {
-      cb: ([entry]) => {
-        this.intersected = entry.isIntersecting;
-      },
-      disabled: this.intersected,
-    };
-
-    return html`
-      <picture style=${styleMap(style)} intersection=${observeIntersection(observerInfo)}>
-        ${this.loaded ? '' : html`<slot name="loader"></slot>`}
-        ${this.lazy && !this.intersected ? '' : this.renderImage()}
-      </picture>
-    `;
+    return html` <picture style=${styleMap(style)}> ${this.renderImage()} </picture> `;
   }
 
   protected renderImage(): TemplateResult {
@@ -120,13 +106,14 @@ export class PictureElement extends LitElement implements PictureElementProps {
       ${repeat(
         this.srcSets,
         (src) => src.srcset || src.src,
-        (src) => src
+        (src) => src,
       )}
       <img
         src="${this.src}"
         height="${ifDefined(this.width)}"
         width="${ifDefined(this.height)}"
         @load="${this._onSourceChange}"
+        lazy
       />
     `;
   }

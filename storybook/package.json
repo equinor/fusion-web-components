@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-storybook",
-  "version": "2.21.3",
+  "version": "2.22.0-next.0",
   "description": "",
   "main": "index.js",
   "private": true,

@@ -1,6 +1,8 @@
 import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { CSSResult, html, LitElement, TemplateResult } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
+import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
 import style from './element.css';
 // TODO - NOPE
@@ -37,9 +39,29 @@ export class PersonListItemElement
   @property({ type: String })
   public dataSource?: ListItemData;
 
-  private tasks = {
-    info: new PersonInfoTask<ListItemData>(this),
-    photo: new PersonPhotoTask(this),
+  private tasks?: {
+    info: PersonInfoTask;
+    photo: PersonPhotoTask;
+  };
+
+  @state()
+  protected intersected = false;
+
+  protected controllers = {
+    observer: new IntersectionController(this, {
+      callback: (e) => {
+        if (!this.intersected) {
+          this.intersected = !!e.find((x) => x.isIntersecting);
+          if (this.intersected) {
+            this.controllers.observer.unobserve(this);
+            this.tasks = {
+              info: new PersonInfoTask(this),
+              photo: new PersonPhotoTask(this),
+            };
+          }
+        }
+      },
+    }),
   };
 
   /** Size of component */
@@ -103,7 +125,7 @@ export class PersonListItemElement
   protected renderAvatar(details: ListItemData): TemplateResult {
     // TODO - pending and error
     return html`
-      ${this.tasks.photo.render({
+      ${this.tasks?.photo.render({
         complete: (pictureSrc) =>
           html`<fwc-avatar
             class="person-list__avatar ${this.getAccountTypeColorClass(details.accountType)}"
@@ -131,6 +153,9 @@ export class PersonListItemElement
   }
 
   protected render(): TemplateResult {
+    if (!this.tasks) {
+      return this.renderPending();
+    }
     // TODO why are title and department spaced, if to inline elements, wrap it <span>
     return html`
       <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
@@ -144,22 +169,24 @@ export class PersonListItemElement
               </div>
               <slot class="person-list__toolbar"></slot>`;
           },
-          pending: () => {
-            return html`<div class="person-list__about">
-                <div class="person-list__avatar">${this.renderImagePlaceholder(false, this.size, true)}</div>
-                <div class="person-list__content">
-                  <fwc-skeleton-wrapper direction="vertical">
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  </fwc-skeleton-wrapper>
-                </div>
-              </div>
-              <div class="person-list__toolbar">${this.renderCirclePlaceholder(false, SkeletonSize.small)}</div>`;
-          },
+          pending: () => this.renderPending(),
           error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
         })}
       </div>
     `;
+  }
+
+  protected renderPending() {
+    return html`<div class="person-list__about">
+        <div class="person-list__avatar">${this.renderImagePlaceholder(false, this.size, true)}</div>
+        <div class="person-list__content">
+          <fwc-skeleton-wrapper direction="vertical">
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+          </fwc-skeleton-wrapper>
+        </div>
+      </div>
+      <div class="person-list__toolbar">${this.renderCirclePlaceholder(false, SkeletonSize.small)}</div> `;
   }
 
   public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {

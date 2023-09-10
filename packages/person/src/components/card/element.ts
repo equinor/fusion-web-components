@@ -2,12 +2,13 @@ import { CSSResult, html, TemplateResult, LitElement } from 'lit';
 import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { property } from 'lit/decorators.js';
-import { PersonAccountType, PersonAvailability, PersonItemSize } from '../types';
+import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
 import { CardData, PersonCardElementProps } from './types';
 
-import personStyle from '../style.css';
+import personStyle from '../../style.css';
 import style from './element.css';
-import { PersonCardTask } from './task';
+import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
+import { PersonDetailTask, PersonDetailControllerHost } from '../../tasks/person-detail-task';
 
 /**
  * Element for displaying a persons card with person avatar and person info.
@@ -22,7 +23,10 @@ import { PersonCardTask } from './task';
  *
  */
 
-export class PersonCardElement extends LitElement implements PersonCardElementProps {
+export class PersonCardElement
+  extends LitElement
+  implements PersonCardElementProps, PersonDetailControllerHost, PersonPhotoControllerHost
+{
   static styles: CSSResult[] = [style, personStyle];
 
   /** Azure unique id */
@@ -35,7 +39,10 @@ export class PersonCardElement extends LitElement implements PersonCardElementPr
   @property({ type: String })
   public dataSource?: CardData;
 
-  private task = new PersonCardTask(this);
+  private tasks = {
+    details: new PersonDetailTask(this),
+    photo: new PersonPhotoTask(this),
+  };
 
   /** Size of the component */
   @property({ type: String, reflect: true })
@@ -270,16 +277,28 @@ export class PersonCardElement extends LitElement implements PersonCardElementPr
    * Renders the avatar
    */
   protected renderAvatar(details: CardData): TemplateResult {
-    return html`
-      <fwc-avatar
-        title="${details.accountType}"
-        class="${this.getAccountTypeColorClass(details.accountType)}"
-        .size=${this.size}
-        .src=${details.pictureSrc}
-        .value=${this.getInitial(details.name)}
-        border=${true}
-      ></fwc-avatar>
-    `;
+    // TODO error and pending
+    return html`${this.tasks.photo.render({
+      complete: (pictureSrc) => html`
+        <fwc-avatar
+          title="${details.accountType}"
+          class="${this.getAccountTypeColorClass(details.accountType)}"
+          .size=${this.size}
+          .src=${pictureSrc}
+          .value=${this.getInitial(details.name)}
+          border=${true}
+        ></fwc-avatar>
+      `,
+      pending: () => html`
+        <fwc-avatar
+          title="${details.accountType}"
+          class="${this.getAccountTypeColorClass(details.accountType)}"
+          .size=${this.size}
+          .value=${this.getInitial(details.name)}
+          border=${true}
+        ></fwc-avatar>
+      `,
+    })}`;
   }
 
   /**
@@ -293,7 +312,7 @@ export class PersonCardElement extends LitElement implements PersonCardElementPr
   protected render(): TemplateResult {
     return html`
       <div class="person-card__section" style="max-width:${this.maxWidth}px">
-        ${this.task.render({
+        ${this.tasks.details.render({
           complete: (details: CardData) => {
             return html`<div class="person-card__heading">
                 <div class="fwc-person-avatar">${this.renderAvatar(details)}</div>

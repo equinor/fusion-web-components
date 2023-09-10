@@ -1,33 +1,29 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "0.6.1",
+  "version": "1.0.0-next.0",
   "description": "",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
-    "./avatar": "./lib/person-avatar/index.js",
-    "./card": "./lib/person-card/index.js",
-    "./list-item": "./lib/person-list-item/index.js",
-    "./provider": "./lib/person-provider/index.js",
-    "./person-avatar": "./lib/person-avatar/index.js",
-    "./person-card": "./lib/person-card/index.js",
-    "./person-list-item": "./lib/person-list-item/index.js",
-    "./person-provider": "./lib/person-provider/index.js"
+    "./provider": "./lib/components/provider/index.js",
+    "./avatar": "./lib/components/avatar/index.js",
+    "./card": "./lib/components/card/index.js",
+    "./list-item": "./lib/components/list-item/index.js"
   },
   "types": "lib/types/index.d.ts",
   "typesVersions": {
     "*": {
+      "provider": [
+        "lib/types/components/provider/index.d.ts"
+      ],
       "avatar": [
-        "lib/types/person-avatar/index.d.ts"
+        "lib/types/components/avatar/index.d.ts"
       ],
       "card": [
-        "lib/types/person-card/index.d.ts"
+        "lib/types/components/card/index.d.ts"
       ],
       "list-item": [
-        "lib/types/person-list-item/index.d.ts"
-      ],
-      "provider": [
-        "lib/types/person-provider/index.d.ts"
+        "lib/types/components/list-item/index.d.ts"
       ]
     }
   },

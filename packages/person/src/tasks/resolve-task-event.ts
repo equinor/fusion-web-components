@@ -22,3 +22,5 @@ export const resolveTaskEvent = async <TData>(
     throw new Error('Could not resolve request result');
   }
 };
+
+export default resolveTaskEvent;

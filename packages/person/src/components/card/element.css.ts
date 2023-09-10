@@ -13,14 +13,6 @@ export const style = css`
       ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} * var(--content-resize, 1)
     );
   }
-  :host([size='medium']) .person-card-manager__avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-  :host([size='large']) .person-card-manager__avatar {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
   .person-card__section {
     display: flex;
     flex-direction: column;
@@ -39,14 +31,19 @@ export const style = css`
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
   }
   .person-card__content {
-    padding: var(--medium-size-space) 0;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    row-gap: var(--medium-size-space);
   }
-  .person-card__name,
-  .person-manager__name {
+  .person-card__content > * {
+    margin: 0 var(--medium-size-space);
+    padding: var(--medium-size-space) 0;
+  }
+  .person-card__content > * + *{
+    border-top: 1px solid;
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+  }
+  .person-card__name {
     display: -webkit-box;
     font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable('fontWeight'))};
     overflow: hidden;
@@ -55,8 +52,7 @@ export const style = css`
     -webkit-box-orient: vertical;
   }
   .person-card__department,
-  .person-card__jobtitle,
-  .person-card-manager__department {
+  .person-card__jobtitle {
     font-size: calc(
       ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
     );
@@ -81,6 +77,15 @@ export const style = css`
   .fwc-person-avatar-badge {
     --fwc-badge-size: calc(0.8rem * var(--content-resize, 1));
   }
+  .info-item {
+    display: flex;
+    flex-flow: column;
+    gap: var(--small-size-space);
+  }
+  .info-item_heading {
+    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable('fontSize'))} * var(--content-resize, 1));
+    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable('fontWeight'))};
+  }
   .person-card-info__row {
     display: flex;
     align-items: center;
@@ -90,14 +95,8 @@ export const style = css`
   .person-card-info__row:hover {
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
-  .person-card-info__row:hover .person-card-info__copy {
-    display: block;
-  }
-  .person-card-info__heading {
-    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable('fontSize'))} * var(--content-resize, 1));
-    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable('fontWeight'))};
-    padding-left: var(--medium-size-space);
-    margin-bottom: var(--x-small-size-space);
+  .person-card-info__row:not(:hover) .person-card-info__copy {
+    visibility: hidden;
   }
   .person-card-info__link {
     display: flex;
@@ -106,34 +105,9 @@ export const style = css`
     font-size: calc(
       ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
     );
-    padding: var(--small-size-space) var(--medium-size-space);
   }
   .person-card-info__icon {
     font-size: calc(14px * var(--content-resize, 1));
-  }
-  .person-card-info__copy {
-    display: none;
-  }
-  .person-card__projects {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--medium-size-space);
-    margin: 0 var(--medium-size-space);
-    padding-top: var(--medium-size-space);
-    border-top: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-  }
-  .person-card-projects__heading,
-  .person-card-manager__heading {
-    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable('fontSize'))} * var(--content-resize, 1));
-    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable('fontWeight'))};
-  }
-  .person-card-projects__title {
-    font-size: calc(
-      ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))} * var(--content-resize, 1)
-    );
-    font-weight: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontWeight'))};
-    padding-bottom: var(--x-small-size-space);
   }
   .person-card-projects__projects {
     display: flex;
@@ -148,20 +122,6 @@ export const style = css`
     border: 1px solid;
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
     border-radius: 4px;
-  }
-  .person-card__manager {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--medium-size-space);
-    margin: 0 var(--medium-size-space);
-    padding-top: var(--medium-size-space);
-    border-top: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-  }
-  .person-card__manager-avatar {
-    display: flex;
-    align-items: center;
-    column-gap: var(--small-size-space);
   }
 `;
 

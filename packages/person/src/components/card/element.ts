@@ -12,6 +12,7 @@ import style from './element.css';
 import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
 import { PersonDetailTask, PersonDetailControllerHost } from '../../tasks/person-detail-task';
 
+import './element.manager';
 /**
  * Element for displaying a persons card with person avatar and person info.
  * {@inheritdoc}
@@ -77,22 +78,6 @@ export class PersonCardElement
   /** Height of content */
   @property({ type: Number, reflect: true })
   contentHeight = 150;
-
-  /**
-   * Renders person name
-   */
-  private renderName(details: CardData): TemplateResult {
-    return html`${details.name
-      ? html`<header title="${details.name}" class="person-card__name">${details.name}</header>`
-      : null}`;
-  }
-
-  /**
-   * Render person job department
-   */
-  private renderDepartment(details: CardData): TemplateResult {
-    return html`${details.department ? html`<div class="person-card__department">${details.department}</div>` : null}`;
-  }
 
   /**
    * Render person job title
@@ -166,84 +151,45 @@ export class PersonCardElement
   /**
    * Render person projects
    */
-  protected renderProjects(details: CardData): TemplateResult {
+  protected renderProjects(details: CardData): TemplateResult | null {
     const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
-    return html`${filterProjects.length > 0
-      ? html`<div class="person-card__projects">
-          <div class="person-card-projects__heading">Projects</div>
-          <div class="person-card-projects__projects">
-            ${filterProjects.map((p) => {
-              return html`<div class="person-card-projects__project">${p}</div>`;
-            })}
-          </div>
-        </div>`
-      : null}`;
+    if (filterProjects.length === 0) return null;
+    return html`<div class="info-item">
+      <div class="info-item_heading">Projects</div>
+      <div class="person-card-projects__projects">
+        ${filterProjects.map((p) => {
+          return html`<div class="person-card-projects__project">${p}</div>`;
+        })}
+      </div>
+    </div>`;
   }
 
   /**
    * Render person positions
    */
-  protected renderPositions(details: CardData): TemplateResult {
+  protected renderPositions(details: CardData): TemplateResult | null {
     const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
-    return html`${filterPositions.length > 0
-      ? html`<div class="person-card__projects">
-          <div class="person-card-projects__heading">Positions</div>
-          <div class="person-card-projects__projects">
-            ${filterPositions.map((p) => {
-              return html`<div class="person-card-projects__project">${p}</div>`;
-            })}
-          </div>
-        </div>`
-      : null}`;
+    if (filterPositions.length === 0) return null;
+    return html`<div class="info-item">
+      <div class="info-item_heading">Positions</div>
+      <div class="person-card-projects__projects">
+        ${filterPositions.map((p) => {
+          return html`<div class="person-card-projects__project">${p}</div>`;
+        })}
+      </div>
+    </div>`;
   }
 
-  /**
-   * Renders manager name
-   */
-  private renderManagerName(details: CardData): TemplateResult {
-    return html`${details.manager?.name
-      ? html`<header title="${details.manager?.name}" class="person-manager__name">${details.manager?.name}</header>`
-      : null}`;
-  }
-
-  /**
-   * Render manager job department
-   */
-  private renderManagerDepartment(details: CardData): TemplateResult {
-    return html`${details.manager?.department
-      ? html`<div class="person-card-manager__department">${details.manager?.department}</div>`
-      : null}`;
-  }
-
-  /**
-   * Renders the avatar for manager
-   */
-  protected renderManagerAvatar(details: CardData): TemplateResult {
-    return html`<fwc-avatar
-      title="${details.manager?.accountType}"
-      class="person-card-manager__avatar ${this.getAccountTypeColorClass(details.manager?.accountType)}"
-      .size="${this.size}"
-      .src=${details.manager?.pictureSrc}
-      .value=${this.getInitial(details.manager?.name)}
-      border=${true}
-    ></fwc-avatar>`;
-  }
-
-  /**
-   * Renders the manager
-   */
-  protected renderManager(details: CardData): TemplateResult {
-    return html`${details.manager
-      ? html`<div class="person-card__manager">
-          <div class="person-card-manager__heading">Reports to</div>
-          <div class="person-card__manager-avatar">
-            <div class="person-card-manager__avatar">${this.renderManagerAvatar(details)}</div>
-            <div class="person-card-manager__content">
-              ${this.renderManagerName(details)} ${this.renderManagerDepartment(details)}
-            </div>
-          </div>
-        </div>`
-      : null}`;
+  public renderManager(manager: CardData['manager']): TemplateResult | void {
+    return (
+      manager &&
+      html`
+      <div class="manager">
+        <div class="manager_heading">Reports to</div>
+        <fwc-person-card-manager .azureId=${manager.azureUniqueId}  .dataSource=${manager} .size=${this.size}>
+      </div>
+    `
+    );
   }
 
   /**
@@ -342,15 +288,24 @@ export class PersonCardElement
             return html`<div class="person-card__heading">
                 <div class="fwc-person-avatar">${this.renderAvatar(details)}</div>
                 <div class="person-card__header">
-                  ${this.renderName(details)} ${this.renderDepartment(details)} ${this.renderJobTitle(details)}
+                  ${details.name &&
+                  html`<header title="${details.name}" class="person-card__name">${details.name}</header>`}
+                  ${details.department && html`<div class="person-card__department">${details.department}</div>`}
+                  ${details.jobTitle && html`<div class="person-card__jobtitle">${details.jobTitle}</div>`}
                 </div>
               </div>
               <div class="person-card__content" style="max-height:${this.contentHeight}px">
-                <div class="person-card__info">
-                  <div class="person-card-info__heading">Contact</div>
+                <div class="info-item">
+                  <div class="info-item_heading">Contact</div>
                   ${this.renderMobile(details)} ${this.renderEmail(details)}
                 </div>
-                ${this.renderProjects(details)} ${this.renderPositions(details)} ${this.renderManager(details)}
+                ${this.renderProjects(details)} ${this.renderPositions(details)}
+                ${details.manager &&
+                html`<fwc-person-card-manager
+                  .azureId=${details.manager.azureUniqueId}
+                  .dataSource=${details.manager}
+                  .size=${this.size}
+                ></fwc-person-card-manager>`}
               </div>`;
           },
           pending: () => this.renderPending(),
@@ -371,7 +326,7 @@ export class PersonCardElement
         </fwc-skeleton-wrapper>
       </div>
       <div class="person-card__content">
-        <div class="person-card-info__heading">
+        <div class="info-item_heading">
           <fwc-skeleton-wrapper direction="vertical">
             ${this.renderTextPlaceholder(false, SkeletonSize.small)}
             ${this.renderTextPlaceholder(false, SkeletonSize.small)}

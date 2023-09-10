@@ -1,13 +1,14 @@
 import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { CSSResult, html, LitElement, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { PersonAccountType, PersonAvailability, PersonItemSize } from '../types';
+import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
 import style from './element.css';
-import personStyle from '../style.css';
+// TODO - NOPE
+import personStyle from '../../style.css';
 import { ListItemData, PersonListItemElementProps } from './types';
 import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import { PersonListItemTask } from './task';
-
+import { PersonInfoTask, PersonInfoControllerHost } from '../../tasks/person-info-task';
+import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
 /**
  * Element for displaying a persons card with person avatar and person info.
  * {@inheritdoc}
@@ -20,7 +21,10 @@ import { PersonListItemTask } from './task';
  *
  */
 
-export class PersonListItemElement extends LitElement implements PersonListItemElementProps {
+export class PersonListItemElement
+  extends LitElement
+  implements PersonListItemElementProps, PersonInfoControllerHost, PersonPhotoControllerHost
+{
   static styles: CSSResult[] = [style, personStyle];
 
   /** Unique person Azure ID */
@@ -33,7 +37,10 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   @property({ type: String })
   public dataSource?: ListItemData;
 
-  private task = new PersonListItemTask(this);
+  private tasks = {
+    info: new PersonInfoTask<ListItemData>(this),
+    photo: new PersonPhotoTask(this),
+  };
 
   /** Size of component */
   @property({ type: String, reflect: true })
@@ -94,14 +101,25 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
    * Renders the avatar
    */
   protected renderAvatar(details: ListItemData): TemplateResult {
+    // TODO - pending and error
     return html`
-      <fwc-avatar
-        class="person-list__avatar ${this.getAccountTypeColorClass(details.accountType)}"
-        .size=${this.size}
-        .src=${details.pictureSrc}
-        .value=${this.getInitial(details.name)}
-        border=${true}
-      ></fwc-avatar>
+      ${this.tasks.photo.render({
+        complete: (pictureSrc) =>
+          html`<fwc-avatar
+            class="person-list__avatar ${this.getAccountTypeColorClass(details.accountType)}"
+            .size=${this.size}
+            .src=${pictureSrc}
+            .value=${this.getInitial(details.name)}
+            border=${true}
+          ></fwc-avatar>`,
+        pending: () =>
+          html`<fwc-avatar
+            class="person-list__avatar ${this.getAccountTypeColorClass(details.accountType)}"
+            .size=${this.size}
+            .value=${this.getInitial(details.name)}
+            border=${true}
+          ></fwc-avatar>`,
+      })}
     `;
   }
 
@@ -113,13 +131,16 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   }
 
   protected render(): TemplateResult {
+    // TODO why are title and department spaced, if to inline elements, wrap it <span>
     return html`
       <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
-        ${this.task?.render({
-          complete: (details: ListItemData) => {
+        ${this.tasks.info.render({
+          complete: (details) => {
             return html`<div class="person-list__about">
-                <div class="person-list__avatar">${this.renderAvatar(details)}</div>
-                <div class="person-list__content">${this.renderTitle(details)} ${this.renderDepartment(details)}</div>
+                <div class="person-list__avatar">${this.renderAvatar(details as ListItemData)}</div>
+                <div class="person-list__content">
+                  ${this.renderTitle(details as ListItemData)} ${this.renderDepartment(details as ListItemData)}
+                </div>
               </div>
               <slot class="person-list__toolbar"></slot>`;
           },

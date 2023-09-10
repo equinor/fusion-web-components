@@ -2,7 +2,6 @@ import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonProviderElement } from './element';
 
 export * from './element';
-export * from './controller';
 export * from './types';
 
 export const tag = 'fwc-person-provider';

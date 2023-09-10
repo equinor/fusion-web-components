@@ -3,14 +3,15 @@ import { property, queryAssignedElements, queryAsync } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { AvatarData, PersonAvatarElementProps } from './types';
-import { PersonAccountType, PersonAvailability } from '../types';
+import { PersonAccountType, PersonAvailability } from '../../types';
 import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
 import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import '../person-card';
+import '../card';
 import { computePosition, flip, shift, offset } from '@floating-ui/dom';
 import style from './element.css';
-import { PersonControllerHost, PersonAvatarTask } from './task';
+import { PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
+import { PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
 
 // persist elements
 Badge;
@@ -44,7 +45,10 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover';
  *
  * @summary
  */
-export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps, PersonControllerHost {
+export class PersonAvatarElement
+  extends LitElement
+  implements PersonAvatarElementProps, PersonInfoControllerHost, PersonPhotoControllerHost
+{
   static styles: CSSResult[] = [style];
 
   @property({ type: String })
@@ -57,13 +61,16 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   public dataSource?: AvatarData;
 
   @property({ type: Boolean, attribute: false, reflect: false })
-  isFloatingOpen: boolean = false;
+  isFloatingOpen = false;
 
   /**
    * Size of the avatar.
    */
   @property({ type: String, reflect: true })
   size: AvatarSize = AvatarSize.Medium;
+
+  @property({ type: String, reflect: true })
+  pictureSrc?: string;
 
   /**
    * Sets the avatar to be clickable to render hover/ripple effects.
@@ -86,7 +93,10 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   @queryAssignedElements({ slot: 'floating', flatten: true })
   private assignedFloating!: Array<HTMLElement>;
 
-  private task = new PersonAvatarTask(this);
+  private tasks = {
+    info: new PersonInfoTask(this),
+    photo: new PersonPhotoTask(this),
+  };
 
   static openedPersonAvatars: PersonAvatarElement[] = [];
 
@@ -192,19 +202,36 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
    * Renders the avatar
    */
   protected renderAvatar(details: AvatarData): TemplateResult {
+    // TODO - make own component for the image!
     return html`
-      <fwc-avatar
-        class=${classMap(this.getRenderClasses(details.accountType))}
-        .size=${this.size}
-        .src=${details.pictureSrc}
-        .value=${this.getInitial(details.name)}
-        ?clickable=${this.clickable}
-        ?disabled=${this.disabled}
-        ?border=${true}
-        @click=${this.handleOnClick}
-        @mouseover=${this.handleMouseOver}
-        @mouseout=${this.handleMouseOut}
-      ></fwc-avatar>
+      ${this.tasks.photo.render({
+        complete: (pictureSrc: string) =>
+          html`<fwc-avatar
+            class=${classMap(this.getRenderClasses(details.accountType))}
+            .size=${this.size}
+            .src=${pictureSrc}
+            .value=${this.getInitial(details.name)}
+            ?clickable=${this.clickable}
+            ?disabled=${this.disabled}
+            ?border=${true}
+            @click=${this.handleOnClick}
+            @mouseover=${this.handleMouseOver}
+            @mouseout=${this.handleMouseOut}
+          ></fwc-avatar>`,
+        pending: () =>
+          html`<fwc-avatar
+            class=${classMap(this.getRenderClasses(details.accountType))}
+            .size=${this.size}
+            .value=${this.getInitial(details.name)}
+            ?clickable=${this.clickable}
+            ?disabled=${this.disabled}
+            ?border=${true}
+            @click=${this.handleOnClick}
+            @mouseover=${this.handleMouseOver}
+            @mouseout=${this.handleMouseOut}
+          ></fwc-avatar>`,
+        error: () => this.renderImagePlaceholder(true),
+      })}
 
       <slot id="floating" name="floating">
         ${when(this.isFloatingOpen, () => html`<fwc-person-card .azureId="${this.azureId}"></fwc-person-card>`)}
@@ -221,7 +248,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
-    return html`${this.task.render({
+    return html`${this.tasks.info.render({
       complete: (details: AvatarData) => this.renderAvatar(details),
       pending: () => this.renderImagePlaceholder(false, this.size),
       error: () => this.renderImagePlaceholder(true),

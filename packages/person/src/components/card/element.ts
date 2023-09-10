@@ -1,7 +1,9 @@
 import { CSSResult, html, TemplateResult, LitElement } from 'lit';
+import { property, state } from 'lit/decorators.js';
+import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+
 import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import { property } from 'lit/decorators.js';
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
 import { CardData, PersonCardElementProps } from './types';
 
@@ -39,9 +41,29 @@ export class PersonCardElement
   @property({ type: String })
   public dataSource?: CardData;
 
-  private tasks = {
-    details: new PersonDetailTask(this),
-    photo: new PersonPhotoTask(this),
+  private tasks?: {
+    details: PersonDetailTask;
+    photo: PersonPhotoTask;
+  };
+
+  @state()
+  protected intersected = false;
+
+  protected controllers = {
+    observer: new IntersectionController(this, {
+      callback: (e) => {
+        if (!this.intersected) {
+          this.intersected = !!e.find((x) => x.isIntersecting);
+          if (this.intersected) {
+            this.controllers.observer.unobserve(this);
+            this.tasks = {
+              details: new PersonDetailTask(this),
+              photo: new PersonPhotoTask(this),
+            };
+          }
+        }
+      },
+    }),
   };
 
   /** Size of the component */
@@ -278,7 +300,7 @@ export class PersonCardElement
    */
   protected renderAvatar(details: CardData): TemplateResult {
     // TODO error and pending
-    return html`${this.tasks.photo.render({
+    return html`${this.tasks?.photo.render({
       complete: (pictureSrc) => html`
         <fwc-avatar
           title="${details.accountType}"
@@ -310,6 +332,9 @@ export class PersonCardElement
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
+    if (!this.tasks) {
+      return this.renderPending();
+    }
     return html`
       <div class="person-card__section" style="max-width:${this.maxWidth}px">
         ${this.tasks.details.render({
@@ -328,31 +353,33 @@ export class PersonCardElement
                 ${this.renderProjects(details)} ${this.renderPositions(details)} ${this.renderManager(details)}
               </div>`;
           },
-          pending: () => {
-            return html` <div class="person-card__heading">
-                <fwc-skeleton-wrapper direction="horizontal">
-                  ${this.renderImagePlaceholder(false, this.size)}
-                  <fwc-skeleton-wrapper direction="vertical">
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  </fwc-skeleton-wrapper>
-                </fwc-skeleton-wrapper>
-              </div>
-              <div class="person-card__content">
-                <div class="person-card-info__heading">
-                  <fwc-skeleton-wrapper direction="vertical">
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                    ${this.renderTextPlaceholder(false, SkeletonSize.small)}
-                  </fwc-skeleton-wrapper>
-                </div>
-              </div>`;
-          },
+          pending: () => this.renderPending(),
           error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
         })}
       </div>
     `;
+  }
+
+  protected renderPending() {
+    return html` <div class="person-card__heading">
+        <fwc-skeleton-wrapper direction="horizontal">
+          ${this.renderImagePlaceholder(false, this.size)}
+          <fwc-skeleton-wrapper direction="vertical">
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+          </fwc-skeleton-wrapper>
+        </fwc-skeleton-wrapper>
+      </div>
+      <div class="person-card__content">
+        <div class="person-card-info__heading">
+          <fwc-skeleton-wrapper direction="vertical">
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+            ${this.renderTextPlaceholder(false, SkeletonSize.small)}
+          </fwc-skeleton-wrapper>
+        </div>
+      </div>`;
   }
 
   public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {

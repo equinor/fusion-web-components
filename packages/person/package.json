@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "1.0.0-next.4",
+  "version": "1.0.0-next.5",
   "description": "",
   "main": "lib/index.js",
   "exports": {
@@ -40,7 +40,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-avatar": "^2.0.0-next.4",
+    "@equinor/fusion-wc-avatar": "^2.0.0-next.5",
     "@equinor/fusion-wc-badge": "^0.2.32",
     "@equinor/fusion-wc-button": "^1.4.3",
     "@equinor/fusion-wc-core": "^1.0.5",

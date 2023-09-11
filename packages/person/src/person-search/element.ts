@@ -129,7 +129,7 @@ export class PersonSearchElement extends LitElement implements PersonSearchHost 
       return html``;
     }
 
-    return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controller.handleSelect}>
+    return html`<fwc-list activatable=${true} multi=${this.multiple} @click=${this.controller.handleSelect}>
       ${this.#task.render({
         complete: (result: SearchableDropdownResult) => {
           /*

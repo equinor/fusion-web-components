@@ -1,7 +1,10 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import PersonSearchElement from './element';
 import { type SearchableDropdownProps } from '@equinor/fusion-wc-searchable-dropdown';
+
 export * from './element';
+export * from './event';
+export * from './task';
 
 export type PersonSearchElementProps = Partial<SearchableDropdownProps>;
 

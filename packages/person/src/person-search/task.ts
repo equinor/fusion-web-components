@@ -16,7 +16,7 @@ export class PersonSearchTask extends Task<TaskArgs, SearchableDropdownResult> {
         if (!query) {
           result = [
             {
-              azureUniqueId: 'initial',
+              azureId: 'initial',
               name: host.initialText,
               isExpired: true,
             },
@@ -26,7 +26,7 @@ export class PersonSearchTask extends Task<TaskArgs, SearchableDropdownResult> {
           if (result.length < 1) {
             result = [
               {
-                azureUniqueId: 'nomatch',
+                azureId: 'nomatch',
                 name: 'No matching person found',
                 isExpired: true,
               },

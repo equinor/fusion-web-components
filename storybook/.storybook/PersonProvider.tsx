@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
 
-import { AvatarData } from '@equinor/fusion-wc-person/src/person-avatar/task';
+import { AvatarData } from '@equinor/fusion-wc-person/src/person-avatar';
 
 import {
   PersonProviderElement,
@@ -10,10 +10,12 @@ import {
   PersonAccountType,
   PersonAvailability,
 } from '@equinor/fusion-wc-person';
+import { ListItemData } from '@equinor/fusion-wc-person/list-item';
+import { CardData } from '@equinor/fusion-wc-person/card';
 PersonProviderElement;
 
 const userDetails: PersonQueryDetails = [{
-  azureUniqueId: '49132c24-6ea4-41fe-8221-112f314573f0',
+  azureId: '49132c24-6ea4-41fe-8221-112f314573f0',
   name: 'Albert Einstein (Bouvet ASA)',
   pictureSrc: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=025',
   accountType: PersonAccountType.Employee,
@@ -49,6 +51,41 @@ const userDetails: PersonQueryDetails = [{
       },
     },
   ],
+}, {
+  azureId: '49132c24-6ea4-41fe-8221-112f314573f0',
+  name: 'Anders Emil Sommerfeldt (Bouvet ASA)',
+  pictureSrc: 'https://i.imgur.com/GcZeeXX.jpeg',
+  accountType: PersonAccountType.Consultant,
+  jobTitle: 'X-Bouvet ASA (PX)',
+  department: 'FOIT CON PDP',
+  mail: 'example@email.com',
+  officeLocation: 'Stavanger',
+  mobilePhone: '+47 999999999',
+  manager: {
+    azureUniqueId: '1234-1324-1235',
+    name: 'Lagertha Kristensen',
+    department: 'Leader Techn Mgmt',
+    pictureSrc: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/814.jpg',
+    accountType: PersonAccountType.Employee,
+  },
+  positions: [
+    {
+      id: '123-123',
+      name: 'Developer Frontend',
+      project: {
+        id: '1234-1234',
+        name: 'Fusion',
+      },
+    },
+    {
+      id: '234-234',
+      name: 'Developer Frontend',
+      project: {
+        id: '2345-2345',
+        name: 'Fusion org v2',
+      },
+    },
+  ],
 }];
 
 const personSearchResult = (query : string): PersonQueryDetails => {
@@ -60,36 +97,102 @@ const personSearchResult = (query : string): PersonQueryDetails => {
   );
 };
 
+const getRandomUser = (): PersonDetails => userDetails[Math.floor(Math.random() * userDetails.length)];
+
 const mockPersonResolver: PersonResolver = {
   getQuery: async (query: string) => {
     console.debug('PersonResolver::getQuery:', query);
-    await new Promise((res) => setTimeout(res, 1000));
+    await new Promise((res) => setTimeout(res, 750));
     return await Promise.resolve(personSearchResult(query));
   },
   getDetails: async (azureId: string) => {
     console.debug('PersonResolver::getDetails:', azureId);
-    await new Promise((res) => setTimeout(res, 1000));
-    return await Promise.resolve(userDetails[0]);
+    await new Promise((res) => setTimeout(res, 750));
+    return await Promise.resolve(getRandomUser());
   },
   getImageByAzureId: async (azureId) => {
     console.debug('PersonResolver::getImageByAzureId:', azureId);
-    await new Promise((res) => setTimeout(res, 3000));
+    await new Promise((res) => setTimeout(res, 1500));
+    const user = getRandomUser();
+
     return await Promise.resolve({
-      azureUniqueId: userDetails[0].azureUniqueId,
-      name: userDetails[0].name,
-      accountType: userDetails[0].accountType,
-      pictureSrc: userDetails[0].pictureSrc
+      azureId: user.azureId,
+      name: user.name,
+      accountType: user.accountType,
+      pictureSrc: user.pictureSrc
     }) as AvatarData;
   },
-  getImageByUpn: async (azureId) => {
-    console.debug('PersonResolver::getImageByUpn:', azureId);
-    await new Promise((res) => setTimeout(res, 3000));
+  getImageByUpn: async (upn) => {
+    console.debug('PersonResolver::getImageByUpn:', upn);
+    await new Promise((res) => setTimeout(res, 1500));
+    const user = getRandomUser();
+
     return await Promise.resolve({
-      azureUniqueId: userDetails[0].azureUniqueId,
-      name: userDetails[0].name,
-      accountType: userDetails[0].accountType,
-      pictureSrc: userDetails[0].pictureSrc
+      azureId: user.azureId,
+      name: user.name,
+      accountType: user.accountType,
+      pictureSrc: user.pictureSrc
     } as AvatarData);
+  },
+  getCardDetailsByAzureId: async (azureId: string) => {
+    console.debug('PersonResolver::getCardDetailsByAzureId:', azureId);
+    await new Promise((res) => setTimeout(res, 1500));
+    const user = getRandomUser();
+
+    return await Promise.resolve({
+      azureId: user.azureId,
+      name: user.name,
+      accountType: user.accountType,
+      pictureSrc: user.pictureSrc,
+      department: user.department,
+      jobTitle: user.jobTitle,
+      mail: user.mail,
+      mobilePhone: user.mobilePhone,
+      positions: user.positions,
+      manager: user.manager
+    } as CardData);
+  },
+  getCardDetailsByUpn: async (upn: string) => {
+    console.debug('PersonResolver::getCardDetailsByAzureId:', upn);
+    await new Promise((res) => setTimeout(res, 1500));
+    const user = getRandomUser();
+    return await Promise.resolve({
+      azureId: user.azureId,
+      name: user.name,
+      accountType: user.accountType,
+      pictureSrc: user.pictureSrc,
+      department: user.department,
+      jobTitle: user.jobTitle,
+      mail: user.mail,
+      mobilePhone: user.mobilePhone,
+      positions: user.positions,
+      manager: user.manager
+    } as CardData);
+  },
+  getListItemDetailsByAzureId: async (azureId: string) => {
+    console.debug('PersonResolver::getCardDetailsByAzureId:', azureId);
+    await new Promise((res) => setTimeout(res, 1500));
+    const user = getRandomUser();
+    return await Promise.resolve({
+      azureId: user.azureId,
+      name: user.name,
+      accountType: user.accountType,
+      pictureSrc: user.pictureSrc,
+      department: user.department
+    } as ListItemData);
+  },
+  getListItemDetailsByUpn: async (upn: string) => {
+    console.debug('PersonResolver::getCardDetailsByAzureId:', upn);
+    await new Promise((res) => setTimeout(res, 1500));
+    const user = getRandomUser();
+
+    return await Promise.resolve({
+      azureId: user.azureId,
+      name: user.name,
+      accountType: user.accountType,
+      pictureSrc: user.pictureSrc,
+      department: user.department
+    } as ListItemData);
   },
   getPresence: async (azureId: string) => {
     await new Promise((res) => setTimeout(res, 6000));

@@ -5,7 +5,6 @@ import { PersonAvatarElementProps } from './types';
 export * from './element';
 export * from './types';
 export { AvatarSize } from '@equinor/fusion-wc-avatar';
-export { AvatarData } from './task';
 
 export const tag = 'fwc-person-avatar';
 

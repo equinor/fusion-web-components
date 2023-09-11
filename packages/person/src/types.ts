@@ -22,7 +22,7 @@ export type Manager = {
 
 export type PersonDetails = {
   azureId?: string;
-  azureUniqueId: string;
+  azureUniqueId?: string;
   name?: string;
   pictureSrc?: string;
   jobTitle?: string;

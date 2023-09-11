@@ -28,6 +28,9 @@
       ],
       "list-item": [
         "lib/types/components/list-item/index.d.ts"
+      ],
+      "search": [
+        "lib/types/components/search/index.d.ts"
       ]
     }
   },

@@ -4,7 +4,7 @@ import { query } from 'lit/decorators/query.js';
 import { queryAll } from 'lit/decorators/query-all.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { repeat } from 'lit/directives/repeat';
+import { repeat } from 'lit/directives/repeat.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
 import { PersonSearchController } from './controller';

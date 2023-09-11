@@ -109,6 +109,6 @@ export const fwcsdd = css`
   }
 `;
 
-export const styles = [mdcStyle, fwcsdd];
+export const sddStyles = [mdcStyle, fwcsdd];
 
-export default styles;
+export default sddStyles;

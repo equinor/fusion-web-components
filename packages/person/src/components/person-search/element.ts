@@ -1,32 +1,30 @@
 import { html, LitElement, HTMLTemplateResult } from 'lit';
-import { property } from 'lit/decorators.js';
-
+import { property, state } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
-
+import { queryAll } from 'lit/decorators/query-all.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { v4 as uuid } from 'uuid';
+import { repeat } from 'lit/directives/repeat';
+import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
-import { SearchableDropdownController } from '../provider';
-import {
-  SearchableDropdownProps,
-  SearchableDropdownControllerHost,
-  SearchableDropdownResult,
-  SearchableDropdownResultItem,
-} from '../types';
+import { PersonSearchController } from './controller';
+import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
 
-import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
+import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
+
+import { CheckListItemElement, ListElement } from '@equinor/fusion-wc-list';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
+import { AvatarElement } from '@equinor/fusion-wc-avatar';
+import { PersonSearchListItemElement } from './list-item';
+PersonSearchListItemElement;
 ListElement;
-ListItemElement;
 CheckListItemElement;
 TextInputElement;
 DividerElement;
 IconElement;
-
-import { sddStyles } from './element.css';
+AvatarElement;
 
 /**
  * Element for SearchableDropdown
@@ -35,7 +33,7 @@ import { sddStyles } from './element.css';
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
  * @property {boolean} disabled disable TextInput element
  * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
- * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
+ * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the graphic property on the SearchableDropdownResultItem
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
  * @property {string} label Label for fwc-textinput element
  * @property {string} leadingIcon Leading Icon to display in fwc-text-input
@@ -48,20 +46,22 @@ import { sddStyles } from './element.css';
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  */
-export class SearchableDropdownElement
+
+export class PersonSearchElement
   extends LitElement
-  implements SearchableDropdownProps, SearchableDropdownControllerHost
+  implements SearchableDropdownControllerHost, PersonSearchControllerHost
 {
   // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
 
   /* style object css */
   static styles = [sddStyles];
 
-  controller = new SearchableDropdownController(this);
-
   /* Label passed to the fwc-text-input component */
   @property()
   label = '';
+
+  @state()
+  search = '';
 
   /* Placeholder passe to fwc-textinput */
   @property()
@@ -113,115 +113,61 @@ export class SearchableDropdownElement
   autofocus = false;
 
   @query('fwc-textinput')
-  textInputElement: TextInputElement | undefined;
+  textInputElement!: TextInputElement;
 
   @query('fwc-list')
-  listElement: ListElement | undefined;
+  listElement!: ListElement;
 
-  /* Build fwc-list-items */
-  protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
-    this.controller._listItems.push(item.id);
-    const itemClasses = {
-      'list-item': true,
-      'item-selected': !!item.isSelected,
-      'item-error': !!item.isError,
-    };
-    const renderItemText = () => {
-      /* Geticonf for either meta or graphic slot */
-      const getIconSlot = (type: 'meta' | 'graphic') => {
-        if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
-          return html`<span class="slot-${type}" slot=${type}>
-            <fwc-icon icon=${item[type] ? item[type] : this[type]}></fwc-icon>
-          </span>`;
+  @queryAll('fwc-person-search-list-item')
+  listItems!: Array<PersonSearchListItemElement>;
+
+  private tasks?: {
+    search: PersonSearchTask;
+  };
+
+  @state()
+  protected intersected = false;
+
+  protected controllers = {
+    observer: new IntersectionController(this, {
+      callback: (e) => {
+        if (!this.intersected) {
+          this.intersected = !!e.find((x) => x.isIntersecting);
+          if (this.intersected) {
+            this.controllers.observer.unobserve(this);
+            this.tasks = {
+              search: new PersonSearchTask(this),
+            };
+          }
         }
-        return html``;
-      };
-
-      /* title and subtitle slots */
-      const generateTextContent = () => {
-        const text = [];
-        if (item.title) {
-          text.push(html`<span class="item-title">${item.title}</span>`);
-        }
-        if (item.subTitle) {
-          text.push(html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span></span>`);
-        }
-        return text;
-      };
-
-      return html`${getIconSlot('graphic')}
-        <span class="item-text">${generateTextContent()}</span>
-        ${getIconSlot('meta')}`;
-    };
-
-    const disabled = item.isDisabled || item.isError ? true : undefined;
-    const selected = item.isSelected ? true : undefined;
-
-    /* Sett checkmark on selected items */
-    if (item.meta === 'check') {
-      return html`<fwc-check-list-item
-        key=${item.id}
-        class=${classMap(itemClasses)}
-        disabled=${ifDefined(disabled)}
-        selected=${ifDefined(selected)}
-        twoline=${ifDefined(item.subTitle)}
-      >
-        ${renderItemText()}
-      </fwc-check-list-item>`;
-    }
-    return html`<fwc-list-item
-      rootTabbable=${true}
-      wrapFocus=${true}
-      key=${item.id}
-      class=${classMap(itemClasses)}
-      disabled=${ifDefined(disabled)}
-      selected=${ifDefined(selected)}
-      twoline=${ifDefined(item.subTitle)}
-    >
-      ${renderItemText()}
-    </fwc-list-item>`;
-  }
-
+      },
+    }),
+    element: new PersonSearchController(this),
+  };
   /**
    * Render the menu if state is open
    * @returns HTMLTemplateResult
    */
   protected renderList(): HTMLTemplateResult {
-    if (!this.controller.isOpen) {
+    if (!this.controllers.element.isOpen) {
       return html``;
     }
 
-    return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controller.handleSelect}>
-      ${this.controller.task.render({
-        complete: (result: SearchableDropdownResult) => {
-          /*
-           * clear previous render items.
-           * we need to save rendered items in state to be able to select them by index from action event
-           */
-          this.controller._listItems = [];
-
-          /* Loop over task result */
-          return result.map((item, index) => {
-            if (item.type === 'section') {
-              if (item.children?.length) {
-                const kids = item.children.map((i) => this.buildListItem(i));
-                return html`
-                  <p key=${uuid()} class="section-title">${item.title}</p>
-                  ${kids}
-                  ${index + 1 < result.length
-                    ? html`<fwc-divider key=${uuid()} variant="list" color="medium"></fwc-divider>`
-                    : html``}
-                `;
-              }
-            }
-
-            /* Divider after the selected items stored in controller */
-            if (item.type === 'divider') {
-              return html`<fwc-divider key=${item.id} variant="list" color="medium"></fwc-divider>`;
-            }
-
-            return this.buildListItem(item);
-          });
+    return html`<fwc-list activatable=${true} multi=${this.multiple} @click=${this.controllers.element.handleSelect}>
+      ${this.tasks?.search.render({
+        complete: (result) => {
+          // we need to save rendered item in state to be able to select them by index from action event
+          this.controllers.element._listItems = result.map((item) => item.azureId);
+          const selectedIds = this.controllers.element.selectedItems;
+          return html`${repeat(
+            result,
+            (item) => item.azureId,
+            (item) =>
+              html`<fwc-person-search-list-item
+                .dataSource=${item}
+                .selected=${selectedIds.includes(item.azureId)}
+              ></fwc-person-search-list-item>`,
+          )}`;
         },
         pending: () =>
           html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
@@ -244,7 +190,7 @@ export class SearchableDropdownElement
     const disabled = this.disabled ? true : undefined;
     const cssClasses = {
       'fwc-sdd': true,
-      'list-open': this.controller.isOpen,
+      'list-open': this.controllers.element.isOpen,
       dense: dense == true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
@@ -263,17 +209,17 @@ export class SearchableDropdownElement
             icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
-            @focus=${() => (this.controller.isOpen = true)}
-            @keyup=${this.controller.handleKeyup}
+            @focus=${() => (this.controllers.element.isOpen = true)}
+            @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
               <fwc-icon
-                tabindex=${this.controller.isOpen ? '0' : '-1'}
+                tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
                 class="trailing interactive"
                 icon=${this.trailingIcon}
-                @click=${this.controller.closeClick}
-                @keydown=${this.controller.closeClick}
+                @click=${this.controllers.element.closeClick}
+                @keydown=${this.controllers.element.closeClick}
               ></fwc-icon>
             </span>
           </slot>
@@ -290,4 +236,4 @@ export class SearchableDropdownElement
   }
 }
 
-export default SearchableDropdownElement;
+export default PersonSearchElement;

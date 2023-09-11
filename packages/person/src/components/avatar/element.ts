@@ -80,7 +80,7 @@ export class PersonAvatarElement
   clickable?: boolean;
 
   @property({ type: String, attribute: true, reflect: true })
-  showFloatingOn: PersonAvatarShowCardOnType = 'click';
+  showFloatingOn: PersonAvatarShowCardOnType = 'hover';
 
   /**
    * Sets the avatar to be rendered as disabled.

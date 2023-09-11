@@ -6,5 +6,5 @@
     "declarationDir": "./lib/types",
   },
   "include": ["src/**/*"],
-  "references": [{ "path": "../avatar" }, { "path": "../badge" }, { "path": "../skeleton" }]
+  "references": [{ "path": "../avatar" }, { "path": "../badge" }, { "path": "../skeleton" }, { "path": "../searchable-dropdown" }]
 }

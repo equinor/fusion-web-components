@@ -255,7 +255,10 @@ export class PersonAvatarElement
       })}
 
       <slot id="floating" name="floating">
-        ${when(this.isFloatingOpen, () => html`<fwc-person-card .azureId="${this.azureId}"></fwc-person-card>`)}
+        ${when(
+          this.isFloatingOpen,
+          () => html`<fwc-person-card .azureId="${this.azureId}" .upn="${this.upn}"></fwc-person-card>`,
+        )}
       </slot>
     `;
   }

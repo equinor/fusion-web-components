@@ -1,8 +1,9 @@
 import { CSSResult, LitElement, html } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 
 import { PersonPhotoTask } from '../../tasks';
 import { PersonDetails, PersonItemSize } from 'person/src/types';
+import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 // import { tag } from './index';
 import { fusionElement } from '@equinor/fusion-wc-core';
 
@@ -22,9 +23,28 @@ export class PersonCardManagerElement extends LitElement {
   @property({ type: String, reflect: true })
   size: PersonItemSize = 'medium';
 
-  private tasks = {
+  private tasks?: {
     // details: PersonDetailTask;
-    photo: new PersonPhotoTask(this),
+    photo: PersonPhotoTask,
+  };
+
+  @state()
+  protected intersected = false;
+
+  protected controllers = {
+    observer: new IntersectionController(this, {
+      callback: (e) => {
+        if (!this.intersected) {
+          this.intersected = !!e.find((x) => x.isIntersecting);
+          if (this.intersected) {
+            this.controllers.observer.unobserve(this);
+            this.tasks = {
+              photo: new PersonPhotoTask(this),
+            };
+          }
+        }
+      },
+    }),
   };
 
   render() {
@@ -34,7 +54,7 @@ export class PersonCardManagerElement extends LitElement {
       <span class="title">Reports to</span>
       <div class="content">
         <div class="avatar">
-          ${this.tasks.photo.render({
+          ${this.tasks?.photo.render({
             complete: (src) => html`<fwc-avatar .src=${src}></fwc-avatar>`,
             pending: () => html`<fwc-avatar .value=${name}></fwc-avatar>`,
           })}

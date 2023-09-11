@@ -275,7 +275,7 @@ export class PersonAvatarElement
     return html`${this.tasks.info.render({
       complete: (details: AvatarData) => this.renderAvatar(details),
       pending: () => this.renderImagePlaceholder(false, this.size),
-      error: () => this.renderImagePlaceholder(true),
+      error: () => this.renderImagePlaceholder(true, this.size),
     })}`;
   }
 

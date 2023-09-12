@@ -153,19 +153,21 @@ export class PersonSearchElement
       return html``;
     }
 
-    return html`<fwc-list activatable=${true} multi=${this.multiple} @click=${this.controllers.element.handleSelect}>
+    return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controllers.element.handleSelect}>
       ${this.tasks?.search.render({
         complete: (result) => {
           // we need to save rendered item in state to be able to select them by index from action event
           this.controllers.element._listItems = result.map((item) => item.azureId);
           const selectedIds = this.controllers.element.selectedItems;
+
           return html`${repeat(
             result,
             (item) => item.azureId,
             (item) =>
               html`<fwc-person-search-list-item
                 .dataSource=${item}
-                .selected=${selectedIds.includes(item.azureId)}
+                .selected=${selectedIds.has(item.azureId)}
+                .disabled=${item.azureId === 'init' || item.azureId === 'notfound'}
               ></fwc-person-search-list-item>`,
           )}`;
         },

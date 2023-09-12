@@ -1,17 +1,15 @@
-import { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
-
+import { MutableRefObject, useEffect, useRef, PropsWithChildren } from 'react';
 import extractProps from './extract-props';
 
+import { mockPersonResolver } from './__mocks__/people.mock';
+
 import {
-  PersonAvatarElement,
+  PersonSearchElement,
+  PersonSearchElementProps,
   PersonProviderElement,
-  PersonAvatarElementProps,
   PersonResolver,
 } from '@equinor/fusion-wc-person';
-PersonAvatarElement;
-PersonProviderElement;
-
-import { mockPersonResolver } from './__mocks__/people.mock';
+PersonSearchElement;
 
 const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<PersonProviderElement | null> => {
   const providerRef = useRef<PersonProviderElement>(null);
@@ -25,25 +23,26 @@ const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<
   return providerRef;
 };
 
-export const PersonAvatar = ({ children, ...props }: PropsWithChildren<PersonAvatarElementProps>): JSX.Element => {
+export const PersonSearch = ({ children, ...props }: PropsWithChildren<PersonSearchElementProps>): JSX.Element => {
   const providerRef = usePersonProviderRef(mockPersonResolver);
-  const avatarRef = useRef<PersonAvatarElement>(null);
+  const searchRef = useRef<PersonSearchElement>(null);
 
   useEffect(() => {
-    for (const [name, value] of Object.entries(extractProps<PersonAvatarElementProps>(props))) {
-      if (avatarRef.current) {
+    for (const [name, value] of Object.entries(extractProps<PersonSearchElementProps>(props))) {
+      if (searchRef.current) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        avatarRef.current[name] = value;
+        searchRef.current[name] = value;
+        searchRef.current.addEventListener('select', () => console.log);
       }
     }
   }, []);
 
   return (
     <fwc-person-provider ref={providerRef}>
-      <fwc-person-avatar ref={avatarRef}>{children}</fwc-person-avatar>
+      <fwc-person-search ref={searchRef}>{children}</fwc-person-search>
     </fwc-person-provider>
   );
 };
 
-export default PersonAvatar;
+export default PersonSearch;

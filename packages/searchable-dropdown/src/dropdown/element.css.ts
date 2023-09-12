@@ -7,6 +7,7 @@ export const fwcsdd = css`
     position: relative;
     width: 100%;
     --textinput-dense-size: 32px;
+    --fwc-list-item-vertical-padding: 0.5rem;
     --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     --fwc-text-field-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
@@ -68,6 +69,9 @@ export const fwcsdd = css`
   .variant-outlined fwc-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
   }
+  fwc-list-item {
+    --fwc-list-item-vertical-padding: 0.5rem;
+  }
   .item-text {
     display: flex;
     flex-direction: column;
@@ -91,7 +95,6 @@ export const fwcsdd = css`
   [slot='graphic'] {
     display: flex;
     font-size: 0.8em;
-    padding-right: 6px;
   }
   fwc-divider {
     display: flex;
@@ -105,7 +108,7 @@ export const fwcsdd = css`
     margin: 1em 0 0;
   }
   .item-error {
-    background-color: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
+    --fwc-item-interactive-color: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
   }
 `;
 

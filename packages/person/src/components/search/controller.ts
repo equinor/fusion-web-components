@@ -1,18 +1,25 @@
 import { ReactiveController } from 'lit';
-import { Task } from '@lit-labs/task';
 import { PersonSearchElement } from './element';
 
-import { SearchableDropdownResult, ExplicitEventTarget } from '@equinor/fusion-wc-searchable-dropdown';
+import { ExplicitEventTarget } from '@equinor/fusion-wc-searchable-dropdown';
+import { PersonInfo } from '../../types';
+
+type PersonSearchSelectEventDetail = {
+  selected: PersonInfo;
+};
+
+export class PersonSearchSelectEvent extends CustomEvent<PersonSearchSelectEventDetail> {
+  static readonly eventName = 'select';
+  constructor(args: CustomEventInit<PersonSearchSelectEventDetail>) {
+    super(PersonSearchSelectEvent.eventName, args);
+  }
+}
 
 export class PersonSearchController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
-
   public _listItems: Array<string> = [];
-  public _selectedItems: SearchableDropdownResult = [];
-  public selectedItems: Array<string> = [];
-  public result?: SearchableDropdownResult;
-  public task!: Task<[string], SearchableDropdownResult>;
+  public selectedItems: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
   #host: PersonSearchElement;
@@ -69,20 +76,6 @@ export class PersonSearchController implements ReactiveController {
     }
   };
 
-  // private setSelected(searchableDropdownResult: SearchableDropdownResult): SearchableDropdownResult {
-  //   const { selectedId } = this.#host;
-  //   return searchableDropdownResult.map((item) => {
-  //     if (item.type === 'section' && item.children?.length) {
-  //       item.children.map((kid) => {
-  //         kid.isSelected = !!(this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id);
-  //       });
-  //     } else {
-  //       item.isSelected = !!(this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id);
-  //     }
-  //     return item;
-  //   });
-  // }
-
   /**
    * Fires the select event to listener on host.
    * using the event event from the fwc-list element.
@@ -97,32 +90,47 @@ export class PersonSearchController implements ReactiveController {
     if (event.explicitOriginalTarget && event.explicitOriginalTarget.type === 'checkbox') {
       return;
     }
-    const selectedElement = this.#host.listItems[event.detail.index];
 
+    const selectedElement = this.#host.listItems[event.detail.index];
     if (!selectedElement) {
       console.debug('Missing element at index:', event.detail.index);
     }
 
-    if (!selectedElement.azureId) {
+    const { azureId, dataSource } = selectedElement;
+
+    if (!azureId) {
       console.warn('This should not be spossible, missing dataSource?');
+      return;
     }
 
-    this.selectedItems.push(selectedElement.azureId!);
-
-    if (!this.#host.multiple) {
+    if (this.#host.multiple) {
+      if (this.selectedItems.has(azureId)) {
+        this.selectedItems.delete(azureId);
+      } else {
+        this.selectedItems.add(azureId);
+        this.#host.value = dataSource?.name ?? '';
+      }
+    } else {
       this.isOpen = false;
+      if (this.selectedItems.has(azureId)) {
+        console.log('clearing');
+        this.#host.value = '';
+        this.selectedItems.clear();
+      } else {
+        this.selectedItems.add(azureId);
+        this.#host.value = dataSource?.name ?? '';
+      }
     }
 
-    // TODO: create a new event
     /* Dispatch custom select event with our details */
-    // this.#host.dispatchEvent(
-    //   new SearchableDropdownSelectEvent({
-    //     detail: {
-    //       selected: selectedElement,
-    //     },
-    //     bubbles: true,
-    //   }),
-    // );
+    this.#host.dispatchEvent(
+      new PersonSearchSelectEvent({
+        detail: {
+          selected: dataSource!,
+        },
+        bubbles: true,
+      }),
+    );
 
     /* Refresh host */
     this.#host.requestUpdate();
@@ -154,7 +162,7 @@ export class PersonSearchController implements ReactiveController {
     }
 
     this.#host.value = '';
-    this._selectedItems = [];
+    this.selectedItems.clear();
     // this.#search = '';
     this.#host.search = '';
 
@@ -181,11 +189,6 @@ export class PersonSearchController implements ReactiveController {
     this._isOpen = state;
     // toogle close icon
     this.#host.trailingIcon = state ? 'close' : '';
-
-    /* syncs dropdown list with textinput */
-    if (this._selectedItems) {
-      // this.task.run();
-    }
 
     /* Close on escape key */
     if (this._isOpen) {
@@ -215,7 +218,7 @@ export class PersonSearchController implements ReactiveController {
     const target = event.target as HTMLInputElement;
     if (event.key === 'ArrowDown') {
       /* focus on the fwc-list' */
-      if (this._isOpen && this.result?.length) {
+      if (this._isOpen && this.#host.listItems.length) {
         // this.#host.listElement?.focus();
         this.#host.listElement?.focusItemAtIndex(0);
       }

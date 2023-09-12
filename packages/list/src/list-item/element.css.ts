@@ -3,14 +3,22 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const style = css`
   :host {
-    --fwc-list-side-padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
-    --mdc-list-side-padding: var(--fwc-list-side-padding);
+    --fwc-list-item-vertical-padding: var(--fwc-list-item-vertical-padding, 0);
+    --fwc-list-item-interactive-color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
+    --fwc-list-item-background: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
+    --fwc-list-item-background-hover: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     --fwc-list-item-ink-color: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('color'))};
     --fwc-list-item-secondary-ink-color: ${unsafeCSS(theme.typography.paragraph.caption.getVariable('color'))};
     --fwc-list-item-meta-color: ${unsafeCSS(theme.typography.paragraph.meta.getVariable('color'))};
     --fwc-list-item-font-size: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))};
     --fwc-list-item-font-weight: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontWeight'))};
     --fwc-list-item-secondary-font-size: ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))};
+    --mdc-ripple-color: var(--fwc-list-item-interactive-color);
+  }
+  :host {
+    padding-top: var(--fwc-list-item-vertical-padding);
+    padding-bottom: var(--fwc-list-item-vertical-padding);
+    background-color: var(--fwc-list-item-background);
   }
   .fwc-list-item__text {
     flex: 1;

@@ -30,6 +30,7 @@ export const PersonCard = ({ children, ...props }: PropsWithChildren<PersonCardE
   useEffect(() => {
     for (const [name, value] of Object.entries(extractProps<PersonCardElementProps>(props))) {
       if (cardRef.current) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         cardRef.current[name] = value;
       }

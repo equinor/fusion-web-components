@@ -31,6 +31,7 @@ export const PersonListItem = ({ children, ...props }: PropsWithChildren<PersonL
   useEffect(() => {
     for (const [name, value] of Object.entries(extractProps<PersonListItemElementProps>(props))) {
       if (listItemRef.current) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         listItemRef.current[name] = value;
       }

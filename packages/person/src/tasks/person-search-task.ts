@@ -16,13 +16,13 @@ export class PersonSearchTask extends Task<TaskArgs, PersonSearchResult> {
   constructor(public host: PersonSearchControllerHost) {
     super(
       host,
-      ([search]: TaskArgs): Promise<PersonSearchResult | []> => {
+      ([search], { signal }): Promise<PersonSearchResult | []> => {
         if (search) {
-          return resolveTaskEvent(host, new RequestResolvePersonSearchEvent({ search }));
+          return resolveTaskEvent(host, new RequestResolvePersonSearchEvent({ search, signal }));
         }
         return Promise.resolve([]);
       },
-      (): TaskArgs => [host.search],
+      () => [host.search],
     );
   }
 }

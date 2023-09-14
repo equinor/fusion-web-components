@@ -155,7 +155,7 @@ export class PersonCardElement
     const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
     if (filterProjects.length === 0) return null;
     return html`<div class="info-item">
-      <div class="info-item_heading">Projects</div>
+      <div class="info-item_heading" title="Tasks the current person is allocated to">Tasks</div>
       <div class="person-card-projects__projects">
         ${filterProjects.map((p) => {
           return html`<div class="person-card-projects__project">${p}</div>`;
@@ -171,7 +171,9 @@ export class PersonCardElement
     const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
     if (filterPositions.length === 0) return null;
     return html`<div class="info-item">
-      <div class="info-item_heading">Positions</div>
+      <div class="info-item_heading" title="Unique list of generic task positions the person is allocated to">
+        Task positions
+      </div>
       <div class="person-card-projects__projects">
         ${filterPositions.map((p) => {
           return html`<div class="person-card-projects__project">${p}</div>`;

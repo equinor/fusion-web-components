@@ -1,40 +1,51 @@
 import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult } from './types';
 
-export class RequestResolvePersonPhotoEvent extends CustomEvent<
-  AzureIdOrUpnObj & { result?: string | Promise<string> }
-> {
-  static readonly eventName = 'request-resolve-person-photo';
-  constructor(detail: AzureIdOrUpnObj, options: Omit<CustomEventInit, 'detail'> = { bubbles: true, composed: true }) {
-    super(RequestResolvePersonPhotoEvent.eventName, { detail, ...options });
-  }
-}
+type AbortableEventDetail<T = unknown> = T extends object
+  ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
+  : { signal?: AbortSignal };
 
-export class RequestResolvePersonInfoEvent extends CustomEvent<
-  AzureIdOrUpnObj & { result?: PersonInfo | Promise<PersonInfo> }
-> {
-  static readonly eventName = 'request-resolve-person-info';
-  constructor(detail: AzureIdOrUpnObj, options: Omit<CustomEventInit, 'detail'> = { bubbles: true, composed: true }) {
-    super(RequestResolvePersonInfoEvent.eventName, { detail, ...options });
-  }
-}
-export class RequestResolvePersonDetailEvent extends CustomEvent<
-  AzureIdOrUpnObj & { result?: PersonDetails | Promise<PersonDetails> }
-> {
-  static readonly eventName = 'request-resolve-person-detail';
-  constructor(detail: AzureIdOrUpnObj, options: Omit<CustomEventInit, 'detail'> = { bubbles: true, composed: true }) {
-    super(RequestResolvePersonDetailEvent.eventName, { detail, ...options });
-  }
-}
+type ResolveEventDetail<T = unknown, R = unknown> = AbortableEventDetail<T> & { result?: R | Promise<R> };
 
-export class RequestResolvePersonSearchEvent extends CustomEvent<
-  { search: string } & { result?: PersonSearchResult | Promise<PersonSearchResult> }
-> {
-  static readonly eventName = 'request-resolve-person-search';
+abstract class RequestResolveEvent<T, R> extends CustomEvent<ResolveEventDetail<T, R>> {
   constructor(
-    detail: { search: string },
+    name: string,
+    detail: ResolveEventDetail<T, R>,
     options: Omit<CustomEventInit, 'detail'> = { bubbles: true, composed: true },
   ) {
-    super(RequestResolvePersonSearchEvent.eventName, { detail, ...options });
+    super(name, { detail, ...options });
+  }
+}
+
+export class RequestResolvePersonPhotoEvent extends RequestResolveEvent<AzureIdOrUpnObj, string> {
+  static readonly eventName = 'request-resolve-person-photo';
+  constructor(detail: AbortableEventDetail<AzureIdOrUpnObj>, options?: CustomEventInit) {
+    super(RequestResolvePersonPhotoEvent.eventName, detail, options);
+  }
+}
+
+export class RequestResolvePersonInfoEvent extends RequestResolveEvent<AzureIdOrUpnObj, PersonInfo> {
+  static readonly eventName = 'request-resolve-person-info';
+  constructor(detail: AbortableEventDetail<AzureIdOrUpnObj>, options?: CustomEventInit) {
+    super(RequestResolvePersonInfoEvent.eventName, detail, options);
+  }
+}
+export class RequestResolvePersonDetailEvent extends RequestResolveEvent<AzureIdOrUpnObj, PersonDetails> {
+  static readonly eventName = 'request-resolve-person-detail';
+  constructor(detail: AbortableEventDetail<AzureIdOrUpnObj>, options?: CustomEventInit) {
+    super(RequestResolvePersonDetailEvent.eventName, detail, options);
+  }
+}
+
+type RequestResolvePersonSearchEventArgs = {
+  search: string;
+};
+export class RequestResolvePersonSearchEvent extends RequestResolveEvent<
+  RequestResolvePersonSearchEventArgs,
+  PersonSearchResult
+> {
+  static readonly eventName = 'request-resolve-person-search';
+  constructor(detail: AbortableEventDetail<RequestResolvePersonSearchEventArgs>, options?: CustomEventInit) {
+    super(RequestResolvePersonPhotoEvent.eventName, detail, options);
   }
 }
 

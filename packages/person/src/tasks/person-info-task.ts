@@ -20,19 +20,18 @@ export class PersonInfoTask<T extends DataSource = DataSource> extends Task<Task
   constructor(public host: PersonInfoControllerHost) {
     super(
       host,
-      ([dataSource, azureId, upn]: TaskArgs): Promise<T | PersonInfo> => {
+      ([dataSource, azureId, upn], { signal }): Promise<T | PersonInfo> => {
         if (dataSource) {
           return Promise.resolve(dataSource as T);
         }
 
-        const data = azureId ? { azureId } : upn ? { upn } : undefined;
-        if (!data) {
+        if (!azureId || !upn) {
           throw new Error('The host must have either a azureId or a upn property');
         }
 
-        return resolveTaskEvent(host, new RequestResolvePersonInfoEvent(data));
+        return resolveTaskEvent(host, new RequestResolvePersonInfoEvent({ azureId, upn, signal }));
       },
-      (): TaskArgs => [host.dataSource, host.azureId, host.upn],
+      () => [host.dataSource, host.azureId, host.upn],
     );
   }
 }

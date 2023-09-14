@@ -1,4 +1,3 @@
-
 import { Task } from '@lit-labs/task';
 import { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from '.';
@@ -19,19 +18,18 @@ export class PersonDetailTask extends Task<TaskArgs, PersonDetails> {
   constructor(public host: PersonDetailControllerHost) {
     super(
       host,
-      ([dataSource, azureId, upn]: TaskArgs): Promise<PersonDetails> => {
+      ([dataSource, azureId, upn], { signal }): Promise<PersonDetails> => {
         if (dataSource) {
           return Promise.resolve(dataSource);
         }
 
-        const data = azureId ? { azureId } : upn ? { upn } : undefined;
-        if (!data) {
+        if (!azureId || !upn) {
           throw new Error('The host must have either a azureId or a upn property');
         }
 
-        return resolveTaskEvent(host, new RequestResolvePersonDetailEvent(data));
+        return resolveTaskEvent(host, new RequestResolvePersonDetailEvent({ azureId, upn, signal }));
       },
-      (): TaskArgs => [host.dataSource, host.azureId, host.upn],
+      () => [host.dataSource, host.azureId, host.upn],
     );
   }
 }

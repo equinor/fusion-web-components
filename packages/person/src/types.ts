@@ -38,8 +38,6 @@ export type PersonInfo = {
 };
 
 export type PersonDetails = PersonInfo & {
-  // TODO @AndrejNikolicEq this can be multiple!
-  company?: string;
   positions?: Position[];
   manager?: Manager;
 };

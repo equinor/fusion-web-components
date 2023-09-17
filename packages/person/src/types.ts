@@ -1,7 +1,4 @@
-export type AzureIdOrUpnObj =
-  | { azureId?: string; upn: string }
-  | { azureId: string; upn?: string }
-  | { azureId: string; upn: string };
+export type AzureIdOrUpnObj = { azureId?: string; upn: string } | { azureId: string; upn?: string };
 
 export type PersonPresence = {
   azureId: string;

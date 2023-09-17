@@ -1,6 +1,6 @@
 import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult } from './types';
 
-type AbortableEventDetail<T = unknown> = T extends object
+export type AbortableEventDetail<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
   : { signal?: AbortSignal };
 

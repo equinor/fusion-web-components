@@ -1,7 +1,8 @@
 import { Task } from '@lit-labs/task';
 import { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from '.';
-import { RequestResolvePersonPhotoEvent } from '../events';
+import { AbortableEventDetail, RequestResolvePersonPhotoEvent } from '../events';
+import { AzureIdOrUpnObj } from '../types';
 
 export type PersonPhotoControllerHostAttributes = {
   azureId?: string;
@@ -26,7 +27,13 @@ export class PersonPhotoTask extends Task<TaskArgs, string> {
           throw new Error('The host must have either a azureId or a upn property');
         }
 
-        return resolveTaskEvent(host, new RequestResolvePersonPhotoEvent({ azureId, upn, signal }));
+        const event = new RequestResolvePersonPhotoEvent({
+          azureId,
+          upn,
+          signal,
+        } as AbortableEventDetail<AzureIdOrUpnObj>);
+
+        return resolveTaskEvent(host, event);
       },
       () => [host.pictureSrc, host.azureId, host.upn],
     );

@@ -23,7 +23,7 @@ export class PersonDetailTask extends Task<TaskArgs, PersonDetails> {
           return Promise.resolve(dataSource);
         }
 
-        if (!azureId || !upn) {
+        if (!(azureId || upn)) {
           throw new Error('The host must have either a azureId or a upn property');
         }
 

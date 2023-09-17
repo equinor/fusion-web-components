@@ -22,7 +22,7 @@ export class PersonPhotoTask extends Task<TaskArgs, string> {
           return Promise.resolve(pictureSrc);
         }
 
-        if (!azureId || !upn) {
+        if (!(azureId || upn)) {
           throw new Error('The host must have either a azureId or a upn property');
         }
 

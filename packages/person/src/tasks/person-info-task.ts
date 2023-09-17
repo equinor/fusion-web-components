@@ -1,8 +1,8 @@
 import { Task } from '@lit-labs/task';
 import { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from '.';
-import { PersonInfo } from '../types';
-import { RequestResolvePersonInfoEvent } from '../events';
+import { AzureIdOrUpnObj, PersonInfo } from '../types';
+import { AbortableEventDetail, RequestResolvePersonInfoEvent } from '../events';
 
 type DataSource = Partial<PersonInfo>;
 
@@ -29,7 +29,13 @@ export class PersonInfoTask<T extends DataSource = DataSource> extends Task<Task
           throw new Error('The host must have either a azureId or a upn property');
         }
 
-        return resolveTaskEvent(host, new RequestResolvePersonInfoEvent({ azureId, upn, signal }));
+        const event = new RequestResolvePersonInfoEvent({
+          azureId,
+          upn,
+          signal,
+        } as AbortableEventDetail<AzureIdOrUpnObj>);
+
+        return resolveTaskEvent(host, event);
       },
       () => [host.dataSource, host.azureId, host.upn],
     );

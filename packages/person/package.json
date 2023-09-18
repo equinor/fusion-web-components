@@ -8,7 +8,11 @@
     "./provider": "./lib/components/provider/index.js",
     "./avatar": "./lib/components/avatar/index.js",
     "./card": "./lib/components/card/index.js",
-    "./list-item": "./lib/components/list-item/index.js"
+    "./list-item": "./lib/components/list-item/index.js",
+    "./tasks": {
+      "default": "./lib/tasks/index.js",
+      "types": "./lib/types/tasks/index.d.ts"
+    }
   },
   "types": "lib/types/index.d.ts",
   "typesVersions": {

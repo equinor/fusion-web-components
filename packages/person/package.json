@@ -31,6 +31,9 @@
       ],
       "search": [
         "lib/types/components/search/index.d.ts"
+      ],
+      "tasks": [
+        "lib/types/tasks/index.d.ts"
       ]
     }
   },

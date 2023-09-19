@@ -35,8 +35,13 @@ import style from './element.css';
  *
  * @summary Enhanced list item element, based on [Material Web Component](https://github.com/material-components/material-web/tree/master/packages/list)
  */
-export class ListItemElement extends ListItemBase implements Omit<ListItemBase, 'multipleGraphics'> {
+export class ListItemElement<TDataSource = unknown>
+  extends ListItemBase
+  implements Omit<ListItemBase, 'multipleGraphics'>
+{
   static styles: CSSResult[] = [mdcStyle, style];
+
+  dataSource?: TDataSource;
 
   /**
    * Render text slot
@@ -60,11 +65,12 @@ export class ListItemElement extends ListItemBase implements Omit<ListItemBase, 
     `;
   }
 
-  /** {@inheritDoc} */
-  override render(): HTMLTemplateResult {
-    const text = this.renderText();
-    return html` ${this.renderRipple()}<span class="fwc-list-item__graphic"><slot name="graphic"></slot></span>${text}
-      <slot class="fwc-list-item__meta" name="meta"></slot>`;
+  protected override renderGraphic() {
+    return html`<span class="fwc-list-item__graphic"><slot name="graphic"></slot></span>`;
+  }
+
+  protected override renderMeta() {
+    return html`<slot class="fwc-list-item__meta" name="meta"></slot>`;
   }
 }
 

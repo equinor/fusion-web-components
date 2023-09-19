@@ -16,7 +16,8 @@ export class PersonSearchTask extends Task<TaskArgs, PersonSearchResult> {
   constructor(public host: PersonSearchControllerHost) {
     super(
       host,
-      ([search], { signal }): Promise<PersonSearchResult | []> => {
+      ([search], options): Promise<PersonSearchResult | []> => {
+        const { signal } = options ?? {};
         if (!search || search?.length < 3) {
           return Promise.resolve([]);
         } else if (search && search?.length >= 3) {

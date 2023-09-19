@@ -18,7 +18,8 @@ export class PersonPhotoTask extends Task<TaskArgs, string> {
   constructor(public host: PersonPhotoControllerHost) {
     super(
       host,
-      ([pictureSrc, azureId, upn], { signal }): Promise<string> => {
+      ([pictureSrc, azureId, upn], options): Promise<string> => {
+        const { signal } = options ?? {};
         if (pictureSrc) {
           return Promise.resolve(pictureSrc);
         }

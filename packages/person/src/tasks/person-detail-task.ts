@@ -18,7 +18,8 @@ export class PersonDetailTask extends Task<TaskArgs, PersonDetails> {
   constructor(public host: PersonDetailControllerHost) {
     super(
       host,
-      ([dataSource, azureId, upn], { signal }): Promise<PersonDetails> => {
+      ([dataSource, azureId, upn], options): Promise<PersonDetails> => {
+        const { signal } = options ?? {};
         if (dataSource) {
           return Promise.resolve(dataSource);
         }

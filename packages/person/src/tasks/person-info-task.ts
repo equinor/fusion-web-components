@@ -20,7 +20,8 @@ export class PersonInfoTask<T extends DataSource = DataSource> extends Task<Task
   constructor(public host: PersonInfoControllerHost) {
     super(
       host,
-      ([dataSource, azureId, upn], { signal }): Promise<T | PersonInfo> => {
+      ([dataSource, azureId, upn], options): Promise<T | PersonInfo> => {
+        const { signal } = options ?? {};
         if (dataSource) {
           return Promise.resolve(dataSource as T);
         }

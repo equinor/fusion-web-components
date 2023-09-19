@@ -96,7 +96,8 @@ export class PersonSearchController implements ReactiveController {
       console.debug('Missing element at index:', event.detail.index);
     }
 
-    const { azureId, dataSource } = selectedElement;
+    const { dataSource } = selectedElement;
+    const { azureId } = dataSource ?? {};
 
     if (!azureId) {
       console.warn('This should not be spossible, missing dataSource?');
@@ -113,10 +114,10 @@ export class PersonSearchController implements ReactiveController {
     } else {
       this.isOpen = false;
       if (this.selectedItems.has(azureId)) {
-        console.log('clearing');
         this.#host.value = '';
         this.selectedItems.clear();
       } else {
+        this.selectedItems.clear();
         this.selectedItems.add(azureId);
         this.#host.value = dataSource?.name ?? '';
       }

@@ -12,13 +12,12 @@ import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person
 
 import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
 
-import { CheckListItemElement, ListElement } from '@equinor/fusion-wc-list';
+import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
 import { AvatarElement } from '@equinor/fusion-wc-avatar';
-import { PersonSearchListItemElement } from './list-item';
-PersonSearchListItemElement;
+import { PersonInfo } from 'person/src/types';
 ListElement;
 CheckListItemElement;
 TextInputElement;
@@ -118,8 +117,8 @@ export class PersonSearchElement
   @query('fwc-list')
   listElement!: ListElement;
 
-  @queryAll('fwc-person-search-list-item')
-  listItems!: Array<PersonSearchListItemElement>;
+  @queryAll('fwc-list-item:not([disabled])')
+  listItems!: Array<ListItemElement<PersonInfo>>;
 
   private tasks?: {
     search: PersonSearchTask;
@@ -156,20 +155,50 @@ export class PersonSearchElement
     return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controllers.element.handleSelect}>
       ${this.tasks?.search.render({
         complete: (result) => {
-          // we need to save rendered item in state to be able to select them by index from action event
-          this.controllers.element._listItems = result.map((item) => item.azureId);
-          const selectedIds = this.controllers.element.selectedItems;
+          if (!result.length && this.search.length < 3) {
+            return html`
+              <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
+                Start typing to search.
+              </fwc-list-item>
+            `;
+          } else if (!result.length && this.search.length) {
+            return html`
+              <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
+                No matching person found
+              </fwc-list-item>
+            `;
+          }
 
-          return html`${repeat(
-            result,
-            (item) => item.azureId,
-            (item) =>
-              html`<fwc-person-search-list-item
-                .dataSource=${item}
-                .selected=${selectedIds.has(item.azureId)}
-                .disabled=${item.azureId === 'init' || item.azureId === 'notfound'}
-              ></fwc-person-search-list-item>`,
-          )}`;
+          this.controllers.element._listItems = result.map((item) => item.azureId);
+
+          return html`
+            ${repeat(
+              result,
+              (item) => item.azureId,
+              (item) => {
+                return html`
+                  <fwc-list-item
+                    graphic="avatar"
+                    twoline
+                    .activated=${this.controllers.element.selectedItems.has(item.azureId)}
+                    .dataSource=${item}
+                  >
+                    <fwc-person-avatar
+                      .azureId=${item.azureId}
+                      .dataSource=${item}
+                      size="small"
+                      slot="graphic"
+                    ></fwc-person-avatar>
+
+                    <span class="item-text">
+                      ${item.name && html`<span class="item-title">${item.name}</span>`}
+                      ${item.mail && html`<span class="item-subtitle" slot="secondary">${item.mail}</span>`}
+                    </span>
+                  </fwc-list-item>
+                `;
+              },
+            )}
+          `;
         },
         pending: () =>
           html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,

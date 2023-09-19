@@ -45,7 +45,7 @@ export class RequestResolvePersonSearchEvent extends RequestResolveEvent<
 > {
   static readonly eventName = 'request-resolve-person-search';
   constructor(detail: AbortableEventDetail<RequestResolvePersonSearchEventArgs>, options?: CustomEventInit) {
-    super(RequestResolvePersonPhotoEvent.eventName, detail, options);
+    super(RequestResolvePersonSearchEvent.eventName, detail, options);
   }
 }
 

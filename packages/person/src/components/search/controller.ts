@@ -15,6 +15,14 @@ export class PersonSearchSelectEvent extends CustomEvent<PersonSearchSelectEvent
   }
 }
 
+/**
+ * @todo
+ * @eikeland
+ * This should be used from @equinor/fusion-wc-searchable-dropdown
+ * There is no point of duplicating this controller.
+ * An element can have multiple controllers
+ * The parent controller should have type-hint of `selected` in `CustomEventDetail`
+ */
 export class PersonSearchController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;

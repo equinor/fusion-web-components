@@ -5,7 +5,6 @@ import { queryAll } from 'lit/decorators/query-all.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
 import { PersonSearchController } from './controller';
 import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
@@ -129,27 +128,11 @@ export class PersonSearchElement
   @queryAll('fwc-list-item:not([disabled])')
   listItems!: Array<ListItemElement<PersonInfo>>;
 
-  private tasks?: {
-    search: PersonSearchTask;
+  private tasks = {
+    search: new PersonSearchTask(this),
   };
 
-  @state()
-  protected intersected = false;
-
   protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              search: new PersonSearchTask(this),
-            };
-          }
-        }
-      },
-    }),
     element: new PersonSearchController(this),
   };
   /**

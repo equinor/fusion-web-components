@@ -4,7 +4,6 @@ import { property, state } from 'lit/decorators.js';
 import { PersonPhotoTask } from '../../tasks';
 import { PersonDetails, PersonItemSize } from 'person/src/types';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
-// import { tag } from './index';
 import { fusionElement } from '@equinor/fusion-wc-core';
 
 import { style } from './element.manager.css';
@@ -24,8 +23,7 @@ export class PersonCardManagerElement extends LitElement {
   size: PersonItemSize = 'medium';
 
   private tasks?: {
-    // details: PersonDetailTask;
-    photo: PersonPhotoTask,
+    photo: PersonPhotoTask;
   };
 
   @state()

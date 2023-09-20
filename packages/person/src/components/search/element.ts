@@ -44,8 +44,17 @@ AvatarElement;
  * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
  *
  * @fires action Fires when a selection has been made on the fwc-list element
+ *
+ * @todo
+ * @eikeland
+ * This should extend `SearchableDropdownElement`.
+ *
+ * the only difference i see here is `PersonSearchTask` which can be overridden.
+ * the base class should have a function for rendering result:
+ * ```ts
+ * interface renderListItems(items: TResult): HTMLTemplateResult;
+ * ```
  */
-
 export class PersonSearchElement
   extends LitElement
   implements SearchableDropdownControllerHost, PersonSearchControllerHost

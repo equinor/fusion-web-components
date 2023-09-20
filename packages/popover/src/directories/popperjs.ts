@@ -26,14 +26,14 @@ class PopperJSDirective extends Directive {
       (partInfo.strings?.length as number) > 2
     ) {
       throw new Error(
-        'The `observeIntersection` directive must be used in the `popperjs` attribute and must be the only part in the attribute.'
+        'The `observeIntersection` directive must be used in the `popperjs` attribute and must be the only part in the attribute.',
       );
     }
   }
 
   override async render<TElement extends HTMLElement = HTMLElement, TModifier extends PopperModifier = StrictModifiers>(
     popper: TElement | Promise<TElement>,
-    options?: Options<TModifier>
+    options?: Options<TModifier>,
   ) {
     if (this.reference) {
       const target = await Promise.resolve(popper);

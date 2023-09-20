@@ -13,7 +13,7 @@ export const style = css`
 
   :host([color='neutral']) {
     --fwc-circular-progress-color: ${unsafeCSS(
-      theme.colors.interactive.icon_on_interactive_colors.getVariable('color')
+      theme.colors.interactive.icon_on_interactive_colors.getVariable('color'),
     )};
   }
 `;

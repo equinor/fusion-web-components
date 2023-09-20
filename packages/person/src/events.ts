@@ -4,7 +4,7 @@ export type AbortableEventDetail<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
   : { signal?: AbortSignal };
 
-type ResolveEventDetail<T = unknown, R = unknown> = AbortableEventDetail<T> & { result?: R | Promise<R> };
+export type ResolveEventDetail<T = unknown, R = unknown> = AbortableEventDetail<T> & { result?: R | Promise<R> };
 
 abstract class RequestResolveEvent<T, R> extends CustomEvent<ResolveEventDetail<T, R>> {
   constructor(

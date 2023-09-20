@@ -17,7 +17,7 @@ const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<
 
   useEffect(() => {
     if (providerRef?.current) {
-      providerRef.current.setResolver(personResolver);
+      providerRef.current.resolver = personResolver;
     }
   }, [providerRef]);
 

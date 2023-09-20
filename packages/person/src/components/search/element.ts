@@ -11,16 +11,12 @@ import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person
 
 import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
 
-import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
+import { ListElement, ListItemElement } from '@equinor/fusion-wc-list';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
-import { DividerElement } from '@equinor/fusion-wc-divider';
 import { IconElement } from '@equinor/fusion-wc-icon';
 import { AvatarElement } from '@equinor/fusion-wc-avatar';
 import { PersonInfo } from 'person/src/types';
 ListElement;
-CheckListItemElement;
-TextInputElement;
-DividerElement;
 IconElement;
 AvatarElement;
 

@@ -53,7 +53,7 @@ export class SearchableDropdownController implements ReactiveController {
         this.result = this.mutateResult(result);
         return this.result;
       },
-      () => [this.#queryString]
+      () => [this.#queryString],
     );
   }
 
@@ -242,7 +242,7 @@ export class SearchableDropdownController implements ReactiveController {
           selected: this._selectedItems,
         },
         bubbles: true,
-      })
+      }),
     );
 
     /* Sets items isSelected in task */
@@ -256,7 +256,7 @@ export class SearchableDropdownController implements ReactiveController {
    * Fires on click on close icon in textinput
    * Calls closeHandler callback set in resolver
    */
-  public closeClick = (e: MouseEvent | KeyboardEvent): void => {    
+  public closeClick = (e: MouseEvent | KeyboardEvent): void => {
     if (e.type === 'keydown') {
       /* only close on enter or space not tab */
       const me = e as KeyboardEvent;

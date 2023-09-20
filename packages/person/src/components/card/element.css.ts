@@ -39,7 +39,7 @@ export const style = css`
     margin: 0 var(--medium-size-space);
     padding: var(--medium-size-space) 0;
   }
-  .person-card__content > * + *{
+  .person-card__content > * + * {
     border-top: 1px solid;
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
   }

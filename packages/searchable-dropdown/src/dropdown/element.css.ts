@@ -26,7 +26,7 @@ export const fwcsdd = css`
     --mdc-text-field-outlined-idle-border-color: transparent;
     --mdc-shape-small: 0;
     --mdc-text-field-outlined-hover-border-color: ${unsafeCSS(
-      theme.colors.interactive.primary__resting.getVariable('color')
+      theme.colors.interactive.primary__resting.getVariable('color'),
     )};
   }
   .interactive {
@@ -53,7 +53,10 @@ export const fwcsdd = css`
     height: auto;
     overflow: hidden;
     z-index: 99;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    box-shadow:
+      0px 1px 5px rgba(0, 0, 0, 0.2),
+      0px 3px 4px rgba(0, 0, 0, 0.12),
+      0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
   }
   .list-scroll {

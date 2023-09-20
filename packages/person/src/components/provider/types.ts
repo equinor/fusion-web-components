@@ -7,14 +7,13 @@ type ResolverArgs<T = unknown> = T extends object
 
 type ResolverResult<T = unknown> = T | Promise<T>;
 
-export interface PersonHost extends ReactiveControllerHost {
-  azureId: string;
-  dispatchEvent(event: Event): boolean;
+export interface PersonResolverHost extends ReactiveControllerHost, EventTarget {
+  resolver?: PersonResolver;
 }
 
 export interface PersonResolver {
-  getDetails: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonDetails>;
-  getInfo: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonInfo>;
-  getPhoto: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
-  search: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
+  getDetails?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonDetails>;
+  getInfo?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonInfo>;
+  getPhoto?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
+  search?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
 }

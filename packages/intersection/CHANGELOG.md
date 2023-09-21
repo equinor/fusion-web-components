@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.29
+
+### Patch Changes
+
+- [#806](https://github.com/equinor/fusion-web-components/pull/806) [`266cefd`](https://github.com/equinor/fusion-web-components/commit/266cefd493f898f440ce93e92e79964bbd33be59) Thanks [@odinr](https://github.com/odinr)! - move from lerna version to changeset
+
 ## 1.0.28
 
 ### Patch Changes

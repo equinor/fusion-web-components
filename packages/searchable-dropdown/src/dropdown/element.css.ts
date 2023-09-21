@@ -7,6 +7,7 @@ export const fwcsdd = css`
     position: relative;
     width: 100%;
     --textinput-dense-size: 32px;
+    --fwc-list-item-vertical-padding: 0.5rem;
     --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     --fwc-text-field-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
@@ -25,7 +26,7 @@ export const fwcsdd = css`
     --mdc-text-field-outlined-idle-border-color: transparent;
     --mdc-shape-small: 0;
     --mdc-text-field-outlined-hover-border-color: ${unsafeCSS(
-      theme.colors.interactive.primary__resting.getVariable('color')
+      theme.colors.interactive.primary__resting.getVariable('color'),
     )};
   }
   .interactive {
@@ -52,7 +53,10 @@ export const fwcsdd = css`
     height: auto;
     overflow: hidden;
     z-index: 99;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    box-shadow:
+      0px 1px 5px rgba(0, 0, 0, 0.2),
+      0px 3px 4px rgba(0, 0, 0, 0.12),
+      0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
   }
   .list-scroll {
@@ -67,6 +71,9 @@ export const fwcsdd = css`
   }
   .variant-outlined fwc-list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
+  }
+  fwc-list-item {
+    --fwc-list-item-vertical-padding: 0.5rem;
   }
   .item-text {
     display: flex;
@@ -91,7 +98,6 @@ export const fwcsdd = css`
   [slot='graphic'] {
     display: flex;
     font-size: 0.8em;
-    padding-right: 6px;
   }
   fwc-divider {
     display: flex;
@@ -105,10 +111,10 @@ export const fwcsdd = css`
     margin: 1em 0 0;
   }
   .item-error {
-    background-color: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
+    --fwc-item-interactive-color: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
   }
 `;
 
-export const styles = [mdcStyle, fwcsdd];
+export const sddStyles = [mdcStyle, fwcsdd];
 
-export default styles;
+export default sddStyles;

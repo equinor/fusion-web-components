@@ -1,6 +1,8 @@
+export type AzureIdOrUpnObj = { azureId?: string; upn: string } | { azureId: string; upn?: string };
+
 export type PersonPresence = {
   azureId: string;
-  availability: PersonAvailability;
+  availability: PersonAvailability[keyof PersonAvailability];
 };
 
 export type Position = {
@@ -20,21 +22,24 @@ export type Manager = {
   accountType?: PersonAccountType;
 };
 
-export type PersonDetails = {
+export type PersonInfo = {
   azureId: string;
   name?: string;
-  pictureSrc?: string;
   jobTitle?: string;
   department?: string;
   mail?: string;
-  company?: string;
   mobilePhone?: string;
   accountType?: PersonAccountType;
   officeLocation?: string;
-  positions?: Position[];
-  manager?: Manager;
   managerAzureUniqueId?: string;
 };
+
+export type PersonDetails = PersonInfo & {
+  positions?: Position[];
+  manager?: Manager;
+};
+
+export type PersonSearchResult = Array<PersonInfo>;
 
 export type RequiredAndOptionalPick<T, R extends keyof T, O extends keyof Omit<T, R>> = Required<Pick<T, R>> &
   Pick<T, O>;

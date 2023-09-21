@@ -12,7 +12,7 @@ export const style = css`
     --editor-button-hover-background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.getVariable('color'))};
     --editor-button-active-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
     --editor-button-active-background: ${unsafeCSS(
-      theme.colors.interactive.primary__selected_highlight.getVariable('color')
+      theme.colors.interactive.primary__selected_highlight.getVariable('color'),
     )};
     cursor: auto;
   }

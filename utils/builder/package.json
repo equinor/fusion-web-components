@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-builder",
-  "version": "2.1.2",
+  "version": "2.1.3-next.1",
   "private": true,
   "description": "",
   "main": "index.js",

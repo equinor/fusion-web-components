@@ -40,6 +40,7 @@ jobs:
         uses: changesets/action@v1
         with:
           title: '🤖 Bip Bop - Fusion Web Components Release'
+          commit: 'chore: version packages'
           createGithubReleases: true
           setupGitUser: false
           publish: npx lerna publish from-package --yes --no-verify-access

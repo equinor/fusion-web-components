@@ -1,17 +1,17 @@
 import { ReactiveController } from 'lit';
-import { PersonSearchElement } from './element';
+import { PersonSelectElement } from './element';
 
 import { ExplicitEventTarget } from '@equinor/fusion-wc-searchable-dropdown';
 import { PersonInfo } from '../../types';
 
-type PersonSearchSelectEventDetail = {
+type PersonSelectEventDetail = {
   selected: PersonInfo;
 };
 
-export class PersonSearchSelectEvent extends CustomEvent<PersonSearchSelectEventDetail> {
+export class PersonSelectEvent extends CustomEvent<PersonSelectEventDetail> {
   static readonly eventName = 'select';
-  constructor(args: CustomEventInit<PersonSearchSelectEventDetail>) {
-    super(PersonSearchSelectEvent.eventName, args);
+  constructor(args: CustomEventInit<PersonSelectEventDetail>) {
+    super(PersonSelectEvent.eventName, args);
   }
 }
 
@@ -23,16 +23,16 @@ export class PersonSearchSelectEvent extends CustomEvent<PersonSearchSelectEvent
  * An element can have multiple controllers
  * The parent controller should have type-hint of `selected` in `CustomEventDetail`
  */
-export class PersonSearchController implements ReactiveController {
+export class PersonSelectController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
   public _listItems: Array<string> = [];
   public selectedItems: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
-  #host: PersonSearchElement;
+  #host: PersonSelectElement;
 
-  constructor(host: PersonSearchElement) {
+  constructor(host: PersonSelectElement) {
     this.#host = host;
     this.#host.addController(this);
     this.handleSelect = this.handleSelect.bind(this);
@@ -133,7 +133,7 @@ export class PersonSearchController implements ReactiveController {
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
-      new PersonSearchSelectEvent({
+      new PersonSelectEvent({
         detail: {
           selected: dataSource!,
         },

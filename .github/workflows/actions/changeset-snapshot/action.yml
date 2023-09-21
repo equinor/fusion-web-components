@@ -30,6 +30,7 @@ runs:
       run: |
         npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
         npx changeset version --snapshot ${{ inputs.tag }}
+        npm run prepack
         npx changeset publish --no-git-tag --tag ${{ inputs.tag }} 
       env:
         NODE_AUTH_TOKEN: ${{ inputs.npm-token }}

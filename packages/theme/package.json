@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-theme",
-  "version": "0.2.34-next.1",
+  "version": "0.2.34",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

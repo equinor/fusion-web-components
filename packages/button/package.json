@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-button",
-  "version": "1.4.4-next.1",
+  "version": "1.4.4",
   "description": "",
   "main": "lib/index.js",
   "exports": {

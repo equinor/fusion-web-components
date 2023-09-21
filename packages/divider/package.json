@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-divider",
-  "version": "0.2.22-next.1",
+  "version": "0.2.22",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

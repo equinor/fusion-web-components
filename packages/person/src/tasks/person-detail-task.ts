@@ -1,6 +1,6 @@
 import { Task } from '@lit-labs/task';
 import { ReactiveControllerHost } from 'lit';
-import { resolveTaskEvent } from '.';
+import { resolveTaskEvent } from './resolve-task-event';
 import { AzureIdOrUpnObj, PersonDetails } from '../types';
 import { AbortableEventDetail, RequestResolvePersonDetailEvent } from '../events';
 

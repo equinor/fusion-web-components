@@ -28,6 +28,7 @@ export type PersonInfo = {
   jobTitle?: string;
   department?: string;
   mail?: string;
+  upn?: string;
   mobilePhone?: string;
   accountType?: PersonAccountType;
   officeLocation?: string;

@@ -6,7 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 
-import { PersonSearchController } from './controller';
+import { PersonSelectController } from './controller';
 import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
 
 import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
@@ -50,7 +50,7 @@ AvatarElement;
  * interface renderListItems(items: TResult): HTMLTemplateResult;
  * ```
  */
-export class PersonSearchElement
+export class PersonSelectElement
   extends LitElement
   implements SearchableDropdownControllerHost, PersonSearchControllerHost
 {
@@ -129,7 +129,7 @@ export class PersonSearchElement
   };
 
   protected controllers = {
-    element: new PersonSearchController(this),
+    element: new PersonSelectController(this),
   };
   /**
    * Render the menu if state is open
@@ -255,4 +255,4 @@ export class PersonSearchElement
   }
 }
 
-export default PersonSearchElement;
+export default PersonSelectElement;

@@ -2,4 +2,4 @@
 '@equinor/fusion-wc-intersection': patch
 ---
 
-testing changeset
+test changeset

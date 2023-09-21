@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#856](https://github.com/equinor/fusion-web-components/pull/856) [`fb8434b`](https://github.com/equinor/fusion-web-components/commit/fb8434b56f23ab98b546cb88ded76d464fb67549) Thanks [@odinr](https://github.com/odinr)! - rename search to select
+
+  renamed `fusion-wc-person-search` to `fusion-wc-person-select`
+
+### Patch Changes
+
+- [#856](https://github.com/equinor/fusion-web-components/pull/856) [`fb8434b`](https://github.com/equinor/fusion-web-components/commit/fb8434b56f23ab98b546cb88ded76d464fb67549) Thanks [@odinr](https://github.com/odinr)! - expose upn in PersonInfo interface
+
+- [#856](https://github.com/equinor/fusion-web-components/pull/856) [`fb8434b`](https://github.com/equinor/fusion-web-components/commit/fb8434b56f23ab98b546cb88ded76d464fb67549) Thanks [@odinr](https://github.com/odinr)! - fix circular dependency
+
 ## 1.0.0
 
 ### Major Changes

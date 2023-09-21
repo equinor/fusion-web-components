@@ -28,12 +28,12 @@ runs:
       shell: bash
       if: ${{ steps.status.outputs.releases > 0 }}
       run: |
-        npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        npm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
         npx changeset version --snapshot ${{ inputs.tag }}
         npm run prepack
         npx changeset publish --no-git-tag --tag ${{ inputs.tag }} 
       env:
-        NODE_AUTH_TOKEN: ${{ inputs.npm-token }}
+        NPM_AUTH_TOKEN: ${{ inputs.npm-token }}
         GITHUB_TOKEN: ${{ inputs.gh-token }}
 
     - uses: actions/upload-artifact@v3

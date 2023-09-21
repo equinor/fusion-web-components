@@ -28,7 +28,7 @@ runs:
       shell: bash
       if: ${{ steps.status.outputs.releases > 0 }}
       run: |
-        npx config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
         npx changeset version --snapshot ${{ inputs.tag }}
         npx changeset publish --no-git-tag --tag ${{ inputs.tag }} 
       env:

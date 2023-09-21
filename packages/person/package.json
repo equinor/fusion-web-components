@@ -43,7 +43,6 @@
   "customElements": "lib/custom-elements.json",
   "scripts": {
     "build": "tsc -b",
-    "postbuild": "web-component-analyzer src --format json --outFile lib/custom-elements.json",
     "prepack": "npm run build && fwc-build"
   },
   "keywords": [],

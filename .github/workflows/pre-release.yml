@@ -41,22 +41,8 @@ jobs:
         env:
           CI: TRUE
 
-      - name: Bump versions (pre-release)
-        run: npx lerna version --yes --conventional-prerelease --no-changelog --no-git-tag-version --preid ${{ github.event.inputs.tag }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      - name: Commit changes
-        continue-on-error: true
-        run: |
-          git add -A
-
-          git commit -m'chore(prerelease): bumped version with tag ${{ github.event.inputs.tag }}'
-          git push
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      - name: Release packages
-        run: npx lerna publish from-package --yes --no-verify-access --dist-tag ${{ github.event.inputs.tag }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Create snapshot
+        uses: ./.github/workflows/actions/changeset-snapshot
+        with:
+          tag: ${{ inputs.tag }}
+          npm-token: ${{ secrets.NPM_AUTH_TOKEN }}

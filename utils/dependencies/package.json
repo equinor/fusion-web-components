@@ -12,5 +12,9 @@
   },
   "scripts": {
     "build": "tsc -b"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.3",
+    "tslib": "^2.6.2"
   }
 }

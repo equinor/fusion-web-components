@@ -1,4 +1,5 @@
-import { property, PropertyValues } from 'lit-element';
+import { type PropertyValues } from 'lit';
+import { property } from 'lit/decorators.js';
 import { TextAreaBase } from '@material/mwc-textarea/mwc-textarea-base';
 import { styles } from './element.css';
 

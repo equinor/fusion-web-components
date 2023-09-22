@@ -1,5 +1,5 @@
-import { css } from 'lit';
-export const style = css`
+import { type CSSResult, css } from 'lit';
+const style: CSSResult = css`
   .fwc-list-item__checkbox-right {
     margin-left: auto;
     display: flex;

@@ -1,5 +1,5 @@
 import { ReactiveControllerHost } from 'lit';
-import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { type ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { ListElement } from '@equinor/fusion-wc-list';
 /**

@@ -1,7 +1,7 @@
-import { css } from 'lit';
+import { CSSResult, css } from 'lit';
 import { styles as buttonStyle } from '../button/element.css';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
   }
 `;

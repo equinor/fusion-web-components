@@ -1,7 +1,7 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult }  from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const personStyle = css`
+export const personStyle: CSSResult = css`
   :host {
     font-family: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontFamily'))};
     font-size: calc(

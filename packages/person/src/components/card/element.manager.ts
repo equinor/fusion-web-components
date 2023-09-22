@@ -1,4 +1,4 @@
-import { CSSResult, LitElement, html } from 'lit';
+import { type CSSResult, type HTMLTemplateResult, LitElement, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 import { PersonPhotoTask } from '../../tasks';
@@ -45,7 +45,7 @@ export class PersonCardManagerElement extends LitElement {
     }),
   };
 
-  render() {
+  render(): HTMLTemplateResult {
     const { name, department } = this.dataSource ?? {};
     // TODO make avatar have pending state!
     return html` <div class="root">

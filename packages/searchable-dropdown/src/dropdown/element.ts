@@ -1,4 +1,4 @@
-import { html, LitElement, HTMLTemplateResult } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
 
 import { query } from 'lit/decorators/query.js';
@@ -55,7 +55,7 @@ export class SearchableDropdownElement
   // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
 
   /* style object css */
-  static styles = [sddStyles];
+  static styles: CSSResult[] = sddStyles;
 
   controller = new SearchableDropdownController(this);
 

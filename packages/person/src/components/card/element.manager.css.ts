@@ -1,9 +1,9 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult }  from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 // TODO add shared for all content items
 
-export const style = css`
+export const style: CSSResult = css`
   .root {
     display: flex;
     flex-flow: column;

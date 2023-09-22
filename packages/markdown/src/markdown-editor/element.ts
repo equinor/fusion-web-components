@@ -1,4 +1,4 @@
-import { html, LitElement, PropertyValues, TemplateResult } from 'lit';
+import { type CSSResult, html, LitElement, type PropertyValues, type TemplateResult } from 'lit';
 import { property, queryAsync, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { MarkdownEditorElementProps } from './types';
@@ -13,7 +13,7 @@ import { Node } from 'prosemirror-model';
 import { buildKeymap } from './keymap';
 import menuPlugin from './menu';
 import { MdMenuItemType } from './menuItems';
-import styles from './element.css';
+import { style } from './element.css';
 
 const defaultMenuItem: Array<MdMenuItemType> = ['strong', 'em', 'bullet_list', 'ordered_list'];
 
@@ -43,7 +43,7 @@ const defaultMenuItem: Array<MdMenuItemType> = ['strong', 'em', 'bullet_list', '
  */
 
 export class MarkdownEditorElement extends LitElement implements MarkdownEditorElementProps {
-  static styles = styles;
+  static styles: CSSResult[] = [style];
 
   /** List of visible menu buttons */
   @property({ reflect: true, type: Array, converter: (a) => a?.split(',') })

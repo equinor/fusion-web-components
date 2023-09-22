@@ -11,27 +11,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
 
-      - name: Cache Node Modules
-        id: cache-node
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}
-
-      - name: Install Node Dependencies
-        run: npm ci
-        env:
-          CI: TRUE
+      - name: Setup node and install deps
+        uses: ./.github/workflows/actions/node-setup
 
       - name: Build project
-        run: npx tsc -b
+        run: pnpm -r build
 
       - name: Save Code Linting Report JSON
-        run: npm run lint:report
+        run: pnpm lint:report
         continue-on-error: true
 
       - name: Annotate Code Linting Results

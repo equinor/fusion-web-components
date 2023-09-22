@@ -12,6 +12,7 @@ storybook/package-lock.json
 packages/*/package-lock.json
 packages/*/build
 packages/*/dist
+storybook/dist
 packages/*/lib
 
 docs/

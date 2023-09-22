@@ -17,29 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          registry-url: https://registry.npmjs.org
-          node-version: '16'
+      - name: Setup node and install deps
+        uses: ./.github/workflows/actions/node-setup
 
       - name: Config git user
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-
-      - name: Cache Node Modules
-        id: cache-node
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}
-
-      - name: Install Node Dependencies
-        if: steps.cache-node.outputs.cache-hit != 'true'
-        run: npm ci
-        env:
-          CI: TRUE
 
       - name: Create snapshot
         uses: ./.github/workflows/actions/changeset-snapshot

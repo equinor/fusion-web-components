@@ -2,56 +2,42 @@ name: Generate Docs
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  workflow_call: 
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  merge:
+  build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: devmasx/merge-branch@v1.3.1
-        with:
-          type: now
-          from_branch: main
-          target_branch: docs
-          github_token: ${{ github.token }}
-
-  generate-docs:
-    runs-on: ubuntu-latest
-    needs: merge
     steps:
       - name: Checkout docs
         uses: actions/checkout@v2
-        with:
-          ref: docs
 
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-      - name: Install Node Dependencies
-        if: steps.cache-node.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Setup node and install deps
+        uses: ./.github/workflows/actions/node-setup
 
       - name: Build project
-        run: npm run build
+        run: pnpm build
 
       - name: Build storybook
-        run: |
-          rm -rf docs
-          npm run docs
+        run: pnpm build:docs
 
-      - name: Config git user
-        run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./storybook/dist
 
-      - name: Commit changes
-        run: |
-          echo "!docs/" >> .gitignore
-          git add docs 
-          git commit -m'docs: build of storybook'
-          git push --force
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

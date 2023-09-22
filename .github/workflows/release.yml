@@ -14,16 +14,16 @@ jobs:
     name: Create release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+      hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          registry-url: https://registry.npmjs.org
-          node-version: '16'
+      - name: Setup node and install deps
+        uses: ./.github/workflows/actions/node-setup
 
       - name: Config git user
         run: |
@@ -33,11 +33,6 @@ jobs:
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-      - name: Install Node Dependencies
-        run: npm ci
-        env:
-          CI: TRUE
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
@@ -46,7 +41,14 @@ jobs:
           commit: 'chore: version packages'
           createGithubReleases: true
           setupGitUser: false
-          publish: npm run changeset:publish
+          publish: pnpm changeset:publish
         env:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          
+  documentation:
+    name: Merge main into docs
+    needs: release-pkg
+    if: needs.release-pkg.outputs.published == 'true'
+    uses: ./.github/workflows/generate-docs.yml
+    secrets: inherit

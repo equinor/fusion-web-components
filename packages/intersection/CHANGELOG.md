@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.31
+
+### Patch Changes
+
+- [`9b1df5c`](https://github.com/equinor/fusion-web-components/commit/9b1df5c0eaf45ae3d12acc5e5ca6e3a0e59fb139) Thanks [@odinr](https://github.com/odinr)! - test tagging
+
 ## 1.0.30
 
 ### Patch Changes

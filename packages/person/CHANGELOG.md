@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [#865](https://github.com/equinor/fusion-web-components/pull/865) [`33916bb`](https://github.com/equinor/fusion-web-components/commit/33916bbd67b5a7354244ec159b375ed56abe38c8) Thanks [@odinr](https://github.com/odinr)! - force update of style on render for `PersonProviderElement`
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
+
+  - update all packages to use workspace for local packages
+  - fix all missing references
+  - cleanup root scripts
+  - update lerna config
+
+  > moved to major since so many packages had missing deps (resolved threw peer deps)
+  >
+  > this might alter render and cause 'correct' behavior, but current relays on 'wrong'
+
 ## 2.1.3
 
 ### Patch Changes

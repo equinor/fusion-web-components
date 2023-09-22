@@ -10,12 +10,12 @@
     "./card": "./lib/components/card/index.js",
     "./list-item": "./lib/components/list-item/index.js",
     "./select": {
-      "default": "./lib/components/select/index.js",
-      "types": "./lib/types/components/select/index.d.ts"
+      "types": "./lib/types/components/select/index.d.ts",
+      "default": "./lib/components/select/index.js"
     },
     "./tasks": {
-      "default": "./lib/tasks/index.js",
-      "types": "./lib/types/tasks/index.d.ts"
+      "types": "./lib/types/tasks/index.d.ts",
+      "default": "./lib/tasks/index.js"
     }
   },
   "types": "lib/types/index.d.ts",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [#859](https://github.com/equinor/fusion-web-components/pull/859) [`2b30ccb`](https://github.com/equinor/fusion-web-components/commit/2b30ccbb8e36926ca0c27defa8876dcf72234dce) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Updated package.json export route
+
 ## 1.1.1
 
 ### Patch Changes

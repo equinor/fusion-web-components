@@ -1,4 +1,4 @@
-import { css, unsafeCSS, type CSSResult }  from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 const style: CSSResult = css`

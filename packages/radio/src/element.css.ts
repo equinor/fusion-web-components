@@ -1,4 +1,4 @@
-import { css, unsafeCSS, type CSSResult }  from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 import { styles as mdcStyle } from '@material/mwc-radio/mwc-radio.css';
 

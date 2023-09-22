@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.21.3",
-    "@storybook/addon-docs": "^6.5.16",
+    "@storybook/addon-docs": "^7.4.4",
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/react": "^6.5.16",

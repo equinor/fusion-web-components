@@ -17,8 +17,7 @@ export class PersonProviderElement extends LitElement implements PersonResolverH
     return this;
   }
 
-  override connectedCallback(): void {
-    super.connectedCallback();
+  protected render(): void {
     this.style.display = 'contents';
   }
 }

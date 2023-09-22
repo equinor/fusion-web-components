@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.1
+
+### Patch Changes
+
+- [#862](https://github.com/equinor/fusion-web-components/pull/862) [`28ce1f0`](https://github.com/equinor/fusion-web-components/commit/28ce1f07139294ecdfa28db34f2be3dee0d94c00) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - swap places with default and types in package eports
+
 ## 1.2.0
 
 ### Minor Changes

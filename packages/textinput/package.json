@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-textinput",
-  "version": "0.5.20",
+  "version": "0.5.21",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.11
+
+### Patch Changes
+
+- [`c9413be`](https://github.com/equinor/fusion-web-components/commit/c9413beb02b168de63c2f978f121e80fe1b68614) Thanks [@odinr](https://github.com/odinr)! - update package.json
+
 ## 0.1.10
 
 ### Patch Changes

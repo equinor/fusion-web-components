@@ -38,7 +38,7 @@
     "@equinor/fusion-wc-textarea": "^0.4.21",
     "@equinor/fusion-wc-textinput": "^0.5.20",
     "@equinor/fusion-wc-theme": "^0.2.34",
-    "@storybook/addon-docs": "^6.5.16",
+    "@storybook/addon-docs": "^7.4.3",
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/react": "^6.5.16",

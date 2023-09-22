@@ -1,7 +1,7 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const style = css`
+export const style: CSSResult = css`
   :host {
     --editor-color-text: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     --editor-border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};

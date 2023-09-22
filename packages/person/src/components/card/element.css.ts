@@ -1,7 +1,7 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     --x-small-size-space: calc(
       ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))} * var(--content-resize, 1)

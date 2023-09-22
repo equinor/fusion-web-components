@@ -1,4 +1,4 @@
-import { html, LitElement, HTMLTemplateResult } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import { queryAll } from 'lit/decorators/query-all.js';
@@ -57,7 +57,7 @@ export class PersonSelectElement
   // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
 
   /* style object css */
-  static styles = [sddStyles];
+  static styles: CSSResult[] = sddStyles;
 
   /* Label passed to the fwc-text-input component */
   @property()

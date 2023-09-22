@@ -1,7 +1,7 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     --fwc-list-vertical-padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     --fwc-list-side-padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};

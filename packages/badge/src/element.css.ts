@@ -1,7 +1,7 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const style = css`
+export const style: CSSResult = css`
   :host {
     --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     --fwc-badge-size: 1.5rem;

@@ -1,6 +1,6 @@
-import { css } from 'lit';
+import { CSSResult, css } from 'lit';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     display: inline-flex;
     user-select: none;

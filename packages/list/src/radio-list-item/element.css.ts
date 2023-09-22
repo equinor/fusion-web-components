@@ -1,6 +1,6 @@
-import { css } from 'lit';
+import { type CSSResult, css } from 'lit';
 
-export const style = css`
+const style: CSSResult = css`
   .fwc-list-item__radio-right {
     margin-left: auto;
     display: flex;

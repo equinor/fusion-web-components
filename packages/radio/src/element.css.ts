@@ -1,8 +1,8 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 import { styles as mdcStyle } from '@material/mwc-radio/mwc-radio.css';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     --fwc-radio-size: 18px;
     --fwc-radio-spacing: calc(var(--fwc-radio-size) / 2);

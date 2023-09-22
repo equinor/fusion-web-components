@@ -65,11 +65,11 @@ export class ListItemElement<TDataSource = unknown>
     `;
   }
 
-  protected override renderGraphic() {
+  protected override renderGraphic(): HTMLTemplateResult {
     return html`<span class="fwc-list-item__graphic"><slot name="graphic"></slot></span>`;
   }
 
-  protected override renderMeta() {
+  protected override renderMeta(): HTMLTemplateResult {
     return html`<slot class="fwc-list-item__meta" name="meta"></slot>`;
   }
 }

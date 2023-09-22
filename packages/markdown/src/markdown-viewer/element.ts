@@ -1,4 +1,4 @@
-import { css, html, LitElement, PropertyValues, TemplateResult } from 'lit';
+import { css, type CSSResult, html, LitElement, type PropertyValues, type TemplateResult } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MarkdownViewerElementProps } from './types';
@@ -11,7 +11,7 @@ const styles = css`
 `;
 
 export class MarkdownViewerElement extends LitElement implements MarkdownViewerElementProps {
-  static styles = styles;
+  static styles: CSSResult = styles;
 
   @property({
     type: String,

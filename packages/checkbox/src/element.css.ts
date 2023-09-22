@@ -1,8 +1,8 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 import { styles as mdcStyle } from '@material/mwc-checkbox/mwc-checkbox.css';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     --fwc-checkbox-size: 18px;
     --fwc-checkbox-spacing: calc(var(--fwc-checkbox-size) / 2);

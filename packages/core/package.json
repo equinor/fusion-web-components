@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",
-    "prepack": "npm run build"
+    "prepack": "pnpm build"
   },
   "keywords": [],
   "license": "ISC",
@@ -16,5 +16,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "tslib": "^2.6.2"
   }
 }

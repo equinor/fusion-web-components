@@ -1,8 +1,8 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
 
-export const attributes = css`
+export const attributes: CSSResult = css`
   :host {
     --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
@@ -11,7 +11,7 @@ export const attributes = css`
   }
 `;
 
-export const mdcOverride = css`
+export const mdcOverride: CSSResult = css`
   :host {
     --mdc-text-field-idle-line-color: var(--fwc-text-field-base-color);
     --mdc-text-field-hover-line-color: var(--fwc-text-field-base-color);
@@ -27,7 +27,7 @@ export const mdcOverride = css`
   }
 `;
 
-export const dense = css`
+export const dense: CSSResult = css`
   :host([dense]) {
     --textinput-dense-size: 32px;
   }
@@ -78,7 +78,7 @@ export const dense = css`
   }
 `;
 
-const search = css`
+const search: CSSResult = css`
   input[type='search']::-webkit-search-cancel-button {
     -webkit-appearance: none;
     height: 1em;

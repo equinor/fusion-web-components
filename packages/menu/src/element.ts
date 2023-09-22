@@ -1,5 +1,5 @@
-import { MenuBase, MenuCorner, Corner } from '@material/mwc-menu/mwc-menu-base';
-import { html, HTMLTemplateResult } from 'lit-html';
+import { MenuBase, type MenuCorner, type Corner } from '@material/mwc-menu/mwc-menu-base';
+import { html, type HTMLTemplateResult } from 'lit';
 import { ListElement } from '@equinor/fusion-wc-list';
 
 export type MenuElementProps = {

@@ -1,7 +1,7 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     display: flex;
     --fwc-divider-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};

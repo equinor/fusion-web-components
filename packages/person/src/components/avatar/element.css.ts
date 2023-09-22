@@ -1,6 +1,6 @@
-import { css } from 'lit';
+import { type CSSResult, css } from 'lit';
 
-export const style = css`
+const style: CSSResult = css`
   :host(:not([disabled])) .fwc-person-avatar__employee {
     --fwc-avatar-base-color: #8c1159;
     --fwc-avatar-ink-color: #fff;

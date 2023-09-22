@@ -1,12 +1,12 @@
+import { type CSSResult, html, type HTMLTemplateResult } from 'lit';
 import { SelectBase } from '@material/mwc-select/mwc-select-base';
-import { html, HTMLTemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { styles } from '@material/mwc-select/mwc-select.css';
 import '@equinor/fusion-wc-menu';
 
 export class SelectElement extends SelectBase {
-  static styles = styles;
+  static styles: CSSResult = styles;
   override render(): HTMLTemplateResult {
     const classes = {
       'mdc-select--disabled': this.disabled,

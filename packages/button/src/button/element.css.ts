@@ -1,9 +1,9 @@
-import { css, unsafeCSS } from 'lit';
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 import { styles as mdcStyle } from '@material/mwc-button/styles.css';
 
-export const style = css`
+const style: CSSResult = css`
   :host {
     --mdc-button-outline-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
     --mdc-button-disabled-fill-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};

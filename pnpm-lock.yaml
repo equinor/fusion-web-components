@@ -680,8 +680,8 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       '@lit-labs/task':
-        specifier: ^2.1.0
-        version: 2.1.2
+        specifier: ^3.0.2
+        version: 3.0.2
       '@material/mwc-textfield':
         specifier: ^0.27.0
         version: 0.27.0
@@ -3367,12 +3367,6 @@ packages:
 
   /@lit-labs/ssr-dom-shim@1.1.1:
     resolution: {integrity: sha512-kXOeFbfCm4fFf2A3WwVEeQj55tMZa8c8/f9AKHMobQMkzNUfUj+antR3fRPaZJawsa1aZiP/Da3ndpZrwEe4rQ==}
-
-  /@lit-labs/task@2.1.2:
-    resolution: {integrity: sha512-pDjPYojmCXnOezT/4BgqxHA2kahmSsCE0y6uPCYyVqigIx9DJav05s0KAtD9IImTY3LvWu5isSlq6nkWagAybA==}
-    dependencies:
-      '@lit/reactive-element': 1.6.3
-    dev: false
 
   /@lit-labs/task@3.0.2:
     resolution: {integrity: sha512-X6d+KWZR3q1ZrXs/auM5PbZcW3B5RlpU4gqk/upstwTZM6JN19P6o9Qgo+qjovIDsUZsYnlGQqtdPBwPrKzLUA==}

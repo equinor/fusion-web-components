@@ -19,7 +19,7 @@
     "@equinor/fusion-wc-list": "workspace:^",
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.7",
-    "@lit-labs/task": "^2.1.0",
+    "@lit-labs/task": "^3.0.2",
     "@material/mwc-textfield": "^0.27.0",
     "@types/uuid": "^9.0.1",
     "lit": "2.7.0",

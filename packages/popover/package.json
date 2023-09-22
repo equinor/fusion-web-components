@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-popover",
-  "version": "1.0.30",
+  "version": "2.0.0",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

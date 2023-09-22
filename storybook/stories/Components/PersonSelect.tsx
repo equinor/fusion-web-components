@@ -4,12 +4,13 @@ import extractProps from './extract-props';
 import { mockPersonResolver } from './__mocks__/people.mock';
 
 import {
-  PersonSearchElement,
-  PersonSearchElementProps,
+  PersonSelectElement,
+  PersonSelectElementProps,
   PersonProviderElement,
   PersonResolver,
 } from '@equinor/fusion-wc-person';
-PersonSearchElement;
+
+PersonSelectElement;
 
 const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<PersonProviderElement | null> => {
   const providerRef = useRef<PersonProviderElement>(null);
@@ -23,12 +24,12 @@ const usePersonProviderRef = (personResolver: PersonResolver): MutableRefObject<
   return providerRef;
 };
 
-export const PersonSearch = ({ children, ...props }: PropsWithChildren<PersonSearchElementProps>): JSX.Element => {
+export const PersonSearch = ({ children, ...props }: PropsWithChildren<PersonSelectElementProps>): JSX.Element => {
   const providerRef = usePersonProviderRef(mockPersonResolver);
-  const searchRef = useRef<PersonSearchElement>(null);
+  const searchRef = useRef<PersonSelectElement>(null);
 
   useEffect(() => {
-    for (const [name, value] of Object.entries(extractProps<PersonSearchElementProps>(props))) {
+    for (const [name, value] of Object.entries(extractProps<PersonSelectElementProps>(props))) {
       if (searchRef.current) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -40,7 +41,7 @@ export const PersonSearch = ({ children, ...props }: PropsWithChildren<PersonSea
 
   return (
     <fwc-person-provider ref={providerRef}>
-      <fwc-person-search ref={searchRef}>{children}</fwc-person-search>
+      <fwc-person-select ref={searchRef}>{children}</fwc-person-select>
     </fwc-person-provider>
   );
 };

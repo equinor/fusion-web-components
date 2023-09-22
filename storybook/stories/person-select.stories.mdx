@@ -2,7 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 
 import { iconNames } from '@equinor/fusion-wc-icon';
 
-import PersonSearch from './Components/PersonSearch';
+import PersonSelect from './Components/PersonSelect';
 
 export const Container = ({ title, children }) => (
   <section>
@@ -22,16 +22,16 @@ export const Container = ({ title, children }) => (
 export const Template = (props) => (
   <div>
     <Container title="Person Search">
-      <PersonSearch{...props} />
+      <PersonSelect{...props} />
     </Container>
   </div>
 );
 
-# @equinor/fusion-wc-person-search
+# @equinor/fusion-wc-person/select
 
 <Meta
-  title="People/PersonSearch"
-  component={PersonSearch}
+  title="People/PersonSelect"
+  component={PersonSelect}
   parameters={{
     viewMode: 'docs',
     previewTabs: {
@@ -41,7 +41,7 @@ export const Template = (props) => (
 />
 
 ```sh
-npm i @equinor/fusion-wc-person-search
+npm i @equinor/fusion-wc-person
 ```
 
 ## Playground

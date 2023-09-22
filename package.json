@@ -29,7 +29,7 @@
     "predeps:typereact": "npm run build --prefix utils/dependencies",
     "deps:typereact": "node utils/dependencies/bin/index.js",
     "prepare": "husky install",
-    "changeset:publish": "lerna publish from-package --yes --no-verify-access"
+    "changeset:publish": "changeset tag && lerna publish from-package --yes --no-verify-access"
   },
   "keywords": [],
   "author": "",

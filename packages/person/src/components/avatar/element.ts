@@ -89,7 +89,10 @@ export class PersonAvatarElement
   disabled?: boolean;
 
   @queryAsync('#floating')
-  public floating!: Promise<HTMLSlotElement>;
+  public floating!: Promise<HTMLDivElement>;
+
+  @queryAsync('#root')
+  public root!: Promise<HTMLDivElement>;
 
   @queryAssignedElements({ slot: 'floating', flatten: true })
   private assignedFloating!: Array<HTMLElement>;
@@ -124,7 +127,7 @@ export class PersonAvatarElement
   async updated(props: PropertyValues) {
     if (props.has('isFloatingOpen') && this.isFloatingOpen && (await this.floating) instanceof HTMLElement) {
       await this.updateComplete;
-      computePosition(this, await this.floating, {
+      computePosition(await this.root, await this.floating, {
         placement: 'bottom-start',
         middleware: [offset(10), flip(), shift({ padding: 10 })],
       }).then(async ({ x, y }) => {
@@ -225,41 +228,45 @@ export class PersonAvatarElement
   protected renderAvatar(details: AvatarData): TemplateResult {
     // TODO - make own component for the image!
     return html`
-      ${this.tasks?.photo.render({
-        complete: (pictureSrc: string) =>
-          html`<fwc-avatar
-            class=${classMap(this.getRenderClasses(details.accountType))}
-            .size=${this.size}
-            .src=${pictureSrc}
-            .value=${this.getInitial(details.name)}
-            ?clickable=${this.clickable}
-            ?disabled=${this.disabled}
-            ?border=${true}
-            @click=${this.handleOnClick}
-            @mouseover=${this.handleMouseOver}
-            @mouseout=${this.handleMouseOut}
-          ></fwc-avatar>`,
-        pending: () =>
-          html`<fwc-avatar
-            class=${classMap(this.getRenderClasses(details.accountType))}
-            .size=${this.size}
-            .value=${this.getInitial(details.name)}
-            ?clickable=${this.clickable}
-            ?disabled=${this.disabled}
-            ?border=${true}
-            @click=${this.handleOnClick}
-            @mouseover=${this.handleMouseOver}
-            @mouseout=${this.handleMouseOut}
-          ></fwc-avatar>`,
-        error: () => this.renderImagePlaceholder(true),
-      })}
+      <div id="root">
+        ${this.tasks?.photo.render({
+          complete: (pictureSrc: string) =>
+            html`<fwc-avatar
+              class=${classMap(this.getRenderClasses(details.accountType))}
+              .size=${this.size}
+              .src=${pictureSrc}
+              .value=${this.getInitial(details.name)}
+              ?clickable=${this.clickable}
+              ?disabled=${this.disabled}
+              ?border=${true}
+              @click=${this.handleOnClick}
+              @mouseover=${this.handleMouseOver}
+              @mouseout=${this.handleMouseOut}
+            ></fwc-avatar>`,
+          pending: () =>
+            html`<fwc-avatar
+              class=${classMap(this.getRenderClasses(details.accountType))}
+              .size=${this.size}
+              .value=${this.getInitial(details.name)}
+              ?clickable=${this.clickable}
+              ?disabled=${this.disabled}
+              ?border=${true}
+              @click=${this.handleOnClick}
+              @mouseover=${this.handleMouseOver}
+              @mouseout=${this.handleMouseOut}
+            ></fwc-avatar>`,
+          error: () => this.renderImagePlaceholder(true),
+        })}
+      </div>
 
-      <slot id="floating" name="floating">
-        ${when(
-          this.isFloatingOpen,
-          () => html`<fwc-person-card .azureId="${this.azureId}" .upn="${this.upn}"></fwc-person-card>`,
-        )}
-      </slot>
+      <div id="floating">
+        <slot name="floating">
+          ${when(
+            this.isFloatingOpen,
+            () => html`<fwc-person-card .azureId="${this.azureId}" .upn="${this.upn}"></fwc-person-card>`,
+          )}
+        </slot>
+      </div>
     `;
   }
 

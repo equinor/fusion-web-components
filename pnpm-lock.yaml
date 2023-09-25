@@ -79,9 +79,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      web-component-analyzer:
-        specifier: ^1.1.6
-        version: 1.1.7
 
   packages/badge:
     dependencies:
@@ -98,6 +95,9 @@ importers:
         specifier: 2.7.0
         version: 2.7.0
     devDependencies:
+      '@custom-elements-manifest/analyzer':
+        specifier: ^0.8.0
+        version: 0.8.4
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -110,9 +110,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      web-component-analyzer:
-        specifier: ^1.1.6
-        version: 1.1.7
 
   packages/button:
     dependencies:

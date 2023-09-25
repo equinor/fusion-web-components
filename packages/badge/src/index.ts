@@ -1,11 +1,15 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { BadgeElement } from './element';
-import { BadgeElementProps } from './types';
 
-export * from './element';
-export * from './types';
+export { BadgeElement } from './element';
+export { BadgeColor, BadgePosition, BadgeSize } from './static';
 
 export const tag = 'fwc-badge';
+
+export type BadgeElementProps = Pick<
+  BadgeElement,
+  'size' | 'position' | 'color' | 'value' | 'icon' | 'circular' | 'clickable' | 'disabled'
+>;
 
 @fusionElement(tag)
 export default class _ extends BadgeElement {}

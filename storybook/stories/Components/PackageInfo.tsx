@@ -1,5 +1,4 @@
-import React from 'react';
-import { Title, Subtitle, Source } from '@storybook/components';
+import { Title, Subtitle, Source } from '@storybook/blocks';
 
 import { styled } from '@storybook/theming';
 

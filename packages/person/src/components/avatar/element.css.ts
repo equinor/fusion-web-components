@@ -20,13 +20,10 @@ const style: CSSResult = css`
 
   #floating {
     position: absolute;
-
-    & > * {
-      position: inherit;
-      left: inherit;
-      top: inherit;
-      z-index: 2;
-    }
+    width: max-content;
+    top: 0;
+    left: 0;
+    z-index: 2;
   }
 `;
 

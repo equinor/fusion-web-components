@@ -65,42 +65,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.21.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.21.2...@equinor/fusion-wc-storybook@2.21.3) (2023-09-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.21.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.21.1...@equinor/fusion-wc-storybook@2.21.2) (2023-09-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.21.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.21.0...@equinor/fusion-wc-storybook@2.21.1) (2023-09-04)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-# [2.21.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.8...@equinor/fusion-wc-storybook@2.21.0) (2023-09-04)
-
-### Features
-
-- **person-avatar:** show person-card when avatar is clicked or hovered ([a85e61d](https://github.com/equinor/fusion-web-components/commit/a85e61d85ef0bba821416e7e2b1a5309c6875703))
-
-## [2.20.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.7...@equinor/fusion-wc-storybook@2.20.8) (2023-08-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.20.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.6...@equinor/fusion-wc-storybook@2.20.7) (2023-08-10)
-
-### Bug Fixes
-
-- **person:** account type background ([000f2b8](https://github.com/equinor/fusion-web-components/commit/000f2b81f37dcb1fe545ecdd3c1e26d9d57289f3))
-
-## [2.20.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.5...@equinor/fusion-wc-storybook@2.20.6) (2023-07-10)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.20.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.4...@equinor/fusion-wc-storybook@2.20.5) (2023-07-06)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [2.20.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.3...@equinor/fusion-wc-storybook@2.20.4) (2023-07-06)
 
 ### Bug Fixes
@@ -108,13 +72,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **markdown:** comments ([955eec9](https://github.com/equinor/fusion-web-components/commit/955eec9c0ac905c35410f3e2e2b006956cd32c37))
 - **markdown:** tag name ([ee66808](https://github.com/equinor/fusion-web-components/commit/ee66808e606bc9b2bba819cfaa0db6c3b8c9b918))
 
-## [2.20.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.2...@equinor/fusion-wc-storybook@2.20.3) (2023-06-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.20.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.1...@equinor/fusion-wc-storybook@2.20.2) (2023-06-16)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [2.20.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.0...@equinor/fusion-wc-storybook@2.20.1) (2023-06-16)
 
@@ -128,17 +85,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **markdown:** add markdown-viewer ([32ee915](https://github.com/equinor/fusion-web-components/commit/32ee91591e3bb10b1bbbbe21ff9970867d56b30d)), closes [#592](https://github.com/equinor/fusion-web-components/issues/592)
 
-## [2.19.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.19.2...@equinor/fusion-wc-storybook@2.19.3) (2023-03-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.19.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.19.1...@equinor/fusion-wc-storybook@2.19.2) (2023-03-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.19.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.19.0...@equinor/fusion-wc-storybook@2.19.1) (2023-03-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [2.19.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.18.0...@equinor/fusion-wc-storybook@2.19.0) (2023-03-23)
 
@@ -176,27 +122,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **person-list-item:** toolbar slot ([c9c3492](https://github.com/equinor/fusion-web-components/commit/c9c34921359ce33a550cf95fec42b0447e982634))
 - **person:** person list item - single ([9234484](https://github.com/equinor/fusion-web-components/commit/9234484342e72659b81bcca35c570785c44ebd04))
 
-## [2.16.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.16.0...@equinor/fusion-wc-storybook@2.16.1) (2023-02-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 # [2.16.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.5...@equinor/fusion-wc-storybook@2.16.0) (2023-02-16)
 
 ### Features
 
 - :sparkles: link icon button ([70129de](https://github.com/equinor/fusion-web-components/commit/70129de257fc87b6e267fad221ef6d4eaf275f12))
-
-## [2.15.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.4...@equinor/fusion-wc-storybook@2.15.5) (2023-02-15)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.15.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.3...@equinor/fusion-wc-storybook@2.15.4) (2023-02-14)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.15.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.2...@equinor/fusion-wc-storybook@2.15.3) (2023-02-09)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [2.15.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.1...@equinor/fusion-wc-storybook@2.15.2) (2023-02-08)
 
@@ -204,10 +134,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - :bug: already defined fix ([517ed61](https://github.com/equinor/fusion-web-components/commit/517ed618cba8a5f80c065622e3ddcc6d8d70e6fd))
 - :bug: already defined fix ([1b37437](https://github.com/equinor/fusion-web-components/commit/1b37437c2c99b08b410eab85bb50530e872e8c31))
-
-## [2.15.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.15.0...@equinor/fusion-wc-storybook@2.15.1) (2023-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [2.15.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.14.0...@equinor/fusion-wc-storybook@2.15.0) (2023-02-03)
 
@@ -241,13 +167,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **searchable-dropdown:** fires customevent when closing dropdown ([efc41ce](https://github.com/equinor/fusion-web-components/commit/efc41ce7b57f1b30fad7d648109fb784df308f17))
 
-## [2.12.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.1...@equinor/fusion-wc-storybook@2.12.2) (2023-01-13)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.12.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.12.0...@equinor/fusion-wc-storybook@2.12.1) (2023-01-12)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [2.12.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.2...@equinor/fusion-wc-storybook@2.12.0) (2022-12-22)
 
@@ -259,13 +178,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - :zap: link button strorybook ([531221a](https://github.com/equinor/fusion-web-components/commit/531221aed896ffe81bf3df886ef3438957641ec7))
 
-## [2.11.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.1...@equinor/fusion-wc-storybook@2.11.2) (2022-12-20)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [2.11.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.0...@equinor/fusion-wc-storybook@2.11.1) (2022-12-09)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [2.11.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.2...@equinor/fusion-wc-storybook@2.11.0) (2022-12-02)
 
@@ -287,9 +199,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **searchabledropdown:** storybook resolvers using closeHandler ([da12a64](https://github.com/equinor/fusion-web-components/commit/da12a64ebd290704cce5ed6a6f97b6124d679bc6))
 
-## [2.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.1...@equinor/fusion-wc-storybook@2.0.2) (2022-11-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [2.0.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.0...@equinor/fusion-wc-storybook@2.0.1) (2022-11-25)
 
@@ -315,19 +224,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **Searchable-dropdown:** new attributes and styles in resolver and element
 
-## [1.23.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.2...@equinor/fusion-wc-storybook@1.23.3) (2022-11-15)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.23.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.1...@equinor/fusion-wc-storybook@1.23.2) (2022-11-14)
 
 ### Bug Fixes
 
 - **searchable-dropdown:** task improvement, keydown navigation, styles ([d847638](https://github.com/equinor/fusion-web-components/commit/d8476385643fb42d3c99b45393ccf1a1434644f6))
-
-## [1.23.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.23.0...@equinor/fusion-wc-storybook@1.23.1) (2022-11-09)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.23.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.7...@equinor/fusion-wc-storybook@1.23.0) (2022-11-08)
 
@@ -336,31 +237,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **searchabledropdown:** multiple selections and section and icons ([7adf375](https://github.com/equinor/fusion-web-components/commit/7adf375fee31430d627bd8bb0b205c1079b2dc9b))
 - **searchabledropdown:** open-close icon in traling slot ([bfbe200](https://github.com/equinor/fusion-web-components/commit/bfbe20034e72dfc8addd25ac040ceb7ba11e0e10))
 
-## [1.22.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.6...@equinor/fusion-wc-storybook@1.22.7) (2022-11-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.22.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.5...@equinor/fusion-wc-storybook@1.22.6) (2022-11-01)
 
 ### Bug Fixes
 
 - **switch:** No event on switch change ([3a12f02](https://github.com/equinor/fusion-web-components/commit/3a12f023418219b09bab18cc320b271a43688039))
-
-## [1.22.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.4...@equinor/fusion-wc-storybook@1.22.5) (2022-10-31)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.22.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.3...@equinor/fusion-wc-storybook@1.22.4) (2022-10-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.22.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.2...@equinor/fusion-wc-storybook@1.22.3) (2022-10-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.22.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.1...@equinor/fusion-wc-storybook@1.22.2) (2022-10-21)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.22.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.22.0...@equinor/fusion-wc-storybook@1.22.1) (2022-10-21)
 
@@ -374,9 +255,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **person-card:** created web component ([f81dc53](https://github.com/equinor/fusion-web-components/commit/f81dc53089d1bd27ebef63a2d2d3c45cfe1d50dc))
 
-## [1.21.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.21.0...@equinor/fusion-wc-storybook@1.21.1) (2022-09-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.21.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.20.1...@equinor/fusion-wc-storybook@1.21.0) (2022-09-14)
 
@@ -390,9 +268,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **searchabledropdown:** Added storybook for component ([c5fd64b](https://github.com/equinor/fusion-web-components/commit/c5fd64b3079c4d1a2eed87b747cabee34684ebaa))
 - **searchabledropdown:** Added storybook/tsconfig.json reference for component ([77d3008](https://github.com/equinor/fusion-web-components/commit/77d300824769ee9350295d8c0df9e61ff631f724))
 
-## [1.20.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.20.0...@equinor/fusion-wc-storybook@1.20.1) (2022-04-06)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.20.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.19.0...@equinor/fusion-wc-storybook@1.20.0) (2022-04-05)
 
@@ -411,19 +286,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **menu:** initial menu component creation ([17dbdf1](https://github.com/equinor/fusion-web-components/commit/17dbdf103086a85b98698ad7e5ce9322f80b005a))
 - **menu:** template for stories ([b03b170](https://github.com/equinor/fusion-web-components/commit/b03b1703e8dc65a85a2189308a4229f5453897c3))
 
-## [1.18.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.18.2...@equinor/fusion-wc-storybook@1.18.3) (2022-03-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.18.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.18.1...@equinor/fusion-wc-storybook@1.18.2) (2022-02-24)
 
 ### Bug Fixes
 
 - **dots:** merge error fix ([c1ce478](https://github.com/equinor/fusion-web-components/commit/c1ce4788043be7ecea15f54f8143835cfd0c95b1))
-
-## [1.18.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.18.0...@equinor/fusion-wc-storybook@1.18.1) (2022-02-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.18.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.17.0...@equinor/fusion-wc-storybook@1.18.0) (2022-02-21)
 
@@ -450,14 +318,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **circular:** sizes ([f4ce1a8](https://github.com/equinor/fusion-web-components/commit/f4ce1a84f52f9d4990b1db64a14812b6c6532121))
 - **circular:** Sizes in small, medium etc ([d2305fc](https://github.com/equinor/fusion-web-components/commit/d2305fc525c609c9947cfdcc01518c8b217e5a2d))
 
-## [1.16.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.16.1...@equinor/fusion-wc-storybook@1.16.2) (2022-02-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.16.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.16.0...@equinor/fusion-wc-storybook@1.16.1) (2022-02-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 # [1.16.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.8...@equinor/fusion-wc-storybook@1.16.0) (2022-02-08)
 
 ### Features
@@ -477,30 +337,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **loader:** copy paste touch up ([5bc4e76](https://github.com/equinor/fusion-web-components/commit/5bc4e76d1475b4e18bb84c4487ada806b3d3333b))
 - **loader:** copy paste touch up ([d218c9f](https://github.com/equinor/fusion-web-components/commit/d218c9fd1a846b73a6685856746a383a51eb94db))
 
-## [1.15.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.5...@equinor/fusion-wc-storybook@1.15.6) (2022-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.15.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.4...@equinor/fusion-wc-storybook@1.15.5) (2022-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.15.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.3...@equinor/fusion-wc-storybook@1.15.4) (2022-01-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.15.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.2...@equinor/fusion-wc-storybook@1.15.3) (2022-01-03)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.15.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.1...@equinor/fusion-wc-storybook@1.15.2) (2021-12-17)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.15.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.15.0...@equinor/fusion-wc-storybook@1.15.1) (2021-10-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 # [1.15.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.15...@equinor/fusion-wc-storybook@1.15.0) (2021-10-29)
 
 ### Bug Fixes
@@ -519,9 +355,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - added person resolver and person avatar component ([36ac7df](https://github.com/equinor/fusion-web-components/commit/36ac7dfd6a0af41b884d80d72eaaf05f4908422d))
 - added person resolver and person avatar component ([cb12d4e](https://github.com/equinor/fusion-web-components/commit/cb12d4ea55925e818c96c05db80e2960686eafe0))
 
-## [1.14.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.14...@equinor/fusion-wc-storybook@1.14.15) (2021-10-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.14.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.13...@equinor/fusion-wc-storybook@1.14.14) (2021-10-28)
 
@@ -543,30 +376,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - added wrapper component and fixed spacing ([9e3186b](https://github.com/equinor/fusion-web-components/commit/9e3186b5065ef04c354931fffaf68a293d905388))
 
-## [1.14.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.10...@equinor/fusion-wc-storybook@1.14.11) (2021-10-27)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.14.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.9...@equinor/fusion-wc-storybook@1.14.10) (2021-10-27)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.14.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.8...@equinor/fusion-wc-storybook@1.14.9) (2021-10-27)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.14.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.7...@equinor/fusion-wc-storybook@1.14.8) (2021-10-26)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.14.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.6...@equinor/fusion-wc-storybook@1.14.7) (2021-10-26)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.14.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.5...@equinor/fusion-wc-storybook@1.14.6) (2021-10-22)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.14.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.4...@equinor/fusion-wc-storybook@1.14.5) (2021-10-22)
 
 ### Bug Fixes
@@ -587,23 +396,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - fixed exports and refactored package structure ([268d905](https://github.com/equinor/fusion-web-components/commit/268d9055d4cb652d063fdfe729fcbeedf1c37f49))
 
-## [1.14.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.1...@equinor/fusion-wc-storybook@1.14.2) (2021-10-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.14.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.0...@equinor/fusion-wc-storybook@1.14.1) (2021-10-18)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 # [1.14.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.13.1...@equinor/fusion-wc-storybook@1.14.0) (2021-10-07)
 
 ### Features
 
 - **textinput:** allow dense ([2640cfd](https://github.com/equinor/fusion-web-components/commit/2640cfdc13a6e61b901aff6de989e8a8ff13276f))
-
-## [1.13.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.13.0...@equinor/fusion-wc-storybook@1.13.1) (2021-10-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.13.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.12.0...@equinor/fusion-wc-storybook@1.13.0) (2021-10-05)
 
@@ -616,10 +413,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - added chip component ([92c7d5e](https://github.com/equinor/fusion-web-components/commit/92c7d5e1a8911c1fa6ca3a645c2bf88a433f58b3))
-
-## [1.11.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.11.0...@equinor/fusion-wc-storybook@1.11.1) (2021-10-04)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.11.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.10.0...@equinor/fusion-wc-storybook@1.11.0) (2021-10-01)
 
@@ -646,47 +439,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - fixed readme ([6cd63ed](https://github.com/equinor/fusion-web-components/commit/6cd63edcd860620e7ef095d35d63159a1eb10bd9))
 
-## [1.9.16](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.15...@equinor/fusion-wc-storybook@1.9.16) (2021-09-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.14...@equinor/fusion-wc-storybook@1.9.15) (2021-09-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.13...@equinor/fusion-wc-storybook@1.9.14) (2021-09-27)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.12...@equinor/fusion-wc-storybook@1.9.13) (2021-09-27)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.11...@equinor/fusion-wc-storybook@1.9.12) (2021-09-26)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.10...@equinor/fusion-wc-storybook@1.9.11) (2021-09-26)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.9...@equinor/fusion-wc-storybook@1.9.10) (2021-09-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.9.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.8...@equinor/fusion-wc-storybook@1.9.9) (2021-09-23)
 
 ### Bug Fixes
 
 - import of lit ([44137af](https://github.com/equinor/fusion-web-components/commit/44137afb8005ca17af94f14dabe4a427c31391df))
-
-## [1.9.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.7...@equinor/fusion-wc-storybook@1.9.8) (2021-09-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.6...@equinor/fusion-wc-storybook@1.9.7) (2021-09-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.9.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.5...@equinor/fusion-wc-storybook@1.9.6) (2021-09-23)
 
@@ -694,23 +451,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - upgraded lit-element and lit-html and fixed styling for graphics ([85e1b4b](https://github.com/equinor/fusion-web-components/commit/85e1b4b92eea208fb4cf4918777b9e36637949cf))
 
-## [1.9.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.4...@equinor/fusion-wc-storybook@1.9.5) (2021-09-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.9.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.3...@equinor/fusion-wc-storybook@1.9.4) (2021-09-23)
 
 ### Bug Fixes
 
 - upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
-
-## [1.9.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.2...@equinor/fusion-wc-storybook@1.9.3) (2021-09-22)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.9.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.1...@equinor/fusion-wc-storybook@1.9.2) (2021-09-21)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.9.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.9.0...@equinor/fusion-wc-storybook@1.9.1) (2021-09-20)
 
@@ -735,9 +480,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - added x-small size ([4aad6d1](https://github.com/equinor/fusion-web-components/commit/4aad6d1125f72c4593800df9de2638e62b66d6e6))
 - fixed circular offset for sizes, added disabled and fixed hover ([9970e4b](https://github.com/equinor/fusion-web-components/commit/9970e4bcf78c416f68001ad0b3c35a1b5db59293))
 
-## [1.8.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.8.0...@equinor/fusion-wc-storybook@1.8.1) (2021-09-15)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.8.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.7...@equinor/fusion-wc-storybook@1.8.0) (2021-09-15)
 
@@ -751,19 +493,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **button:** slotted icon ([c0f2b7f](https://github.com/equinor/fusion-web-components/commit/c0f2b7ffd868e41051d344e1f0f6c202e6ee3999))
 
-## [1.7.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.5...@equinor/fusion-wc-storybook@1.7.6) (2021-09-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.7.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.4...@equinor/fusion-wc-storybook@1.7.5) (2021-09-08)
 
 ### Bug Fixes
 
 - **theme:** wrap content ([b29212e](https://github.com/equinor/fusion-web-components/commit/b29212e44d30bd84ed5bb2d44bf9f2b88c92c437))
-
-## [1.7.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.3...@equinor/fusion-wc-storybook@1.7.4) (2021-09-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.7.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.2...@equinor/fusion-wc-storybook@1.7.3) (2021-09-07)
 
@@ -775,13 +510,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - fixed storybook, changed props, added icons and other adjustments ([a77d956](https://github.com/equinor/fusion-web-components/commit/a77d956bce80daf4a9caf2862b28acdab5b95d78))
 - merged badge ([defc3cb](https://github.com/equinor/fusion-web-components/commit/defc3cb369088bcdcd29ffd1e379848b56b9bba2))
 
-## [1.7.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.1...@equinor/fusion-wc-storybook@1.7.2) (2021-09-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.7.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.0...@equinor/fusion-wc-storybook@1.7.1) (2021-09-06)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.7.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.8...@equinor/fusion-wc-storybook@1.7.0) (2021-09-06)
 
@@ -792,10 +520,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - added badge web component ([0f3ce2a](https://github.com/equinor/fusion-web-components/commit/0f3ce2af72587ff255986df9344bbc9fb137157b))
-
-## [1.6.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.7...@equinor/fusion-wc-storybook@1.6.8) (2021-09-01)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.6.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.6...@equinor/fusion-wc-storybook@1.6.7) (2021-08-18)
 
@@ -815,23 +539,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - fixed locale and type exports ([aa14787](https://github.com/equinor/fusion-web-components/commit/aa14787d229b8a2956991ba940a10e5174356bb9))
 
-## [1.6.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.3...@equinor/fusion-wc-storybook@1.6.4) (2021-08-13)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.6.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.2...@equinor/fusion-wc-storybook@1.6.3) (2021-08-13)
 
 ### Bug Fixes
 
 - updated storybook packages to fix build issue ([d9481f7](https://github.com/equinor/fusion-web-components/commit/d9481f72585ec3041ffa68655dd6c60ae0346de1))
-
-## [1.6.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.1...@equinor/fusion-wc-storybook@1.6.2) (2021-08-12)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.6.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.0...@equinor/fusion-wc-storybook@1.6.1) (2021-08-12)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.6.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.12...@equinor/fusion-wc-storybook@1.6.0) (2021-08-12)
 
@@ -851,14 +563,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - added date component ([78b2317](https://github.com/equinor/fusion-web-components/commit/78b231795da1a9b8d4d8830e1a83f2e195be7267))
 - split date into two components and improved functionality. Replaced Date type for string. Improved README and storybook. ([bd254fc](https://github.com/equinor/fusion-web-components/commit/bd254fce6598886d7a89c0329f7bd472a5b6a789))
 
-## [1.5.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.11...@equinor/fusion-wc-storybook@1.5.12) (2021-08-05)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.5.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.10...@equinor/fusion-wc-storybook@1.5.11) (2021-08-02)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.5.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.9...@equinor/fusion-wc-storybook@1.5.10) (2021-08-02)
 
 ### Bug Fixes
@@ -871,41 +575,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - fixed type declaration for JSX components ([59e93d7](https://github.com/equinor/fusion-web-components/commit/59e93d729299582edb97debb82ee4891eb8f9eb4))
 
-## [1.5.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.7...@equinor/fusion-wc-storybook@1.5.8) (2021-07-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.5.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.6...@equinor/fusion-wc-storybook@1.5.7) (2021-07-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.5.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.5...@equinor/fusion-wc-storybook@1.5.6) (2021-07-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.5.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.4...@equinor/fusion-wc-storybook@1.5.5) (2021-07-20)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.5.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.3...@equinor/fusion-wc-storybook@1.5.4) (2021-07-20)
 
 ### Bug Fixes
 
 - fixed storybook namespace ([5a242e0](https://github.com/equinor/fusion-web-components/commit/5a242e092edc2a1dedd4672e957a542aeadfe0c3))
 
-## [1.5.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.2...@equinor/fusion-wc-storybook@1.5.3) (2021-07-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.5.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.1...@equinor/fusion-wc-storybook@1.5.2) (2021-07-19)
 
 ### Bug Fixes
 
 - added button to docs ([a812ee4](https://github.com/equinor/fusion-web-components/commit/a812ee4abe6aa5e7a2740936900da15180dcd8e7))
-
-## [1.5.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.5.0...@equinor/fusion-wc-storybook@1.5.1) (2021-07-15)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 # [1.5.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.4.1...@equinor/fusion-wc-storybook@1.5.0) (2021-07-15)
 
@@ -917,37 +597,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - add new button component ([eb5492a](https://github.com/equinor/fusion-web-components/commit/eb5492a473bf277866a8dc44827e280b4918790e))
 
-## [1.4.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.4.0...@equinor/fusion-wc-storybook@1.4.1) (2021-07-05)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 # [1.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.6...@equinor/fusion-wc-storybook@1.4.0) (2021-07-01)
 
 ### Features
 
 - added textarea component ([690b9cf](https://github.com/equinor/fusion-web-components/commit/690b9cf083169749d8646564df7f762162415807))
 
-## [1.3.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.5...@equinor/fusion-wc-storybook@1.3.6) (2021-07-01)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.3.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.4...@equinor/fusion-wc-storybook@1.3.5) (2021-06-16)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.3.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.3...@equinor/fusion-wc-storybook@1.3.4) (2021-06-16)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
 ## [1.3.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.2...@equinor/fusion-wc-storybook@1.3.3) (2021-06-16)
 
 ### Bug Fixes
 
 - added stories and fixed readme ([f1c5d5d](https://github.com/equinor/fusion-web-components/commit/f1c5d5d8e5f7b8c8c07a90331452c4524df62ab7))
-
-## [1.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.1...@equinor/fusion-wc-storybook@1.3.2) (2021-06-16)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
 
 ## [1.3.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.3.0...@equinor/fusion-wc-storybook@1.3.1) (2021-06-16)
 
@@ -992,14 +652,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - added new checkbox component ([43e04c2](https://github.com/equinor/fusion-web-components/commit/43e04c238dff6899f8470c0c573d6b78ee86e71d))
 
-## [1.0.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.0.2...@equinor/fusion-wc-storybook@1.0.3) (2021-03-30)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## [1.0.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.0.1...@equinor/fusion-wc-storybook@1.0.2) (2021-03-30)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook
-
-## 1.0.1 (2021-03-26)
-
-**Note:** Version bump only for package @equinor/fusion-wc-storybook

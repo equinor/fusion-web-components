@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#882](https://github.com/equinor/fusion-web-components/pull/882) [`8a5c681`](https://github.com/equinor/fusion-web-components/commit/8a5c681dd385f2b0d8cda0ed70309d264eef2e94) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Updates the internal structure and styling to correctly calculate position of
+  person card in person avatar.
+
 ## 2.0.0
 
 ### Major Changes

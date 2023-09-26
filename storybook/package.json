@@ -25,7 +25,7 @@
     "tslib": "^2.6.2",
     "webpack": "^5.76.3",
     "@equinor/fusion-react-utils": "^2.0.4",
-    "typescript": "^4.9.5"
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@equinor/fusion-wc-avatar": "workspace:^",

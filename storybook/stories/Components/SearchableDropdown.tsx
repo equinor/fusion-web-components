@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
+import { PropsWithChildren, useRef, useEffect, MutableRefObject } from 'react';
 import extractProps from './extract-props';
 import {
   SearchableDropdownElement,
@@ -11,16 +11,16 @@ import {
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
-// import allItems from '../resources/sections.json';
+import appIconSvgTemplate from '../resources/appIcon.svg';
 
 import rawItems from '../resources/context.json';
+import { IconType } from '@equinor/fusion-wc-icon';
 
 const mapper = (src: Array<{ id: string; title: string; type: { id: string } }>): SearchableDropdownResult => {
   const dst = src.map((i) => {
     return {
       id: i.id,
       title: i.title,
-      // subTitle: i.type.id,
       graphic: i.type.id === 'OrgChart' ? 'list' : undefined,
     };
   });
@@ -81,6 +81,13 @@ const resolver: SearchableDropdownResolver = {
       title: 'Context',
       type: 'section',
       children: [
+        singleItem({
+          id: '1337',
+          title: 'custom svg',
+          subTitle: 'foo bar baz',
+          graphic: appIconSvgTemplate,
+          graphicType: IconType.SVG,
+        }),
         singleItem({ id: '456', title: 'Context 1', graphic: 'list' }),
         singleItem({ id: '654', title: 'Context 2', graphic: 'list' }),
         singleItem({ id: '789', title: 'Context 3', graphic: 'list' }),

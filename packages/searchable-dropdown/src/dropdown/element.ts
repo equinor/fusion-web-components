@@ -1,4 +1,5 @@
 import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { property } from 'lit/decorators.js';
 
 import { query } from 'lit/decorators/query.js';
@@ -165,11 +166,13 @@ export class SearchableDropdownElement
       selected=${ifDefined(selected)}
       twoline=${ifDefined(item.subTitle)}
       graphic=${graphic ? 'icon' : ''}
+      ?hasMeta=${!!item.meta}
     >
       <span slot="graphic">
         <fwc-icon icon="${graphic}" type="${item.graphicType ?? IconType.EDS}"></fwc-icon>
       </span>
       ${text}
+      <div slot="meta">${unsafeHTML(item.meta)}</div>
     </fwc-list-item>`;
   }
 

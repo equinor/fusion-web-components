@@ -1,48 +1,49 @@
-import { LitElement, HTMLTemplateResult, PropertyValues, html } from 'lit';
+import { LitElement, HTMLTemplateResult, PropertyValues, html, CSSResult } from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { AvatarElementProps, AvatarSize, AvatarColor } from './types';
+import { AvatarSize, AvatarColor } from './static';
 import Picture from '@equinor/fusion-wc-picture';
 import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
-import style from './element.css';
+import styles from './element.css';
 
 // Persist element
 Picture;
 
+// TODO - make as util
+export type ObjectValue<T> = Extract<T[keyof T], string>;
+
 /**
  * Element for rendering an avatar.
- * {@inheritdoc}
  *
  * @tag fwc-avatar
  *
- * @property {AvatarSize} size - Sets the size of the avatar element.
- * @property {AvatarColor} color - Sets the background/border color of the avatar element.
- * @property {string} value - Sets the text value to be rendered within the avatar. Overridden by 'src' attribute.
- * @property {string} src - Sets the picture source for the avatar. Overrides the 'value' attribute.
- * @property {boolean} clickable - Enables the click event and adds click effects for the avatar element.
- * @property {boolean} border - Adds a border to the avatar picture element.
- * @property {boolean} disabled - Sets the avatar to disabled.
- *
+ * @cssprop {3.5rem} --fwc-avatar-size - size of the element.
+ * @cssprop {theme.colors.interactive.primary__resting} --fwc-avatar-color - base color of the element.
+ * @cssprop {heme.colors.ui.background__light} --fwc-avatar-background - background color when `AvatarElement.border` is `true`
  * @cssprop {theme.colors.text.static_icons__primary_white} --fwc-avatar-ink-color - text color of the element.
- * @cssprop {theme.colors.interactive.primary__resting} --fwc-avatar-base-color - base color of the element.
  *
  * @fires click - When the element is clicked, only fires when 'clickable' is set to 'true'.
  *
  * Content can be slotted in with a slot named 'content'.
  */
-export class AvatarElement extends LitElement implements AvatarElementProps {
+export class AvatarElement extends LitElement {
+  static styles: CSSResult[] = styles;
+
   /**
-   * Size of the element.
-   * @default AvatarSize.Medium
+   * Size of the avatar.
+   *
+   * @default medium
+   * @type {'x-small' | 'small' | 'medium' | 'large'}
    */
   @property({ type: String, reflect: true })
-  size: AvatarSize = AvatarSize.Medium;
+  size: ObjectValue<typeof AvatarSize> = AvatarSize.Medium;
 
   /**
    * Color of the element.
+   * @type { 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled' }
    */
   @property({ type: String, reflect: true })
-  color?: AvatarColor;
+  color?: ObjectValue<typeof AvatarColor>;
 
   /**
    * Text value to be rendered within the element.
@@ -60,26 +61,32 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
    * Renders the element as clickable.
    */
   @property({ type: Boolean, reflect: true })
-  clickable?: boolean;
+  clickable = false;
 
   /**
    * Render border for the picture element.
    */
   @property({ type: Boolean, reflect: true })
-  border?: boolean;
+  border = false;
 
   /**
    * Renders the element as disabled.
    */
   @property({ type: Boolean, reflect: true })
-  disabled?: boolean;
+  disabled = false;
+
+  @property({ type: Boolean, reflect: true })
+  elevated = false;
 
   /**
+   * @internal
    * Reference to ripple element.
    */
-  @queryAsync('fwc-ripple') ripple!: Promise<Ripple | null>;
+  @queryAsync('fwc-ripple') 
+  protected ripple!: Promise<Ripple | null>;
 
   /**
+   * @internal
    * Define ripple handlers.
    */
   protected rippleHandlers = new RippleHandlers(() => {
@@ -102,16 +109,14 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
    * Render a picture element if 'src' attribute is set.
    */
   protected renderPicture(): HTMLTemplateResult {
-    return html`<div class="fwc-avatar__picture-container">
-      <fwc-picture class="fwc-avatar__picture" src=${ifDefined(this.src)} cover></fwc-picture>
-    </div>`;
+    return html`<fwc-picture id="picture" src=${ifDefined(this.src)} cover></fwc-picture>`;
   }
 
   /**
    * Render text value if 'value' attribute is set.
    */
   protected renderValue(): HTMLTemplateResult {
-    return html`<span class="fwc-avatar__value">${this.value}</span>`;
+    return html`<span id="#value">${this.value}</span>`;
   }
 
   /**
@@ -126,13 +131,13 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
    */
   protected renderContent(): HTMLTemplateResult {
     const content = this.src ? this.renderPicture() : this.value ? this.renderValue() : undefined;
-    return html`<slot name="content">${content}</slot>`;
+    return html`<div id="content"><slot>${content}</slot></div>`;
   }
 
   /** {@inheritDoc} */
   protected override render(): HTMLTemplateResult {
-    return html`<span
-      class="fwc-avatar__container"
+    return html`<div
+      id="root"
       @click=${this.handleOnClick}
       @focus="${this.handleRippleFocus}"
       @blur="${this.handleRippleBlur}"
@@ -142,17 +147,19 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
       @touchstart="${this.handleRippleActivate}"
       @touchend="${this.handleRippleDeactivate}"
       @touchcancel="${this.handleRippleDeactivate}"
-      >${this.renderRipple()}${this.renderBadge()}${this.renderContent()}</span
-    >`;
+    >
+      ${this.renderRipple()}${this.renderContent()}
+      <div id="badge">${this.renderBadge()}</div>
+    </div> `;
   }
 
   /**
    * Render the ripple element.
    */
-  protected renderRipple(): HTMLTemplateResult | string {
-    return this.clickable
-      ? html`<fwc-ripple class="fwc-avatar__ripple" disabled="${ifDefined(this.disabled)}" unbounded></fwc-ripple>`
-      : '';
+  protected renderRipple(): HTMLTemplateResult | void {
+    if (this.clickable) {
+      return html`<fwc-ripple .disabled="${this.disabled}" unbounded></fwc-ripple>`;
+    }
   }
 
   /**
@@ -214,7 +221,5 @@ export class AvatarElement extends LitElement implements AvatarElementProps {
     }
   }
 }
-
-AvatarElement.styles = [style];
 
 export default AvatarElement;

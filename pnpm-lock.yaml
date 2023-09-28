@@ -70,6 +70,9 @@ importers:
         specifier: 2.7.0
         version: 2.7.0
     devDependencies:
+      '@custom-elements-manifest/analyzer':
+        specifier: ^0.8.0
+        version: 0.8.4
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder

@@ -35,55 +35,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.15](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.14...@equinor/fusion-wc-checkbox@0.3.15) (2023-06-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.13...@equinor/fusion-wc-checkbox@0.3.14) (2023-03-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.13](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.12...@equinor/fusion-wc-checkbox@0.3.13) (2023-02-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.12](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.11...@equinor/fusion-wc-checkbox@0.3.12) (2022-11-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.11](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.10...@equinor/fusion-wc-checkbox@0.3.11) (2022-11-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.10](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.9...@equinor/fusion-wc-checkbox@0.3.10) (2022-09-14)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.8...@equinor/fusion-wc-checkbox@0.3.9) (2022-02-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.7...@equinor/fusion-wc-checkbox@0.3.8) (2022-02-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.6...@equinor/fusion-wc-checkbox@0.3.7) (2022-02-18)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
 ## [0.3.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.5...@equinor/fusion-wc-checkbox@0.3.6) (2022-02-08)
 
 ### Bug Fixes
 
 - add npm ignore to packages ([8a9f436](https://github.com/equinor/fusion-web-components/commit/8a9f436f4d38c0fec431d9388ce3098853f8babc))
-
-## [0.3.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.4...@equinor/fusion-wc-checkbox@0.3.5) (2022-02-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.4](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.3...@equinor/fusion-wc-checkbox@0.3.4) (2022-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
 
 ## [0.3.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.2...@equinor/fusion-wc-checkbox@0.3.3) (2021-10-28)
 
@@ -91,33 +47,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - updated packages ([b752691](https://github.com/equinor/fusion-web-components/commit/b75269105063dfbb150432bd86426e33d67ba869))
 
-## [0.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.1...@equinor/fusion-wc-checkbox@0.3.2) (2021-10-22)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
-## [0.3.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.3.0...@equinor/fusion-wc-checkbox@0.3.1) (2021-10-21)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
 # [0.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.9...@equinor/fusion-wc-checkbox@0.3.0) (2021-10-05)
 
 ### Features
 
 - **checkbox:** allow sizing of checkbox ([6cde535](https://github.com/equinor/fusion-web-components/commit/6cde535c6ec9f5a8ae13ccdbe0c0b0ea80cec150))
 
-## [0.2.9](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.8...@equinor/fusion-wc-checkbox@0.2.9) (2021-09-30)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
-
 ## [0.2.8](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.7...@equinor/fusion-wc-checkbox@0.2.8) (2021-09-23)
 
 ### Bug Fixes
 
 - upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
-
-## [0.2.7](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.6...@equinor/fusion-wc-checkbox@0.2.7) (2021-09-01)
-
-**Note:** Version bump only for package @equinor/fusion-wc-checkbox
 
 ## [0.2.6](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-checkbox@0.2.5...@equinor/fusion-wc-checkbox@0.2.6) (2021-08-13)
 

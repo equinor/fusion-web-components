@@ -5,13 +5,13 @@
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
-    "./README.button.md": "./README.button.md",
-    "./README.link-button.md": "./README.link-button.md",
-    "./README.icon-button.md": "./README.icon-button.md",
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
     "./button": "./lib/button/index.js",
     "./link-button": "./lib/link-button/index.js",
     "./icon-button": "./lib/icon-button/index.js",
     "./icon-button-toggle": "./lib/icon-button/index.js",
+    "./README.md": "./README.md",
     "./CHANGELOG.md": "./CHANGELOG.md"
   },
   "types": "lib/index.d.ts",

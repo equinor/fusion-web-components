@@ -18,7 +18,7 @@ import {
 import { CheckListItemElement, ListElement, ListItemElement } from '@equinor/fusion-wc-list';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { DividerElement } from '@equinor/fusion-wc-divider';
-import { IconElement } from '@equinor/fusion-wc-icon';
+import { IconElement, IconType } from '@equinor/fusion-wc-icon';
 ListElement;
 ListItemElement;
 CheckListItemElement;
@@ -126,36 +126,18 @@ export class SearchableDropdownElement
       'item-selected': !!item.isSelected,
       'item-error': !!item.isError,
     };
-    const renderItemText = () => {
-      /* Geticonf for either meta or graphic slot */
-      const getIconSlot = (type: 'meta' | 'graphic') => {
-        if ((this[type] && this[type] !== 'check') || (item[type] && item[type] !== 'check')) {
-          return html`<span class="slot-${type}" slot=${type}>
-            <fwc-icon icon=${item[type] ? item[type] : this[type]}></fwc-icon>
-          </span>`;
-        }
-        return html``;
-      };
 
-      /* title and subtitle slots */
-      const generateTextContent = () => {
-        const text = [];
-        if (item.title) {
-          text.push(html`<span class="item-title">${item.title}</span>`);
-        }
-        if (item.subTitle) {
-          text.push(html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span></span>`);
-        }
-        return text;
-      };
-
-      return html`${getIconSlot('graphic')}
-        <span class="item-text">${generateTextContent()}</span>
-        ${getIconSlot('meta')}`;
-    };
+    const text = html`
+      <span class="item-text">
+        ${item.title ? html`<span class="item-title">${item.title}</span>` : ''}
+        ${item.subTitle ? html`<span slot="secondary" class="item-subtitle">${item.subTitle}</span>` : ''}
+      </span>
+    `;
 
     const disabled = item.isDisabled || item.isError ? true : undefined;
     const selected = item.isSelected ? true : undefined;
+
+    const graphic = item.graphic ?? this.graphic;
 
     /* Sett checkmark on selected items */
     if (item.meta === 'check') {
@@ -165,10 +147,15 @@ export class SearchableDropdownElement
         disabled=${ifDefined(disabled)}
         selected=${ifDefined(selected)}
         twoline=${ifDefined(item.subTitle)}
+        graphic=${graphic ? 'icon' : ''}
       >
-        ${renderItemText()}
+        <span slot="graphic">
+          <fwc-icon icon="${graphic}" type="${item.graphicType ?? IconType.EDS}"></fwc-icon>
+        </span>
+        ${text}
       </fwc-check-list-item>`;
     }
+
     return html`<fwc-list-item
       rootTabbable=${true}
       wrapFocus=${true}
@@ -177,8 +164,12 @@ export class SearchableDropdownElement
       disabled=${ifDefined(disabled)}
       selected=${ifDefined(selected)}
       twoline=${ifDefined(item.subTitle)}
+      graphic=${graphic ? 'icon' : ''}
     >
-      ${renderItemText()}
+      <span slot="graphic">
+        <fwc-icon icon="${graphic}" type="${item.graphicType ?? IconType.EDS}"></fwc-icon>
+      </span>
+      ${text}
     </fwc-list-item>`;
   }
 

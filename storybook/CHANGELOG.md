@@ -1,5 +1,26 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#892](https://github.com/equinor/fusion-web-components/pull/892) [`a24d31f`](https://github.com/equinor/fusion-web-components/commit/a24d31ff732424964407602025f2dc95dfc89ef9) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Adds meta slot to `searchable-dropdown` component
+
+  Updates storybook with example:
+
+  ```js
+  const searchResultItem = [
+    {
+      id: '1337',
+      title: 'custom svg',
+      subTitle: 'foo bar baz',
+      graphic: appIconSvgTemplate,
+      graphicType: IconType.SVG,
+      meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
+    },
+  ];
+  ```
+
 ## 3.1.0
 
 ### Minor Changes

@@ -4,6 +4,21 @@
   "description": "Checkbox web component based on Material UI",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
+  "types": "lib/index.d.ts",
+  "typesVersions": {
+    ">=4.2": {
+      ".": [
+        "lib/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build": "tsc -b",
     "postbuild": "pnpm typedoc",

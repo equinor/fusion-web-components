@@ -17,7 +17,7 @@ Upgrade storybook to V7
 - [ ] list
 - [ ] searchable dropdown
 - [ ] skeleton
-- [ ] checkbox
+- [x] checkbox
 - [ ] formfield
 - [ ] markdown
 - [ ] menu
@@ -29,6 +29,7 @@ Upgrade storybook to V7
 - [ ] divider
 - [ ] progress indicator
 
+__person elements__
 - [ ] avatar
 - [ ] card
 - [ ] list item

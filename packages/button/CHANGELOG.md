@@ -50,27 +50,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **icon-button:** default values ([f81dba0](https://github.com/equinor/fusion-web-components/commit/f81dba079ccb0aced4b8f784ce63a78292b6a518))
 - **icon-button:** types ([162ff27](https://github.com/equinor/fusion-web-components/commit/162ff2772ad4f53cdc3882285bfa7ee99d71b2a9))
 
-## [1.4.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.4.1...@equinor/fusion-wc-button@1.4.2) (2023-06-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.4.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.4.0...@equinor/fusion-wc-button@1.4.1) (2023-03-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
 # [1.4.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.3.2...@equinor/fusion-wc-button@1.4.0) (2023-02-16)
 
 ### Features
 
 - :sparkles: link icon button ([70129de](https://github.com/equinor/fusion-web-components/commit/70129de257fc87b6e267fad221ef6d4eaf275f12))
-
-## [1.3.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.3.1...@equinor/fusion-wc-button@1.3.2) (2023-02-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.3.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.3.0...@equinor/fusion-wc-button@1.3.1) (2023-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
 
 # [1.3.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.2.0...@equinor/fusion-wc-button@1.3.0) (2023-02-03)
 
@@ -96,51 +80,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **button:** move link button to same package ([bae0bd7](https://github.com/equinor/fusion-web-components/commit/bae0bd7358585d46084413c5cdb82d36cc8e26c3))
 
-## [1.1.34](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.33...@equinor/fusion-wc-button@1.1.34) (2022-11-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.33](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.32...@equinor/fusion-wc-button@1.1.33) (2022-11-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.32](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.31...@equinor/fusion-wc-button@1.1.32) (2022-09-14)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.31](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.30...@equinor/fusion-wc-button@1.1.31) (2022-02-24)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.30](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.29...@equinor/fusion-wc-button@1.1.30) (2022-02-23)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.29](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.28...@equinor/fusion-wc-button@1.1.29) (2022-02-18)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
 ## [1.1.28](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.27...@equinor/fusion-wc-button@1.1.28) (2022-02-08)
 
 ### Bug Fixes
 
 - add npm ignore to packages ([8a9f436](https://github.com/equinor/fusion-web-components/commit/8a9f436f4d38c0fec431d9388ce3098853f8babc))
-
-## [1.1.27](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.26...@equinor/fusion-wc-button@1.1.27) (2022-02-08)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.26](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.25...@equinor/fusion-wc-button@1.1.26) (2022-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.25](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.24...@equinor/fusion-wc-button@1.1.25) (2022-02-07)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.24](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.23...@equinor/fusion-wc-button@1.1.24) (2022-01-19)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
 
 ## [1.1.23](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.22...@equinor/fusion-wc-button@1.1.23) (2022-01-03)
 
@@ -148,23 +92,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **Button:** replace old variables in button element css ([da4c0bc](https://github.com/equinor/fusion-web-components/commit/da4c0bc80ed63e77aea6f0636840da62d34992ae))
 
-## [1.1.22](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.21...@equinor/fusion-wc-button@1.1.22) (2021-10-29)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
 ## [1.1.21](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.20...@equinor/fusion-wc-button@1.1.21) (2021-10-28)
 
 ### Bug Fixes
 
 - updated packages ([b752691](https://github.com/equinor/fusion-web-components/commit/b75269105063dfbb150432bd86426e33d67ba869))
-
-## [1.1.20](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.19...@equinor/fusion-wc-button@1.1.20) (2021-10-22)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
-## [1.1.19](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.18...@equinor/fusion-wc-button@1.1.19) (2021-10-21)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
 
 ## [1.1.18](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.17...@equinor/fusion-wc-button@1.1.18) (2021-09-30)
 
@@ -273,10 +205,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - added keywords ([5ea9256](https://github.com/equinor/fusion-web-components/commit/5ea925663a3f4d93c965507a5b3e6e49676569f7))
 - fixed readme and storybook url ([161d4f0](https://github.com/equinor/fusion-web-components/commit/161d4f0f2071fda7e65b33cd8bcb33e9f20fbaa3))
 
-## [1.1.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.1.0...@equinor/fusion-wc-button@1.1.1) (2021-07-15)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button
-
 # [1.1.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-button@1.0.1...@equinor/fusion-wc-button@1.1.0) (2021-07-15)
 
 ### Bug Fixes
@@ -289,6 +217,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - add new button component ([eb5492a](https://github.com/equinor/fusion-web-components/commit/eb5492a473bf277866a8dc44827e280b4918790e))
 - rewrote button to use mwc web component ([8d191ee](https://github.com/equinor/fusion-web-components/commit/8d191eeefce4d9e9379be6010003b5cc3c1cb1b9))
 
-## 1.0.1 (2021-03-26)
-
-**Note:** Version bump only for package @equinor/fusion-wc-button

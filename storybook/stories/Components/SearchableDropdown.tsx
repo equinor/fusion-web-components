@@ -8,6 +8,8 @@ import {
   SearchableDropdownResult,
   SearchableDropdownResultItem,
 } from '@equinor/fusion-wc-searchable-dropdown';
+import { ChipElement } from '@equinor/fusion-wc-chip';
+ChipElement;
 SearchableDropdownElement;
 SearchableDropdownProviderElement;
 
@@ -87,6 +89,7 @@ const resolver: SearchableDropdownResolver = {
           subTitle: 'foo bar baz',
           graphic: appIconSvgTemplate,
           graphicType: IconType.SVG,
+          meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
         }),
         singleItem({ id: '456', title: 'Context 1', graphic: 'list' }),
         singleItem({ id: '654', title: 'Context 2', graphic: 'list' }),

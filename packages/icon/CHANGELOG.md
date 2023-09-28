@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#888](https://github.com/equinor/fusion-web-components/pull/888) [`aeed5b1`](https://github.com/equinor/fusion-web-components/commit/aeed5b1d0bf8f540ec86ad1e28d09b1c2d0348a9) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - add possibility to add svg template to `fwc-icon`.
+
+  ```html
+  <fwc-icon type="svg" icon='<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" /></svg>'"></fwc-icon>
+  ```
+
 ## 2.0.0
 
 ### Major Changes

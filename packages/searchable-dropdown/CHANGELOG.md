@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#888](https://github.com/equinor/fusion-web-components/pull/888) [`aeed5b1`](https://github.com/equinor/fusion-web-components/commit/aeed5b1d0bf8f540ec86ad1e28d09b1c2d0348a9) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - updates to that searchable dropdown will allow an list item to show custom svg icon
+
+### Patch Changes
+
+- Updated dependencies [[`aeed5b1`](https://github.com/equinor/fusion-web-components/commit/aeed5b1d0bf8f540ec86ad1e28d09b1c2d0348a9)]:
+  - @equinor/fusion-wc-icon@2.1.0
+  - @equinor/fusion-wc-list@1.0.1
+  - @equinor/fusion-wc-textinput@1.0.1
+
 ## 3.0.0
 
 ### Major Changes

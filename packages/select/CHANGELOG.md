@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @equinor/fusion-wc-menu@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

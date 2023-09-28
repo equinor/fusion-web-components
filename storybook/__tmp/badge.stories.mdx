@@ -1,0 +1,152 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { iconNames } from '@equinor/fusion-wc-icon';
+
+import Badge, { BadgeWrapper } from './Components/Badge';
+
+export const Container = ({ title, children }) => (
+  <section>
+    <h4>{title}</h4>
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </section>
+);
+
+export const Template = (props) => (
+  <div>
+    <Container title="Positions">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="top-left" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="top-right" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="bottom-left" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge position="bottom-right" {...props} />
+      </BadgeWrapper>
+    </Container>
+    <Container title="Sizes">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="x-small" {...props}></fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="small" {...props}></fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" {...props}></fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="large" {...props}></fwc-badge>
+      </BadgeWrapper>
+    </Container>
+    <Container title="Colors">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="primary" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="secondary" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="success" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="danger" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="warning" {...props} />
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" color="disabled" {...props} />
+      </BadgeWrapper>
+    </Container>
+    <Container title="Icon">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="small" icon="person" {...props}>
+          S
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" icon="person" {...props}>
+          M
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="large" icon="person" {...props}>
+          L
+        </fwc-badge>
+      </BadgeWrapper>
+    </Container>
+    <Container title="Value">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="small" value="S" {...props}>
+          S
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="medium" value="M" {...props}>
+          M
+        </fwc-badge>
+      </BadgeWrapper>
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge size="large" value="L" {...props}>
+          L
+        </fwc-badge>
+      </BadgeWrapper>
+    </Container>
+    <Container title="Clickable">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge icon="settings" color="primary" clickable {...props} />
+      </BadgeWrapper>
+    </Container>
+    <Container title="Disabled">
+      <BadgeWrapper circular={props.circular}>
+        <fwc-badge disabled {...props} />
+      </BadgeWrapper>
+    </Container>
+  </div>
+);
+
+# Badge
+
+<Meta
+  title="Data/Badge"
+  component={Badge}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+  argTypes={{
+    icon: {
+      control: 'select',
+      options: iconNames,
+    },
+  }}
+/>
+
+```sh
+npm i @equinor/fusion-wc-badge
+```
+
+<Canvas>
+  <Story name="Default" args={{ label: 'badge' }} parameters={{ chromatic: { disableSnapshot: true } }}>
+    {Badge.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
+
+## Default
+
+<Story name="Rectangular" args={{}}>
+  {Template.bind({})}
+</Story>
+
+## Circular
+
+<Story name="Circular" args={{ circular: true }}>
+  {Template.bind({})}
+</Story>

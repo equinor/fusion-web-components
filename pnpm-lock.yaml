@@ -499,6 +499,9 @@ importers:
       '@equinor/fusion-wc-skeleton':
         specifier: workspace:^
         version: link:../skeleton
+      '@equinor/fusion-wc-textinput':
+        specifier: workspace:^
+        version: link:../textinput
       '@equinor/fusion-web-theme':
         specifier: ^0.1.7
         version: 0.1.7

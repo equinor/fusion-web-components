@@ -1,4 +1,3 @@
-import { BadgeColor } from '@equinor/fusion-wc-badge';
 import { CSSResult, html, LitElement, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
@@ -8,9 +7,17 @@ import style from './element.css';
 // TODO - NOPE
 import personStyle from '../../style.css';
 import { ListItemData, PersonListItemElementProps } from './types';
-import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { PersonInfoTask, PersonInfoControllerHost } from '../../tasks/person-info-task';
 import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
+
+import Avatar from '@equinor/fusion-wc-avatar';
+import Badge, { type BadgeElementProps, BadgeColor } from '@equinor/fusion-wc-badge';
+import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+
+Avatar;
+Badge;
+Skeleton;
+
 /**
  * Element for displaying a persons card with person avatar and person info.
  * {@inheritdoc}
@@ -89,7 +96,7 @@ export class PersonListItemElement
   /**
    * Returns the badge color for the current presence
    */
-  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeColor {
+  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeElementProps['color'] {
     switch (availability) {
       case PersonAvailability.Available:
       case PersonAvailability.AvailableIdle:

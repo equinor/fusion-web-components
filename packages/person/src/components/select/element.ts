@@ -11,14 +11,17 @@ import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person
 
 import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
 
-import { ListElement, ListItemElement } from '@equinor/fusion-wc-list';
-import { TextInputElement } from '@equinor/fusion-wc-textinput';
-import { IconElement } from '@equinor/fusion-wc-icon';
-import { AvatarElement } from '@equinor/fusion-wc-avatar';
-import { PersonInfo } from 'person/src/types';
-ListElement;
-IconElement;
+import type { PersonInfo } from '../../types';
+
+import AvatarElement from '@equinor/fusion-wc-avatar';
+import IconElement from '@equinor/fusion-wc-icon';
+import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
+import TextInputElement from '@equinor/fusion-wc-textinput';
+
 AvatarElement;
+IconElement;
+ListElement;
+TextInputElement;
 
 /**
  * Element for SearchableDropdown

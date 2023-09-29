@@ -1,3 +1,4 @@
+// TODO - CLEAN UP!
 import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit';
 import { property, queryAssignedElements, queryAsync, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
@@ -5,19 +6,22 @@ import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { AvatarData, PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability } from '../../types';
-import Badge, { BadgeColor, IconName } from '@equinor/fusion-wc-badge';
-import Avatar, { AvatarSize } from '@equinor/fusion-wc-avatar';
-import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import '../card';
 import { computePosition, flip, shift, offset } from '@floating-ui/dom';
 import style from './element.css';
 import { PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
 import { PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
 
+import Badge, { BadgeColor } from '@equinor/fusion-wc-badge';
+import Avatar, { type AvatarElementProps, AvatarSize } from '@equinor/fusion-wc-avatar';
+import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+import Icon, { IconElementProps } from '@equinor/fusion-wc-icon';
+
 // persist elements
 Badge;
 Avatar;
 Skeleton;
+Icon;
 
 const clickOutside = (e: MouseEvent) => {
   PersonAvatarElement.openedPersonAvatars.forEach((el) => {
@@ -68,7 +72,7 @@ export class PersonAvatarElement
    * Size of the avatar.
    */
   @property({ type: String, reflect: true })
-  size: AvatarSize = AvatarSize.Medium;
+  size: AvatarElementProps['size'] = AvatarSize.Medium;
 
   @property({ type: String, reflect: true })
   pictureSrc?: string;
@@ -155,7 +159,7 @@ export class PersonAvatarElement
   /**
    * Returns the badge color for the current presence
    */
-  protected getBadgeColor(availability: PersonAvailability): BadgeColor {
+  protected getBadgeColor(availability: PersonAvailability): AvatarElementProps['color'] {
     if (this.disabled) {
       return BadgeColor.Disabled;
     }
@@ -179,7 +183,7 @@ export class PersonAvatarElement
   /**
    * Returns the badge icon for the current presence
    */
-  protected getBadgeIcon(availability: PersonAvailability): IconName | undefined {
+  protected getBadgeIcon(availability: PersonAvailability): IconElementProps['icon'] {
     switch (availability) {
       case PersonAvailability.Available:
         return 'check_circle_outlined';

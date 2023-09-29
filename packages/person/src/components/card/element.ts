@@ -2,8 +2,6 @@ import { CSSResult, html, TemplateResult, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
-import { BadgeColor } from '@equinor/fusion-wc-badge';
-import { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
 import { CardData, PersonCardElementProps } from './types';
 
@@ -13,6 +11,19 @@ import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-p
 import { PersonDetailTask, PersonDetailControllerHost } from '../../tasks/person-detail-task';
 
 import './element.manager';
+
+import Avatar from '@equinor/fusion-wc-avatar';
+import Badge, { BadgeColor, BadgeElementProps } from '@equinor/fusion-wc-badge';
+import Icon from '@equinor/fusion-wc-icon';
+import IconButton from '@equinor/fusion-wc-button/icon-button';
+import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+
+Avatar;
+Badge;
+Icon;
+IconButton;
+Skeleton;
+
 /**
  * Element for displaying a persons card with person avatar and person info.
  * {@inheritdoc}
@@ -197,7 +208,7 @@ export class PersonCardElement
   /**
    * Returns the badge color for the current presence
    */
-  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeColor {
+  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeElementProps['color'] {
     switch (availability) {
       case PersonAvailability.Available:
       case PersonAvailability.AvailableIdle:

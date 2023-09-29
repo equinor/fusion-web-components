@@ -950,9 +950,9 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      webpack:
-        specifier: ^5.88.2
-        version: 5.88.2(@swc/core@1.3.87)(esbuild@0.18.20)
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@20.4.7)
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:^

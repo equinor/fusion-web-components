@@ -12,7 +12,7 @@ import style from './element.css';
 import { PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
 import { PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
 
-import Badge, { BadgeColor } from '@equinor/fusion-wc-badge';
+import Badge, { BadgeColor, BadgeElementProps } from '@equinor/fusion-wc-badge';
 import Avatar, { type AvatarElementProps, AvatarSize } from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import Icon, { IconElementProps } from '@equinor/fusion-wc-icon';
@@ -159,7 +159,7 @@ export class PersonAvatarElement
   /**
    * Returns the badge color for the current presence
    */
-  protected getBadgeColor(availability: PersonAvailability): AvatarElementProps['color'] {
+  protected getBadgeColor(availability: PersonAvailability): BadgeElementProps['color'] {
     if (this.disabled) {
       return BadgeColor.Disabled;
     }

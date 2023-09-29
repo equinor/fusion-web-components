@@ -11,7 +11,7 @@ Upgrade storybook to V7
 - [ ] icon button
 - [ ] link button
 - [ ] toggle button
-- [ ] chip
+- [x] chip
 - [ ] date range
 - [ ] date time
 - [ ] list

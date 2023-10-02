@@ -226,7 +226,7 @@ export class PersonListItemElement
   /**
    * Returns color classes for the account type
    */
-  public getAccountTypeColorClass(accountType?: PersonAccountType): string | void {
+  public getAccountTypeColorClass(accountType?: PersonAccountType[keyof PersonAccountType]): string | void {
     switch (accountType) {
       case PersonAccountType.Employee:
         return 'fwc-person-type__employee';

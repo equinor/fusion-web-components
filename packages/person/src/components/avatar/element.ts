@@ -147,7 +147,7 @@ export class PersonAvatarElement
   /**
    * Returns the badge color for the current presence
    */
-  protected getRenderClasses(accountType?: string): ClassInfo {
+  protected getRenderClasses(accountType?: PersonAccountType[keyof PersonAccountType]): ClassInfo {
     return {
       'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
       'fwc-person-avatar__consultant': accountType === PersonAccountType.Consultant || PersonAccountType.Enterprise,

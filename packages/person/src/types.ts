@@ -19,7 +19,7 @@ export type Manager = {
   name?: string;
   pictureSrc?: string;
   department?: string;
-  accountType?: PersonAccountType;
+  accountType?: PersonAccountType[keyof PersonAccountType];
 };
 
 export type PersonInfo = {
@@ -30,7 +30,7 @@ export type PersonInfo = {
   mail?: string;
   upn?: string;
   mobilePhone?: string;
-  accountType?: PersonAccountType;
+  accountType?: PersonAccountType[keyof PersonAccountType];
   officeLocation?: string;
   managerAzureUniqueId?: string;
 };

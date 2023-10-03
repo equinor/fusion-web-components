@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - Update avatar element
+
+  - allow setting size of element by css `--fwc-avatar-size`
+  - cleaned up css
+  - fixed `custom-element.json`
+
 ## 3.0.0
 
 ### Major Changes
@@ -151,4 +161,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - fixed type exports ([e7e19a5](https://github.com/equinor/fusion-web-components/commit/e7e19a59c3db40b20d29f9ea888614a188a2fcc4))
 - replaced props interfaces with type ([39cc307](https://github.com/equinor/fusion-web-components/commit/39cc3078b3bb217587f5eb39020a312cb859bb96))
-

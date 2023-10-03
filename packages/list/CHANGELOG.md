@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f)]:
+  - @equinor/fusion-wc-checkbox@1.0.1
+
 ## 1.0.1
 
 ### Patch Changes

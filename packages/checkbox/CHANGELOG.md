@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.1
+
+### Patch Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - update checkbox element
+
+  expose prop interface for component
+  cleanup changelog
+  export default items
+
 ## 1.0.0
 
 ### Major Changes

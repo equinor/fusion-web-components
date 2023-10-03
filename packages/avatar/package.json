@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-avatar",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",
@@ -21,7 +21,7 @@
     "lit": "2.7.0"
   },
   "devDependencies": {
-"@custom-elements-manifest/analyzer": "^0.8.0",
+    "@custom-elements-manifest/analyzer": "^0.8.0",
     "@equinor/fusion-wc-builder": "workspace:^",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"

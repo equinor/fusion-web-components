@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - updated skeleton element
+
+  - cleaned up css
+  - removed icon
+  - removed skeleton wrapper _(DIY)_
+  - updated stories
+
+  **BREAKING CHANGES:** icon is now removed from skeleton (BYO in default `slot`)
+
 ## 1.0.0
 
 ### Major Changes

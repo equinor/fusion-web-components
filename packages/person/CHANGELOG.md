@@ -1,5 +1,39 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - update person components
+
+  - quick update of TsDoc
+  - changed all avatars to person-avatars
+    - added flag on avatar for `none` trigger _(prevent hover on card, select)_
+    - TODO: avatars need `azureId`|`upn`, this can be resolved from `dataSource`
+  - minor style/css cleanup
+  - fixed exports from `package.json`
+  - created new stories
+    - added FakerJS _(`azureId` as seed to persist snapshots)_
+
+### Patch Changes
+
+- [#907](https://github.com/equinor/fusion-web-components/pull/907) [`4729fda`](https://github.com/equinor/fusion-web-components/commit/4729fda8d184d1ab23dca0b32df82a904141b6f2) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - updates the typing of `accountType` to use the string variant of the enum.
+
+- [#902](https://github.com/equinor/fusion-web-components/pull/902) [`93a5f89`](https://github.com/equinor/fusion-web-components/commit/93a5f89d590a71b9c903352a8839be49c4a52d51) Thanks [@odinr](https://github.com/odinr)! - Fix all missing imports of web elements
+
+  - fixed imports _(still need more clean-up!)_
+  - fixed 'unused' protection of required WC
+  - fix un-relative paths
+  - updated interfaces
+
+- Updated dependencies [[`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f), [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f), [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f), [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f)]:
+  - @equinor/fusion-wc-avatar@3.1.0
+  - @equinor/fusion-wc-button@2.1.0
+  - @equinor/fusion-wc-badge@1.1.0
+  - @equinor/fusion-wc-skeleton@2.0.0
+  - @equinor/fusion-wc-list@1.0.2
+  - @equinor/fusion-wc-searchable-dropdown@3.2.1
+
 ## 2.0.3
 
 ### Patch Changes

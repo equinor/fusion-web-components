@@ -34,6 +34,7 @@ jobs:
         # Required options for the Chromatic GitHub Action
         with:
           workingDir: storybook
+          buildScriptName: build
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
@@ -44,6 +45,7 @@ jobs:
         # Required options for the Chromatic GitHub Action
         with:
           workingDir: storybook
+          buildScriptName: build
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           autoAcceptChanges: true # 👈 Option to accept all changes

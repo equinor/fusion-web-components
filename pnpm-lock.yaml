@@ -760,9 +760,6 @@ importers:
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
-      '@equinor/fusion-wc-icon':
-        specifier: workspace:^
-        version: link:../icon
       tslib:
         specifier: ^2.6.2
         version: 2.6.2

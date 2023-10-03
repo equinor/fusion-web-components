@@ -1,15 +1,7 @@
 import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-const style: CSSResult = css`
-  :host {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
-    --fwc-skeleton-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
-    background-color: var(--fwc-skeleton-fill-color);
-  }
+const rectangleStyle = css`
   :host([variant='rectangle']) {
     border-radius: 0.25rem;
   }
@@ -45,6 +37,9 @@ const style: CSSResult = css`
   :host([variant='rectangle'][size='large']:not([fluid])) {
     width: 15rem;
   }
+`;
+
+const squareStyle = css`
   :host([variant='square']) {
     border-radius: 0.25rem;
   }
@@ -80,6 +75,9 @@ const style: CSSResult = css`
   :host([variant='square'][size='large']:not([fluid])) {
     width: 7.5rem;
   }
+`;
+
+const textStyle = css`
   :host([variant='text']) {
     border-radius: 0.25rem;
   }
@@ -111,6 +109,9 @@ const style: CSSResult = css`
   :host([variant='text'][size='large']:not([fluid])) {
     width: 30rem;
   }
+`;
+
+const circleStyle: CSSResult = css`
   :host([fluid]:not([variant='circle'])) {
     width: 100%;
   }
@@ -144,6 +145,18 @@ const style: CSSResult = css`
     font-size: 3rem;
     line-height: 5rem;
   }
+`;
+
+const style: CSSResult = css`
+  :host {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
+    --fwc-skeleton-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    background-color: var(--fwc-skeleton-fill-color);
+  }
+
   :host(:not([inactive])):after {
     background-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
     animation: 1.6s linear 0.5s infinite normal none running fwc-skeleton__animation-shine;
@@ -152,7 +165,7 @@ const style: CSSResult = css`
     transform: translateX(-100%);
     inset: 0px;
   }
-  .fwc-skeleton__icon {
+  #root {
     width: 100%;
     height: 100%;
     display: flex;
@@ -160,10 +173,10 @@ const style: CSSResult = css`
     color: var(--fwc-skeleton-ink-color);
     font-size: 0.875em;
   }
-  :host([variant='text']) .fwc-skeleton__icon {
+  :host([variant='text']) #root {
     justify-content: left;
   }
-  :host(:not([variant='text'])) .fwc-skeleton__icon {
+  :host(:not([variant='text'])) #root {
     justify-content: center;
   }
   @keyframes fwc-skeleton__animation-shine {
@@ -176,4 +189,4 @@ const style: CSSResult = css`
   }
 `;
 
-export default style;
+export default [rectangleStyle, squareStyle, textStyle, circleStyle, style];

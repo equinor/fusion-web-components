@@ -16,7 +16,7 @@ Upgrade storybook to V7
 - [ ] date time
 - [ ] list
 - [ ] searchable dropdown
-- [ ] skeleton
+- [x] skeleton
 - [x] checkbox
 - [ ] formfield
 - [ ] markdown

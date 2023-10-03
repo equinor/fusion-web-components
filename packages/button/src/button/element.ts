@@ -15,27 +15,46 @@ export type ButtonColor = 'primary' | 'secondary' | 'danger';
 
 export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
-export type ButtonElementProps = {
-  label?: string;
-  variant?: ButtonVariant;
-  color?: ButtonColor;
-  dense?: boolean;
-  trailingIcon?: boolean;
-  expandContent?: boolean;
-};
-
+export type ButtonElementProps = Pick<
+  ButtonElement,
+  'label' | 'variant' | 'color' | 'dense' | 'trailingIcon' | 'expandContent' | 'icon' | 'disabled' | 'fullwidth'
+>;
+/**
+ * @tag fwc-button
+ *
+ * @attribute {boolean} dense - toggle if button should be dense
+ * @attribute {string} label - label of button
+ * @attribute {boolean} fullwidth - toggle to make button use full container width
+ * @attribute {boolean} disabled - toggle if button is disabled
+ * @attribute {boolean} trailingIcon - toggle if icon should be rendered right
+ * @attribute {boolean} expandContent - toggle if content should be expanded (center aligned)
+ * @attribute {boolean} ariaHasPopup - toggle if button has popup content
+ *
+ * @fires click
+ *
+ */
 export class ButtonElement extends ButtonBase implements ButtonElementProps {
   /**
    * Leading icon to display in input
    * @See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon)
-   * @override
+   *
+   * @attribute {IconName}
    */
   // @ts-ignore
-  override icon: IconName = '';
+  override icon?: IconName;
 
+  /**
+   * @type {'primary' | 'secondary' | 'danger'}
+   * @default primary
+   */
   @property({ type: String, reflect: true })
   color: ButtonColor = 'primary';
 
+  /**
+   * @property
+   * @type {'contained' | 'outlined' | 'ghost'}
+   * @default contained
+   */
   @property({ type: String, reflect: true })
   variant: ButtonVariant = 'contained';
 

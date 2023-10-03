@@ -23,20 +23,20 @@ IconElement;
 ListElement;
 TextInputElement;
 
+// TODO !!!! clean up when extending fwc-searchable-dropdown
+
 /**
  * Element for SearchableDropdown
- * @tag fwc-searchabledropdown
+ * @tag fwc-person-select
  *
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
  * @property {boolean} disabled disable TextInput element
  * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the graphic property on the SearchableDropdownResultItem
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
- * @property {string} label Label for fwc-textinput element
  * @property {string} leadingIcon Leading Icon to display in fwc-text-input
  * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
  * @property {string} multiple Able to select multiple items
- * @property {string} placeholder Placeholder text for fwc-textinput element
  * @property {string} selectedId ID that should be highlighted in dropdown
  * @property {string} value value for TextInput element
  * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
@@ -62,14 +62,19 @@ export class PersonSelectElement
   /* style object css */
   static styles: CSSResult[] = sddStyles;
 
-  /* Label passed to the fwc-text-input component */
+  /**
+   * Label passed to the fwc-text-input component
+   */
   @property()
   label = '';
 
+  /**
+   * @internal
+   */
   @state()
   search = '';
 
-  /* Placeholder passe to fwc-textinput */
+  /**  Placeholder passe to fwc-textinput */
   @property()
   placeholder = '';
 
@@ -170,7 +175,6 @@ export class PersonSelectElement
                 return html`
                   <fwc-list-item
                     graphic="avatar"
-                    twoline
                     .activated=${this.controllers.element.selectedItems.has(item.azureId)}
                     .dataSource=${item}
                   >
@@ -179,6 +183,7 @@ export class PersonSelectElement
                       .dataSource=${item}
                       size="small"
                       slot="graphic"
+                      trigger="none"
                     ></fwc-person-avatar>
 
                     <span class="item-text">

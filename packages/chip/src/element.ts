@@ -1,7 +1,9 @@
 import { LitElement, TemplateResult, PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { IconName } from '@equinor/fusion-wc-icon';
-import style from './element.css';
+import { IconElement, IconName } from '@equinor/fusion-wc-icon';
+import styles from './element.css';
+
+IconElement;
 
 export type ChipSize = 'small' | 'medium' | 'large';
 export type ChipVariant = 'filled' | 'outlined';
@@ -23,6 +25,7 @@ export type ChipElementProps = {
 /**
  * TODO: Chips that are set to both removable and clickable will not handle the 'click' and 'remove' events correctly.
  * @tag fwc-chip
+ *
  * @property {ChipSize} size - Set the size of the chip element
  * @property {ChipVariant} variant - Set the variant of the chip element
  * @property {ChipColor} size - Set the color of the chip element
@@ -124,30 +127,30 @@ export class ChipElement extends LitElement implements ChipElementProps {
    * Render the graphic element.
    */
   protected renderGraphic(): TemplateResult | null {
-    return this.icon ? html`<fwc-icon class="fwc-chip__graphic" icon=${this.icon}></fwc-icon>` : null;
+    return this.icon ? html`<fwc-icon icon=${this.icon}></fwc-icon>` : html`<slot name="graphic"></slot>`;
   }
 
   /**
    * Render the remove icon.
    */
   protected renderRemoveIcon(): TemplateResult | null {
-    return this.removable ? html`<fwc-icon class="fwc-chip__remove" icon="close"></fwc-icon>` : null;
+    return this.removable ? html`<fwc-icon icon="close"></fwc-icon>` : html`<slot name="remove"></slot>`;
   }
 
   /**
    * Render the content.
    */
-  protected renderContent(): TemplateResult | string | null {
-    return this.value || null;
+  protected renderContent(): TemplateResult | void {
+    return this.value ? html`${this.value}` : html`<slot></slot>`;
   }
 
   /** {@inheritDoc} */
   protected render(): TemplateResult {
-    return html`<span class="fwc-chip" @click=${this.handleOnClick}>
-      <slot class="fwc-chip__graphic" name="graphic">${this.renderGraphic()}</slot>
-      <slot>${this.renderContent()}</slot>
-      <slot class="fwc-chip__remove" name="remove" @click=${this.handleRemoveOnClick}>${this.renderRemoveIcon()}</slot>
-    </span>`;
+    return html`<div id="root" @click=${this.handleOnClick}>
+      <div id="graphic">${this.renderGraphic()}</div>
+      <div id="content">${this.renderContent()}</div>
+      <div id="remove" @click=${this.handleRemoveOnClick}>${this.renderRemoveIcon()}</div>
+    </div>`;
   }
 
   /**
@@ -170,6 +173,6 @@ export class ChipElement extends LitElement implements ChipElementProps {
   }
 }
 
-ChipElement.styles = [style];
+ChipElement.styles = styles;
 
 export default ChipElement;

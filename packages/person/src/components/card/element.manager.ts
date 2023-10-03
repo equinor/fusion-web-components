@@ -1,16 +1,37 @@
-import { type CSSResult, type HTMLTemplateResult, LitElement, html } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { type CSSResult, type HTMLTemplateResult, LitElement, html, css, unsafeCSS } from 'lit';
+import { property } from 'lit/decorators.js';
 
-import { PersonPhotoTask } from '../../tasks';
-import { PersonDetails, PersonItemSize } from 'person/src/types';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { PersonDetails } from 'person/src/types';
 import { fusionElement } from '@equinor/fusion-wc-core';
 
-import { style } from './element.manager.css';
+import { styles as theme } from '@equinor/fusion-web-theme';
 
 @fusionElement('fwc-person-card-manager')
 export class PersonCardManagerElement extends LitElement {
-  static styles: CSSResult[] = [style];
+  static styles: CSSResult[] = [
+    css`
+      .root {
+        display: flex;
+        flex-flow: row;
+        gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+        align-items: center;
+      }
+      .name {
+        display: -webkit-box;
+        font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable('fontWeight'))};
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .department {
+        font-size: calc(
+          ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
+        );
+      }
+    `,
+  ];
+
   /** Azure unique id */
   @property({ type: String })
   public azureId?: string;
@@ -18,50 +39,16 @@ export class PersonCardManagerElement extends LitElement {
   @property({ type: String })
   public dataSource?: PersonDetails['manager'];
 
-  /** Size of the component */
-  @property({ type: String, reflect: true })
-  size: PersonItemSize = 'medium';
-
-  private tasks?: {
-    photo: PersonPhotoTask;
-  };
-
-  @state()
-  protected intersected = false;
-
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              photo: new PersonPhotoTask(this),
-            };
-          }
-        }
-      },
-    }),
-  };
-
   render(): HTMLTemplateResult {
-    const { name, department } = this.dataSource ?? {};
+    const { name, department, azureUniqueId } = this.dataSource ?? {};
+    const { azureId = azureUniqueId } = this;
     // TODO make avatar have pending state!
-    return html` <div class="root">
-      <span class="title">Reports to</span>
-      <div class="content">
-        <div class="avatar">
-          ${this.tasks?.photo.render({
-            complete: (src) => html`<fwc-avatar .src=${src}></fwc-avatar>`,
-            pending: () => html`<fwc-avatar .value=${name}></fwc-avatar>`,
-          })}
-        </div>
-        <section>
-          ${name && html`<header title="${name}" class="name">${name}</header>`}
-          ${department && html`<span class="department">${department}</span>`}
-        </section>
-      </div>
+    return html`<div class="root">
+      <fwc-person-avatar azureId=${azureId} trigger="none"></fwc-person-avatar>
+      <section>
+        ${name && html`<header title="${name}" class="name">${name}</header>`}
+        ${department && html`<span class="department">${department}</span>`}
+      </section>
     </div>`;
   }
 }

@@ -16,7 +16,11 @@
     "./tasks": {
       "types": "./lib/types/tasks/index.d.ts",
       "default": "./lib/tasks/index.js"
-    }
+    },
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
   },
   "types": "lib/types/index.d.ts",
   "typesVersions": {
@@ -47,6 +51,8 @@
   "customElements": "lib/custom-elements.json",
   "scripts": {
     "build": "tsc -b",
+    "postbuild": "pnpm typedoc",
+    "typedoc": "cem analyze --litelement --globs \"src/**/element.ts\" --outdir lib",
     "prepack": "pnpm build && fwc-build"
   },
   "keywords": [],
@@ -72,8 +78,7 @@
     "@custom-elements-manifest/analyzer": "^0.8.0",
     "@equinor/fusion-wc-builder": "workspace:^",
     "tslib": "^2.6.2",
-    "typescript": "^5.2.2",
-    "web-component-analyzer": "^1.1.6"
+    "typescript": "^5.2.2"
   },
   "publishConfig": {
     "access": "public"

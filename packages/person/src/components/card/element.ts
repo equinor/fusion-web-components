@@ -5,8 +5,7 @@ import { IntersectionController } from '@lit-labs/observers/intersection-control
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
 import { CardData, PersonCardElementProps } from './types';
 
-import personStyle from '../../style.css';
-import style from './element.css';
+import styles from './element.css';
 import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
 import { PersonDetailTask, PersonDetailControllerHost } from '../../tasks/person-detail-task';
 
@@ -41,7 +40,7 @@ export class PersonCardElement
   extends LitElement
   implements PersonCardElementProps, PersonDetailControllerHost, PersonPhotoControllerHost
 {
-  static styles: CSSResult[] = [style, personStyle];
+  static styles: CSSResult[] = styles;
 
   /** Azure unique id */
   @property({ type: String })
@@ -53,14 +52,23 @@ export class PersonCardElement
   @property({ type: String })
   public dataSource?: CardData;
 
+  /**
+   * @internal
+   */
   private tasks?: {
     details: PersonDetailTask;
     photo: PersonPhotoTask;
   };
 
+  /**
+   * @internal
+   */
   @state()
   protected intersected = false;
 
+  /**
+   * @internal
+   */
   protected controllers = {
     observer: new IntersectionController(this, {
       callback: (e) => {
@@ -193,16 +201,21 @@ export class PersonCardElement
     </div>`;
   }
 
-  public renderManager(manager: CardData['manager']): TemplateResult | void {
-    return (
-      manager &&
-      html`
+  public renderManager(manager: Required<CardData>['manager']): TemplateResult | void {
+    const size = (() => {
+      switch (this.size) {
+        case 'large':
+          return 'medium';
+        default:
+          return this.size;
+      }
+    })();
+    return html`
       <div class="manager">
-        <div class="manager_heading">Reports to</div>
-        <fwc-person-card-manager .azureId=${manager.azureUniqueId}  .dataSource=${manager} .size=${this.size}>
+        <div class="info-item_heading">Reports to</div>
+        <fwc-person-card-manager size="${size}" .dataSource=${manager}>
       </div>
-    `
-    );
+    `;
   }
 
   /**
@@ -299,7 +312,14 @@ export class PersonCardElement
         ${this.tasks.details.render({
           complete: (details: CardData) => {
             return html`<div class="person-card__heading">
-                <div class="fwc-person-avatar">${this.renderAvatar(details)}</div>
+                <div class="fwc-person-avatar">
+                  <fwc-person-avatar
+                    .size=${this.size}
+                    .azureId=${details.azureId}
+                    .dataSource=${details}
+                    trigger="none"
+                  ></fwc-person-avatar>
+                </div>
                 <div class="person-card__header">
                   ${details.name &&
                   html`<header title="${details.name}" class="person-card__name">${details.name}</header>`}
@@ -313,12 +333,7 @@ export class PersonCardElement
                   ${this.renderMobile(details)} ${this.renderEmail(details)}
                 </div>
                 ${this.renderProjects(details)} ${this.renderPositions(details)}
-                ${details.manager &&
-                html`<fwc-person-card-manager
-                  .azureId=${details.manager.azureUniqueId}
-                  .dataSource=${details.manager}
-                  .size=${this.size}
-                ></fwc-person-card-manager>`}
+                ${details.manager && this.renderManager(details.manager)}
               </div>`;
           },
           pending: () => this.renderPending(),

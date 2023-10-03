@@ -1,9 +1,13 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { AvatarElement } from './element';
-import { AvatarElementProps } from './types';
 
 export * from './element';
-export * from './types';
+export * from './static';
+
+export type AvatarElementProps = Pick<
+  AvatarElement,
+  'size' | 'color' | 'value' | 'src' | 'clickable' | 'disabled' | 'elevated'
+>;
 
 export const tag = 'fwc-avatar';
 

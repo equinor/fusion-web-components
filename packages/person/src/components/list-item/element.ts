@@ -8,7 +8,6 @@ import style from './element.css';
 import personStyle from '../../style.css';
 import { ListItemData, PersonListItemElementProps } from './types';
 import { PersonInfoTask, PersonInfoControllerHost } from '../../tasks/person-info-task';
-import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
 
 import Avatar from '@equinor/fusion-wc-avatar';
 import Badge, { type BadgeElementProps, BadgeColor } from '@equinor/fusion-wc-badge';
@@ -30,10 +29,7 @@ Skeleton;
  *
  */
 
-export class PersonListItemElement
-  extends LitElement
-  implements PersonListItemElementProps, PersonInfoControllerHost, PersonPhotoControllerHost
-{
+export class PersonListItemElement extends LitElement implements PersonListItemElementProps, PersonInfoControllerHost {
   static styles: CSSResult[] = [style, personStyle];
 
   /** Unique person Azure ID */
@@ -46,14 +42,22 @@ export class PersonListItemElement
   @property({ type: String })
   public dataSource?: ListItemData;
 
+  /**
+   * @internal
+   */
   private tasks?: {
     info: PersonInfoTask;
-    photo: PersonPhotoTask;
   };
 
+  /**
+   * @internal
+   */
   @state()
   protected intersected = false;
 
+  /**
+   * @internal
+   */
   protected controllers = {
     observer: new IntersectionController(this, {
       callback: (e) => {
@@ -63,7 +67,6 @@ export class PersonListItemElement
             this.controllers.observer.unobserve(this);
             this.tasks = {
               info: new PersonInfoTask(this),
-              photo: new PersonPhotoTask(this),
             };
           }
         }
@@ -127,32 +130,6 @@ export class PersonListItemElement
   }
 
   /**
-   * Renders the avatar
-   */
-  protected renderAvatar(details: ListItemData): TemplateResult {
-    // TODO - pending and error
-    return html`
-      ${this.tasks?.photo.render({
-        complete: (pictureSrc) =>
-          html`<fwc-avatar
-            class="person-list__avatar ${this.getAccountTypeColorClass(details.accountType)}"
-            .size=${this.size}
-            .src=${pictureSrc}
-            .value=${this.getInitial(details.name)}
-            border=${true}
-          ></fwc-avatar>`,
-        pending: () =>
-          html`<fwc-avatar
-            class="person-list__avatar ${this.getAccountTypeColorClass(details.accountType)}"
-            .size=${this.size}
-            .value=${this.getInitial(details.name)}
-            border=${true}
-          ></fwc-avatar>`,
-      })}
-    `;
-  }
-
-  /**
    * Renders the error
    */
   protected renderError(error: Error): TemplateResult {
@@ -169,7 +146,9 @@ export class PersonListItemElement
         ${this.tasks.info.render({
           complete: (details) => {
             return html`<div class="person-list__about">
-                <div class="person-list__avatar">${this.renderAvatar(details as ListItemData)}</div>
+                <div class="person-list__avatar">
+                  <fwc-person-avatar azureId=${details.azureId} .dataSource=${details} />
+                </div>
                 <div class="person-list__content">
                   ${this.renderTitle(details as ListItemData)} ${this.renderDepartment(details as ListItemData)}
                 </div>

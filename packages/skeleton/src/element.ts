@@ -1,39 +1,31 @@
 import { LitElement, CSSResult, HTMLTemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { SkeletonElementProps, SkeletonSize, SkeletonVariant } from './types';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
-import style from './element.css';
+import { SkeletonSize, SkeletonVariant } from './static';
+import styles from './element.css';
 
-// Persist element
-Icon;
+export type SkeletonElementProps = Pick<SkeletonElement, 'size' | 'variant' | 'inactive' | 'fluid'>;
 
 /**
  * Element for rendering pending state placeholders for components.
- * {@inheritdoc}
  *
  * @tag fwc-skeleton
- *
- * @property {SkeletonSize} size - Sets the size of the skeleton element.
- * @property {SkeletonVariant} variant - Sets the skeleton element variant to render.
- * @property {boolean} inactive - Disables the skeleton element active animation.
- * @property {boolean} fluid - Sets the width of the element to fill the parent width.
- * @property {boolean} icon - Sets the name of an icon to be rendered within the component.
  *
  * @cssprop {theme.colors.interactive.disabled__fill} --fwc-skeleton-fill-color - background color of the element.
  * @cssprop {theme.colors.interactive.disabled__text} --fwc-skeleton-ink-color - text color of the element.
  *
+ * @slot default - Inner content of the skeleton
+ *
  * Icons can be slotted in with a slot named 'icon'.
  */
-export class SkeletonElement extends LitElement implements SkeletonElementProps {
-  static styles: CSSResult[] = [style];
+export class SkeletonElement extends LitElement {
+  static styles: CSSResult[] = styles;
 
   /**
    * Size of the skeleton element.
    * @default medium
    */
   @property({ type: String, reflect: true })
-  size: SkeletonSize = SkeletonSize.Medium;
+  size?: SkeletonSize;
 
   /**
    * Variant of the skeleton element.
@@ -54,26 +46,9 @@ export class SkeletonElement extends LitElement implements SkeletonElementProps 
   @property({ type: Boolean, reflect: true })
   fluid?: boolean;
 
-  /**
-   * Expands the skeleton element width to the width of the parent.
-   */
-  @property({ type: String })
-  icon?: IconName;
-
-  /**
-   * Renders the icon provided by icon name or the slotted icon
-   */
-  protected renderIcon(): HTMLTemplateResult {
-    if (this.variant === 'text') {
-      return html``;
-    }
-    const icon = this.icon ? html`<fwc-icon icon=${ifDefined(this.icon)}></fwc-icon>` : undefined;
-    return html`<slot class="fwc-skeleton__icon" name="icon">${icon}</slot>`;
-  }
-
   /** {@inheritDoc} */
   protected override render(): HTMLTemplateResult {
-    return html`<span>${this.renderIcon()}</span>`;
+    return html`<div id="root"><slot></slot></div>`;
   }
 }
 

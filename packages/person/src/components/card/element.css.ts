@@ -1,8 +1,26 @@
 import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
+// TODO - remove!
+import personStyle from '../../style.css';
+
+const styleSizes = css`
+  :host .person-card__content {
+    font-size: 1rem;
+    --fwc-avatar-size: 2.5em;
+  }
+  :host([size='small']) .person-card__content {
+    font-size: 0.85rem;
+    --fwc-avatar-size: 2rem;
+  }
+  :host([size='large']) .person-card__content {
+    font-size: 1.25rem;
+  }
+`;
+
 const style: CSSResult = css`
   :host {
+    display: inline-flex;
     --x-small-size-space: calc(
       ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))} * var(--content-resize, 1)
     );
@@ -13,6 +31,7 @@ const style: CSSResult = css`
       ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} * var(--content-resize, 1)
     );
   }
+
   .person-card__section {
     display: flex;
     flex-direction: column;
@@ -35,6 +54,7 @@ const style: CSSResult = css`
     display: flex;
     flex-direction: column;
   }
+
   .person-card__content > * {
     margin: 0 var(--medium-size-space);
     padding: var(--medium-size-space) 0;
@@ -72,7 +92,7 @@ const style: CSSResult = css`
     height: calc(0.625rem * var(--content-resize, 1));
     border-radius: 50%;
     border: 3px solid;
-    border-color: var(--fwc-avatar-base-color);
+    border-color: var(--fwc-avatar-color);
   }
   .fwc-person-avatar-badge {
     --fwc-badge-size: calc(0.8rem * var(--content-resize, 1));
@@ -125,4 +145,4 @@ const style: CSSResult = css`
   }
 `;
 
-export default style;
+export default [personStyle, styleSizes, style];

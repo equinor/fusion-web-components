@@ -1,8 +1,10 @@
 // TODO - CLEAN UP!
 import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit';
+
 import { property, queryAssignedElements, queryAsync, state } from 'lit/decorators.js';
-import { when } from 'lit/directives/when.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
+import { when } from 'lit/directives/when.js';
+
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { AvatarData, PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability } from '../../types';
@@ -13,7 +15,7 @@ import { PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-inf
 import { PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
 
 import Badge, { BadgeColor, BadgeElementProps } from '@equinor/fusion-wc-badge';
-import Avatar, { type AvatarElementProps, AvatarSize } from '@equinor/fusion-wc-avatar';
+import Avatar, { type AvatarElementProps } from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import Icon, { IconElementProps } from '@equinor/fusion-wc-icon';
 
@@ -31,7 +33,7 @@ const clickOutside = (e: MouseEvent) => {
   });
 };
 
-export type PersonAvatarShowCardOnType = 'click' | 'hover';
+export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
 
 //TODO: Handle errors better in task error render function
 
@@ -65,14 +67,18 @@ export class PersonAvatarElement
   @property({ type: String })
   public dataSource?: AvatarData;
 
+  /**
+   * @internal
+   */
   @property({ type: Boolean, attribute: false, reflect: false })
   isFloatingOpen = false;
 
   /**
    * Size of the avatar.
+   * @type {'click' | 'hover' | 'disabled'}
    */
   @property({ type: String, reflect: true })
-  size: AvatarElementProps['size'] = AvatarSize.Medium;
+  size?: AvatarElementProps['size'];
 
   @property({ type: String, reflect: true })
   pictureSrc?: string;
@@ -83,8 +89,13 @@ export class PersonAvatarElement
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
 
-  @property({ type: String, attribute: true, reflect: true })
-  showFloatingOn: PersonAvatarShowCardOnType = 'hover';
+  /**
+   * @type {'click' | 'hover' | 'disabled'}
+   * @default hover
+   */
+  @property({ type: String, attribute: 'trigger', reflect: true })
+  trigger: PersonAvatarShowCardOnType = 'hover';
+  // showFloatingOn: PersonAvatarShowCardOnType = 'hover';
 
   /**
    * Sets the avatar to be rendered as disabled.
@@ -92,23 +103,41 @@ export class PersonAvatarElement
   @property({ type: Boolean })
   disabled?: boolean;
 
+  /**
+   * @internal
+   */
   @queryAsync('#floating')
   public floating!: Promise<HTMLDivElement>;
 
+  /**
+   * @internal
+   */
   @queryAsync('#root')
   public root!: Promise<HTMLDivElement>;
 
+  /**
+   * @internal
+   */
   @queryAssignedElements({ slot: 'floating', flatten: true })
   private assignedFloating!: Array<HTMLElement>;
 
+  /**
+   * @internal
+   */
   private tasks?: {
     info: PersonInfoTask;
     photo: PersonPhotoTask;
   };
 
+  /**
+   * @internal
+   */
   @state()
   protected intersected = false;
 
+  /**
+   * @internal
+   */
   protected controllers = {
     observer: new IntersectionController(this, {
       callback: (e) => {
@@ -126,6 +155,9 @@ export class PersonAvatarElement
     }),
   };
 
+  /**
+   * @internal
+   */
   static openedPersonAvatars: PersonAvatarElement[] = [];
 
   async updated(props: PropertyValues) {
@@ -133,7 +165,7 @@ export class PersonAvatarElement
       await this.updateComplete;
       computePosition(await this.root, await this.floating, {
         placement: 'bottom-start',
-        middleware: [offset(10), flip(), shift({ padding: 10 })],
+        middleware: [offset(5), flip(), shift({ padding: 5 })],
       }).then(async ({ x, y }) => {
         // use 3d translate
         Object.assign((await this.floating).style, {
@@ -149,10 +181,10 @@ export class PersonAvatarElement
    */
   protected getRenderClasses(accountType?: PersonAccountType[keyof PersonAccountType]): ClassInfo {
     return {
-      'fwc-person-avatar__employee': accountType === PersonAccountType.Employee,
-      'fwc-person-avatar__consultant': accountType === PersonAccountType.Consultant || PersonAccountType.Enterprise,
-      'fwc-person-avatar__external': accountType === PersonAccountType.External,
-      'fwc-person-avatar__external-hire': accountType === PersonAccountType.ExternalHire,
+      employee: accountType === PersonAccountType.Employee,
+      consultant: accountType === PersonAccountType.Consultant || PersonAccountType.Enterprise,
+      external: accountType === PersonAccountType.External,
+      'external-hire': accountType === PersonAccountType.ExternalHire,
     };
   }
 
@@ -219,50 +251,46 @@ export class PersonAvatarElement
     />`;
   }
 
-  /**
-   * Returns the first character in the person's name as upper case initial
-   */
-  public getInitial(name?: string): string | undefined {
-    return name?.substring(0, 1)?.toUpperCase();
-  }
-
-  /**
-   * Renders the avatar
-   */
-  protected renderAvatar(details: AvatarData): TemplateResult {
-    // TODO - make own component for the image!
-    return html`
-      <div id="root">
-        ${this.tasks?.photo.render({
-          complete: (pictureSrc: string) =>
-            html`<fwc-avatar
-              class=${classMap(this.getRenderClasses(details.accountType))}
+  protected render(): TemplateResult {
+    if (!this.tasks) {
+      return this.renderImagePlaceholder();
+    }
+    return html`<div id="root">
+      ${this.tasks.info.render({
+        complete: (details: AvatarData) => {
+          const { accountType, name } = details;
+          const classes = classMap(this.getRenderClasses(accountType));
+          return html`<div>
+            <fwc-avatar
+              class=${classes}
               .size=${this.size}
-              .src=${pictureSrc}
-              .value=${this.getInitial(details.name)}
               ?clickable=${this.clickable}
               ?disabled=${this.disabled}
-              ?border=${true}
               @click=${this.handleOnClick}
               @mouseover=${this.handleMouseOver}
               @mouseout=${this.handleMouseOut}
-            ></fwc-avatar>`,
-          pending: () =>
-            html`<fwc-avatar
-              class=${classMap(this.getRenderClasses(details.accountType))}
-              .size=${this.size}
-              .value=${this.getInitial(details.name)}
-              ?clickable=${this.clickable}
-              ?disabled=${this.disabled}
-              ?border=${true}
-              @click=${this.handleOnClick}
-              @mouseover=${this.handleMouseOver}
-              @mouseout=${this.handleMouseOut}
-            ></fwc-avatar>`,
-          error: () => this.renderImagePlaceholder(true),
-        })}
-      </div>
-
+              border
+            >
+              ${this.tasks?.photo.render({
+                complete: (src) => html`<img src=${src} alt="${name}" />`,
+                pending: () => this.renderImagePlaceholder(true),
+                error: () => {
+                  console.log('failed');
+                  return html`${name?.substring(0, 1)?.toUpperCase()}`;
+                },
+              })}
+            </fwc-avatar>
+          </div>`;
+        },
+        pending: () =>
+          html`<fwc-avatar
+          >${this.renderImagePlaceholder(true)}</fwc-skeleton
+        ></fwc-avatar>`,
+        error: () =>
+          html`<fwc-avatar inactive
+          >${this.renderImagePlaceholder(false)}</fwc-skeleton
+        ></fwc-avatar>`,
+      })}
       <div id="floating">
         <slot name="floating">
           ${when(
@@ -271,32 +299,13 @@ export class PersonAvatarElement
           )}
         </slot>
       </div>
-    `;
+    </div>`;
   }
 
-  /**
-   * Renders the avatar pending state
-   */
-  protected renderError(error: Error): TemplateResult {
-    return html`${error}`;
-  }
-
-  /** {@inheritDoc} */
-  protected render(): TemplateResult {
-    if (!this.tasks) {
-      return this.renderImagePlaceholder(false, this.size);
-    }
-    return html`${this.tasks.info.render({
-      complete: (details: AvatarData) => this.renderAvatar(details),
-      pending: () => this.renderImagePlaceholder(false, this.size),
-      error: () => this.renderImagePlaceholder(true, this.size),
-    })}`;
-  }
-
-  public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {
+  public renderImagePlaceholder(inactive?: boolean): TemplateResult {
+    const { size } = this;
     return html`<fwc-skeleton
-      class="${list ? 'person-list__avatar' : ''}"
-      size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
+      size=${size}
       variant=${SkeletonVariant.Circle}
       icon="image"
       ?inactive=${inactive}
@@ -337,8 +346,8 @@ export class PersonAvatarElement
   /**
    * Handle on click.
    */
-  protected handleOnClick(e: PointerEvent): void {
-    if (this.showFloatingOn === 'click') {
+  protected handleOnClick(e: MouseEvent): void {
+    if (this.trigger === 'click') {
       PersonAvatarElement.hideAllFloating();
 
       if (
@@ -354,7 +363,7 @@ export class PersonAvatarElement
   }
 
   protected handleMouseOver(_e: MouseEvent): void {
-    if (this.showFloatingOn === 'hover' && this.isFloatingOpen === false) {
+    if (this.trigger === 'hover' && this.isFloatingOpen === false) {
       PersonAvatarElement.hideAllFloating();
 
       const timeout = setTimeout(() => {
@@ -372,7 +381,7 @@ export class PersonAvatarElement
   }
 
   protected handleMouseOut(_e: MouseEvent): void {
-    if (this.showFloatingOn === 'hover' && this.isFloatingOpen) {
+    if (this.trigger === 'hover' && this.isFloatingOpen) {
       const timeoutMouseOverAssignerFloating = setTimeout(() => {
         PersonAvatarElement.hideAllFloating();
 

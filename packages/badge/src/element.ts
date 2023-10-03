@@ -1,22 +1,25 @@
-import { LitElement, HTMLTemplateResult, PropertyValues, html } from 'lit';
+import { LitElement, type HTMLTemplateResult, type PropertyValues, html, CSSResult } from 'lit';
 import { property, queryAssignedNodes, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { BadgeElementProps, BadgeSize, BadgePosition, BadgeColor } from './types';
-import { IconName } from '@equinor/fusion-wc-icon';
+import { BadgeSize, BadgeColor, BadgePosition } from './static';
+import IconElement, { IconName } from '@equinor/fusion-wc-icon';
 import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
-import style from './element.css';
 
+import styles from './element.css';
+
+IconElement;
+
+// TODO - make as util
+export type ObjectValue<T> = Extract<T[keyof T], string>;
+
+IconElement;
 /**
  * Element for displaying a badge.
- * {@inheritdoc}
  *
  * @tag fwc-badge
+ * @summary element for display a badge for another element
  *
- * @property {BadgeSize} size - Sets the size of the badge. Size 'XSmall' does not render 'value' or 'icon'.
- * @property {BadgePosition} position - Sets position of the badge.
- * @property {BadgeColor} color - Sets color of the badge.
- * @property {String} value - Sets text content to be rendered within the badge. Not rendered if size is set to 'XSmall'.
- * @property {IconName} icon - Sets icon to be rendered within the badge. Overrides the 'value' attribute. Not rendered if size is set to 'XSmall'.
+ *
  *
  * @cssprop {theme.colors.interactive.primary__resting} --fwc-badge-color - Color of the badge.
  * @cssprop {1.5rem} --fwc-badge-size - Size of the badge.
@@ -25,86 +28,97 @@ import style from './element.css';
  *
  * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
  *
- * Value can be slotted in with a slot named 'value'.
- * Icon can be slotted in with a slot named 'icon'. Overrides the 'value' slot.
- *
+ * @slot -default - Value can be slotted.
+ * @slot -icon - slot for icon _value will no longer be rendered_
  */
-export class BadgeElement extends LitElement implements BadgeElementProps {
+export class BadgeElement extends LitElement {
+  static styles: CSSResult[] = styles;
+
   /**
    * Size of the badge
-   * @default BadgeSize.Medium
+   *
+   * @default medium
+   * @type {'x-small' | 'small' | 'medium' | 'large'}
    */
   @property({ type: String, reflect: true })
-  size: BadgeSize = BadgeSize.Medium;
+  size: ObjectValue<typeof BadgeSize> = BadgeSize.Medium;
 
   /**
    * Absolute corner position for the badge
-   * @default BadgePosition.TopRight
+   *
+   * @default top-right
+   * @type {'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'}
    */
   @property({ type: String, reflect: true })
-  position: BadgePosition = BadgePosition.TopRight;
+  position: ObjectValue<typeof BadgePosition> = BadgePosition.TopRight;
 
   /**
    * Color of the badge
-   * @default BadgeColor.Secondary
+   *
+   * @default {secondary}
+   * @type { 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled' }
    */
   @property({ type: String, reflect: true })
-  color: BadgeColor = BadgeColor.Secondary;
+  color: ObjectValue<typeof BadgeColor> = BadgeColor.Secondary;
 
   /**
    * Text value to be rendered within the badge
+   * @type {string}
    */
   @property({ type: String })
   value?: string;
 
   /**
    * Icon to be rendered within the badge
+   * @type {string}
    */
   @property({ type: String, reflect: true })
   icon?: IconName;
 
   /**
    * Set to `true` if badge is placed within a circular wrapper for correct position
+   * @type {boolean}
    */
   @property({ type: Boolean, reflect: true })
-  circular?: boolean;
-
-  /**
-   * Tooltip text to show on hover
-   */
-  @property({ type: String })
-  tooltip?: string;
+  circular = true;
 
   /**
    * If the badge is clickable
+   * @type {boolean}
    */
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
 
   /**
    * If the badge is disabled
+   * @type {boolean}
    */
   @property({ type: Boolean, reflect: true })
   disabled?: boolean;
 
   /**
+   * @internal
    * Reference to the ripple element.
    */
-  @queryAsync('fwc-ripple') ripple!: Promise<Ripple | null>;
+  @queryAsync('fwc-ripple')
+  protected ripple!: Promise<Ripple | null>;
 
   /**
+   * @internal
    * Reference to the icon slot.
    */
-  @queryAssignedNodes('icon')
-  iconSlot?: NodeListOf<HTMLElement>;
+  @queryAssignedNodes({ slot: 'icon' })
+  protected iconSlot!: NodeListOf<HTMLElement>;
 
   /**
+   * @internal
    * Reference to the value slot.
    */
-  @queryAssignedNodes('value')
-  valueSlot?: NodeListOf<HTMLElement>;
+  @queryAssignedNodes({ slot: 'value' })
+  protected valueSlot!: NodeListOf<HTMLElement>;
 
   /**
+   * @internal
    * Define ripple handlers.
    */
   protected rippleHandlers = new RippleHandlers(() => {
@@ -125,28 +139,27 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
   }
 
   /**
+   * @internal
    * Render the icon value if the 'icon' attribute is set or a slotted 'icon' element is provided.
    */
-  protected renderIcon(): HTMLTemplateResult | undefined {
-    const renderIcon = this.size !== BadgeSize.XSmall && (this.icon || (this.iconSlot && this.iconSlot.length > 0));
-    if (renderIcon) {
-      return html`<slot name="icon" class="fwc-badge__icon"><fwc-icon icon=${ifDefined(this.icon)}></fwc-icon></slot>`;
+  protected renderIcon(): HTMLTemplateResult | void {
+    if (this.icon || this.iconSlot.length > 0) {
+      return html`<slot name="icon"><fwc-icon icon=${ifDefined(this.icon)}></fwc-icon></slot>`;
     }
-    return undefined;
   }
 
   /**
+   * @internal
    * Render the text value if the 'value' attribute is set or a slotted 'value' element is provided.
    */
-  protected renderValue(): HTMLTemplateResult | undefined {
-    const renderValue = this.size !== BadgeSize.XSmall && (this.value || (this.valueSlot && this.valueSlot.length > 0));
-    if (renderValue) {
-      return html`<slot name="value" class="fwc-badge__value">${this.value}</slot>`;
+  protected renderValue(): HTMLTemplateResult | void {
+    if (this.value || this.valueSlot.length > 0) {
+      return html`<slot name="value">${this.value}</slot>`;
     }
-    return undefined;
   }
 
   /**
+   * @internal
    * Render the ripple element.
    */
   protected renderRipple(): HTMLTemplateResult | string {
@@ -155,11 +168,19 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
       : '';
   }
 
+  /**
+   * @internal
+   */
+  protected renderContent(): HTMLTemplateResult | void {
+    if (this.size !== BadgeSize.XSmall) {
+      return this.renderIcon() ?? this.renderValue();
+    }
+  }
+
   /** {@inheritDoc} */
   protected override render(): HTMLTemplateResult {
-    const content = this.renderIcon() ?? this.renderValue();
-    return html`<span
-        class="fwc-badge__container"
+    return html`<div
+        id="container"
         @click=${this.handleOnClick}
         @focus="${this.handleRippleFocus}"
         @blur="${this.handleRippleBlur}"
@@ -169,8 +190,10 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
         @touchstart="${this.handleRippleActivate}"
         @touchend="${this.handleRippleDeactivate}"
         @touchcancel="${this.handleRippleDeactivate}"
-        >${content}</span
-      >${this.renderRipple()}`;
+      >
+        ${this.renderContent()}
+      </div>
+      ${this.renderRipple()}`;
   }
 
   @eventOptions({ passive: true })
@@ -229,7 +252,5 @@ export class BadgeElement extends LitElement implements BadgeElementProps {
     }
   }
 }
-
-BadgeElement.styles = [style];
 
 export default BadgeElement;

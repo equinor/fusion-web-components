@@ -1,0 +1,19 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './badge.stories';
+
+import pkg from '@equinor/fusion-wc-badge/package.json';
+import Log from '@equinor/fusion-wc-badge/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>

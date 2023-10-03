@@ -10,4 +10,5 @@ export type PersonAvatarElementProps = PersonInfoControllerHostAttributes & {
   showFloatingOn?: PersonAvatarShowCardOnType;
   clickable?: boolean;
   disabled?: boolean;
+  pictureSrc?: string;
 };

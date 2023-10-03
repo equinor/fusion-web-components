@@ -30,7 +30,7 @@ Upgrade storybook to V7
 - [ ] progress indicator
 
 __person elements__
-- [ ] avatar
-- [ ] card
-- [ ] list item
-- [ ] selector
+- [x] avatar
+- [x] card
+- [x] list item
+- [x] selector

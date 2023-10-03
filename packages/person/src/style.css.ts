@@ -34,19 +34,19 @@ export const personStyle: CSSResult = css`
     border-radius: 50%;
   }
   .fwc-person-type__employee {
-    --fwc-avatar-base-color: #8c1159;
+    --fwc-avatar-color: #8c1159;
     --fwc-avatar-ink-color: #fff;
   }
   .fwc-person-type__consultant {
-    --fwc-avatar-base-color: #eb0037;
+    --fwc-avatar-color: #eb0037;
     --fwc-avatar-ink-color: #fff;
   }
   .fwc-person-type__external {
-    --fwc-avatar-base-color: #ff92a8;
+    --fwc-avatar-color: #ff92a8;
     --fwc-avatar-ink-color: #fff;
   }
   .fwc-person-type__external-hire {
-    --fwc-avatar-base-color: #000;
+    --fwc-avatar-color: #000;
     --fwc-avatar-ink-color: #fff;
   }
 `;

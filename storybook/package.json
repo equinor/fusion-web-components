@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@storybook/addon-docs": "^7.4.4",
     "@storybook/addon-essentials": "^7.4.4",
     "@storybook/blocks": "^7.4.4",

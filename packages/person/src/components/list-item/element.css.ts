@@ -3,14 +3,13 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 
 const style: CSSResult = css`
   :host {
+    --fwc-avatar-size: 2.5rem;
   }
-  :host([size='medium']) .person-list__avatar {
-    width: 2.5rem;
-    height: 2.5rem;
+  :host([size='small']) {
+    --fwc-avatar-size: 2rem;
   }
-  :host([size='large']) .person-list__avatar {
-    width: 3rem;
-    height: 3rem;
+  :host([size='large']) {
+    --fwc-avatar-size: 3.5rem;
   }
   .person-list__item {
     display: flex;

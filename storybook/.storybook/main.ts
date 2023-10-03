@@ -11,6 +11,10 @@ export const config: StorybookConfig = {
     {
       directory: '../stories/input',
       titlePrefix: 'Input'
+    },
+    {
+      directory: '../stories/person',
+      titlePrefix: 'Person'
     }
   ],
   framework: '@storybook/web-components-vite',

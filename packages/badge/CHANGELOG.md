@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - Updated stories of badge
+
+  - updated `BadgeElement` class TypeDoc
+  - updated `BadgeElement` property TypeDoc
+  - change enum to const, failed to resolve typedoc from `Enum`
+  - marked `internal` functions
+  - converted stories to native html
+  - removed previous React wrapper
+  - removed unused `BadgeElement.tooltip` since never used
+  - removed '**note:** Version bump only ...' from `CHANGELOG.md`
+
 ## 1.0.1
 
 ### Patch Changes
@@ -98,7 +113,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - fixed linting ([ca6a86e](https://github.com/equinor/fusion-web-components/commit/ca6a86ebda14f6c85cb58f125778e94847b70b1d))
 - upgraded lit-element and lit-html to lit 2.0.0 with other packages ([93cd2f9](https://github.com/equinor/fusion-web-components/commit/93cd2f997d6045fd5ab69fe05ccee5acfa861ad7))
-
 
 ## [0.2.3](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-badge@0.2.2...@equinor/fusion-wc-badge@0.2.3) (2021-09-16)
 

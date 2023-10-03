@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @equinor/fusion-wc-list@1.0.2
+
 ## 3.2.0
 
 ### Minor Changes

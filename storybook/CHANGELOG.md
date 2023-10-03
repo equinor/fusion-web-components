@@ -1,5 +1,42 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - Upgrade storybook to V7
+
+  - [x] avatar
+  - [x] badge
+  - [x] button
+  - [ ] icon button
+  - [ ] link button
+  - [ ] toggle button
+  - [x] chip
+  - [ ] date range
+  - [ ] date time
+  - [ ] list
+  - [ ] searchable dropdown
+  - [x] skeleton
+  - [x] checkbox
+  - [ ] formfield
+  - [ ] markdown
+  - [ ] menu
+  - [ ] radio
+  - [ ] select
+  - [ ] switch
+  - [ ] text area
+  - [ ] text input
+  - [ ] divider
+  - [ ] progress indicator
+
+  **person elements**
+
+  - [x] avatar
+  - [x] card
+  - [x] list item
+  - [x] selector
+
 ## 3.1.1
 
 ### Patch Changes
@@ -72,7 +109,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **markdown:** comments ([955eec9](https://github.com/equinor/fusion-web-components/commit/955eec9c0ac905c35410f3e2e2b006956cd32c37))
 - **markdown:** tag name ([ee66808](https://github.com/equinor/fusion-web-components/commit/ee66808e606bc9b2bba819cfaa0db6c3b8c9b918))
 
-
 ## [2.20.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.20.0...@equinor/fusion-wc-storybook@2.20.1) (2023-06-16)
 
 ### Bug Fixes
@@ -84,7 +120,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - **markdown:** add markdown-viewer ([32ee915](https://github.com/equinor/fusion-web-components/commit/32ee91591e3bb10b1bbbbe21ff9970867d56b30d)), closes [#592](https://github.com/equinor/fusion-web-components/issues/592)
-
 
 # [2.19.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.18.0...@equinor/fusion-wc-storybook@2.19.0) (2023-03-23)
 
@@ -167,7 +202,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **searchable-dropdown:** fires customevent when closing dropdown ([efc41ce](https://github.com/equinor/fusion-web-components/commit/efc41ce7b57f1b30fad7d648109fb784df308f17))
 
-
 # [2.12.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.11.2...@equinor/fusion-wc-storybook@2.12.0) (2022-12-22)
 
 ### Bug Fixes
@@ -177,7 +211,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - :zap: link button strorybook ([531221a](https://github.com/equinor/fusion-web-components/commit/531221aed896ffe81bf3df886ef3438957641ec7))
-
 
 # [2.11.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.2...@equinor/fusion-wc-storybook@2.11.0) (2022-12-02)
 
@@ -198,7 +231,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - **searchabledropdown:** storybook resolvers using closeHandler ([da12a64](https://github.com/equinor/fusion-web-components/commit/da12a64ebd290704cce5ed6a6f97b6124d679bc6))
-
 
 ## [2.0.1](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@2.0.0...@equinor/fusion-wc-storybook@2.0.1) (2022-11-25)
 
@@ -255,7 +287,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **person-card:** created web component ([f81dc53](https://github.com/equinor/fusion-web-components/commit/f81dc53089d1bd27ebef63a2d2d3c45cfe1d50dc))
 
-
 # [1.21.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.20.1...@equinor/fusion-wc-storybook@1.21.0) (2022-09-14)
 
 ### Bug Fixes
@@ -267,7 +298,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **searchabledropdown:** added package to storybook/packages.json ([06d8b27](https://github.com/equinor/fusion-web-components/commit/06d8b27965987121dee4092197125f976e10b204))
 - **searchabledropdown:** Added storybook for component ([c5fd64b](https://github.com/equinor/fusion-web-components/commit/c5fd64b3079c4d1a2eed87b747cabee34684ebaa))
 - **searchabledropdown:** Added storybook/tsconfig.json reference for component ([77d3008](https://github.com/equinor/fusion-web-components/commit/77d300824769ee9350295d8c0df9e61ff631f724))
-
 
 # [1.20.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.19.0...@equinor/fusion-wc-storybook@1.20.0) (2022-04-05)
 
@@ -285,7 +315,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **menu:** component description ([11a94c1](https://github.com/equinor/fusion-web-components/commit/11a94c1439a8053b792f06c49e527f926c81907d))
 - **menu:** initial menu component creation ([17dbdf1](https://github.com/equinor/fusion-web-components/commit/17dbdf103086a85b98698ad7e5ce9322f80b005a))
 - **menu:** template for stories ([b03b170](https://github.com/equinor/fusion-web-components/commit/b03b1703e8dc65a85a2189308a4229f5453897c3))
-
 
 ## [1.18.2](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.18.1...@equinor/fusion-wc-storybook@1.18.2) (2022-02-24)
 
@@ -354,7 +383,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - added person resolver and person avatar component ([36ac7df](https://github.com/equinor/fusion-web-components/commit/36ac7dfd6a0af41b884d80d72eaaf05f4908422d))
 - added person resolver and person avatar component ([cb12d4e](https://github.com/equinor/fusion-web-components/commit/cb12d4ea55925e818c96c05db80e2960686eafe0))
-
 
 ## [1.14.14](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.14.13...@equinor/fusion-wc-storybook@1.14.14) (2021-10-28)
 
@@ -480,7 +508,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - added x-small size ([4aad6d1](https://github.com/equinor/fusion-web-components/commit/4aad6d1125f72c4593800df9de2638e62b66d6e6))
 - fixed circular offset for sizes, added disabled and fixed hover ([9970e4b](https://github.com/equinor/fusion-web-components/commit/9970e4bcf78c416f68001ad0b3c35a1b5db59293))
 
-
 # [1.8.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.7...@equinor/fusion-wc-storybook@1.8.0) (2021-09-15)
 
 ### Features
@@ -492,7 +519,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 - **button:** slotted icon ([c0f2b7f](https://github.com/equinor/fusion-web-components/commit/c0f2b7ffd868e41051d344e1f0f6c202e6ee3999))
-
 
 ## [1.7.5](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.7.4...@equinor/fusion-wc-storybook@1.7.5) (2021-09-08)
 
@@ -509,7 +535,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - fixed picture and adjusted storybook ([08979c3](https://github.com/equinor/fusion-web-components/commit/08979c36cbc70e12cbdd5d559a5cdedb19268d61))
 - fixed storybook, changed props, added icons and other adjustments ([a77d956](https://github.com/equinor/fusion-web-components/commit/a77d956bce80daf4a9caf2862b28acdab5b95d78))
 - merged badge ([defc3cb](https://github.com/equinor/fusion-web-components/commit/defc3cb369088bcdcd29ffd1e379848b56b9bba2))
-
 
 # [1.7.0](https://github.com/equinor/fusion-web-components/compare/@equinor/fusion-wc-storybook@1.6.8...@equinor/fusion-wc-storybook@1.7.0) (2021-09-06)
 
@@ -651,4 +676,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - added new checkbox component ([43e04c2](https://github.com/equinor/fusion-web-components/commit/43e04c238dff6899f8470c0c573d6b78ee86e71d))
-

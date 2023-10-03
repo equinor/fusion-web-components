@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - update button components
+
 ## 2.0.1
 
 ### Patch Changes
@@ -216,4 +222,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - add new button component ([eb5492a](https://github.com/equinor/fusion-web-components/commit/eb5492a473bf277866a8dc44827e280b4918790e))
 - rewrote button to use mwc web component ([8d191ee](https://github.com/equinor/fusion-web-components/commit/8d191eeefce4d9e9379be6010003b5cc3c1cb1b9))
-

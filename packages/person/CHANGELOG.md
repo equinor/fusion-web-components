@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#925](https://github.com/equinor/fusion-web-components/pull/925) [`6f5df68`](https://github.com/equinor/fusion-web-components/commit/6f5df680380b31e9ce7f76b8d6b531854130b6c4) Thanks [@odinr](https://github.com/odinr)! - update person component
+
+  - change order of manger in `fwc-person-card`
+  - decrease padding of search result list items in `fwc-person-selector`
+
 ## 2.1.0
 
 ### Minor Changes

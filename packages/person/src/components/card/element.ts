@@ -332,8 +332,8 @@ export class PersonCardElement
                   <div class="info-item_heading">Contact</div>
                   ${this.renderMobile(details)} ${this.renderEmail(details)}
                 </div>
-                ${this.renderProjects(details)} ${this.renderPositions(details)}
-                ${details.manager && this.renderManager(details.manager)}
+                ${details.manager && this.renderManager(details.manager)} ${this.renderProjects(details)}
+                ${this.renderPositions(details)}
               </div>`;
           },
           pending: () => this.renderPending(),

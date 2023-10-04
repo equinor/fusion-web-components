@@ -1,4 +1,4 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import { queryAll } from 'lit/decorators/query-all.js';
@@ -57,10 +57,19 @@ export class PersonSelectElement
   extends LitElement
   implements SearchableDropdownControllerHost, PersonSearchControllerHost
 {
-  // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
-
   /* style object css */
-  static styles: CSSResult[] = sddStyles;
+  // TODO - maybe this styling should be changed in parent!
+  static styles: CSSResult[] = [
+    ...sddStyles,
+    css`
+      fwc-list {
+        --fwc-list-side-padding: 0.5rem;
+      }
+      fwc-list-item {
+        --fwc-list-item-vertical-padding: 0;
+      }
+    `,
+  ];
 
   /**
    * Label passed to the fwc-text-input component

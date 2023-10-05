@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [#929](https://github.com/equinor/fusion-web-components/pull/929) [`43a3e00`](https://github.com/equinor/fusion-web-components/commit/43a3e007716d4568e6cfcb00e801b417631c92de) Thanks [@odinr](https://github.com/odinr)! - deprecated icon attribute for badge, use slot in future
+
 ## 1.1.0
 
 ### Minor Changes

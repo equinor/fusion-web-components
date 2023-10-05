@@ -31,7 +31,7 @@ import { sddStyles } from './element.css';
 
 /**
  * Element for SearchableDropdown
- * @tag fwc-searchabledropdown
+ * @tag fwc-searchable-dropdown
  *
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
  * @property {boolean} disabled disable TextInput element
@@ -53,11 +53,12 @@ export class SearchableDropdownElement
   extends LitElement
   implements SearchableDropdownProps, SearchableDropdownControllerHost
 {
-  // static shadowRootOptions = { ...Object.assign(LitElement.shadowRootOptions, { delegatesFocus: true }) };
-
   /* style object css */
   static styles: CSSResult[] = sddStyles;
 
+  /**
+   * @internal
+   */
   controller = new SearchableDropdownController(this);
 
   /* Label passed to the fwc-text-input component */

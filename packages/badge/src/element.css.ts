@@ -111,6 +111,16 @@ export const style: CSSResult = css`
     z-index: 5;
   }
 
+  ::slotted(*) {
+    display: inline-flex;
+    font-size: 0.7em;
+  }
+
+  ::slotted(fwc-icon),
+  ::slotted(svg) {
+    font-size: 0.45em;
+  }
+
   slot[name='icon'] {
     font-size: 0.5em;
     display: inline-flex;

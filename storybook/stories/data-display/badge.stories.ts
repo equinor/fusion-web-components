@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, HTMLTemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components';
@@ -45,7 +45,7 @@ export class BadgeWrapper extends LitElement {
   }
 }
 
-const render = (props: BadgeElementProps) => html`
+const render = (props: BadgeElementProps & { slot?: HTMLTemplateResult | string }) => html`
   <storybook-badge-wrapper ?circular=${ifDefined(props.circular)}>
     <fwc-badge
       ?circular=${ifDefined(props.circular)}
@@ -53,18 +53,17 @@ const render = (props: BadgeElementProps) => html`
       position="${ifDefined(props.position)}"
       color=${ifDefined(props.color)}
       ?clickable=${props.clickable}
-      tooltip=${ifDefined(props.tooltip)}
       value=${ifDefined(props.value)}
       icon=${ifDefined(props.icon)}
       disabled=${ifDefined(props.disabled)}
-    ></fwc-badge>
+      >${props.slot}</fwc-badge
+    >
   </storybook-badge-wrapper>
 `;
 
 export const Default: Story = {
   args: {
     circular: true,
-    value: 'A',
   },
   render,
 };
@@ -98,7 +97,7 @@ export const WithValue: Story = {
   render: (props) =>
     html`${'FUSION'
       .split('')
-      .map((value) => ({ ...props, value }))
+      .map((value) => ({ ...props, slot: html`<span>${value}</span>` }))
       .map(render)}`,
 };
 
@@ -106,13 +105,30 @@ export const WithIcon: Story = {
   ...Default,
   render: (props) =>
     html`${(['car', 'person', 'camera', 'accessible', 'comment_more'] as IconName[])
-      .map((icon) => Object.assign({}, props, { icon }))
+      .map((icon) => ({ ...props, slot: html`<fwc-icon icon=${icon}></fwc-icon>` }))
       .map(render)}`,
 };
 
 export const Disabled: Story = {
   ...Default,
   render: (props) => render({ ...props, disabled: true }),
+};
+
+export const LegacyWithValue: Story = {
+  ...Default,
+  render: (props) =>
+    html`${'FUSION'
+      .split('')
+      .map((value) => ({ ...props, value }))
+      .map(render)}`,
+};
+
+export const LegacyWithIcon: Story = {
+  ...Default,
+  render: (props) =>
+    html`${(['car', 'person', 'camera', 'accessible', 'comment_more'] as IconName[])
+      .map((icon) => Object.assign({}, props, { icon }))
+      .map(render)}`,
 };
 
 export default meta;

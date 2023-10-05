@@ -7,12 +7,12 @@ import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
 
 import styles from './element.css';
 
+/** @deprecated */
 IconElement;
 
 // TODO - make as util
 export type ObjectValue<T> = Extract<T[keyof T], string>;
 
-IconElement;
 /**
  * Element for displaying a badge.
  *
@@ -71,6 +71,7 @@ export class BadgeElement extends LitElement {
   /**
    * Icon to be rendered within the badge
    * @type {string}
+   * @deprecated use slot
    */
   @property({ type: String, reflect: true })
   icon?: IconName;
@@ -143,9 +144,8 @@ export class BadgeElement extends LitElement {
    * Render the icon value if the 'icon' attribute is set or a slotted 'icon' element is provided.
    */
   protected renderIcon(): HTMLTemplateResult | void {
-    if (this.icon || this.iconSlot.length > 0) {
-      return html`<slot name="icon"><fwc-icon icon=${ifDefined(this.icon)}></fwc-icon></slot>`;
-    }
+    console.warn('[icon] is deprecated, please slot content');
+    return html`<slot name="icon"><fwc-icon icon=${ifDefined(this.icon)}></fwc-icon></slot>`;
   }
 
   /**
@@ -153,9 +153,7 @@ export class BadgeElement extends LitElement {
    * Render the text value if the 'value' attribute is set or a slotted 'value' element is provided.
    */
   protected renderValue(): HTMLTemplateResult | void {
-    if (this.value || this.valueSlot.length > 0) {
-      return html`<slot name="value">${this.value}</slot>`;
-    }
+    return html`<slot name="value">${this.value}</slot>`;
   }
 
   /**
@@ -173,8 +171,14 @@ export class BadgeElement extends LitElement {
    */
   protected renderContent(): HTMLTemplateResult | void {
     if (this.size !== BadgeSize.XSmall) {
-      return this.renderIcon() ?? this.renderValue();
+      if (this.value) {
+        return this.renderValue();
+      }
+      if (this.icon) {
+        return this.renderIcon();
+      }
     }
+    return html`<slot></slot>`;
   }
 
   /** {@inheritDoc} */

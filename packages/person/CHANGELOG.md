@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`43a3e00`](https://github.com/equinor/fusion-web-components/commit/43a3e007716d4568e6cfcb00e801b417631c92de)]:
+  - @equinor/fusion-wc-badge@1.2.0
+
 ## 2.1.1
 
 ### Patch Changes

@@ -110,7 +110,6 @@ export class AvatarElement extends LitElement {
    * Render a picture element if 'src' attribute is set.
    */
   protected renderPicture(): HTMLTemplateResult {
-    console.log('rendering src');
     return html`<fwc-picture id="picture" src=${ifDefined(this.src)} cover></fwc-picture>`;
   }
 

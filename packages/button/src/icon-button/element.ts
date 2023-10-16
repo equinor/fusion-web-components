@@ -11,24 +11,6 @@ import { LinkButtonTarget } from '../link-button';
 // Persist element
 Icon;
 
-/**
- * Element for rendering an icon button.
- * {@inheritdoc}
- *
- * @tag fwc-icon-button
- *
- * @property {string} href - Sets the link of the icon button element.
- * @property {LinkButtonTarget} target - Sets how it will open link of the icon button element.
- * @property {IconName} icon - Sets the icon of the icon button element.
- * @property {IconButtonSize} size - Sets the size of the icon button element.
- * @property {IconButtonColor} color - Sets the color of the icon button element.
- * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
- * @property {boolean} disabled - Sets the icon button to disabled.
- * @property {string} ariaLabel - Sets the accessible label for the button. Uses icon+'_icon-button' when not defined.
- * @property {string} ariaHasPopup - Indicates the availability and type of an interactive popup element, such as menu or dialog, that can be triggered by the button.
- *
- */
-
 export type IconButtonElementProps = {
   /** If not empty, it is going to */
   href?: string;
@@ -50,6 +32,23 @@ export type IconButtonElementProps = {
   disabled?: boolean;
 };
 
+/**
+ * Element for rendering an icon button.
+ * {@inheritdoc}
+ *
+ * @tag fwc-icon-button
+ *
+ * @property {string} href - Sets the link of the icon button element.
+ * @property {LinkButtonTarget} target - Sets how it will open link of the icon button element.
+ * @property {IconName} icon - Sets the icon of the icon button element.
+ * @property {IconButtonSize} size - Sets the size of the icon button element.
+ * @property {IconButtonColor} color - Sets the color of the icon button element.
+ * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
+ * @property {boolean} disabled - Sets the icon button to disabled.
+ * @property {string} ariaLabel - Sets the accessible label for the button. Uses icon+'_icon-button' when not defined.
+ * @property {string} ariaHasPopup - Indicates the availability and type of an interactive popup element, such as menu or dialog, that can be triggered by the button.
+ *
+ */
 export class IconButtonElement extends IconButtonBase implements IconButtonElementProps {
   /* styles object css */
   static styles: CSSResult[] = [style, mwcStyle];

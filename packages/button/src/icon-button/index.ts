@@ -1,5 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { IconButtonElement, IconButtonElementProps } from './element';
+export * from './types';
 export * from './element';
 export const tag = 'fwc-icon-button';
 
@@ -12,7 +13,10 @@ declare global {
   }
   namespace JSX {
     interface IntrinsicElements {
-      [tag]: React.DetailedHTMLProps<React.PropsWithChildren<IconButtonElementProps>, IconButtonElement>;
+      [tag]: React.DetailedHTMLProps<
+        React.PropsWithChildren<IconButtonElementProps & React.HTMLAttributes<IconButtonElement>>,
+        IconButtonElement
+      >;
     }
   }
 }

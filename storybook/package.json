@@ -13,18 +13,18 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
-    "@storybook/addon-docs": "^7.4.4",
-    "@storybook/addon-essentials": "^7.4.4",
-    "@storybook/blocks": "^7.4.4",
-    "@storybook/builder-vite": "^7.4.4",
-    "@storybook/theming": "^7.4.4",
-    "@storybook/web-components": "^7.4.4",
-    "@storybook/web-components-vite": "^7.4.4",
+    "@storybook/addon-docs": "^7.4.6",
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/blocks": "^7.4.6",
+    "@storybook/builder-vite": "^7.4.6",
+    "@storybook/theming": "^7.4.6",
+    "@storybook/web-components": "^7.4.6",
+    "@storybook/web-components-vite": "^7.4.6",
     "lit": "2.7.0",
     "react": "^18.2.0",
-    "storybook": "^7.4.4",
+    "storybook": "^7.4.6",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9"
+    "vite": "^4.4.11"
   },
   "devDependencies": {
     "@equinor/fusion-wc-avatar": "workspace:^",
@@ -52,7 +52,7 @@
     "@equinor/fusion-wc-textarea": "workspace:^",
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-wc-theme": "workspace:^",
-    "@storybook/addon-mdx-gfm": "^7.4.4",
-    "@storybook/react-webpack5": "^7.4.4"
+    "@storybook/addon-mdx-gfm": "^7.4.6",
+    "@storybook/react-webpack5": "^7.4.6"
   }
 }

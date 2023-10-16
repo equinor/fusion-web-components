@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#928](https://github.com/equinor/fusion-web-components/pull/928) [`f6c9623`](https://github.com/equinor/fusion-web-components/commit/f6c9623bd1a3a0fea9733e696f34f832ab908c2c) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for searchable dropdown
+
+### Patch Changes
+
+- [#931](https://github.com/equinor/fusion-web-components/pull/931) [`ba37e8d`](https://github.com/equinor/fusion-web-components/commit/ba37e8d15b3fbcecb81e1e2e878ca9b147d26c49) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add missing checkbox.mdx in storybook
+
 ## 4.0.0
 
 ### Major Changes

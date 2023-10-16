@@ -33,6 +33,9 @@ import { sddStyles } from './element.css';
  * Element for SearchableDropdown
  * @tag fwc-searchable-dropdown
  *
+ * @csspart list Styling for the list
+ * @csspart list-item Styling for the list-items
+ *
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
  * @property {boolean} disabled disable TextInput element
  * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
@@ -144,6 +147,7 @@ export class SearchableDropdownElement
     /* Sett checkmark on selected items */
     if (item.meta === 'check') {
       return html`<fwc-check-list-item
+        part="list-item"
         key=${item.id}
         class=${classMap(itemClasses)}
         disabled=${ifDefined(disabled)}
@@ -159,6 +163,7 @@ export class SearchableDropdownElement
     }
 
     return html`<fwc-list-item
+      part="list-item"
       rootTabbable=${true}
       wrapFocus=${true}
       key=${item.id}
@@ -186,7 +191,12 @@ export class SearchableDropdownElement
       return html``;
     }
 
-    return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controller.handleSelect}>
+    return html`<fwc-list
+      part="list"
+      activatable=${true}
+      multi=${this.multiple}
+      @action=${this.controller.handleSelect}
+    >
       ${this.controller.task.render({
         complete: (result: SearchableDropdownResult) => {
           /*
@@ -219,10 +229,12 @@ export class SearchableDropdownElement
           });
         },
         pending: () =>
-          html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
+          html`<fwc-list-item part="list-item" disabled=${true}>
+            <fwc-dots-progress size="small" color="primary" />
+          </fwc-list-item>`,
         /* Error from resolvers searchQuery Promise */
         error: (e: unknown) =>
-          html`<fwc-list-item disabled=${true} class="item-error">
+          html`<fwc-list-item part="list-item" disabled=${true} class="item-error">
             <span class="item-text"><span class="item-title">${e}</span></span>
           </fwc-list-item>`,
       })}

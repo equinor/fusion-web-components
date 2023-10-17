@@ -1,0 +1,18 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './link-button.stories';
+
+import pkg from '@equinor/fusion-wc-button/package.json';
+import Log from '@equinor/fusion-wc-button/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg} />
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>

@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`68ecc45`](https://github.com/equinor/fusion-web-components/commit/68ecc45544fbb3de9db701831b50d669dce02133)]:
+  - @equinor/fusion-wc-icon@2.2.0
+
 ## 1.0.1
 
 ### Patch Changes

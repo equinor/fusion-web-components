@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`68ecc45`](https://github.com/equinor/fusion-web-components/commit/68ecc45544fbb3de9db701831b50d669dce02133), [`6c5c55e`](https://github.com/equinor/fusion-web-components/commit/6c5c55e9af7bfa107b74ce4791a884b1081a6f63), [`6c500df`](https://github.com/equinor/fusion-web-components/commit/6c500df8420c80cb693708bca9b90a66fb3c47a3), [`9f00da0`](https://github.com/equinor/fusion-web-components/commit/9f00da0e890457f4f832147fbc10e0658c3c891b), [`9f00da0`](https://github.com/equinor/fusion-web-components/commit/9f00da0e890457f4f832147fbc10e0658c3c891b)]:
+  - @equinor/fusion-wc-icon@2.2.0
+  - @equinor/fusion-wc-list@1.0.3
+  - @equinor/fusion-wc-searchable-dropdown@3.4.0
+  - @equinor/fusion-wc-avatar@3.1.1
+  - @equinor/fusion-wc-button@2.2.0
+  - @equinor/fusion-wc-badge@1.2.1
+  - @equinor/fusion-wc-textinput@1.0.2
+
 ## 2.1.3
 
 ### Patch Changes

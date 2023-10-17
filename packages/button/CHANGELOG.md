@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#961](https://github.com/equinor/fusion-web-components/pull/961) [`9f00da0`](https://github.com/equinor/fusion-web-components/commit/9f00da0e890457f4f832147fbc10e0658c3c891b) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for icon-button
+
+### Patch Changes
+
+- Updated dependencies [[`68ecc45`](https://github.com/equinor/fusion-web-components/commit/68ecc45544fbb3de9db701831b50d669dce02133)]:
+  - @equinor/fusion-wc-icon@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes

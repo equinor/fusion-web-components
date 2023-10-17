@@ -20,49 +20,59 @@ const style: CSSResult = css`
     padding-bottom: var(--fwc-list-item-vertical-padding);
     background-color: var(--fwc-list-item-background);
   }
-  .fwc-list-item__text {
+
+  :host([twoline]) {
+    height: 3rem;
+  }
+
+  #content {
     flex: 1;
     color: var(--fwc-list-item-ink-color);
     font-size: var(--fwc-list-item-font-size);
     font-weight: var(--fwc-list-item-font-weight);
     overflow: hidden;
   }
-  .fwc-list-item__primary-text {
+  #primary-text {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     line-height: normal;
     display: block;
   }
-  .fwc-list-item__secondary-text {
+  #secondary-text {
     color: var(--fwc-list-item-secondary-ink-color);
     font-size: var(--fwc-list-item-secondary-font-size);
   }
-  .fwc-list-item__meta {
+  #meta {
     margin-left: auto;
     color: var(--fwc-list-item-meta-color);
     font-size: 0.875rem;
   }
-  .fwc-list-item__graphic {
+  #graphic {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: var(--fwc-list-item-graphic-width, auto);
   }
-  :host([graphic='icon']) .fwc-list-item__graphic {
+  slot[name="graphic"]::slotted(*) {
+    font-size: 1rem;
+  }
+
+  :host([graphic='icon']) #graphic {
     font-size: 1rem;
     margin-right: 0.625rem;
   }
-  :host([graphic='avatar']) .fwc-list-item__graphic {
+  :host([graphic='avatar']) #graphic {
     width: 2rem;
     height: 2rem;
     margin-right: 0.625rem;
   }
-  :host([graphic='medium']) .fwc-list-item__graphic {
+  :host([graphic='medium']) #graphic {
     width: 2rem;
     height: 2rem;
     margin-right: 0.625rem;
   }
-  :host([graphic='large']) .fwc-list-item__graphic {
+  :host([graphic='large']) #graphic {
     max-width: 5rem;
     height: 100%;
     margin-right: 0.625rem;

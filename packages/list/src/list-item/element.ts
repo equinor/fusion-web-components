@@ -48,7 +48,7 @@ export class ListItemElement<TDataSource = unknown>
    */
   protected override renderText(): HTMLTemplateResult {
     const inner = this.twoline ? this.renderTwoLines() : this.renderSingleLine();
-    return html` <span class="fwc-list-item__text"> ${inner}</span>`;
+    return html` <section id="content">${inner}</section>`;
   }
 
   /**
@@ -56,21 +56,21 @@ export class ListItemElement<TDataSource = unknown>
    */
   protected renderTwoLines(): HTMLTemplateResult {
     return html`
-      <span class="fwc-list-item__primary-text">
+      <div id="primary-text">
         <slot></slot>
-      </span>
-      <span class="fwc-list-item__secondary-text">
+      </div>
+      <div id="secondary-text">
         <slot name="secondary"></slot>
-      </span>
+      </div>
     `;
   }
 
   protected override renderGraphic(): HTMLTemplateResult {
-    return html`<span class="fwc-list-item__graphic"><slot name="graphic"></slot></span>`;
+    return html`<div id="graphic"><slot name="graphic"></slot></div>`;
   }
 
   protected override renderMeta(): HTMLTemplateResult {
-    return html`<slot class="fwc-list-item__meta" name="meta"></slot>`;
+    return html`<slot id="meta" name="meta"></slot>`;
   }
 }
 

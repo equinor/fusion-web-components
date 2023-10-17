@@ -59,7 +59,7 @@ export type SearchableDropdownResult = Array<SearchableDropdownResultItem>;
 export interface SearchableDropdownResultItem {
   children?: SearchableDropdownResult;
   graphic?: string;
-  graphicType?: IconType;
+  graphicType?: IconType | 'inline-svg' | 'inline-html';
   id: string;
   isDisabled?: boolean;
   isError?: boolean;

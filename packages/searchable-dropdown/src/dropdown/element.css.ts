@@ -80,6 +80,11 @@ export const fwcsdd: CSSResult = css`
   fwc-list-item {
     --fwc-list-item-vertical-padding: 0.5rem;
   }
+
+  fwc-list-item[twoline] [slot="graphic"] svg {
+    font-size: 1.5rem;
+  }
+
   .item-text {
     display: flex;
     flex-direction: column;
@@ -102,7 +107,10 @@ export const fwcsdd: CSSResult = css`
   }
   [slot='graphic'] {
     display: flex;
-    font-size: 0.8em;
+  }
+  [slot='graphic'] svg {
+    height: 1em;
+    width: auto;
   }
   fwc-divider {
     display: flex;

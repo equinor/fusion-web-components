@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import SearchableDropdownElement from './element';
+import { SearchableDropdownElement } from './element';
 import { SearchableDropdownProps } from '../types';
 export * from './element';
 

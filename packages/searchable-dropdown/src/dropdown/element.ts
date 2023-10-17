@@ -1,4 +1,4 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult, } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { property } from 'lit/decorators.js';
@@ -163,8 +163,8 @@ export class SearchableDropdownElement
       </fwc-check-list-item>`;
     }
 
-    /** 
-     * @TODO - `graphic` should should be removed! 
+    /**
+     * @TODO - `graphic` should should be removed!
      */
     return html`<fwc-list-item
       part="list-item"
@@ -178,25 +178,23 @@ export class SearchableDropdownElement
       graphic=${graphic ? 'icon' : ''}
       ?hasMeta=${!!item.meta}
     >
-      <div slot="graphic" part="graphic">
-        ${this.renderItemGraphic(item)}
-      </div>
+      <div slot="graphic" part="graphic">${this.renderItemGraphic(item)}</div>
       ${text}
       <div slot="meta">${unsafeHTML(item.meta)}</div>
     </fwc-list-item>`;
   }
 
-  protected renderItemGraphic(item: SearchableDropdownResultItem): ReturnType<typeof unsafeHTML> | void {
-    const {graphic, graphicType} = item;
-    switch(graphicType) {
+  protected renderItemGraphic(item: SearchableDropdownResultItem): ReturnType<typeof unsafeHTML> | void {
+    const { graphic, graphicType } = item;
+    switch (graphicType) {
       case 'inline-html':
         return unsafeHTML(graphic);
       case 'inline-svg':
         return unsafeSVG(graphic);
       default:
-        if(graphic){
-          return html`<fwc-icon icon="${graphic}" type="${graphicType ?? IconType.EDS}"></fwc-icon>`
-        };
+        if (graphic) {
+          return html`<fwc-icon icon="${graphic}" type="${graphicType ?? IconType.EDS}"></fwc-icon>`;
+        }
     }
   }
 
@@ -314,4 +312,3 @@ export class SearchableDropdownElement
       </style>`;
   }
 }
-

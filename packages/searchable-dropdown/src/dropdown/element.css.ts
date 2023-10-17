@@ -81,7 +81,7 @@ export const fwcsdd: CSSResult = css`
     --fwc-list-item-vertical-padding: 0.5rem;
   }
 
-  fwc-list-item[twoline] [slot="graphic"] svg {
+  fwc-list-item[twoline] [slot='graphic'] svg {
     font-size: 1.5rem;
   }
 

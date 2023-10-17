@@ -54,7 +54,7 @@ const style: CSSResult = css`
     justify-content: center;
     width: var(--fwc-list-item-graphic-width, auto);
   }
-  slot[name="graphic"]::slotted(*) {
+  slot[name='graphic']::slotted(*) {
     font-size: 1rem;
   }
 

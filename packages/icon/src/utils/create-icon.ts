@@ -1,5 +1,5 @@
 import { svg, SVGTemplateResult } from 'lit';
-import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
+// import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import * as edsIcons from '@equinor/eds-icons';
 import { IconData } from '@equinor/eds-icons';
 
@@ -9,7 +9,6 @@ export const iconNames = Object.keys(edsIcons);
 
 export enum IconType {
   EDS = 'eds',
-  SVG = 'svg',
 }
 
 export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplateResult => svg`
@@ -21,20 +20,14 @@ export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplate
 export const createIcon = (
   nameOrSvgTemplate: IconName | string,
   type: IconType = IconType.EDS,
-): SVGTemplateResult | null => {
+): SVGTemplateResult | void => {
   switch (type) {
     case IconType.EDS: {
       const name = nameOrSvgTemplate;
       const icon = edsIcons[name as keyof typeof edsIcons];
-      if (!icon) {
-        console.warn('could not find icon', name);
-        return null;
+      if (icon) {
+        return createSvg(edsIcons[name as keyof typeof edsIcons]);
       }
-      return createSvg(edsIcons[name as keyof typeof edsIcons]);
-    }
-    case IconType.SVG: {
-      const svgString = nameOrSvgTemplate;
-      return svg`${unsafeSVG(svgString)}`;
     }
   }
 };

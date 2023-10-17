@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.4.0
+
+### Minor Changes
+
+- [#975](https://github.com/equinor/fusion-web-components/pull/975) [`6c500df`](https://github.com/equinor/fusion-web-components/commit/6c500df8420c80cb693708bca9b90a66fb3c47a3) Thanks [@odinr](https://github.com/odinr)! - allow custom html as graphic slot of list item
+
+### Patch Changes
+
+- Updated dependencies [[`68ecc45`](https://github.com/equinor/fusion-web-components/commit/68ecc45544fbb3de9db701831b50d669dce02133), [`6c5c55e`](https://github.com/equinor/fusion-web-components/commit/6c5c55e9af7bfa107b74ce4791a884b1081a6f63)]:
+  - @equinor/fusion-wc-icon@2.2.0
+  - @equinor/fusion-wc-list@1.0.3
+  - @equinor/fusion-wc-textinput@1.0.2
+
 ## 3.3.0
 
 ### Minor Changes

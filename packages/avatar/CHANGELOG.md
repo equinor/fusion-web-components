@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#961](https://github.com/equinor/fusion-web-components/pull/961) [`9f00da0`](https://github.com/equinor/fusion-web-components/commit/9f00da0e890457f4f832147fbc10e0658c3c891b) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - remove a console.log message
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#972](https://github.com/equinor/fusion-web-components/pull/972) [`68ecc45`](https://github.com/equinor/fusion-web-components/commit/68ecc45544fbb3de9db701831b50d669dce02133) Thanks [@odinr](https://github.com/odinr)! - allow slotting svg into fwc-icon
+
+  - removed allowing setting svg as a property (don`t want content in memory)
+  - added slot for adding svg content
+
 ## 2.1.0
 
 ### Minor Changes

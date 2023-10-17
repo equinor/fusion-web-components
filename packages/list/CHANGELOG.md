@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [#973](https://github.com/equinor/fusion-web-components/pull/973) [`6c5c55e`](https://github.com/equinor/fusion-web-components/commit/6c5c55e9af7bfa107b74ce4791a884b1081a6f63) Thanks [@odinr](https://github.com/odinr)! - minor tweaks to markup and css
+
+- Updated dependencies [[`68ecc45`](https://github.com/equinor/fusion-web-components/commit/68ecc45544fbb3de9db701831b50d669dce02133)]:
+  - @equinor/fusion-wc-icon@2.2.0
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,5 @@
 import { IconName } from '@equinor/eds-icons';
-import { LitElement, SVGTemplateResult } from 'lit';
+import { HTMLTemplateResult, LitElement, SVGTemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import createIcon, { IconType } from './utils/create-icon';
 import { style } from './element.css';
@@ -18,7 +18,10 @@ export class IconElement extends LitElement implements IconElementProps {
   @property()
   public type?: IconType;
 
-  render(): SVGTemplateResult | null {
-    return this.icon ? createIcon(this.icon, this.type) : null;
+  render(): SVGTemplateResult | HTMLTemplateResult | void {
+    if (this.icon) {
+      return createIcon(this.icon, this.type);
+    }
+    return html`<slot></slot>`;
   }
 }

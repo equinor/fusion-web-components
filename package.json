@@ -22,6 +22,7 @@
     "lint": "eslint ./packages/*/src/**",
     "lint:report": "eslint --output-file eslint-report.log.json --format json packages/*/src",
     "test:pack": "pnpm -r pack --dry-run",
+    "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
     "changeset:publish": "changeset tag && lerna publish from-package --yes --no-verify-access"
   },
   "keywords": [],

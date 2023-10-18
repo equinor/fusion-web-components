@@ -26,10 +26,15 @@ export type LinkButtonElementProps = {
   variant?: ButtonVariant;
   color?: ButtonColor;
   dense?: boolean;
+  icon?: IconName;
+  disabled?: boolean;
   trailingIcon?: boolean;
   expandContent?: boolean;
 };
 
+/**
+ * @tag fwc-link-button
+ */
 export class LinkButtonElement extends ButtonBase implements LinkButtonElementProps {
   /**
    * Leading icon to display in input

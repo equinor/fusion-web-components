@@ -10,7 +10,7 @@
     "./button": "./lib/button/index.js",
     "./link-button": "./lib/link-button/index.js",
     "./icon-button": "./lib/icon-button/index.js",
-    "./icon-button-toggle": "./lib/icon-button/index.js",
+    "./icon-button-toggle": "./lib/icon-button-toggle/index.js",
     "./README.md": "./README.md",
     "./CHANGELOG.md": "./CHANGELOG.md"
   },

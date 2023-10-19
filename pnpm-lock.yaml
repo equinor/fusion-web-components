@@ -6545,7 +6545,7 @@ packages:
   /@types/node-fetch@2.6.7:
     resolution: {integrity: sha512-lX17GZVpJ/fuCjguZ5b3TjEbSENxmEk1B2z02yoXSK9WMEWRivhdSY73wWMn6bpcCDAOh6qAdktpKHIlkDk2lg==}
     dependencies:
-      '@types/node': 18.18.6
+      '@types/node': 20.8.7
       form-data: 4.0.0
 
   /@types/node@12.20.55:
@@ -6560,12 +6560,6 @@ packages:
 
   /@types/node@20.6.3:
     resolution: {integrity: sha512-HksnYH4Ljr4VQgEy2lTStbCKv/P590tmPe5HqOnv9Gprffgv5WXAY+Y5Gqniu0GGqeTCUdBnzC3QSrzPkBkAMA==}
-    dev: true
-
-  /@types/node@20.8.6:
-    resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
-    dependencies:
-      undici-types: 5.25.3
     dev: true
 
   /@types/node@20.8.7:
@@ -6616,7 +6610,7 @@ packages:
   /@types/rollup-plugin-progress@1.1.1:
     resolution: {integrity: sha512-/lI526wa1/nsr3ge5JXkFxe3Qr+6aMYsEmYeuVPMRkIFhIIz1MCdDxKKdmkwQ7G7bydlQOpdRsY5MPTxQJaqzA==}
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.7
       rollup: 0.63.5
     dev: true
 
@@ -10838,7 +10832,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.18.6
+      '@types/node': 20.8.7
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -14038,7 +14032,7 @@ packages:
     hasBin: true
     dependencies:
       '@types/estree': 0.0.39
-      '@types/node': 20.8.6
+      '@types/node': 20.8.7
     dev: true
 
   /rollup@3.29.2:

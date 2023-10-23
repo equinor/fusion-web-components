@@ -173,6 +173,7 @@ export class SearchableDropdownController implements ReactiveController {
    */
   // public handleSelect(event: CustomEvent<eventDetail>): void {
   public handleSelect(event: ExplicitEventTarget): void {
+    console.log('EVENT', event);
     event.stopPropagation();
 
     /* dont fire select event when li child checkbox is clicked, for ex. a favourit checkbox */
@@ -203,7 +204,7 @@ export class SearchableDropdownController implements ReactiveController {
 
       /* Set Error if none matched the resolver result */
       if (!selectedItem?.id) {
-        throw new Error('SearchableDropdownController could not find match  in result provided by resolver.');
+        throw new Error('SearchableDropdownController could not find a match in result provided by resolver.');
       }
 
       /*  Set active state and save selected item in state */
@@ -336,7 +337,7 @@ export class SearchableDropdownController implements ReactiveController {
    */
   public handleKeyup(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
-    if (event.key === 'ArrowDown') {
+    if (event.key === 'ArrowDown' || event.key === 'Enter') {
       /* focus on the fwc-list' */
       if (this._isOpen && this.result?.length) {
         // this.#host.listElement?.focus();

@@ -1,0 +1,18 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './markdown-editor.stories';
+
+import pkg from '@equinor/fusion-wc-markdown/package.json';
+import Log from '@equinor/fusion-wc-markdown/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>

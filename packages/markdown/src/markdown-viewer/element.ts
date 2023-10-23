@@ -10,6 +10,9 @@ const styles = css`
   }
 `;
 
+/**
+ * @tag fwc-markdown-viewer
+ */
 export class MarkdownViewerElement extends LitElement implements MarkdownViewerElementProps {
   static styles: CSSResult = styles;
 
@@ -20,8 +23,14 @@ export class MarkdownViewerElement extends LitElement implements MarkdownViewerE
   })
   public value = '';
 
+  /**
+   * @internal
+   */
   protected content = '';
 
+  /**
+   * @internal
+   */
   @query('slot')
   mainSlot!: HTMLSlotElement;
 

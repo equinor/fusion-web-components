@@ -5,6 +5,10 @@
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md",
     "./markdown-editor": "./lib/markdown-editor/index.js",
     "./markdown-viewer": "./lib/markdown-viewer/index.js"
   },

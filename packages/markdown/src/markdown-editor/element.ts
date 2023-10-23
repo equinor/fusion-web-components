@@ -113,7 +113,7 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
      * if value not provided, look in dom
      */
     if (!props.has('value') || !this.value) {
-      this.value = this.innerHTML;
+      this.value = this.textContent ? this.textContent.trim() : '';
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore

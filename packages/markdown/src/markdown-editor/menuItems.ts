@@ -2,7 +2,9 @@ import { toggleMark, setBlockType } from 'prosemirror-commands';
 import { wrapInList } from 'prosemirror-schema-list';
 import { schema } from 'prosemirror-markdown';
 import { MenuItem } from './menu';
-import { type IconName } from '@equinor/fusion-wc-icon';
+import { type IconName, IconElement } from '@equinor/fusion-wc-icon';
+
+IconElement;
 
 export type MdMenuItemType =
   | 'strong'

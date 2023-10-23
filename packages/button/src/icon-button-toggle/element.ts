@@ -11,28 +11,6 @@ import { classMap } from 'lit/directives/class-map.js';
 // Persist element
 Icon;
 
-/**
- * Element for rendering an icon button toggle with on/off state.
- * {@inheritdoc}
- *
- * @tag fwc-icon-button-toggle
- *
- * @property {boolean} on - true to use whether the toggle is activated.
- * @property {IconName} onIcon - Sets the icon of the icon buttons element "on" state.
- * @property {IconName} offIcon - Sets the icon of the icon button element "off" state.
- * @property {IconButtonSize} size - Sets the size of the icon button element.
- * @property {IconButtonColor} onColor - Sets the color of the on icon buttons element "on" state.
- * @property {IconButtonColor} offColor - Sets the color of the on icon buttons element "off" state. Used for primary color change.
- * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
- * @property {boolean} disabled - Sets the icon button to disabled.
- * @property {string} ariaLabel - Accessible label for the button. Used if ariaLabelOn and ariaLabelOff is set.
- * @property {string} ariaLabelOn - aria-label of the button when on is true. If set, ariaLabelOff must also be set.
- * @property {string} ariaLabelOff - aria-label of the button when on is false. If set, ariaLabelOn must also be set.
- *
- * @fires icon-button-toggle-change - Indicates the button has been toggled. isOn indicates the on value of the toggle button.
- *
- */
-
 export type IconButtonToggleElementProps = {
   /** Use toggle active state */
   on?: boolean;
@@ -58,6 +36,27 @@ export type IconButtonToggleElementProps = {
   disabled?: boolean;
 };
 
+/**
+ * Element for rendering an icon button toggle with on/off state.
+ * {@inheritdoc}
+ *
+ * @tag fwc-icon-button-toggle
+ *
+ * @property {boolean} on - true to use whether the toggle is activated.
+ * @property {IconName} onIcon - Sets the icon of the icon buttons element "on" state.
+ * @property {IconName} offIcon - Sets the icon of the icon button element "off" state.
+ * @property {IconButtonSize} size - Sets the size of the icon button element.
+ * @property {IconButtonColor} onColor - Sets the color of the on icon buttons element "on" state.
+ * @property {IconButtonColor} offColor - Sets the color of the on icon buttons element "off" state. Used for primary color change.
+ * @property {boolean} rounded - Sets the shape of the icon button element to rounded or square.
+ * @property {boolean} disabled - Sets the icon button to disabled.
+ * @property {string} ariaLabel - Accessible label for the button. Used if ariaLabelOn and ariaLabelOff is set.
+ * @property {string} ariaLabelOn - aria-label of the button when on is true. If set, ariaLabelOff must also be set.
+ * @property {string} ariaLabelOff - aria-label of the button when on is false. If set, ariaLabelOn must also be set.
+ *
+ * @fires icon-button-toggle-change - Indicates the button has been toggled. isOn indicates the on value of the toggle button.
+ *
+ */
 export class IconButtonToggleElement extends IconButtonToggleBase implements IconButtonToggleElementProps {
   /* styles object css */
   static styles: CSSResult[] = [style, mwcStyle];

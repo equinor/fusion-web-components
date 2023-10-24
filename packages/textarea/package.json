@@ -10,6 +10,13 @@
     "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib",
     "prepack": "pnpm build && fwc-build"
   },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
   "keywords": [
     "text area",
     "fusion",

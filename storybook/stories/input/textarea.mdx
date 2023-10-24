@@ -1,0 +1,18 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './textarea.stories';
+
+import pkg from '@equinor/fusion-wc-textarea/package.json';
+import Log from '@equinor/fusion-wc-textarea/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>

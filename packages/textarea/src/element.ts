@@ -1,7 +1,19 @@
 import { type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
-import { TextAreaBase } from '@material/mwc-textarea/mwc-textarea-base';
+import { TextAreaBase, TextAreaCharCounter } from '@material/mwc-textarea/mwc-textarea-base';
 import { styles } from './element.css';
+
+export type TextAreaElementProps = {
+  cols?: number;
+  rows?: number;
+  value?: string;
+  label?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  charCounter: boolean | TextAreaCharCounter;
+  maxLength?: number;
+  errorMessage?: string;
+};
 
 /**
  * Element for multi line text input
@@ -16,8 +28,6 @@ import { styles } from './element.css';
  * @property {string} value - The input control's value.
  * @property {string} label - Sets floating label value
  * @property {string} placeholder - Sets disappearing input placeholder
- * @property {string} prefix - Prefix text to display before the input
- * @property {string} suffix - Suffix text to display after the input
  * @property {boolean} disabled - Whether or not the input should be disabled
  * @property {boolean|"external"|"internal"} charCounter - Display character counter with max length. **Note: requries `maxLength` to be set.**
  * @property {string} helper - Helper text to display below the input. Display default only when focused
@@ -46,7 +56,7 @@ import { styles } from './element.css';
  *
  * @summary Enhanced multi-line input element, based on [Material Web Component](https://github.com/material-components/material-components-web-components/tree/master/packages/textarea)
  */
-export class TextAreaElement extends TextAreaBase {
+export class TextAreaElement extends TextAreaBase implements TextAreaElementProps {
   /**
    * Sets provided message as custom validity and displays it.
    */

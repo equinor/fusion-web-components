@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.4.1
+
+### Patch Changes
+
+- [#1020](https://github.com/equinor/fusion-web-components/pull/1020) [`70e72d6`](https://github.com/equinor/fusion-web-components/commit/70e72d674d4a7fd1b7dd5339bfbddc4a94ada428) Thanks [@eikeland](https://github.com/eikeland)! - Select first search result on Enter
+
 ## 3.4.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [#1022](https://github.com/equinor/fusion-web-components/pull/1022) [`2790a7d`](https://github.com/equinor/fusion-web-components/commit/2790a7d679e0b7a73065c643597c1f0cb70f6535) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add `TextareaElementProps` and update exports to include changelog, readme etc.
+
 ## 1.0.2
 
 ### Patch Changes

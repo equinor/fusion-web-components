@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.3.0
+
+### Minor Changes
+
+- [#1018](https://github.com/equinor/fusion-web-components/pull/1018) [`447c85e`](https://github.com/equinor/fusion-web-components/commit/447c85e803efa64825cbc84de671924c7cf8be3f) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for markdown-viewer
+
+- [#976](https://github.com/equinor/fusion-web-components/pull/976) [`f16ad1c`](https://github.com/equinor/fusion-web-components/commit/f16ad1c4a186077433a2d292a62e9d86c2cfe01a) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for link-button
+
+- [#1003](https://github.com/equinor/fusion-web-components/pull/1003) [`f230753`](https://github.com/equinor/fusion-web-components/commit/f230753d73abed4bc08364dfef73d8afda1d1e0e) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for icon-button-toggle
+
+- [#1011](https://github.com/equinor/fusion-web-components/pull/1011) [`e15cbb6`](https://github.com/equinor/fusion-web-components/commit/e15cbb63cfad5c0979058fead76e24105199572a) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for markdown-editor
+
+- [#1022](https://github.com/equinor/fusion-web-components/pull/1022) [`2790a7d`](https://github.com/equinor/fusion-web-components/commit/2790a7d679e0b7a73065c643597c1f0cb70f6535) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for textarea
+
 ## 4.2.0
 
 ### Minor Changes

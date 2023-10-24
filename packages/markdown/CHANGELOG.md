@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#1018](https://github.com/equinor/fusion-web-components/pull/1018) [`447c85e`](https://github.com/equinor/fusion-web-components/commit/447c85e803efa64825cbc84de671924c7cf8be3f) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for markdown-viewer
+
+### Patch Changes
+
+- [#1011](https://github.com/equinor/fusion-web-components/pull/1011) [`e15cbb6`](https://github.com/equinor/fusion-web-components/commit/e15cbb63cfad5c0979058fead76e24105199572a) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add missing icon dependency and update value from default slot to only include the text parts.
+
+- [#956](https://github.com/equinor/fusion-web-components/pull/956) [`b423f3b`](https://github.com/equinor/fusion-web-components/commit/b423f3b7c052ae9b942339d7d777a4b907d824e0) Thanks [@dependabot](https://github.com/apps/dependabot)! - updated prosemirror-view
+
 ## 1.0.2
 
 ### Patch Changes

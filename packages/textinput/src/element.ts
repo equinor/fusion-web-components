@@ -14,6 +14,35 @@ export type ValidityTransform = (value: string, nativeValidity: ValidityState) =
 export type TextInputType = TextFieldType;
 export type TextInputCharCounter = 'external' | 'internal';
 
+export type TextInputElementProps = {
+  name?: string;
+  value?: string;
+  type?:
+    | 'text'
+    | 'search'
+    | 'tel'
+    | 'url'
+    | 'email'
+    | 'password'
+    | 'date'
+    | 'month'
+    | 'week'
+    | 'time'
+    | 'datetime-local'
+    | 'number'
+    | 'color';
+  variant?: 'filled' | 'outlined';
+  label?: string;
+  disabled?: boolean;
+  charCounter: boolean | 'external' | 'internal';
+  maxLength?: number;
+  helper?: string;
+  icon?: IconName;
+  iconTrailing?: IconName;
+  errorMessage?: string;
+  dense?: boolean;
+};
+
 /**
  * Follows the basic `<input>` [constraint validation model](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation).
  * It exposes:

@@ -8,6 +8,12 @@ export type SwitchElementProps = {
   disabled?: boolean;
 };
 
+/**
+ * @tag fwc-switch
+ *
+ * @attribute {boolean} selected - Sets the switch to selected.
+ * @attribute {boolean} disabled - Sets the switch to disabled.
+ */
 export class SwitchElement extends SwitchBase implements SwitchElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
 }

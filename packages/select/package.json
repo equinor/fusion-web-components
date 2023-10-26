@@ -9,11 +9,19 @@
     "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib",
     "prepack": "pnpm build && fwc-build"
   },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
+    "@equinor/fusion-wc-list": "workspace:^",
     "@equinor/fusion-wc-menu": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.7",
     "@material/mwc-select": "^0.27.0",

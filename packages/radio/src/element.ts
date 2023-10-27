@@ -1,6 +1,11 @@
 import { RadioBase } from '@material/mwc-radio/mwc-radio-base';
 import styles from './element.css';
 
+export type RadioElementProps = {
+  disabled?: boolean;
+  checked?: boolean;
+};
+
 /**
  * @tag fwc-radio
  *
@@ -14,7 +19,7 @@ import styles from './element.css';
  * @cssprop {theme.colors.interactive.primary__resting} --fwc-radio-color - Color of radio
  *
  */
-export class RadioElement extends RadioBase {}
+export class RadioElement extends RadioBase implements RadioElementProps {}
 
 RadioElement.styles = styles;
 

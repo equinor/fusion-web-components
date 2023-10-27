@@ -5,7 +5,15 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { styles } from '@material/mwc-select/mwc-select.css';
 import '@equinor/fusion-wc-menu';
 
-export class SelectElement extends SelectBase {
+export type SelectElementProps = {
+  disabled?: boolean;
+  outlined?: boolean;
+};
+
+/**
+ * @tag fwc-select
+ */
+export class SelectElement extends SelectBase implements SelectElementProps {
   static styles: CSSResult = styles;
   override render(): HTMLTemplateResult {
     const classes = {

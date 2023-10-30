@@ -19,6 +19,9 @@ const formatConverter = (value: string | null): string | null => {
   return value;
 };
 
+/**
+ * @tag fwc-datetime
+ */
 export class DateTimeElement extends LitElement implements DateTimeElementProps {
   @property({ type: Date, reflect: true, converter: dateConverter })
   date?: Date = new Date();

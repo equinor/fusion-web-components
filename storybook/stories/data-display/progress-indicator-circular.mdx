@@ -1,0 +1,19 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './progress-indicator-circular.stories';
+
+import pkg from '@equinor/fusion-wc-progress-indicator/package.json';
+import Log from '@equinor/fusion-wc-progress-indicator/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>
+

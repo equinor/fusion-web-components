@@ -9,6 +9,13 @@
     "postbuild": "pnpm typedoc",
     "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib"
   },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

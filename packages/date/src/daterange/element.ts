@@ -36,6 +36,9 @@ export type DateRangeElementProps = {
   capitalize?: boolean;
 };
 
+/**
+ * @tag fwc-daterange
+ */
 export class DateRangeElement extends LitElement implements DateRangeElementProps {
   //#region Attributes
 

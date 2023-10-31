@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.1
+
+### Patch Changes
+
+- [#1032](https://github.com/equinor/fusion-web-components/pull/1032) [`170b79f`](https://github.com/equinor/fusion-web-components/commit/170b79fc08e98b615edab3f2d044a1648cdf65a8) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - - Update exports to include changelog, readme etc
+  - Add component class comment
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.4.2
+
+### Patch Changes
+
+- Updated dependencies [[`4b3c985`](https://github.com/equinor/fusion-web-components/commit/4b3c9852192fc800a883570948e6b80e2d62ebad), [`0aaa4ad`](https://github.com/equinor/fusion-web-components/commit/0aaa4ad08f505e3fbe1f90fe3b62cff0be6a8e3f)]:
+  - @equinor/fusion-wc-divider@1.0.1
+  - @equinor/fusion-wc-textinput@1.0.3
+  - @equinor/fusion-wc-list@1.0.4
+
 ## 3.4.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- [#1023](https://github.com/equinor/fusion-web-components/pull/1023) [`0aaa4ad`](https://github.com/equinor/fusion-web-components/commit/0aaa4ad08f505e3fbe1f90fe3b62cff0be6a8e3f) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add `TextInputElementProps` and update exports to include changelog, readme etc
+
 ## 1.0.2
 
 ### Patch Changes

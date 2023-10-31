@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`4b3c985`](https://github.com/equinor/fusion-web-components/commit/4b3c9852192fc800a883570948e6b80e2d62ebad), [`fddbde6`](https://github.com/equinor/fusion-web-components/commit/fddbde66a29a981df88aeb041c37512bf8f8c7b4)]:
+  - @equinor/fusion-wc-divider@1.0.1
+  - @equinor/fusion-wc-radio@1.0.1
+
 ## 1.0.3
 
 ### Patch Changes

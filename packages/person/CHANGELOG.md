@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.1.6
+
+### Patch Changes
+
+- [#1061](https://github.com/equinor/fusion-web-components/pull/1061) [`c3d7232`](https://github.com/equinor/fusion-web-components/commit/c3d723233248177bd433cb37813b727d98bd09df) Thanks [@eikeland](https://github.com/eikeland)! - Exporting PersonSelectEvent
+
+- Updated dependencies [[`0aaa4ad`](https://github.com/equinor/fusion-web-components/commit/0aaa4ad08f505e3fbe1f90fe3b62cff0be6a8e3f)]:
+  - @equinor/fusion-wc-textinput@1.0.3
+  - @equinor/fusion-wc-list@1.0.4
+  - @equinor/fusion-wc-searchable-dropdown@3.4.2
+
 ## 2.1.5
 
 ### Patch Changes

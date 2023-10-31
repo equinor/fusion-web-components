@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.1
+
+### Patch Changes
+
+- [#1043](https://github.com/equinor/fusion-web-components/pull/1043) [`fddbde6`](https://github.com/equinor/fusion-web-components/commit/fddbde66a29a981df88aeb041c37512bf8f8c7b4) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add `RadioElementProps` and update exports to include changelog, readme etc.
+
 ## 1.0.0
 
 ### Major Changes

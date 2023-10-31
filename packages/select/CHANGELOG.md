@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.0.4
+
+### Patch Changes
+
+- [#1034](https://github.com/equinor/fusion-web-components/pull/1034) [`3413dee`](https://github.com/equinor/fusion-web-components/commit/3413deef31ad7a5654bdc0329259f8d825d8c055) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - - Add `SelectElementProps`
+  - Update exports to include changelog, readme etc.
+  - Add missing list-item deps
+- Updated dependencies []:
+  - @equinor/fusion-wc-list@1.0.4
+  - @equinor/fusion-wc-menu@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes

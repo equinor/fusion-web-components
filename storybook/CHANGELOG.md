@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1029](https://github.com/equinor/fusion-web-components/pull/1029) [`4b3c985`](https://github.com/equinor/fusion-web-components/commit/4b3c9852192fc800a883570948e6b80e2d62ebad) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for divider
+
+- [#1047](https://github.com/equinor/fusion-web-components/pull/1047) [`fbffccd`](https://github.com/equinor/fusion-web-components/commit/fbffccdf3b9dd46190d40f934a651dacb70c0efe) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybooks and stories for daterange
+
+- [#1032](https://github.com/equinor/fusion-web-components/pull/1032) [`170b79f`](https://github.com/equinor/fusion-web-components/commit/170b79fc08e98b615edab3f2d044a1648cdf65a8) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybooks and stories for switch
+
+- [#1030](https://github.com/equinor/fusion-web-components/pull/1030) [`0b6fe1a`](https://github.com/equinor/fusion-web-components/commit/0b6fe1a577087327122de16e7006fa7c1d7ec0ab) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybooks and stories for progress-indicator
+
+- [#1043](https://github.com/equinor/fusion-web-components/pull/1043) [`fddbde6`](https://github.com/equinor/fusion-web-components/commit/fddbde66a29a981df88aeb041c37512bf8f8c7b4) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for radio
+
+- [#1034](https://github.com/equinor/fusion-web-components/pull/1034) [`3413dee`](https://github.com/equinor/fusion-web-components/commit/3413deef31ad7a5654bdc0329259f8d825d8c055) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for select
+
+- [#1023](https://github.com/equinor/fusion-web-components/pull/1023) [`0aaa4ad`](https://github.com/equinor/fusion-web-components/commit/0aaa4ad08f505e3fbe1f90fe3b62cff0be6a8e3f) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybook and stories for textinput
+
+- [#1048](https://github.com/equinor/fusion-web-components/pull/1048) [`0f8f817`](https://github.com/equinor/fusion-web-components/commit/0f8f817cf482f5581b44649ad7c8a133a70dbd6d) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add storybooks and stories for datetime
+
 ## 4.3.0
 
 ### Minor Changes

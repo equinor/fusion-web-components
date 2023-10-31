@@ -173,7 +173,6 @@ export class SearchableDropdownController implements ReactiveController {
    */
   // public handleSelect(event: CustomEvent<eventDetail>): void {
   public handleSelect(event: ExplicitEventTarget): void {
-    console.log('EVENT', event);
     event.stopPropagation();
 
     /* dont fire select event when li child checkbox is clicked, for ex. a favourit checkbox */
@@ -303,6 +302,7 @@ export class SearchableDropdownController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
+
     // toogle close icon
     this.#host.trailingIcon = state ? 'close' : '';
 

@@ -4,6 +4,8 @@ import { type SearchableDropdownProps } from '@equinor/fusion-wc-searchable-drop
 
 export * from './element';
 
+export type { PersonSelectEvent } from './controller';
+
 export type PersonSelectElementProps = Partial<SearchableDropdownProps>;
 
 export const tag = 'fwc-person-select';

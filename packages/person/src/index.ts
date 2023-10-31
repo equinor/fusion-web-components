@@ -2,5 +2,5 @@ export { default as PersonAvatarElement, AvatarSize, PersonAvatarElementProps } 
 export { default as PersonCardElement, PersonCardElementProps } from './components/card';
 export { default as PersonListItemElement, PersonListItemElementProps } from './components/list-item';
 export { default as PersonProviderElement, PersonResolver } from './components/provider';
-export { default as PersonSelectElement, PersonSelectElementProps } from './components/select';
+export { default as PersonSelectElement, PersonSelectElementProps, PersonSelectEvent } from './components/select';
 export * from './types';

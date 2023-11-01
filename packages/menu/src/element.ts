@@ -2,6 +2,8 @@ import { MenuBase, type MenuCorner, type Corner } from '@material/mwc-menu/mwc-m
 import { html, type HTMLTemplateResult } from 'lit';
 import { ListElement } from '@equinor/fusion-wc-list';
 
+ListElement;
+
 export type MenuElementProps = {
   anchor?: HTMLElement | null;
   open?: boolean;

@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`e514ba1`](https://github.com/equinor/fusion-web-components/commit/e514ba11f3cfcdea293e1ad94ea6c8d01e7ffd16), [`1f33b9a`](https://github.com/equinor/fusion-web-components/commit/1f33b9a1b6a178ab22a3085213c8618ca91f71d4)]:
+  - @equinor/fusion-wc-list@1.0.5
+  - @equinor/fusion-wc-menu@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes

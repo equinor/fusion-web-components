@@ -10,6 +10,9 @@ export type FormfieldElementProps = {
   nowrap?: boolean;
 };
 
+/**
+ * @tag fwc-formfield
+ */
 export class FormfieldElement extends FormfieldBase implements FormfieldElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
 }

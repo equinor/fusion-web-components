@@ -16,7 +16,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.7",
-    "lit": "2.7.0"
+    "lit": "3.0.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.0",

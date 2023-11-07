@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.5.1
+
+### Patch Changes
+
+- [#1076](https://github.com/equinor/fusion-web-components/pull/1076) [`3798fcb`](https://github.com/equinor/fusion-web-components/commit/3798fcb5e83c4a53701d87f3f6d86d5ff9b5ba24) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - fix(storybook): add missing icon.mdx
+
 ## 4.5.0
 
 ### Minor Changes

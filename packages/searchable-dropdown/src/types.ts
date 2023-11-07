@@ -82,7 +82,7 @@ export interface SearchableDropdownResolver {
 /**
  * The element the controller is conected to
  */
-export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost {
+export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost, EventTarget {
   dispatchEvent(event: Event): boolean;
   nodeName: string;
   renderRoot: HTMLElement | ShadowRoot;

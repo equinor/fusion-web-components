@@ -155,6 +155,7 @@ const style: CSSResult = css`
     --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
     --fwc-skeleton-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
     background-color: var(--fwc-skeleton-fill-color);
+    height: 1em;
   }
 
   :host(:not([inactive])):after {

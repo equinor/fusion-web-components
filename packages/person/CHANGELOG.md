@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`abd5d13`](https://github.com/equinor/fusion-web-components/commit/abd5d1397ee12a824e2b382bdc9cd73fc28affe1), [`bfebb70`](https://github.com/equinor/fusion-web-components/commit/bfebb7056ab6f02fd68dc19700c133327ae13a46), [`6482d02`](https://github.com/equinor/fusion-web-components/commit/6482d028db9b821aa29a6ee4638c3a5d3a2a2e29)]:
+  - @equinor/fusion-wc-searchable-dropdown@3.5.0
+  - @equinor/fusion-wc-skeleton@2.0.1
+
 ## 2.1.7
 
 ### Patch Changes

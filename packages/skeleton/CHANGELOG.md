@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#1087](https://github.com/equinor/fusion-web-components/pull/1087) [`bfebb70`](https://github.com/equinor/fusion-web-components/commit/bfebb7056ab6f02fd68dc19700c133327ae13a46) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add missing default height for skeleton
+
 ## 2.0.0
 
 ### Major Changes

@@ -109,7 +109,8 @@ export class SearchableDropdownController implements ReactiveController {
    * Close dropdown when click oustside host id
    */
   private _handleGlobalClick = (e: MouseEvent): void => {
-    if (e.target && (e.target as HTMLElement).id !== this.#host.id) {
+    const { target } = e;
+    if (target && target !== this.#host) {
       this.isOpen = false;
     }
   };

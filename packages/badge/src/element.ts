@@ -1,5 +1,5 @@
 import { LitElement, type HTMLTemplateResult, type PropertyValues, html, CSSResult } from 'lit';
-import { property, queryAssignedNodes, queryAsync, eventOptions } from 'lit/decorators.js';
+import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BadgeSize, BadgeColor, BadgePosition } from './static';
 import IconElement, { IconName } from '@equinor/fusion-wc-icon';
@@ -103,20 +103,6 @@ export class BadgeElement extends LitElement {
    */
   @queryAsync('fwc-ripple')
   protected ripple!: Promise<Ripple | null>;
-
-  /**
-   * @internal
-   * Reference to the icon slot.
-   */
-  @queryAssignedNodes({ slot: 'icon' })
-  protected iconSlot!: NodeListOf<HTMLElement>;
-
-  /**
-   * @internal
-   * Reference to the value slot.
-   */
-  @queryAssignedNodes({ slot: 'value' })
-  protected valueSlot!: NodeListOf<HTMLElement>;
 
   /**
    * @internal

@@ -9,12 +9,18 @@
     "yarn": "please-use-pnpm",
     "pnpm": ">=4"
   },
+  "pnpm": {
+    "overrides": {
+      "lit": "^3.0.2"
+    }
+  },
   "packageManager": "pnpm@8.0.0",
   "scripts": {
     "prepare": "husky install",
     "start": "cd storybook && pnpm run dev",
-    "clean": "pnpm clean:build",
+    "clean": "pnpm clean:build && pnpm clean:node",
     "clean:build": "pnpm -r exec del-cli dist lib tsconfig.tsbuildinfo",
+    "clean:node": "pnpm -r exec del-cli node_modules && pnpm exec del-cli node_modules",
     "prepack": "pnpm --filter='@equinor/fusion-wc-builder' build",
     "build": "pnpm -r --filter=!'@equinor/fusion-wc-storybook' build",
     "build:docs": "pnpm --filter='@equinor/fusion-wc-storybook' build",

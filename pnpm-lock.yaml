@@ -1,5 +1,12 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+overrides:
+  lit: ^3.0.2
+
 importers:
 
   .:
@@ -63,7 +70,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -91,7 +98,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -131,7 +138,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -159,7 +166,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -190,7 +197,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -224,7 +231,7 @@ importers:
         specifier: ^2.29.3
         version: 2.30.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -249,7 +256,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -277,7 +284,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -302,7 +309,7 @@ importers:
         specifier: workspace:^
         version: link:../core
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -327,7 +334,7 @@ importers:
         specifier: ^3.1.3
         version: 3.1.3
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -367,7 +374,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -395,7 +402,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
       prosemirror-commands:
         specifier: ^1.5.2
@@ -453,7 +460,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -505,13 +512,13 @@ importers:
         specifier: ^1.3.0
         version: 1.5.3
       '@lit-labs/observers':
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.0.2
+        version: 2.0.2
       '@lit-labs/task':
         specifier: ^3.0.1
         version: 3.0.2
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -533,7 +540,7 @@ importers:
         specifier: workspace:^
         version: link:../core
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -561,7 +568,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -586,7 +593,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -614,7 +621,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -639,7 +646,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -685,7 +692,7 @@ importers:
         specifier: ^9.0.1
         version: 9.0.4
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
       uuid:
         specifier: ^9.0.0
@@ -725,7 +732,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -750,7 +757,7 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -778,7 +785,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -806,7 +813,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -837,7 +844,7 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -865,7 +872,7 @@ importers:
         specifier: ^14.0.0
         version: 14.0.0
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
       '@custom-elements-manifest/analyzer':
@@ -908,7 +915,7 @@ importers:
         specifier: ^7.5.0
         version: 7.5.0(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(vite@4.4.11)
       lit:
-        specifier: 3.0.2
+        specifier: ^3.0.2
         version: 3.0.2
       react:
         specifier: ^18.2.0
@@ -3364,8 +3371,8 @@ packages:
       - supports-color
     dev: false
 
-  /@lit-labs/observers@2.0.0:
-    resolution: {integrity: sha512-NMbCjJEqp8V9TpTtt8HhzFVymx/WGpTD7iU+FMKSis4u3iBWwu2UYh6KChwFTEPW9xMum70r2IBnaViBINaGTA==}
+  /@lit-labs/observers@2.0.2:
+    resolution: {integrity: sha512-eZb5+W9Cb0e/Y5m1DNxBSGTvGB2TAVTGMnTxL/IzFhPQEcZIAHewW1eVBhN8W07A5tirRaAmmF6fGL1V20p3gQ==}
     dependencies:
       '@lit/reactive-element': 1.6.3
     dev: false
@@ -3389,12 +3396,12 @@ packages:
     resolution: {integrity: sha512-QuTgnG52Poic7uM1AN5yJ09QMe0O28e10XzSvWDz02TJiiKee4stsiownEIadWm8nYzyDAyT+gKzUoZmiWQtsQ==}
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.2
+    dev: false
 
   /@lit/reactive-element@2.0.1:
     resolution: {integrity: sha512-eu50SQXHRthFwWJMp0oAFg95Rvm6MTPjxSXWuvAu7It90WVFLFpNBoIno7XOXSDvVgTrtKnUV4OLJqys2Svn4g==}
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.2
-    dev: false
 
   /@lit/task@1.0.0:
     resolution: {integrity: sha512-7jocGBh3yGlo3kKxQggZph2txK4X5GYNWp2FAsmV9u2spzUypwrzRzXe8I72icAb02B00+k2nlvxVcrQB6vyrw==}
@@ -3554,7 +3561,7 @@ packages:
     dependencies:
       '@material/base': 14.0.0-canary.53b3cad2f.0
       '@material/dom': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
 
   /@material/mwc-button@0.27.0:
@@ -3562,7 +3569,7 @@ packages:
     dependencies:
       '@material/mwc-icon': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3571,14 +3578,14 @@ packages:
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
 
   /@material/mwc-floating-label@0.27.0:
     resolution: {integrity: sha512-uLleloTxQ6dDShcZzqgqfC8otQY8DtGMO9HFQbAEncoFAWpAehcEonsuT/IUhMORN+c5un0P5WXwcZsInJb7og==}
     dependencies:
       '@material/floating-label': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3587,7 +3594,7 @@ packages:
     dependencies:
       '@material/form-field': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3597,7 +3604,7 @@ packages:
       '@material/mwc-base': 0.27.0
       '@material/mwc-icon-button': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3605,14 +3612,14 @@ packages:
     resolution: {integrity: sha512-wReiPa1UkLaCSPtpkAs1OGKEBtvqPnz9kzuY+RvN5ZQnpo3Uh7n3plHV4y/stsUBfrWtBCcOgYnCdNRaR/r2nQ==}
     dependencies:
       '@material/mwc-ripple': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
   /@material/mwc-icon@0.27.0:
     resolution: {integrity: sha512-Sul44I37M9Ewynn0A9DjkEBrmll2VtNbth6Pxj7I1A/EAwEfaCrPvryyGqfIu1T2hTsRcaojzQx6QjF+B5QW9A==}
     dependencies:
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3620,7 +3627,7 @@ packages:
     resolution: {integrity: sha512-n9Xpt5g3RJEl9rvk14OP6dUNJUtsJA46beTQiep7ppO7IPVFLC1v/5sPpUzfNPUBsclSPxdBuNlCxsgcIYueUw==}
     dependencies:
       '@material/line-ripple': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3634,7 +3641,7 @@ packages:
       '@material/mwc-checkbox': 0.27.0
       '@material/mwc-radio': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
 
   /@material/mwc-menu@0.27.0:
@@ -3646,7 +3653,7 @@ packages:
       '@material/mwc-list': 0.27.0
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3655,7 +3662,7 @@ packages:
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/notched-outline': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3665,7 +3672,7 @@ packages:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       '@material/radio': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
 
   /@material/mwc-ripple@0.27.0:
@@ -3674,7 +3681,7 @@ packages:
       '@material/dom': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
       '@material/ripple': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
 
   /@material/mwc-select@0.27.0:
@@ -3692,7 +3699,7 @@ packages:
       '@material/mwc-menu': 0.27.0
       '@material/mwc-notched-outline': 0.27.0
       '@material/select': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3702,7 +3709,7 @@ packages:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       '@material/switch': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3711,7 +3718,7 @@ packages:
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-textfield': 0.27.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -3725,7 +3732,7 @@ packages:
       '@material/mwc-line-ripple': 0.27.0
       '@material/mwc-notched-outline': 0.27.0
       '@material/textfield': 14.0.0-canary.53b3cad2f.0
-      lit: 2.7.0
+      lit: 3.0.2
       tslib: 2.6.2
     dev: false
 
@@ -6178,7 +6185,7 @@ packages:
     resolution: {integrity: sha512-fkEEfssthEgvf2DUlGBfj+mtpCgiuiC8BuZqf45ueMm8iYV34EZmPNzTopPHBsm2z8VM3WZDuIFQ1puhLy5+sg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      lit: ^2.0.0 || ^3.0.0
+      lit: ^3.0.2
     dependencies:
       '@storybook/client-logger': 7.5.0
       '@storybook/core-client': 7.5.0
@@ -11210,38 +11217,17 @@ packages:
       wrap-ansi: 8.1.0
     dev: true
 
-  /lit-element@3.3.3:
-    resolution: {integrity: sha512-XbeRxmTHubXENkV4h8RIPyr8lXc+Ff28rkcQzw3G6up2xg5E8Zu1IgOWIwBLEQsu3cOVFqdYwiVi0hv0SlpqUA==}
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.1.2
-      '@lit/reactive-element': 1.6.3
-      lit-html: 2.8.0
-
   /lit-element@4.0.1:
     resolution: {integrity: sha512-OxRMJem4HKZt0320HplLkBPoi4KHiEHoPHKd8Lzf07ZQVAOKIjZ32yPLRKRDEolFU1RgrQBfSHQMoxKZ72V3Kw==}
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.2
       '@lit/reactive-element': 2.0.1
       lit-html: 3.0.2
-    dev: false
-
-  /lit-html@2.8.0:
-    resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
-    dependencies:
-      '@types/trusted-types': 2.0.4
 
   /lit-html@3.0.2:
     resolution: {integrity: sha512-Q1A5lHza3bnmxoWJn6yS6vQZQdExl4fghk8W1G+jnAEdoFNYo5oeBBb/Ol7zSEdKd3TR7+r0zsJQyuWEVguiyQ==}
     dependencies:
       '@types/trusted-types': 2.0.4
-    dev: false
-
-  /lit@2.7.0:
-    resolution: {integrity: sha512-qSy2BAVA+OiWtNptP404egcC/izDdNRw6iHGIbUmkZtbMJvPKfNsaoKrNs8Zmsbjmv5ZX2tur1l9TfzkSWWT4g==}
-    dependencies:
-      '@lit/reactive-element': 1.6.3
-      lit-element: 3.3.3
-      lit-html: 2.8.0
 
   /lit@3.0.2:
     resolution: {integrity: sha512-ZoVUPGgXOQocP4OvxehEOBmC4rWB4cRYDPaz7aFmH8DFytsCi/NeACbr4C6vNPGDEC07BrhUos7uVNayDKLQ2Q==}
@@ -11249,7 +11235,6 @@ packages:
       '@lit/reactive-element': 2.0.1
       lit-element: 4.0.1
       lit-html: 3.0.2
-    dev: false
 
   /load-json-file@4.0.0:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}
@@ -15914,7 +15899,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

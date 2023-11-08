@@ -41,7 +41,7 @@ export class DateTimeElement extends LitElement implements DateTimeElementProps 
   }
 
   /** @override */
-  protected createRenderRoot(): Element {
+  protected createRenderRoot(): HTMLElement {
     return this;
   }
 

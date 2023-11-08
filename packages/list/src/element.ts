@@ -1,6 +1,7 @@
 import { CSSResult } from 'lit';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list.css';
+import { queryAssignedElements } from 'lit/decorators.js';
 import style from './element.css';
 
 export type ListElementProps = {
@@ -52,6 +53,12 @@ export type ListElementProps = {
  */
 export class ListElement extends ListBase implements ListElementProps {
   static styles: CSSResult[] = [mdcStyle, style];
+
+  @queryAssignedElements({ slot: '', flatten: true, selector: '*' })
+  protected assignedElements!: HTMLElement[] | null;
+
+  @queryAssignedElements({ slot: '', flatten: true, selector: '*' })
+  protected tabbableElements!: HTMLElement[] | null;
 }
 
 export default ListElement;

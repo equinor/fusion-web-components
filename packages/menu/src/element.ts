@@ -81,6 +81,8 @@ export type MenuElementProps = {
  *
  */
 export class MenuElement extends MenuBase implements MenuElementProps {
+  protected listElement_!: ListElement | null;
+
   protected override get listElement(): ListElement | null {
     if (!this.listElement_) {
       this.listElement_ = this.renderRoot.querySelector('fwc-list');

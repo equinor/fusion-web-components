@@ -2,7 +2,7 @@ import { ReactiveControllerHost } from 'lit';
 import { type ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { ListElement } from '@equinor/fusion-wc-list';
-import { IconType } from '@equinor/fusion-wc-icon';
+import { IconElement, IconType } from '@equinor/fusion-wc-icon';
 /**
  * Properties/Attributes for web component
  * @autofocus Sets focus on textinput when mounted
@@ -85,8 +85,9 @@ export interface SearchableDropdownResolver {
 export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost, EventTarget {
   dispatchEvent(event: Event): boolean;
   nodeName: string;
-  renderRoot: HTMLElement | ShadowRoot;
+  renderRoot: HTMLElement | DocumentFragment;
   trailingIcon: string;
+  trailingIconElement?: IconElement;
   id: string;
 }
 

@@ -267,7 +267,7 @@ export class SearchableDropdownController implements ReactiveController {
       }
 
       /* blur closeicon if focused */
-      const closeIcon = this.#host.renderRoot.querySelector('.trailing');
+      const closeIcon = this.#host.trailingIconElement;
       if (closeIcon) {
         (closeIcon as HTMLSpanElement).blur();
       }

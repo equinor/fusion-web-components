@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 overrides:
   lit: ^3.0.2
 
@@ -6185,7 +6181,7 @@ packages:
     resolution: {integrity: sha512-fkEEfssthEgvf2DUlGBfj+mtpCgiuiC8BuZqf45ueMm8iYV34EZmPNzTopPHBsm2z8VM3WZDuIFQ1puhLy5+sg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      lit: ^3.0.2
+      lit: ^2.0.0 || ^3.0.0
     dependencies:
       '@storybook/client-logger': 7.5.0
       '@storybook/core-client': 7.5.0
@@ -15899,3 +15895,7 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

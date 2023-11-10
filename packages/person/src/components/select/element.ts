@@ -5,6 +5,7 @@ import { queryAll } from 'lit/decorators/query-all.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
+import { cache } from 'lit/directives/cache.js';
 
 import { PersonSelectController } from './controller';
 import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
@@ -17,7 +18,8 @@ import AvatarElement from '@equinor/fusion-wc-avatar';
 import IconElement from '@equinor/fusion-wc-icon';
 import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
-
+import { PersonListItemElement } from '../list-item';
+PersonListItemElement;
 AvatarElement;
 IconElement;
 ListElement;
@@ -148,6 +150,7 @@ export class PersonSelectElement
   protected controllers = {
     element: new PersonSelectController(this),
   };
+
   /**
    * Render the menu if state is open
    * @returns HTMLTemplateResult
@@ -184,7 +187,7 @@ export class PersonSelectElement
                 return html`
                   <fwc-list-item
                     graphic="avatar"
-                    .activated=${this.controllers.element.selectedItems.has(item.azureId)}
+                    .activated=${this.controllers.element.selectedIds.has(item.azureId)}
                     .dataSource=${item}
                   >
                     <fwc-person-avatar
@@ -194,7 +197,6 @@ export class PersonSelectElement
                       slot="graphic"
                       trigger="none"
                     ></fwc-person-avatar>
-
                     <span class="item-text">
                       ${item.name && html`<span class="item-title">${item.name}</span>`}
                       ${item.mail && html`<span class="item-subtitle" slot="secondary">${item.mail}</span>`}
@@ -216,14 +218,31 @@ export class PersonSelectElement
     </fwc-list>`;
   }
 
+  protected selectedPersonsTemplate(): HTMLTemplateResult {
+    const people = Array.from(this.controllers.element.selectedIds).map((item) => ({ azureId: item }));
+    console.log('PS::people', people);
+
+    return html`${cache(
+      html`<ul id="selected-persons">
+        ${repeat(
+          people,
+          (item) => item.azureId,
+          (item) => {
+            return html`<li><fwc-person-list-item size="small" azureid="${item.azureId}"></fwc-person-list-item></li>`;
+          })}
+      </ul>`,
+    )}`;
+  }
+
   /**
-   * The main render function
+   * The main render functions
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
     const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const disabled = this.disabled ? true : undefined;
+
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controllers.element.isOpen,
@@ -235,6 +254,7 @@ export class PersonSelectElement
     return html`<div id=${this.id} class=${classMap(cssClasses)}>
         <div class="input">
           <slot name="leading"></slot>
+          ${this.selectedPersonsTemplate()}
           <fwc-textinput
             label=${ifDefined(this.label)}
             type="text"

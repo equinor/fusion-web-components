@@ -27,7 +27,7 @@ export class PersonSelectController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
   public _listItems: Array<string> = [];
-  public selectedItems: Set<string> = new Set();
+  public selectedIds: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
   #host: PersonSelectElement;
@@ -91,6 +91,23 @@ export class PersonSelectController implements ReactiveController {
    * @return SearchableDropdownResult the selected item in array.
    */
   // public handleSelect(event: CustomEvent<eventDetail>): void {
+  public dataSourcefromId(azureId: string): PersonInfo | undefined {
+    if (!this.#host.listItems.length) {
+      console.debug('Missing element with azureId:', azureId);
+      return;
+    }
+
+    const dataSource = Array.from(this.#host.listItems).find((item) => item.dataSource?.azureId === azureId)
+      ?.dataSource;
+
+    if (!dataSource) {
+      console.debug('Missing dataSource with azureId', azureId);
+      return;
+    }
+
+    return dataSource;
+  }
+
   public handleSelect(event: ExplicitEventTarget): void {
     event.stopPropagation();
 
@@ -113,21 +130,20 @@ export class PersonSelectController implements ReactiveController {
     }
 
     if (this.#host.multiple) {
-      if (this.selectedItems.has(azureId)) {
-        this.selectedItems.delete(azureId);
+      if (this.selectedIds.has(azureId)) {
+        this.selectedIds.delete(azureId);
       } else {
-        this.selectedItems.add(azureId);
-        this.#host.value = dataSource?.name ?? '';
+        this.selectedIds.add(azureId);
+        // this.#host.value = dataSource?.name ?? '';
       }
     } else {
       this.isOpen = false;
-      if (this.selectedItems.has(azureId)) {
-        this.#host.value = '';
-        this.selectedItems.clear();
+      if (this.selectedIds.has(azureId)) {
+        this.selectedIds.clear();
       } else {
-        this.selectedItems.clear();
-        this.selectedItems.add(azureId);
-        this.#host.value = dataSource?.name ?? '';
+        this.selectedIds.clear();
+        this.selectedIds.add(azureId);
+        // this.#host.value = dataSource?.name ?? '';
       }
     }
 
@@ -171,7 +187,7 @@ export class PersonSelectController implements ReactiveController {
     }
 
     this.#host.value = '';
-    this.selectedItems.clear();
+    this.selectedIds.clear();
     // this.#search = '';
     this.#host.search = '';
 

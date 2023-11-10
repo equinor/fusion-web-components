@@ -91,23 +91,6 @@ export class PersonSelectController implements ReactiveController {
    * @return SearchableDropdownResult the selected item in array.
    */
   // public handleSelect(event: CustomEvent<eventDetail>): void {
-  public dataSourcefromId(azureId: string): PersonInfo | undefined {
-    if (!this.#host.listItems.length) {
-      console.debug('Missing element with azureId:', azureId);
-      return;
-    }
-
-    const dataSource = Array.from(this.#host.listItems).find((item) => item.dataSource?.azureId === azureId)
-      ?.dataSource;
-
-    if (!dataSource) {
-      console.debug('Missing dataSource with azureId', azureId);
-      return;
-    }
-
-    return dataSource;
-  }
-
   public handleSelect(event: ExplicitEventTarget): void {
     event.stopPropagation();
 
@@ -134,7 +117,6 @@ export class PersonSelectController implements ReactiveController {
         this.selectedIds.delete(azureId);
       } else {
         this.selectedIds.add(azureId);
-        // this.#host.value = dataSource?.name ?? '';
       }
     } else {
       this.isOpen = false;
@@ -143,7 +125,6 @@ export class PersonSelectController implements ReactiveController {
       } else {
         this.selectedIds.clear();
         this.selectedIds.add(azureId);
-        // this.#host.value = dataSource?.name ?? '';
       }
     }
 
@@ -159,6 +140,17 @@ export class PersonSelectController implements ReactiveController {
 
     /* Refresh host */
     this.#host.requestUpdate();
+  }
+
+  public deSelectId(azureId: string): boolean {
+    if (!azureId || !this.selectedIds.has(azureId)) {
+      return false;
+    }
+
+    this.selectedIds.delete(azureId);
+    this.#host.textInputElement.focus();
+    this.#host.requestUpdate();
+    return true;
   }
 
   /**
@@ -212,8 +204,6 @@ export class PersonSelectController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
-    // toogle close icon
-    this.#host.trailingIcon = state ? 'close' : '';
 
     /* Close on escape key */
     if (this._isOpen) {

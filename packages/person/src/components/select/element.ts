@@ -19,11 +19,13 @@ import IconElement from '@equinor/fusion-wc-icon';
 import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
 import { PersonListItemElement } from '../list-item';
-PersonListItemElement;
+import { IconButtonElement } from '@equinor/fusion-wc-button';
 AvatarElement;
 IconElement;
 ListElement;
 TextInputElement;
+PersonListItemElement;
+IconButtonElement;
 
 // TODO !!!! clean up when extending fwc-searchable-dropdown
 
@@ -70,6 +72,28 @@ export class PersonSelectElement
       fwc-list-item {
         --fwc-list-item-vertical-padding: 0;
       }
+      #selected-persons {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-gap: 1em;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        z-index: 1;
+      }
+      #selected-persons li {
+        position: relative;
+        background: #ffffff;
+        margin-right: 0.25em;
+      }
+      #selected-persons li fwc-icon-button {
+        position: absolute;
+        top: 0em;
+        right: 0em;
+      }
     `,
   ];
 
@@ -99,7 +123,7 @@ export class PersonSelectElement
 
   /* The trailing icon to display in fwc-textinput */
   @property({ attribute: false, state: true })
-  trailingIcon = '';
+  trailingIcon = 'close';
 
   /* The icon string to render in result list items on the meta slot */
   @property()
@@ -219,17 +243,32 @@ export class PersonSelectElement
   }
 
   protected selectedPersonsTemplate(): HTMLTemplateResult {
-    const people = Array.from(this.controllers.element.selectedIds).map((item) => ({ azureId: item }));
-    console.log('PS::people', people);
+    const { selectedIds } = this.controllers.element;
+    /* Empty template when no person is selected */
+    if (selectedIds.size < 1) {
+      return html``;
+    }
 
+    const people = Array.from(selectedIds).map((item) => ({ azureId: item }));
+
+    /* show all selected persons */
     return html`${cache(
       html`<ul id="selected-persons">
         ${repeat(
           people,
           (item) => item.azureId,
           (item) => {
-            return html`<li><fwc-person-list-item size="small" azureid="${item.azureId}"></fwc-person-list-item></li>`;
-          })}
+            return html`<li>
+              <fwc-person-list-item size="small" azureid="${item.azureId}"></fwc-person-list-item>
+              <fwc-icon-button
+                icon="close_circle_outlined"
+                size="x-small"
+                color="secondary"
+                @click=${() => this.controllers.element.deSelectId(item.azureId)}
+              ></fwc-icon-button>
+            </li>`;
+          },
+        )}
       </ul>`,
     )}`;
   }
@@ -270,13 +309,15 @@ export class PersonSelectElement
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
-              <fwc-icon
-                tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
-                class="trailing interactive"
-                icon=${this.trailingIcon}
-                @click=${this.controllers.element.closeClick}
-                @keydown=${this.controllers.element.closeClick}
-              ></fwc-icon>
+              ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen
+                ? html`<fwc-icon
+                    tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
+                    class="trailing interactive"
+                    icon=${this.trailingIcon}
+                    @click=${this.controllers.element.closeClick}
+                    @keydown=${this.controllers.element.closeClick}
+                  ></fwc-icon>`
+                : html``}
             </span>
           </slot>
         </div>

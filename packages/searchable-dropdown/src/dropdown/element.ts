@@ -85,6 +85,9 @@ export class SearchableDropdownElement
   @property({ attribute: false, state: true })
   trailingIcon = '';
 
+  @query('.trailing')
+  trailingIconElement?: IconElement;
+
   /* The icon string to render in result list items on the meta slot */
   @property()
   meta = '';

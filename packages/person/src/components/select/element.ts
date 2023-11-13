@@ -86,8 +86,10 @@ export class PersonSelectElement
       }
       #selected-persons li {
         position: relative;
-        background: #ffffff;
         margin-right: 0.25em;
+      }
+      fwc-person-list-item {
+        --fwc-person-list-item-background: #ffffff;
       }
       #selected-persons li fwc-icon-button {
         position: absolute;

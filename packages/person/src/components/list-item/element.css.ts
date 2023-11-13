@@ -4,6 +4,7 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 const style: CSSResult = css`
   :host {
     --fwc-avatar-size: 2.5rem;
+    --fwc-person-list-item-background: initial;
   }
   :host([size='small']) {
     --fwc-avatar-size: 2rem;
@@ -15,6 +16,7 @@ const style: CSSResult = css`
     display: flex;
     justify-content: space-between;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
+    background-color: var(--fwc-person-list-item-background);
     border: 1px solid;
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
     padding: calc(

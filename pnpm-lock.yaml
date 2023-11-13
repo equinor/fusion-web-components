@@ -6483,7 +6483,7 @@ packages:
   /@types/is-ci@3.0.0:
     resolution: {integrity: sha512-Q0Op0hdWbYd1iahB+IFNQcWXFq4O0Q5MwQP7uN0souuQ4rPg1vEYcnIOfr1gY+M+6rc8FGoRaBO1mOOvL29sEQ==}
     dependencies:
-      ci-info: 3.8.0
+      ci-info: 3.9.0
     dev: false
 
   /@types/istanbul-lib-coverage@2.0.5:
@@ -7859,11 +7859,6 @@ packages:
 
   /ci-info@2.0.0:
     resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
-    dev: false
-
-  /ci-info@3.8.0:
-    resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
-    engines: {node: '>=8'}
     dev: false
 
   /ci-info@3.9.0:
@@ -10499,7 +10494,7 @@ packages:
     resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
     hasBin: true
     dependencies:
-      ci-info: 3.8.0
+      ci-info: 3.9.0
     dev: false
 
   /is-core-module@2.13.0:
@@ -11146,7 +11141,7 @@ packages:
     resolution: {integrity: sha512-mMntrhVwut5prP4rJ228eEbEyvIzLWhqFuY90j5QeXBCTT2pWSMno7Yo2S2qplPUr02zPurGH4heGLZ+wORczg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      ci-info: 3.8.0
+      ci-info: 3.9.0
       normalize-package-data: 5.0.0
       npm-package-arg: 10.1.0
       npm-registry-fetch: 14.0.5

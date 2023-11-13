@@ -212,7 +212,7 @@ export class PersonSelectElement
   }
 
   protected selectedPersonsTemplate(): HTMLTemplateResult {
-    const { selectedIds: selectedIds } = this.controllers.element;
+    const { selectedIds, _listItems } = this.controllers.element;
     /* Empty template when no person is selected */
     if (selectedIds.size < 1 || this.controllers.element.isOpen) {
       return html``;
@@ -220,7 +220,7 @@ export class PersonSelectElement
 
     // convert selected azureId to PeronInfo for returning to PersonSelectEvent
     const people = Array.from(selectedIds).map(
-      (sel) => this.controllers.element._listItems.find((li) => li.azureId === sel) ?? { azureId: sel },
+      (sel) => _listItems.find((li) => li.azureId === sel) ?? { azureId: sel },
     );
 
     /* show all selected persons */

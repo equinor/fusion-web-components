@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 overrides:
   lit: ^3.0.2
 
@@ -50,7 +46,7 @@ importers:
         version: 8.0.3
       lint-staged:
         specifier: ^15.0.1
-        version: 15.0.1
+        version: 15.1.0
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -6185,7 +6181,7 @@ packages:
     resolution: {integrity: sha512-fkEEfssthEgvf2DUlGBfj+mtpCgiuiC8BuZqf45ueMm8iYV34EZmPNzTopPHBsm2z8VM3WZDuIFQ1puhLy5+sg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      lit: ^3.0.2
+      lit: ^2.0.0 || ^3.0.0
     dependencies:
       '@storybook/client-logger': 7.5.0
       '@storybook/core-client': 7.5.0
@@ -11186,8 +11182,8 @@ packages:
       uc.micro: 1.0.6
     dev: false
 
-  /lint-staged@15.0.1:
-    resolution: {integrity: sha512-2IU5OWmCaxch0X0+IBF4/v7sutpB+F3qoXbro43pYjQTOo5wumckjxoxn47pQBqqBsCWrD5HnI2uG/zJA7isew==}
+  /lint-staged@15.1.0:
+    resolution: {integrity: sha512-ZPKXWHVlL7uwVpy8OZ7YQjYDAuO5X4kMh0XgZvPNxLcCCngd0PO5jKQyy3+s4TL2EnHoIXIzP1422f/l3nZKMw==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
@@ -11196,17 +11192,17 @@ packages:
       debug: 4.3.4
       execa: 8.0.1
       lilconfig: 2.1.0
-      listr2: 7.0.1
+      listr2: 7.0.2
       micromatch: 4.0.5
       pidtree: 0.6.0
       string-argv: 0.3.2
-      yaml: 2.3.2
+      yaml: 2.3.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /listr2@7.0.1:
-    resolution: {integrity: sha512-nz+7hwgbDp8eWNoDgzdl4hA/xDSLrNRzPu1TLgOYs6l5Y+Ma6zVWWy9Oyt9TQFONwKoSPoka3H50D3vD5EuNwg==}
+  /listr2@7.0.2:
+    resolution: {integrity: sha512-rJysbR9GKIalhTbVL2tYbF2hVyDnrf7pFUZBwjPaMIdadYHmeT+EVi/Bu3qd7ETQPahTotg2WRCatXwRBW554g==}
     engines: {node: '>=16.0.0'}
     dependencies:
       cli-truncate: 3.1.0
@@ -15808,8 +15804,8 @@ packages:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
 
-  /yaml@2.3.2:
-    resolution: {integrity: sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==}
+  /yaml@2.3.4:
+    resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -15899,3 +15895,7 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

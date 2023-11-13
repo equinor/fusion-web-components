@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   lit: ^3.0.2
 
@@ -428,8 +432,8 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-view:
-        specifier: ^1.32.1
-        version: 1.32.1
+        specifier: ^1.32.4
+        version: 1.32.4
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.9.0
@@ -6175,7 +6179,7 @@ packages:
     resolution: {integrity: sha512-fkEEfssthEgvf2DUlGBfj+mtpCgiuiC8BuZqf45ueMm8iYV34EZmPNzTopPHBsm2z8VM3WZDuIFQ1puhLy5+sg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      lit: ^2.0.0 || ^3.0.0
+      lit: ^3.0.2
     dependencies:
       '@storybook/client-logger': 7.5.0
       '@storybook/core-client': 7.5.0
@@ -13373,14 +13377,6 @@ packages:
       prosemirror-model: 1.19.3
     dev: false
 
-  /prosemirror-view@1.32.1:
-    resolution: {integrity: sha512-9SnB4HBgRczzTyIMZLPE1iszegL04hNfUyS8uPtP1RPxNM2NTCiIs8KwNsJU4nbZO9rxJTwVTv7Jm3zU4CR78A==}
-    dependencies:
-      prosemirror-model: 1.19.3
-      prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.5
-    dev: false
-
   /prosemirror-view@1.32.4:
     resolution: {integrity: sha512-WoT+ZYePp0WQvp5coABAysheZg9WttW3TSEUNgsfDQXmVOJlnjkbFbXicKPvWFLiC0ZjKt1ykbyoVKqhVnCiSQ==}
     dependencies:
@@ -15889,7 +15885,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

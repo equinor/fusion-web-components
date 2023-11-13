@@ -169,7 +169,8 @@ export class PersonSelectElement
             `;
           }
 
-          this.controllers.element._listItems = result.map((item) => item.azureId);
+          // apend items to
+          this.controllers.element._listItems = result.map((item) => item);
 
           return html`
             ${repeat(
@@ -211,13 +212,16 @@ export class PersonSelectElement
   }
 
   protected selectedPersonsTemplate(): HTMLTemplateResult {
-    const { selectedIds } = this.controllers.element;
+    const { selectedIds: selectedIds } = this.controllers.element;
     /* Empty template when no person is selected */
     if (selectedIds.size < 1 || this.controllers.element.isOpen) {
       return html``;
     }
 
-    const people = Array.from(selectedIds).map((item) => ({ azureId: item }));
+    // convert selected azureId to PeronInfo for returning to PersonSelectEvent
+    const people = Array.from(selectedIds).map(
+      (sel) => this.controllers.element._listItems.find((li) => li.azureId === sel) ?? { azureId: sel },
+    );
 
     /* show all selected persons */
     return html`${cache(
@@ -232,7 +236,7 @@ export class PersonSelectElement
                 icon="close_circle_outlined"
                 size="x-small"
                 color="secondary"
-                @click=${() => this.controllers.element.deSelectId(item.azureId)}
+                @click=${() => this.controllers.element.deSelectId(item)}
               ></fwc-icon-button>
             </li>`;
           },

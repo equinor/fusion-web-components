@@ -26,7 +26,7 @@ export class PersonSelectEvent extends CustomEvent<PersonSelectEventDetail> {
 export class PersonSelectController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
-  public _listItems: Array<string> = [];
+  public _listItems: Array<PersonInfo> = [];
   public selectedIds: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
@@ -142,13 +142,24 @@ export class PersonSelectController implements ReactiveController {
     this.#host.requestUpdate();
   }
 
-  public deSelectId(azureId: string): boolean {
-    if (!azureId || !this.selectedIds.has(azureId)) {
+  public deSelectId(person: PersonInfo): boolean {
+    if (!person?.azureId || !this.selectedIds.has(person.azureId)) {
       return false;
     }
 
-    this.selectedIds.delete(azureId);
+    this.selectedIds.delete(person.azureId);
     this.#host.textInputElement.focus();
+
+    /* Dispatch custom select event with our details */
+    this.#host.dispatchEvent(
+      new PersonSelectEvent({
+        detail: {
+          selected: person,
+        },
+        bubbles: true,
+      }),
+    );
+
     this.#host.requestUpdate();
     return true;
   }

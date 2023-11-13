@@ -1,4 +1,4 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult, css } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import { queryAll } from 'lit/decorators/query-all.js';
@@ -8,9 +8,10 @@ import { repeat } from 'lit/directives/repeat.js';
 import { cache } from 'lit/directives/cache.js';
 
 import { PersonSelectController } from './controller';
+import { styles as psStyles } from './element.css';
 import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
 
-import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
+import { SearchableDropdownControllerHost } from '@equinor/fusion-wc-searchable-dropdown';
 
 import type { PersonInfo } from '../../types';
 
@@ -62,42 +63,7 @@ export class PersonSelectElement
   implements SearchableDropdownControllerHost, PersonSearchControllerHost
 {
   /* style object css */
-  // TODO - maybe this styling should be changed in parent!
-  static styles: CSSResult[] = [
-    ...sddStyles,
-    css`
-      fwc-list {
-        --fwc-list-side-padding: 0.5rem;
-      }
-      fwc-list-item {
-        --fwc-list-item-vertical-padding: 0;
-      }
-      #selected-persons {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: row;
-        flex-gap: 1em;
-        position: absolute;
-        top: 1px;
-        left: 0;
-        z-index: 1;
-      }
-      #selected-persons li {
-        position: relative;
-        margin-right: 0.25em;
-      }
-      fwc-person-list-item {
-        --fwc-person-list-item-background: #ffffff;
-      }
-      #selected-persons li fwc-icon-button {
-        position: absolute;
-        top: 0em;
-        right: 0em;
-      }
-    `,
-  ];
+  static styles: CSSResult[] = psStyles;
 
   /**
    * Label passed to the fwc-text-input component
@@ -247,7 +213,7 @@ export class PersonSelectElement
   protected selectedPersonsTemplate(): HTMLTemplateResult {
     const { selectedIds } = this.controllers.element;
     /* Empty template when no person is selected */
-    if (selectedIds.size < 1) {
+    if (selectedIds.size < 1 || this.controllers.element.isOpen) {
       return html``;
     }
 
@@ -295,7 +261,6 @@ export class PersonSelectElement
     return html`<div id=${this.id} class=${classMap(cssClasses)}>
         <div class="input">
           <slot name="leading"></slot>
-          ${this.selectedPersonsTemplate()}
           <fwc-textinput
             label=${ifDefined(this.label)}
             type="text"
@@ -309,6 +274,7 @@ export class PersonSelectElement
             @focus=${() => (this.controllers.element.isOpen = true)}
             @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
+          ${this.selectedPersonsTemplate()}
           <slot name="trailing">
             <span slot="trailing">
               ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen

@@ -26,7 +26,8 @@ export class PersonSelectEvent extends CustomEvent<PersonSelectEventDetail> {
 export class PersonSelectController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
-  public _listItems: Array<PersonInfo> = [];
+
+  public listItems: Array<PersonInfo> = [];
   public selectedIds: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
@@ -142,7 +143,7 @@ export class PersonSelectController implements ReactiveController {
     this.#host.requestUpdate();
   }
 
-  public deSelectId(person: PersonInfo): boolean {
+  public deSelectPerson(person: PersonInfo): boolean {
     if (!person?.azureId || !this.selectedIds.has(person.azureId)) {
       return false;
     }
@@ -191,7 +192,7 @@ export class PersonSelectController implements ReactiveController {
 
     this.#host.value = '';
     this.selectedIds.clear();
-    // this.#search = '';
+
     this.#host.search = '';
 
     /* also runs task */
@@ -200,6 +201,16 @@ export class PersonSelectController implements ReactiveController {
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
+    }
+
+    if (this.selectedIds.size) {
+      // TODO add support for multiple
+      this.selectedIds.forEach((azureId) => {
+        const deSelectedPerson = this.listItems.find((p) => p.azureId === azureId);
+        if (deSelectedPerson) {
+          this.deSelectPerson(deSelectedPerson);
+        }
+      });
     }
 
     /* fire event for sdd closed */

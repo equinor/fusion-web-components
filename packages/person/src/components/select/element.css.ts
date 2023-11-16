@@ -20,19 +20,14 @@ export const styles: CSSResult[] = [
       margin: 0;
       display: flex;
       flex-direction: row;
-      flex-gap: 1em;
+      flex-gap: 0;
       position: absolute;
       top: 1px;
       left: 0;
+      width: 100%;
     }
     #selected-persons li {
-      position: relative;
-      margin-right: 0.25em;
-    }
-    #selected-persons li fwc-icon-button {
-      position: absolute;
-      top: 0em;
-      right: 0em;
+      flex: 1 0 auto;
     }
   `,
 ];

@@ -170,7 +170,7 @@ export class PersonSelectElement
           }
 
           // apend items to
-          this.controllers.element._listItems = result.map((item) => item);
+          this.controllers.element.listItems = result.map((item) => item);
 
           return html`
             ${repeat(
@@ -212,16 +212,16 @@ export class PersonSelectElement
   }
 
   protected selectedPersonsTemplate(): HTMLTemplateResult {
-    const { selectedIds, _listItems } = this.controllers.element;
+    const { selectedIds } = this.controllers.element;
     /* Empty template when no person is selected */
     if (selectedIds.size < 1 || this.controllers.element.isOpen) {
       return html``;
     }
 
     // convert selected azureId to PeronInfo for returning to PersonSelectEvent
-    const people = Array.from(selectedIds).map(
-      (sel) => _listItems.find((li) => li.azureId === sel) ?? { azureId: sel },
-    );
+    const people = Array.from(selectedIds).map((sel) => ({
+      azureId: sel,
+    }));
 
     /* show all selected persons */
     return html`${cache(
@@ -231,13 +231,11 @@ export class PersonSelectElement
           (item) => item.azureId,
           (item) => {
             return html`<li>
-              <fwc-person-list-item size="small" azureid="${item.azureId}"></fwc-person-list-item>
-              <fwc-icon-button
-                icon="close_circle_outlined"
-                size="x-small"
-                color="secondary"
-                @click=${() => this.controllers.element.deSelectId(item)}
-              ></fwc-icon-button>
+              <fwc-person-list-item
+                size="small"
+                azureid="${item.azureId}"
+                @click=${() => (this.controllers.element.isOpen = true)}
+              ></fwc-person-list-item>
             </li>`;
           },
         )}

@@ -42,7 +42,7 @@
     "prettier": "^3.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.5.0",
+    "@commitlint/cli": "^18.4.2",
     "@commitlint/config-conventional": "^17.4.4",
     "@equinor/eslint-config-fusion": "^2.0.0",
     "del-cli": "^5.0.0",

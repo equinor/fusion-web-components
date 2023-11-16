@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.0",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/config-conventional": "^18.4.2",
     "@equinor/eslint-config-fusion": "^2.0.0",
     "del-cli": "^5.0.0",
     "eslint": "^8.36.0",

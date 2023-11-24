@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.6.0
+
+### Minor Changes
+
+- [#1072](https://github.com/equinor/fusion-web-components/pull/1072) [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update lit from 2.7.0 to 3.0.2
+
+### Patch Changes
+
+- [#1060](https://github.com/equinor/fusion-web-components/pull/1060) [`e67f078`](https://github.com/equinor/fusion-web-components/commit/e67f078243a9fbf614c261ce8efa888d7c6c16fb) Thanks [@eikeland](https://github.com/eikeland)! - Removal of developers console.log
+
+- [#1072](https://github.com/equinor/fusion-web-components/pull/1072) [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update searchable-dropdown to get trailing from el instead of queryselect the shadow root
+
+- Updated dependencies [[`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0), [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0)]:
+  - @equinor/fusion-wc-list@1.1.0
+  - @equinor/fusion-wc-textinput@1.1.0
+  - @equinor/fusion-wc-divider@1.1.0
+  - @equinor/fusion-wc-icon@2.3.0
+
 ## 3.5.0
 
 ### Minor Changes

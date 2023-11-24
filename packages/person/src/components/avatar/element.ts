@@ -182,8 +182,9 @@ export class PersonAvatarElement
   protected getRenderClasses(accountType?: PersonAccountType[keyof PersonAccountType]): ClassInfo {
     return {
       employee: accountType === PersonAccountType.Employee,
-      consultant: accountType === PersonAccountType.Consultant || PersonAccountType.Enterprise,
+      consultant: accountType === PersonAccountType.Consultant || accountType === PersonAccountType.Enterprise,
       external: accountType === PersonAccountType.External,
+      // accountClassification == external + accountType === PersonAccountType.Employee,
       'external-hire': accountType === PersonAccountType.ExternalHire,
     };
   }

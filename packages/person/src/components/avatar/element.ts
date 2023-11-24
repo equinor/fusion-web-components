@@ -181,11 +181,10 @@ export class PersonAvatarElement
    */
   protected getRenderClasses(accountType?: PersonAccountType[keyof PersonAccountType]): ClassInfo {
     return {
-      employee: accountType === PersonAccountType.Employee,
-      consultant: accountType === PersonAccountType.Consultant || accountType === PersonAccountType.Enterprise,
-      external: accountType === PersonAccountType.External,
-      // accountClassification == external + accountType === PersonAccountType.Employee,
-      'external-hire': accountType === PersonAccountType.ExternalHire,
+      'employee-color': accountType === PersonAccountType.Employee,
+      'consultant-color': accountType === PersonAccountType.Consultant || accountType === PersonAccountType.Enterprise,
+      'external-color': accountType === PersonAccountType.External,
+      'external-hire-color': accountType === PersonAccountType.ExternalHire,
     };
   }
 

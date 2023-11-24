@@ -1,16 +1,16 @@
 import { type CSSResult, css } from 'lit';
 
 const style: CSSResult = css`
-  :host(:not([disabled])) fwc-avatar.employee {
+  :host(:not([disabled])) fwc-avatar.employee-color {
     --fwc-avatar-color: #8c1159;
   }
-  :host(:not([disabled])) fwc-avatar.consultant {
+  :host(:not([disabled])) fwc-avatar.consultant-color {
     --fwc-avatar-color: #eb0037;
   }
-  :host(:not([disabled])) fwc-avatar.external {
+  :host(:not([disabled])) fwc-avatar.external-color {
     --fwc-avatar-color: #ff92a8;
   }
-  :host(:not([disabled])) fwc-avatar.external-hire {
+  :host(:not([disabled])) fwc-avatar.external-hire-color {
     --fwc-avatar-color: #000;
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-select",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Select web component based on Material UI",
   "main": "lib/index.js",
   "scripts": {

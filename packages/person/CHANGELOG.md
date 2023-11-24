@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#1072](https://github.com/equinor/fusion-web-components/pull/1072) [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update lit from 2.7.0 to 3.0.2
+
+### Patch Changes
+
+- [`9c56a8b`](https://github.com/equinor/fusion-web-components/commit/9c56a8b624b9b5ce57f1e12eb650422b59641bfd) Thanks [@odinr](https://github.com/odinr)! - fixed account type color
+
+- Updated dependencies [[`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0), [`e67f078`](https://github.com/equinor/fusion-web-components/commit/e67f078243a9fbf614c261ce8efa888d7c6c16fb), [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0), [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0)]:
+  - @equinor/fusion-wc-list@1.1.0
+  - @equinor/fusion-wc-searchable-dropdown@3.6.0
+  - @equinor/fusion-wc-textinput@1.1.0
+  - @equinor/fusion-wc-skeleton@2.1.0
+  - @equinor/fusion-wc-avatar@3.2.0
+  - @equinor/fusion-wc-button@2.4.0
+  - @equinor/fusion-wc-badge@1.3.0
+  - @equinor/fusion-wc-icon@2.3.0
+
 ## 2.1.8
 
 ### Patch Changes

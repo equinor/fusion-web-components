@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#1072](https://github.com/equinor/fusion-web-components/pull/1072) [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update lit from 2.7.0 to 3.0.2
+
+### Patch Changes
+
+- [#1072](https://github.com/equinor/fusion-web-components/pull/1072) [`67f5368`](https://github.com/equinor/fusion-web-components/commit/67f5368005022dad3c103cc1673e352d6efd65e0) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update types to handle lit 3.0.2 + use @queryAssignedElements instead of @queryAssignedNodes
+
 ## 1.0.1
 
 ### Patch Changes

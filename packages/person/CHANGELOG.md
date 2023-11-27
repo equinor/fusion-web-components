@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [#1103](https://github.com/equinor/fusion-web-components/pull/1103) [`e550bfd`](https://github.com/equinor/fusion-web-components/commit/e550bfd50497d415cb3e9a602b8b7b5dda2b167f) Thanks [@eikeland](https://github.com/eikeland)! - - Adding ui with selected person as person-list-items
+  - Adding variable to person-list-item for setting background color
+
 ## 2.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#1145](https://github.com/equinor/fusion-web-components/pull/1145) [`6f45901`](https://github.com/equinor/fusion-web-components/commit/6f45901c70f7945bf6afc5f9c120dbb2566822e8) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - - Person avatar: Account color fix
+
 ## 2.2.0
 
 ### Minor Changes

@@ -3533,7 +3533,7 @@ packages:
     dependencies:
       '@material/base': 14.0.0-canary.53b3cad2f.0
       '@material/dom': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
 
   /@material/mwc-button@0.27.0:
@@ -3541,7 +3541,7 @@ packages:
     dependencies:
       '@material/mwc-icon': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3550,14 +3550,14 @@ packages:
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
 
   /@material/mwc-floating-label@0.27.0:
     resolution: {integrity: sha512-uLleloTxQ6dDShcZzqgqfC8otQY8DtGMO9HFQbAEncoFAWpAehcEonsuT/IUhMORN+c5un0P5WXwcZsInJb7og==}
     dependencies:
       '@material/floating-label': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3566,7 +3566,7 @@ packages:
     dependencies:
       '@material/form-field': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3576,7 +3576,7 @@ packages:
       '@material/mwc-base': 0.27.0
       '@material/mwc-icon-button': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3584,14 +3584,14 @@ packages:
     resolution: {integrity: sha512-wReiPa1UkLaCSPtpkAs1OGKEBtvqPnz9kzuY+RvN5ZQnpo3Uh7n3plHV4y/stsUBfrWtBCcOgYnCdNRaR/r2nQ==}
     dependencies:
       '@material/mwc-ripple': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
   /@material/mwc-icon@0.27.0:
     resolution: {integrity: sha512-Sul44I37M9Ewynn0A9DjkEBrmll2VtNbth6Pxj7I1A/EAwEfaCrPvryyGqfIu1T2hTsRcaojzQx6QjF+B5QW9A==}
     dependencies:
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3599,7 +3599,7 @@ packages:
     resolution: {integrity: sha512-n9Xpt5g3RJEl9rvk14OP6dUNJUtsJA46beTQiep7ppO7IPVFLC1v/5sPpUzfNPUBsclSPxdBuNlCxsgcIYueUw==}
     dependencies:
       '@material/line-ripple': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3613,7 +3613,7 @@ packages:
       '@material/mwc-checkbox': 0.27.0
       '@material/mwc-radio': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
 
   /@material/mwc-menu@0.27.0:
@@ -3625,7 +3625,7 @@ packages:
       '@material/mwc-list': 0.27.0
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3634,7 +3634,7 @@ packages:
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/notched-outline': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3644,7 +3644,7 @@ packages:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       '@material/radio': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
 
   /@material/mwc-ripple@0.27.0:
@@ -3653,7 +3653,7 @@ packages:
       '@material/dom': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
       '@material/ripple': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
 
   /@material/mwc-select@0.27.0:
@@ -3671,7 +3671,7 @@ packages:
       '@material/mwc-menu': 0.27.0
       '@material/mwc-notched-outline': 0.27.0
       '@material/select': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3681,7 +3681,7 @@ packages:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       '@material/switch': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3690,7 +3690,7 @@ packages:
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-textfield': 0.27.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -3704,7 +3704,7 @@ packages:
       '@material/mwc-line-ripple': 0.27.0
       '@material/mwc-notched-outline': 0.27.0
       '@material/textfield': 14.0.0-canary.53b3cad2f.0
-      lit: 3.0.2
+      lit: 3.1.0
       tslib: 2.6.2
     dev: false
 
@@ -11151,10 +11151,16 @@ packages:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.2
       '@lit/reactive-element': 2.0.1
-      lit-html: 3.0.2
+      lit-html: 3.1.0
 
   /lit-html@3.0.2:
     resolution: {integrity: sha512-Q1A5lHza3bnmxoWJn6yS6vQZQdExl4fghk8W1G+jnAEdoFNYo5oeBBb/Ol7zSEdKd3TR7+r0zsJQyuWEVguiyQ==}
+    dependencies:
+      '@types/trusted-types': 2.0.4
+    dev: false
+
+  /lit-html@3.1.0:
+    resolution: {integrity: sha512-FwAjq3iNsaO6SOZXEIpeROlJLUlrbyMkn4iuv4f4u1H40Jw8wkeR/OUXZUHUoiYabGk8Y4Y0F/rgq+R4MrOLmA==}
     dependencies:
       '@types/trusted-types': 2.0.4
 
@@ -11164,6 +11170,14 @@ packages:
       '@lit/reactive-element': 2.0.1
       lit-element: 4.0.1
       lit-html: 3.0.2
+    dev: false
+
+  /lit@3.1.0:
+    resolution: {integrity: sha512-rzo/hmUqX8zmOdamDAeydfjsGXbbdtAFqMhmocnh2j9aDYqbu0fjXygjCa0T99Od9VQ/2itwaGrjZz/ZELVl7w==}
+    dependencies:
+      '@lit/reactive-element': 2.0.1
+      lit-element: 4.0.1
+      lit-html: 3.1.0
 
   /load-json-file@4.0.0:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}

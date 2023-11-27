@@ -26,8 +26,9 @@ export class PersonSelectEvent extends CustomEvent<PersonSelectEventDetail> {
 export class PersonSelectController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
-  public _listItems: Array<string> = [];
-  public selectedItems: Set<string> = new Set();
+
+  public listItems: Array<PersonInfo> = [];
+  public selectedIds: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
   #host: PersonSelectElement;
@@ -113,21 +114,18 @@ export class PersonSelectController implements ReactiveController {
     }
 
     if (this.#host.multiple) {
-      if (this.selectedItems.has(azureId)) {
-        this.selectedItems.delete(azureId);
+      if (this.selectedIds.has(azureId)) {
+        this.selectedIds.delete(azureId);
       } else {
-        this.selectedItems.add(azureId);
-        this.#host.value = dataSource?.name ?? '';
+        this.selectedIds.add(azureId);
       }
     } else {
       this.isOpen = false;
-      if (this.selectedItems.has(azureId)) {
-        this.#host.value = '';
-        this.selectedItems.clear();
+      if (this.selectedIds.has(azureId)) {
+        this.selectedIds.clear();
       } else {
-        this.selectedItems.clear();
-        this.selectedItems.add(azureId);
-        this.#host.value = dataSource?.name ?? '';
+        this.selectedIds.clear();
+        this.selectedIds.add(azureId);
       }
     }
 
@@ -143,6 +141,28 @@ export class PersonSelectController implements ReactiveController {
 
     /* Refresh host */
     this.#host.requestUpdate();
+  }
+
+  public deSelectPerson(person: PersonInfo): boolean {
+    if (!person?.azureId || !this.selectedIds.has(person.azureId)) {
+      return false;
+    }
+
+    this.selectedIds.delete(person.azureId);
+    this.#host.textInputElement.focus();
+
+    /* Dispatch custom select event with our details */
+    this.#host.dispatchEvent(
+      new PersonSelectEvent({
+        detail: {
+          selected: person,
+        },
+        bubbles: true,
+      }),
+    );
+
+    this.#host.requestUpdate();
+    return true;
   }
 
   /**
@@ -171,8 +191,8 @@ export class PersonSelectController implements ReactiveController {
     }
 
     this.#host.value = '';
-    this.selectedItems.clear();
-    // this.#search = '';
+    this.selectedIds.clear();
+
     this.#host.search = '';
 
     /* also runs task */
@@ -181,6 +201,16 @@ export class PersonSelectController implements ReactiveController {
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
       this.#externaCloseHandler(e);
+    }
+
+    if (this.selectedIds.size) {
+      // TODO add support for multiple
+      this.selectedIds.forEach((azureId) => {
+        const deSelectedPerson = this.listItems.find((p) => p.azureId === azureId);
+        if (deSelectedPerson) {
+          this.deSelectPerson(deSelectedPerson);
+        }
+      });
     }
 
     /* fire event for sdd closed */
@@ -196,8 +226,6 @@ export class PersonSelectController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
-    // toogle close icon
-    this.#host.trailingIcon = state ? 'close' : '';
 
     /* Close on escape key */
     if (this._isOpen) {

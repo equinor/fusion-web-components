@@ -1,15 +1,17 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult, css } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import { queryAll } from 'lit/decorators/query-all.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
+import { cache } from 'lit/directives/cache.js';
 
 import { PersonSelectController } from './controller';
+import { styles as psStyles } from './element.css';
 import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
 
-import { SearchableDropdownControllerHost, sddStyles } from '@equinor/fusion-wc-searchable-dropdown';
+import { SearchableDropdownControllerHost } from '@equinor/fusion-wc-searchable-dropdown';
 
 import type { PersonInfo } from '../../types';
 
@@ -17,11 +19,14 @@ import AvatarElement from '@equinor/fusion-wc-avatar';
 import IconElement from '@equinor/fusion-wc-icon';
 import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
-
+import { PersonListItemElement } from '../list-item';
+import { IconButtonElement } from '@equinor/fusion-wc-button';
 AvatarElement;
 IconElement;
 ListElement;
 TextInputElement;
+PersonListItemElement;
+IconButtonElement;
 
 // TODO !!!! clean up when extending fwc-searchable-dropdown
 
@@ -58,18 +63,7 @@ export class PersonSelectElement
   implements SearchableDropdownControllerHost, PersonSearchControllerHost
 {
   /* style object css */
-  // TODO - maybe this styling should be changed in parent!
-  static styles: CSSResult[] = [
-    ...sddStyles,
-    css`
-      fwc-list {
-        --fwc-list-side-padding: 0.5rem;
-      }
-      fwc-list-item {
-        --fwc-list-item-vertical-padding: 0;
-      }
-    `,
-  ];
+  static styles: CSSResult[] = psStyles;
 
   /**
    * Label passed to the fwc-text-input component
@@ -97,7 +91,7 @@ export class PersonSelectElement
 
   /* The trailing icon to display in fwc-textinput */
   @property({ attribute: false, state: true })
-  trailingIcon = '';
+  trailingIcon = 'close';
 
   /* The icon string to render in result list items on the meta slot */
   @property()
@@ -148,6 +142,7 @@ export class PersonSelectElement
   protected controllers = {
     element: new PersonSelectController(this),
   };
+
   /**
    * Render the menu if state is open
    * @returns HTMLTemplateResult
@@ -174,7 +169,8 @@ export class PersonSelectElement
             `;
           }
 
-          this.controllers.element._listItems = result.map((item) => item.azureId);
+          // apend items to
+          this.controllers.element.listItems = result.map((item) => item);
 
           return html`
             ${repeat(
@@ -184,7 +180,7 @@ export class PersonSelectElement
                 return html`
                   <fwc-list-item
                     graphic="avatar"
-                    .activated=${this.controllers.element.selectedItems.has(item.azureId)}
+                    .activated=${this.controllers.element.selectedIds.has(item.azureId)}
                     .dataSource=${item}
                   >
                     <fwc-person-avatar
@@ -194,7 +190,6 @@ export class PersonSelectElement
                       slot="graphic"
                       trigger="none"
                     ></fwc-person-avatar>
-
                     <span class="item-text">
                       ${item.name && html`<span class="item-title">${item.name}</span>`}
                       ${item.mail && html`<span class="item-subtitle" slot="secondary">${item.mail}</span>`}
@@ -216,14 +211,47 @@ export class PersonSelectElement
     </fwc-list>`;
   }
 
+  protected selectedPersonsTemplate(): HTMLTemplateResult {
+    const { selectedIds } = this.controllers.element;
+    /* Empty template when no person is selected */
+    if (selectedIds.size < 1 || this.controllers.element.isOpen) {
+      return html``;
+    }
+
+    // convert selected azureId to PeronInfo for returning to PersonSelectEvent
+    const people = Array.from(selectedIds).map((sel) => ({
+      azureId: sel,
+    }));
+
+    /* show all selected persons */
+    return html`${cache(
+      html`<ul id="selected-persons">
+        ${repeat(
+          people,
+          (item) => item.azureId,
+          (item) => {
+            return html`<li>
+              <fwc-person-list-item
+                size="small"
+                azureid="${item.azureId}"
+                @click=${() => (this.controllers.element.isOpen = true)}
+              ></fwc-person-list-item>
+            </li>`;
+          },
+        )}
+      </ul>`,
+    )}`;
+  }
+
   /**
-   * The main render function
+   * The main render functions
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
     const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const disabled = this.disabled ? true : undefined;
+
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controllers.element.isOpen,
@@ -248,15 +276,18 @@ export class PersonSelectElement
             @focus=${() => (this.controllers.element.isOpen = true)}
             @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
+          ${this.selectedPersonsTemplate()}
           <slot name="trailing">
             <span slot="trailing">
-              <fwc-icon
-                tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
-                class="trailing interactive"
-                icon=${this.trailingIcon}
-                @click=${this.controllers.element.closeClick}
-                @keydown=${this.controllers.element.closeClick}
-              ></fwc-icon>
+              ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen
+                ? html`<fwc-icon
+                    tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
+                    class="trailing interactive"
+                    icon=${this.trailingIcon}
+                    @click=${this.controllers.element.closeClick}
+                    @keydown=${this.controllers.element.closeClick}
+                  ></fwc-icon>`
+                : html``}
             </span>
           </slot>
         </div>

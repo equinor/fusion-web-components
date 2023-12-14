@@ -299,8 +299,8 @@ importers:
   packages/icon:
     dependencies:
       '@equinor/eds-icons':
-        specifier: ^0.19.1
-        version: 0.19.3
+        specifier: ^0.20.0
+        version: 0.20.0
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../core
@@ -2812,8 +2812,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@equinor/eds-icons@0.19.3:
-    resolution: {integrity: sha512-Sh0W01PrwXPCi8/p9YKj0qKNtRU9R/xYJORinIzsNNRllpiu9wvuGAsQNE0gQaDDnrprsiRBH3+MdMSRXVs3Wg==}
+  /@equinor/eds-icons@0.20.0:
+    resolution: {integrity: sha512-Xk+Ghx46iBBPHF1zmesPlmSqivoxdKlBEuwvo2v5c6T+quQ6twkkIri2qMqkCTuqe2bgmlAvsCw1iGpUoQlr3A==}
     engines: {node: '>=10.0.0', pnpm: '>=4'}
     dev: false
 

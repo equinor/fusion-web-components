@@ -5,7 +5,7 @@ import { ExplicitEventTarget } from '@equinor/fusion-wc-searchable-dropdown';
 import { PersonInfo } from '../../types';
 
 type PersonSelectEventDetail = {
-  selected: PersonInfo;
+  selected: PersonInfo | null;
 };
 
 export class PersonSelectEvent extends CustomEvent<PersonSelectEventDetail> {
@@ -113,6 +113,8 @@ export class PersonSelectController implements ReactiveController {
       return;
     }
 
+    let personData = dataSource || null;
+
     if (this.#host.multiple) {
       if (this.selectedIds.has(azureId)) {
         this.selectedIds.delete(azureId);
@@ -123,6 +125,7 @@ export class PersonSelectController implements ReactiveController {
       this.isOpen = false;
       if (this.selectedIds.has(azureId)) {
         this.selectedIds.clear();
+        personData = null;
       } else {
         this.selectedIds.clear();
         this.selectedIds.add(azureId);
@@ -133,7 +136,7 @@ export class PersonSelectController implements ReactiveController {
     this.#host.dispatchEvent(
       new PersonSelectEvent({
         detail: {
-          selected: dataSource!,
+          selected: personData,
         },
         bubbles: true,
       }),
@@ -155,7 +158,7 @@ export class PersonSelectController implements ReactiveController {
     this.#host.dispatchEvent(
       new PersonSelectEvent({
         detail: {
-          selected: person,
+          selected: null,
         },
         bubbles: true,
       }),
@@ -191,7 +194,6 @@ export class PersonSelectController implements ReactiveController {
     }
 
     this.#host.value = '';
-    this.selectedIds.clear();
 
     this.#host.search = '';
 

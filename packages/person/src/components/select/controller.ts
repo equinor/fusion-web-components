@@ -109,7 +109,7 @@ export class PersonSelectController implements ReactiveController {
     const { azureId } = dataSource ?? {};
 
     if (!azureId) {
-      console.warn('This should not be spossible, missing dataSource?');
+      console.warn('This should not be possible, is dataSource missing?');
       return;
     }
 

@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- [#1278](https://github.com/equinor/fusion-web-components/pull/1278) [`eadc3fb`](https://github.com/equinor/fusion-web-components/commit/eadc3fbf303a5379f0da7ccbd6f40fd50ed51453) Thanks [@eikeland](https://github.com/eikeland)! - unselected person shows as null in select event
+
 ## 2.3.0
 
 ### Minor Changes

@@ -22,6 +22,7 @@ import { IconElement, IconType } from '@equinor/fusion-wc-icon';
  */
 export interface SearchableDropdownProps {
   autofocus?: boolean;
+  selectTextOnFocus?: boolean;
   disabled?: boolean;
   dropdownHeight?: string;
   graphic?: string;

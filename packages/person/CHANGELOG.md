@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`4c8b130`](https://github.com/equinor/fusion-web-components/commit/4c8b130d828bf20140c3ba190a40ac4fb3687139)]:
+  - @equinor/fusion-wc-searchable-dropdown@3.7.0
+
 ## 2.3.1
 
 ### Patch Changes

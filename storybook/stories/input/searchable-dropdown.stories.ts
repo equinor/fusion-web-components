@@ -9,8 +9,6 @@ import cem from '@equinor/fusion-wc-searchable-dropdown/lib/custom-elements.json
 import { faker } from '@faker-js/faker';
 import { searchableDropdownProviderDecorator } from './searchable-dropdown-provider';
 
-console.log(cem);
-
 SearchableDropdownElement;
 
 faker.seed(1);
@@ -30,6 +28,7 @@ const render = (props: SearchableDropdownProps) => html`
     placeholder="${ifDefined(props.placeholder)}"
     leadingIcon="${ifDefined(props.leadingIcon)}"
     multiple="${ifDefined(props.multiple)}"
+    select-text-on-focus="${ifDefined(props.selectTextOnFocus)}"
   ></fwc-searchable-dropdown>
 `;
 
@@ -56,6 +55,11 @@ export const LeadingIcon: Story = {
 export const Multiple: Story = {
   ...Default,
   render: (props) => render({ ...props, multiple: true }),
+};
+
+export const SelectTextOnFocus: Story = {
+  ...Default,
+  render: (props) => render({ ...props, selectTextOnFocus: true }),
 };
 
 export default meta;

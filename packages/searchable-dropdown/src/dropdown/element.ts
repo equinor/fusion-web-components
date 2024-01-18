@@ -38,6 +38,7 @@ import { sddStyles } from './element.css';
  * @csspart list-item Styling for the list-items
  *
  * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
+ * @property {boolean} select-text-on-focus Should the text in fwc-textInput select on focus
  * @property {boolean} disabled disable TextInput element
  * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
@@ -120,6 +121,9 @@ export class SearchableDropdownElement
 
   @property()
   autofocus = false;
+
+  @property({ type: Boolean, attribute: 'select-text-on-focus', reflect: true })
+  selectTextOnFocus = false;
 
   @query('fwc-textinput')
   textInputElement: TextInputElement | undefined;
@@ -289,7 +293,10 @@ export class SearchableDropdownElement
             icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
-            @focus=${() => (this.controller.isOpen = true)}
+            @focus=${() => {
+              this.controller.isOpen = true;
+              this.selectTextOnFocus && this.textInputElement?.select();
+            }}
             @keyup=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">

@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.7.0
+
+### Minor Changes
+
+- [#1284](https://github.com/equinor/fusion-web-components/pull/1284) [`4c8b130`](https://github.com/equinor/fusion-web-components/commit/4c8b130d828bf20140c3ba190a40ac4fb3687139) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add attr/prop `select-text-on-focus` for fwc-searchable-dropdown
+
 ## 4.6.1
 
 ### Patch Changes

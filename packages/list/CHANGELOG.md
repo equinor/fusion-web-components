@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [#1310](https://github.com/equinor/fusion-web-components/pull/1310) [`69c55ae`](https://github.com/equinor/fusion-web-components/commit/69c55ae9d183c841470ddddafb29c337643ec04a) Thanks [@eikeland](https://github.com/eikeland)! - Export components from fwc-list
+
 ## 1.1.0
 
 ### Minor Changes

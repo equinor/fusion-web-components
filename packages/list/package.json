@@ -11,6 +11,9 @@
   },
   "exports": {
     ".": "./lib/index.js",
+    "./list-item": "./lib/list-item/index.js",
+    "./check-list-item": "./lib/check-list-item/index.js",
+    "./radio-list-item": "./lib/radio-list-item/index.js",
     "./package.json": "./package.json",
     "./custom-elements.json": "./lib/custom-elements.json",
     "./README.md": "./README.md",

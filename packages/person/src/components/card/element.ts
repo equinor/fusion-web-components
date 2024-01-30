@@ -10,6 +10,7 @@ import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-p
 import { PersonDetailTask, PersonDetailControllerHost } from '../../tasks/person-detail-task';
 
 import './element.manager';
+import delveIcon from './delve.svg';
 
 import Avatar from '@equinor/fusion-wc-avatar';
 import Badge, { BadgeColor, BadgeElementProps } from '@equinor/fusion-wc-badge';
@@ -103,6 +104,56 @@ export class PersonCardElement
    */
   protected renderJobTitle(details: CardData): TemplateResult {
     return html`${details.jobTitle ? html`<div class="person-card__jobtitle">${details.jobTitle}</div>` : null}`;
+  }
+
+  /**
+   * Render the icon bar
+   */
+  protected renderIconBar(details: CardData): TemplateResult {
+    return html`
+      <slot name="icon-bar">
+        <fwc-icon-button
+          title="Open profile"
+          href="/apps/people-search/person?user=${details.azureId}"
+          icon="home"
+          rounded
+          size="small"
+        ></fwc-icon-button>
+
+        <fwc-icon-button
+          title="Email: ${details.mail}"
+          href="mailto:${details.mail}"
+          icon="email"
+          rounded
+          size="small"
+        ></fwc-icon-button>
+
+        <fwc-icon-button
+          title="Chat in Teams"
+          href="https://teams.microsoft.com/l/chat/0/0?users=${details.mail}"
+          icon="comment_chat"
+          rounded
+          size="small"
+        ></fwc-icon-button>
+
+        <fwc-icon-button
+          title="Call in Teams"
+          href="https://teams.microsoft.com/l/call/0/0?users=${details.mail}"
+          icon="call"
+          rounded
+          size="small"
+        ></fwc-icon-button>
+
+        <fwc-icon-button
+          title="Delve"
+          href="https://eur.delve.office.com/?v=work&u=${details.azureId}"
+          rounded
+          size="small"
+        >
+          ${delveIcon}
+        </fwc-icon-button>
+      </slot>
+    `;
   }
 
   /**
@@ -327,6 +378,7 @@ export class PersonCardElement
                   ${details.jobTitle && html`<div class="person-card__jobtitle">${details.jobTitle}</div>`}
                 </div>
               </div>
+              <div class="person-card__iconbar">${this.renderIconBar(details)}</div>
               <div class="person-card__content" style="max-height:${this.contentHeight}px">
                 <div class="info-item">
                   <div class="info-item_heading">Contact</div>

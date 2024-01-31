@@ -26,6 +26,7 @@ Skeleton;
  * @property {string} azureId - Azure unique id for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} clickable - Make whole List Item clickable
+ * @property {boolean} plain - Remove border and border-radius
  *
  */
 
@@ -81,6 +82,10 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   /** Clickable List Item */
   @property({ type: Boolean, reflect: true })
   clickable = false;
+
+  /** Remove border and radius */
+  @property({ type: Boolean, reflect: true })
+  plain = false;
 
   /**
    * Renders person name
@@ -142,7 +147,11 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     }
     // TODO why are title and department spaced, if to inline elements, wrap it <span>
     return html`
-      <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
+      <div
+        class="person-list__item ${this.plain ? '' : 'person-list__item-frame'} ${this.clickable
+          ? 'person-list__item-clickable'
+          : ''}"
+      >
         ${this.tasks.info.render({
           complete: (details) => {
             return html`<div class="person-list__about">

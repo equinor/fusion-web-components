@@ -17,15 +17,17 @@ const style: CSSResult = css`
     justify-content: space-between;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
     background-color: var(--fwc-person-list-item-background);
-    border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
     padding: calc(
         ${unsafeCSS(theme.spacing.comfortable.medium_small.getVariable('padding'))} * var(--content-resize, 1)
       )
       calc(${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} * var(--content-resize, 1));
-    border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     transition: box-shadow 0.2s ease;
     -webkit-transition: box-shadow 0.2s ease;
+  }
+  .person-list__item-frame {
+    border: 1px solid;
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
   }
   .person-list__item.person-list__item-clickable:hover {
     box-shadow: ${unsafeCSS(theme.elevation.raised.getVariable('shadow'))};

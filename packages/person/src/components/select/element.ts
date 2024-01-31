@@ -232,6 +232,7 @@ export class PersonSelectElement
           (item) => {
             return html`<li>
               <fwc-person-list-item
+                plain
                 size="small"
                 azureid="${item.azureId}"
                 @click=${() => (this.controllers.element.isOpen = true)}

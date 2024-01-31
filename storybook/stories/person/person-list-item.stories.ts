@@ -46,4 +46,9 @@ export const Sizes: Story = {
       )}`,
 };
 
+export const Plain: Story = {
+  ...Default,
+  render: () => html`<fwc-person-list-item plain azureId=${faker.string.uuid()}></fwc-person-list-item>`,
+};
+
 export default meta;

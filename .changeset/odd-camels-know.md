@@ -3,4 +3,6 @@
 '@equinor/fusion-wc-storybook': patch
 ---
 
-**ListItem - new feature**: `plain` property added for removing border and border-radius from list item component
+**ListItem - new feature**: `outlined` property added for adding border and border-radius from list item component
+
+- Use EDS tokens instead of theme

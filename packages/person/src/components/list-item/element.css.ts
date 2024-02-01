@@ -45,7 +45,7 @@ const style: CSSResult = css`
   }
   .person-list__heading {
     font-size: calc(${unsafeCSS(tokens.typography.heading.h6.fontSize)} * var(--content-resize, 1));
-    line-height: calc(${unsafeCSS(tokens.typography.heading.h6.lineHeight)} * var(--content-resize, 0.8));
+    line-height: calc(${unsafeCSS(tokens.typography.heading.h6.lineHeight)};
   }
   .person-list__sub-heading {
     font-size: calc(${unsafeCSS(tokens.typography.paragraph.caption.fontSize)} * var(--content-resize, 1));

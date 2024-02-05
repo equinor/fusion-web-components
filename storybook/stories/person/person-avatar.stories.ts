@@ -29,6 +29,7 @@ const render = (props: PersonAvatarElementProps) => html`
     size="${ifDefined(props.size)}"
     pictureSrc=${ifDefined(props.pictureSrc)}
     azureId=${ifDefined(props.azureId)}
+    ?disabled=${ifDefined(props.disabled)}
   ></fwc-person-avatar>
 `;
 
@@ -45,6 +46,11 @@ export const Sizes: Story = {
     html`${(['small', 'medium', 'large'] as AvatarElementProps['size'][])
       .map((size) => ({ ...props, size }))
       .map(render)}`,
+};
+
+export const Disabled: Story = {
+  ...Default,
+  render: (props) => render({ ...props, disabled: true }),
 };
 
 export default meta;

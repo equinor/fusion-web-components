@@ -347,7 +347,7 @@ export class PersonAvatarElement
    * Handle on click.
    */
   protected handleOnClick(e: MouseEvent): void {
-    if (this.trigger === 'click') {
+    if (this.trigger === 'click' && !this.disabled) {
       PersonAvatarElement.hideAllFloating();
 
       if (
@@ -363,7 +363,7 @@ export class PersonAvatarElement
   }
 
   protected handleMouseOver(_e: MouseEvent): void {
-    if (this.trigger === 'hover' && this.isFloatingOpen === false) {
+    if (this.trigger === 'hover' && this.isFloatingOpen === false && !this.disabled) {
       PersonAvatarElement.hideAllFloating();
 
       const timeout = setTimeout(() => {
@@ -381,7 +381,7 @@ export class PersonAvatarElement
   }
 
   protected handleMouseOut(_e: MouseEvent): void {
-    if (this.trigger === 'hover' && this.isFloatingOpen) {
+    if (this.trigger === 'hover' && this.isFloatingOpen && !this.disabled) {
       const timeoutMouseOverAssignerFloating = setTimeout(() => {
         PersonAvatarElement.hideAllFloating();
 

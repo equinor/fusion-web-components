@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- [#1350](https://github.com/equinor/fusion-web-components/pull/1350) [`f1ac6b8`](https://github.com/equinor/fusion-web-components/commit/f1ac6b88179f292b84d3f2224986259f286d466b) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add fix to prevent person-card from showing when the person-avatar is set to disabled.
+
 ## 2.3.3
 
 ### Patch Changes

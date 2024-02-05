@@ -46,4 +46,20 @@ export const Sizes: Story = {
       )}`,
 };
 
+export const Outlined: Story = {
+  ...Default,
+  render: (props) =>
+    html`${(['small', 'medium', 'large'] as PersonListItemElementProps['size'][])
+      .map((size) => ({ ...props, size }))
+      .map(
+        (props) => html`
+          <fwc-person-list-item
+            outlined
+            size="${ifDefined(props.size)}"
+            azureId=${faker.string.uuid()}
+          ></fwc-person-list-item>
+        `,
+      )}`,
+};
+
 export default meta;

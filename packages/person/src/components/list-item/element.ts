@@ -1,4 +1,5 @@
 import { CSSResult, html, LitElement, TemplateResult } from 'lit';
+import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
@@ -26,6 +27,7 @@ Skeleton;
  * @property {string} azureId - Azure unique id for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} clickable - Make whole List Item clickable
+ * @property {boolean} outlined - Add border and border-radius
  *
  */
 
@@ -82,6 +84,10 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   @property({ type: Boolean, reflect: true })
   clickable = false;
 
+  /** Add border and border radius */
+  @property({ type: Boolean, reflect: true })
+  outlined = false;
+
   /**
    * Renders person name
    */
@@ -129,6 +135,14 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     />`;
   }
 
+  /** Get main classes based on props */
+  protected getMainClasses(): ClassInfo {
+    return {
+      'person-list__item-outline': this.outlined,
+      'person-list__item-clickable': this.clickable,
+    };
+  }
+
   /**
    * Renders the error
    */
@@ -142,7 +156,7 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     }
     // TODO why are title and department spaced, if to inline elements, wrap it <span>
     return html`
-      <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
+      <div class="person-list__item ${classMap(this.getMainClasses())}">
         ${this.tasks.info.render({
           complete: (details) => {
             return html`<div class="person-list__about">

@@ -160,12 +160,6 @@ export class PersonSelectController implements ReactiveController {
       }
     }
 
-    /* Make sure input is clean */
-    if (personData === null) {
-      this.#host.search = '';
-      this.#host.value = '';
-    }
-
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
       new PersonSelectEvent({
@@ -177,7 +171,7 @@ export class PersonSelectController implements ReactiveController {
     );
 
     /* clear component after selection */
-    if (this.#host.selectedPerson === null) {
+    if (personData === null || this.#host.selectedPerson === null) {
       this.clearInput();
     }
   }

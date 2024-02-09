@@ -51,6 +51,28 @@ export class PersonSelectController implements ReactiveController {
     document.body.addEventListener('click', this._handleGlobalClick);
   }
 
+  /**
+   * Resolve person from selectedPerson property.
+   * Runs on host updated when att is changed
+   */
+  public attrSelectPerson(select: string | null | undefined) {
+    if (select === undefined) {
+      return;
+    }
+
+    if (select !== null) {
+      this.#host.search = select;
+      this.#host.value = select;
+      this.isOpen = true;
+      /* make sure the list is rendered before selecting */
+      requestAnimationFrame(() => {
+        this.#setSelected(0);
+      });
+    } else {
+      this.clear();
+    }
+  }
+
   public hostDisconnected(): void {
     /* remove global event listeners */
     document.body.removeEventListener('click', this._handleGlobalClick);
@@ -100,14 +122,20 @@ export class PersonSelectController implements ReactiveController {
       return;
     }
 
-    const selectedElement = this.#host.listItems[event.detail.index];
+    this.#setSelected(event.detail.index);
+
+    /* Refresh host */
+    this.#host.requestUpdate();
+  }
+
+  #setSelected(index: number): void {
+    const selectedElement = this.#host.listItems[index];
     if (!selectedElement) {
-      console.debug('Missing element at index:', event.detail.index);
+      console.debug('Missing element at index:', index);
     }
 
     const { dataSource } = selectedElement;
     const { azureId } = dataSource ?? {};
-
     if (!azureId) {
       console.warn('This should not be possible, is dataSource missing?');
       return;
@@ -132,6 +160,12 @@ export class PersonSelectController implements ReactiveController {
       }
     }
 
+    /* Make sure input is clean */
+    if (personData === null) {
+      this.#host.search = '';
+      this.#host.value = '';
+    }
+
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
       new PersonSelectEvent({
@@ -142,17 +176,32 @@ export class PersonSelectController implements ReactiveController {
       }),
     );
 
-    /* Refresh host */
-    this.#host.requestUpdate();
+    /* clear component after selection */
+    if (this.#host.selectedPerson === null) {
+      this.clearInput();
+    }
   }
 
-  public deSelectPerson(person: PersonInfo): boolean {
+  public deSelectPerson(person?: PersonInfo): boolean {
     if (!person?.azureId || !this.selectedIds.has(person.azureId)) {
       return false;
     }
 
-    this.selectedIds.delete(person.azureId);
-    this.#host.textInputElement.focus();
+    this.clear();
+
+    this.#host.requestUpdate();
+    return true;
+  }
+
+  public clearInput() {
+    this.selectedIds.clear();
+    this.#host.value = '';
+    this.#host.search = '';
+    this.#host.textInputElement.value = '';
+  }
+
+  public clear() {
+    this.clearInput();
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
@@ -163,9 +212,6 @@ export class PersonSelectController implements ReactiveController {
         bubbles: true,
       }),
     );
-
-    this.#host.requestUpdate();
-    return true;
   }
 
   /**
@@ -187,17 +233,11 @@ export class PersonSelectController implements ReactiveController {
       }
     }
 
-    /* needed to clear user input */
     if (this.#host.textInputElement) {
-      this.#host.textInputElement.value = '';
       this.#host.textInputElement.blur();
     }
 
-    this.#host.value = '';
-
-    this.#host.search = '';
-
-    /* also runs task */
+    /* also close dropdown */
     this.isOpen = false;
 
     /* call resolvers handleclick if defined */
@@ -206,13 +246,11 @@ export class PersonSelectController implements ReactiveController {
     }
 
     if (this.selectedIds.size) {
-      // TODO add support for multiple
-      this.selectedIds.forEach((azureId) => {
-        const deSelectedPerson = this.listItems.find((p) => p.azureId === azureId);
-        if (deSelectedPerson) {
-          this.deSelectPerson(deSelectedPerson);
-        }
-      });
+      // clear input and deselect
+      this.clear();
+    } else {
+      // clear input
+      this.clearInput();
     }
 
     /* fire event for sdd closed */

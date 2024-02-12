@@ -9,7 +9,7 @@ import { IntersectionController } from '@lit-labs/observers/intersection-control
 import { AvatarData, PersonAvatarElementProps } from './types';
 import { PersonAccountType, PersonAvailability } from '../../types';
 import '../card';
-import { computePosition, flip, shift, offset } from '@floating-ui/dom';
+import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 import style from './element.css';
 import { PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
 import { PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
@@ -160,19 +160,40 @@ export class PersonAvatarElement
    */
   static openedPersonAvatars: PersonAvatarElement[] = [];
 
-  async updated(props: PropertyValues) {
-    if (props.has('isFloatingOpen') && this.isFloatingOpen && (await this.floating) instanceof HTMLElement) {
-      await this.updateComplete;
-      computePosition(await this.root, await this.floating, {
+  async handleFloatingUi(): Promise<VoidFunction> {
+    const root = await this.root;
+    const floating = await this.floating;
+
+    const update = () => {
+      computePosition(root, floating, {
         placement: 'bottom-start',
-        middleware: [offset(5), flip(), shift({ padding: 5 })],
+        middleware: [
+          offset(5),
+          autoPlacement({
+            allowedPlacements: ['bottom-start', 'top-start'],
+          }),
+          shift({ padding: 5 }),
+        ],
       }).then(async ({ x, y }) => {
-        // use 3d translate
-        Object.assign((await this.floating).style, {
+        Object.assign(floating.style, {
           left: `${x}px`,
           top: `${y}px`,
         });
       });
+    };
+    return autoUpdate(root, floating, update);
+  }
+
+  cleanup?: () => void;
+
+  async updated(props: PropertyValues) {
+    if (props.has('isFloatingOpen')) {
+      if (this.isFloatingOpen) {
+        this.cleanup = await this.handleFloatingUi();
+      } else if (this.cleanup) {
+        this.cleanup();
+        delete this.cleanup;
+      }
     }
   }
 

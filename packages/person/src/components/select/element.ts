@@ -14,37 +14,36 @@ import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person
 import { SearchableDropdownControllerHost } from '@equinor/fusion-wc-searchable-dropdown';
 
 import type { PersonInfo } from '../../types';
+import type { SelectedPersonProp } from './index';
 
-import AvatarElement from '@equinor/fusion-wc-avatar';
 import IconElement from '@equinor/fusion-wc-icon';
 import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
 import { PersonListItemElement } from '../list-item';
-import { IconButtonElement } from '@equinor/fusion-wc-button';
-AvatarElement;
+import { PersonAvatarElement } from '../avatar';
 IconElement;
 ListElement;
 TextInputElement;
 PersonListItemElement;
-IconButtonElement;
+PersonAvatarElement;
 
 // TODO !!!! clean up when extending fwc-searchable-dropdown
-
 /**
  * Element for SearchableDropdown
  * @tag fwc-person-select
  *
- * @property {boolean} autofocus Focus the fwx-textInput on hostconnect
- * @property {boolean} disabled disable TextInput element
- * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
- * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the graphic property on the SearchableDropdownResultItem
- * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
- * @property {string} leadingIcon Leading Icon to display in fwc-text-input
- * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
- * @property {string} multiple Able to select multiple items
- * @property {string} selectedId ID that should be highlighted in dropdown
- * @property {string} value value for TextInput element
- * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
+ * @property { boolean } autofocus Focus the fwx-textInput on hostconnect
+ * @property { boolean } disabled disable TextInput element
+ * @property { string } dropdownHeight Sets max-height of list so user can scroll trough results
+ * @property { string } graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the graphic property on the SearchableDropdownResultItem
+ * @property { string } initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @property { string } leadingIcon Leading Icon to display in fwc-text-input
+ * @property { string } meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
+ * @property { string } multiple Able to select multiple items
+ * @property { string } selectedId ID that should be highlighted in dropdown
+ * @property { PersonInfo | PersonInfo.azureId | PersonInfo.upn | null | undefined } selectedPerson Selected Person to resolve or clear afer each selection
+ * @property { string } value TextInput value wich triggers personResolver
+ * @property { 'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled' } variant Set variant to header|page style
  *
  * @fires action Fires when a selection has been made on the fwc-list element
  *
@@ -60,7 +59,7 @@ IconButtonElement;
  */
 export class PersonSelectElement
   extends LitElement
-  implements SearchableDropdownControllerHost, PersonSearchControllerHost
+  implements SearchableDropdownControllerHost, PersonSearchControllerHost, SelectedPersonProp
 {
   /* style object css */
   static styles: CSSResult[] = psStyles;
@@ -120,8 +119,24 @@ export class PersonSelectElement
   @property()
   disabled = false;
 
-  @property()
-  selectedId = '';
+  @property({
+    converter(value) {
+      /* converter to allow user to pass personobject as property */
+      if (value?.length) {
+        try {
+          return JSON.parse(value);
+        } catch {
+          if (value?.match('@')) {
+            return { upn: value };
+          } else if (value?.length) {
+            return { azureId: value };
+          }
+        }
+      }
+      return null;
+    },
+  })
+  selectedPerson: PersonInfo | null | undefined = undefined;
 
   @property()
   autofocus = false;
@@ -142,6 +157,16 @@ export class PersonSelectElement
   protected controllers = {
     element: new PersonSelectController(this),
   };
+
+  updated(props: Map<string, string | null | undefined>) {
+    if (props.has('selectedPerson')) {
+      if (this.selectedPerson !== undefined) {
+        this.controllers.element.attrSelectPerson(
+          this.selectedPerson?.azureId ?? this.selectedPerson?.upn ?? (this.selectedPerson as null),
+        );
+      }
+    }
+  }
 
   /**
    * Render the menu if state is open

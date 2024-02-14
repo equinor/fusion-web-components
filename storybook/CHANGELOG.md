@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.8.2
+
+### Patch Changes
+
+- [#1375](https://github.com/equinor/fusion-web-components/pull/1375) [`4875f40`](https://github.com/equinor/fusion-web-components/commit/4875f4063fdb9a3869010f565397404210def788) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add story for person-avatar to show avatar in each corner
+
 ## 4.8.1
 
 ### Patch Changes

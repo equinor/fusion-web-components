@@ -53,4 +53,16 @@ export const Disabled: Story = {
   render: (props) => render({ ...props, disabled: true }),
 };
 
+export const CornerPositions: Story = {
+  ...Default,
+  render: (props) => html`
+    <div style="height: 85vh;">
+      <div style="display: flex; justify-content: space-between;">${render(props)}${render(props)}</div>
+      <div style="display: flex; justify-content: space-between; height: 100%; align-items: flex-end;">
+        ${render(props)}${render(props)}
+      </div>
+    </div>
+  `,
+};
+
 export default meta;

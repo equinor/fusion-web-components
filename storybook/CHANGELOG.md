@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.8.1
+
+### Patch Changes
+
+- [#1366](https://github.com/equinor/fusion-web-components/pull/1366) [`f0a5bb3`](https://github.com/equinor/fusion-web-components/commit/f0a5bb337bd0bf5c9f75fa1ccbd6654ffe97f3ba) Thanks [@eikeland](https://github.com/eikeland)! - Add property `selectedPerson` to programmatically set or clear a person
+
 ## 4.8.0
 
 ### Minor Changes

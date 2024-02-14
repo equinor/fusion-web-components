@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- [#1375](https://github.com/equinor/fusion-web-components/pull/1375) [`4875f40`](https://github.com/equinor/fusion-web-components/commit/4875f4063fdb9a3869010f565397404210def788) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Fix placement to top if there is no space on bottom
+
 ## 2.5.0
 
 ### Minor Changes

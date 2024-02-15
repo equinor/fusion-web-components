@@ -49,6 +49,15 @@ const style: CSSResult = css`
     border-bottom: 1px solid;
     border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
   }
+  .person-card__iconbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--small-size-space);
+    padding: var(--small-size-space) var(--medium-size-space);
+    border-bottom: 1px solid;
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+  }
   .person-card__content {
     overflow-y: scroll;
     display: flex;

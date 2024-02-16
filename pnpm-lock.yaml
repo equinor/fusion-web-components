@@ -1020,8 +1020,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       filesize:
-        specifier: ^10.0.6
-        version: 10.0.12
+        specifier: ^10.1.0
+        version: 10.1.0
       lodash.camelcase:
         specifier: ^4.3.0
         version: 4.3.0
@@ -8202,8 +8202,8 @@ packages:
       minimatch: 5.1.6
     dev: false
 
-  /filesize@10.0.12:
-    resolution: {integrity: sha512-6RS9gDchbn+qWmtV2uSjo5vmKizgfCQeb5jKmqx8HyzA3MoLqqyQxN+QcjkGBJt7FjJ9qFce67Auyya5rRRbpw==}
+  /filesize@10.1.0:
+    resolution: {integrity: sha512-GTLKYyBSDz3nPhlLVPjPWZCnhkd9TrrRArNcy8Z+J2cqScB7h2McAzR6NBX6nYOoWafql0roY8hrocxnZBv9CQ==}
     engines: {node: '>= 10.4.0'}
     dev: true
 

@@ -16,7 +16,6 @@
   },
   "packageManager": "pnpm@8.0.0",
   "scripts": {
-    "prepare": "husky install",
     "start": "cd storybook && pnpm run dev",
     "clean": "pnpm clean:build && pnpm clean:node",
     "clean:build": "pnpm -r exec del-cli dist lib tsconfig.tsbuildinfo",
@@ -29,7 +28,7 @@
     "lint:report": "eslint --output-file eslint-report.log.json --format json packages/*/src",
     "test:pack": "pnpm -r pack --dry-run",
     "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
-    "changeset:publish": "changeset tag && lerna publish from-package --yes --no-verify-access"
+    "changeset:publish": "pnpm changeset tag && pnpm publish -r"
   },
   "keywords": [],
   "author": "",
@@ -38,7 +37,6 @@
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
     "@types/react": "^18.0.28",
-    "lerna": "^6.6.0",
     "prettier": "^3.0.2"
   },
   "devDependencies": {
@@ -48,16 +46,7 @@
     "del-cli": "^5.0.0",
     "eslint": "^8.36.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.3",
-    "lerna": "^6.6.0",
-    "lint-staged": "^15.0.1",
     "typescript": "^5.2.2"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "./packages/*/src": [

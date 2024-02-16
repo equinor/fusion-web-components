@@ -502,8 +502,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       '@lit-labs/task':
-        specifier: ^3.0.1
-        version: 3.0.2
+        specifier: ^3.1.0
+        version: 3.1.0
       lit:
         specifier: ^3.0.2
         version: 3.0.2
@@ -3225,12 +3225,6 @@ packages:
 
   /@lit-labs/ssr-dom-shim@1.1.2:
     resolution: {integrity: sha512-jnOD+/+dSrfTWYfSXBXlo5l5f0q1UuJo3tkbMDCYA2lKUYq79jaxqtGEvnRoh049nt1vdo1+45RinipU6FGY2g==}
-
-  /@lit-labs/task@3.0.2:
-    resolution: {integrity: sha512-X6d+KWZR3q1ZrXs/auM5PbZcW3B5RlpU4gqk/upstwTZM6JN19P6o9Qgo+qjovIDsUZsYnlGQqtdPBwPrKzLUA==}
-    dependencies:
-      '@lit/reactive-element': 1.6.3
-    dev: false
 
   /@lit-labs/task@3.1.0:
     resolution: {integrity: sha512-zMlcUtZeHDT83IiT2+CJBSoFvWDLnPEezhOCgqjxW4DmRHlbgd7jdft97T6dw4S4RvIETfI7OOyvubCV/EzTlg==}

@@ -53,6 +53,6 @@
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-wc-theme": "workspace:^",
     "@storybook/addon-mdx-gfm": "^7.5.0",
-    "@storybook/react-webpack5": "^7.5.0"
+    "@storybook/react-webpack5": "^7.6.16"
   }
 }

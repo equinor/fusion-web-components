@@ -17,7 +17,7 @@
     "@storybook/addon-essentials": "^7.5.0",
     "@storybook/blocks": "^7.5.0",
     "@storybook/builder-vite": "^7.5.0",
-    "@storybook/theming": "^7.5.0",
+    "@storybook/theming": "^7.6.16",
     "@storybook/web-components": "^7.5.0",
     "@storybook/web-components-vite": "^7.5.0",
     "lit": "3.0.2",

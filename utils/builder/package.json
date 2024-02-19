@@ -17,7 +17,7 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/lodash.camelcase": "^4.3.9",
     "@types/rollup-plugin-progress": "^1.1.1",
     "filesize": "^10.1.0",

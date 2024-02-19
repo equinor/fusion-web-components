@@ -16,7 +16,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
     "@popperjs/core": "^2.11.6",
-    "@types/resize-observer-browser": "^0.1.7",
+    "@types/resize-observer-browser": "^0.1.11",
     "lit": "3.0.2"
   },
   "devDependencies": {

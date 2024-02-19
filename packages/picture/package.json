@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
-    "lit": "3.0.2"
+    "lit": "3.1.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.2",

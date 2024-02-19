@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 overrides:
   lit: ^3.0.2
 
@@ -1015,8 +1011,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.3(rollup@4.1.4)
       '@types/lodash.camelcase':
-        specifier: ^4.3.7
-        version: 4.3.7
+        specifier: ^4.3.9
+        version: 4.3.9
       '@types/rollup-plugin-progress':
         specifier: ^1.1.1
         version: 1.1.1
@@ -5382,7 +5378,7 @@ packages:
     resolution: {integrity: sha512-tuV0UUgIkdW8RWRO6ciBf3PQAQN2WK7oJRsRFF/e0NYOxrdrh1D6c58mcBpgMArSxTgVdBZCrDhAYfklAVJ+Gw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      lit: ^3.0.2
+      lit: ^2.0.0 || ^3.0.0
     dependencies:
       '@storybook/client-logger': 7.6.16
       '@storybook/core-client': 7.6.16
@@ -5683,19 +5679,14 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
 
-  /@types/lodash.camelcase@4.3.7:
-    resolution: {integrity: sha512-Nfi6jpo9vuEOSIJP+mpbTezKyEt75DQlbwjiDvs/JctWkbnHDoyQo5lWqdvgNiJmVUjcmkfvlrvSEgJYvurOKg==}
+  /@types/lodash.camelcase@4.3.9:
+    resolution: {integrity: sha512-ys9/hGBfsKxzmFI8hckII40V0ASQ83UM2pxfQRghHAwekhH4/jWtjz/3/9YDy7ZpUd/H0k2STSqmPR28dnj7Zg==}
     dependencies:
-      '@types/lodash': 4.14.198
-    dev: true
-
-  /@types/lodash@4.14.198:
-    resolution: {integrity: sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==}
+      '@types/lodash': 4.14.200
     dev: true
 
   /@types/lodash@4.14.200:
     resolution: {integrity: sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==}
-    dev: false
 
   /@types/mdast@3.0.14:
     resolution: {integrity: sha512-gVZ04PGgw1qLZKsnWnyFv4ORnaJ+DXLdHTVSFbU8yX6xZ34Bjg4Q32yPkmveUP1yItXReKfB0Aknlh/3zxTKAw==}
@@ -12800,3 +12791,7 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

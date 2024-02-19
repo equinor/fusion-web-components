@@ -875,8 +875,8 @@ importers:
   storybook:
     dependencies:
       '@faker-js/faker':
-        specifier: ^8.1.0
-        version: 8.1.0
+        specifier: ^8.4.1
+        version: 8.4.1
       '@storybook/addon-docs':
         specifier: ^7.5.0
         version: 7.5.0(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -912,7 +912,7 @@ importers:
         version: 5.2.2
       vite:
         specifier: ^4.4.11
-        version: 4.4.11(@types/node@18.18.6)
+        version: 4.4.11
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:^
@@ -2892,8 +2892,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@faker-js/faker@8.1.0:
-    resolution: {integrity: sha512-38DT60rumHfBYynif3lmtxMqMqmsOQIxQgEuPZxCk2yUYN0eqWpTACgxi0VpidvsJB8CRxCpvP7B3anK85FjtQ==}
+  /@faker-js/faker@8.4.1:
+    resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: false
 
@@ -4756,7 +4756,7 @@ packages:
       magic-string: 0.30.5
       rollup: 3.29.4
       typescript: 5.2.2
-      vite: 4.4.11(@types/node@18.18.6)
+      vite: 4.4.11
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -12278,7 +12278,7 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite@4.4.11(@types/node@18.18.6):
+  /vite@4.4.11:
     resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -12306,7 +12306,6 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.18.6
       esbuild: 0.18.20
       postcss: 8.4.30
       rollup: 3.29.4

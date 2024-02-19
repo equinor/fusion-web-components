@@ -553,8 +553,8 @@ importers:
         specifier: ^2.11.6
         version: 2.11.8
       '@types/resize-observer-browser':
-        specifier: ^0.1.7
-        version: 0.1.7
+        specifier: ^0.1.11
+        version: 0.1.11
       lit:
         specifier: ^3.0.2
         version: 3.0.2
@@ -5776,8 +5776,8 @@ packages:
       csstype: 3.1.2
     dev: false
 
-  /@types/resize-observer-browser@0.1.7:
-    resolution: {integrity: sha512-G9eN0Sn0ii9PWQ3Vl72jDPgeJwRWhv2Qk/nQkJuWmRmOB4HX3/BhD5SE1dZs/hzPZL/WKnvF0RHdTSG54QJFyg==}
+  /@types/resize-observer-browser@0.1.11:
+    resolution: {integrity: sha512-cNw5iH8JkMkb3QkCoe7DaZiawbDQEUX8t7iuQaRTyLOyQCR2h+ibBD4GJt7p5yhUHrlOeL7ZtbxNHeipqNsBzQ==}
     dev: false
 
   /@types/resolve@1.20.2:

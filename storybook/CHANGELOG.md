@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.9.0
+
+### Minor Changes
+
+- [#1420](https://github.com/equinor/fusion-web-components/pull/1420) [`f8677ba`](https://github.com/equinor/fusion-web-components/commit/f8677ba33209cf9cfc65334b016c2cf7a90ea09b) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Upgrade storybook\* to 7.6.16
+
 ## 4.8.2
 
 ### Patch Changes
@@ -152,9 +158,9 @@
   ```js
   const searchResultItem = [
     {
-      id: '1337',
-      title: 'custom svg',
-      subTitle: 'foo bar baz',
+      id: "1337",
+      title: "custom svg",
+      subTitle: "foo bar baz",
       graphic: appIconSvgTemplate,
       graphicType: IconType.SVG,
       meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',

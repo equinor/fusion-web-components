@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.6.0
+
+### Minor Changes
+
+- [#1321](https://github.com/equinor/fusion-web-components/pull/1321) [`f3a37c6`](https://github.com/equinor/fusion-web-components/commit/f3a37c63dd9fbb405eda01f7869a8efc93f7c1b6) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - add icon-bar for person-card
+
+### Patch Changes
+
+- [#1423](https://github.com/equinor/fusion-web-components/pull/1423) [`29adb1f`](https://github.com/equinor/fusion-web-components/commit/29adb1f2eef331f59c1f1fd58ac37ba746fc4b41) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Make avatar attribute `trigger` optional
+
 ## 2.5.1
 
 ### Patch Changes
@@ -318,10 +328,16 @@
 
   ```ts
   export interface PersonResolver {
-    getDetails?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonDetails>;
-    getInfo?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonInfo>;
+    getDetails?: (
+      args: ResolverArgs<AzureIdOrUpnObj>,
+    ) => ResolverResult<PersonDetails>;
+    getInfo?: (
+      args: ResolverArgs<AzureIdOrUpnObj>,
+    ) => ResolverResult<PersonInfo>;
     getPhoto?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
-    search?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
+    search?: (
+      args: ResolverArgs<{ search: string }>,
+    ) => ResolverResult<PersonSearchResult>;
   }
   ```
 

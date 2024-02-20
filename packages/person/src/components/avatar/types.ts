@@ -11,5 +11,5 @@ export type PersonAvatarElementProps = PersonInfoControllerHostAttributes & {
   clickable?: boolean;
   disabled?: boolean;
   pictureSrc?: string;
-  trigger: PersonAvatarShowCardOnType;
+  trigger?: PersonAvatarShowCardOnType;
 };

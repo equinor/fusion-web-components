@@ -46,7 +46,8 @@
     }
   },
   "files": [
-    "lib"
+    "lib",
+    "CHANGELOG.md"
   ],
   "customElements": "lib/custom-elements.json",
   "scripts": {

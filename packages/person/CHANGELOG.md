@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.1
+
+### Patch Changes
+
+- [#1424](https://github.com/equinor/fusion-web-components/pull/1424) [`e74859b`](https://github.com/equinor/fusion-web-components/commit/e74859b91479c6452f98e5b76ebdc799b6228822) Thanks [@odinr](https://github.com/odinr)! - add CHANGELOG.md to tarball
+
+- [#1437](https://github.com/equinor/fusion-web-components/pull/1437) [`cd90c94`](https://github.com/equinor/fusion-web-components/commit/cd90c949f025e7449ab55622dd5135d5b2e773d4) Thanks [@eikeland](https://github.com/eikeland)! - Fixes issue in CLI when resolving a person with selectedPerson property
+
 ## 2.6.0
 
 ### Minor Changes

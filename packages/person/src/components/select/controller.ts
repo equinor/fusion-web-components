@@ -60,17 +60,22 @@ export class PersonSelectController implements ReactiveController {
       return;
     }
 
-    if (select !== null) {
-      this.#host.search = select;
-      this.#host.value = select;
-      this.isOpen = true;
-      /* make sure the list is rendered before selecting */
-      requestAnimationFrame(() => {
-        this.#setSelected(0);
-      });
-    } else {
+    if (select === null) {
       this.clear();
+      return;
     }
+
+    this.#host.search = select;
+    this.#host.value = select;
+    this.isOpen = true;
+
+    /* make sure the list is rendered before selecting */
+    const intId = setInterval(() => {
+      if (this.#host.listItems.length) {
+        this.#setSelected(0);
+        clearInterval(intId);
+      }
+    }, 50);
   }
 
   public hostDisconnected(): void {

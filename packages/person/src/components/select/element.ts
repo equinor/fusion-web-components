@@ -160,11 +160,9 @@ export class PersonSelectElement
 
   updated(props: Map<string, string | null | undefined>) {
     if (props.has('selectedPerson')) {
-      if (this.selectedPerson !== undefined) {
-        this.controllers.element.attrSelectPerson(
-          this.selectedPerson?.azureId ?? this.selectedPerson?.upn ?? (this.selectedPerson as null),
-        );
-      }
+      this.controllers.element.attrSelectPerson(
+        this.selectedPerson?.azureId ?? this.selectedPerson?.upn ?? (this.selectedPerson as null | undefined),
+      );
     }
   }
 

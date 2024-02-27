@@ -6,6 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { cache } from 'lit/directives/cache.js';
+import { TaskStatus } from '@lit-labs/task';
 
 import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
@@ -181,7 +182,7 @@ export class PersonSelectElement
    */
   protected renderList(): HTMLTemplateResult {
     if (!this.controllers.element.isOpen) {
-      if (this.selectedPerson && this.tasks.info.status === 2) {
+      if (this.selectedPerson && this.tasks.info.status === TaskStatus.COMPLETE) {
         // task is complete save result in controller if not already there
         if (this.tasks.info.value && this.controllers.element.listItems[0] !== this.tasks.info.value) {
           this.controllers.element.listItems = [this.tasks.info.value as PersonInfo];
@@ -319,7 +320,9 @@ export class PersonSelectElement
             icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
-            @focus=${() => (this.controllers.element.isOpen = true)}
+            @focus=${() => {
+              this.controllers.element.isOpen = true;
+            }}
             @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
           ${this.selectedPersonsTemplate()}

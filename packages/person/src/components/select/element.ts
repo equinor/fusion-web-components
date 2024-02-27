@@ -9,11 +9,11 @@ import { cache } from 'lit/directives/cache.js';
 
 import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
-import { PersonSearchTask, PersonSearchControllerHost } from '../../tasks/person-search-task';
+import { PersonSearchTask, PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
 
 import { SearchableDropdownControllerHost } from '@equinor/fusion-wc-searchable-dropdown';
 
-import type { PersonInfo } from '../../types';
+import type { PersonInfo, PersonSearchResult } from '../../types';
 import type { SelectedPersonProp } from './index';
 
 import IconElement from '@equinor/fusion-wc-icon';
@@ -119,6 +119,14 @@ export class PersonSelectElement
   @property()
   disabled = false;
 
+  /* State for triggering PersonInfo task */
+  @state()
+  azureId?: string;
+
+  /* State for triggering PersonInfo task */
+  @state()
+  upn?: string;
+
   @property({
     converter(value) {
       /* converter to allow user to pass personobject as property */
@@ -127,9 +135,9 @@ export class PersonSelectElement
           return JSON.parse(value);
         } catch {
           if (value?.match('@')) {
-            return { upn: value };
+            return { upn: value.toLocaleLowerCase() };
           } else if (value?.length) {
-            return { azureId: value };
+            return { azureId: value.toLocaleLowerCase() };
           }
         }
       }
@@ -151,6 +159,7 @@ export class PersonSelectElement
   listItems!: Array<ListItemElement<PersonInfo>>;
 
   private tasks = {
+    info: new PersonInfoTask(this),
     search: new PersonSearchTask(this),
   };
 
@@ -161,7 +170,7 @@ export class PersonSelectElement
   updated(props: Map<string, string | null | undefined>) {
     if (props.has('selectedPerson')) {
       this.controllers.element.attrSelectPerson(
-        this.selectedPerson?.azureId ?? this.selectedPerson?.upn ?? (this.selectedPerson as null | undefined),
+        this.selectedPerson?.upn ?? this.selectedPerson?.azureId ?? (this.selectedPerson as null | undefined),
       );
     }
   }
@@ -172,64 +181,78 @@ export class PersonSelectElement
    */
   protected renderList(): HTMLTemplateResult {
     if (!this.controllers.element.isOpen) {
+      if (this.selectedPerson && this.tasks.info.status === 2) {
+        // task is complete save result in controller if not already there
+        if (this.tasks.info.value && this.controllers.element.listItems[0] !== this.tasks.info.value) {
+          this.controllers.element.listItems = [this.tasks.info.value as PersonInfo];
+          this.controllers.element.selectPersonInfo(this.tasks.info.value as PersonInfo);
+        }
+      }
+
       return html``;
     }
 
+    const pendingListItem = () =>
+      html`<fwc-list-item disabled=${true}>
+        <fwc-dots-progress size="small" color="primary" />
+      </fwc-list-item>`;
+
+    const errorListItem = (e: unknown) =>
+      html`<fwc-list-item disabled=${true} class="item-error">
+        <span class="item-text"><span class="item-title">${e}</span></span>
+      </fwc-list-item>`;
+
+    const renderListItems = (result: PersonSearchResult): HTMLTemplateResult => {
+      if (!result.length && this.search.length < 3) {
+        return html`
+          <fwc-list-item disabled=${true} color="primary" aria-disabled="true"> Start typing to search. </fwc-list-item>
+        `;
+      } else if (!result.length && this.search.length) {
+        return html`
+          <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
+            No matching person found
+          </fwc-list-item>
+        `;
+      }
+
+      // apend items to
+      this.controllers.element.listItems = result.map((item) => item);
+
+      return html`
+        ${repeat(
+          result,
+          (item) => item.azureId,
+          (item) => {
+            return html`
+              <fwc-list-item
+                graphic="avatar"
+                .activated=${this.controllers.element.selectedIds.has(item.azureId)}
+                .dataSource=${item}
+              >
+                <fwc-person-avatar
+                  .azureId=${item.azureId}
+                  .dataSource=${item}
+                  size="small"
+                  slot="graphic"
+                  trigger="none"
+                ></fwc-person-avatar>
+                <span class="item-text">
+                  ${item.name && html`<span class="item-title">${item.name}</span>`}
+                  ${item.mail && html`<span class="item-subtitle" slot="secondary">${item.mail}</span>`}
+                </span>
+              </fwc-list-item>
+            `;
+          },
+        )}
+      `;
+    };
+
+    // ${(this.selectedPerson?.azureId || this.selectedPerson?.upn) && Object.keys(this.selectedPerson).length === 1
     return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controllers.element.handleSelect}>
-      ${this.tasks?.search.render({
-        complete: (result) => {
-          if (!result.length && this.search.length < 3) {
-            return html`
-              <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
-                Start typing to search.
-              </fwc-list-item>
-            `;
-          } else if (!result.length && this.search.length) {
-            return html`
-              <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
-                No matching person found
-              </fwc-list-item>
-            `;
-          }
-
-          // apend items to
-          this.controllers.element.listItems = result.map((item) => item);
-
-          return html`
-            ${repeat(
-              result,
-              (item) => item.azureId,
-              (item) => {
-                return html`
-                  <fwc-list-item
-                    graphic="avatar"
-                    .activated=${this.controllers.element.selectedIds.has(item.azureId)}
-                    .dataSource=${item}
-                  >
-                    <fwc-person-avatar
-                      .azureId=${item.azureId}
-                      .dataSource=${item}
-                      size="small"
-                      slot="graphic"
-                      trigger="none"
-                    ></fwc-person-avatar>
-                    <span class="item-text">
-                      ${item.name && html`<span class="item-title">${item.name}</span>`}
-                      ${item.mail && html`<span class="item-subtitle" slot="secondary">${item.mail}</span>`}
-                    </span>
-                  </fwc-list-item>
-                `;
-              },
-            )}
-          `;
-        },
-        pending: () =>
-          html`<fwc-list-item disabled=${true}><fwc-dots-progress size="small" color="primary" /></fwc-list-item>`,
-        /* Error from resolvers searchQuery Promise */
-        error: (e: unknown) =>
-          html`<fwc-list-item disabled=${true} class="item-error">
-            <span class="item-text"><span class="item-title">${e}</span></span>
-          </fwc-list-item>`,
+      ${this.tasks.search.render({
+        complete: renderListItems,
+        pending: pendingListItem,
+        error: errorListItem,
       })}
     </fwc-list>`;
   }

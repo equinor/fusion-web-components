@@ -35,12 +35,11 @@ const generatePositions = (azureId?: string): PersonDetails['positions'] => {
 };
 
 const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails => {
-  console.log(args.azureId, uuid2number(args.azureId ?? '0'));
   args.azureId && faker.seed(uuid2number(args.azureId));
+  const fakeUpn = faker.internet.email({ provider: 'equinor.com' });
   return {
-    azureId: faker.string.uuid(),
-    upn: faker.internet.email(),
-    ...args,
+    azureId: args.azureId ?? faker.string.uuid(),
+    upn: args.upn ?? fakeUpn,
     name: faker.person.fullName(),
     accountType: faker.helpers.arrayElement([
       PersonAccountType.Consultant,
@@ -51,7 +50,7 @@ const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails
     ]),
     jobTitle: faker.person.jobTitle(),
     department: faker.commerce.department(),
-    mail: faker.internet.email({ provider: 'equinor.com' }),
+    mail: fakeUpn,
     mobilePhone: faker.phone.number(),
     officeLocation: faker.location.city(),
     get positions() {

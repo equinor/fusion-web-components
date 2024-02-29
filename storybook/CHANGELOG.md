@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.9.1
+
+### Patch Changes
+
+- [#1441](https://github.com/equinor/fusion-web-components/pull/1441) [`d940c0c`](https://github.com/equinor/fusion-web-components/commit/d940c0c49ecd121c078843c902ea8adee3e55e4e) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Upgrade storybook to 7.6.17
+
 ## 4.9.0
 
 ### Minor Changes

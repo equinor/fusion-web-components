@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.2
+
+### Patch Changes
+
+- [#1444](https://github.com/equinor/fusion-web-components/pull/1444) [`4b3ea8b`](https://github.com/equinor/fusion-web-components/commit/4b3ea8ba0f160769d934444ed8e993abe234490b) Thanks [@eikeland](https://github.com/eikeland)! - Support for searching with azureId on selectedPerson property
+
 ## 2.6.1
 
 ### Patch Changes

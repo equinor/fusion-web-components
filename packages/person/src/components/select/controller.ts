@@ -53,29 +53,40 @@ export class PersonSelectController implements ReactiveController {
 
   /**
    * Resolve person from selectedPerson property.
-   * Runs on host updated when att is changed
+   * Runs on host updated when property is changed
    */
   public attrSelectPerson(select: string | null | undefined) {
     if (select === undefined) {
       return;
     }
 
-    if (select === null) {
+    // clear input if null
+    if (!select) {
       this.clear();
       return;
     }
 
-    this.#host.search = select;
-    this.#host.value = select;
-    this.isOpen = true;
+    /* Trigger PersonInfo task with upn or azureId */
+    if (select.match('@')) {
+      this.#host.upn = select;
+      this.#host.azureId = undefined;
+    } else if (select.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
+      this.#host.azureId = select;
+      this.#host.upn = undefined;
+    }
 
-    /* make sure the list is rendered before selecting */
-    const intId = setInterval(() => {
-      if (this.#host.listItems.length) {
-        this.#setSelected(0);
-        clearInterval(intId);
-      }
-    }, 50);
+    // value for textInput
+    this.#host.value = select;
+  }
+
+  /* Selects the PersonInfo object as current user */
+  public selectPersonInfo(person: PersonInfo) {
+    this.selectedIds.clear();
+    this.selectedIds.add(person.azureId);
+    this.#firePersonSelectEvent(person);
+    requestAnimationFrame(() => {
+      this.#host.requestUpdate();
+    });
   }
 
   public hostDisconnected(): void {
@@ -133,6 +144,18 @@ export class PersonSelectController implements ReactiveController {
     this.#host.requestUpdate();
   }
 
+  #firePersonSelectEvent(person: PersonInfo | null) {
+    /* Dispatch custom select event with our details */
+    this.#host.dispatchEvent(
+      new PersonSelectEvent({
+        detail: {
+          selected: person,
+        },
+        bubbles: true,
+      }),
+    );
+  }
+
   #setSelected(index: number): void {
     const selectedElement = this.#host.listItems[index];
     if (!selectedElement) {
@@ -166,14 +189,7 @@ export class PersonSelectController implements ReactiveController {
     }
 
     /* Dispatch custom select event with our details */
-    this.#host.dispatchEvent(
-      new PersonSelectEvent({
-        detail: {
-          selected: personData,
-        },
-        bubbles: true,
-      }),
-    );
+    this.#firePersonSelectEvent(personData);
 
     /* clear component after selection */
     if (personData === null || this.#host.selectedPerson === null) {
@@ -269,10 +285,9 @@ export class PersonSelectController implements ReactiveController {
     /* Close on escape key */
     if (this._isOpen) {
       document.body.addEventListener('keyup', this._handleGlobalKeyUp);
+      this.#host.textInputElement?.focus();
     } else {
       document.body.removeEventListener('keyup', this._handleGlobalKeyUp);
-
-      /* unfocus */
       this.#host.textInputElement?.blur();
     }
 

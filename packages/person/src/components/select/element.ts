@@ -248,7 +248,6 @@ export class PersonSelectElement
       `;
     };
 
-    // ${(this.selectedPerson?.azureId || this.selectedPerson?.upn) && Object.keys(this.selectedPerson).length === 1
     return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controllers.element.handleSelect}>
       ${this.tasks.search.render({
         complete: renderListItems,

@@ -1011,8 +1011,8 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9
       '@types/rollup-plugin-progress':
-        specifier: ^1.1.4
-        version: 1.1.4
+        specifier: ^1.1.5
+        version: 1.1.5
       filesize:
         specifier: ^10.1.0
         version: 10.1.0
@@ -5821,10 +5821,9 @@ packages:
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
     dev: true
 
-  /@types/rollup-plugin-progress@1.1.4:
-    resolution: {integrity: sha512-HvHdpsC/1RmT7B5YYOQQW7SBta1zOp1ieEMui6ByC6AQXHzU5WWrldek5OwtvWRN/H+M21PCB+fOT/1YdYI3yw==}
+  /@types/rollup-plugin-progress@1.1.5:
+    resolution: {integrity: sha512-x8aEgIhNrSl4pF2bVivAPWAVg2q9g1/Jsc3SeRhUAWGE1BAd8QVWQITO/GTsXZa3vtfYgdyqFNBH8cUuN/cQpQ==}
     dependencies:
-      '@types/node': 20.11.20
       rollup: 0.63.5
     dev: true
 

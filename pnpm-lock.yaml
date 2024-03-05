@@ -885,7 +885,7 @@ importers:
         version: 7.6.17(@types/react@18.2.61)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/builder-vite':
         specifier: ^7.6.17
-        version: 7.6.17(typescript@5.3.3)(vite@5.1.4)
+        version: 7.6.17(typescript@5.3.3)(vite@5.1.5)
       '@storybook/theming':
         specifier: ^7.6.17
         version: 7.6.17(react-dom@18.2.0)(react@18.2.0)
@@ -894,7 +894,7 @@ importers:
         version: 7.6.17(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/web-components-vite':
         specifier: ^7.6.17
-        version: 7.6.17(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(vite@5.1.4)
+        version: 7.6.17(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(vite@5.1.5)
       lit:
         specifier: ^3.0.2
         version: 3.0.2
@@ -908,8 +908,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       vite:
-        specifier: ^5.1.4
-        version: 5.1.4
+        specifier: ^5.1.5
+        version: 5.1.5
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:^
@@ -4777,7 +4777,7 @@ packages:
       - supports-color
     dev: false
 
-  /@storybook/builder-vite@7.6.17(typescript@5.3.3)(vite@5.1.4):
+  /@storybook/builder-vite@7.6.17(typescript@5.3.3)(vite@5.1.5):
     resolution: {integrity: sha512-2Q32qalI401EsKKr9Hkk8TAOcHEerqwsjCpQgTNJnCu6GgCVKoVUcb99oRbR9Vyg0xh+jb19XiWqqQujFtLYlQ==}
     peerDependencies:
       '@preact/preset-vite': '*'
@@ -4809,7 +4809,7 @@ packages:
       magic-string: 0.30.7
       rollup: 3.29.4
       typescript: 5.3.3
-      vite: 5.1.4
+      vite: 5.1.5
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -5399,11 +5399,11 @@ packages:
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
 
-  /@storybook/web-components-vite@7.6.17(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(vite@5.1.4):
+  /@storybook/web-components-vite@7.6.17(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(vite@5.1.5):
     resolution: {integrity: sha512-luBXrRP1OS9QfB+Sw7hcP0cktqQmbF41+m2R/3C56DjBckoh8ojw0CUIpNIktkN4rS9cB/NUGHvaeZSWuDtuFw==}
     engines: {node: ^14.18 || >=16}
     dependencies:
-      '@storybook/builder-vite': 7.6.17(typescript@5.3.3)(vite@5.1.4)
+      '@storybook/builder-vite': 7.6.17(typescript@5.3.3)(vite@5.1.5)
       '@storybook/core-server': 7.6.17
       '@storybook/node-logger': 7.6.17
       '@storybook/web-components': 7.6.17(lit@3.0.2)(react-dom@18.2.0)(react@18.2.0)
@@ -12231,8 +12231,8 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite@5.1.4:
-    resolution: {integrity: sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==}
+  /vite@5.1.5:
+    resolution: {integrity: sha512-BdN1xh0Of/oQafhU+FvopafUp6WaYenLU/NFoL5WyJL++GxkNfieKzBhM24H3HVsPQrlAqB7iJYTHabzaRed5Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:

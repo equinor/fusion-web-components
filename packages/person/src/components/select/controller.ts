@@ -27,7 +27,6 @@ export class PersonSelectController implements ReactiveController {
   protected timer?: ReturnType<typeof setTimeout>;
   protected _isOpen = false;
 
-  public listItems: Array<PersonInfo> = [];
   public selectedIds: Set<string> = new Set();
 
   #externaCloseHandler?: (e: MouseEvent | KeyboardEvent) => void;
@@ -66,6 +65,9 @@ export class PersonSelectController implements ReactiveController {
       return;
     }
 
+    /* clear search task when info task is running  */
+    this.#host.search = '';
+
     /* Trigger PersonInfo task with upn or azureId */
     if (select.match('@')) {
       this.#host.upn = select;
@@ -74,19 +76,19 @@ export class PersonSelectController implements ReactiveController {
       this.#host.azureId = select;
       this.#host.upn = undefined;
     }
-
-    // value for textInput
-    this.#host.value = select;
   }
 
   /* Selects the PersonInfo object as current user */
-  public selectPersonInfo(person: PersonInfo) {
+  public async selectPersonInfo(person: PersonInfo) {
+    /* important to await running task */
+    await this.#host.updateComplete;
+
     this.selectedIds.clear();
     this.selectedIds.add(person.azureId);
+
     this.#firePersonSelectEvent(person);
-    requestAnimationFrame(() => {
-      this.#host.requestUpdate();
-    });
+
+    this.#host.requestUpdate();
   }
 
   public hostDisconnected(): void {

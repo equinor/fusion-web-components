@@ -71,12 +71,6 @@ export class PersonSelectElement
   @property()
   label = '';
 
-  /**
-   * @internal
-   */
-  @state()
-  search = '';
-
   /**  Placeholder passe to fwc-textinput */
   @property()
   placeholder = '';
@@ -128,6 +122,10 @@ export class PersonSelectElement
   @state()
   upn?: string;
 
+  /** State for triggering PersonSearch task */
+  @state()
+  search = '';
+
   @property({
     converter(value) {
       /* converter to allow user to pass personobject as property */
@@ -159,7 +157,7 @@ export class PersonSelectElement
   @queryAll('fwc-list-item:not([disabled])')
   listItems!: Array<ListItemElement<PersonInfo>>;
 
-  private tasks = {
+  protected tasks = {
     info: new PersonInfoTask(this),
     search: new PersonSearchTask(this),
   };
@@ -176,20 +174,26 @@ export class PersonSelectElement
     }
   }
 
-  /**
-   * Render the menu if state is open
-   * @returns HTMLTemplateResult
-   */
-  protected renderList(): HTMLTemplateResult {
-    if (!this.controllers.element.isOpen) {
+  private selectedPersonTask() {
+    /* make sure there is no running search task */
+    if (!this.search) {
+      // task is complete and we have the attribute
       if (this.selectedPerson && this.tasks.info.status === TaskStatus.COMPLETE) {
-        // task is complete save result in controller if not already there
-        if (this.tasks.info.value && this.controllers.element.listItems[0] !== this.tasks.info.value) {
-          this.controllers.element.listItems = [this.tasks.info.value as PersonInfo];
+        // save result in controller if not already there
+        if (!this.controllers.element.selectedIds.has(this.tasks.info.value?.azureId as string)) {
           this.controllers.element.selectPersonInfo(this.tasks.info.value as PersonInfo);
         }
       }
+    }
+  }
 
+  /**
+   * Render the dropdown list if state is open
+   * @returns HTMLTemplateResult
+   */
+  protected renderList(): HTMLTemplateResult {
+    /* do not render dropdown list when its closed */
+    if (!this.controllers.element.isOpen) {
       return html``;
     }
 
@@ -215,9 +219,6 @@ export class PersonSelectElement
           </fwc-list-item>
         `;
       }
-
-      // apend items to
-      this.controllers.element.listItems = result.map((item) => item);
 
       return html`
         ${repeat(
@@ -305,6 +306,9 @@ export class PersonSelectElement
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
     };
+
+    /** Select person by selectedPerson property on info task */
+    this.selectedPersonTask();
 
     return html`<div id=${this.id} class=${classMap(cssClasses)}>
         <div class="input">

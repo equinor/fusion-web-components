@@ -80,11 +80,17 @@ export const fwcsdd: CSSResult = css`
   fwc-list-item {
     --fwc-list-item-vertical-padding: 0.5rem;
   }
-
+  fwc-list-item[disabled] {
+    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+  }
+  fwc-list-item[disabled] [slot='graphic'],
+  fwc-list-item[disabled] [slot='meta'],
+  fwc-list-item[disabled] .item-text {
+    opacity: 0.6;
+  }
   fwc-list-item[twoline] [slot='graphic'] svg {
     font-size: 1.5rem;
   }
-
   .item-text {
     display: flex;
     flex-direction: column;
@@ -124,7 +130,8 @@ export const fwcsdd: CSSResult = css`
     margin: 1em 0 0;
   }
   .item-error {
-    --fwc-item-interactive-color: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
+    --fwc-list-item-ink-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
   }
 `;
 

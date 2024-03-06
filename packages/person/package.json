@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "description": "",
   "main": "lib/index.js",
   "exports": {

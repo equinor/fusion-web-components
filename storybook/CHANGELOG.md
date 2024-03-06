@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.9.2
+
+### Patch Changes
+
+- [#1454](https://github.com/equinor/fusion-web-components/pull/1454) [`a2ee7ab`](https://github.com/equinor/fusion-web-components/commit/a2ee7ab5befae5da63f1014930c88643215da318) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Opacity and color to disabled and error list item
+
 ## 4.9.1
 
 ### Patch Changes

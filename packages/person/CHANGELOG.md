@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.4
+
+### Patch Changes
+
+- [#1456](https://github.com/equinor/fusion-web-components/pull/1456) [`a7a8357`](https://github.com/equinor/fusion-web-components/commit/a7a8357d3907e539c6dbffb1fbdba81dec72b8ed) Thanks [@eikeland](https://github.com/eikeland)! - Fixes conflicts between tasks on personselect
+
 ## 2.6.3
 
 ### Patch Changes

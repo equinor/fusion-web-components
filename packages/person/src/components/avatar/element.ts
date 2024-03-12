@@ -303,14 +303,8 @@ export class PersonAvatarElement
             </fwc-avatar>
           </div>`;
         },
-        pending: () =>
-          html`<fwc-avatar
-          >${this.renderImagePlaceholder(true)}</fwc-skeleton
-        ></fwc-avatar>`,
-        error: () =>
-          html`<fwc-avatar inactive
-          >${this.renderImagePlaceholder(false)}</fwc-skeleton
-        ></fwc-avatar>`,
+        pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
+        error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
       })}
       <div id="floating">
         <slot name="floating">

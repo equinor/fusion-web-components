@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.5
+
+### Patch Changes
+
+- [#1458](https://github.com/equinor/fusion-web-components/pull/1458) [`12989dd`](https://github.com/equinor/fusion-web-components/commit/12989dd29716366d95d1c741aa2a9770659cd134) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Fix `fwc-avatar` size in `fwc-person-avatar`.
+
 ## 2.6.4
 
 ### Patch Changes

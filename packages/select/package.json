@@ -23,7 +23,7 @@
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-list": "workspace:^",
     "@equinor/fusion-wc-menu": "workspace:^",
-    "@equinor/fusion-web-theme": "^0.1.7",
+    "@equinor/fusion-web-theme": "^0.1.10",
     "@material/mwc-select": "^0.27.0",
     "lit": "3.1.2"
   },

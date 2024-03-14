@@ -56,7 +56,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-icon": "workspace:^",
-    "@equinor/fusion-web-theme": "^0.1.7",
+    "@equinor/fusion-web-theme": "^0.1.10",
     "@material/mwc-button": "^0.27.0",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-icon-button-toggle": "^0.27.0",

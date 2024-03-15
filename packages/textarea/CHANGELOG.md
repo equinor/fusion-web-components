@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`0bc06db`](https://github.com/equinor/fusion-web-components/commit/0bc06dbf003e078bf73bf191a0de429ad443f836)]:
+  - @equinor/fusion-wc-textinput@1.1.1
+
 ## 1.1.0
 
 ### Minor Changes

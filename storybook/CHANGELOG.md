@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.9.3
+
+### Patch Changes
+
+- [#1460](https://github.com/equinor/fusion-web-components/pull/1460) [`8b46bd4`](https://github.com/equinor/fusion-web-components/commit/8b46bd4231e8d83f9ac60f33761ead96c4b717af) Thanks [@eikeland](https://github.com/eikeland)! - Fix ending tag for person select story
+
 ## 4.9.2
 
 ### Patch Changes

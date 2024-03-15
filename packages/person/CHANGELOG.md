@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.6.6
+
+### Patch Changes
+
+- [#1461](https://github.com/equinor/fusion-web-components/pull/1461) [`0bc06db`](https://github.com/equinor/fusion-web-components/commit/0bc06dbf003e078bf73bf191a0de429ad443f836) Thanks [@eikeland](https://github.com/eikeland)! - Updates fusion-web-theme
+
+- Updated dependencies [[`0bc06db`](https://github.com/equinor/fusion-web-components/commit/0bc06dbf003e078bf73bf191a0de429ad443f836)]:
+  - @equinor/fusion-wc-searchable-dropdown@3.7.3
+  - @equinor/fusion-wc-textinput@1.1.1
+  - @equinor/fusion-wc-skeleton@2.1.1
+  - @equinor/fusion-wc-avatar@3.2.1
+  - @equinor/fusion-wc-button@2.4.1
+  - @equinor/fusion-wc-badge@1.3.1
+  - @equinor/fusion-wc-list@1.1.2
+
 ## 2.6.5
 
 ### Patch Changes

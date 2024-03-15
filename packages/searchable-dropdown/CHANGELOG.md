@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.7.3
+
+### Patch Changes
+
+- [#1461](https://github.com/equinor/fusion-web-components/pull/1461) [`0bc06db`](https://github.com/equinor/fusion-web-components/commit/0bc06dbf003e078bf73bf191a0de429ad443f836) Thanks [@eikeland](https://github.com/eikeland)! - Updates fusion-web-theme
+
+- Updated dependencies [[`0bc06db`](https://github.com/equinor/fusion-web-components/commit/0bc06dbf003e078bf73bf191a0de429ad443f836)]:
+  - @equinor/fusion-wc-textinput@1.1.1
+  - @equinor/fusion-wc-divider@1.1.1
+  - @equinor/fusion-wc-list@1.1.2
+
 ## 3.7.2
 
 ### Patch Changes

@@ -29,7 +29,7 @@
   "license": "ISC",
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
-    "@equinor/fusion-web-theme": "^0.1.7",
+    "@equinor/fusion-web-theme": "^0.1.10",
     "date-fns": "^2.29.3",
     "lit": "3.1.2"
   },

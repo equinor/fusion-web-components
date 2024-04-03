@@ -310,7 +310,7 @@ export class PersonAvatarElement
         <slot name="floating">
           ${when(
             this.isFloatingOpen,
-            () => html`<fwc-person-card .azureId="${this.azureId}" .upn="${this.upn}"></fwc-person-card>`,
+            () => html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
           )}
         </slot>
       </div>

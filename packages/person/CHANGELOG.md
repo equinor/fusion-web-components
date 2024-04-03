@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.7
+
+### Patch Changes
+
+- [#1463](https://github.com/equinor/fusion-web-components/pull/1463) [`dcec24e`](https://github.com/equinor/fusion-web-components/commit/dcec24ef5609e5743a07055823a254f4621adf2c) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Added stopPropagation to person card in avatar to prevent triggering click from parent
+
 ## 2.6.6
 
 ### Patch Changes

@@ -1,8 +1,8 @@
 name: Setup Node
 Description: General setup of node
 inputs:
-  node-version:  
-    default: 18
+  node-version:
+    default: 20
   turbo-cache:
     default: false
 
@@ -11,14 +11,14 @@ runs:
   steps:
 
     - uses: pnpm/action-setup@v2
-    
+
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
 
     # - name: enable turbo cache
-    #   if: ${{ inputs.turbo-cache == 'true' }} 
+    #   if: ${{ inputs.turbo-cache == 'true' }}
     #   uses: dtinth/setup-github-actions-caching-for-turbo@v1
     #   with:
     #     cache-prefix: ${{ runner.os }}-node-${{ inputs.node-version }}_
@@ -26,4 +26,3 @@ runs:
     - name: install
       shell: bash
       run: pnpm install
-        

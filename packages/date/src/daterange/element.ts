@@ -2,7 +2,7 @@ import { html, LitElement, PropertyValues, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { formatDistance, formatRelative } from 'date-fns';
-import { enGB } from 'date-fns/locale';
+import { enGB, type Locale } from 'date-fns/locale';
 import { DateRangeVariant, DateTimeFormat, WeekDay } from '../types';
 import { dateConverter, resolveLocale } from '../utils';
 

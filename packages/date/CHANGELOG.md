@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- [#1305](https://github.com/equinor/fusion-web-components/pull/1305) [`0395f58`](https://github.com/equinor/fusion-web-components/commit/0395f589161138309c05698935d410578d5e4f3f) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update date-fns from 2.30.0 to 3.3.1
+
 ## 1.1.1
 
 ### Patch Changes

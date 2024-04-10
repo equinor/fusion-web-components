@@ -6,7 +6,7 @@ updates:
       interval: "daily"
     open-pull-requests-limit: 50
   - package-ecosystem: "github-actions"
-    directory: "/.github/"
+    directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"

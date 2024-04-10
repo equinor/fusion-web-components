@@ -2,7 +2,7 @@ name: Generate Docs
 
 on:
   workflow_dispatch:
-  workflow_call: 
+  workflow_call:
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout docs
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup node and install deps
         uses: ./.github/workflows/actions/node-setup

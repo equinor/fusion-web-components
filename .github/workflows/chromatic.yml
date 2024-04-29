@@ -32,7 +32,7 @@ jobs:
       # 👇 Checks if the branch is not main and runs Chromatic
       - name: Publish to Chromatic
         if: github.ref != 'refs/heads/main'
-        uses: chromaui/action@v1
+        uses: chromaui/action@v11
         # Required options for the Chromatic GitHub Action
         with:
           workingDir: storybook
@@ -43,7 +43,7 @@ jobs:
         # 👇 Checks if the branch is main and accepts all changes in Chromatic
       - name: Publish to Chromatic and auto accept changes
         if: github.ref == 'refs/heads/main'
-        uses: chromaui/action@v1
+        uses: chromaui/action@v11
         # Required options for the Chromatic GitHub Action
         with:
           workingDir: storybook

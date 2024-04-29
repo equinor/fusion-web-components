@@ -8,9 +8,9 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Notify
-        uses: davidwengier/PostAdaptiveCard@v1.0.0
+        uses: davidwengier/PostAdaptiveCard@v1.0.4
         with:
-          webhook-uri: ${{ secrets.TEAMS_PR_WEBHOOK }}
+          webhook_uri: ${{ secrets.TEAMS_PR_WEBHOOK }}

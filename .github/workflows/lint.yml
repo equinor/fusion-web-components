@@ -23,9 +23,8 @@ jobs:
         continue-on-error: true
 
       - name: Annotate Code Linting Results
-        uses: ataylorme/eslint-annotate-action@1.1.2
+        uses: ataylorme/eslint-annotate-action@3.0.0
         with:
-          repo-token: "${{ github.token }}"
           report-json: "eslint-report.log.json"
 
       - name: Upload ESLint report

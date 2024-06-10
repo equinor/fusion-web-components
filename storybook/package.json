@@ -15,7 +15,7 @@
     "@faker-js/faker": "^8.4.1",
     "@storybook/addon-docs": "^7.6.17",
     "@storybook/addon-essentials": "^7.6.17",
-    "@storybook/blocks": "^7.6.17",
+    "@storybook/blocks": "^8.1.6",
     "@storybook/builder-vite": "^7.6.17",
     "@storybook/theming": "^7.6.17",
     "@storybook/web-components": "^7.6.17",

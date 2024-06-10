@@ -29,7 +29,7 @@
     "@custom-elements-manifest/analyzer": "^0.10.2",
     "@equinor/fusion-wc-builder": "workspace:^",
     "@material/mwc-list": "^0.27.0",
-    "tslib": "^2.6.2",
+    "tslib": "^2.6.3",
     "typescript": "^5.3.3"
   },
   "PeerDependencies": {

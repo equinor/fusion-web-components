@@ -16,7 +16,7 @@
   "dependencies": {
     "@equinor/eds-icons": "^0.21.0",
     "@equinor/fusion-wc-core": "workspace:^",
-    "lit": "3.1.2"
+    "lit": "3.1.4"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.2",

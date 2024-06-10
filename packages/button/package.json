@@ -60,7 +60,7 @@
     "@material/mwc-button": "^0.27.0",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-icon-button-toggle": "^0.27.0",
-    "lit": "3.1.2"
+    "lit": "3.1.4"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.2",

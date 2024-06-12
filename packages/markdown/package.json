@@ -50,7 +50,7 @@
     "prosemirror-schema-basic": "^1.2.2",
     "prosemirror-schema-list": "^1.4.0",
     "prosemirror-state": "^1.4.3",
-    "prosemirror-view": "^1.33.1"
+    "prosemirror-view": "^1.33.8"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.2",

@@ -131,7 +131,7 @@ export class AvatarElement extends LitElement {
    * Render the content. 'src' attribute overrides 'value' attribute.
    */
   protected renderContent(): HTMLTemplateResult {
-    if (!this.src) {
+    if (this.src) {
       console.warn('fwc-avatar.src property is deprecated, use slot instead!');
     }
     const content = this.src ? this.renderPicture() : this.value ? this.renderValue() : html`<slot></slot>`;

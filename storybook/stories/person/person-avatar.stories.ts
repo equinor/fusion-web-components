@@ -26,6 +26,8 @@ const meta: Meta<typeof cem> = {
 
 const render = (props: PersonAvatarElementProps) => html`
   <fwc-person-avatar
+    .dataSource="${ifDefined(props.dataSource)}"
+    .trigger="${ifDefined(props.trigger)}"
     size="${ifDefined(props.size)}"
     pictureSrc=${ifDefined(props.pictureSrc)}
     azureId=${ifDefined(props.azureId)}
@@ -38,6 +40,13 @@ export const Default: Story = {
     azureId: String(faker.string.uuid()),
   },
   render,
+};
+
+export const ImgAndLetter: Story = {
+  ...Default,
+  render: (props) => {
+    return html`${render(props)}${render({ pictureSrc: undefined, trigger: 'none', dataSource: { name: 'Tux' } })}`;
+  },
 };
 
 export const Sizes: Story = {

@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.2
+
+### Patch Changes
+
+- [#1503](https://github.com/equinor/fusion-web-components/pull/1503) [`e005262`](https://github.com/equinor/fusion-web-components/commit/e005262b7fc807cec1e08610fdf86f887979705d) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - - Add story to person-avatar to include both image and letter
+  - Fix positioning/alignment so that letter and image are equal in avatar
+  - Fix deprecation message for avatar.
+
 ## 3.2.1
 
 ### Patch Changes

@@ -77,6 +77,7 @@ const style: CSSResult = css`
   }
 
   #content {
+    position: absolute;
     overflow: hidden;
     border-color: var(--fwc-avatar-background);
     border-style: solid;
@@ -86,7 +87,6 @@ const style: CSSResult = css`
       --fwc-avatar-color,
       ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))}
     );
-    overflow: hidden;
     height: 100%;
     width: 100%;
   }

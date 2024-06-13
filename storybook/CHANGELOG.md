@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.9.5
+
+### Patch Changes
+
+- [#1503](https://github.com/equinor/fusion-web-components/pull/1503) [`e005262`](https://github.com/equinor/fusion-web-components/commit/e005262b7fc807cec1e08610fdf86f887979705d) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - - Add story to person-avatar to include both image and letter
+  - Fix positioning/alignment so that letter and image are equal in avatar
+  - Fix deprecation message for avatar.
+
 ## 4.9.4
 
 ### Patch Changes
@@ -182,9 +190,9 @@
   ```js
   const searchResultItem = [
     {
-      id: "1337",
-      title: "custom svg",
-      subTitle: "foo bar baz",
+      id: '1337',
+      title: 'custom svg',
+      subTitle: 'foo bar baz',
       graphic: appIconSvgTemplate,
       graphicType: IconType.SVG,
       meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',

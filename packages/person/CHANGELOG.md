@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.6.8
+
+### Patch Changes
+
+- Updated dependencies [[`e005262`](https://github.com/equinor/fusion-web-components/commit/e005262b7fc807cec1e08610fdf86f887979705d)]:
+  - @equinor/fusion-wc-avatar@3.2.2
+
 ## 2.6.7
 
 ### Patch Changes
@@ -382,16 +389,10 @@
 
   ```ts
   export interface PersonResolver {
-    getDetails?: (
-      args: ResolverArgs<AzureIdOrUpnObj>,
-    ) => ResolverResult<PersonDetails>;
-    getInfo?: (
-      args: ResolverArgs<AzureIdOrUpnObj>,
-    ) => ResolverResult<PersonInfo>;
+    getDetails?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonDetails>;
+    getInfo?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonInfo>;
     getPhoto?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
-    search?: (
-      args: ResolverArgs<{ search: string }>,
-    ) => ResolverResult<PersonSearchResult>;
+    search?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
   }
   ```
 

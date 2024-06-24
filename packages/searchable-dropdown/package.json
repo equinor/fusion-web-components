@@ -30,7 +30,7 @@
     "@equinor/fusion-wc-builder": "workspace:^",
     "@material/mwc-list": "^0.27.0",
     "tslib": "^2.6.3",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.2"
   },
   "PeerDependencies": {
     "@equinor/fusion-web-theme": "^0.1.7"

@@ -23,7 +23,7 @@
     "@equinor/fusion-wc-builder": "workspace:^",
     "@equinor/fusion-wc-ripple": "workspace:^",
     "tslib": "^2.6.3",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.2"
   },
   "publishConfig": {
     "access": "public"

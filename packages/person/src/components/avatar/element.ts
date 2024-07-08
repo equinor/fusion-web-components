@@ -1,7 +1,7 @@
 // TODO - CLEAN UP!
 import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit';
 
-import { property, queryAssignedElements, queryAsync, state } from 'lit/decorators.js';
+import { property, queryAsync, state } from 'lit/decorators.js';
 import { ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { when } from 'lit/directives/when.js';
 
@@ -114,12 +114,6 @@ export class PersonAvatarElement
    */
   @queryAsync('#root')
   public root!: Promise<HTMLDivElement>;
-
-  /**
-   * @internal
-   */
-  @queryAssignedElements({ slot: 'floating', flatten: true })
-  private assignedFloating!: Array<HTMLElement>;
 
   /**
    * @internal
@@ -306,11 +300,12 @@ export class PersonAvatarElement
         pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
         error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
       })}
-      <div id="floating">
+      <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
         <slot name="floating">
           ${when(
             this.isFloatingOpen,
-            () => html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
+            () =>
+              html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
           )}
         </slot>
       </div>
@@ -377,60 +372,106 @@ export class PersonAvatarElement
     }
   }
 
+  /** The timeoutId for task to hide floating. If no hide task is queued, this is undefined. */
+  protected hideFloatingTask: number | undefined;
+
+  /**
+   * Function to cancel the hiding of floating.
+   */
+  protected clearHideFloatingTask(): void {
+    if (this.hideFloatingTask) {
+      clearTimeout(this.hideFloatingTask);
+    }
+    this.hideFloatingTask = undefined;
+  }
+
+  /**
+   * Function to invoke the hiding of floating.
+   */
+  protected invokeHideFloatingTask(): void {
+    this.hideFloatingTask = setTimeout(() => {
+      PersonAvatarElement.hideAllFloating();
+      this.clearHideFloatingTask();
+    }, 500);
+  }
+
+  /** The timeoutId for task to show floating. If no show task is queued, this is undefined. */
+  protected showFloatingTask: number | undefined;
+
+  /**
+   * Function to cancel the showing of floating.
+   */
+  protected clearShowFloatingTask(): void {
+    if (this.showFloatingTask) {
+      clearTimeout(this.showFloatingTask);
+    }
+    this.showFloatingTask = undefined;
+  }
+
+  /**
+   * Function to incoke the showing of floating.
+   */
+  protected invokeShowFloatingTask(): void {
+    this.showFloatingTask = setTimeout(() => {
+      this.showFloating.bind(this)();
+      this.clearShowFloatingTask();
+    }, 500);
+  }
+
+  /**
+   * Handles the mouseover for the avatar element.
+   */
   protected handleMouseOver(_e: MouseEvent): void {
+    // If we hover, we should cancel a potential hide.
+    // This is i.e. leaving the floating element, but entering
+    // the avatar element again.
+    this.clearHideFloatingTask();
     if (this.trigger === 'hover' && this.isFloatingOpen === false && !this.disabled) {
+      // Hide all other floating elements.
       PersonAvatarElement.hideAllFloating();
 
-      const timeout = setTimeout(() => {
-        this.showFloating.bind(this)();
-        this.removeEventListener('mouseout', listenerForMouseOut);
-      }, 500);
-
-      const listenerForMouseOut = (_e: MouseEvent) => {
-        clearTimeout(timeout);
-        this.removeEventListener('mouseout', listenerForMouseOut);
-      };
-
-      this.addEventListener('mouseout', listenerForMouseOut);
+      // Schedule showing of the current floating.
+      this.invokeShowFloatingTask();
     }
   }
 
+  /**
+   * Handles the mouseout for the avatar element.
+   */
   protected handleMouseOut(_e: MouseEvent): void {
+    if (this.showFloatingTask) {
+      // If we leave the avatar element, we should cancel a potential show.
+      // This is i.e. leaving the avatar element again before the floating
+      // has completed showing.
+      this.clearShowFloatingTask();
+      return;
+    }
+
     if (this.trigger === 'hover' && this.isFloatingOpen && !this.disabled) {
-      const timeoutMouseOverAssignerFloating = setTimeout(() => {
-        PersonAvatarElement.hideAllFloating();
+      // Schedule hiding of the current floating.
+      this.invokeHideFloatingTask();
+    }
+  }
 
-        this.assignedFloating.forEach((el) => {
-          el.removeEventListener('mouseover', listenerForMouseOverAssignedFloating);
-        });
-      }, 500);
+  /**
+   * Handles the mouseover for the floating element.
+   */
+  protected handleFloatingMouseOver() {
+    if (this.trigger === 'hover' && this.isFloatingOpen && !this.disabled) {
+      // If we hover, we should cancel a potential hide.
+      // This is i.e. leacing the avatar element, but entering
+      // the floating element.
+      this.clearHideFloatingTask();
+    }
+  }
 
-      const listenerForMouseOverAssignedFloating = (_e: MouseEvent) => {
-        clearTimeout(timeoutMouseOverAssignerFloating);
-        this.assignedFloating.forEach((el) => {
-          el.removeEventListener('mouseover', listenerForMouseOverAssignedFloating);
-
-          this.assignedFloating.forEach((el) => {
-            el.addEventListener('mouseout', () => {
-              const timeoutMouseOutAssignerFloating = setTimeout(() => {
-                PersonAvatarElement.hideAllFloating();
-                this.removeEventListener('mouseover', listenerForMouseOutAssignedFloating);
-              }, 500);
-
-              const listenerForMouseOutAssignedFloating = (_e: MouseEvent) => {
-                clearTimeout(timeoutMouseOutAssignerFloating);
-                this.removeEventListener('mouseover', listenerForMouseOutAssignedFloating);
-              };
-
-              this.addEventListener('mouseover', listenerForMouseOutAssignedFloating);
-            });
-          });
-        });
-      };
-
-      this.assignedFloating.forEach((el) => {
-        el.addEventListener('mouseover', listenerForMouseOverAssignedFloating);
-      });
+  /**
+   * Handles the mouseout for the floating element.
+   */
+  protected handleFloatingMouseOut() {
+    if (this.trigger === 'hover' && this.isFloatingOpen && !this.disabled) {
+      // Schedule hiding of the current floating.
+      this.invokeHideFloatingTask();
     }
   }
 }

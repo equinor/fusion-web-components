@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.9
+
+### Patch Changes
+
+- [#1526](https://github.com/equinor/fusion-web-components/pull/1526) [`c073574`](https://github.com/equinor/fusion-web-components/commit/c0735742af9b01fc7d4064987855abd4135a7d0d) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Fix the hovering state not closing the floating element when position is bottom.
+
 ## 2.6.8
 
 ### Patch Changes

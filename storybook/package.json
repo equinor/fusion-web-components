@@ -13,16 +13,16 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@storybook/addon-docs": "^7.6.17",
-    "@storybook/addon-essentials": "^7.6.17",
-    "@storybook/blocks": "^7.6.17",
-    "@storybook/builder-vite": "^7.6.17",
-    "@storybook/theming": "^7.6.17",
-    "@storybook/web-components": "^7.6.17",
-    "@storybook/web-components-vite": "^7.6.17",
+    "@storybook/addon-docs": "^8.2.5",
+    "@storybook/addon-essentials": "^8.2.5",
+    "@storybook/blocks": "^8.2.5",
+    "@storybook/builder-vite": "^8.2.5",
+    "@storybook/theming": "^8.2.5",
+    "@storybook/web-components": "^8.2.5",
+    "@storybook/web-components-vite": "^8.2.5",
     "lit": "3.1.4",
     "react": "^18.2.0",
-    "storybook": "^7.6.17",
+    "storybook": "^8.2.5",
     "typescript": "^5.5.3",
     "vite": "^5.3.3"
   },
@@ -52,7 +52,7 @@
     "@equinor/fusion-wc-textarea": "workspace:^",
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-wc-theme": "workspace:^",
-    "@storybook/addon-mdx-gfm": "^7.6.17",
-    "@storybook/react-webpack5": "^7.6.17"
+    "@storybook/addon-mdx-gfm": "^8.2.5",
+    "@storybook/react-webpack5": "^8.2.5"
   }
 }

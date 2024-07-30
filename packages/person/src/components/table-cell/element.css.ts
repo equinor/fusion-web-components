@@ -29,7 +29,7 @@ const style: CSSResult = css`
     column-gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
   }
   .person-cell__about--error fwc-skeleton {
-    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.ui.background__danger.getVariable("color"))};
+    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.ui.background__danger.getVariable('color'))};
   }
   .person-cell__content {
     display: flex;
@@ -45,10 +45,10 @@ const style: CSSResult = css`
     line-height: calc(${unsafeCSS(theme.typography.heading.h6.getVariable('lineHeight'))} * var(--text-resize, 1));
   }
   .person-cell__sub-heading {
-    font-size: calc(
-      ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--text-resize, 1)
+    font-size: calc(${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--text-resize, 1));
+    line-height: calc(
+      ${unsafeCSS(theme.typography.paragraph.caption.getVariable('lineHeight'))} * var(--text-resize, 1)
     );
-    line-height: calc(${unsafeCSS(theme.typography.paragraph.caption.getVariable('lineHeight'))} * var(--text-resize, 1));
   }
 `;
 

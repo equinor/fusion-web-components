@@ -31,7 +31,10 @@ Skeleton;
  *
  */
 
-export class PersonTableCellElement extends LitElement implements PersonTableCellElementProps, PersonInfoControllerHost {
+export class PersonTableCellElement
+  extends LitElement
+  implements PersonTableCellElementProps, PersonInfoControllerHost
+{
   static styles: CSSResult[] = [style, personStyle];
 
   /** Unique person Azure ID */
@@ -48,13 +51,11 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
 
   /** Function to determine heading based on person data */
   @property({ type: Function })
-  public heading: <T extends TableCellData>(person:T) => string | undefined = (person: TableCellData) => person.name;
+  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) => person.name;
 
   /** Function to determine sub heading based on person data */
   @property({ type: Function })
-  public subHeading?: <T extends TableCellData>(person:T) => string | undefined;
-
-
+  public subHeading?: <T extends TableCellData>(person: T) => string | undefined;
 
   /**
    * @internal
@@ -93,17 +94,21 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
   size: PersonItemSize = 'medium';
 
   /** Show Avatar */
-  @property({ type: Boolean, reflect: true, converter: {
-    fromAttribute: (value) => {
-      if (value === null) {
-        return true;
-      }
-      return value.toLowerCase() !== 'false';
+  @property({
+    type: Boolean,
+    reflect: true,
+    converter: {
+      fromAttribute: (value) => {
+        if (value === null) {
+          return true;
+        }
+        return value.toLowerCase() !== 'false';
+      },
+      toAttribute: (value) => {
+        return value ? '' : 'false';
+      },
     },
-    toAttribute: (value) => {
-      return value ? '' : 'false';
-    }
-  } })
+  })
   showAvatar: boolean = false;
 
   /**
@@ -122,7 +127,6 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     return html`${subTitleText ? html`<div class="person-cell__sub-heading">${unsafeHTML(subTitleText)}</div>` : null}`;
   }
 
-
   protected render(): TemplateResult {
     if (!this.tasks) {
       return this.renderPending(false);
@@ -132,11 +136,13 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
         ${this.tasks.info.render({
           complete: (details) => {
             return html`<div class="person-cell__about">
-                ${this.showAvatar ? html`<fwc-person-avatar azureId=${details.azureId} .dataSource=${details} trigger="disabled" />` : null}
-                <div class="person-cell__content">
-                  ${this.renderHeading(details as TableCellData)} ${this.renderSubHeading(details as TableCellData)}
-                </div>
-              </div>`;
+              ${this.showAvatar
+                ? html`<fwc-person-avatar azureId=${details.azureId} .dataSource=${details} trigger="disabled" />`
+                : null}
+              <div class="person-cell__content">
+                ${this.renderHeading(details as TableCellData)} ${this.renderSubHeading(details as TableCellData)}
+              </div>
+            </div>`;
           },
           pending: () => this.renderPending(false),
           error: () => this.renderPending(true),
@@ -149,13 +155,13 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
    * Render person cell pending and error state
    */
   protected renderPending(error: boolean) {
-    return html`<div class="person-cell__about ${error ? "person-cell__about--error" : ""}">
-        ${this.showAvatar ? this.renderImagePlaceholder(error, this.size) : null}
-        <div class="person-cell__content person-cell__content-gap">
-            ${this.renderTextPlaceholder(error, SkeletonSize.small)}
-            ${this.renderTextPlaceholder(error, SkeletonSize.small)}
-        </div>
-      </div>`;
+    return html`<div class="person-cell__about ${error ? 'person-cell__about--error' : ''}">
+      ${this.showAvatar ? this.renderImagePlaceholder(error, this.size) : null}
+      <div class="person-cell__content person-cell__content-gap">
+        ${this.renderTextPlaceholder(error, SkeletonSize.small)}
+        ${this.renderTextPlaceholder(error, SkeletonSize.small)}
+      </div>
+    </div>`;
   }
 
   public renderImagePlaceholder(inactive: boolean, size?: PersonItemSize): TemplateResult {
@@ -179,9 +185,9 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
    */
   public getToolbarPlaceholderIconSize(size: PersonItemSize): string {
     switch (size) {
-      case "small":
+      case 'small':
         return 'x-small';
-      case "large":
+      case 'large':
         return 'medium';
       default:
         return 'small';

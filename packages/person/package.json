@@ -9,6 +9,7 @@
     "./avatar": "./lib/components/avatar/index.js",
     "./card": "./lib/components/card/index.js",
     "./list-item": "./lib/components/list-item/index.js",
+    "./table-cell": "./lib/components/table-cell/index.js",
     "./select": {
       "types": "./lib/types/components/select/index.d.ts",
       "default": "./lib/components/select/index.js"
@@ -36,6 +37,9 @@
       ],
       "list-item": [
         "lib/types/components/list-item/index.d.ts"
+      ],
+      "table-cell": [
+        "lib/types/components/table-cell/index.d.ts"
       ],
       "select": [
         "lib/types/components/select/index.d.ts"

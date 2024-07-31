@@ -21,7 +21,7 @@
     "lit": "3.1.4"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.2",
+    "@custom-elements-manifest/analyzer": "^0.10.3",
     "@equinor/fusion-wc-builder": "workspace:^",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3"

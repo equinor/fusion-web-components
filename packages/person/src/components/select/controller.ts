@@ -55,18 +55,10 @@ export class PersonSelectController implements ReactiveController {
    * Runs on host updated when property is changed
    */
   public attrSelectPerson(select: string | null | undefined) {
-    if (select === undefined) {
-      return;
-    }
-
-    // clear input if null
+    /* Do not trigger task if undefined or null */
     if (!select) {
-      this.clear();
       return;
     }
-
-    /* clear search task when info task is running  */
-    this.#host.search = '';
 
     /* Trigger PersonInfo task with upn or azureId */
     if (select.match('@')) {
@@ -102,7 +94,7 @@ export class PersonSelectController implements ReactiveController {
    */
   private _handleGlobalClick = (e: MouseEvent): void => {
     const t = e.target as HTMLElement;
-    if (t && !(this.#host as unknown as HTMLElement).contains(t)) {
+    if (t && !(this.#host as unknown as HTMLElement).contains(t) && this.isOpen) {
       this.isOpen = false;
     }
   };
@@ -193,8 +185,8 @@ export class PersonSelectController implements ReactiveController {
     /* Dispatch custom select event with our details */
     this.#firePersonSelectEvent(personData);
 
-    /* clear component after selection */
-    if (personData === null || this.#host.selectedPerson === null) {
+    /* clear component if null */
+    if (personData === null) {
       this.clearInput();
     }
   }
@@ -211,7 +203,6 @@ export class PersonSelectController implements ReactiveController {
   }
 
   public clearInput() {
-    this.selectedIds.clear();
     this.#host.value = '';
     this.#host.search = '';
     this.#host.textInputElement.value = '';
@@ -219,6 +210,14 @@ export class PersonSelectController implements ReactiveController {
 
   public clear() {
     this.clearInput();
+
+    if (this.selectedIds.size) {
+      this.selectedIds.clear();
+    }
+
+    if (this.#host.selectedPerson) {
+      this.#host.selectedPerson = null;
+    }
 
     /* Dispatch custom select event with our details */
     this.#host.dispatchEvent(
@@ -232,11 +231,12 @@ export class PersonSelectController implements ReactiveController {
   }
 
   /**
-   * Fires on click on close icon in textinput
+   * Fires when triggering close icon in textinput
    * Calls closeHandler callback set in resolver
    */
   public closeClick = (e: MouseEvent | KeyboardEvent): void => {
     if (e.type === 'keydown') {
+
       /* only close on enter or space not tab */
       const me = e as KeyboardEvent;
       if (me.key !== 'Enter' && me.key !== 'Space') {
@@ -254,8 +254,10 @@ export class PersonSelectController implements ReactiveController {
       this.#host.textInputElement.blur();
     }
 
-    /* also close dropdown */
-    this.isOpen = false;
+    /* close dropdown if open */
+    if (this.isOpen) {
+      this.isOpen = false;
+    }
 
     /* call resolvers handleclick if defined */
     if (this.#externaCloseHandler) {
@@ -263,7 +265,6 @@ export class PersonSelectController implements ReactiveController {
     }
 
     if (this.selectedIds.size) {
-      // clear input and deselect
       this.clear();
     } else {
       // clear input

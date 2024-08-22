@@ -155,11 +155,11 @@ export class PersonTableCellElement
    * Render person cell pending and error state
    */
   protected renderPending(error: boolean) {
-    return html`<div class="person-cell__about ${error ? 'person-cell__about--error' : ''}">
+    return html`<div class="person-cell__about">
       ${this.showAvatar ? this.renderImagePlaceholder(error, this.size) : null}
       <div class="person-cell__content person-cell__content-gap">
-        ${this.renderTextPlaceholder(error, SkeletonSize.small)}
-        ${this.renderTextPlaceholder(error, SkeletonSize.small)}
+        ${this.renderTextPlaceholder(error, SkeletonSize.XSmall)}
+        ${this.subHeading && this.renderTextPlaceholder(error, SkeletonSize.XSmall)}
       </div>
     </div>`;
   }

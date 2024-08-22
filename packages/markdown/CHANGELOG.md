@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [#1577](https://github.com/equinor/fusion-web-components/pull/1577) [`c6d1524`](https://github.com/equinor/fusion-web-components/commit/c6d15249643673d6d68894bd5b7ceb4a009cf025) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Update prosemirror packages
+
+  - prosemirror-commands to 1.6.0
+  - prosemirror-markdown to 1.13.0
+  - prosemirror-model to 1.22.3
+  - prosemirror-view to 1.33.11
+
+### Patch Changes
+
+- [#1562](https://github.com/equinor/fusion-web-components/pull/1562) [`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump lit from 3.1.3 to 3.2.0
+
+- Updated dependencies [[`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054)]:
+  - @equinor/fusion-wc-icon@2.3.1
+
 ## 1.2.1
 
 ### Patch Changes

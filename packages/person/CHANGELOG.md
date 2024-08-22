@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- [#1584](https://github.com/equinor/fusion-web-components/pull/1584) [`2e8694b`](https://github.com/equinor/fusion-web-components/commit/2e8694b35a17ed6203f71427bb3e3f2e14994502) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Change "undefined" look of the cell
+
+- [#1562](https://github.com/equinor/fusion-web-components/pull/1562) [`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump lit from 3.1.3 to 3.2.0
+
+- Updated dependencies [[`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054)]:
+  - @equinor/fusion-wc-avatar@3.2.3
+  - @equinor/fusion-wc-badge@1.3.2
+  - @equinor/fusion-wc-button@2.4.2
+  - @equinor/fusion-wc-icon@2.3.1
+  - @equinor/fusion-wc-list@1.1.3
+  - @equinor/fusion-wc-searchable-dropdown@3.7.4
+  - @equinor/fusion-wc-skeleton@2.1.2
+  - @equinor/fusion-wc-textinput@1.1.2
+
 ## 3.0.1
 
 ### Patch Changes

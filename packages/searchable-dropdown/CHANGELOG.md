@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.7.4
+
+### Patch Changes
+
+- [#1562](https://github.com/equinor/fusion-web-components/pull/1562) [`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump lit from 3.1.3 to 3.2.0
+
+- Updated dependencies [[`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054)]:
+  - @equinor/fusion-wc-divider@1.1.2
+  - @equinor/fusion-wc-icon@2.3.1
+  - @equinor/fusion-wc-list@1.1.3
+  - @equinor/fusion-wc-textinput@1.1.2
+
 ## 3.7.3
 
 ### Patch Changes
@@ -133,9 +145,9 @@
   ```js
   const searchResultItem = [
     {
-      id: "1337",
-      title: "custom svg",
-      subTitle: "foo bar baz",
+      id: '1337',
+      title: 'custom svg',
+      subTitle: 'foo bar baz',
       graphic: appIconSvgTemplate,
       graphicType: IconType.SVG,
       meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',

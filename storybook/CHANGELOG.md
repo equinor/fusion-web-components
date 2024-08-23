@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.10.1
+
+### Patch Changes
+
+- [#1562](https://github.com/equinor/fusion-web-components/pull/1562) [`150cc60`](https://github.com/equinor/fusion-web-components/commit/150cc606abaf489cbc432326b36af68e45052054) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump lit from 3.1.3 to 3.2.0
+
 ## 4.10.0
 
 ### Minor Changes

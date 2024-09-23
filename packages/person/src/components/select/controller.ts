@@ -236,7 +236,6 @@ export class PersonSelectController implements ReactiveController {
    */
   public closeClick = (e: MouseEvent | KeyboardEvent): void => {
     if (e.type === 'keydown') {
-
       /* only close on enter or space not tab */
       const me = e as KeyboardEvent;
       if (me.key !== 'Enter' && me.key !== 'Space') {

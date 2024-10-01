@@ -51,7 +51,7 @@ export class PersonSelectController implements ReactiveController {
   }
 
   /**
-   * Resolve person from selectedPerson property.
+   * Resolve personInfo task from selectedPerson property.
    * Runs on host updated when property is changed
    */
   public attrSelectPerson(select: string | null | undefined) {
@@ -186,8 +186,9 @@ export class PersonSelectController implements ReactiveController {
     this.#firePersonSelectEvent(personData);
 
     /* clear component if null */
-    if (personData === null) {
+    if (personData === null || this.#host.selectedPerson === null) {
       this.clearInput();
+      this.selectedIds.clear();
     }
   }
 
@@ -206,6 +207,8 @@ export class PersonSelectController implements ReactiveController {
     this.#host.value = '';
     this.#host.search = '';
     this.#host.textInputElement.value = '';
+    this.#host.azureId = '';
+    this.#host.upn = '';
   }
 
   public clear() {
@@ -215,19 +218,8 @@ export class PersonSelectController implements ReactiveController {
       this.selectedIds.clear();
     }
 
-    if (this.#host.selectedPerson) {
-      this.#host.selectedPerson = null;
-    }
-
     /* Dispatch custom select event with our details */
-    this.#host.dispatchEvent(
-      new PersonSelectEvent({
-        detail: {
-          selected: null,
-        },
-        bubbles: true,
-      }),
-    );
+    this.#firePersonSelectEvent(null);
   }
 
   /**
@@ -312,7 +304,6 @@ export class PersonSelectController implements ReactiveController {
     if (event.key === 'ArrowDown') {
       /* focus on the fwc-list' */
       if (this._isOpen && this.#host.listItems.length) {
-        // this.#host.listElement?.focus();
         this.#host.listElement?.focusItemAtIndex(0);
       }
       return;
@@ -324,7 +315,6 @@ export class PersonSelectController implements ReactiveController {
     }
     this.timer = setTimeout(() => {
       const value = target.value.trim().toLowerCase();
-      // this.#search = value;
       this.#host.search = value;
       this.#host.requestUpdate();
     }, 500);

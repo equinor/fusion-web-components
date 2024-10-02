@@ -180,7 +180,7 @@ export class PersonSelectElement
       // task is complete and we have the attribute
       if (this.selectedPerson && this.tasks.info.status === TaskStatus.COMPLETE) {
         // save result in controller if not already there
-        if (!this.controllers.element.selectedIds.has(this.tasks.info.value?.azureId as string)) {
+        if (!this.controllers.element.selectedIds.size) {
           this.controllers.element.selectPersonInfo(this.tasks.info.value as PersonInfo);
         }
       }
@@ -305,6 +305,7 @@ export class PersonSelectElement
       dense: dense == true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
+      'selected-persons': this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
     };
 
     /** Select person by selectedPerson property on info task */
@@ -313,6 +314,7 @@ export class PersonSelectElement
     return html`<div id=${this.id} class=${classMap(cssClasses)}>
         <div class="input">
           <slot name="leading"></slot>
+          ${this.selectedPersonsTemplate()}
           <fwc-textinput
             label=${ifDefined(this.label)}
             type="text"
@@ -328,7 +330,6 @@ export class PersonSelectElement
             }}
             @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
-          ${this.selectedPersonsTemplate()}
           <slot name="trailing">
             <span slot="trailing">
               ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen

@@ -14,6 +14,9 @@ export const styles: CSSResult[] = [
     fwc-person-list-item {
       --fwc-person-list-item-background: #ffffff;
     }
+    .selected-persons fwc-textinput {
+      opacity: 0;
+    }
     #selected-persons {
       list-style: none;
       padding: 0;

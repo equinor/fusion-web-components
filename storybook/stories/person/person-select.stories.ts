@@ -2,9 +2,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { setCustomElementsManifest } from '@storybook/web-components';
 import PersonSelect, { PersonSelectElementProps, PersonSelectEvent } from '@equinor/fusion-wc-person/select';
-import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
@@ -13,11 +11,9 @@ PersonSelect;
 
 faker.seed(1);
 
-setCustomElementsManifest(cem);
-
 type Story = StoryObj<PersonSelectElementProps>;
 
-const meta: Meta<typeof cem> = {
+const meta: Meta<typeof PersonSelect> = {
   title: 'select',
   component: 'fwc-person-select',
   decorators: [personProviderDecorator],

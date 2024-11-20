@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.5
+
+### Patch Changes
+
+- [#1653](https://github.com/equinor/fusion-web-components/pull/1653) [`ca2ea73`](https://github.com/equinor/fusion-web-components/commit/ca2ea738ba33c96e519c196c7c814138c1653d25) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add `focusTextInput` method to person-select.
+
 ## 3.0.4
 
 ### Patch Changes

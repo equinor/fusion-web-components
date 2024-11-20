@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- [#1650](https://github.com/equinor/fusion-web-components/pull/1650) [`4a69b85`](https://github.com/equinor/fusion-web-components/commit/4a69b8586d9c178fb07c4adce143ba77d2dd481a) Thanks [@eikeland](https://github.com/eikeland)! - ### Changes in `PersonSelectController`
+
+  - Renamed the `attrSelectPerson` method to `attrSelectedPerson`.
+  - Updated the `attrSelectedPerson` method to clear `selectedIds` when `select` is null or an empty string and `selectedIds` size is greater than zero.
+  - Added logic to clear previous selections when the `selectedPerson` property changes.
+
+  ### Changes in `PersonSelectElement`
+
+  - Updated the `updated` method to call `attrSelectedPerson` instead of `attrSelectPerson`.
+
 ## 3.0.3
 
 ### Patch Changes

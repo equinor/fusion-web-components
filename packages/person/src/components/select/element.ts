@@ -166,6 +166,14 @@ export class PersonSelectElement
     element: new PersonSelectController(this),
   };
 
+  focusTextInput() {
+    requestAnimationFrame(() => {
+      if (this.textInputElement) {
+        this.textInputElement.focus();
+      }
+    });
+  }
+
   updated(props: Map<string, string | null | undefined>) {
     if (props.has('selectedPerson')) {
       this.controllers.element.attrSelectedPerson(

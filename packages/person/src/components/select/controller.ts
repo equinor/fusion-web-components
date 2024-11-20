@@ -54,11 +54,19 @@ export class PersonSelectController implements ReactiveController {
    * Resolve personInfo task from selectedPerson property.
    * Runs on host updated when property is changed
    */
-  public attrSelectPerson(select: string | null | undefined) {
-    /* Do not trigger task if undefined or null */
+  public attrSelectedPerson(select: string | null | undefined) {
+    if ((select === null || select === '') && this.selectedIds.size) {
+      this.clear();
+      return;
+    }
+
+    /* Do not trigger task if undefined */
     if (!select) {
       return;
     }
+
+    // clear previous selections since property has changed
+    this.selectedIds.clear();
 
     /* Trigger PersonInfo task with upn or azureId */
     if (select.match('@')) {

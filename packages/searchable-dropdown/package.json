@@ -23,7 +23,7 @@
     "@material/mwc-textfield": "^0.27.0",
     "@types/uuid": "^10.0.0",
     "lit": "3.2.0",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",

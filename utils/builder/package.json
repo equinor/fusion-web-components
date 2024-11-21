@@ -24,6 +24,6 @@
     "filesize": "^10.1.6",
     "lodash.camelcase": "^4.3.0",
     "rollup": "^4.22.5",
-    "tslib": "^2.7.0"
+    "tslib": "^2.8.1"
   }
 }

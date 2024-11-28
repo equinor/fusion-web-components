@@ -405,8 +405,8 @@ importers:
         specifier: ^1.13.1
         version: 1.13.1
       prosemirror-model:
-        specifier: ^1.23.0
-        version: 1.23.0
+        specifier: ^1.24.0
+        version: 1.24.0
       prosemirror-schema-basic:
         specifier: ^1.2.3
         version: 1.2.3
@@ -3558,6 +3558,7 @@ packages:
 
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
 
@@ -5881,8 +5882,8 @@ packages:
   prosemirror-markdown@1.13.1:
     resolution: {integrity: sha512-Sl+oMfMtAjWtlcZoj/5L/Q39MpEnVZ840Xo330WJWUvgyhNmLBLN7MsHn07s53nG/KImevWHSE6fEj4q/GihHw==}
 
-  prosemirror-model@1.23.0:
-    resolution: {integrity: sha512-Q/fgsgl/dlOAW9ILu4OOhYWQbc7TQd4BwKH/RwmUjyVf8682Be4zj3rOYdLnYEcGzyg8LL9Q5IWYKD8tdToreQ==}
+  prosemirror-model@1.24.0:
+    resolution: {integrity: sha512-Ft7epNnycoQSM+2ObF35SBbBX+5WY39v8amVlrtlAcpglhlHs2tCTnWl7RX5tbp/PsMKcRcWV9cXPuoBWq0AIQ==}
 
   prosemirror-schema-basic@1.2.3:
     resolution: {integrity: sha512-h+H0OQwZVqMon1PNn0AG9cTfx513zgIG2DY00eJ00Yvgb3UD+GQ/VlWW5rcaxacpCGT1Yx8nuhwXk4+QbXUfJA==}
@@ -12787,7 +12788,7 @@ snapshots:
 
   prosemirror-commands@1.6.0:
     dependencies:
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.10.0
 
@@ -12812,35 +12813,35 @@ snapshots:
     dependencies:
       '@types/markdown-it': 14.1.2
       markdown-it: 14.1.0
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
 
-  prosemirror-model@1.23.0:
+  prosemirror-model@1.24.0:
     dependencies:
       orderedmap: 2.1.1
 
   prosemirror-schema-basic@1.2.3:
     dependencies:
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
 
   prosemirror-schema-list@1.4.1:
     dependencies:
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.10.0
 
   prosemirror-state@1.4.3:
     dependencies:
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
       prosemirror-transform: 1.10.0
       prosemirror-view: 1.34.3
 
   prosemirror-transform@1.10.0:
     dependencies:
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
 
   prosemirror-view@1.34.3:
     dependencies:
-      prosemirror-model: 1.23.0
+      prosemirror-model: 1.24.0
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.10.0
 

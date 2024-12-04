@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- [#1687](https://github.com/equinor/fusion-web-components/pull/1687) [`6bd2a51`](https://github.com/equinor/fusion-web-components/commit/6bd2a51486260e346d5ac55b0d45dc253cad1c3a) Thanks [@eikeland](https://github.com/eikeland)! - ### Changes in `PersonSelectElement`
+
+  - Added the `attribute: 'selectedperson'` to the `selectedPerson` property config to fix use in react and as a legal html property name.
+
 ## 3.0.5
 
 ### Patch Changes

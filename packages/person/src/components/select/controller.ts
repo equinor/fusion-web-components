@@ -63,8 +63,6 @@ export class PersonSelectController implements ReactiveController {
       return selectedPerson;
     })();
     
-    console.log(selectedPerson)
-
     // there are no selected person
     if (selectedPersonId === undefined) return;
 
@@ -227,7 +225,6 @@ export class PersonSelectController implements ReactiveController {
   }
 
   public clear() {
-    console.log('Clearing');
     this.clearInput();
 
     if (this.selectedIds.size) {

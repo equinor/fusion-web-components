@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.10.2
+
+### Patch Changes
+
+- [#1693](https://github.com/equinor/fusion-web-components/pull/1693) [`a2b50ff`](https://github.com/equinor/fusion-web-components/commit/a2b50ff76a9216e6d18b43aea5b42fbd3d28f0d3) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Add and use accountClassification with accountType for displaying different colors on avatar border
+
 ## 4.10.1
 
 ### Patch Changes

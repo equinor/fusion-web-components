@@ -40,7 +40,7 @@
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-icon": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.10",
-    "lit": "3.2.0",
+    "lit": "3.2.1",
     "prosemirror-commands": "^1.6.0",
     "prosemirror-history": "^1.4.1",
     "prosemirror-inputrules": "^1.4.0",

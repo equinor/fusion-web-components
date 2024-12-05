@@ -127,7 +127,8 @@ export class PersonSelectElement
   search = '';
 
   @property({
-    attribute: 'selectedperson',
+    attribute: 'selected-person',
+    type: String,
     converter(value) {
       /* converter to allow user to pass personobject as property */
       if (value?.length) {
@@ -177,9 +178,7 @@ export class PersonSelectElement
 
   updated(props: Map<string, string | null | undefined>) {
     if (props.has('selectedPerson')) {
-      this.controllers.element.attrSelectedPerson(
-        this.selectedPerson?.upn ?? this.selectedPerson?.azureId ?? (this.selectedPerson as null | undefined),
-      );
+      this.controllers.element.resolveSelectedPerson();
     }
   }
 

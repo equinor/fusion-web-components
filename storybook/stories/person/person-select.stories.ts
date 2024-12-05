@@ -24,8 +24,8 @@ const render = (props: PersonSelectElementProps) => {
   return html`
     <div style="min-height: 300px">
       <fwc-person-select
+        .selectedPerson=${ifDefined(selectedPerson)}
         autofocus="${ifDefined(props.autofocus)}"
-        selectedPerson=${ifDefined(selectedPerson)}
         selectTextOnFocus=${ifDefined(props.selectTextOnFocus)}
         disabled=${ifDefined(props.disabled)}
         dropdownHeight=${ifDefined(props.dropdownHeight)}

@@ -127,7 +127,8 @@ export class PersonSelectElement
   search = '';
 
   @property({
-    attribute: 'selectedperson',
+    attribute: 'selected-person',
+    type: String,
     converter(value) {
       /* converter to allow user to pass personobject as property */
       if (value?.length) {

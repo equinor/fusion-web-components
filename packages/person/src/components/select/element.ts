@@ -177,9 +177,7 @@ export class PersonSelectElement
 
   updated(props: Map<string, string | null | undefined>) {
     if (props.has('selectedPerson')) {
-      this.controllers.element.attrSelectedPerson(
-        this.selectedPerson?.upn ?? this.selectedPerson?.azureId ?? (this.selectedPerson as null | undefined),
-      );
+      this.controllers.element.resolveSelectedPerson();
     }
   }
 

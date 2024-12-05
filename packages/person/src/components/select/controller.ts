@@ -40,6 +40,7 @@ export class PersonSelectController implements ReactiveController {
   }
 
   public hostConnected(): void {
+    this.resolveSelectedPerson();
     requestAnimationFrame(() => {
       if (this.#host.textInputElement && this.#host.autofocus) {
         this.#host.textInputElement.focus();
@@ -50,30 +51,27 @@ export class PersonSelectController implements ReactiveController {
     document.body.addEventListener('click', this._handleGlobalClick);
   }
 
-  /**
-   * Resolve personInfo task from selectedPerson property.
-   * Runs on host updated when property is changed
-   */
-  public attrSelectedPerson(select: string | null | undefined) {
-    if ((select === null || select === '') && this.selectedIds.size) {
-      this.clear();
-      return;
-    }
+  public resolveSelectedPerson(): void {
+    const { selectedPerson } = this.#host;
+    const selectedPersonId =
+      typeof selectedPerson === 'object' ? selectedPerson?.azureId ?? selectedPerson?.upn : selectedPerson;
 
-    /* Do not trigger task if undefined */
-    if (!select) {
-      return;
-    }
+    // there are no selected person
+    if (selectedPersonId === undefined) return;
 
+    const shouldClear = (selectedPersonId === null || selectedPersonId === '') && this.selectedIds.size;
+    if (shouldClear) {
+      return this.clear();
+    }
     // clear previous selections since property has changed
     this.selectedIds.clear();
 
     /* Trigger PersonInfo task with upn or azureId */
-    if (select.match('@')) {
-      this.#host.upn = select;
+    if (selectedPersonId.match('@')) {
+      this.#host.upn = selectedPersonId;
       this.#host.azureId = undefined;
-    } else if (select.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
-      this.#host.azureId = select;
+    } else if (selectedPersonId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
+      this.#host.azureId = selectedPersonId;
       this.#host.upn = undefined;
     }
   }

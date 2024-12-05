@@ -65,8 +65,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -96,8 +96,8 @@ importers:
         specifier: workspace:^
         version: link:../ripple
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -133,8 +133,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -161,8 +161,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -192,8 +192,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -201,8 +201,8 @@ importers:
   packages/core:
     devDependencies:
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
 
   packages/date:
     dependencies:
@@ -226,8 +226,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -251,8 +251,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -279,8 +279,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -304,8 +304,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -329,8 +329,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -369,8 +369,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -427,8 +427,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -455,8 +455,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -513,8 +513,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -535,8 +535,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -563,8 +563,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -588,8 +588,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -616,8 +616,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -641,8 +641,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -693,8 +693,8 @@ importers:
         specifier: ^0.27.0
         version: 0.27.0
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -727,8 +727,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -752,8 +752,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -780,8 +780,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -808,8 +808,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -839,8 +839,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -867,8 +867,8 @@ importers:
         specifier: workspace:^
         version: link:../../utils/builder
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -1030,8 +1030,8 @@ importers:
         specifier: ^4.22.5
         version: 4.22.5
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
 
   utils/dependencies:
     devDependencies:
@@ -1039,8 +1039,8 @@ importers:
         specifier: ^22.7.4
         version: 22.7.4
       tslib:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.1
+        version: 2.8.1
 
 packages:
 
@@ -3558,6 +3558,7 @@ packages:
 
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
 
@@ -6515,8 +6516,8 @@ packages:
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
 
-  tslib@2.7.0:
-    resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -8222,20 +8223,20 @@ snapshots:
 
   '@material/animation@14.0.0-canary.53b3cad2f.0':
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/base@14.0.0-canary.53b3cad2f.0':
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/density@14.0.0-canary.53b3cad2f.0':
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/dom@14.0.0-canary.53b3cad2f.0':
     dependencies:
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/elevation@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8244,15 +8245,15 @@ snapshots:
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/feature-targeting@14.0.0':
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/feature-targeting@14.0.0-canary.53b3cad2f.0':
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/floating-label@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8263,7 +8264,7 @@ snapshots:
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/typography': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/focus-ring@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8279,7 +8280,7 @@ snapshots:
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/typography': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/line-ripple@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8287,7 +8288,7 @@ snapshots:
       '@material/base': 14.0.0-canary.53b3cad2f.0
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/list@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8300,7 +8301,7 @@ snapshots:
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/typography': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/menu-surface@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8311,7 +8312,7 @@ snapshots:
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/menu@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8324,41 +8325,41 @@ snapshots:
       '@material/ripple': 14.0.0-canary.53b3cad2f.0
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-base@0.27.0':
     dependencies:
       '@material/base': 14.0.0-canary.53b3cad2f.0
       '@material/dom': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-button@0.27.0':
     dependencies:
       '@material/mwc-icon': 0.27.0
       '@material/mwc-ripple': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-checkbox@0.27.0':
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-floating-label@0.27.0':
     dependencies:
       '@material/floating-label': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-formfield@0.27.0':
     dependencies:
       '@material/form-field': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-icon-button-toggle@0.27.0':
     dependencies:
@@ -8366,24 +8367,24 @@ snapshots:
       '@material/mwc-icon-button': 0.27.0
       '@material/mwc-ripple': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-icon-button@0.27.0':
     dependencies:
       '@material/mwc-ripple': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-icon@0.27.0':
     dependencies:
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-line-ripple@0.27.0':
     dependencies:
       '@material/line-ripple': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-list@0.27.0':
     dependencies:
@@ -8395,7 +8396,7 @@ snapshots:
       '@material/mwc-radio': 0.27.0
       '@material/mwc-ripple': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-menu@0.27.0':
     dependencies:
@@ -8406,14 +8407,14 @@ snapshots:
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-notched-outline@0.27.0':
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/notched-outline': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-radio@0.27.0':
     dependencies:
@@ -8421,7 +8422,7 @@ snapshots:
       '@material/mwc-ripple': 0.27.0
       '@material/radio': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-ripple@0.27.0':
     dependencies:
@@ -8429,7 +8430,7 @@ snapshots:
       '@material/mwc-base': 0.27.0
       '@material/ripple': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-select@0.27.0':
     dependencies:
@@ -8446,7 +8447,7 @@ snapshots:
       '@material/mwc-notched-outline': 0.27.0
       '@material/select': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-switch@0.27.0':
     dependencies:
@@ -8454,14 +8455,14 @@ snapshots:
       '@material/mwc-ripple': 0.27.0
       '@material/switch': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-textarea@0.27.0':
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-textfield': 0.27.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/mwc-textfield@0.27.0':
     dependencies:
@@ -8473,7 +8474,7 @@ snapshots:
       '@material/mwc-notched-outline': 0.27.0
       '@material/textfield': 14.0.0-canary.53b3cad2f.0
       lit: 3.1.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/notched-outline@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8483,7 +8484,7 @@ snapshots:
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/radio@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8496,7 +8497,7 @@ snapshots:
       '@material/ripple': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/touch-target': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/ripple@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8506,12 +8507,12 @@ snapshots:
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/rtl@14.0.0-canary.53b3cad2f.0':
     dependencies:
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/select@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8533,14 +8534,14 @@ snapshots:
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/tokens': 14.0.0-canary.53b3cad2f.0
       '@material/typography': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/shape@14.0.0-canary.53b3cad2f.0':
     dependencies:
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/switch@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8556,7 +8557,7 @@ snapshots:
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/tokens': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/textfield@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8574,17 +8575,17 @@ snapshots:
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       '@material/tokens': 14.0.0-canary.53b3cad2f.0
       '@material/typography': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/theme@14.0.0':
     dependencies:
       '@material/feature-targeting': 14.0.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/theme@14.0.0-canary.53b3cad2f.0':
     dependencies:
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/tokens@14.0.0-canary.53b3cad2f.0':
     dependencies:
@@ -8595,13 +8596,13 @@ snapshots:
       '@material/base': 14.0.0-canary.53b3cad2f.0
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
       '@material/rtl': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@material/typography@14.0.0-canary.53b3cad2f.0':
     dependencies:
       '@material/feature-targeting': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@mdx-js/react@2.3.0(react@18.3.1)':
     dependencies:
@@ -9656,7 +9657,7 @@ snapshots:
       flat-cache: 3.2.0
       micromatch: 4.0.7
       react-docgen-typescript: 2.2.2(typescript@5.6.2)
-      tslib: 2.7.0
+      tslib: 2.8.1
       typescript: 5.6.2
       webpack: 5.91.0(@swc/core@1.5.24)(esbuild@0.18.20)
     transitivePeerDependencies:
@@ -10228,7 +10229,7 @@ snapshots:
   '@yarnpkg/esbuild-plugin-pnp@3.0.0-rc.15(esbuild@0.18.20)':
     dependencies:
       esbuild: 0.18.20
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   '@yarnpkg/fslib@2.10.3':
     dependencies:
@@ -10339,7 +10340,7 @@ snapshots:
 
   aria-hidden@1.2.4:
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   array-back@3.1.0: {}
 
@@ -10361,7 +10362,7 @@ snapshots:
 
   ast-types@0.16.1:
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   async-limiter@1.0.1: {}
 
@@ -10525,7 +10526,7 @@ snapshots:
   camel-case@4.1.2:
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   camelcase-keys@7.0.2:
     dependencies:
@@ -10907,7 +10908,7 @@ snapshots:
   dot-case@3.0.4:
     dependencies:
       no-case: 3.0.4
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   dotenv-expand@10.0.0: {}
 
@@ -11998,7 +11999,7 @@ snapshots:
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   lru-cache@10.2.2: {}
 
@@ -12454,7 +12455,7 @@ snapshots:
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   node-abort-controller@3.1.1: {}
 
@@ -12632,7 +12633,7 @@ snapshots:
   param-case@3.0.4:
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   parent-module@1.0.1:
     dependencies:
@@ -12650,7 +12651,7 @@ snapshots:
   pascal-case@3.1.2:
     dependencies:
       no-case: 3.0.4
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   path-browserify@1.0.1: {}
 
@@ -12967,7 +12968,7 @@ snapshots:
     dependencies:
       react: 18.3.1
       react-style-singleton: 2.2.1(@types/react@18.3.11)(react@18.3.1)
-      tslib: 2.7.0
+      tslib: 2.8.1
     optionalDependencies:
       '@types/react': 18.3.11
 
@@ -12976,7 +12977,7 @@ snapshots:
       react: 18.3.1
       react-remove-scroll-bar: 2.3.6(@types/react@18.3.11)(react@18.3.1)
       react-style-singleton: 2.2.1(@types/react@18.3.11)(react@18.3.1)
-      tslib: 2.7.0
+      tslib: 2.8.1
       use-callback-ref: 1.3.2(@types/react@18.3.11)(react@18.3.1)
       use-sidecar: 1.1.2(@types/react@18.3.11)(react@18.3.1)
     optionalDependencies:
@@ -12987,7 +12988,7 @@ snapshots:
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.3.1
-      tslib: 2.7.0
+      tslib: 2.8.1
     optionalDependencies:
       '@types/react': 18.3.11
 
@@ -13054,7 +13055,7 @@ snapshots:
       esprima: 4.0.1
       source-map: 0.6.1
       tiny-invariant: 1.3.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   redent@4.0.0:
     dependencies:
@@ -13439,7 +13440,7 @@ snapshots:
   synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   tapable@2.2.1: {}
 
@@ -13551,7 +13552,7 @@ snapshots:
 
   tslib@1.14.1: {}
 
-  tslib@2.7.0: {}
+  tslib@2.8.1: {}
 
   type-check@0.4.0:
     dependencies:
@@ -13683,7 +13684,7 @@ snapshots:
   use-callback-ref@1.3.2(@types/react@18.3.11)(react@18.3.1):
     dependencies:
       react: 18.3.1
-      tslib: 2.7.0
+      tslib: 2.8.1
     optionalDependencies:
       '@types/react': 18.3.11
 
@@ -13697,7 +13698,7 @@ snapshots:
     dependencies:
       detect-node-es: 1.1.0
       react: 18.3.1
-      tslib: 2.7.0
+      tslib: 2.8.1
     optionalDependencies:
       '@types/react': 18.3.11
 

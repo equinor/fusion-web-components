@@ -53,26 +53,35 @@ export class PersonSelectController implements ReactiveController {
 
   public resolveSelectedPerson(): void {
     const { selectedPerson } = this.#host;
-    const selectedPersonId =
-      typeof selectedPerson === 'object' ? selectedPerson?.azureId ?? selectedPerson?.upn : selectedPerson;
+    const selectedPersonId = (() => {
+      if (selectedPerson === null) {
+        return null;
+      }
+      if (typeof selectedPerson === 'object') {
+        return selectedPerson.azureId ?? selectedPerson.upn;
+      }
+      return selectedPerson;
+    })();
+    
+    console.log(selectedPerson)
 
     // there are no selected person
     if (selectedPersonId === undefined) return;
 
-    const shouldClear = (selectedPersonId === null || selectedPersonId === '') && this.selectedIds.size;
-    if (shouldClear) {
+    if (!selectedPersonId) {
       return this.clear();
     }
-    // clear previous selections since property has changed
-    this.selectedIds.clear();
-
-    /* Trigger PersonInfo task with upn or azureId */
+    // check if upn is a valid email
     if (selectedPersonId.match('@')) {
       this.#host.upn = selectedPersonId;
       this.#host.azureId = undefined;
-    } else if (selectedPersonId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
+      return;
+    } 
+    // check if azureId is a valid guid
+    if (selectedPersonId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
       this.#host.azureId = selectedPersonId;
       this.#host.upn = undefined;
+      return;
     }
   }
 
@@ -218,6 +227,7 @@ export class PersonSelectController implements ReactiveController {
   }
 
   public clear() {
+    console.log('Clearing');
     this.clearInput();
 
     if (this.selectedIds.size) {

@@ -3,7 +3,7 @@ import type { PersonInfoControllerHostAttributes } from '../../tasks/person-info
 import type { PersonAvatarShowCardOnType } from './element';
 import type { PersonInfo } from '../../types';
 
-export type AvatarData = Pick<PersonInfo, 'name' | 'accountType'>;
+export type AvatarData = Pick<PersonInfo, 'name' | 'accountType' | 'accountClassification'>;
 
 export type PersonAvatarElementProps = PersonInfoControllerHostAttributes & {
   size?: AvatarElementProps['size'];

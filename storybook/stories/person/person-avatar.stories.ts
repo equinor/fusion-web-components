@@ -9,6 +9,7 @@ import cem from '@equinor/fusion-wc-person/custom-elements.json';
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
 import { AvatarElementProps } from '@equinor/fusion-wc-avatar';
+import { PersonAccountType } from '@equinor/fusion-wc-person';
 
 PersonAvatar;
 
@@ -60,6 +61,20 @@ export const Sizes: Story = {
 export const Disabled: Story = {
   ...Default,
   render: (props) => render({ ...props, disabled: true }),
+};
+
+export const Employees: Story = {
+  name: 'External/Internal Employee',
+  ...Default,
+  render: (props) => {
+    return html`${render({
+      ...props,
+      dataSource: { accountType: PersonAccountType.Employee, accountClassification: 'External' },
+    })}${render({
+      ...props,
+      dataSource: { accountType: PersonAccountType.Employee, accountClassification: 'Internal' },
+    })}`;
+  },
 };
 
 export const CornerPositions: Story = {

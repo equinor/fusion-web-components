@@ -7,7 +7,7 @@ import { when } from 'lit/directives/when.js';
 
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { AvatarData, PersonAvatarElementProps } from './types';
-import { PersonAccountType, PersonAvailability } from '../../types';
+import { AccountClassification, PersonAccountType, PersonAvailability } from '../../types';
 import '../card';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 import style from './element.css';
@@ -194,12 +194,20 @@ export class PersonAvatarElement
   /**
    * Returns the badge color for the current presence
    */
-  protected getRenderClasses(accountType?: PersonAccountType[keyof PersonAccountType]): ClassInfo {
+  protected getRenderClasses(
+    accountType?: PersonAccountType[keyof PersonAccountType],
+    accountClassification?: AccountClassification,
+  ): ClassInfo {
+    const isEmployee = accountType === PersonAccountType.Employee;
+    const isConsultantOrEnterprise =
+      accountType === PersonAccountType.Consultant || accountType === PersonAccountType.Enterprise;
+    const isExternal = accountType === PersonAccountType.External;
+
     return {
-      'employee-color': accountType === PersonAccountType.Employee,
-      'consultant-color': accountType === PersonAccountType.Consultant || accountType === PersonAccountType.Enterprise,
-      'external-color': accountType === PersonAccountType.External,
-      'external-hire-color': accountType === PersonAccountType.ExternalHire,
+      'employee-color': isEmployee && accountClassification === 'Internal',
+      'consultant-color': isConsultantOrEnterprise,
+      'external-color': isExternal,
+      'external-hire-color': isEmployee && accountClassification === 'External',
     };
   }
 
@@ -273,8 +281,8 @@ export class PersonAvatarElement
     return html`<div id="root">
       ${this.tasks.info.render({
         complete: (details: AvatarData) => {
-          const { accountType, name } = details;
-          const classes = classMap(this.getRenderClasses(accountType));
+          const { accountType, accountClassification, name } = details;
+          const classes = classMap(this.getRenderClasses(accountType, accountClassification));
           return html`<div>
             <fwc-avatar
               class=${classes}

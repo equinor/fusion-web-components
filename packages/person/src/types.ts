@@ -33,6 +33,7 @@ export type PersonInfo = {
   accountType?: PersonAccountType[keyof PersonAccountType];
   officeLocation?: string;
   managerAzureUniqueId?: string;
+  accountClassification?: AccountClassification;
 };
 
 export type PersonDetails = PersonInfo & {
@@ -56,6 +57,8 @@ export enum PersonAccountType {
   External = 'External',
   ExternalHire = 'External Hire',
 }
+
+export type AccountClassification = 'Internal' | 'External';
 
 export enum PersonAvailability {
   Available = 'Available',

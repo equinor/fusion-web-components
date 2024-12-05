@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1691](https://github.com/equinor/fusion-web-components/pull/1691) [`b72a1b7`](https://github.com/equinor/fusion-web-components/commit/b72a1b7768e0c9837f01a71113a5cc73a6511e62) Thanks [@odinr](https://github.com/odinr)! - - improved initial resolve of `selectedPerson`
+  - added frame delay of dispatching resolve request (allow resolver to connect to `dom` and setup).
+
+### Patch Changes
+
+- [#1693](https://github.com/equinor/fusion-web-components/pull/1693) [`a2b50ff`](https://github.com/equinor/fusion-web-components/commit/a2b50ff76a9216e6d18b43aea5b42fbd3d28f0d3) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Add and use accountClassification with accountType for displaying different colors on avatar border
+
 ## 3.0.6
 
 ### Patch Changes

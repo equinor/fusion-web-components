@@ -55,6 +55,7 @@ export enum PersonAccountType {
   Consultant = 'Consultant',
   Enterprise = 'Enterprise',
   External = 'External',
+  ExternalHire = 'External Hire',
 }
 
 export type AccountClassification = 'Internal' | 'External';

@@ -74,7 +74,7 @@
     "@equinor/fusion-wc-skeleton": "workspace:^",
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.10",
-    "@floating-ui/dom": "^1.6.11",
+    "@floating-ui/dom": "^1.6.12",
     "@lit-labs/observers": "^2.0.3",
     "@lit-labs/task": "^3.1.0",
     "lit": "3.2.1"

@@ -2,7 +2,8 @@ import { type CSSResult, css } from 'lit';
 
 const style: CSSResult = css`
   :host(:not([disabled])) fwc-avatar.employee-color {
-    --fwc-avatar-color: #8c1159;
+    --fwc-avatar-color: #bebebe;
+    --fwc-avatar-border-size: 0;
   }
   :host(:not([disabled])) fwc-avatar.consultant-color {
     --fwc-avatar-color: #eb0037;

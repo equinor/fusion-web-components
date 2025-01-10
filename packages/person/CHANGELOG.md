@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#1713](https://github.com/equinor/fusion-web-components/pull/1713) [`9bae280`](https://github.com/equinor/fusion-web-components/commit/9bae2807497f8c42e91e82d64e3f9e9caa97177f) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Remove avatar border of internal employee
+
 ## 3.1.0
 
 ### Minor Changes

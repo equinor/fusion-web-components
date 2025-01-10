@@ -34,7 +34,7 @@ export const personStyle: CSSResult = css`
     border-radius: 50%;
   }
   .fwc-person-type__employee {
-    --fwc-avatar-color: #8c1159;
+    --fwc-avatar-color: #bebebe;
     --fwc-avatar-ink-color: #fff;
   }
   .fwc-person-type__consultant {

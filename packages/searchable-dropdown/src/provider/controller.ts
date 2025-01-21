@@ -155,7 +155,7 @@ export class SearchableDropdownController implements ReactiveController {
           return child;
         });
       } else {
-        if (selectedId === item.id) {''
+        if (selectedId === item.id) {
           item.isSelected = true;
           if (isMultiple) {
             this._selectedItems.push(item);
@@ -237,21 +237,6 @@ export class SearchableDropdownController implements ReactiveController {
           this._selectedItems = [selectedItem];
         }
       }
-
-      // if (this.#host.multiple) {
-      //   if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
-      //     /*  Already selected so clear it from selections */
-      //     selectedItem.isSelected = false;
-      //     this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-      //   } else {
-      //     /*  Adds new item to selections */
-      //     selectedItem.isSelected = true;
-      //     this._selectedItems.push(selectedItem);
-      //   }
-      // } else {
-      //   /*  Adds new item to selections */
-      //   this._selectedItems = [selectedItem];
-      // }
     } else {
       /* Clear selected states if any */
       this._selectedItems = [];

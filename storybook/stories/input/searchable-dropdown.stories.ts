@@ -28,6 +28,7 @@ const render = (props: SearchableDropdownProps) => html`
     placeholder="${ifDefined(props.placeholder)}"
     leadingIcon="${ifDefined(props.leadingIcon)}"
     multiple="${ifDefined(props.multiple)}"
+    selectedId="${ifDefined(props.selectedId)}"
     select-text-on-focus="${ifDefined(props.selectTextOnFocus)}"
   ></fwc-searchable-dropdown>
 `;
@@ -39,17 +40,17 @@ export const Default: Story = {
 
 export const Label: Story = {
   ...Default,
-  render: (props) => render({ ...props, label: "Label" }),
+  render: (props) => render({ ...props, label: 'Label' }),
 };
 
 export const Placeholder: Story = {
   ...Default,
-  render: (props) => render({ ...props, placeholder: "Placeholder" }),
+  render: (props) => render({ ...props, placeholder: 'Placeholder' }),
 };
 
 export const LeadingIcon: Story = {
   ...Default,
-  render: (props) => render({ ...props, leadingIcon: "list" }),
+  render: (props) => render({ ...props, leadingIcon: 'list' }),
 };
 
 export const Multiple: Story = {

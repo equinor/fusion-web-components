@@ -131,12 +131,18 @@ export class SearchableDropdownElement
   @query('fwc-list')
   listElement: ListElement | undefined;
 
+  updated(props: Map<string, string | null | undefined>) {
+    if (props.has('selectedId')) {
+      this.controller.initialItemsMutation();
+    }
+  }
+
   /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
     this.controller._listItems.push(item.id);
     const itemClasses = {
       'list-item': true,
-      'item-selected': !!item.isSelected,
+      'item-selected': !!item.isSelected || !!this.controller._selectedItems.find((si) => si.id === item.id),
       'item-error': !!item.isError,
     };
 
@@ -286,7 +292,7 @@ export class SearchableDropdownElement
           <fwc-textinput
             label=${ifDefined(this.label)}
             type="text"
-            value=${this.value}
+            value=${this.controller._selectedItems.map((item) => item.title).join(', ')}
             name="searchabledropdown"
             variant=${variant}
             disabled=${ifDefined(disabled)}

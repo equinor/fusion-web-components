@@ -5,7 +5,6 @@ import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
   SearchableDropdownControllerHost,
-  SearchableDropdownResultItem,
   SearchableDropdownSelectEvent,
 } from '../types';
 import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
@@ -49,8 +48,8 @@ export class SearchableDropdownController implements ReactiveController {
         } else {
           result = await this.resolver.searchQuery(qs);
         }
-        // set isSelected on result items
-        this.result = this.mutateResult(result);
+
+        this.result = result;
         return this.result;
       },
       () => [this.#queryString],
@@ -134,36 +133,58 @@ export class SearchableDropdownController implements ReactiveController {
   };
 
   /**
-   * Mutates result to set parameters like isSelected.
-   * @param result SearchableDropdownResult
-   * @returns result
+   * Set/clear selected id in dropdown list
+   * @param selectedI
    */
-  private mutateResult(result: SearchableDropdownResult) {
-    if (result) {
-      const { selectedId } = this.#host;
-      for (let i = 0; i < result.length; i++) {
-        const item = result[i];
+  private setSelectedItem(selectedId: string | null) {
+    const isMultiple = this.#host.multiple;
 
-        if (item.type === 'section' && item.children?.length) {
-          for (let x = 0; x < item.children.length; x++) {
-            const kid = item.children[x];
-            if (this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id) {
-              kid.isSelected = true;
+    this.result = this.result?.map((item) => {
+      if (item.type === 'section' && item.children?.length) {
+        item.children = item.children.map((child) => {
+          if (selectedId === child.id) {
+            child.isSelected = true;
+            if (isMultiple) {
+              this._selectedItems.push(child);
             } else {
-              kid.isSelected = false;
+              this._selectedItems = [child];
             }
+          } else if (!isMultiple) {
+            child.isSelected = false;
           }
-        } else {
-          if (this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id) {
-            item.isSelected = true;
+          return child;
+        });
+      } else {
+        if (selectedId === item.id) {''
+          item.isSelected = true;
+          if (isMultiple) {
+            this._selectedItems.push(item);
           } else {
-            item.isSelected = false;
+            this._selectedItems = [item];
           }
+        } else if (!isMultiple) {
+          item.isSelected = false;
         }
       }
-    }
 
-    return result;
+      return item;
+    });
+  }
+
+  /**
+   * Mutates the initialResult to set parameters like isSelected.
+   * @returns SearchableDropdownResult
+   */
+  public initialItemsMutation() {
+    const { selectedId } = this.#host;
+
+    this.setSelectedItem(selectedId ?? null);
+
+    // clear any selected items on null
+    if (selectedId === null) {
+      this._selectedItems = [];
+      this.#host.requestUpdate();
+    }
   }
 
   /**
@@ -185,22 +206,13 @@ export class SearchableDropdownController implements ReactiveController {
       const id = this._listItems[event.detail.index];
 
       /* Find selected item in resolver result list */
-      let selectedItem: SearchableDropdownResultItem | undefined;
-
-      // get selected item from result
-      for (const item of this.result) {
-        if (item.id === id) {
-          selectedItem = item;
-          break;
-        } else if (item.children) {
-          for (const childItem of item.children) {
-            if (childItem.id === id) {
-              selectedItem = childItem;
-              break;
-            }
-          }
+      const selectedItem = this.result.find((item) => {
+        if (item.children?.length) {
+          return item.children.find((child) => child.id === id);
         }
-      }
+
+        return item.id === id;
+      });
 
       /* Set Error if none matched the resolver result */
       if (!selectedItem?.id) {
@@ -208,28 +220,41 @@ export class SearchableDropdownController implements ReactiveController {
       }
 
       /*  Set active state and save selected item in state */
-      if (this.#host.multiple) {
-        if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
-          /*  Already selected so clear it from selections */
-          selectedItem.isSelected = false;
-          this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-          this.#host.value = '';
-        } else {
-          /*  Adds new item to selections */
-          selectedItem.isSelected = true;
-          this._selectedItems.push(selectedItem);
-          this.#host.value = selectedItem?.title || '';
-        }
+      if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
+        /*  Already selected so clear it from selections */
+        selectedItem.isSelected = false;
+        this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
       } else {
         /*  Adds new item to selections */
-        this._selectedItems = [selectedItem];
-        this.#host.value = selectedItem?.title || '';
+        if (this.#host.multiple) {
+          this._selectedItems.push(selectedItem);
+        } else {
+          // make sure all others are unactive
+          this.setSelectedItem(null);
+          // select only this item as active
+          selectedItem.isSelected = true;
+
+          this._selectedItems = [selectedItem];
+        }
       }
+
+      // if (this.#host.multiple) {
+      //   if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
+      //     /*  Already selected so clear it from selections */
+      //     selectedItem.isSelected = false;
+      //     this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
+      //   } else {
+      //     /*  Adds new item to selections */
+      //     selectedItem.isSelected = true;
+      //     this._selectedItems.push(selectedItem);
+      //   }
+      // } else {
+      //   /*  Adds new item to selections */
+      //   this._selectedItems = [selectedItem];
+      // }
     } else {
-      /* FALSE === this.result && this._listItems */
-      /* Clear selected states */
+      /* Clear selected states if any */
       this._selectedItems = [];
-      this.#host.value = '';
     }
 
     if (!this.#host.multiple) {
@@ -245,9 +270,6 @@ export class SearchableDropdownController implements ReactiveController {
         bubbles: true,
       }),
     );
-
-    /* Sets items isSelected in task */
-    this.task.run();
 
     /* Refresh host */
     this.#host.requestUpdate();
@@ -278,7 +300,6 @@ export class SearchableDropdownController implements ReactiveController {
       this.#host.textInputElement.blur();
     }
 
-    this.#host.value = '';
     this._selectedItems = [];
     this.#queryString = '';
 

@@ -16,7 +16,6 @@ export class SearchableDropdownController implements ReactiveController {
   protected resolver?: SearchableDropdownResolver;
 
   public _listItems: Array<string> = [];
-  public _selectedItems: SearchableDropdownResult = [];
   public result?: SearchableDropdownResult;
   public task!: Task<[string], SearchableDropdownResult>;
 
@@ -50,6 +49,7 @@ export class SearchableDropdownController implements ReactiveController {
         }
 
         this.result = result;
+        this.setIsSelected();
         return this.result;
       },
       () => [this.#queryString],
@@ -133,35 +133,24 @@ export class SearchableDropdownController implements ReactiveController {
   };
 
   /**
-   * Set/clear selected id in dropdown list
-   * @param selectedI
+   * Loops over result items and sets isSelected to true on selected items
+   * based on items in selectedItems array.
    */
-  private setSelectedItem(selectedId: string | null) {
+  private setIsSelected() {
     const isMultiple = this.#host.multiple;
-
     this.result = this.result?.map((item) => {
-      if (item.type === 'section' && item.children?.length) {
+      if (item.children?.length) {
         item.children = item.children.map((child) => {
-          if (selectedId === child.id) {
+          if (this.#host.selectedItems.has(child.id)) {
             child.isSelected = true;
-            if (isMultiple) {
-              this._selectedItems.push(child);
-            } else {
-              this._selectedItems = [child];
-            }
           } else if (!isMultiple) {
             child.isSelected = false;
           }
           return child;
         });
       } else {
-        if (selectedId === item.id) {
+        if (this.#host.selectedItems.has(item.id)) {
           item.isSelected = true;
-          if (isMultiple) {
-            this._selectedItems.push(item);
-          } else {
-            this._selectedItems = [item];
-          }
         } else if (!isMultiple) {
           item.isSelected = false;
         }
@@ -172,19 +161,58 @@ export class SearchableDropdownController implements ReactiveController {
   }
 
   /**
-   * Mutates the initialResult to set parameters like isSelected.
-   * @returns SearchableDropdownResult
+   * Mutates the initialResult to set parameters like isSelected and selectedItems.
    */
   public initialItemsMutation() {
     const { selectedId } = this.#host;
 
-    this.setSelectedItem(selectedId ?? null);
+    // clear any previous selectedItems when changing property
+    this.#host.selectedItems.clear();
 
-    // clear any selected items on null
-    if (selectedId === null) {
-      this._selectedItems = [];
-      this.#host.requestUpdate();
+    // set selectedItems based on selectedId
+    if (selectedId !== null) {
+      this.#host.selectedItems.clear();
+      this.result?.forEach((item) => {
+        if (item.children?.length) {
+          item.children.forEach((child) => {
+            if (selectedId === child.id) {
+              this.#host.selectedItems.add(child.id);
+            }
+          });
+        } else {
+          if (selectedId === item.id) {
+            this.#host.selectedItems.add(item.id);
+          }
+        }
+      });
     }
+
+    //set input value based on selectedItems
+    this.#host.value = this.allSelectedItems.map((item) => item.title).join(', ');
+
+    // update isSelected in dropdown list
+    this.setIsSelected();
+  }
+
+  /**
+   * Get selectedItems objects from result array.
+   */
+  public get allSelectedItems(): SearchableDropdownResult {
+    const selectedItems: SearchableDropdownResult = [];
+    this.result?.forEach((item) => {
+      if (item.children?.length) {
+        item.children.forEach((child) => {
+          if (this.#host.selectedItems.has(child.id)) {
+            selectedItems.push(child);
+          }
+        });
+      }
+      if (this.#host.selectedItems.has(item.id)) {
+        selectedItems.push(item);
+      }
+    });
+
+    return selectedItems;
   }
 
   /**
@@ -206,41 +234,46 @@ export class SearchableDropdownController implements ReactiveController {
       const id = this._listItems[event.detail.index];
 
       /* Find selected item in resolver result list */
-      const selectedItem = this.result.find((item) => {
-        if (item.children?.length) {
-          return item.children.find((child) => child.id === id);
-        }
+      const selectedItem = this.result
+        .map((item) => {
+          if (item.children) {
+            const match = item.children.find((kid) => kid.id === id);
+            if (match) {
+              return match;
+            }
+          }
 
-        return item.id === id;
-      });
+          return item.id === id ? item : null;
+        })
+        .filter((i) => i !== null)
+        .pop();
 
       /* Set Error if none matched the resolver result */
-      if (!selectedItem?.id) {
+      if (!selectedItem) {
         throw new Error('SearchableDropdownController could not find a match in result provided by resolver.');
       }
 
       /*  Set active state and save selected item in state */
-      if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
-        /*  Already selected so clear it from selections */
-        selectedItem.isSelected = false;
-        this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
+      if (this.#host.selectedItems.has(selectedItem.id)) {
+        /* Unselecting */
+        this.#host.selectedItems.delete(selectedItem.id);
       } else {
         /*  Adds new item to selections */
-        if (this.#host.multiple) {
-          this._selectedItems.push(selectedItem);
-        } else {
-          // make sure all others are unactive
-          this.setSelectedItem(null);
-          // select only this item as active
-          selectedItem.isSelected = true;
-
-          this._selectedItems = [selectedItem];
+        if (!this.#host.multiple) {
+          this.#host.selectedItems.clear();
         }
+        this.#host.selectedItems.add(selectedItem.id);
       }
     } else {
       /* Clear selected states if any */
-      this._selectedItems = [];
+      this.#host.selectedItems.clear();
     }
+
+    // set isSelected based on selectedItems in dropdown list
+    this.setIsSelected();
+
+    // set input value based on selectedItems
+    this.#host.value = this.allSelectedItems.map((item) => item.title).join(', ');
 
     if (!this.#host.multiple) {
       this.isOpen = false;
@@ -250,7 +283,7 @@ export class SearchableDropdownController implements ReactiveController {
     this.#host.dispatchEvent(
       new SearchableDropdownSelectEvent({
         detail: {
-          selected: this._selectedItems,
+          selected: this.allSelectedItems,
         },
         bubbles: true,
       }),
@@ -285,7 +318,9 @@ export class SearchableDropdownController implements ReactiveController {
       this.#host.textInputElement.blur();
     }
 
-    this._selectedItems = [];
+    this.#host.selectedItems.clear();
+    this.#host.value = '';
+
     this.#queryString = '';
 
     /* also runs task */
@@ -314,7 +349,7 @@ export class SearchableDropdownController implements ReactiveController {
     this.#host.trailingIcon = state ? 'close' : '';
 
     /* syncs dropdown list with textinput */
-    if (this._selectedItems) {
+    if (this.#host.selectedItems.size) {
       this.task.run();
     }
 
@@ -357,6 +392,7 @@ export class SearchableDropdownController implements ReactiveController {
     if (this.timer) {
       clearTimeout(this.timer);
     }
+
     this.timer = setTimeout(() => {
       this.#queryString = target.value.trim().toLowerCase();
       this.#host.requestUpdate();

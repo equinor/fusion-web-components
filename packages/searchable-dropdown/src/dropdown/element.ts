@@ -1,7 +1,7 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult, PropertyValues } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 
 import { query } from 'lit/decorators/query.js';
 
@@ -131,7 +131,10 @@ export class SearchableDropdownElement
   @query('fwc-list')
   listElement: ListElement | undefined;
 
-  updated(props: Map<string, string | null | undefined>) {
+  @state()
+  selectedItems: Set<SearchableDropdownResultItem['id']> = new Set([]);
+
+  updated(props: PropertyValues) {
     if (props.has('selectedId')) {
       this.controller.initialItemsMutation();
     }
@@ -142,7 +145,7 @@ export class SearchableDropdownElement
     this.controller._listItems.push(item.id);
     const itemClasses = {
       'list-item': true,
-      'item-selected': !!item.isSelected || !!this.controller._selectedItems.find((si) => si.id === item.id),
+      'item-selected': !!item.isSelected,
       'item-error': !!item.isError,
     };
 
@@ -292,7 +295,7 @@ export class SearchableDropdownElement
           <fwc-textinput
             label=${ifDefined(this.label)}
             type="text"
-            value=${this.controller._selectedItems.map((item) => item.title).join(', ')}
+            value=${this.value}
             name="searchabledropdown"
             variant=${variant}
             disabled=${ifDefined(disabled)}
@@ -303,7 +306,7 @@ export class SearchableDropdownElement
               this.controller.isOpen = true;
               this.selectTextOnFocus && this.textInputElement?.select();
             }}
-            @keyup=${this.controller.handleKeyup}
+            @input=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">

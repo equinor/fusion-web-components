@@ -70,7 +70,6 @@
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-icon": "workspace:^",
     "@equinor/fusion-wc-list": "workspace:^",
-    "@equinor/fusion-wc-searchable-dropdown": "workspace:^",
     "@equinor/fusion-wc-skeleton": "workspace:^",
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.10",

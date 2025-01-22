@@ -1,11 +1,5 @@
 import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
-/**
- * @todo
- * @eikeland
- * Why this import, shouldn`t this come from @equinor/fusion-wc-textfield?
- */
-import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
 
 export const fwcsdd: CSSResult = css`
   :host {
@@ -135,6 +129,6 @@ export const fwcsdd: CSSResult = css`
   }
 `;
 
-export const sddStyles: CSSResult[] = [mdcStyle, fwcsdd];
+export const sddStyles: CSSResult[] = [fwcsdd];
 
 export default sddStyles;

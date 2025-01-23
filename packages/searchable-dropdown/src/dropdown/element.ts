@@ -139,7 +139,6 @@ export class SearchableDropdownElement
   selectedItems: Set<SearchableDropdownResultItem['id']> = new Set([]);
 
   updated(props: PropertyValues) {
-    console.log('props', props);
     if (props.has('selectedId')) {
       this.controller.updateSelectedByProp();
     }
@@ -201,7 +200,7 @@ export class SearchableDropdownElement
     >
       <div slot="graphic" part="graphic">${this.renderItemGraphic(item)}</div>
       ${text}
-      <div slot="meta">${unsafeHTML(item.meta)}</div>
+      <div slot="meta">${this.renderItemMeta(item)}</div>
     </fwc-list-item>`;
   }
 
@@ -215,6 +214,20 @@ export class SearchableDropdownElement
       default:
         if (graphic) {
           return html`<fwc-icon icon="${graphic}" type="${graphicType ?? IconType.EDS}"></fwc-icon>`;
+        }
+    }
+  }
+
+  protected renderItemMeta(item: SearchableDropdownResultItem): ReturnType<typeof unsafeHTML> | void {
+    const { meta, graphicType } = item;
+    switch (graphicType) {
+      case 'inline-html':
+        return unsafeHTML(meta);
+      case 'inline-svg':
+        return unsafeSVG(meta);
+      default:
+        if (meta) {
+          return html`<fwc-icon icon="${meta}" type="${IconType.EDS}"></fwc-icon>`;
         }
     }
   }

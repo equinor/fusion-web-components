@@ -1,5 +1,5 @@
 ---
-'@equinor/fusion-wc-searchable-dropdown': patch
+'@equinor/fusion-wc-searchable-dropdown': major
 '@equinor/fusion-wc-storybook': patch
 ---
 

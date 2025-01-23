@@ -200,7 +200,7 @@ export class SearchableDropdownElement
     >
       <div slot="graphic" part="graphic">${this.renderItemGraphic(item)}</div>
       ${text}
-      <div slot="meta">${this.renderItemMeta(item)}</div>
+      <div slot="meta" part="meta">${this.renderItemMeta(item)}</div>
     </fwc-list-item>`;
   }
 
@@ -219,15 +219,15 @@ export class SearchableDropdownElement
   }
 
   protected renderItemMeta(item: SearchableDropdownResultItem): ReturnType<typeof unsafeHTML> | void {
-    const { meta, graphicType } = item;
-    switch (graphicType) {
+    const { meta, metaType } = item;
+    switch (metaType) {
       case 'inline-html':
         return unsafeHTML(meta);
       case 'inline-svg':
         return unsafeSVG(meta);
       default:
         if (meta) {
-          return html`<fwc-icon icon="${meta}" type="${item.graphicType ?? IconType.EDS}"></fwc-icon>`;
+          return html`<fwc-icon icon="${meta}" type="${item.metaType ?? IconType.EDS}"></fwc-icon>`;
         }
     }
   }

@@ -7,6 +7,9 @@ import { faker } from '@faker-js/faker';
 import { html } from 'lit';
 import appIconSvgTemplate from './appIconSvg.svg';
 
+import { ChipElement } from '@equinor/fusion-wc-chip';
+ChipElement;
+
 SearchableDropdownProviderElement;
 
 faker.seed(123);
@@ -52,6 +55,7 @@ const resolver: SearchableDropdownResolver = {
           graphic: `<div style="background: red; padding: .5rem">${appIconSvgTemplate}</div>`,
           graphicType: 'inline-svg',
           meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
+          metaType: 'inline-html',
         }),
         item({ title: 'Context 1', graphic: 'list', meta: 'alarm' }),
         item({ title: 'Context 2', graphic: 'list', isDisabled: true }),

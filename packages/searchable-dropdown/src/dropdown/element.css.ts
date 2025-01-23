@@ -112,6 +112,9 @@ export const fwcsdd: CSSResult = css`
     height: 1em;
     width: auto;
   }
+  [slot='meta'] {
+    display: flex;
+  }
   fwc-divider {
     display: flex;
     align-items: center;

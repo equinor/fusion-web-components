@@ -65,6 +65,7 @@ export interface SearchableDropdownResultItem {
   isError?: boolean;
   isSelected?: boolean;
   meta?: string;
+  metaType?: IconType | 'inline-svg' | 'inline-html';
   subTitle?: string;
   title?: string;
   type?: 'section' | 'divider' | null;

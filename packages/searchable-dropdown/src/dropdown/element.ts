@@ -43,12 +43,13 @@ import { sddStyles } from './element.css';
  * @property {string} dropdownHeight Sets max-height of list so user can scroll trough results
  * @property {string} graphic Icon to show before each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
  * @property {string} initialText Text to display in dropdown before/without querystring in fwc-textinput
+ * @property {string} noContentText Text to display in dropdown when no matches are found
  * @property {string} label Label for fwc-textinput element
  * @property {string} leadingIcon Leading Icon to display in fwc-text-input
  * @property {string} meta Icon to show after each fwc-list-item. If you want an icon only on one list-item then use the meta property on the SearchableDropdownResultItem
  * @property {string} multiple Able to select multiple items
  * @property {string} placeholder Placeholder text for fwc-textinput element
- * @property {string} selectedId ID that should be highlighted in dropdown
+ * @property {string} selectedId ID that should be selected
  * @property {string} value value for TextInput element
  * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
  *
@@ -105,6 +106,9 @@ export class SearchableDropdownElement
   @property()
   initialText = 'Start typing to search';
 
+  @property()
+  noContentText = 'No content found';
+
   /* The leading icon to display in fwc-textinput */
   @property()
   multiple = false;
@@ -136,16 +140,21 @@ export class SearchableDropdownElement
 
   updated(props: PropertyValues) {
     if (props.has('selectedId')) {
-      this.controller.initialItemsMutation();
+      this.controller.updateSelectedByProp();
     }
   }
 
   /* Build fwc-list-items */
   protected buildListItem(item: SearchableDropdownResultItem): HTMLTemplateResult {
-    this.controller._listItems.push(item.id);
+    const disabled = item.isDisabled || item.isError ? true : undefined;
+
+    const graphic = item.graphic ?? this.graphic;
+
+    const isSelected = this.selectedItems.has(item.id) || undefined;
+
     const itemClasses = {
       'list-item': true,
-      'item-selected': !!item.isSelected,
+      'item-selected': !!isSelected,
       'item-error': !!item.isError,
     };
 
@@ -156,11 +165,6 @@ export class SearchableDropdownElement
       </span>
     `;
 
-    const disabled = item.isDisabled || item.isError ? true : undefined;
-    const selected = item.isSelected ? true : undefined;
-
-    const graphic = item.graphic ?? this.graphic;
-
     /* Sett checkmark on selected items */
     if (item.meta === 'check') {
       return html`<fwc-check-list-item
@@ -168,7 +172,7 @@ export class SearchableDropdownElement
         key=${item.id}
         class=${classMap(itemClasses)}
         disabled=${ifDefined(disabled)}
-        selected=${ifDefined(selected)}
+        selected=${ifDefined(isSelected)}
         twoline=${ifDefined(item.subTitle)}
         graphic=${graphic ? 'icon' : ''}
       >
@@ -189,7 +193,7 @@ export class SearchableDropdownElement
       key=${item.id}
       class=${classMap(itemClasses)}
       disabled=${ifDefined(disabled)}
-      selected=${ifDefined(selected)}
+      selected=${ifDefined(isSelected)}
       twoline=${ifDefined(item.subTitle)}
       graphic=${graphic ? 'icon' : ''}
       ?hasMeta=${!!item.meta}
@@ -231,12 +235,6 @@ export class SearchableDropdownElement
     >
       ${this.controller.task.render({
         complete: (result: SearchableDropdownResult) => {
-          /*
-           * clear previous render items.
-           * we need to save rendered items in state to be able to select them by index from action event
-           */
-          this.controller._listItems = [];
-
           /* Loop over task result */
           return result.map((item, index) => {
             if (item.type === 'section') {

@@ -90,6 +90,7 @@ export interface SearchableDropdownControllerHost extends SearchableDropdownProp
   trailingIcon: string;
   trailingIconElement?: IconElement;
   selectedItems: Set<SearchableDropdownResultItem['id']>;
+  noContentText: string;
   id: string;
 }
 

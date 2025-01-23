@@ -171,7 +171,6 @@ export class SearchableDropdownController implements ReactiveController {
 
     // set selectedItems based on selectedId
     if (selectedId !== null) {
-      this.#host.selectedItems.clear();
       this.result?.forEach((item) => {
         if (item.children?.length) {
           item.children.forEach((child) => {
@@ -234,19 +233,13 @@ export class SearchableDropdownController implements ReactiveController {
       const id = this._listItems[event.detail.index];
 
       /* Find selected item in resolver result list */
-      const selectedItem = this.result
-        .map((item) => {
-          if (item.children) {
-            const match = item.children.find((kid) => kid.id === id);
-            if (match) {
-              return match;
-            }
-          }
-
-          return item.id === id ? item : null;
-        })
-        .filter((i) => i !== null)
-        .pop();
+      const items = this.result.filter((item) => !item.children);
+      const kids = this.result
+        .filter((item) => item.children)
+        .map((item) => item.children as SearchableDropdownResult)
+        .flat();
+      const results = [...items, ...kids];
+      const selectedItem = results.find((item) => item.id === id);
 
       /* Set Error if none matched the resolver result */
       if (!selectedItem) {

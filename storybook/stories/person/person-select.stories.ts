@@ -73,7 +73,8 @@ export const SetSelectedPersonAttributeWithAzureId: Story = {
 export const SetSelectedPersonAttributeWithPersonInfo: Story = {
   args: {
     // selectedPerson: JSON.stringify({ azureID: '49132c24-6ea4-41fe-8221-112f314573f0' }),
-    selectedPerson: '{"azureId":"49132c24-6ea4-41fe-8221-112f314573f0"}',
+    selectedPerson:
+      '{"azureId": "b4f6b901-902e-486a-979e-86d8eeee6365", "upn": "Noe.Rice@equinor.com", "name": "Naomi Steuber", "accountType": "Consultant", "accountClassification": "External", "jobTitle": "Product Assurance Representative", "department": "Automotive", "mail": "Noe.Rice@equinor.com", "mobilePhone": "(763) 255-9520", "officeLocation": "Catherinefield", "positions": [], "manager": { "azureUniqueId": "8da7cab8-5c43-4c99-9689-8c22501f6071","name": "Allan Kulas","department": "Health"}',
   },
   render,
 };

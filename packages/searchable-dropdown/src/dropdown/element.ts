@@ -334,7 +334,7 @@ export class SearchableDropdownElement
             @input=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
-            <span slot="trailing"> ${this.renderCloseIcon()} </span>
+            <span slot="trailing">${this.renderCloseIcon()} </span>
           </slot>
         </div>
         <div class="list">

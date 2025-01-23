@@ -145,7 +145,7 @@ export class SearchableDropdownController implements ReactiveController {
 
     // set selectedItems based on selectedId
     if (selectedId !== null) {
-      const results = this.flatResult();
+      const results = this.flatResult;
       const item = results.find((item) => item.id === selectedId);
       if (item) {
         this.#host.selectedItems.add(item.id);
@@ -153,14 +153,21 @@ export class SearchableDropdownController implements ReactiveController {
     }
 
     //set input value based on selectedItems
+    this.setHostValue();
+  }
+
+  /**
+   * Set host value based on selectedItems
+   */
+  private setHostValue(): void {
     this.#host.value = this.allSelectedItems.map((item) => item.title).join(', ');
   }
 
   /**
    * Get selectedItems objects from result array.
    */
-  public get allSelectedItems(): SearchableDropdownResult {
-    return this.flatResult().filter((item) => this.#host.selectedItems.has(item.id));
+  private get allSelectedItems(): SearchableDropdownResult {
+    return this.flatResult.filter((item) => this.#host.selectedItems.has(item.id));
   }
 
   /**
@@ -170,7 +177,7 @@ export class SearchableDropdownController implements ReactiveController {
    * to be able to use index to set selectedItems.
    * @returns SearchableDropdownResult
    */
-  private flatResult(): SearchableDropdownResult {
+  private get flatResult(): SearchableDropdownResult {
     if (!this.result) {
       return [];
     }
@@ -210,7 +217,7 @@ export class SearchableDropdownController implements ReactiveController {
     }
 
     // get a flat list of result to select by index
-    const results = this.flatResult();
+    const results = this.flatResult;
     if (!results.length) {
       throw new Error('SearchableDropdownController could not find result set in resolver');
     }
@@ -232,7 +239,7 @@ export class SearchableDropdownController implements ReactiveController {
     }
 
     // set input value based on selectedItems
-    this.#host.value = this.allSelectedItems.map((item) => item.title).join(', ');
+    this.setHostValue();
 
     if (!this.#host.multiple) {
       this.isOpen = false;
@@ -274,7 +281,7 @@ export class SearchableDropdownController implements ReactiveController {
     }
 
     this.#host.selectedItems.clear();
-    this.#host.value = '';
+    this.setHostValue();
 
     this.#queryString = '';
 
@@ -299,9 +306,6 @@ export class SearchableDropdownController implements ReactiveController {
   /* Settter: Open/Closed state for host */
   public set isOpen(state: boolean) {
     this._isOpen = state;
-
-    // toogle close icon
-    this.#host.trailingIcon = state ? 'close' : '';
 
     /* syncs dropdown list with textinput */
     if (this.#host.selectedItems.size) {

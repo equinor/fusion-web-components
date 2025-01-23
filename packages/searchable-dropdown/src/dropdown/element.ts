@@ -85,7 +85,7 @@ export class SearchableDropdownElement
 
   /* The trailing icon to display in fwc-textinput */
   @property({ attribute: false, state: true })
-  trailingIcon = '';
+  trailingIcon = 'close';
 
   @query('.trailing')
   trailingIconElement?: IconElement;
@@ -139,6 +139,7 @@ export class SearchableDropdownElement
   selectedItems: Set<SearchableDropdownResultItem['id']> = new Set([]);
 
   updated(props: PropertyValues) {
+    console.log('props', props);
     if (props.has('selectedId')) {
       this.controller.updateSelectedByProp();
     }
@@ -271,6 +272,19 @@ export class SearchableDropdownElement
     </fwc-list>`;
   }
 
+  protected renderCloseIcon(): HTMLTemplateResult {
+    if (this.controller.isOpen || this.selectedItems.size) {
+      return html`<fwc-icon
+        tabindex="1"
+        class="trailing interactive"
+        icon=${this.trailingIcon}
+        @click=${this.controller.closeClick}
+        @keydown=${this.controller.closeClick}
+      ></fwc-icon>`;
+    }
+
+    return html``;
+  }
   /**
    * The main render function
    * @returns HTMLTemplateResult
@@ -307,15 +321,7 @@ export class SearchableDropdownElement
             @input=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
-            <span slot="trailing">
-              <fwc-icon
-                tabindex=${this.controller.isOpen ? '0' : '-1'}
-                class="trailing interactive"
-                icon=${this.trailingIcon}
-                @click=${this.controller.closeClick}
-                @keydown=${this.controller.closeClick}
-              ></fwc-icon>
-            </span>
+            <span slot="trailing"> ${this.renderCloseIcon()} </span>
           </slot>
         </div>
         <div class="list">

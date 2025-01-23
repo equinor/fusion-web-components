@@ -2,7 +2,7 @@ import { css, unsafeCSS, type CSSResult } from 'lit';
 
 import { styles as theme } from '@equinor/fusion-web-theme';
 
-export const fwcsdd: CSSResult = css`
+const fwcsdd: CSSResult = css`
   :host {
     position: relative;
     width: 100%;
@@ -130,11 +130,9 @@ export const fwcsdd: CSSResult = css`
   }
 `;
 
-const sddStyles: CSSResult[] = [fwcsdd];
-
 // TODO - maybe this styling should be changed in parent!
 export const styles: CSSResult[] = [
-  ...sddStyles,
+  ...[fwcsdd],
   css`
     fwc-list {
       --fwc-list-side-padding: 0.5rem;

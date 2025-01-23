@@ -227,7 +227,7 @@ export class SearchableDropdownElement
         return unsafeSVG(meta);
       default:
         if (meta) {
-          return html`<fwc-icon icon="${meta}" type="${IconType.EDS}"></fwc-icon>`;
+          return html`<fwc-icon icon="${meta}" type="${item.graphicType ?? IconType.EDS}"></fwc-icon>`;
         }
     }
   }

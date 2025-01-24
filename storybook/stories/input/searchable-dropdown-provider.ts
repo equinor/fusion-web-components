@@ -7,6 +7,9 @@ import { faker } from '@faker-js/faker';
 import { html } from 'lit';
 import appIconSvgTemplate from './appIconSvg.svg';
 
+import { ChipElement } from '@equinor/fusion-wc-chip';
+ChipElement;
+
 SearchableDropdownProviderElement;
 
 faker.seed(123);
@@ -52,8 +55,9 @@ const resolver: SearchableDropdownResolver = {
           graphic: `<div style="background: red; padding: .5rem">${appIconSvgTemplate}</div>`,
           graphicType: 'inline-svg',
           meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
+          metaType: 'inline-html',
         }),
-        item({ title: 'Context 1', graphic: 'list' }),
+        item({ title: 'Context 1', graphic: 'list', meta: 'alarm' }),
         item({ title: 'Context 2', graphic: 'list', isDisabled: true }),
         item({ title: 'Context 3', subTitle: 'sub title 3', graphic: 'list' }),
         item({ title: 'Context 4', subTitle: 'sub title 4', graphic: 'list', isError: true }),
@@ -73,6 +77,6 @@ const resolver: SearchableDropdownResolver = {
   ],
 };
 
-export const searchableDropdownProviderDecorator = (story) => {
-  return html` <fwc-searchable-dropdown-provider .resolver=${resolver}>${story()}</fwc-searchable-dropdown-provider> `;
+export const searchableDropdownProviderDecorator = (story: CallableFunction) => {
+  return html`<fwc-searchable-dropdown-provider .resolver=${resolver}>${story()}</fwc-searchable-dropdown-provider> `;
 };

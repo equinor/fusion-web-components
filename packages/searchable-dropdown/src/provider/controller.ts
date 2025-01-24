@@ -5,7 +5,6 @@ import {
   SearchableDropdownResult,
   SearchableDropdownResolver,
   SearchableDropdownControllerHost,
-  SearchableDropdownResultItem,
   SearchableDropdownSelectEvent,
 } from '../types';
 import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
@@ -16,8 +15,6 @@ export class SearchableDropdownController implements ReactiveController {
   protected _isOpen = false;
   protected resolver?: SearchableDropdownResolver;
 
-  public _listItems: Array<string> = [];
-  public _selectedItems: SearchableDropdownResult = [];
   public result?: SearchableDropdownResult;
   public task!: Task<[string], SearchableDropdownResult>;
 
@@ -48,10 +45,14 @@ export class SearchableDropdownController implements ReactiveController {
           }
         } else {
           result = await this.resolver.searchQuery(qs);
+          if (!result.length) {
+            result = [{ id: 'no-result', title: this.#host.noContentText, isDisabled: true }];
+          }
         }
-        // set isSelected on result items
-        this.result = this.mutateResult(result);
-        return this.result;
+
+        this.result = result;
+
+        return result;
       },
       () => [this.#queryString],
     );
@@ -134,36 +135,70 @@ export class SearchableDropdownController implements ReactiveController {
   };
 
   /**
-   * Mutates result to set parameters like isSelected.
-   * @param result SearchableDropdownResult
-   * @returns result
+   * Mutates the initialResult to set parameters like isSelected and selectedItems.
    */
-  private mutateResult(result: SearchableDropdownResult) {
-    if (result) {
-      const { selectedId } = this.#host;
-      for (let i = 0; i < result.length; i++) {
-        const item = result[i];
+  public updateSelectedByProp() {
+    const { selectedId } = this.#host;
 
-        if (item.type === 'section' && item.children?.length) {
-          for (let x = 0; x < item.children.length; x++) {
-            const kid = item.children[x];
-            if (this._selectedItems.find((s) => s.id === kid.id) || selectedId === kid.id) {
-              kid.isSelected = true;
-            } else {
-              kid.isSelected = false;
-            }
-          }
-        } else {
-          if (this._selectedItems.find((s) => s.id === item.id) || selectedId === item.id) {
-            item.isSelected = true;
-          } else {
-            item.isSelected = false;
-          }
-        }
+    // clear any previous selectedItems when changing property
+    this.#host.selectedItems.clear();
+
+    // set selectedItems based on selectedId
+    if (selectedId !== null) {
+      const results = this.flatResult;
+      const item = results.find((item) => item.id === selectedId);
+      if (item) {
+        this.#host.selectedItems.add(item.id);
       }
     }
 
-    return result;
+    //set input value based on selectedItems
+    this.setHostValue();
+  }
+
+  /**
+   * Set host value based on selectedItems
+   */
+  private setHostValue(): void {
+    this.#host.value = this.allSelectedItems.map((item) => item.title).join(', ');
+  }
+
+  /**
+   * Get selectedItems objects from result array.
+   */
+  private get allSelectedItems(): SearchableDropdownResult {
+    return this.flatResult.filter((item) => this.#host.selectedItems.has(item.id));
+  }
+
+  /**
+   * Helper that flattens result array to a single array.
+   * used to easily find selected items in result array and set isSelected by index.
+   * @important This method must return results in the same order as resolvers result
+   * to be able to use index to set selectedItems.
+   * @returns SearchableDropdownResult
+   */
+  private get flatResult(): SearchableDropdownResult {
+    if (!this.result) {
+      return [];
+    }
+
+    /**
+     * Create SearchableDropdownResult with all toplevel and child items
+     * excluding dividers and sections.
+     */
+    return this.result.reduce((acc: SearchableDropdownResult, item) => {
+      // do not add dividers to acc
+      if (item.type === 'divider') {
+        return acc;
+      }
+
+      // add sectioned children flatlist
+      if (item.type === 'section' && item.children) {
+        return [...acc, ...item.children];
+      }
+
+      return [...acc, item];
+    }, []);
   }
 
   /**
@@ -181,56 +216,30 @@ export class SearchableDropdownController implements ReactiveController {
       return;
     }
 
-    if (this.result && this._listItems) {
-      const id = this._listItems[event.detail.index];
-
-      /* Find selected item in resolver result list */
-      let selectedItem: SearchableDropdownResultItem | undefined;
-
-      // get selected item from result
-      for (const item of this.result) {
-        if (item.id === id) {
-          selectedItem = item;
-          break;
-        } else if (item.children) {
-          for (const childItem of item.children) {
-            if (childItem.id === id) {
-              selectedItem = childItem;
-              break;
-            }
-          }
-        }
-      }
-
-      /* Set Error if none matched the resolver result */
-      if (!selectedItem?.id) {
-        throw new Error('SearchableDropdownController could not find a match in result provided by resolver.');
-      }
-
-      /*  Set active state and save selected item in state */
-      if (this.#host.multiple) {
-        if (this._selectedItems.find((si) => si.id === selectedItem?.id)) {
-          /*  Already selected so clear it from selections */
-          selectedItem.isSelected = false;
-          this._selectedItems = this._selectedItems.filter((i) => i.id !== selectedItem?.id);
-          this.#host.value = '';
-        } else {
-          /*  Adds new item to selections */
-          selectedItem.isSelected = true;
-          this._selectedItems.push(selectedItem);
-          this.#host.value = selectedItem?.title || '';
-        }
-      } else {
-        /*  Adds new item to selections */
-        this._selectedItems = [selectedItem];
-        this.#host.value = selectedItem?.title || '';
-      }
-    } else {
-      /* FALSE === this.result && this._listItems */
-      /* Clear selected states */
-      this._selectedItems = [];
-      this.#host.value = '';
+    // get a flat list of result to select by index
+    const results = this.flatResult;
+    if (!results.length) {
+      throw new Error('SearchableDropdownController could not find result set in resolver');
     }
+
+    // extract id from results by index
+    const { id } = results[event.detail.index];
+    if (!id) {
+      throw new Error('SearchableDropdownController could not find selected item in resolver');
+    }
+
+    /* De-select if already selected */
+    if (this.#host.selectedItems.has(id)) {
+      this.#host.selectedItems.delete(id);
+    } else {
+      if (!this.#host.multiple) {
+        this.#host.selectedItems.clear();
+      }
+      this.#host.selectedItems.add(id);
+    }
+
+    // set input value based on selectedItems
+    this.setHostValue();
 
     if (!this.#host.multiple) {
       this.isOpen = false;
@@ -240,17 +249,11 @@ export class SearchableDropdownController implements ReactiveController {
     this.#host.dispatchEvent(
       new SearchableDropdownSelectEvent({
         detail: {
-          selected: this._selectedItems,
+          selected: this.allSelectedItems,
         },
         bubbles: true,
       }),
     );
-
-    /* Sets items isSelected in task */
-    this.task.run();
-
-    /* Refresh host */
-    this.#host.requestUpdate();
   }
 
   /**
@@ -274,12 +277,12 @@ export class SearchableDropdownController implements ReactiveController {
 
     /* needed to clear user input */
     if (this.#host.textInputElement) {
-      this.#host.textInputElement.value = '';
       this.#host.textInputElement.blur();
     }
 
-    this.#host.value = '';
-    this._selectedItems = [];
+    this.#host.selectedItems.clear();
+    this.setHostValue();
+
     this.#queryString = '';
 
     /* also runs task */
@@ -304,11 +307,8 @@ export class SearchableDropdownController implements ReactiveController {
   public set isOpen(state: boolean) {
     this._isOpen = state;
 
-    // toogle close icon
-    this.#host.trailingIcon = state ? 'close' : '';
-
     /* syncs dropdown list with textinput */
-    if (this._selectedItems) {
+    if (this.#host.selectedItems.size) {
       this.task.run();
     }
 
@@ -351,6 +351,7 @@ export class SearchableDropdownController implements ReactiveController {
     if (this.timer) {
       clearTimeout(this.timer);
     }
+
     this.timer = setTimeout(() => {
       this.#queryString = target.value.trim().toLowerCase();
       this.#host.requestUpdate();

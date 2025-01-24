@@ -1,8 +1,14 @@
 import { ReactiveController } from 'lit';
 import { PersonSelectElement } from './element';
 
-import { ExplicitEventTarget } from '@equinor/fusion-wc-searchable-dropdown';
 import { PersonInfo } from '../../types';
+
+export interface ExplicitEventTarget extends Event {
+  readonly detail: {
+    index: number;
+  };
+  readonly explicitOriginalTarget: HTMLInputElement;
+}
 
 type PersonSelectEventDetail = {
   selected: PersonInfo | null;
@@ -62,7 +68,7 @@ export class PersonSelectController implements ReactiveController {
       }
       return selectedPerson;
     })();
-    
+
     // there are no selected person
     if (selectedPersonId === undefined) return;
 
@@ -74,7 +80,7 @@ export class PersonSelectController implements ReactiveController {
       this.#host.upn = selectedPersonId;
       this.#host.azureId = undefined;
       return;
-    } 
+    }
     // check if azureId is a valid guid
     if (selectedPersonId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
       this.#host.azureId = selectedPersonId;

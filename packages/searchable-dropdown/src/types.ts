@@ -1,5 +1,4 @@
 import { ReactiveControllerHost } from 'lit';
-import { type ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { TextInputElement } from '@equinor/fusion-wc-textinput';
 import { ListElement } from '@equinor/fusion-wc-list';
 import { IconElement, IconType } from '@equinor/fusion-wc-icon';
@@ -66,6 +65,7 @@ export interface SearchableDropdownResultItem {
   isError?: boolean;
   isSelected?: boolean;
   meta?: string;
+  metaType?: IconType | 'inline-svg' | 'inline-html';
   subTitle?: string;
   title?: string;
   type?: 'section' | 'divider' | null;
@@ -89,11 +89,15 @@ export interface SearchableDropdownControllerHost extends SearchableDropdownProp
   renderRoot: HTMLElement | DocumentFragment;
   trailingIcon: string;
   trailingIconElement?: IconElement;
+  selectedItems: Set<SearchableDropdownResultItem['id']>;
+  noContentText: string;
   id: string;
 }
 
 export interface ExplicitEventTarget extends Event {
-  readonly detail: ActionDetail;
+  readonly detail: {
+    index: number;
+  };
   readonly explicitOriginalTarget: HTMLInputElement;
 }
 

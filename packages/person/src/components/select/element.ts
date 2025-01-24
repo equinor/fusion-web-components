@@ -12,8 +12,6 @@ import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
 import { PersonSearchTask, PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
 
-import { SearchableDropdownControllerHost } from '@equinor/fusion-wc-searchable-dropdown';
-
 import type { PersonInfo, PersonSearchResult } from '../../types';
 import type { SelectedPersonProp } from './index';
 
@@ -58,10 +56,7 @@ PersonAvatarElement;
  * interface renderListItems(items: TResult): HTMLTemplateResult;
  * ```
  */
-export class PersonSelectElement
-  extends LitElement
-  implements SearchableDropdownControllerHost, PersonSearchControllerHost, SelectedPersonProp
-{
+export class PersonSelectElement extends LitElement implements PersonSearchControllerHost, SelectedPersonProp {
   /* style object css */
   static styles: CSSResult[] = psStyles;
 

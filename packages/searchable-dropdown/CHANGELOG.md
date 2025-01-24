@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#1715](https://github.com/equinor/fusion-web-components/pull/1715) [`44aa0a8`](https://github.com/equinor/fusion-web-components/commit/44aa0a8b744e873e19ee6fa9e92da0bd8c3031d8) Thanks [@eikeland](https://github.com/eikeland)! - ### @equinor/fusion-wc-searchable-dropdown
+
+  - Fix: support for setting selectedId in initalItems.
+  - Fix: better handling of multiple selections.
+  - Removed need for mutating result with isSelected, we now keep track of that in selectedItems set.
+  - Removed controllers \_listItems array since we added getter method for flattening the elements to be able to select by index, and more easily loop over all list items.
+  - Renamed methods to align naming scheme with functionality.
+
+  ### @equinor/fusion-wc-storybook
+
+  Fix: can use selectedId in stories and eslint
+
 ## 3.7.4
 
 ### Patch Changes

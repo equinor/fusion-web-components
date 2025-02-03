@@ -6,7 +6,7 @@ const fwcsdd: CSSResult = css`
   :host {
     position: relative;
     width: 100%;
-    --textinput-dense-size: 32px;
+    --textinput-dense-size: 36px;
     --fwc-list-item-vertical-padding: 0.5rem;
     --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- [#1742](https://github.com/equinor/fusion-web-components/pull/1742) [`e275a23`](https://github.com/equinor/fusion-web-components/commit/e275a231ccb1ab8cb79d64268cc2e1f91eac0622) Thanks [@eikeland](https://github.com/eikeland)! - Setting dense size to the same height as eds form input fields
+
 ## 3.1.2
 
 ### Patch Changes

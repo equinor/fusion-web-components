@@ -6,7 +6,6 @@ const fwcsdd: CSSResult = css`
   :host {
     position: relative;
     width: 100%;
-    --textinput-dense-size: 36px;
     --fwc-list-item-vertical-padding: 0.5rem;
     --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
@@ -23,6 +22,7 @@ const fwcsdd: CSSResult = css`
     opacity: 0.5;
   }
   fwc-textinput[dense] {
+    --textinput-dense-size: 36px;
     --mdc-text-field-outlined-idle-border-color: transparent;
     --mdc-shape-small: 0;
     --mdc-text-field-outlined-hover-border-color: ${unsafeCSS(

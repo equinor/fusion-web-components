@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.10.4
+
+### Patch Changes
+
+- [#1750](https://github.com/equinor/fusion-web-components/pull/1750) [`e3a4cde`](https://github.com/equinor/fusion-web-components/commit/e3a4cde5107e34c063e71eb6942b21b943d07e0e) Thanks [@eikeland](https://github.com/eikeland)! - Setting person-select variant page-dense height to 36px to match eds height
+
 ## 4.10.3
 
 ### Patch Changes

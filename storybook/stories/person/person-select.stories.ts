@@ -56,6 +56,13 @@ export const Default: Story = {
   render,
 };
 
+export const Dense: Story = {
+  args: {
+    variant: 'page-dense',
+  },
+  render,
+};
+
 export const SetSelectedPersonAttributeWithUpn: Story = {
   args: {
     selectedPerson: 'fake@faker.info',

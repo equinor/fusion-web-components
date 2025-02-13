@@ -19,7 +19,7 @@
     "@rollup/plugin-node-resolve": "^15.2.4",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/lodash.camelcase": "^4.3.9",
-    "@types/node": "^22.7.4",
+    "@types/node": "^22.13.2",
     "@types/rollup-plugin-progress": "^1.1.5",
     "filesize": "^10.1.6",
     "lodash.camelcase": "^4.3.0",

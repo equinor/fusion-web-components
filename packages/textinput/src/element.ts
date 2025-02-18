@@ -138,6 +138,9 @@ export class TextInputElement extends TextFieldBase {
   @property({ type: Boolean, reflect: true })
   public dense?: boolean;
 
+  @property({ type: String, attribute: true, reflect: true })
+  public autocomplete: AutoFill = '';
+
   /**
    * Returns `true` if the textinput passes validity checks. Returns `false` and fires an [`invalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) event on the textinput otherwise.
    *
@@ -162,6 +165,10 @@ export class TextInputElement extends TextFieldBase {
     this.isUiValid = true;
   }
 
+  firstUpdated(): void {
+    this.formElement.autocomplete = this.autocomplete;
+  }
+
   /** {@inheritDoc} */
   override updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
@@ -182,6 +189,10 @@ export class TextInputElement extends TextFieldBase {
       this.setCustomValidity(this.errorMessage);
       this.errorMessage && this.clearValidity();
       this.reportValidity();
+    }
+
+    if (changedProperties.has('autocomplete')) {
+      this.formElement.autocomplete = this.autocomplete;
     }
   }
 

@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- [#1764](https://github.com/equinor/fusion-web-components/pull/1764) [`eb388db`](https://github.com/equinor/fusion-web-components/commit/eb388dbe5b5c9fb4b9d84811a26a1bb0ef725062) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Turn off autocomplete
+
+- Updated dependencies [[`eb388db`](https://github.com/equinor/fusion-web-components/commit/eb388dbe5b5c9fb4b9d84811a26a1bb0ef725062)]:
+  - @equinor/fusion-wc-textinput@1.1.3
+
 ## 4.0.0
 
 ### Major Changes

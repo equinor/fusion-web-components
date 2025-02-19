@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.5
+
+### Patch Changes
+
+- Updated dependencies [[`eb388db`](https://github.com/equinor/fusion-web-components/commit/eb388dbe5b5c9fb4b9d84811a26a1bb0ef725062)]:
+  - @equinor/fusion-wc-textinput@1.1.3
+
 ## 3.1.4
 
 ### Patch Changes

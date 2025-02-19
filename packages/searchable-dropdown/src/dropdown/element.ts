@@ -327,6 +327,7 @@ export class SearchableDropdownElement
             icon=${this.leadingIcon}
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
+            autocomplete="off"
             @focus=${() => {
               this.controller.isOpen = true;
               this.selectTextOnFocus && this.textInputElement?.select();

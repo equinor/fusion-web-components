@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-textarea",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "",
   "main": "lib/index.js",
   "customElements": "lib/custom-elements.json",

@@ -166,6 +166,7 @@ export class TextInputElement extends TextFieldBase {
   }
 
   firstUpdated(): void {
+    super.firstUpdated();
     this.formElement.autocomplete = this.autocomplete;
   }
 

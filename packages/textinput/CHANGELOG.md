@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [#1775](https://github.com/equinor/fusion-web-components/pull/1775) [`546dd16`](https://github.com/equinor/fusion-web-components/commit/546dd168db71e881d7b7151478ef4adb62e6fb09) Thanks [@odinr](https://github.com/odinr)! - Resolved an issue where the `TextInputElement.firstUpdated` method did not call `super`, preventing the MDC foundation from initializing properly.
+
 ## 1.1.3
 
 ### Patch Changes

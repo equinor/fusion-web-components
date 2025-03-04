@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- [#1785](https://github.com/equinor/fusion-web-components/pull/1785) [`b2fa8fa`](https://github.com/equinor/fusion-web-components/commit/b2fa8fa5f959698763189e2f6fe3cd81916d2c18) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - - re-add styling for searchable dropdown
+  - fix arrow down for searchable dropdown
+
 ## 4.0.2
 
 ### Patch Changes

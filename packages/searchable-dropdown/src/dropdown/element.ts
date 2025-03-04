@@ -332,7 +332,7 @@ export class SearchableDropdownElement
               this.controller.isOpen = true;
               this.selectTextOnFocus && this.textInputElement?.select();
             }}
-            @input=${this.controller.handleKeyup}
+            @keyup=${this.controller.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">${this.renderCloseIcon()} </span>

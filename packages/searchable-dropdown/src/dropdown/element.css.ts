@@ -1,5 +1,6 @@
 import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
+import { styles as textInputStyles } from '@equinor/fusion-wc-textinput';
 
 export const fwcsdd: CSSResult = css`
   :host {
@@ -132,6 +133,6 @@ export const fwcsdd: CSSResult = css`
   }
 `;
 
-export const sddStyles: CSSResult[] = [fwcsdd];
+export const sddStyles: CSSResult[] = textInputStyles.concat(fwcsdd);
 
 export default sddStyles;

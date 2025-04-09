@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.7
+
+### Patch Changes
+
+- [#1823](https://github.com/equinor/fusion-web-components/pull/1823) [`9cb7c65`](https://github.com/equinor/fusion-web-components/commit/9cb7c65ea083b26e9f41cb9ae24f918315f930dd) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - re-add styling for person select
+
 ## 3.1.6
 
 ### Patch Changes

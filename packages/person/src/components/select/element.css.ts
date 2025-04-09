@@ -1,6 +1,6 @@
 import { css, unsafeCSS, type CSSResult } from 'lit';
-
 import { styles as theme } from '@equinor/fusion-web-theme';
+import { styles as textInputStyles } from '@equinor/fusion-wc-textinput';
 
 const fwcsdd: CSSResult = css`
   :host {
@@ -131,8 +131,8 @@ const fwcsdd: CSSResult = css`
 `;
 
 // TODO - maybe this styling should be changed in parent!
-export const styles: CSSResult[] = [
-  ...[fwcsdd],
+export const styles: CSSResult[] = textInputStyles.concat(
+  fwcsdd,
   css`
     fwc-list {
       --fwc-list-side-padding: 0.5rem;
@@ -162,4 +162,4 @@ export const styles: CSSResult[] = [
       flex: 1 0 auto;
     }
   `,
-];
+);

@@ -1,53 +1,46 @@
 {
   "name": "@equinor/fusion-wc-person",
   "version": "3.1.7",
-  "description": "",
+  "description": "A web component library for person-related UI elements",
   "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
-    "./provider": "./lib/components/provider/index.js",
-    "./avatar": "./lib/components/avatar/index.js",
-    "./card": "./lib/components/card/index.js",
-    "./list-item": "./lib/components/list-item/index.js",
-    "./table-cell": "./lib/components/table-cell/index.js",
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/types/index.d.ts"
+    },
+    "./avatar": {
+      "import": "./lib/components/avatar/index.js",
+      "types": "./lib/types/components/avatar/index.d.ts"
+    },
+    "./card": {
+      "import": "./lib/components/card/index.js",
+      "types": "./lib/types/components/card/index.d.ts"
+    },
+    "./list-item": {
+      "import": "./lib/components/list-item/index.js",
+      "types": "./lib/types/components/list-item/index.d.ts"
+    },
+    "./provider": {
+      "import": "./lib/components/provider/index.js",
+      "types": "./lib/types/components/provider/index.d.ts"
+    },
     "./select": {
-      "types": "./lib/types/components/select/index.d.ts",
-      "default": "./lib/components/select/index.js"
+      "import": "./lib/components/select/index.js",
+      "types": "./lib/types/components/select/index.d.ts"
+    },
+    "./table-cell": {
+      "import": "./lib/components/table-cell/index.js",
+      "types": "./lib/types/components/table-cell/index.d.ts"
     },
     "./tasks": {
-      "types": "./lib/types/tasks/index.d.ts",
-      "default": "./lib/tasks/index.js"
+      "import": "./lib/tasks/index.js",
+      "types": "./lib/types/tasks/index.d.ts"
     },
     "./package.json": "./package.json",
     "./custom-elements.json": "./lib/custom-elements.json",
     "./README.md": "./README.md",
     "./CHANGELOG.md": "./CHANGELOG.md"
-  },
-  "types": "lib/types/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "provider": [
-        "lib/types/components/provider/index.d.ts"
-      ],
-      "avatar": [
-        "lib/types/components/avatar/index.d.ts"
-      ],
-      "card": [
-        "lib/types/components/card/index.d.ts"
-      ],
-      "list-item": [
-        "lib/types/components/list-item/index.d.ts"
-      ],
-      "table-cell": [
-        "lib/types/components/table-cell/index.d.ts"
-      ],
-      "select": [
-        "lib/types/components/select/index.d.ts"
-      ],
-      "tasks": [
-        "lib/types/tasks/index.d.ts"
-      ]
-    }
   },
   "files": [
     "lib",

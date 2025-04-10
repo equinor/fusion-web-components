@@ -2,4 +2,4 @@
 '@equinor/fusion-wc-person': patch
 ---
 
-fixed exports to TS 4.7+
+Fixed an issue with module exports to ensure compatibility with TypeScript 4.7, addressing changes in how ES module interop is handled.

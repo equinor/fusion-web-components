@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.8
+
+### Patch Changes
+
+- [#1826](https://github.com/equinor/fusion-web-components/pull/1826) [`df53ffe`](https://github.com/equinor/fusion-web-components/commit/df53ffe819ad7937286a6a594a3659e785769d9f) Thanks [@odinr](https://github.com/odinr)! - Fixed an issue with module exports to ensure compatibility with TypeScript 4.7, addressing changes in how ES module interop is handled.
+
 ## 3.1.7
 
 ### Patch Changes

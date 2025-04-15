@@ -32,7 +32,7 @@
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.10",
     "@material/mwc-switch": "^0.27.0",
-    "lit": "3.2.1"
+    "lit": "3.3.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",

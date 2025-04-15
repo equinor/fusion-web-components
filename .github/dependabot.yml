@@ -11,6 +11,10 @@ updates:
         patterns:
         - "@storybook*"
         - "storybook*"
+      prosemirror:
+        applies-to: version-updates
+        patterns:
+        - "prosemirror*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

@@ -14,16 +14,16 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.4",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/lodash.camelcase": "^4.3.9",
     "@types/node": "^22.14.1",
     "@types/rollup-plugin-progress": "^1.1.5",
     "filesize": "^10.1.6",
     "lodash.camelcase": "^4.3.0",
-    "rollup": "^4.22.5",
+    "rollup": "^4.40.0",
     "tslib": "^2.8.1"
   }
 }

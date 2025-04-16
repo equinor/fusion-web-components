@@ -1009,8 +1009,8 @@ importers:
         specifier: ^22.14.1
         version: 22.14.1
       '@types/rollup-plugin-progress':
-        specifier: ^1.1.5
-        version: 1.1.5
+        specifier: ^1.1.6
+        version: 1.1.6
       filesize:
         specifier: ^10.1.6
         version: 10.1.6
@@ -3413,8 +3413,8 @@ packages:
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
 
-  '@types/rollup-plugin-progress@1.1.5':
-    resolution: {integrity: sha512-x8aEgIhNrSl4pF2bVivAPWAVg2q9g1/Jsc3SeRhUAWGE1BAd8QVWQITO/GTsXZa3vtfYgdyqFNBH8cUuN/cQpQ==}
+  '@types/rollup-plugin-progress@1.1.6':
+    resolution: {integrity: sha512-pJeqZOFLqZ7DV9xfR5Kq/8ATIxbdNyPOqmS1APBvilY/1BOE54OAxdR10pX9x7J0w/Uws18etTseM3R1dzCosg==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -10022,7 +10022,7 @@ snapshots:
 
   '@types/resolve@1.20.6': {}
 
-  '@types/rollup-plugin-progress@1.1.5':
+  '@types/rollup-plugin-progress@1.1.6':
     dependencies:
       rollup: 0.63.5
 

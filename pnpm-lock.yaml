@@ -880,7 +880,7 @@ importers:
         version: 7.6.19(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@storybook/builder-vite':
         specifier: ^7.6.17
-        version: 7.6.19(typescript@5.6.2)(vite@6.3.4(@types/node@22.14.1)(terser@5.39.0))
+        version: 7.6.19(typescript@5.6.2)(vite@6.3.4(@types/node@22.15.3)(terser@5.39.0))
       '@storybook/theming':
         specifier: ^7.6.17
         version: 7.6.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -889,7 +889,7 @@ importers:
         version: 7.6.19(lit@3.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@storybook/web-components-vite':
         specifier: ^7.6.17
-        version: 7.6.19(lit@3.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)(vite@6.3.4(@types/node@22.14.1)(terser@5.39.0))
+        version: 7.6.19(lit@3.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)(vite@6.3.4(@types/node@22.15.3)(terser@5.39.0))
       lit:
         specifier: ^3.0.2
         version: 3.3.0
@@ -904,7 +904,7 @@ importers:
         version: 5.6.2
       vite:
         specifier: ^6.3.4
-        version: 6.3.4(@types/node@22.14.1)(terser@5.39.0)
+        version: 6.3.4(@types/node@22.15.3)(terser@5.39.0)
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:^
@@ -1006,8 +1006,8 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9
       '@types/node':
-        specifier: ^22.14.1
-        version: 22.14.1
+        specifier: ^22.15.3
+        version: 22.15.3
       '@types/rollup-plugin-progress':
         specifier: ^1.1.6
         version: 1.1.6
@@ -1027,8 +1027,8 @@ importers:
   utils/dependencies:
     devDependencies:
       '@types/node':
-        specifier: ^22.14.1
-        version: 22.14.1
+        specifier: ^22.15.3
+        version: 22.15.3
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -3303,11 +3303,11 @@ packages:
   '@types/node@18.19.34':
     resolution: {integrity: sha512-eXF4pfBNV5DAMKGbI02NnDtWrQ40hAN558/2vvS4gMpMIxaf6JmD7YjnZbq0Q9TDSSkKBamime8ewRoomHdt4g==}
 
-  '@types/node@18.19.86':
-    resolution: {integrity: sha512-fifKayi175wLyKyc5qUfyENhQ1dCNI1UNjp653d8kuYcPQN5JhX3dGuP/XmvPTg/xRBn1VTLpbmi+H/Mr7tLfQ==}
+  '@types/node@18.19.87':
+    resolution: {integrity: sha512-OIAAu6ypnVZHmsHCeJ+7CCSub38QNBS9uceMQeg7K5Ur0Jr+wG9wEOEvvMbhp09pxD5czIUy/jND7s7Tb6Nw7A==}
 
-  '@types/node@22.14.1':
-    resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
+  '@types/node@22.15.3':
+    resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -8081,7 +8081,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       '@types/yargs': 17.0.32
       chalk: 4.1.2
 
@@ -9142,7 +9142,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@storybook/builder-vite@7.6.19(typescript@5.6.2)(vite@6.3.4(@types/node@22.14.1)(terser@5.39.0))':
+  '@storybook/builder-vite@7.6.19(typescript@5.6.2)(vite@6.3.4(@types/node@22.15.3)(terser@5.39.0))':
     dependencies:
       '@storybook/channels': 7.6.19
       '@storybook/client-logger': 7.6.19
@@ -9160,7 +9160,7 @@ snapshots:
       fs-extra: 11.2.0
       magic-string: 0.30.10
       rollup: 3.29.4
-      vite: 6.3.4(@types/node@22.14.1)(terser@5.39.0)
+      vite: 6.3.4(@types/node@22.15.3)(terser@5.39.0)
     optionalDependencies:
       typescript: 5.6.2
     transitivePeerDependencies:
@@ -9179,7 +9179,7 @@ snapshots:
       '@storybook/preview': 7.6.19
       '@storybook/preview-api': 7.6.19
       '@swc/core': 1.5.24
-      '@types/node': 18.19.86
+      '@types/node': 18.19.87
       '@types/semver': 7.5.8
       babel-loader: 9.1.3(@babel/core@7.24.6)(webpack@5.91.0(@swc/core@1.5.24)(esbuild@0.18.20))
       browser-assert: 1.2.1
@@ -9327,7 +9327,7 @@ snapshots:
       '@storybook/node-logger': 7.6.19
       '@storybook/types': 7.6.19
       '@types/find-cache-dir': 3.2.1
-      '@types/node': 18.19.86
+      '@types/node': 18.19.87
       '@types/node-fetch': 2.6.11
       '@types/pretty-hrtime': 1.0.3
       chalk: 4.1.2
@@ -9372,7 +9372,7 @@ snapshots:
       '@storybook/telemetry': 7.6.19
       '@storybook/types': 7.6.19
       '@types/detect-port': 1.3.5
-      '@types/node': 18.19.86
+      '@types/node': 18.19.87
       '@types/pretty-hrtime': 1.0.3
       '@types/semver': 7.5.8
       better-opn: 3.0.2
@@ -9408,7 +9408,7 @@ snapshots:
       '@storybook/core-common': 7.6.19
       '@storybook/node-logger': 7.6.19
       '@storybook/types': 7.6.19
-      '@types/node': 18.19.86
+      '@types/node': 18.19.87
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - encoding
@@ -9494,7 +9494,7 @@ snapshots:
       '@storybook/node-logger': 7.6.19
       '@storybook/react': 7.6.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
       '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@5.6.2)(webpack@5.91.0(@swc/core@1.5.24)(esbuild@0.18.20))
-      '@types/node': 18.19.86
+      '@types/node': 18.19.87
       '@types/semver': 7.5.8
       babel-plugin-add-react-displayname: 0.0.5
       fs-extra: 11.2.0
@@ -9598,7 +9598,7 @@ snapshots:
       '@storybook/types': 7.6.19
       '@types/escodegen': 0.0.6
       '@types/estree': 0.0.51
-      '@types/node': 18.19.86
+      '@types/node': 18.19.87
       acorn: 7.4.1
       acorn-jsx: 5.3.2(acorn@7.4.1)
       acorn-walk: 7.2.0
@@ -9654,9 +9654,9 @@ snapshots:
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
 
-  '@storybook/web-components-vite@7.6.19(lit@3.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)(vite@6.3.4(@types/node@22.14.1)(terser@5.39.0))':
+  '@storybook/web-components-vite@7.6.19(lit@3.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)(vite@6.3.4(@types/node@22.15.3)(terser@5.39.0))':
     dependencies:
-      '@storybook/builder-vite': 7.6.19(typescript@5.6.2)(vite@6.3.4(@types/node@22.14.1)(terser@5.39.0))
+      '@storybook/builder-vite': 7.6.19(typescript@5.6.2)(vite@6.3.4(@types/node@22.15.3)(terser@5.39.0))
       '@storybook/core-server': 7.6.19
       '@storybook/node-logger': 7.6.19
       '@storybook/web-components': 7.6.19(lit@3.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -9768,15 +9768,15 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
 
   '@types/cross-spawn@6.0.6':
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
 
   '@types/debug@4.1.12':
     dependencies:
@@ -9812,7 +9812,7 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.3':
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       '@types/qs': 6.9.15
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -9828,7 +9828,7 @@ snapshots:
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
 
   '@types/html-minifier-terser@6.1.0': {}
 
@@ -9875,7 +9875,7 @@ snapshots:
 
   '@types/node-fetch@2.6.11':
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       form-data: 4.0.0
 
   '@types/node@12.20.55': {}
@@ -9884,11 +9884,11 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@18.19.86':
+  '@types/node@18.19.87':
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.14.1':
+  '@types/node@22.15.3':
     dependencies:
       undici-types: 6.21.0
 
@@ -9929,12 +9929,12 @@ snapshots:
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       '@types/send': 0.17.4
 
   '@types/trusted-types@2.0.7': {}
@@ -11680,7 +11680,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -11697,7 +11697,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -11705,13 +11705,13 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -12992,7 +12992,7 @@ snapshots:
   rollup@0.63.5:
     dependencies:
       '@types/estree': 0.0.39
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
 
   rollup@3.29.4:
     optionalDependencies:
@@ -13572,7 +13572,7 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite@6.3.4(@types/node@22.14.1)(terser@5.39.0):
+  vite@6.3.4(@types/node@22.15.3)(terser@5.39.0):
     dependencies:
       esbuild: 0.25.3
       fdir: 6.4.4(picomatch@4.0.2)
@@ -13581,7 +13581,7 @@ snapshots:
       rollup: 4.40.1
       tinyglobby: 0.2.13
     optionalDependencies:
-      '@types/node': 22.14.1
+      '@types/node': 22.15.3
       fsevents: 2.3.3
       terser: 5.39.0
 

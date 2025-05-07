@@ -10,10 +10,22 @@
     "prepack": "pnpm build && fwc-build"
   },
   "exports": {
-    ".": "./lib/index.js",
-    "./list-item": "./lib/list-item/index.js",
-    "./check-list-item": "./lib/check-list-item/index.js",
-    "./radio-list-item": "./lib/radio-list-item/index.js",
+    ".": {
+      "default": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./list-item": {
+      "default": "./lib/list-item/index.js",
+      "types": "./lib/list-item/index.d.ts"
+    },
+    "./check-list-item": {
+      "default": "./lib/check-list-item/index.js",
+      "types": "./lib/check-list-item/index.d.ts"
+    },
+    "./radio-list-item": {
+      "default": "./lib/radio-list-item/index.js",
+      "types": "./lib/radio-list-item/index.d.ts"
+    },
     "./package.json": "./package.json",
     "./custom-elements.json": "./lib/custom-elements.json",
     "./README.md": "./README.md",

@@ -4,13 +4,22 @@
   "description": "Markdown editor created from ProseMirror markdown",
   "main": "lib/index.js",
   "exports": {
-    ".": "./lib/index.js",
+    ".": {
+      "default": "./lib/index.js",
+      "types": "./lib/types/index.d.ts"
+    },
     "./package.json": "./package.json",
     "./custom-elements.json": "./lib/custom-elements.json",
     "./README.md": "./README.md",
     "./CHANGELOG.md": "./CHANGELOG.md",
-    "./markdown-editor": "./lib/markdown-editor/index.js",
-    "./markdown-viewer": "./lib/markdown-viewer/index.js"
+    "./markdown-editor": {
+      "default": "./lib/markdown-editor/index.js",
+      "types": "./lib/types/markdown-editor/index.d.ts"
+    },
+    "./markdown-viewer": {
+      "default": "./lib/markdown-viewer/index.js",
+      "types": "./lib/types/markdown-viewer/index.d.ts"
+    }
   },
   "types": "lib/types/index.d.ts",
   "typesVersions": {

@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`44e2503`](https://github.com/equinor/fusion-web-components/commit/44e2503f51a98131963d29200ed295416c0fa452)]:
+  - @equinor/fusion-wc-list@1.1.4
+
 ## 4.0.3
 
 ### Patch Changes

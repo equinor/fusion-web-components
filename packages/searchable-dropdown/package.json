@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-searchable-dropdown",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Searchable dropdown element",
   "main": "lib/index.js",
   "scripts": {

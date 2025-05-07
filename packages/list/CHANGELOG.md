@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [#1858](https://github.com/equinor/fusion-web-components/pull/1858) [`44e2503`](https://github.com/equinor/fusion-web-components/commit/44e2503f51a98131963d29200ed295416c0fa452) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Updating package exports to be supportive of latest node versions and clients using bundler as moduleresolution
+
 ## 1.1.3
 
 ### Patch Changes

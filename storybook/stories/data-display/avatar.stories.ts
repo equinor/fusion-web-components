@@ -1,8 +1,8 @@
 import { HTMLTemplateResult, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { setCustomElementsManifest } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import AvatarElement, { AvatarElementProps, AvatarColor, AvatarSize } from '@equinor/fusion-wc-avatar';
 import cem from '@equinor/fusion-wc-avatar/lib/custom-elements.json';
 

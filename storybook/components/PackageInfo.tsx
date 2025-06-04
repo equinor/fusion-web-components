@@ -1,7 +1,7 @@
 import React from 'react';
-import { Title, Subtitle, Source } from '@storybook/blocks';
+import { Title, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 type Package = {
   name: string;

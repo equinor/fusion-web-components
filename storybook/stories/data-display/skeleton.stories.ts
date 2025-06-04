@@ -1,8 +1,8 @@
 import { CSSResult, HTMLTemplateResult, css, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { setCustomElementsManifest } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import Skeleton, { SkeletonElementProps, SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import Icon, { IconName } from '@equinor/fusion-wc-icon';
 import cem from '@equinor/fusion-wc-skeleton/lib/custom-elements.json';

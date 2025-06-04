@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { setCustomElementsManifest } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
 import {
   DividerColor,

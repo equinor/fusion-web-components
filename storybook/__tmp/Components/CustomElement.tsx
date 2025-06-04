@@ -3,8 +3,8 @@
 import React from 'react';
 import * as Schema from 'custom-elements-manifest/schema';
 
-import { Title, Subtitle, Description, ArgsTable, ArgsTableError, ArgTypes } from '@storybook/components';
-import { styled } from '@storybook/theming';
+import { Title, Subtitle, Description, ArgsTable, ArgsTableError, ArgTypes } from 'storybook/internal/components';
+import { styled } from 'storybook/theming';
 
 const getDeclarations = (modules: Array<Schema.JavaScriptModule>): Array<Schema.Declaration> =>
   modules.reduce((acc, cur) => acc.concat(cur.declarations || []), [] as Array<Schema.Declaration>);

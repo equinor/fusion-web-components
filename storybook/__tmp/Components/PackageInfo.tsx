@@ -1,7 +1,7 @@
 import React from 'react';
-import { Title, Subtitle, Source } from '@storybook/components';
+import { Title, Subtitle, Source } from 'storybook/internal/components';
 
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 type Package = {
   name: string;

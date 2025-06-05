@@ -1,3 +1,4 @@
+import remarkGfm from 'remark-gfm';
 import {type StorybookConfig} from '@storybook/web-components-vite';
 import { mergeConfig } from 'vite';
 import { resolve } from 'path'
@@ -19,8 +20,16 @@ export const config: StorybookConfig = {
   ],
   framework: '@storybook/web-components-vite',
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-docs'
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    }
   ],
   async viteFinal(config) {
     // Merge custom configuration into the default config

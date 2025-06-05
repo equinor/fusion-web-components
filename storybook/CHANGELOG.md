@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#1879](https://github.com/equinor/fusion-web-components/pull/1879) [`f5f2d32`](https://github.com/equinor/fusion-web-components/commit/f5f2d324170ea732b60cfd651a105c4efccdc0c6) Thanks [@odinr](https://github.com/odinr)! - upgraded storybook to v9
+
 ## 4.10.4
 
 ### Patch Changes

@@ -874,10 +874,10 @@ importers:
         version: 9.0.4(@types/react@18.3.11)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))
       '@storybook/builder-vite':
         specifier: ^9.0.4
-        version: 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.29)(terser@5.39.0))
+        version: 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.30)(terser@5.39.0))
       '@storybook/web-components-vite':
         specifier: ^9.0.4
-        version: 9.0.4(lit@3.3.0)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.29)(terser@5.39.0))
+        version: 9.0.4(lit@3.3.0)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.30)(terser@5.39.0))
       lit:
         specifier: ^3.0.2
         version: 3.3.0
@@ -895,7 +895,7 @@ importers:
         version: 5.8.3
       vite:
         specifier: ^6.3.5
-        version: 6.3.5(@types/node@22.15.29)(terser@5.39.0)
+        version: 6.3.5(@types/node@22.15.30)(terser@5.39.0)
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:^
@@ -994,8 +994,8 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9
       '@types/node':
-        specifier: ^22.15.29
-        version: 22.15.29
+        specifier: ^22.15.30
+        version: 22.15.30
       '@types/rollup-plugin-progress':
         specifier: ^1.1.6
         version: 1.1.6
@@ -1015,8 +1015,8 @@ importers:
   utils/dependencies:
     devDependencies:
       '@types/node':
-        specifier: ^22.15.29
-        version: 22.15.29
+        specifier: ^22.15.30
+        version: 22.15.30
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -1032,6 +1032,10 @@ packages:
 
   '@babel/code-frame@7.24.6':
     resolution: {integrity: sha512-ZJhac6FkEd1yhG2AHOmfcXG4ceoLltoCVJjN5XsWN9BifBQr+cHJbWi0h68HZuSORq+3WtJ2z0hwF2NG1b5kcA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/code-frame@7.27.1':
+    resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/compat-data@7.24.6':
@@ -1088,6 +1092,10 @@ packages:
     resolution: {integrity: sha512-4yA7s865JHaqUdRbnaxarZREuPTHrjpDT+pXoAZ1yhyo6uFnIEpS8VMu16siFOHDpZNKYv5BObhsB//ycbICyw==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/helper-validator-identifier@7.27.1':
+    resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-validator-option@7.24.6':
     resolution: {integrity: sha512-Jktc8KkF3zIkePb48QO+IapbXlSapOW9S+ogZZkcO6bABgYAxtZcjZ/O005111YLf+j4M84uEgwYoidDkXbCkQ==}
     engines: {node: '>=6.9.0'}
@@ -1107,6 +1115,10 @@ packages:
 
   '@babel/runtime@7.27.1':
     resolution: {integrity: sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.24.6':
@@ -2057,8 +2069,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@22.15.29':
-    resolution: {integrity: sha512-LNdjOkUDlU1RZb8e1kOIUpN1qQUlzGkEtbVNo53vbrwDg5om6oduhm4SiUaPW5ASTXhAiP0jInWG8Qx9fVlOeQ==}
+  '@types/node@22.15.30':
+    resolution: {integrity: sha512-6Q7lr06bEHdlfplU6YRbgG1SFBdlsfNC4/lX+SkhiTs0cpJkOElmWls8PxDFv4yY/xKb8Y6SO0OmSX4wgqTZbA==}
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
@@ -4149,6 +4161,12 @@ snapshots:
       '@babel/highlight': 7.24.6
       picocolors: 1.1.1
 
+  '@babel/code-frame@7.27.1':
+    dependencies:
+      '@babel/helper-validator-identifier': 7.27.1
+      js-tokens: 4.0.0
+      picocolors: 1.1.1
+
   '@babel/compat-data@7.24.6': {}
 
   '@babel/core@7.24.6':
@@ -4222,6 +4240,8 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.24.6': {}
 
+  '@babel/helper-validator-identifier@7.27.1': {}
+
   '@babel/helper-validator-option@7.24.6': {}
 
   '@babel/helpers@7.24.6':
@@ -4241,6 +4261,8 @@ snapshots:
       '@babel/types': 7.24.6
 
   '@babel/runtime@7.27.1': {}
+
+  '@babel/runtime@7.27.6': {}
 
   '@babel/template@7.24.6':
     dependencies:
@@ -5233,12 +5255,12 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@storybook/builder-vite@9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.29)(terser@5.39.0))':
+  '@storybook/builder-vite@9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.30)(terser@5.39.0))':
     dependencies:
       '@storybook/csf-plugin': 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))
       storybook: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3)
       ts-dedent: 2.2.0
-      vite: 6.3.5(@types/node@22.15.29)(terser@5.39.0)
+      vite: 6.3.5(@types/node@22.15.30)(terser@5.39.0)
 
   '@storybook/builder-webpack5@9.0.4(esbuild@0.25.4)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
     dependencies:
@@ -5356,9 +5378,9 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  '@storybook/web-components-vite@9.0.4(lit@3.3.0)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.29)(terser@5.39.0))':
+  '@storybook/web-components-vite@9.0.4(lit@3.3.0)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.30)(terser@5.39.0))':
     dependencies:
-      '@storybook/builder-vite': 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.29)(terser@5.39.0))
+      '@storybook/builder-vite': 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@22.15.30)(terser@5.39.0))
       '@storybook/web-components': 9.0.4(lit@3.3.0)(storybook@9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3))
       storybook: 9.0.4(@testing-library/dom@10.4.0)(prettier@3.5.3)
     transitivePeerDependencies:
@@ -5375,8 +5397,8 @@ snapshots:
 
   '@testing-library/dom@10.4.0':
     dependencies:
-      '@babel/code-frame': 7.24.6
-      '@babel/runtime': 7.27.1
+      '@babel/code-frame': 7.27.1
+      '@babel/runtime': 7.27.6
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -5470,7 +5492,7 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@22.15.29':
+  '@types/node@22.15.30':
     dependencies:
       undici-types: 6.21.0
 
@@ -6532,7 +6554,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.15.29
+      '@types/node': 22.15.30
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -7366,7 +7388,7 @@ snapshots:
   rollup@0.63.5:
     dependencies:
       '@types/estree': 0.0.39
-      '@types/node': 22.15.29
+      '@types/node': 22.15.30
 
   rollup@4.40.2:
     dependencies:
@@ -7693,7 +7715,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.5(@types/node@22.15.29)(terser@5.39.0):
+  vite@6.3.5(@types/node@22.15.30)(terser@5.39.0):
     dependencies:
       esbuild: 0.25.4
       fdir: 6.4.4(picomatch@4.0.2)
@@ -7702,7 +7724,7 @@ snapshots:
       rollup: 4.40.2
       tinyglobby: 0.2.13
     optionalDependencies:
-      '@types/node': 22.15.29
+      '@types/node': 22.15.30
       fsevents: 2.3.3
       terser: 5.39.0
 

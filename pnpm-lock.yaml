@@ -870,14 +870,14 @@ importers:
         specifier: ^9.8.0
         version: 9.8.0
       '@storybook/addon-docs':
-        specifier: ^9.0.5
-        version: 9.0.5(@types/react@18.3.11)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
+        specifier: ^9.0.8
+        version: 9.0.8(@types/react@18.3.11)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       '@storybook/builder-vite':
-        specifier: ^9.0.5
-        version: 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.41.0))
+        specifier: ^9.0.8
+        version: 9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.42.0))
       '@storybook/web-components-vite':
-        specifier: ^9.0.5
-        version: 9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.41.0))
+        specifier: ^9.0.8
+        version: 9.0.8(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.42.0))
       lit:
         specifier: ^3.0.2
         version: 3.3.0
@@ -888,14 +888,14 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       storybook:
-        specifier: ^9.0.5
-        version: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+        specifier: ^9.0.8
+        version: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
       vite:
         specifier: ^6.3.5
-        version: 6.3.5(@types/node@24.0.0)(terser@5.41.0)
+        version: 6.3.5(@types/node@24.0.0)(terser@5.42.0)
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:^
@@ -973,8 +973,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/theme
       '@storybook/react-webpack5':
-        specifier: ^9.0.5
-        version: 9.0.5(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
+        specifier: ^9.0.8
+        version: 9.0.8(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
 
   utils/builder:
     devDependencies:
@@ -2002,35 +2002,35 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
-  '@storybook/addon-docs@9.0.5':
-    resolution: {integrity: sha512-1MjbYmagssswSmvmTIfw4A/4z1wW8kBkIxGVyEXLzYHyX15eRbaY4q77P6oTm3pISdFSUJ/qsFBVlkzJu3LB7A==}
+  '@storybook/addon-docs@9.0.8':
+    resolution: {integrity: sha512-YRR8qHitwXVTJyn02YMrzd9mCKcuZWSKWt+J/ddFb8khGfLcAW+O0NohGeqMyM6XStLVDKKIKsMoTHggUwIFsA==}
     peerDependencies:
-      storybook: ^9.0.5
+      storybook: ^9.0.8
 
-  '@storybook/builder-vite@9.0.5':
-    resolution: {integrity: sha512-mr2IqmNmlCWQCxorglo2diGcCIDwaZEJWG6noWkMPW6ri/Nh4y8DQYbK7hUK3O3sGLdV4QfTPCbRPGgMtBb07g==}
+  '@storybook/builder-vite@9.0.8':
+    resolution: {integrity: sha512-dbwDfBUwLW8I71h0Y9r+twtEdjKC+oBP1YweS26ET78qc6qXMFsK5Tfh6lzj/vQbmxY0YhnTVrrkXgfR0erLPA==}
     peerDependencies:
-      storybook: ^9.0.5
+      storybook: ^9.0.8
       vite: ^5.0.0 || ^6.0.0
 
-  '@storybook/builder-webpack5@9.0.5':
-    resolution: {integrity: sha512-khGGNFwqauhME2Ev5qUcandhQuYh4DnP9QZ/6jUcuz4NgpoEMNf8ucFqAsDnKvuE4o9IEDP7JXM7bAm+IWoOHA==}
+  '@storybook/builder-webpack5@9.0.8':
+    resolution: {integrity: sha512-UmRrsZKXpM+/GWDrjAZbjuVvB2yHiXi0vhkNLyk1FtTrDuDIRjDujSxBpjjGau7XdSaSsa+L+HXCpDNS9GeCzQ==}
     peerDependencies:
-      storybook: ^9.0.5
+      storybook: ^9.0.8
       typescript: '*'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@storybook/core-webpack@9.0.5':
-    resolution: {integrity: sha512-EALkOazEIGjcek3osj/laVxETeDpMyWfVJ+GOaHWNAHobJ/nOeURWwbEctIn0O6/ZCjzKT97ThgKUaR18K/QFg==}
+  '@storybook/core-webpack@9.0.8':
+    resolution: {integrity: sha512-pWN/+BOW0jgRQ6AGK+4pKBe88wWfflGSoS20lRyhfbB/Dtu3XzbYYosbBP0gAPgyl+HqN2rUT2eYzf6D6/mrMw==}
     peerDependencies:
-      storybook: ^9.0.5
+      storybook: ^9.0.8
 
-  '@storybook/csf-plugin@9.0.5':
-    resolution: {integrity: sha512-dO+2J3GlIK1pRpXVL9CXhENwmaF0bF6jji+MtUXRHooHtbgtogaTGlYffBnIojuXHnskR6BAaMUPPLVOVY6Ctw==}
+  '@storybook/csf-plugin@9.0.8':
+    resolution: {integrity: sha512-mNjo4t9liAbQvhE9ni87NU2sz9tqFU4Y54ioSFDlW24wpubsvnhBi5h4z3EkeQJSzIzNMRym9SC7Elbqa3Kf+g==}
     peerDependencies:
-      storybook: ^9.0.5
+      storybook: ^9.0.8
 
   '@storybook/global@5.0.0':
     resolution: {integrity: sha512-FcOqPAXACP0I3oJ/ws6/rrPT9WGhu915Cg8D02a9YxLo0DE9zI+a9A5gRGvmQ09fiWPukqI8ZAEoQEdWUKMQdQ==}
@@ -2042,13 +2042,13 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
 
-  '@storybook/preset-react-webpack@9.0.5':
-    resolution: {integrity: sha512-NyG6mAihkb1jZQSGkj1M2bfgr/CnaNaJwRCrbKHaQgLBECkmpZkcpE+lhFJQgYkCUoFL/NYWt2EtGxdWvV6WTg==}
+  '@storybook/preset-react-webpack@9.0.8':
+    resolution: {integrity: sha512-0TOVfn1tkKqMUYZpgA9MOMRr+G8pPASrHYvLgh1996gsDrygNOqQDggD3cPm4wbtVbi6QmrjQqk3mPgHUjXf0A==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      storybook: ^9.0.5
+      storybook: ^9.0.8
       typescript: '*'
     peerDependenciesMeta:
       typescript:
@@ -2060,49 +2060,49 @@ packages:
       typescript: '>= 4.x'
       webpack: '>= 4'
 
-  '@storybook/react-dom-shim@9.0.5':
-    resolution: {integrity: sha512-lMlYoiuJJm9UcUPYYkVNtJu8Xv23fMKqf0k0SF3JB/efaSiaiCNR+fH2g81FrdntOkfFU3YWQ8DUY5TYH73HeA==}
+  '@storybook/react-dom-shim@9.0.8':
+    resolution: {integrity: sha512-SYyjRagHZx724hGEWSZcXRzj82am77OpqeA9ps6ZsCSn4cVY9FORGEeY2bnlQkpLnDUH5yjdV/oh+0fXDbl/8g==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      storybook: ^9.0.5
+      storybook: ^9.0.8
 
-  '@storybook/react-webpack5@9.0.5':
-    resolution: {integrity: sha512-phcNhNRlFDVQaAnEYvEITOAYpoRjvpBN+iJGpNxTsd4BkDJcTld/T1sVsM98+u6PJk6ZwqAQbKKqioonyjKvNA==}
+  '@storybook/react-webpack5@9.0.8':
+    resolution: {integrity: sha512-6sY9SNSXM63AKTCWdtEXrO42frzDdYOp3wiSY4JK77MLFR8+lEOaulU/EfzRVZna+DNm9iEP+aMOOVEg6zWu9w==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      storybook: ^9.0.5
+      storybook: ^9.0.8
       typescript: '>= 4.9.x'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@storybook/react@9.0.5':
-    resolution: {integrity: sha512-qBEUaiGd1d2SQllhcMrBwwnzwWJWHw5XiTeq5MsjkEy2Oqfm7kWqTdGSkMbW/MoeFX5foO+Mu7nLqM9s4GxNXg==}
+  '@storybook/react@9.0.8':
+    resolution: {integrity: sha512-in3O+lDmxKRhdcX3Wg6FbLnb2/PuqRL+rUKMz1wr1ndSkw4J1jGsvP909oEEYnDbjHOX0xnNxxbEapO4F9fgBQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      storybook: ^9.0.5
+      storybook: ^9.0.8
       typescript: '>= 4.9.x'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@storybook/web-components-vite@9.0.5':
-    resolution: {integrity: sha512-UAp1nDNnjfOL4c0ui5KWdZHSfHyG+bUTSJ+DVOgA3auDSpSdgVnU9P4TFiPu7INNaGzfOKqEKD0u7rToZqGqBw==}
+  '@storybook/web-components-vite@9.0.8':
+    resolution: {integrity: sha512-FtyAr0gTz3mLFnwHNj27OcsxTFiU2MbJu63Ro4ynirUyUaVeXl6QKpZ4kj+FG94TlO6T5xDeveq8V3YsOJ/Nyw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      storybook: ^9.0.5
+      storybook: ^9.0.8
 
-  '@storybook/web-components@9.0.5':
-    resolution: {integrity: sha512-LeNynBn/fT0S3B53nNvXBE32hq+VuuMoONgil/Fnrm3z0GeexCHpMlD0zpnqOJd64lLyJOBGl6sOPTPeVB62aw==}
+  '@storybook/web-components@9.0.8':
+    resolution: {integrity: sha512-Z9aXRmuwsPru4675/T4TIQw3nf1xIFiNQUw5O2hiYTTSskxA7FD1Jh0ujJTyp4HJY41tJXH7ZlBCQSE95vDdnA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       lit: ^3.0.2
-      storybook: ^9.0.5
+      storybook: ^9.0.8
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -2361,6 +2361,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.15.0:
+    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
     peerDependencies:
@@ -2489,8 +2494,8 @@ packages:
   camel-case@4.1.2:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
 
-  caniuse-lite@1.0.30001721:
-    resolution: {integrity: sha512-cOuvmUVtKrtEaoKiO0rSc29jcjwMwX5tOHDy4MgVFEWiUXj4uBMJkwI8MDySkgXidpMiHUcviogAvFi4pA2hDQ==}
+  caniuse-lite@1.0.30001722:
+    resolution: {integrity: sha512-DCQHBBZtiK6JVkAGw7drvAMK0Q0POD/xZvEmDp6baiMMP6QXXk9HpD6mNYBZWhOPG6LvIDb82ITqtWjhDckHCA==}
 
   case-sensitive-paths-webpack-plugin@2.4.0:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
@@ -2728,8 +2733,8 @@ packages:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
     engines: {node: '>=10'}
 
-  electron-to-chromium@1.5.165:
-    resolution: {integrity: sha512-naiMx1Z6Nb2TxPU6fiFrUrDTjyPMLdTtaOd2oLmG8zVSg2hCWGkhPyxwk+qRmZ1ytwVqUv0u7ZcDA5+ALhaUtw==}
+  electron-to-chromium@1.5.166:
+    resolution: {integrity: sha512-QPWqHL0BglzPYyJJ1zSSmwFFL6MFXhbACOCcsCdUMCkzPdS9/OIBVxg516X/Ado2qwAq8k0nJJ7phQPCqiaFAw==}
 
   endent@2.1.0:
     resolution: {integrity: sha512-r8VyPX7XL8U01Xgnb1CjZ3XV+z90cXIJ9JPE/R9SEC9vpw2P6CfsRPJmp20DppC5N7ZAMCmjYkJIa744Iyg96w==}
@@ -3748,8 +3753,8 @@ packages:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
 
-  react-docgen-typescript@2.2.2:
-    resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
+  react-docgen-typescript@2.4.0:
+    resolution: {integrity: sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg==}
     peerDependencies:
       typescript: '>= 4.3.x'
 
@@ -3921,8 +3926,8 @@ packages:
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
-  storybook@9.0.5:
-    resolution: {integrity: sha512-4RIyN7P6R6umcgAB6jv3GSIDA0qw9iRcm3KnIR6VhLKLKlbbmDsUs/JmjLobxL5W+LB4zbCbrBcFsW7AL2MSyA==}
+  storybook@9.0.8:
+    resolution: {integrity: sha512-GlOB3HAtzRYc237+o46nnETNkc2Qckh3UrIJ1rJyAzagIlPWau/jTxjSz76sqRODEnt01m8CyIkw3PGv0q1UpQ==}
     hasBin: true
     peerDependencies:
       prettier: ^2 || ^3
@@ -4001,8 +4006,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  terser@5.41.0:
-    resolution: {integrity: sha512-H406eLPXpZbAX14+B8psIuvIr8+3c+2hkuYzpMkoE0ij+NdsVATbA78vb8neA/eqrj7rywa2pIkdmWRsXW6wmw==}
+  terser@5.42.0:
+    resolution: {integrity: sha512-UYCvU9YQW2f/Vwl+P0GfhxJxbUGLwd+5QrrGgLajzWAtC/23AX0vcise32kkP7Eu0Wu9VlzzHAXkLObgjQfFlQ==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -5394,29 +5399,29 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@storybook/addon-docs@9.0.5(@types/react@18.3.11)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))':
+  '@storybook/addon-docs@9.0.8(@types/react@18.3.11)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
     dependencies:
       '@mdx-js/react': 3.1.0(@types/react@18.3.11)(react@18.3.1)
-      '@storybook/csf-plugin': 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      '@storybook/csf-plugin': 9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       '@storybook/icons': 1.4.0(react-dom@19.1.0(react@18.3.1))(react@18.3.1)
-      '@storybook/react-dom-shim': 9.0.5(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      '@storybook/react-dom-shim': 9.0.8(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       react: 18.3.1
       react-dom: 19.1.0(react@18.3.1)
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - '@types/react'
 
-  '@storybook/builder-vite@9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.41.0))':
+  '@storybook/builder-vite@9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.42.0))':
     dependencies:
-      '@storybook/csf-plugin': 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      '@storybook/csf-plugin': 9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       ts-dedent: 2.2.0
-      vite: 6.3.5(@types/node@24.0.0)(terser@5.41.0)
+      vite: 6.3.5(@types/node@24.0.0)(terser@5.42.0)
 
-  '@storybook/builder-webpack5@9.0.5(esbuild@0.25.5)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
+  '@storybook/builder-webpack5@9.0.8(esbuild@0.25.5)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
     dependencies:
-      '@storybook/core-webpack': 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      '@storybook/core-webpack': 9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       case-sensitive-paths-webpack-plugin: 2.4.0
       cjs-module-lexer: 1.4.3
       css-loader: 6.11.0(webpack@5.99.9(esbuild@0.25.5))
@@ -5424,7 +5429,7 @@ snapshots:
       fork-ts-checker-webpack-plugin: 8.0.0(typescript@5.8.3)(webpack@5.99.9(esbuild@0.25.5))
       html-webpack-plugin: 5.6.3(webpack@5.99.9(esbuild@0.25.5))
       magic-string: 0.30.17
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       style-loader: 3.3.4(webpack@5.99.9(esbuild@0.25.5))
       terser-webpack-plugin: 5.3.14(esbuild@0.25.5)(webpack@5.99.9(esbuild@0.25.5))
       ts-dedent: 2.2.0
@@ -5441,14 +5446,14 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/core-webpack@9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))':
+  '@storybook/core-webpack@9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
     dependencies:
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       ts-dedent: 2.2.0
 
-  '@storybook/csf-plugin@9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))':
+  '@storybook/csf-plugin@9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
     dependencies:
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       unplugin: 1.16.1
 
   '@storybook/global@5.0.0': {}
@@ -5458,9 +5463,9 @@ snapshots:
       react: 18.3.1
       react-dom: 19.1.0(react@18.3.1)
 
-  '@storybook/preset-react-webpack@9.0.5(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
+  '@storybook/preset-react-webpack@9.0.8(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
     dependencies:
-      '@storybook/core-webpack': 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      '@storybook/core-webpack': 9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@5.8.3)(webpack@5.99.9(esbuild@0.25.5))
       '@types/semver': 7.7.0
       find-up: 5.0.0
@@ -5470,7 +5475,7 @@ snapshots:
       react-dom: 19.1.0(react@18.3.1)
       resolve: 1.22.10
       semver: 7.7.2
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       tsconfig-paths: 4.2.0
       webpack: 5.99.9(esbuild@0.25.5)
     optionalDependencies:
@@ -5489,27 +5494,27 @@ snapshots:
       find-cache-dir: 3.3.2
       flat-cache: 3.2.0
       micromatch: 4.0.8
-      react-docgen-typescript: 2.2.2(typescript@5.8.3)
+      react-docgen-typescript: 2.4.0(typescript@5.8.3)
       tslib: 2.8.1
       typescript: 5.8.3
       webpack: 5.99.9(esbuild@0.25.5)
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/react-dom-shim@9.0.5(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))':
+  '@storybook/react-dom-shim@9.0.8(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
     dependencies:
       react: 18.3.1
       react-dom: 19.1.0(react@18.3.1)
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
 
-  '@storybook/react-webpack5@9.0.5(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
+  '@storybook/react-webpack5@9.0.8(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
     dependencies:
-      '@storybook/builder-webpack5': 9.0.5(esbuild@0.25.5)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
-      '@storybook/preset-react-webpack': 9.0.5(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
-      '@storybook/react': 9.0.5(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
+      '@storybook/builder-webpack5': 9.0.8(esbuild@0.25.5)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
+      '@storybook/preset-react-webpack': 9.0.8(esbuild@0.25.5)(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
+      '@storybook/react': 9.0.8(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)
       react: 18.3.1
       react-dom: 19.1.0(react@18.3.1)
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
     optionalDependencies:
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -5520,30 +5525,30 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/react@9.0.5(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
+  '@storybook/react@9.0.8(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(typescript@5.8.3)':
     dependencies:
       '@storybook/global': 5.0.0
-      '@storybook/react-dom-shim': 9.0.5(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      '@storybook/react-dom-shim': 9.0.8(react-dom@19.1.0(react@18.3.1))(react@18.3.1)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
       react: 18.3.1
       react-dom: 19.1.0(react@18.3.1)
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
     optionalDependencies:
       typescript: 5.8.3
 
-  '@storybook/web-components-vite@9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.41.0))':
+  '@storybook/web-components-vite@9.0.8(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.42.0))':
     dependencies:
-      '@storybook/builder-vite': 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.41.0))
-      '@storybook/web-components': 9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      '@storybook/builder-vite': 9.0.8(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))(vite@6.3.5(@types/node@24.0.0)(terser@5.42.0))
+      '@storybook/web-components': 9.0.8(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
     transitivePeerDependencies:
       - lit
       - vite
 
-  '@storybook/web-components@9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3))':
+  '@storybook/web-components@9.0.8(lit@3.3.0)(storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3))':
     dependencies:
       '@storybook/global': 5.0.0
       lit: 3.3.0
-      storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3)
+      storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
       tiny-invariant: 1.3.3
       ts-dedent: 2.2.0
 
@@ -5871,6 +5876,8 @@ snapshots:
 
   acorn@8.14.1: {}
 
+  acorn@8.15.0: {}
+
   ajv-formats@2.1.1(ajv@8.17.1):
     optionalDependencies:
       ajv: 8.17.1
@@ -5970,8 +5977,8 @@ snapshots:
 
   browserslist@4.25.0:
     dependencies:
-      caniuse-lite: 1.0.30001721
-      electron-to-chromium: 1.5.165
+      caniuse-lite: 1.0.30001722
+      electron-to-chromium: 1.5.166
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.0)
 
@@ -5984,7 +5991,7 @@ snapshots:
       pascal-case: 3.1.2
       tslib: 2.8.1
 
-  caniuse-lite@1.0.30001721: {}
+  caniuse-lite@1.0.30001722: {}
 
   case-sensitive-paths-webpack-plugin@2.4.0: {}
 
@@ -6217,7 +6224,7 @@ snapshots:
 
   dotenv@8.6.0: {}
 
-  electron-to-chromium@1.5.165: {}
+  electron-to-chromium@1.5.166: {}
 
   endent@2.1.0:
     dependencies:
@@ -6619,7 +6626,7 @@ snapshots:
       he: 1.2.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.41.0
+      terser: 5.42.0
 
   html-webpack-plugin@5.6.3(webpack@5.99.9(esbuild@0.25.5)):
     dependencies:
@@ -7451,7 +7458,7 @@ snapshots:
 
   range-parser@1.2.1: {}
 
-  react-docgen-typescript@2.2.2(typescript@5.8.3):
+  react-docgen-typescript@2.4.0(typescript@5.8.3):
     dependencies:
       typescript: 5.8.3
 
@@ -7681,7 +7688,7 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
-  storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.5.3):
+  storybook@9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3):
     dependencies:
       '@storybook/global': 5.0.0
       '@testing-library/jest-dom': 6.6.3
@@ -7746,7 +7753,7 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.3.2
       serialize-javascript: 6.0.2
-      terser: 5.41.0
+      terser: 5.42.0
       webpack: 5.99.9(esbuild@0.25.5)
     optionalDependencies:
       esbuild: 0.25.5
@@ -7758,10 +7765,10 @@ snapshots:
       commander: 2.20.3
       source-map-support: 0.5.21
 
-  terser@5.41.0:
+  terser@5.42.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
-      acorn: 8.14.1
+      acorn: 8.15.0
       commander: 2.20.3
       source-map-support: 0.5.21
 
@@ -7857,7 +7864,7 @@ snapshots:
 
   unplugin@1.16.1:
     dependencies:
-      acorn: 8.14.1
+      acorn: 8.15.0
       webpack-virtual-modules: 0.6.2
 
   update-browserslist-db@1.1.3(browserslist@4.25.0):
@@ -7886,7 +7893,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.5(@types/node@24.0.0)(terser@5.41.0):
+  vite@6.3.5(@types/node@24.0.0)(terser@5.42.0):
     dependencies:
       esbuild: 0.25.4
       fdir: 6.4.4(picomatch@4.0.2)
@@ -7897,7 +7904,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.0.0
       fsevents: 2.3.3
-      terser: 5.41.0
+      terser: 5.42.0
 
   w3c-keyname@2.2.8: {}
 
@@ -7936,7 +7943,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.14.1
+      acorn: 8.15.0
       browserslist: 4.25.0
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.18.1

@@ -37,7 +37,7 @@
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.5",
     "@types/react": "^18.3.11",
-    "prettier": "^3.5.3"
+    "prettier": "^3.6.0"
   },
   "devDependencies": {
     "@equinor/eslint-config-fusion": "^2.0.0",

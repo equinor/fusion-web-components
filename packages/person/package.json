@@ -69,7 +69,7 @@
     "@floating-ui/dom": "^1.7.2",
     "@lit-labs/observers": "^2.0.5",
     "@lit-labs/task": "^3.1.0",
-    "lit": "3.3.0"
+    "lit": "3.3.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",

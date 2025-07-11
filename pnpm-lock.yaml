@@ -56,7 +56,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -84,7 +84,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -124,7 +124,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -152,7 +152,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -183,7 +183,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -217,7 +217,7 @@ importers:
         version: 4.1.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -242,7 +242,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -270,7 +270,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -295,7 +295,7 @@ importers:
         version: link:../core
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -320,7 +320,7 @@ importers:
         version: 3.1.3
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -360,7 +360,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -388,7 +388,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
       prosemirror-commands:
         specifier: ^1.7.1
         version: 1.7.1
@@ -446,7 +446,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -501,7 +501,7 @@ importers:
         version: 3.1.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -523,7 +523,7 @@ importers:
         version: link:../core
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -551,7 +551,7 @@ importers:
         version: 0.1.11
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -576,7 +576,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -604,7 +604,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -629,7 +629,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -672,7 +672,7 @@ importers:
         version: 10.0.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
       uuid:
         specifier: ^11.1.0
         version: 11.1.0
@@ -709,7 +709,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -734,7 +734,7 @@ importers:
         version: 0.1.10
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -762,7 +762,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -790,7 +790,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -821,7 +821,7 @@ importers:
         version: 0.27.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -849,7 +849,7 @@ importers:
         version: 14.0.0
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.4
@@ -877,10 +877,10 @@ importers:
         version: 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@6.3.5(@types/node@24.0.10)(terser@5.41.0))
       '@storybook/web-components-vite':
         specifier: ^9.0.5
-        version: 9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@6.3.5(@types/node@24.0.10)(terser@5.41.0))
+        version: 9.0.5(lit@3.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@6.3.5(@types/node@24.0.10)(terser@5.41.0))
       lit:
         specifier: ^3.0.2
-        version: 3.3.0
+        version: 3.3.1
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -1556,11 +1556,17 @@ packages:
   '@lit-labs/ssr-dom-shim@1.3.0':
     resolution: {integrity: sha512-nQIWonJ6eFAvUUrSlwyHDm/aE8PBDu5kRpL0vHMg6K8fK3Diq1xdPjTnsJSwxABhaZ+5eBi1btQB5ShUTKo4nQ==}
 
+  '@lit-labs/ssr-dom-shim@1.4.0':
+    resolution: {integrity: sha512-ficsEARKnmmW5njugNYKipTm4SFnbik7CXtoencDZzmzo/dQ+2Q0bgkzJuoJP20Aj0F+izzJjOqsnkd6F/o1bw==}
+
   '@lit-labs/task@3.1.0':
     resolution: {integrity: sha512-zMlcUtZeHDT83IiT2+CJBSoFvWDLnPEezhOCgqjxW4DmRHlbgd7jdft97T6dw4S4RvIETfI7OOyvubCV/EzTlg==}
 
   '@lit/reactive-element@2.1.0':
     resolution: {integrity: sha512-L2qyoZSQClcBmq0qajBVbhYEcG6iK0XfLn66ifLe/RfC0/ihpc+pl0Wdn8bJ8o+hj38cG0fGXRgSS20MuXn7qA==}
+
+  '@lit/reactive-element@2.1.1':
+    resolution: {integrity: sha512-N+dm5PAYdQ8e6UlywyyrgI2t++wFGXfHx+dSJ1oBrg6FAxUj40jId++EaRm80MKX5JnlH1sBsyZ5h0bcZKemCg==}
 
   '@lit/task@1.0.0':
     resolution: {integrity: sha512-7jocGBh3yGlo3kKxQggZph2txK4X5GYNWp2FAsmV9u2spzUypwrzRzXe8I72icAb02B00+k2nlvxVcrQB6vyrw==}
@@ -3240,14 +3246,17 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lit-element@4.2.0:
-    resolution: {integrity: sha512-MGrXJVAI5x+Bfth/pU9Kst1iWID6GHDLEzFEnyULB/sFiRLgkd8NPK/PeeXxktA3T6EIIaq8U3KcbTU5XFcP2Q==}
+  lit-element@4.2.1:
+    resolution: {integrity: sha512-WGAWRGzirAgyphK2urmYOV72tlvnxw7YfyLDgQ+OZnM9vQQBQnumQ7jUJe6unEzwGU3ahFOjuz1iz1jjrpCPuw==}
 
   lit-html@3.3.0:
     resolution: {integrity: sha512-RHoswrFAxY2d8Cf2mm4OZ1DgzCoBKUKSPvA1fhtSELxUERq2aQQ2h05pO9j81gS1o7RIRJ+CePLogfyahwmynw==}
 
-  lit@3.3.0:
-    resolution: {integrity: sha512-DGVsqsOIHBww2DqnuZzW7QsuCdahp50ojuDaBPC7jUDRpYoH0z7kHBBYZewRzer75FwtrkmkKk7iOAwSaWdBmw==}
+  lit-html@3.3.1:
+    resolution: {integrity: sha512-S9hbyDu/vs1qNrithiNyeyv64c9yqiW9l+DBgI18fL+MTvOtWoFR0FWiyq1TxaYef5wNlpEmzlXoBlZEO+WjoA==}
+
+  lit@3.3.1:
+    resolution: {integrity: sha512-Ksr/8L3PTapbdXJCk+EJVB78jDodUMaP54gD24W186zGRARvwrsPfS60wae/SSCTCNZVPd1chXqio1qHQmu4NA==}
 
   loader-runner@4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
@@ -4802,6 +4811,8 @@ snapshots:
 
   '@lit-labs/ssr-dom-shim@1.3.0': {}
 
+  '@lit-labs/ssr-dom-shim@1.4.0': {}
+
   '@lit-labs/task@3.1.0':
     dependencies:
       '@lit/task': 1.0.0
@@ -4810,9 +4821,13 @@ snapshots:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.3.0
 
+  '@lit/reactive-element@2.1.1':
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.4.0
+
   '@lit/task@1.0.0':
     dependencies:
-      '@lit/reactive-element': 2.1.0
+      '@lit/reactive-element': 2.1.1
 
   '@manypkg/find-root@1.1.0':
     dependencies:
@@ -4940,34 +4955,34 @@ snapshots:
     dependencies:
       '@material/base': 14.0.0-canary.53b3cad2f.0
       '@material/dom': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-button@0.27.0':
     dependencies:
       '@material/mwc-icon': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-checkbox@0.27.0':
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-floating-label@0.27.0':
     dependencies:
       '@material/floating-label': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-formfield@0.27.0':
     dependencies:
       '@material/form-field': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-icon-button-toggle@0.27.0':
@@ -4975,24 +4990,24 @@ snapshots:
       '@material/mwc-base': 0.27.0
       '@material/mwc-icon-button': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-icon-button@0.27.0':
     dependencies:
       '@material/mwc-ripple': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-icon@0.27.0':
     dependencies:
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-line-ripple@0.27.0':
     dependencies:
       '@material/line-ripple': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-list@0.27.0':
@@ -5004,7 +5019,7 @@ snapshots:
       '@material/mwc-checkbox': 0.27.0
       '@material/mwc-radio': 0.27.0
       '@material/mwc-ripple': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-menu@0.27.0':
@@ -5015,14 +5030,14 @@ snapshots:
       '@material/mwc-list': 0.27.0
       '@material/shape': 14.0.0-canary.53b3cad2f.0
       '@material/theme': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-notched-outline@0.27.0':
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/notched-outline': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-radio@0.27.0':
@@ -5030,7 +5045,7 @@ snapshots:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       '@material/radio': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-ripple@0.27.0':
@@ -5038,7 +5053,7 @@ snapshots:
       '@material/dom': 14.0.0-canary.53b3cad2f.0
       '@material/mwc-base': 0.27.0
       '@material/ripple': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-select@0.27.0':
@@ -5055,7 +5070,7 @@ snapshots:
       '@material/mwc-menu': 0.27.0
       '@material/mwc-notched-outline': 0.27.0
       '@material/select': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-switch@0.27.0':
@@ -5063,14 +5078,14 @@ snapshots:
       '@material/mwc-base': 0.27.0
       '@material/mwc-ripple': 0.27.0
       '@material/switch': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-textarea@0.27.0':
     dependencies:
       '@material/mwc-base': 0.27.0
       '@material/mwc-textfield': 0.27.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/mwc-textfield@0.27.0':
@@ -5082,7 +5097,7 @@ snapshots:
       '@material/mwc-line-ripple': 0.27.0
       '@material/mwc-notched-outline': 0.27.0
       '@material/textfield': 14.0.0-canary.53b3cad2f.0
-      lit: 3.3.0
+      lit: 3.3.1
       tslib: 2.8.1
 
   '@material/notched-outline@14.0.0-canary.53b3cad2f.0':
@@ -5545,19 +5560,19 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  '@storybook/web-components-vite@9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@6.3.5(@types/node@24.0.10)(terser@5.41.0))':
+  '@storybook/web-components-vite@9.0.5(lit@3.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@6.3.5(@types/node@24.0.10)(terser@5.41.0))':
     dependencies:
       '@storybook/builder-vite': 9.0.5(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))(vite@6.3.5(@types/node@24.0.10)(terser@5.41.0))
-      '@storybook/web-components': 9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))
+      '@storybook/web-components': 9.0.5(lit@3.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))
       storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2)
     transitivePeerDependencies:
       - lit
       - vite
 
-  '@storybook/web-components@9.0.5(lit@3.3.0)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))':
+  '@storybook/web-components@9.0.5(lit@3.3.1)(storybook@9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2))':
     dependencies:
       '@storybook/global': 5.0.0
-      lit: 3.3.0
+      lit: 3.3.1
       storybook: 9.0.5(@testing-library/dom@10.4.0)(prettier@3.6.2)
       tiny-invariant: 1.3.3
       ts-dedent: 2.2.0
@@ -6792,21 +6807,25 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lit-element@4.2.0:
+  lit-element@4.2.1:
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.3.0
-      '@lit/reactive-element': 2.1.0
-      lit-html: 3.3.0
+      '@lit-labs/ssr-dom-shim': 1.4.0
+      '@lit/reactive-element': 2.1.1
+      lit-html: 3.3.1
 
   lit-html@3.3.0:
     dependencies:
       '@types/trusted-types': 2.0.7
 
-  lit@3.3.0:
+  lit-html@3.3.1:
     dependencies:
-      '@lit/reactive-element': 2.1.0
-      lit-element: 4.2.0
-      lit-html: 3.3.0
+      '@types/trusted-types': 2.0.7
+
+  lit@3.3.1:
+    dependencies:
+      '@lit/reactive-element': 2.1.1
+      lit-element: 4.2.1
+      lit-html: 3.3.1
 
   loader-runner@4.3.0: {}
 

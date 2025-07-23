@@ -14,7 +14,7 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.1.0",
     "tslib": "^2.8.1"
   }
 }

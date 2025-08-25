@@ -55,7 +55,7 @@ export const Height: Story = {
 
 export const MenuItems: Story = {
   ...Default,
-  render: (props) => render({ ...props, menuItems: ['h1', 'h2', 'blockquote'] }),
+  render: (props) => render({ ...props, menuItems: ['h1', 'h2', 'blockquote', 'tx'] }),
 };
 
 export default meta;

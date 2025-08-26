@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- [#1949](https://github.com/equinor/fusion-web-components/pull/1949) [`25b3682`](https://github.com/equinor/fusion-web-components/commit/25b36820dc0ab931b2328fcf23dc32cff9544a96) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Update Markdown Editor storybook to include the new 'tx' (clear formatting) menu item in the MenuItems story example.
+
 ## 5.0.0
 
 ### Major Changes
@@ -17,7 +23,6 @@
 ### Patch Changes
 
 - [#1715](https://github.com/equinor/fusion-web-components/pull/1715) [`44aa0a8`](https://github.com/equinor/fusion-web-components/commit/44aa0a8b744e873e19ee6fa9e92da0bd8c3031d8) Thanks [@eikeland](https://github.com/eikeland)! - ### @equinor/fusion-wc-searchable-dropdown
-
   - Fix: support for setting selectedId in initalItems.
   - Fix: better handling of multiple selections.
   - Removed need for mutating result with isSelected, we now keep track of that in selectedItems set.
@@ -47,7 +52,6 @@
 - [#1553](https://github.com/equinor/fusion-web-components/pull/1553) [`3cdedca`](https://github.com/equinor/fusion-web-components/commit/3cdedcae5b542ccc1936486c97110c42c814ba88) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - **New web component `fwc-person-table-cell`**
 
   Component to display peson avatar and person details in table cell
-
   - Display data with azureId, upn or dataSource
   - Availability to show/hide avatar
   - Choose which details should be displayed in in both rows
@@ -210,7 +214,6 @@
 ### Major Changes
 
 - [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - Upgrade storybook to V7
-
   - [x] avatar
   - [x] badge
   - [x] button
@@ -236,7 +239,6 @@
   - [ ] progress indicator
 
   **person elements**
-
   - [x] avatar
   - [x] card
   - [x] list item
@@ -274,7 +276,6 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
-
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts

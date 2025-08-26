@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- [#1949](https://github.com/equinor/fusion-web-components/pull/1949) [`25b3682`](https://github.com/equinor/fusion-web-components/commit/25b36820dc0ab931b2328fcf23dc32cff9544a96) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add "Clear Formatting" functionality to markdown editor. The feature removes all formatting (marks, list items, block styles) from the selected text. Also adds a new menu item 'clear-format' for triggering the clear formatting action. Added prosemirror-transform dependency to support the implementation.
+
 ## 1.3.1
 
 ### Patch Changes
@@ -11,7 +17,6 @@
 ### Minor Changes
 
 - [#1577](https://github.com/equinor/fusion-web-components/pull/1577) [`c6d1524`](https://github.com/equinor/fusion-web-components/commit/c6d15249643673d6d68894bd5b7ceb4a009cf025) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Update prosemirror packages
-
   - prosemirror-commands to 1.6.0
   - prosemirror-markdown to 1.13.0
   - prosemirror-model to 1.22.3
@@ -72,7 +77,6 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
-
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts

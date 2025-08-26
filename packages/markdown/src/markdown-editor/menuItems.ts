@@ -3,6 +3,7 @@ import { wrapInList } from 'prosemirror-schema-list';
 import { schema } from 'prosemirror-markdown';
 import { MenuItem } from './menu';
 import { type IconName, IconElement } from '@equinor/fusion-wc-icon';
+import { clearAllFormatting } from './extentions/clear-formatting';
 
 IconElement;
 
@@ -15,7 +16,8 @@ export type MdMenuItemType =
   | 'blockquote'
   | 'h1'
   | 'h2'
-  | 'h3';
+  | 'h3'
+  | 'tx';
 
 const icon = (text: string, name: string) => {
   const button = document.createElement('button');
@@ -79,5 +81,10 @@ export const getMenuItemByType = (type: MdMenuItemType): MenuItem => {
       return heading(2);
     case 'h3':
       return heading(3);
+    case 'tx':
+      return {
+        command: clearAllFormatting,
+        dom: icon(MenuIcon('format_clear'), 'clear-format'),
+      };
   }
 };

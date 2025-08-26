@@ -7,7 +7,7 @@ export type MenuItem = {
   command: Command;
   dom: HTMLButtonElement;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  type: any;
+  type?: any;
 };
 
 export class MenuView {
@@ -33,7 +33,7 @@ export class MenuView {
   }
   private isMarkActive(state: EditorState, type: MarkType) {
     const { from, $from, to, empty } = state.selection;
-    if (!type.isInSet) {
+    if (!type?.isInSet) {
       return false;
     }
     if (empty) {

@@ -46,7 +46,7 @@ export const Default: Story = {
 export const ImgAndLetter: Story = {
   ...Default,
   render: (props) => {
-    return html`${render(props)}${render({ pictureSrc: undefined, trigger: 'none', dataSource: { name: 'Tux' } })}`;
+    return html`${render(props)}${render({ pictureSrc: "", azureId: props.azureId })}`;
   },
 };
 

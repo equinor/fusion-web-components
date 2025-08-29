@@ -59,8 +59,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -87,8 +87,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -127,8 +127,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -155,8 +155,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -186,8 +186,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -220,8 +220,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -245,8 +245,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -273,8 +273,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -298,8 +298,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -323,8 +323,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -363,8 +363,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -424,8 +424,8 @@ importers:
         version: 1.40.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -452,8 +452,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -507,8 +507,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -529,8 +529,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -557,8 +557,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -582,8 +582,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -610,8 +610,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -635,8 +635,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -681,8 +681,8 @@ importers:
         version: 11.1.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -715,8 +715,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -740,8 +740,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -768,8 +768,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -796,8 +796,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -827,8 +827,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -855,8 +855,8 @@ importers:
         version: 3.3.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^0.10.5
+        version: 0.10.5
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -1091,6 +1091,10 @@ packages:
     resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/runtime@7.28.3':
+    resolution: {integrity: sha512-9uIQ10o0WGdpP6GDhXcdOJPJuDgFtIDtN/9+ArJQ2NAfAmiuhTQdzkaTGR33v43GYS2UrSA0eX2pPPHoFVvpxA==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/template@7.27.2':
     resolution: {integrity: sha512-LPDZ85aEJyYSd18/DkjNh4/y1ntkE5KwUHWTiqgRxruuZL2F1yuHligVHLvcHY2vMHXttKFpJn6LwfI7cw7ODw==}
     engines: {node: '>=6.9.0'}
@@ -1164,8 +1168,8 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@custom-elements-manifest/analyzer@0.10.4':
-    resolution: {integrity: sha512-hse8o20Jd82BwWank29/J9OC4PmSTwUoEmll3LEjDF3WLY/Lc8g3TUYSib/3GARCS8Q5myT2RPqEWfRa+6bkIg==}
+  '@custom-elements-manifest/analyzer@0.10.5':
+    resolution: {integrity: sha512-Y9iUIhTDtcoaiH9XLwkK5POTxVJkcDuN9buCH4kQJmPmTMdm8Fhq7yk0l8Pu3TYC+RuXy6xA49+1IwvFJLF5mg==}
     hasBin: true
 
   '@custom-elements-manifest/find-dependencies@0.0.5':
@@ -1369,8 +1373,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/catalyst@1.6.0':
-    resolution: {integrity: sha512-u8A+DameixqpeyHzvnJWTGj+wfiskQOYHzSiJscCWVfMkIT3rxnbHMtGh3lMthaRY21nbUOK71WcsCnCrXhBJQ==}
+  '@github/catalyst@1.7.0':
+    resolution: {integrity: sha512-qOAxrDdRZz9+v4y2WoAfh11rpRY/x4FRofPNmJyZFzAjubtzE3sCa/tAycWWufmQGoYiwwzL/qJBBgyg7avxPw==}
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -2799,8 +2803,8 @@ packages:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
 
-  ignore@7.0.3:
-    resolution: {integrity: sha512-bAH5jbK/F3T3Jls4I0SO1hmPR0dKU0a7+SY6n1yzRtG54FLO8d6w/nxLFX2Nb7dBu6cCWXPaAME6cYqFUMmuCA==}
+  ignore@7.0.5:
+    resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
 
   import-fresh@3.3.1:
@@ -4032,6 +4036,8 @@ snapshots:
 
   '@babel/runtime@7.28.2': {}
 
+  '@babel/runtime@7.28.3': {}
+
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
@@ -4212,10 +4218,10 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@custom-elements-manifest/analyzer@0.10.4':
+  '@custom-elements-manifest/analyzer@0.10.5':
     dependencies:
       '@custom-elements-manifest/find-dependencies': 0.0.5
-      '@github/catalyst': 1.6.0
+      '@github/catalyst': 1.7.0
       '@web/config-loader': 0.1.3
       chokidar: 3.5.2
       command-line-args: 5.1.2
@@ -4362,7 +4368,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/catalyst@1.6.0': {}
+  '@github/catalyst@1.7.0': {}
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -5100,7 +5106,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -6090,7 +6096,7 @@ snapshots:
     dependencies:
       '@sindresorhus/merge-streams': 2.3.0
       fast-glob: 3.3.3
-      ignore: 7.0.3
+      ignore: 7.0.5
       path-type: 6.0.0
       slash: 5.1.0
       unicorn-magic: 0.3.0
@@ -6148,7 +6154,7 @@ snapshots:
 
   ignore@5.3.2: {}
 
-  ignore@7.0.3: {}
+  ignore@7.0.5: {}
 
   import-fresh@3.3.1:
     dependencies:

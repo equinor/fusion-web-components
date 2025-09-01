@@ -21,10 +21,6 @@ export class PersonPhotoTask extends Task<TaskArgs, string> {
       ([pictureSrc, azureId, upn], options): Promise<string> => {
         const { signal } = options ?? {};
 
-        if (pictureSrc === '') {
-          throw new Error('No picture source provided - show letter avatar');
-        }
-
         if (pictureSrc) {
           return Promise.resolve(pictureSrc);
         }

@@ -3,12 +3,12 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import PersonAvatar, { PersonAvatarElementProps } from '@equinor/fusion-wc-person/avatar';
+import PersonAvatar, { type PersonAvatarElementProps } from '@equinor/fusion-wc-person/avatar';
 import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
-import { AvatarElementProps } from '@equinor/fusion-wc-avatar';
+import type { AvatarElementProps } from '@equinor/fusion-wc-avatar';
 import { PersonAccountType } from '@equinor/fusion-wc-person';
 
 PersonAvatar;
@@ -33,6 +33,7 @@ const render = (props: PersonAvatarElementProps) => html`
     pictureSrc=${ifDefined(props.pictureSrc)}
     azureId=${ifDefined(props.azureId)}
     ?disabled=${ifDefined(props.disabled)}
+		?showLetter=${ifDefined(props.showLetter)}
   ></fwc-person-avatar>
 `;
 
@@ -46,7 +47,7 @@ export const Default: Story = {
 export const ImgAndLetter: Story = {
   ...Default,
   render: (props) => {
-    return html`${render(props)}${render({ pictureSrc: "", azureId: props.azureId })}`;
+    return html`${render(props)}${render({ showLetter: true, azureId: props.azureId })}`;
   },
 };
 

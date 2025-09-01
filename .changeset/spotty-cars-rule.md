@@ -1,6 +1,13 @@
 ---
-'@equinor/fusion-wc-person': patch
+'@equinor/fusion-wc-person': minor
 '@equinor/fusion-wc-storybook': patch
 ---
 
-Update `pictureSrc` logic so that setting it to an empty string disables the image and shows only the letter avatar, regardless of `azureId` or `upn`.
+- Added a new `showLetter` boolean property to `PersonAvatarElement`.
+- When `showLetter` is true, the avatar displays the first letter of the person's name instead of an image.
+- Updated storybook on the following property
+
+**Usage Example:**
+```html
+<fwc-person-avatar showLetter ...></fwc-person-avatar>
+```

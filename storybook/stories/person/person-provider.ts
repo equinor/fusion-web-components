@@ -67,7 +67,7 @@ const resolver: PersonResolver = {
   getInfo: generatePerson,
   getPhoto: (args: { azureId?: string; upn?: string }) => {
     args.azureId && faker.seed(uuid2number(args.azureId));
-    const src = faker.image.urlLoremFlickr({ height: 64, width: 120, category: 'people' });
+    const src = faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false });
     const failed = args.azureId === '30dd35ef-7196-4c58-974f-3c1abd732ce1';
     return new Promise((resolve, reject) => {
       setTimeout(

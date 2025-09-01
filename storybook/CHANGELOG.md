@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.3
+
+### Patch Changes
+
+- [#1950](https://github.com/equinor/fusion-web-components/pull/1950) [`448c47c`](https://github.com/equinor/fusion-web-components/commit/448c47cf1ca527622ec822bd3cbae97f9000f39d) Thanks [@dependabot](https://github.com/apps/dependabot)! - update faker person image from loremFlickr to picsum
+
 ## 5.0.2
 
 ### Patch Changes

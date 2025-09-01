@@ -1,8 +1,8 @@
 import { Task } from '@lit-labs/task';
-import { ReactiveControllerHost } from 'lit';
+import type { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from './resolve-task-event';
-import { AbortableEventDetail, RequestResolvePersonPhotoEvent } from '../events';
-import { AzureIdOrUpnObj } from '../types';
+import { type AbortableEventDetail, RequestResolvePersonPhotoEvent } from '../events';
+import type { AzureIdOrUpnObj } from '../types';
 
 export type PersonPhotoControllerHostAttributes = {
   azureId?: string;
@@ -20,6 +20,7 @@ export class PersonPhotoTask extends Task<TaskArgs, string> {
       host,
       ([pictureSrc, azureId, upn], options): Promise<string> => {
         const { signal } = options ?? {};
+
         if (pictureSrc) {
           return Promise.resolve(pictureSrc);
         }

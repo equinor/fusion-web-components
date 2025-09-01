@@ -12,4 +12,5 @@ export type PersonAvatarElementProps = PersonInfoControllerHostAttributes & {
   disabled?: boolean;
   pictureSrc?: string;
   trigger?: PersonAvatarShowCardOnType;
+  showLetter?: boolean;
 };

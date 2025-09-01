@@ -1,23 +1,24 @@
 // TODO - CLEAN UP!
-import { CSSResult, TemplateResult, html, LitElement, PropertyValues } from 'lit';
+import { html, LitElement } from 'lit';
+import type { CSSResult, TemplateResult, PropertyValues } from 'lit';
 
 import { property, queryAsync, state } from 'lit/decorators.js';
-import { ClassInfo, classMap } from 'lit/directives/class-map.js';
+import { type ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { when } from 'lit/directives/when.js';
 
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
-import { AvatarData, PersonAvatarElementProps } from './types';
-import { AccountClassification, PersonAccountType, PersonAvailability } from '../../types';
+import type { AvatarData, PersonAvatarElementProps } from './types';
+import { type AccountClassification, PersonAccountType, PersonAvailability } from '../../types';
 import '../card';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 import style from './element.css';
-import { PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
-import { PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
+import { type PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
+import { type PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
 
-import Badge, { BadgeColor, BadgeElementProps } from '@equinor/fusion-wc-badge';
+import Badge, { BadgeColor, type BadgeElementProps } from '@equinor/fusion-wc-badge';
 import Avatar, { type AvatarElementProps } from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import Icon, { IconElementProps } from '@equinor/fusion-wc-icon';
+import Icon, { type IconElementProps } from '@equinor/fusion-wc-icon';
 
 // persist elements
 Badge;
@@ -47,6 +48,7 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  * @property {AvatarSize} size - Size of the avatar.
  * @property {boolean} clickable - Sets the avatar to be clickable to render hover/ripple effects.
  * @property {disabled} disabled - Sets the avatar to be rendered as disabled.
+ * @property {boolean} showLetter - Sets the avatar to show letter instead of an image.
  *
  * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
  *
@@ -102,6 +104,12 @@ export class PersonAvatarElement
    */
   @property({ type: Boolean })
   disabled?: boolean;
+
+  /**
+   * Sets the avatar to show a letter instead of an image.
+   */
+  @property({ type: Boolean })
+  showLetter?: boolean;
 
   /**
    * @internal
@@ -294,14 +302,16 @@ export class PersonAvatarElement
               @mouseout=${this.handleMouseOut}
               border
             >
-              ${this.tasks?.photo.render({
-                complete: (src) => html`<img src=${src} alt="${name}" />`,
-                pending: () => this.renderImagePlaceholder(true),
-                error: () => {
-                  console.log('failed');
-                  return html`${name?.substring(0, 1)?.toUpperCase()}`;
-                },
-              })}
+              ${this.showLetter
+                ? html`${name?.substring(0, 1)?.toUpperCase()}`
+                : this.tasks?.photo.render({
+                    complete: (src) => html`<img src="${src}" alt="${name}" />`,
+                    pending: () => this.renderImagePlaceholder(true),
+                    error: () => {
+                      console.log('failed');
+                      return html`${name?.substring(0, 1)?.toUpperCase()}`;
+                    },
+                  })}
             </fwc-avatar>
           </div>`;
         },

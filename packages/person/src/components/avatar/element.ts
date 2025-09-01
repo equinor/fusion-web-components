@@ -311,8 +311,7 @@ export class PersonAvatarElement
                       console.log('failed');
                       return html`${name?.substring(0, 1)?.toUpperCase()}`;
                     },
-                  })
-              }
+                  })}
             </fwc-avatar>
           </div>`;
         },

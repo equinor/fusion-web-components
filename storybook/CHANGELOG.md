@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.0.2
+
+### Patch Changes
+
+- [#1957](https://github.com/equinor/fusion-web-components/pull/1957) [`73643b1`](https://github.com/equinor/fusion-web-components/commit/73643b102d205ee37d2dd952435e522f18332257) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - - Added a new `showLetter` boolean property to `PersonAvatarElement`.
+  - When `showLetter` is true, the avatar displays the first letter of the person's name instead of an image.
+  - Updated storybook on the following property
+
+  **Usage Example:**
+
+  ```html
+  <fwc-person-avatar showLetter ...></fwc-person-avatar>
+  ```
+
 ## 5.0.1
 
 ### Patch Changes

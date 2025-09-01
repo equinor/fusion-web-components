@@ -302,16 +302,16 @@ export class PersonAvatarElement
               @mouseout=${this.handleMouseOut}
               border
             >
-              ${this.showLetter ? 
-                html`${name?.substring(0, 1)?.toUpperCase()}` : 
-                this.tasks?.photo.render({
-                  complete: (src) => html`<img src=${src} alt="${name}" />`,
-                  pending: () => this.renderImagePlaceholder(true),
-                  error: () => {
-                    console.log('failed');
-                    return html`${name?.substring(0, 1)?.toUpperCase()}`;
-                  },
-                })
+              ${this.showLetter
+                ? html`${name?.substring(0, 1)?.toUpperCase()}`
+                : this.tasks?.photo.render({
+                    complete: (src) => html`<img src="${src}" alt="${name}" />`,
+                    pending: () => this.renderImagePlaceholder(true),
+                    error: () => {
+                      console.log('failed');
+                      return html`${name?.substring(0, 1)?.toUpperCase()}`;
+                    },
+                  })
               }
             </fwc-avatar>
           </div>`;

@@ -33,7 +33,7 @@ const render = (props: PersonAvatarElementProps) => html`
     pictureSrc=${ifDefined(props.pictureSrc)}
     azureId=${ifDefined(props.azureId)}
     ?disabled=${ifDefined(props.disabled)}
-		?showLetter=${ifDefined(props.showLetter)}
+    ?showLetter=${ifDefined(props.showLetter)}
   ></fwc-person-avatar>
 `;
 

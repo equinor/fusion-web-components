@@ -677,8 +677,8 @@ importers:
         specifier: ^3.0.2
         version: 3.3.1
       uuid:
-        specifier: ^11.1.0
-        version: 11.1.0
+        specifier: ^12.0.0
+        version: 12.0.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.5
@@ -1093,6 +1093,10 @@ packages:
 
   '@babel/runtime@7.28.3':
     resolution: {integrity: sha512-9uIQ10o0WGdpP6GDhXcdOJPJuDgFtIDtN/9+ArJQ2NAfAmiuhTQdzkaTGR33v43GYS2UrSA0eX2pPPHoFVvpxA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.28.4':
+    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -3866,8 +3870,8 @@ packages:
   utila@0.4.0:
     resolution: {integrity: sha512-Z0DbgELS9/L/75wZbro8xAnT50pBVFQZ+hUEueGDU5FN51YSCYM+jdxsfCiHjwNP/4LCDD0i/graKpeBnOXKRA==}
 
-  uuid@11.1.0:
-    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+  uuid@12.0.0:
+    resolution: {integrity: sha512-USe1zesMYh4fjCA8ZH5+X5WIVD0J4V1Jksm1bFTVBX2F/cwSXt0RO5w/3UXbdLKmZX65MiWV+hwhSS8p6oBTGA==}
     hasBin: true
 
   vfile-message@4.0.3:
@@ -4087,6 +4091,8 @@ snapshots:
       '@babel/types': 7.28.2
 
   '@babel/runtime@7.28.3': {}
+
+  '@babel/runtime@7.28.4': {}
 
   '@babel/template@7.27.2':
     dependencies:
@@ -5168,7 +5174,7 @@ snapshots:
   '@testing-library/dom@10.4.1':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.28.3
+      '@babel/runtime': 7.28.4
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       dom-accessibility-api: 0.5.16
@@ -7417,7 +7423,7 @@ snapshots:
 
   utila@0.4.0: {}
 
-  uuid@11.1.0: {}
+  uuid@12.0.0: {}
 
   vfile-message@4.0.3:
     dependencies:

@@ -291,29 +291,27 @@ export class PersonAvatarElement
         complete: (details: AvatarData) => {
           const { accountType, accountClassification, name } = details;
           const classes = classMap(this.getRenderClasses(accountType, accountClassification));
-          return html`<div>
-            <fwc-avatar
-              class=${classes}
-              .size=${this.size}
-              ?clickable=${this.clickable}
-              ?disabled=${this.disabled}
-              @click=${this.handleOnClick}
-              @mouseover=${this.handleMouseOver}
-              @mouseout=${this.handleMouseOut}
-              border
-            >
-              ${this.showLetter
-                ? html`${name?.substring(0, 1)?.toUpperCase()}`
-                : this.tasks?.photo.render({
-                    complete: (src) => html`<img src="${src}" alt="${name}" />`,
-                    pending: () => this.renderImagePlaceholder(true),
-                    error: () => {
-                      console.log('failed');
-                      return html`${name?.substring(0, 1)?.toUpperCase()}`;
-                    },
-                  })}
-            </fwc-avatar>
-          </div>`;
+          return html`<fwc-avatar
+            class=${classes}
+            .size=${this.size}
+            ?clickable=${this.clickable}
+            ?disabled=${this.disabled}
+            @click=${this.handleOnClick}
+            @mouseover=${this.handleMouseOver}
+            @mouseout=${this.handleMouseOut}
+            border
+          >
+            ${this.showLetter
+              ? html`${name?.substring(0, 1)?.toUpperCase()}`
+              : this.tasks?.photo.render({
+                  complete: (src) => html`<img src="${src}" alt="${name}" />`,
+                  pending: () => this.renderImagePlaceholder(true),
+                  error: () => {
+                    console.log('failed');
+                    return html`${name?.substring(0, 1)?.toUpperCase()}`;
+                  },
+                })}
+          </fwc-avatar>`;
         },
         pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
         error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,

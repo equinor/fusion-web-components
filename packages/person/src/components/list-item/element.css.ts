@@ -12,6 +12,9 @@ const style: CSSResult = css`
   :host([size='large']) {
     --fwc-avatar-size: 3.5rem;
   }
+  .person-list__avatar {
+    display: flex;
+  }
   .person-list__item {
     display: flex;
     justify-content: space-between;

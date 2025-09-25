@@ -1,8 +1,8 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, unsafeCSS, type CSSResult } from "lit";
+import { styles as theme } from "@equinor/fusion-web-theme";
 
 // TODO - remove!
-import personStyle from '../../style.css';
+import personStyle from "../../style.css";
 
 const styleSizes = css`
   :host .person-card__content {
@@ -22,13 +22,13 @@ const style: CSSResult = css`
   :host {
     display: inline-flex;
     --x-small-size-space: calc(
-      ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable("padding"))} * var(--content-resize, 1)
     );
     --small-size-space: calc(
-      ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.spacing.comfortable.small.getVariable("padding"))} * var(--content-resize, 1)
     );
     --medium-size-space: calc(
-      ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.spacing.comfortable.medium.getVariable("padding"))} * var(--content-resize, 1)
     );
   }
 
@@ -36,10 +36,10 @@ const style: CSSResult = css`
     display: flex;
     flex-direction: column;
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-    border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
+    border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable("padding"))};
     min-width: 220px;
-    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
+    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable("color"))};
   }
   .person-card__heading {
     display: flex;
@@ -47,7 +47,7 @@ const style: CSSResult = css`
     column-gap: var(--small-size-space);
     padding: var(--medium-size-space);
     border-bottom: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
   }
   .person-card__iconbar {
     display: flex;
@@ -56,7 +56,7 @@ const style: CSSResult = css`
     column-gap: var(--small-size-space);
     padding: var(--small-size-space) var(--medium-size-space);
     border-bottom: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
   }
   .person-card__content {
     overflow-y: scroll;
@@ -70,20 +70,22 @@ const style: CSSResult = css`
   }
   .person-card__content > * + * {
     border-top: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
   }
   .person-card__name {
     display: -webkit-box;
-    font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable('fontWeight'))};
+    font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable("fontWeight"))};
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    white-space: break-spaces;
   }
   .person-card__department,
   .person-card__jobtitle {
+    white-space: break-spaces;
     font-size: calc(
-      ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.typography.paragraph.caption.getVariable("fontSize"))} * var(--content-resize, 1)
     );
   }
   .person-card__profession {
@@ -112,8 +114,8 @@ const style: CSSResult = css`
     gap: var(--small-size-space);
   }
   .info-item_heading {
-    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable('fontSize'))} * var(--content-resize, 1));
-    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable('fontWeight'))};
+    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable("fontSize"))} * var(--content-resize, 1));
+    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable("fontWeight"))};
   }
   .person-card-info__row {
     display: flex;
@@ -122,7 +124,7 @@ const style: CSSResult = css`
     column-gap: var(--small-size-space);
   }
   .person-card-info__row:hover {
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
   }
   .person-card-info__row:not(:hover) .person-card-info__copy {
     visibility: hidden;
@@ -132,7 +134,7 @@ const style: CSSResult = css`
     align-items: center;
     column-gap: var(--small-size-space);
     font-size: calc(
-      ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.typography.paragraph.caption.getVariable("fontSize"))} * var(--content-resize, 1)
     );
   }
   .person-card-info__icon {
@@ -145,11 +147,11 @@ const style: CSSResult = css`
   }
   .person-card-projects__project {
     font-size: calc(
-      ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.typography.paragraph.caption.getVariable("fontSize"))} * var(--content-resize, 1)
     );
     padding: 2px 6px;
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
     border-radius: 4px;
   }
 `;

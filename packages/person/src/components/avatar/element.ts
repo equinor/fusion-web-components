@@ -291,8 +291,7 @@ export class PersonAvatarElement
         complete: (details: AvatarData) => {
           const { accountType, accountClassification, name } = details;
           const classes = classMap(this.getRenderClasses(accountType, accountClassification));
-          return html`<div>
-            <fwc-avatar
+          return html`<fwc-avatar
               class=${classes}
               .size=${this.size}
               ?clickable=${this.clickable}
@@ -312,8 +311,7 @@ export class PersonAvatarElement
                       return html`${name?.substring(0, 1)?.toUpperCase()}`;
                     },
                   })}
-            </fwc-avatar>
-          </div>`;
+            </fwc-avatar>`;
         },
         pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
         error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,

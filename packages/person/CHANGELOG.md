@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- [#1985](https://github.com/equinor/fusion-web-components/pull/1985) [`b6ec1a7`](https://github.com/equinor/fusion-web-components/commit/b6ec1a788ec0dbf745a8c27748508fd822163a34) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - Remove unnecessary div creating additional space
+
 ## 3.2.0
 
 ### Minor Changes

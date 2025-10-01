@@ -13,14 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
-    "@storybook/addon-docs": "^9.1.8",
-    "@storybook/builder-vite": "^9.1.8",
-    "@storybook/web-components-vite": "^9.1.8",
+    "@storybook/addon-docs": "^9.1.10",
+    "@storybook/builder-vite": "^9.1.10",
+    "@storybook/web-components-vite": "^9.1.10",
     "lit": "3.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "remark-gfm": "^4.0.1",
-    "storybook": "^9.1.8",
+    "storybook": "^9.1.10",
     "typescript": "^5.9.3",
     "vite": "^7.1.7"
   },
@@ -50,6 +50,6 @@
     "@equinor/fusion-wc-textarea": "workspace:^",
     "@equinor/fusion-wc-textinput": "workspace:^",
     "@equinor/fusion-wc-theme": "workspace:^",
-    "@storybook/react-webpack5": "^9.1.8"
+    "@storybook/react-webpack5": "^9.1.10"
   }
 }

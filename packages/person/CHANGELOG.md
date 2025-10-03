@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.2
+
+### Patch Changes
+
+- [#2006](https://github.com/equinor/fusion-web-components/pull/2006) [`7962bdf`](https://github.com/equinor/fusion-web-components/commit/7962bdfde7f5b8c190a1ae9bbd1feb98753474b2) Thanks [@eikeland](https://github.com/eikeland)! - Improve text wrapping for department and job title fields in person card by adding word-break, overflow-wrap, and hyphens properties.
+
 ## 3.2.1
 
 ### Patch Changes

@@ -63,7 +63,7 @@
     "prosemirror-transform": "^1.10.4"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.8",
+    "@custom-elements-manifest/analyzer": "^0.10.10",
     "@equinor/fusion-wc-builder": "workspace:^",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3"

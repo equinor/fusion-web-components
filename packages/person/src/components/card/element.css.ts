@@ -80,6 +80,9 @@ const style: CSSResult = css`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     white-space: break-spaces;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .person-card__department,
   .person-card__jobtitle {

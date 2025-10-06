@@ -83,6 +83,7 @@ const style: CSSResult = css`
   }
   .person-card__department,
   .person-card__jobtitle {
+    white-space: break-spaces;
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;

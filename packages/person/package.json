@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-wc-person",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "A web component library for person-related UI elements",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.4
+
+### Patch Changes
+
+- [#2011](https://github.com/equinor/fusion-web-components/pull/2011) [`a4c1a94`](https://github.com/equinor/fusion-web-components/commit/a4c1a945ed86562cbb54e57c1636d7894f5b5a44) Thanks [@eikeland](https://github.com/eikeland)! - Fixing break in long names in PersonCard
+
 ## 3.2.3
 
 ### Patch Changes

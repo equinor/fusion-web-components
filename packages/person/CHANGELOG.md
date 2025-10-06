@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.3
+
+### Patch Changes
+
+- [#2009](https://github.com/equinor/fusion-web-components/pull/2009) [`f777252`](https://github.com/equinor/fusion-web-components/commit/f7772524d6afdaeb5f905a4097f55a5d0a5cab5c) Thanks [@eikeland](https://github.com/eikeland)! - restore white-space CSS style for department and job title in person card
+
 ## 3.2.2
 
 ### Patch Changes

@@ -170,6 +170,7 @@ export class SearchableDropdownElement
       return html`<fwc-check-list-item
         part="list-item"
         key=${item.id}
+        title=${item.title}
         class=${classMap(itemClasses)}
         disabled=${ifDefined(disabled)}
         selected=${ifDefined(isSelected)}
@@ -191,6 +192,7 @@ export class SearchableDropdownElement
       rootTabbable=${true}
       wrapFocus=${true}
       key=${item.id}
+      title=${item.title}
       class=${classMap(itemClasses)}
       disabled=${ifDefined(disabled)}
       selected=${ifDefined(isSelected)}

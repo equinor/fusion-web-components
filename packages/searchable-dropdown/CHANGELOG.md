@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.5
+
+### Patch Changes
+
+- [#2015](https://github.com/equinor/fusion-web-components/pull/2015) [`40a388b`](https://github.com/equinor/fusion-web-components/commit/40a388bb0f9e33c45ae66d4ca0903a4381840a14) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add `title` attr to searchable-dropdown results
+
 ## 4.0.4
 
 ### Patch Changes
@@ -35,7 +41,6 @@
 ### Major Changes
 
 - [#1715](https://github.com/equinor/fusion-web-components/pull/1715) [`44aa0a8`](https://github.com/equinor/fusion-web-components/commit/44aa0a8b744e873e19ee6fa9e92da0bd8c3031d8) Thanks [@eikeland](https://github.com/eikeland)! - ### @equinor/fusion-wc-searchable-dropdown
-
   - Fix: support for setting selectedId in initalItems.
   - Fix: better handling of multiple selections.
   - Removed need for mutating result with isSelected, we now keep track of that in selectedItems set.
@@ -219,7 +224,6 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
-
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts
@@ -249,7 +253,6 @@
 ### Patch Changes
 
 - [#806](https://github.com/equinor/fusion-web-components/pull/806) [`266cefd`](https://github.com/equinor/fusion-web-components/commit/266cefd493f898f440ce93e92e79964bbd33be59) Thanks [@odinr](https://github.com/odinr)! - align styling
-
   - added vertical padding
   - added interactive color when error
 

@@ -1,5 +1,12 @@
 import * as Prism from 'prismjs';
 
+// Import additional language definitions
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-csharp';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-yaml';
+
 export { codeHighlighterStyles } from './code-highlighter.styles';
 
 /**
@@ -12,12 +19,11 @@ export async function highlightCodeBlocks(element: Element): Promise<void> {
   for (const codeBlock of codeBlocks) {
     // Get the language from the class or try to detect it
     const className = codeBlock.className;
-    const languageMatch = className.match(/language-(\w+)/);
-    const language = languageMatch ? languageMatch[1] : 'javascript';
+    const [, language] = className.match(/language-(\w+)/) || [];
 
-    // Set the language class if not already set
-    if (!languageMatch) {
-      codeBlock.className = `language-${language}`;
+    // Skip highlighting if no language is specified
+    if (!language) {
+      continue;
     }
 
     // Apply Prism highlighting

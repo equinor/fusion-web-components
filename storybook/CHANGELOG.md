@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.0.4
+
+### Patch Changes
+
+- [#2033](https://github.com/equinor/fusion-web-components/pull/2033) [`467c568`](https://github.com/equinor/fusion-web-components/commit/467c568a853c852da89e163308c118ae48bf6287) Thanks [@odinr](https://github.com/odinr)! - feat(markdown): add code highlighting to markdown viewer
+  - Add Prism.js dependency and TypeScript types
+  - Implement syntax highlighting for code blocks
+  - Create modular file structure with code-highlighter utility
+  - Support multiple languages (TypeScript, C#, CSS, etc.)
+  - Update example files with TypeScript and C# code blocks
+  - All styles properly scoped to shadow DOM
+
 ## 5.0.3
 
 ### Patch Changes

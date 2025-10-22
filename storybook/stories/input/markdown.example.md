@@ -5,61 +5,69 @@
 - **list** 1
 - list 2
 
-## Code Examples
+## Text Formatting
 
-Here's some TypeScript code:
+This is **bold text** and this is *italic text*.
 
-```typescript
-interface User {
-  name: string;
-  age: number;
-}
+Here's a [link to example.com](https://example.com).
 
-function greet(user: User): string {
-  console.log(`Hello, ${user.name}!`);
-  return `Welcome, ${user.name}`;
-}
+> This is a blockquote
+> with multiple lines
+> of text.
 
-const user: User = { name: 'World', age: 25 };
-greet(user);
-```
+## Lists
 
-And some C# code:
+### Unordered List
+- Item 1
+- Item 2
+  - Nested item 2.1
+  - Nested item 2.2
+- Item 3
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var message = "Hello, World!";
-        Console.WriteLine(message);
-        
-        var fibonacci = CalculateFibonacci(10);
-        Console.WriteLine($"Fibonacci(10) = {fibonacci}");
-    }
-    
-    private static int CalculateFibonacci(int n)
-    {
-        if (n <= 1) return n;
-        return CalculateFibonacci(n - 1) + CalculateFibonacci(n - 2);
-    }
-}
-```
+### Ordered List
+1. First item
+2. Second item
+3. Third item
 
-Here's some CSS:
+## Tables
 
-```css
-.button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-}
+### Basic Table
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Row 1    | Data 1   | Data 2   |
+| Row 2    | Data 3   | Data 4   |
 
-.button:hover {
-  background-color: #0056b3;
-}
-```
+### Complex Table
+| Feature | Status | Priority | Notes |
+|---------|--------|----------|-------|
+| User Authentication | ✅ Complete | High | Uses OAuth 2.0 |
+| File Upload | 🚧 In Progress | Medium | 90% complete |
+| Email Notifications | ❌ Not Started | Low | Requires SMTP setup |
+| Database Migration | ✅ Complete | High | PostgreSQL 14+ |
+| API Documentation | 🚧 In Progress | Medium | Auto-generated with Swagger |
 
-And some inline `code` examples.
+### Table with Long Content
+| Component | Description | Dependencies |
+|-----------|-------------|--------------|
+| Markdown Viewer | Renders markdown content with syntax highlighting and table support | Prism.js, ProseMirror |
+| Code Highlighter | Provides syntax highlighting for code blocks in multiple languages | Prism.js |
+| Theme System | Provides consistent styling across all components | CSS Custom Properties |
+
+## Horizontal Rule
+
+---
+
+## Inline Code
+
+Here's some inline `code` examples and `variable_names`.
+
+## Images
+
+![Alt text](https://via.placeholder.com/300x200?text=Example+Image)
+
+## Links and References
+
+Check out [this link][1] and [another link][2].
+
+[1]: https://example.com "Example Link"
+[2]: https://github.com "GitHub"

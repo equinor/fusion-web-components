@@ -9,6 +9,7 @@ import {
 } from '@equinor/fusion-wc-markdown';
 import cem from '@equinor/fusion-wc-markdown/custom-elements.json';
 import markdownExample from './markdown.example.md?raw';
+import markdownCodeExample from './markdown-code.example.md?raw';
 
 MarkdownViewerElement;
 
@@ -20,13 +21,22 @@ const meta: Meta<typeof cem> = {
   component: 'fwc-markdown-viewer',
 };
 
-const render = (_props: MarkdownViewerElementProps) => html`
+const renderDefault = (_props: MarkdownViewerElementProps) => html`
   <fwc-markdown-viewer>${markdownExample}</fwc-markdown-viewer>
+`;
+
+const renderCode = (_props: MarkdownViewerElementProps) => html`
+  <fwc-markdown-viewer>${markdownCodeExample}</fwc-markdown-viewer>
 `;
 
 export const Default: Story = {
   args: {},
-  render,
+  render: renderDefault,
+};
+
+export const Code: Story = {
+  args: {},
+  render: renderCode,
 };
 
 export default meta;

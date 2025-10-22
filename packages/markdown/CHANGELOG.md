@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- [#2035](https://github.com/equinor/fusion-web-components/pull/2035) [`4ba9b25`](https://github.com/equinor/fusion-web-components/commit/4ba9b25812dfffb8d1a3c82e42072e96e58facc8) Thanks [@odinr](https://github.com/odinr)! - Added code highlighting and table support to markdown viewer
+  - Add Prism.js dependency and TypeScript types
+  - Implement syntax highlighting for code blocks
+  - Create modular file structure with code-highlighter utility
+  - Support multiple languages (TypeScript, C#, CSS, Bash, YAML)
+  - Replace ProseMirror tokenizer with marked library for better table support
+  - Add comprehensive table styling with responsive design
+  - Create separate table.styles.ts file for better code organization
+  - Update example files with TypeScript, C#, and enhanced table examples
+  - All styles properly scoped to shadow DOM
+
 ## 1.4.0
 
 ### Minor Changes

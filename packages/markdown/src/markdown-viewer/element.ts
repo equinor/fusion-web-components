@@ -3,6 +3,7 @@ import { property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MarkdownViewerElementProps } from './types';
 import { defaultMarkdownParser } from 'prosemirror-markdown';
+import { highlightCodeBlocks, codeHighlighterStyles } from './code-highlighter';
 
 const styles = css`
   slot {
@@ -14,7 +15,7 @@ const styles = css`
  * @tag fwc-markdown-viewer
  */
 export class MarkdownViewerElement extends LitElement implements MarkdownViewerElementProps {
-  static styles: CSSResult = styles;
+  static styles: CSSResult[] = [styles, codeHighlighterStyles];
 
   @property({
     type: String,
@@ -34,10 +35,23 @@ export class MarkdownViewerElement extends LitElement implements MarkdownViewerE
   @query('slot')
   mainSlot!: HTMLSlotElement;
 
+  protected firstUpdated(): void {
+    this.highlightCodeBlocks();
+  }
+
   protected updated(props: PropertyValues): void {
     if (props.has('value') && this.value !== props.get('value')) {
       this.content = defaultMarkdownParser.tokenizer.render(this.value);
       this.requestUpdate('content');
+      // Highlight code blocks after content is updated
+      setTimeout(() => this.highlightCodeBlocks(), 0);
+    }
+  }
+
+  private async highlightCodeBlocks(): Promise<void> {
+    const contentElement = this.shadowRoot?.getElementById('content');
+    if (contentElement) {
+      await highlightCodeBlocks(contentElement);
     }
   }
 

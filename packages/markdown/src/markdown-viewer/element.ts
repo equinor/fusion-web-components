@@ -2,10 +2,11 @@ import { css, type CSSResult, html, LitElement, type PropertyValues, type Templa
 import { property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MarkdownViewerElementProps } from './types';
-import { defaultMarkdownParser } from 'prosemirror-markdown';
+import { marked } from 'marked';
 import { highlightCodeBlocks, codeHighlighterStyles } from './code-highlighter';
+import { tableStyles } from './table.styles';
 
-const styles = css`
+const baseElementStyle = css`
   slot {
     display: none;
   }
@@ -15,7 +16,7 @@ const styles = css`
  * @tag fwc-markdown-viewer
  */
 export class MarkdownViewerElement extends LitElement implements MarkdownViewerElementProps {
-  static styles: CSSResult[] = [styles, codeHighlighterStyles];
+  static styles: CSSResult[] = [baseElementStyle, codeHighlighterStyles, tableStyles];
 
   @property({
     type: String,
@@ -39,9 +40,9 @@ export class MarkdownViewerElement extends LitElement implements MarkdownViewerE
     this.highlightCodeBlocks();
   }
 
-  protected updated(props: PropertyValues): void {
+  protected async updated(props: PropertyValues): Promise<void> {
     if (props.has('value') && this.value !== props.get('value')) {
-      this.content = defaultMarkdownParser.tokenizer.render(this.value);
+      this.content = await marked(this.value);
       this.requestUpdate('content');
       // Highlight code blocks after content is updated
       setTimeout(() => this.highlightCodeBlocks(), 0);

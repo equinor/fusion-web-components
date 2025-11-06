@@ -1,4 +1,4 @@
-import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult } from './types';
+import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult, PersonSuggestResults, PersonResolveResults } from './types';
 
 export type AbortableEventDetail<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
@@ -49,11 +49,37 @@ export class RequestResolvePersonSearchEvent extends RequestResolveEvent<
   }
 }
 
+type RequestResolvePersonSuggestEventArgs = RequestResolvePersonSearchEventArgs;
+export class RequestResolvePersonSuggestEvent extends RequestResolveEvent<
+  RequestResolvePersonSuggestEventArgs,
+  PersonSuggestResults
+> {
+  static readonly eventName = 'request-resolve-person-suggest';
+  constructor(detail: AbortableEventDetail<RequestResolvePersonSuggestEventArgs>, options?: CustomEventInit) {
+    super(RequestResolvePersonSuggestEvent.eventName, detail, options);
+  }
+}
+
+type RequestResolvePersonResolveEventArgs = {
+  resolveIds: string[];
+};
+export class RequestResolvePersonResolveEvent extends RequestResolveEvent<
+  RequestResolvePersonResolveEventArgs,
+  PersonResolveResults
+> {
+  static readonly eventName = 'request-resolve-person-resolve';
+  constructor(detail: AbortableEventDetail<RequestResolvePersonResolveEventArgs>, options?: CustomEventInit) {
+    super(RequestResolvePersonResolveEvent.eventName, detail, options);
+  }
+}
+
 declare global {
   interface ElementEventMap {
     [RequestResolvePersonPhotoEvent.eventName]: RequestResolvePersonPhotoEvent;
     [RequestResolvePersonInfoEvent.eventName]: RequestResolvePersonInfoEvent;
     [RequestResolvePersonDetailEvent.eventName]: RequestResolvePersonDetailEvent;
     [RequestResolvePersonSearchEvent.eventName]: RequestResolvePersonSearchEvent;
+    [RequestResolvePersonSuggestEvent.eventName]: RequestResolvePersonSuggestEvent;
+    [RequestResolvePersonResolveEvent.eventName]: RequestResolvePersonResolveEvent;
   }
 }

@@ -56,8 +56,7 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  */
 export class PersonAvatarElement
   extends LitElement
-  implements PersonAvatarElementProps, PersonInfoControllerHost, PersonPhotoControllerHost
-{
+  implements PersonAvatarElementProps, PersonInfoControllerHost, PersonPhotoControllerHost {
   static styles: CSSResult[] = [style];
 
   @property({ type: String })
@@ -112,6 +111,12 @@ export class PersonAvatarElement
   showLetter?: boolean;
 
   /**
+   * Custom color of the avatar.
+   */
+  @property({ type: String })
+  customColor?: string;
+
+  /**
    * @internal
    */
   @queryAsync('#floating')
@@ -161,6 +166,15 @@ export class PersonAvatarElement
    * @internal
    */
   static openedPersonAvatars: PersonAvatarElement[] = [];
+
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    // if the dataSource is set, also set the azureId to resolve the photo from tasks
+    if (this.dataSource) {
+      this.azureId = this.dataSource.azureId;
+    }
+  }
 
   async handleFloatingUi(): Promise<VoidFunction> {
     const root = await this.root;
@@ -282,50 +296,80 @@ export class PersonAvatarElement
     />`;
   }
 
+  protected renderApplicationBadge(person: Partial<AvatarData>): TemplateResult {
+    if (!person.applicationId) {
+      return html``;
+    }
+
+    return html`
+      <div slot="badge" id="application-badge" style="background-color: ${person.avatarColor};">
+        <fwc-icon
+          icon="apps"
+        ></fwc-icon>
+      </div>
+    `;
+  }
+
+  protected renderImage(person: Partial<AvatarData>): TemplateResult {
+    if (this.showLetter) {
+      return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
+    }
+
+    return this.tasks?.photo.render({
+      complete: (src) => html`<img src="${src}" alt="${person.name}" />`,
+      pending: () => this.renderImagePlaceholder(true),
+      error: () => {
+        return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
+      },
+    }) ?? html``;
+  }
+
+  protected renderAvatarElement(details: Partial<AvatarData>): TemplateResult {
+    const { accountType, accountClassification } = details;
+    const classes = classMap(this.getRenderClasses(accountType, accountClassification));
+    const avatarColorVariable = this.customColor ? `--fwc-avatar-color: ${this.customColor}` : '';
+    return html`
+      <fwc-avatar
+        style=${avatarColorVariable}
+        class=${classes}
+        .size=${this.size}
+        clickable=${this.clickable}
+        ?disabled=${this.disabled}
+        @click=${this.handleOnClick}
+        @mouseover=${this.handleMouseOver}
+        @mouseout=${this.handleMouseOut}
+        border
+      >
+        ${this.renderImage(details)}
+        ${this.renderApplicationBadge(details)}
+      </fwc-avatar>
+    `;
+  }
+
   protected render(): TemplateResult {
     if (!this.tasks) {
       return this.renderImagePlaceholder();
     }
-    return html`<div id="root">
-      ${this.tasks.info.render({
-        complete: (details: AvatarData) => {
-          const { accountType, accountClassification, name } = details;
-          const classes = classMap(this.getRenderClasses(accountType, accountClassification));
-          return html`<fwc-avatar
-            class=${classes}
-            .size=${this.size}
-            ?clickable=${this.clickable}
-            ?disabled=${this.disabled}
-            @click=${this.handleOnClick}
-            @mouseover=${this.handleMouseOver}
-            @mouseout=${this.handleMouseOut}
-            border
-          >
-            ${this.showLetter
-              ? html`${name?.substring(0, 1)?.toUpperCase()}`
-              : this.tasks?.photo.render({
-                  complete: (src) => html`<img src="${src}" alt="${name}" />`,
-                  pending: () => this.renderImagePlaceholder(true),
-                  error: () => {
-                    console.log('failed');
-                    return html`${name?.substring(0, 1)?.toUpperCase()}`;
-                  },
-                })}
-          </fwc-avatar>`;
-        },
-        pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
-        error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
-      })}
-      <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
-        <slot name="floating">
-          ${when(
-            this.isFloatingOpen,
-            () =>
-              html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
-          )}
-        </slot>
-      </div>
-    </div>`;
+    return html`
+      <div id="root">
+        ${this.tasks.info.render({
+      complete: (details) => {
+        return html`
+          ${this.renderAvatarElement(details)}
+          <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
+            <slot name="floating">
+              ${when(this.isFloatingOpen, () =>
+          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${details}" customColor=${this.customColor}></fwc-person-card>`,
+        )}
+            </slot>
+          </div>
+        `;
+      },
+      pending: () => html`< fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
+      error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
+    })}
+    </div>
+  `;
   }
 
   public renderImagePlaceholder(inactive?: boolean): TemplateResult {

@@ -6,4 +6,6 @@ export type CardData = PersonDetails;
 
 export type PersonCardElementProps = PersonDetailControllerHostAttributes & {
   size?: PersonItemSize;
+  customColor?: string;
+  shadow?: boolean;
 };

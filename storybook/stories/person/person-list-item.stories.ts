@@ -3,13 +3,13 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import PersonListItem, { PersonListItemElementProps } from '@equinor/fusion-wc-person/list-item';
+import { PersonListItemElement, type PersonListItemElementProps } from '@equinor/fusion-wc-person';
 import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
 
-PersonListItem;
+PersonListItemElement;
 
 setCustomElementsManifest(cem);
 
@@ -23,11 +23,11 @@ const meta: Meta<typeof cem> = {
 
 const render = (props: PersonListItemElementProps) => html`
   ${new Array(30).fill(undefined).map((_, i) => {
-    faker.seed(i);
-    return html`
-      <fwc-person-list-item size="${ifDefined(props.size)}" azureId=${faker.string.uuid()}></fwc-person-list-item>
-    `;
-  })}
+  faker.seed(i);
+  return html`
+    <fwc-person-list-item size="${ifDefined(props.size)}" azureId=${faker.string.uuid()}></fwc-person-list-item>
+  `;
+})}
 `;
 
 export const Default: Story = {

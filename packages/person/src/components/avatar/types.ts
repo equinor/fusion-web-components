@@ -1,9 +1,8 @@
 import { AvatarElementProps } from '@equinor/fusion-wc-avatar';
 import type { PersonInfoControllerHostAttributes } from '../../tasks/person-info-task';
 import type { PersonAvatarShowCardOnType } from './element';
-import type { PersonInfo } from '../../types';
 
-export type AvatarData = Pick<PersonInfo, 'name' | 'accountType' | 'accountClassification'>;
+export type { PersonInfo as AvatarData } from '../../types';
 
 export type PersonAvatarElementProps = PersonInfoControllerHostAttributes & {
   size?: AvatarElementProps['size'];
@@ -13,4 +12,5 @@ export type PersonAvatarElementProps = PersonInfoControllerHostAttributes & {
   pictureSrc?: string;
   trigger?: PersonAvatarShowCardOnType;
   showLetter?: boolean;
+  customColor?: string;
 };

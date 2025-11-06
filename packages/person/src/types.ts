@@ -34,6 +34,12 @@ export type PersonInfo = {
   officeLocation?: string;
   managerAzureUniqueId?: string;
   accountClassification?: AccountClassification;
+  isExpired?: boolean;
+  avatarUrl?: string;
+  avatarColor?: string;
+  applicationId?: string;
+  applicationName?: string;
+  servicePrincipalType?: ServicePrincipalType;
 };
 
 export type PersonDetails = PersonInfo & {
@@ -74,3 +80,49 @@ export enum PersonAvailability {
 }
 
 export type PersonItemSize = 'small' | 'medium' | 'large';
+
+export type PersonSuggestResultAccountType = 'Person' | 'SystemAccount' | 'Unknown';
+
+export type ServicePrincipalType = 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown';
+
+export type PersonSuggestResultPersonAccountType = 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+
+export type PersonSuggestResult = {
+  azureUniqueId: string;
+  name?: string;
+  accountType: PersonSuggestResultAccountType;
+  person?: {
+    accountType?: PersonSuggestResultPersonAccountType;
+    jobTitle?: string;
+    department?: string;
+    fullDepartment?: string;
+    employeeNumber?: string;
+    managerAzureUniqueId?: string;
+    upn?: string;
+    mobilePhone?: string;
+  };
+  application?: {
+    applicationId?: string;
+    applicationName?: string;
+    servicePrincipalType?: ServicePrincipalType;
+  };
+  avatarColor: string;
+  avatarUrl: string;
+  isExpired: boolean;
+};
+
+export type PersonSuggestResults = {
+  totalCount: number;
+  count: number;
+  value: PersonSuggestResult[];
+};
+
+export type PersonResolveResult = {
+  success: boolean;
+  statusCode: number;
+  errorMessage: string | null;
+  indentifier: string;
+  account: PersonSuggestResult | null;
+}
+
+export type PersonResolveResults = PersonResolveResult[];

@@ -1,9 +1,9 @@
 import { PersonAccountType, PersonDetails } from '@equinor/fusion-wc-person';
-import PersonProvider, { PersonResolver } from '@equinor/fusion-wc-person/provider';
+import { PersonProviderElement, type PersonResolver } from '@equinor/fusion-wc-person';
 import { faker } from '@faker-js/faker';
 import { html } from 'lit';
 
-PersonProvider;
+PersonProviderElement;
 
 faker.seed(123);
 
@@ -34,7 +34,7 @@ const generatePositions = (azureId?: string): PersonDetails['positions'] => {
   });
 };
 
-const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails => {
+export const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails => {
   args.azureId && faker.seed(uuid2number(args.azureId));
   const fakeUpn = faker.internet.email({ provider: 'equinor.com' });
   return {
@@ -49,9 +49,10 @@ const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails
     ]),
     accountClassification: faker.helpers.arrayElement(['Internal', 'External']),
     jobTitle: faker.person.jobTitle(),
-    department: faker.commerce.department(),
+    department: faker.commerce.department().toUpperCase(),
     mail: fakeUpn,
     mobilePhone: faker.phone.number(),
+    isExpired: faker.datatype.boolean({ probability: 0.1 }),
     officeLocation: faker.location.city(),
     get positions() {
       return generatePositions(this.azureId);
@@ -94,6 +95,6 @@ const resolver: PersonResolver = {
   },
 };
 
-export const personProviderDecorator = (story) => {
+export const personProviderDecorator = (story: CallableFunction) => {
   return html`<fwc-person-provider .resolver=${resolver}>${story()}</fwc-person-provider>`;
 };

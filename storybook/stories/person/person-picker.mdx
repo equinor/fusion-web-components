@@ -1,0 +1,24 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/addon-docs/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './person-picker.stories';
+
+import pkg from '@equinor/fusion-wc-person-picker/package.json';
+import Log from '@equinor/fusion-wc-person-picker/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+The Picker component is used to pick a person.
+
+```ts
+<fwc-person-picker></fwc-person-picker>
+```
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>

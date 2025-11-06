@@ -1,0 +1,48 @@
+{
+	"name": "@equinor/fusion-wc-person-picker",
+	"version": "0.0.0",
+	"description": "A web component for a person picker",
+	"main": "lib/index.js",
+	"types": "lib/types/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/index.js",
+			"types": "./lib/types/index.d.ts"
+		},
+		"./package.json": "./package.json",
+		"./custom-elements.json": "./lib/custom-elements.json",
+		"./README.md": "./README.md",
+		"./CHANGELOG.md": "./CHANGELOG.md"
+	},
+	"files": [
+		"lib",
+		"CHANGELOG.md"
+	],
+	"customElements": "lib/custom-elements.json",
+	"scripts": {
+		"build": "tsc -b",
+		"postbuild": "pnpm typedoc",
+		"typedoc": "cem analyze --litelement --globs \"src/**/element.ts\" --outdir lib",
+		"prepack": "pnpm build && fwc-build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@equinor/fusion-wc-core": "workspace:^",
+		"@equinor/fusion-wc-icon": "workspace:^",
+		"@equinor/fusion-wc-person": "workspace:^",
+		"@equinor/fusion-wc-skeleton": "workspace:^",
+		"@equinor/fusion-web-theme": "^0.1.10",
+		"lit": "3.3.0"
+	},
+	"devDependencies": {
+		"@custom-elements-manifest/analyzer": "^0.10.10",
+		"@equinor/fusion-wc-builder": "workspace:^",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

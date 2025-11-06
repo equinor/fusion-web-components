@@ -8,11 +8,22 @@
 node_modules
 
 storybook/package-lock.json
+storybook/dist
 
 packages/*/package-lock.json
 packages/*/build
 packages/*/dist
-storybook/dist
 packages/*/lib
 
+<<<<<<< HEAD
 docs/
+=======
+components/*/package-lock.json
+components/*/build
+components/*/dist
+components/*/lib
+
+docs/
+
+to_be_removed/
+>>>>>>> d539eb0e (chore: gitignore)

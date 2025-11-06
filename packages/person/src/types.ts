@@ -34,6 +34,7 @@ export type PersonInfo = {
   officeLocation?: string;
   managerAzureUniqueId?: string;
   accountClassification?: AccountClassification;
+  isExpired?: boolean;
 };
 
 export type PersonDetails = PersonInfo & {

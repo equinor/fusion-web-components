@@ -1,83 +1,84 @@
 {
-  "name": "@equinor/fusion-wc-person",
-  "version": "3.2.4",
-  "description": "A web component library for person-related UI elements",
-  "main": "lib/index.js",
-  "types": "lib/types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "types": "./lib/types/index.d.ts"
-    },
-    "./avatar": {
-      "import": "./lib/components/avatar/index.js",
-      "types": "./lib/types/components/avatar/index.d.ts"
-    },
-    "./card": {
-      "import": "./lib/components/card/index.js",
-      "types": "./lib/types/components/card/index.d.ts"
-    },
-    "./list-item": {
-      "import": "./lib/components/list-item/index.js",
-      "types": "./lib/types/components/list-item/index.d.ts"
-    },
-    "./provider": {
-      "import": "./lib/components/provider/index.js",
-      "types": "./lib/types/components/provider/index.d.ts"
-    },
-    "./select": {
-      "import": "./lib/components/select/index.js",
-      "types": "./lib/types/components/select/index.d.ts"
-    },
-    "./table-cell": {
-      "import": "./lib/components/table-cell/index.js",
-      "types": "./lib/types/components/table-cell/index.d.ts"
-    },
-    "./tasks": {
-      "import": "./lib/tasks/index.js",
-      "types": "./lib/types/tasks/index.d.ts"
-    },
-    "./package.json": "./package.json",
-    "./custom-elements.json": "./lib/custom-elements.json",
-    "./README.md": "./README.md",
-    "./CHANGELOG.md": "./CHANGELOG.md"
-  },
-  "files": [
-    "lib",
-    "CHANGELOG.md"
-  ],
-  "customElements": "lib/custom-elements.json",
-  "scripts": {
-    "build": "tsc -b",
-    "postbuild": "pnpm typedoc",
-    "typedoc": "cem analyze --litelement --globs \"src/**/element.ts\" --outdir lib",
-    "prepack": "pnpm build && fwc-build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@equinor/fusion-wc-avatar": "workspace:^",
-    "@equinor/fusion-wc-badge": "workspace:^",
-    "@equinor/fusion-wc-button": "workspace:^",
-    "@equinor/fusion-wc-core": "workspace:^",
-    "@equinor/fusion-wc-icon": "workspace:^",
-    "@equinor/fusion-wc-list": "workspace:^",
-    "@equinor/fusion-wc-skeleton": "workspace:^",
-    "@equinor/fusion-wc-textinput": "workspace:^",
-    "@equinor/fusion-web-theme": "^0.1.10",
-    "@floating-ui/dom": "^1.7.4",
-    "@lit-labs/observers": "^2.0.5",
-    "@lit-labs/task": "^3.1.0",
-    "lit": "3.3.0"
-  },
-  "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.10",
-    "@equinor/fusion-wc-builder": "workspace:^",
-    "tslib": "^2.8.1",
-    "typescript": "^5.9.3"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "@equinor/fusion-wc-person",
+	"version": "3.2.4",
+	"description": "A web component library for person-related UI elements",
+	"main": "lib/index.js",
+	"types": "lib/types/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/index.js",
+			"types": "./lib/types/index.d.ts"
+		},
+		"./avatar": {
+			"import": "./lib/components/avatar/index.js",
+			"types": "./lib/types/components/avatar/index.d.ts"
+		},
+		"./card": {
+			"import": "./lib/components/card/index.js",
+			"types": "./lib/types/components/card/index.d.ts"
+		},
+		"./list-item": {
+			"import": "./lib/components/list-item/index.js",
+			"types": "./lib/types/components/list-item/index.d.ts"
+		},
+		"./provider": {
+			"import": "./lib/components/provider/index.js",
+			"types": "./lib/types/components/provider/index.d.ts"
+		},
+		"./select": {
+			"import": "./lib/components/select/index.js",
+			"types": "./lib/types/components/select/index.d.ts"
+		},
+		"./table-cell": {
+			"import": "./lib/components/table-cell/index.js",
+			"types": "./lib/types/components/table-cell/index.d.ts"
+		},
+		"./tasks": {
+			"import": "./lib/tasks/index.js",
+			"types": "./lib/types/tasks/index.d.ts"
+		},
+		"./package.json": "./package.json",
+		"./custom-elements.json": "./lib/custom-elements.json",
+		"./README.md": "./README.md",
+		"./CHANGELOG.md": "./CHANGELOG.md"
+	},
+	"files": [
+		"lib",
+		"CHANGELOG.md"
+	],
+	"customElements": "lib/custom-elements.json",
+	"scripts": {
+		"build": "tsc -b",
+		"postbuild": "pnpm typedoc",
+		"typedoc": "cem analyze --litelement --globs \"src/**/element.ts\" --outdir lib",
+		"prepack": "pnpm build && fwc-build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@equinor/fusion-wc-avatar": "workspace:^",
+		"@equinor/fusion-wc-badge": "workspace:^",
+		"@equinor/fusion-wc-button": "workspace:^",
+		"@equinor/fusion-wc-core": "workspace:^",
+		"@equinor/fusion-wc-icon": "workspace:^",
+		"@equinor/fusion-wc-list": "workspace:^",
+		"@equinor/fusion-wc-searchable-dropdown": "workspace:^",
+		"@equinor/fusion-wc-skeleton": "workspace:^",
+		"@equinor/fusion-wc-textinput": "workspace:^",
+		"@equinor/fusion-web-theme": "^0.1.10",
+		"@floating-ui/dom": "^1.7.4",
+		"@lit-labs/observers": "^2.0.5",
+		"@lit-labs/task": "^3.1.0",
+		"lit": "3.3.0"
+	},
+	"devDependencies": {
+		"@custom-elements-manifest/analyzer": "^0.10.10",
+		"@equinor/fusion-wc-builder": "workspace:^",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

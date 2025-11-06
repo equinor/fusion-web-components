@@ -5,3 +5,4 @@ export { default as PersonTableCellElement, PersonTableCellElementProps } from '
 export { default as PersonProviderElement, PersonResolver } from './components/provider';
 export { default as PersonSelectElement, PersonSelectElementProps, PersonSelectEvent } from './components/select';
 export * from './types';
+export * from './tasks';

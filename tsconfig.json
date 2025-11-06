@@ -1,96 +1,91 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "noEmit": true
-  },
-  "include": [
-    "packages/**/src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "lib",
-    "*.spec.ts",
-    "api"
-  ],
-  "references": [
-    {
-      "path": "./packages/avatar"
-    },
-    {
-      "path": "./packages/badge"
-    },
-    {
-      "path": "./packages/button"
-    },
-    {
-      "path": "./packages/checkbox"
-    },
-    {
-      "path": "./packages/chip"
-    },
-    {
-      "path": "./packages/core"
-    },
-    {
-      "path": "./packages/date"
-    },
-    {
-      "path": "./packages/divider"
-    },
-    {
-      "path": "./packages/formfield"
-    },
-    {
-      "path": "./packages/icon"
-    },
-    {
-      "path": "./packages/intersection"
-    },
-    {
-      "path": "./packages/list"
-    },
-    {
-      "path": "./packages/markdown"
-    },
-    {
-      "path": "./packages/menu"
-    },
-    {
-      "path": "./packages/person"
-    },
-    {
-      "path": "./packages/picture"
-    },
-    {
-      "path": "./packages/popover"
-    },
-    {
-      "path": "./packages/progress-indicator"
-    },
-    {
-      "path": "./packages/radio"
-    },
-    {
-      "path": "./packages/ripple"
-    },
-    {
-      "path": "./packages/skeleton"
-    },
-    {
-      "path": "./packages/searchable-dropdown"
-    },
-    {
-      "path": "./packages/switch"
-    },
-    {
-      "path": "./packages/theme"
-    },
-    {
-      "path": "./packages/textarea"
-    },
-    {
-      "path": "./packages/textinput"
-    }
-  ]
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"noEmit": true
+	},
+	"include": ["packages/**/src/**/*", "components/**/src/**/*"],
+	"exclude": ["node_modules", "dist", "lib", "*.spec.ts", "api"],
+	"references": [
+		{
+			"path": "./packages/avatar"
+		},
+		{
+			"path": "./packages/badge"
+		},
+		{
+			"path": "./packages/button"
+		},
+		{
+			"path": "./packages/checkbox"
+		},
+		{
+			"path": "./packages/chip"
+		},
+		{
+			"path": "./packages/core"
+		},
+		{
+			"path": "./packages/date"
+		},
+		{
+			"path": "./packages/divider"
+		},
+		{
+			"path": "./packages/formfield"
+		},
+		{
+			"path": "./packages/icon"
+		},
+		{
+			"path": "./packages/intersection"
+		},
+		{
+			"path": "./packages/list"
+		},
+		{
+			"path": "./packages/markdown"
+		},
+		{
+			"path": "./packages/menu"
+		},
+		{
+			"path": "./components/people"
+		},
+		{
+			"path": "./packages/person"
+		},
+		{
+			"path": "./packages/picture"
+		},
+		{
+			"path": "./packages/popover"
+		},
+		{
+			"path": "./packages/progress-indicator"
+		},
+		{
+			"path": "./packages/radio"
+		},
+		{
+			"path": "./packages/ripple"
+		},
+		{
+			"path": "./packages/skeleton"
+		},
+		{
+			"path": "./packages/searchable-dropdown"
+		},
+		{
+			"path": "./packages/switch"
+		},
+		{
+			"path": "./packages/theme"
+		},
+		{
+			"path": "./packages/textarea"
+		},
+		{
+			"path": "./packages/textinput"
+		}
+	]
 }

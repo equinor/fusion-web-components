@@ -12,16 +12,14 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "strict": true,
-    "baseUrl": "./packages",
-    "paths": {
-      "@equinor/fusion-wc-*": ["./*/src"],
-    },
+    "baseUrl": "./",
     "noEmitHelpers": true,
     "importHelpers": true,
     "composite": true,
   },
   "include": [
-    "./packages/*/tsconfig.json"
+    "./packages/*/tsconfig.json",
+    "./components/*/tsconfig.json"
   ],
   "exclude": ["node_modules"],
 }

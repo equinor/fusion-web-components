@@ -31,6 +31,17 @@ const style: CSSResult = css`
     left: 0;
     z-index: 2;
   }
+
+  #application-badge {
+    color: #ffffff;
+    position: absolute;
+    right: -0.25em;
+    bottom: 0;
+    font-size: 0.5em;
+    border-radius: 100%;
+    padding: 0.1em;
+    display: flex;
+    justify-content: center;
 `;
 
 export default style;

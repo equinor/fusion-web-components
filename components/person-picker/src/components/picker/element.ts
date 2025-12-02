@@ -128,7 +128,7 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
     return this.controllers.selectedIds.selectedIds.map((azureId) => html`
       <fwc-person-picker-pill
         azureId=${azureId}
-        subTitle="department"
+        subTitle=${this.secondarySubTitle}
         @removeperson=${this.handleDeselect}
       </fwc-person-picker-pill>
     `);

@@ -66,5 +66,6 @@ declare global {
     [RequestResolvePersonInfoEvent.eventName]: RequestResolvePersonInfoEvent;
     [RequestResolvePersonDetailEvent.eventName]: RequestResolvePersonDetailEvent;
     [RequestResolvePersonSearchEvent.eventName]: RequestResolvePersonSearchEvent;
+    [RequestResolvePersonSuggestEvent.eventName]: RequestResolvePersonSuggestEvent;
   }
 }

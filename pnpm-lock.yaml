@@ -51,9 +51,6 @@ importers:
       '@equinor/fusion-wc-person':
         specifier: workspace:^
         version: link:../../packages/person
-      '@equinor/fusion-wc-skeleton':
-        specifier: workspace:^
-        version: link:../../packages/skeleton
       '@equinor/fusion-web-theme':
         specifier: ^0.1.10
         version: 0.1.10

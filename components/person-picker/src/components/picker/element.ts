@@ -3,7 +3,7 @@ import { property, query, state } from "lit/decorators.js";
 
 import type { PersonPickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
-import { PersonInfo, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
+import { PersonInfo, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 import { SelectedIdsController } from "../../controllers/SelectedIdsController";
 
 /* Other personComponents */
@@ -97,6 +97,7 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
       if (this.multiple) {
         this.controllers.selectedIds.add(azureId);
       } else {
+        this.clearSearch();
         this.controllers.selectedIds.selectedIds = [azureId];
       }
     }
@@ -124,6 +125,18 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
     }
   }
 
+  mapToPersonInfo(person: PersonSuggestResult): PersonInfo {
+    return {
+      azureId: person.azureUniqueId,
+      name: person.name,
+      jobTitle: person.person?.jobTitle,
+      department: person.person?.department,
+      upn: person.person?.upn,
+      mobilePhone: person.person?.mobilePhone,
+      accountType: person.person?.accountType,
+    };
+  }
+
   renderPills() {
     return this.controllers.selectedIds.selectedIds.map((azureId) => html`
       <fwc-person-picker-pill
@@ -132,6 +145,20 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
         @removeperson=${this.handleDeselect}
       </fwc-person-picker-pill>
     `);
+  }
+
+  renderSearch() {
+    if (!this.multiple && this.controllers.selectedIds.selectedIds.length) {
+      return html``;
+    }
+
+    return html`
+      <fwc-person-picker-search
+        placeholder="Search for..."
+        @input=${this.handleInput}
+        @clearinput=${this.handleClearInput}>
+      </fwc-person-picker-search>
+    `;
   }
 
   renderPickerList() {
@@ -158,11 +185,7 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
       <div id="person-picker" @keydown=${this.keyboardHandler}>
         <div id="picker">
           ${this.renderPills()}
-          <fwc-person-picker-search
-            placeholder="Search for..."
-            @input=${this.handleInput}
-            @clearinput=${this.handleClearInput}>
-          </fwc-person-picker-search>
+          ${this.renderSearch()}
         </div>
 
         <div id="search-results">

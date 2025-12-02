@@ -82,6 +82,10 @@ export type PersonSuggestResult = {
   accountType: 'Person' | 'SystemAccount' | 'Unknown';
   person?: {
     accountType: 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+    jobTitle: string;
+    department: string;
+    upn: string;
+    mobilePhone: string;
   };
   application?: {
     applicationId: string;
@@ -96,5 +100,5 @@ export type PersonSuggestResult = {
 export type PersonSuggestResults = {
   totalCount: number;
   count: number;
-  value: Array<PersonSuggestResult>;
+  value: PersonSuggestResult[];
 };

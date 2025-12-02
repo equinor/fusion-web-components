@@ -20,7 +20,6 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "remark-gfm": "^4.0.1",
-    "rxjs": "^7.8.2",
     "storybook": "^9.1.10",
     "typescript": "^5.9.3",
     "vite": "^7.2.2"

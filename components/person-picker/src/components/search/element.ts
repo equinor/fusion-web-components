@@ -4,7 +4,6 @@ import { query } from "lit/decorators/query.js";
 
 import type { SearchElementProps } from "./types";
 
-// import { searchStyle } from "./element.css";
 import { searchStyle } from "./element_inline.css";
 
 export class ClearInputEvent extends CustomEvent<void> {

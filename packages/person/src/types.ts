@@ -75,3 +75,26 @@ export enum PersonAvailability {
 }
 
 export type PersonItemSize = 'small' | 'medium' | 'large';
+
+export type PersonSuggestResult = {
+  azureUniqueId: string;
+  name: string;
+  accountType: 'Person' | 'SystemAccount' | 'Unknown';
+  person?: {
+    accountType: 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+  };
+  application?: {
+    applicationId: string;
+    applicationName: string;
+    servicePrincipalType: 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown'
+  };
+  avatarColor: string;
+  avatarUrl: string;
+  isExpired: boolean;
+};
+
+export type PersonSuggestResults = {
+  totalCount: number;
+  count: number;
+  value: Array<PersonSuggestResult>;
+};

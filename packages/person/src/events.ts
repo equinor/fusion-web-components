@@ -1,4 +1,4 @@
-import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult } from './types';
+import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult, PersonSuggestResults } from './types';
 
 export type AbortableEventDetail<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
@@ -46,6 +46,17 @@ export class RequestResolvePersonSearchEvent extends RequestResolveEvent<
   static readonly eventName = 'request-resolve-person-search';
   constructor(detail: AbortableEventDetail<RequestResolvePersonSearchEventArgs>, options?: CustomEventInit) {
     super(RequestResolvePersonSearchEvent.eventName, detail, options);
+  }
+}
+
+type RequestResolvePersonSuggestEventArgs = RequestResolvePersonSearchEventArgs;
+export class RequestResolvePersonSuggestEvent extends RequestResolveEvent<
+  RequestResolvePersonSuggestEventArgs,
+  PersonSuggestResults
+> {
+  static readonly eventName = 'request-resolve-person-suggest';
+  constructor(detail: AbortableEventDetail<RequestResolvePersonSuggestEventArgs>, options?: CustomEventInit) {
+    super(RequestResolvePersonSuggestEvent.eventName, detail, options);
   }
 }
 

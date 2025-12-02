@@ -6,6 +6,7 @@ import {
   RequestResolvePersonSearchEvent,
   RequestResolvePersonPhotoEvent,
   ResolveEventDetail,
+  RequestResolvePersonSuggestEvent,
 } from '../../events';
 
 type PersonResolverEventMap = Record<string, keyof PersonResolver>;
@@ -16,6 +17,7 @@ const defaultEventMap: PersonResolverEventMap = {
   [RequestResolvePersonInfoEvent.eventName]: 'getInfo',
   [RequestResolvePersonPhotoEvent.eventName]: 'getPhoto',
   [RequestResolvePersonSearchEvent.eventName]: 'search',
+  [RequestResolvePersonSuggestEvent.eventName]: 'suggest',
 };
 
 const processEvent = (

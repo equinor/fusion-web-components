@@ -1,4 +1,4 @@
-import { PersonAccountType, PersonDetails } from '@equinor/fusion-wc-person';
+import { PersonAccountType, PersonDetails, PersonSuggestResult } from '@equinor/fusion-wc-person';
 import { PersonProviderElement, type PersonResolver } from '@equinor/fusion-wc-person';
 import { faker } from '@faker-js/faker';
 import { html } from 'lit';
@@ -63,6 +63,31 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
   };
 };
 
+const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult => {
+  return {
+    azureUniqueId: args.azureId ?? faker.string.uuid(),
+    name: faker.person.fullName(),
+    accountType: faker.helpers.arrayElement([
+      'Person',
+      'SystemAccount',
+    ]),
+    person: {
+      accountType: faker.helpers.arrayElement([
+        'Employee',
+        'Consultant',
+        'Enterprise',
+        'EnterpriseExternal',
+        'External',
+        'Local',
+        'TemporaryEmployee',
+      ]),
+    },
+    isExpired: faker.datatype.boolean({ probability: 0.1 }),
+    avatarColor: faker.color.rgb(),
+    avatarUrl: faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false }),
+  };
+};
+
 const resolver: PersonResolver = {
   getDetails: generatePerson,
   getInfo: generatePerson,
@@ -92,6 +117,23 @@ const resolver: PersonResolver = {
       );
       return generatePerson({ azureId: String(faker.string.uuid()) });
     });
+  },
+  suggest: (args) => {
+    const genertedCount = faker.number.int({ min: 3, max: 25 });
+    const value = new Array(genertedCount).fill(undefined).map((_, i) => {
+      faker.seed(
+        args.search
+          .split('')
+          .map((x) => x.charCodeAt(0))
+          .reduce((acc, item) => (acc += item), 0) + i,
+      );
+      return generateSuggestedPerson({ azureId: String(faker.string.uuid()) });
+    });
+    return {
+      totalCount: genertedCount,
+      count: genertedCount,
+      value,
+    };
   },
 };
 

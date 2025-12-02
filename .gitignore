@@ -15,15 +15,9 @@ packages/*/build
 packages/*/dist
 packages/*/lib
 
-<<<<<<< HEAD
-docs/
-=======
 components/*/package-lock.json
 components/*/build
 components/*/dist
 components/*/lib
 
 docs/
-
-to_be_removed/
->>>>>>> d539eb0e (chore: gitignore)

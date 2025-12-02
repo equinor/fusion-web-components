@@ -3,8 +3,7 @@ import { property, query, state } from "lit/decorators.js";
 
 import type { PersonPickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
-import { PersonInfo, PersonSearchTask } from "@equinor/fusion-wc-person";
-import { PersonSearchResult } from "@equinor/fusion-wc-person";
+import { PersonInfo, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 import { SelectedIdsController } from "../../controllers/SelectedIdsController";
 
 /* Other personComponents */
@@ -23,7 +22,7 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
   static styles: CSSResult[] = [pickerStyle];
 
   protected tasks = {
-    search: new PersonSearchTask(this),
+    search: new PersonSuggestTask(this),
   };
 
   protected controllers = {
@@ -137,10 +136,10 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
 
   renderPickerList() {
     return this.tasks.search.render({
-      complete: (people: PersonSearchResult) => {
+      complete: (people: PersonSuggestResults) => {
         return html`
           <fwc-person-picker-list
-            .dataSources=${people}
+            .azureIds=${people.value.map((person) => person.azureUniqueId)}
             .multiple=${this.multiple}
             .selectedIds=${this.controllers.selectedIds.selectedIds}
             subtitle=${this.subtitle}

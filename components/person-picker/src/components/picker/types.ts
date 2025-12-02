@@ -4,6 +4,6 @@ export interface PersonPickerElementProps {
   value: string;
   placeholder: string;
   multiple: boolean;
-  subtitle: keyof PersonInfo;
+  subTitle: keyof PersonInfo;
   secondarySubTitle: keyof PersonInfo;
 }

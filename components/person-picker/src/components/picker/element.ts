@@ -55,7 +55,7 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
    * Default is jobTitle
    */
   @property({ type: String })
-  subtitle: keyof PersonInfo = 'jobTitle';
+  subTitle: keyof PersonInfo = 'jobTitle';
 
   /**
    * The property from PersonInfo to display as secondary subtitle in the pill
@@ -142,7 +142,7 @@ export class PersonPickerElement extends LitElement implements PersonPickerEleme
             .azureIds=${people.value.map((person) => person.azureUniqueId)}
             .multiple=${this.multiple}
             .selectedIds=${this.controllers.selectedIds.selectedIds}
-            subtitle=${this.subtitle}
+            subTitle=${this.subTitle}
             secondarySubTitle=${this.secondarySubTitle}
             @addperson=${this.handleSelect}
             @removeperson=${this.handleDeselect}

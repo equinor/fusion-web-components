@@ -120,6 +120,8 @@ export class ListElement extends LitElement implements ListElementProps {
           <fwc-person-picker-list-item
             tabindex="0"
             azureId=${azureId}
+            subTitle=${this.subTitle}
+            secondarySubTitle=${this.secondarySubTitle}
             .selected=${this.selectedIds?.includes(azureId)}
             @click=${this.handleSelectClick}
             @keydown=${this.handleSelectKeyDown}>

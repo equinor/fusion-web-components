@@ -136,7 +136,7 @@ export class ListElement extends LitElement implements ListElementProps {
       active: (this.dataSources?.length ?? 0) > 0 || (this.azureIds?.length ?? 0) > 0,
     });
 
-    return html`<div id="root">
+    return html`
       <div id="list" class=${cssClasses}>
         <ul>
           ${this.renderListItems()}
@@ -148,7 +148,7 @@ export class ListElement extends LitElement implements ListElementProps {
           max-height: ${this.maxHeight}px;
         }
       </style>
-    </div>`;
+    `;
   }
 }
 

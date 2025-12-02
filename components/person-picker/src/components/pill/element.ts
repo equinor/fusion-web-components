@@ -84,7 +84,7 @@ export class PillElement extends LitElement implements PillElementProps {
   }
 
   render() {
-    return html`<div id="root">${this.tasks.info.render({
+    return this.tasks.info.render({
       complete: (person: Partial<PersonInfo>) => {
         return html`<div id="person-pill">
           <div id="person-pill-avatar">
@@ -101,7 +101,7 @@ export class PillElement extends LitElement implements PillElementProps {
       },
       pending: () => html`<p>Resolving person info...</p>`,
       error: () => html`<p>Error resolving personInfo</p>`,
-    })}</div>`;
+    });
   }
 }
 

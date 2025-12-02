@@ -104,7 +104,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   }
 
   render() {
-    return html`<div id="root">${this.tasks.info.render({
+    return this.tasks.info.render({
       complete: (person: Partial<PersonInfo>) => {
         return html`<div id="item" tabindex="0" class=${this.selected ? 'selected' : ''}>
           <div id="item-avatar">
@@ -119,7 +119,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
       },
       pending: () => html`<p>Resolving person info...</p>`,
       error: () => html`<p>Error resolving personInfo</p>`,
-    })}</div>`;
+    });
   }
 }
 

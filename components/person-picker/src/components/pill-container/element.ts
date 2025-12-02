@@ -77,14 +77,14 @@ export class PillContainerElement extends LitElement implements PillContainerEle
   }
 
   render() {
-    return html`<div id="root">
+    return html`
       <div id="pills">
         ${this.renderPills()}
         <fwc-person-picker-search
           placeholder="Search for a person"
         </fwc-person-picker-search>
       </div>
-    </div>`;
+    `;
   }
 
 }

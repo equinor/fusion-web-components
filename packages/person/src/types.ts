@@ -88,9 +88,9 @@ export type PersonSuggestResult = {
     mobilePhone?: string;
   };
   application?: {
-    applicationId: string;
-    applicationName: string;
-    servicePrincipalType: 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown'
+    applicationId?: string;
+    applicationName?: string;
+    servicePrincipalType?: 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown'
   };
   avatarColor: string;
   avatarUrl: string;

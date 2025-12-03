@@ -4,7 +4,5 @@ export interface ListItemElementProps {
   azureId?: string;
   upn?: string;
   dataSource?: PersonInfo;
-  subTitle?: keyof PersonInfo;
-  secondarySubTitle?: keyof PersonInfo;
   selected?: boolean;
 }

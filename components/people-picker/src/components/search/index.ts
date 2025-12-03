@@ -5,7 +5,7 @@ import type { SearchElementProps } from './types';
 
 export type { SearchElementProps, ClearInputEvent };
 
-export const tag = 'fwc-person-picker-search';
+export const tag = 'fwc-people-picker-search';
 
 @fusionElement(tag)
 

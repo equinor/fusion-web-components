@@ -54,20 +54,6 @@ export class ListElement extends LitElement implements ListElementProps {
   selectedIds?: string[];
 
   /**
-   * The property from PersonInfo to display as subtitle in the pill
-   * Default is department
-   */
-  @property({ type: String })
-  subTitle: keyof PersonInfo = 'jobTitle';
-
-  /**
-   * The property from PersonInfo to display as secondary subtitle in the pill
-   * Default is department
-   */
-  @property({ type: String })
-  secondarySubTitle: keyof PersonInfo = 'department';
-
-  /**
    * The maximum height of the list in pixels
    * Default is 250px
    */
@@ -113,29 +99,25 @@ export class ListElement extends LitElement implements ListElementProps {
     if (this.dataSources) {
       return this.dataSources.map(dataSource => html`
         <li>
-          <fwc-person-picker-list-item
+          <fwc-people-picker-list-item
             tabindex="0"
             dataSource=${JSON.stringify(dataSource)}
-            subTitle=${this.subTitle}
-            secondarySubTitle=${this.secondarySubTitle}
             .selected=${this.selectedIds?.includes(dataSource.azureId)}
             @click=${this.handleSelectClick}
             @keydown=${this.handleSelectKeyDown}>
-          </fwc-person-picker-list-item>
+          </fwc-people-picker-list-item>
         </li>
       `);
     } else if (this.azureIds) {
       return this.azureIds.map(azureId => html`
         <li>
-          <fwc-person-picker-list-item
+          <fwc-people-picker-list-item
             tabindex="0"
             azureId=${azureId}
-            subTitle=${this.subTitle}
-            secondarySubTitle=${this.secondarySubTitle}
             .selected=${this.selectedIds?.includes(azureId)}
             @click=${this.handleSelectClick}
             @keydown=${this.handleSelectKeyDown}>
-          </fwc-person-picker-list-item>
+          </fwc-people-picker-list-item>
         </li>
       `);
     }

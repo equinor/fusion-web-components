@@ -54,6 +54,9 @@ importers:
       '@equinor/fusion-web-theme':
         specifier: ^0.1.10
         version: 0.1.10
+      '@lit/context':
+        specifier: ^1.1.6
+        version: 1.1.6
       lit:
         specifier: ^3.0.2
         version: 3.3.1
@@ -1626,6 +1629,9 @@ packages:
 
   '@lit-labs/task@3.1.0':
     resolution: {integrity: sha512-zMlcUtZeHDT83IiT2+CJBSoFvWDLnPEezhOCgqjxW4DmRHlbgd7jdft97T6dw4S4RvIETfI7OOyvubCV/EzTlg==}
+
+  '@lit/context@1.1.6':
+    resolution: {integrity: sha512-M26qDE6UkQbZA2mQ3RjJ3Gzd8TxP+/0obMgE5HfkfLhEEyYE3Bui4A5XHiGPjy0MUGAyxB3QgVuw2ciS0kHn6A==}
 
   '@lit/reactive-element@2.1.1':
     resolution: {integrity: sha512-N+dm5PAYdQ8e6UlywyyrgI2t++wFGXfHx+dSJ1oBrg6FAxUj40jId++EaRm80MKX5JnlH1sBsyZ5h0bcZKemCg==}
@@ -4954,6 +4960,10 @@ snapshots:
   '@lit-labs/task@3.1.0':
     dependencies:
       '@lit/task': 1.0.3
+
+  '@lit/context@1.1.6':
+    dependencies:
+      '@lit/reactive-element': 2.1.1
 
   '@lit/reactive-element@2.1.1':
     dependencies:

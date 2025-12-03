@@ -22,7 +22,7 @@ export class SearchElement extends LitElement implements SearchElementProps {
   @property()
   placeholder = 'Start typing name';
 
-  @query('input#person-search')
+  @query('input#people-search')
   inputElement!: HTMLInputElement;
 
   protected updated(changedProperties: PropertyValues): void {
@@ -55,7 +55,7 @@ export class SearchElement extends LitElement implements SearchElementProps {
   render() {
     return html`
       <div id="input">
-        <input type="text" id="person-search" placeholder=${this.placeholder} @input=${this.handleInput} />
+        <input type="text" id="people-search" placeholder=${this.placeholder} @input=${this.handleInput} />
         ${this.value ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>` : html``}
       </div>
     `;

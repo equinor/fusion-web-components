@@ -1,22 +1,22 @@
 import { type CSSResult, html, LitElement } from "lit";
 import { property, query, state } from "lit/decorators.js";
+import { ContextProvider } from '@lit/context';
+import { PersonInfo, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 
 import type { PeoplePickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
-import { PersonInfo, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 import { SelectedIdsController } from "../../controllers/SelectedIdsController";
+import { AddPersonEvent, RemovePersonEvent } from "../../controllers/SelectController";
+import { pickerContext } from "../../controllers/context";
 
 /* Other personComponents */
+import { default as PillElement } from "../pill";
 import { default as SearchElement } from "../search";
 import { default as ListElement } from "../list";
-import { default as PillContainerElement } from "../pill-container";
-
-import { AddPersonEvent, RemovePersonEvent } from "../../controllers/SelectController";
-
 /* Register the webcomponents */
+PillElement;
 SearchElement;
 ListElement;
-PillContainerElement;
 
 export class PeoplePickerElement extends LitElement implements PeoplePickerElementProps {
   static styles: CSSResult[] = [pickerStyle];
@@ -28,6 +28,10 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   protected controllers = {
     selectedIds: new SelectedIdsController(this),
   };
+
+  private _provider = new ContextProvider(this, {
+    context: pickerContext,
+  });
 
   /**
    * The value of the person picker
@@ -67,14 +71,19 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   @state()
   search: string = '';
 
-  @query('fwc-person-picker-search')
+  @query('fwc-people-picker-search')
   searchElement?: SearchElement;
 
-  @query('fwc-person-picker-list')
+  @query('fwc-people-picker-list')
   listElement?: ListElement;
 
   updated() {
     this.value = this.controllers.selectedIds.selectedIds.join(',');
+
+    this._provider.setValue({
+      subTitle: this.subTitle,
+      secondarySubTitle: this.secondarySubTitle,
+    });
   }
 
   handleInput(event: InputEvent) {
@@ -139,11 +148,10 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
 
   renderPills() {
     return this.controllers.selectedIds.selectedIds.map((azureId) => html`
-      <fwc-person-picker-pill
+      <fwc-people-picker-pill
         azureId=${azureId}
-        subTitle=${this.secondarySubTitle}
         @removeperson=${this.handleDeselect}
-      </fwc-person-picker-pill>
+      </fwc-people-picker-pill>
     `);
   }
 
@@ -153,11 +161,11 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     }
 
     return html`
-      <fwc-person-picker-search
+      <fwc-people-picker-search
         placeholder="Search for..."
         @input=${this.handleInput}
         @clearinput=${this.handleClearInput}>
-      </fwc-person-picker-search>
+      </fwc-people-picker-search>
     `;
   }
 
@@ -165,16 +173,14 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     return this.tasks.search.render({
       complete: (people: PersonSuggestResults) => {
         return html`
-          <fwc-person-picker-list
+          <fwc-people-picker-list
             .dataSources=${people.value.map((person) => this.mapToPersonInfo(person))}
             .multiple=${this.multiple}
             .selectedIds=${this.controllers.selectedIds.selectedIds}
-            subTitle=${this.subTitle}
-            secondarySubTitle=${this.secondarySubTitle}
             totalCount=${`${people.count}/${people.totalCount}`}
             @addperson=${this.handleSelect}
             @removeperson=${this.handleDeselect}
-          </fwc-person-picker-list>`;
+          </fwc-people-picker-list>`;
       },
       pending: () => html`<p>Loading...</p>`,
       error: () => html`<p id="error">Error while resolving people api</p>`,

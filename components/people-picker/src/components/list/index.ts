@@ -5,7 +5,7 @@ import type { ListElementProps } from './types';
 
 export type { ListElementProps };
 
-export const tag = 'fwc-person-picker-list';
+export const tag = 'fwc-people-picker-list';
 
 @fusionElement(tag)
 

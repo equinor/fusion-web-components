@@ -4,5 +4,4 @@ export interface PillElementProps {
   azureId?: string;
   upn?: string;
   dataSource?: PersonInfo | string;
-  subTitle?: keyof PersonInfo;
 }

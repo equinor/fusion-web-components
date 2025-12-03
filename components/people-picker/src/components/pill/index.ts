@@ -5,7 +5,7 @@ import type { PillElementProps } from './types';
 
 export type { PillElementProps };
 
-export const tag = 'fwc-person-picker-pill';
+export const tag = 'fwc-people-picker-pill';
 
 @fusionElement(tag)
 

@@ -42,34 +42,24 @@ export class PillContainerElement extends LitElement implements PillContainerEle
   })
   dataSources?: PersonInfo[];
 
-  /**
-   * The property from PersonInfo to display as subtitle in the pill
-   * Default is department
-   */
-  @property({ type: String })
-  subTitle: keyof PersonInfo = 'department';
-
   renderPills() {
     if (this.dataSources) {
       return this.dataSources.map(dataSource => html`
-        <fwc-person-picker-pill
+        <fwc-people-picker-pill
           .dataSource=${dataSource}
-          subTitle=${this.subTitle}
-        </fwc-person-picker-pill>
+        </fwc-people-picker-pill>
       `);
     } else if (this.azureIds) {
       return this.azureIds.map(azureId => html`
-        <fwc-person-picker-pill
+        <fwc-people-picker-pill
           azureId=${azureId}
-          subTitle=${this.subTitle}
-        </fwc-person-picker-pill>
+        </fwc-people-picker-pill>
       `);
     } else if (this.upns) {
       return this.upns.map(upn => html`
-        <fwc-person-picker-pill
+        <fwc-people-picker-pill
           upn=${upn}
-          subTitle=${this.subTitle}
-        </fwc-person-picker-pill>
+        </fwc-people-picker-pill>
       `);
     }
 
@@ -80,9 +70,9 @@ export class PillContainerElement extends LitElement implements PillContainerEle
     return html`
       <div id="pills">
         ${this.renderPills()}
-        <fwc-person-picker-search
+        <fwc-people-picker-search
           placeholder="Search for a person"
-        </fwc-person-picker-search>
+        </fwc-people-picker-search>
       </div>
     `;
   }

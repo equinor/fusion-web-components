@@ -1,5 +1,6 @@
 import { type CSSResult, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
+import { ContextConsumer } from "@lit/context";
 
 import { IconElement } from '@equinor/fusion-wc-icon';
 import { PersonAvatarElement } from '@equinor/fusion-wc-person';
@@ -9,8 +10,9 @@ import { PersonInfoTask } from "@equinor/fusion-wc-person";
 
 import type { ListItemElementProps } from "./types";
 import { listItemStyle } from "./element.css";
+import { pickerContext } from "../../controllers/context";
 
-// register the webcomponents
+// register webcomponents
 PersonAvatarElement;
 IconElement;
 
@@ -25,6 +27,8 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   tasks = {
     info: new PersonInfoTask(this),
   };
+
+  private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
 
   /**
    * The Azure ID of the person to resolve person info for
@@ -63,20 +67,6 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   })
   selected?: boolean;
 
-  /**
-   * The property from PersonInfo to display as subtitle in the pill
-   * Default is department
-   */
-  @property({ type: String })
-  subTitle: keyof PersonInfo = 'jobTitle';
-
-  /**
-   * The property from PersonInfo to display as secondary subtitle in the pill
-   * Default is department
-   */
-  @property({ type: String })
-  secondarySubTitle: keyof PersonInfo = 'department';
-
   updated() {
     if (!this.azureId && !this.upn && !this.dataSource) {
       throw new Error('Either azureId, azureUniqueId, upn or dataSource must be provided to PersonPill');
@@ -84,11 +74,18 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   }
 
   renderSubTitle(person: Partial<PersonInfo>) {
-    if (!this.subTitle) {
+    const subTitle = this._context.value?.subTitle ?? '';
+
+    if (!subTitle) {
       return html``;
     }
 
-    return html`<p>${person[this.subTitle]}</p>`;
+    if (subTitle in person) {
+      return html`<p>${person[subTitle]}</p>`;
+    }
+
+    console.warn(`The subTitle field '${subTitle}' is not a valid property of the person`);
+    return html``;
   }
 
   renderSecondarySubTitle(person: Partial<PersonInfo>) {
@@ -96,11 +93,18 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
       return html`<p id="expired">Account expired</p>`;
     }
 
-    if (!this.secondarySubTitle) {
+    const secondarySubTitle = this._context.value?.secondarySubTitle ?? '';
+
+    if (!secondarySubTitle) {
       return html``;
     }
 
-    return html`<p>${person[this.secondarySubTitle]}</p>`;
+    if (secondarySubTitle in person) {
+      return html`<p>${person[secondarySubTitle]}</p>`;
+    }
+
+    console.warn(`The secondarySubTitle field '${secondarySubTitle}' is not a valid property of the person`);
+    return html``;
   }
 
   render() {

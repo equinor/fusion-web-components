@@ -33,6 +33,7 @@
 		"@equinor/fusion-wc-icon": "workspace:^",
 		"@equinor/fusion-wc-person": "workspace:^",
 		"@equinor/fusion-web-theme": "^0.1.10",
+		"@lit/context": "^1.1.6",
 		"lit": "3.3.0"
 	},
 	"devDependencies": {

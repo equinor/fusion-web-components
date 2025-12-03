@@ -78,14 +78,14 @@ export type PersonItemSize = 'small' | 'medium' | 'large';
 
 export type PersonSuggestResult = {
   azureUniqueId: string;
-  name: string;
+  name?: string;
   accountType: 'Person' | 'SystemAccount' | 'Unknown';
   person?: {
-    accountType: 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
-    jobTitle: string;
-    department: string;
-    upn: string;
-    mobilePhone: string;
+    accountType?: 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+    jobTitle?: string;
+    department?: string;
+    upn?: string;
+    mobilePhone?: string;
   };
   application?: {
     applicationId: string;

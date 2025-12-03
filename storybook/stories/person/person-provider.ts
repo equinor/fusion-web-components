@@ -64,10 +64,10 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
 };
 
 const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult => {
-  args.azureId && faker.seed(uuid2number(args.azureId));
+  const person = generatePerson({ azureId: args.azureId });
   return {
-    azureUniqueId: args.azureId ?? faker.string.uuid(),
-    name: faker.person.fullName(),
+    azureUniqueId: person.azureId,
+    name: person.name,
     accountType: faker.helpers.arrayElement([
       'Person',
       'SystemAccount',
@@ -82,12 +82,12 @@ const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult
         'Local',
         'TemporaryEmployee',
       ]),
-      jobTitle: faker.person.jobTitle(),
-      department: faker.commerce.department(),
-      upn: faker.internet.email({ provider: 'equinor.com' }),
-      mobilePhone: faker.phone.number(),
+      jobTitle: person.jobTitle,
+      department: person.department,
+      upn: person.upn,
+      mobilePhone: person.mobilePhone,
     },
-    isExpired: faker.datatype.boolean({ probability: 0.1 }),
+    isExpired: person.isExpired ?? false,
     avatarColor: faker.color.rgb(),
     avatarUrl: faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false }),
   };

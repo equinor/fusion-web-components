@@ -64,6 +64,7 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
 };
 
 const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult => {
+  args.azureId && faker.seed(uuid2number(args.azureId));
   return {
     azureUniqueId: args.azureId ?? faker.string.uuid(),
     name: faker.person.fullName(),
@@ -119,7 +120,7 @@ const resolver: PersonResolver = {
           .map((x) => x.charCodeAt(0))
           .reduce((acc, item) => (acc += item), 0) + i,
       );
-      return generatePerson({ azureId: String(faker.string.uuid()) });
+      return generatePerson({ azureId: faker.string.uuid() });
     });
   },
   suggest: (args) => {
@@ -131,7 +132,7 @@ const resolver: PersonResolver = {
           .map((x) => x.charCodeAt(0))
           .reduce((acc, item) => (acc += item), 0) + i,
       );
-      return generateSuggestedPerson({ azureId: String(faker.string.uuid()) });
+      return generateSuggestedPerson({ azureId: faker.string.uuid() });
     });
     return {
       totalCount: genertedCount,

@@ -1,6 +1,6 @@
 import { PersonInfo } from "@equinor/fusion-wc-person";
 
-export interface PersonPickerElementProps {
+export interface PeoplePickerElementProps {
   value: string;
   placeholder: string;
   multiple: boolean;

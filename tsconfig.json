@@ -49,10 +49,10 @@
 			"path": "./packages/menu"
 		},
 		{
-			"path": "./packages/person"
+			"path": "./components/people-picker"
 		},
 		{
-			"path": "./components/person-picker"
+			"path": "./packages/person"
 		},
 		{
 			"path": "./packages/picture"

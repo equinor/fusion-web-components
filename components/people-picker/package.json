@@ -1,7 +1,7 @@
 {
-	"name": "@equinor/fusion-wc-person-picker",
+	"name": "@equinor/fusion-wc-people-picker",
 	"version": "0.0.0",
-	"description": "A web component for a person picker",
+	"description": "A web component for fusion people-picker",
 	"main": "lib/index.js",
 	"types": "lib/types/index.d.ts",
 	"exports": {

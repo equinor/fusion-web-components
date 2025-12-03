@@ -2,22 +2,22 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { PersonPickerElement, type PersonPickerElementProps } from '@equinor/fusion-wc-person-picker';
+import { PeoplePickerElement, type PeoplePickerElementProps } from '@equinor/fusion-wc-people-picker';
 
 import { personProviderDecorator } from './person-provider';
 
-PersonPickerElement;
+PeoplePickerElement;
 
-type Story = StoryObj<PersonPickerElementProps>;
+type Story = StoryObj<PeoplePickerElementProps>;
 
-const meta: Meta<typeof PersonPickerElement> = {
+const meta: Meta<typeof PeoplePickerElement> = {
   title: 'picker',
-  component: 'fwc-person-picker',
+  component: 'fwc-people-picker',
   decorators: [personProviderDecorator],
 };
 
-const render = (props: PersonPickerElementProps) => html`
-  <fwc-person-picker multiple=${ifDefined(props.multiple)}></fwc-person-picker>
+const render = (props: PeoplePickerElementProps) => html`
+  <fwc-people-picker multiple=${ifDefined(props.multiple)}></fwc-people-picker>
 `;
 
 export const Default: Story = {

@@ -5,6 +5,9 @@ export const listStyle: CSSResult = css`
   :host {
     display: block;
   }
+  #root {
+    position: relative;
+  }
   #list {
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
     border: 1px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
@@ -21,5 +24,12 @@ export const listStyle: CSSResult = css`
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+  #total-count {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 2rem;
+    font-size: 0.75em;
+    color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
   }
 `;

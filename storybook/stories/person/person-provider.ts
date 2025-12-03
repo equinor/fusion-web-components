@@ -135,7 +135,7 @@ const resolver: PersonResolver = {
       return generateSuggestedPerson({ azureId: faker.string.uuid() });
     });
     return {
-      totalCount: genertedCount,
+      totalCount: genertedCount * 3,
       count: genertedCount,
       value,
     };

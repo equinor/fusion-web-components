@@ -171,6 +171,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
             .selectedIds=${this.controllers.selectedIds.selectedIds}
             subTitle=${this.subTitle}
             secondarySubTitle=${this.secondarySubTitle}
+            totalCount=${`${people.count}/${people.totalCount}`}
             @addperson=${this.handleSelect}
             @removeperson=${this.handleDeselect}
           </fwc-person-picker-list>`;

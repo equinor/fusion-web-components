@@ -38,9 +38,6 @@ export class ListElement extends LitElement implements ListElementProps {
   })
   azureIds?: string[];
 
-  @property({ type: Array })
-  selectedIds?: string[];
-
   /**
    * The custom data source of the person to display in the pill
    */
@@ -49,6 +46,12 @@ export class ListElement extends LitElement implements ListElementProps {
     converter: (value: string | null) => value ? JSON.parse(value) : []
   })
   dataSources?: PersonInfo[];
+
+  /**
+   * Array of selected IDs of the person
+   */
+  @property({ type: Array })
+  selectedIds?: string[];
 
   /**
    * The property from PersonInfo to display as subtitle in the pill
@@ -70,6 +73,13 @@ export class ListElement extends LitElement implements ListElementProps {
    */
   @property({ type: Number })
   maxHeight: number = 250; // in pixels
+
+  /**
+   * The total count of the results
+   * Default is 0/0
+   */
+  @property({ type: String })
+  totalCount: string = '0/0';
 
   selectTrigger(element: HTMLElement) {
     const dataSource = element.getAttribute('dataSource');
@@ -133,23 +143,33 @@ export class ListElement extends LitElement implements ListElementProps {
     return html``;
   }
 
+  renderTotalCount() {
+    if ((this.dataSources?.length ?? 0) === 0 && (this.azureIds?.length ?? 0) === 0) {
+      return html``;
+    }
+
+    return html`
+      <div id="total-count">
+        Displaying ${this.totalCount} results
+      </div>
+    `;
+  }
+
   render() {
     const cssClasses = classMap({
       active: (this.dataSources?.length ?? 0) > 0 || (this.azureIds?.length ?? 0) > 0,
     });
 
     return html`
-      <div id="list" class=${cssClasses}>
-        <ul>
-          ${this.renderListItems()}
-        </ul>
+      <div id="root">
+        <div id="list" class=${cssClasses} style="max-height: ${this.maxHeight}px;">
+          <ul>
+            ${this.renderListItems()}
+          </ul>
+        </div>
+        
+        ${this.renderTotalCount()}
       </div>
-
-      <style>
-        #list {
-          max-height: ${this.maxHeight}px;
-        }
-      </style>
     `;
   }
 }

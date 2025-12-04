@@ -124,7 +124,7 @@ const resolver: PersonResolver = {
     });
   },
   suggest: (args) => {
-    const genertedCount = faker.number.int({ min: 3, max: 25 });
+    const genertedCount = faker.number.int({ min: 3, max: 10 });
     const value = new Array(genertedCount).fill(undefined).map((_, i) => {
       faker.seed(
         args.search

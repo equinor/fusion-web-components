@@ -106,7 +106,6 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
       if (this.multiple) {
         this.controllers.selectedIds.add(azureId);
       } else {
-        this.clearSearch();
         this.controllers.selectedIds.selectedIds = [azureId];
       }
     }
@@ -156,10 +155,6 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   }
 
   renderSearch() {
-    if (!this.multiple && this.controllers.selectedIds.selectedIds.length) {
-      return html``;
-    }
-
     return html`
       <fwc-people-picker-search
         placeholder="Search for..."

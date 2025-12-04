@@ -20,7 +20,7 @@ const render = (props: PeoplePickerElementProps) => html`
   <fwc-people-picker multiple=${ifDefined(props.multiple)}></fwc-people-picker>
 `;
 
-export const Default: Story = {
+export const Single: Story = {
   render,
 };
 

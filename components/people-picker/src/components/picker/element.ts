@@ -46,7 +46,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
    * Default is 'Start typing name'
    */
   @property()
-  placeholder: string = 'Start typing name';
+  placeholder: string = 'Search for...';
 
   /**
    * Whether the person picker should allow multiple selections.
@@ -122,8 +122,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     // delete pills when backspacing empty input and there are selected pills
     if (event.key === 'Backspace') {
       if (!this.search && this.controllers.selectedIds.selectedIds.length) {
-        const selectedIds = [...this.controllers.selectedIds.selectedIds];
-        const lastItem = selectedIds.pop();
+        const lastItem = this.controllers.selectedIds.selectedIds[this.controllers.selectedIds.selectedIds.length - 1];
         this.controllers.selectedIds.remove(lastItem ?? '');
       }
     }
@@ -145,6 +144,26 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     };
   }
 
+  handleKeyDownSearchInput(event: KeyboardEvent) {
+    console.log(event.key);
+
+    // add/remove first person from searchresults
+    if (event.key === 'Enter') {
+      const { value: people } = this.tasks.search.value ?? {};
+      if (!people?.length) {
+        return;
+      }
+
+      const firstPerson = people[0];
+
+      if (this.controllers.selectedIds.selectedIds.includes(firstPerson.azureUniqueId)) {
+        this.controllers.selectedIds.remove(firstPerson.azureUniqueId);
+      } else {
+        this.controllers.selectedIds.add(firstPerson.azureUniqueId);
+      }
+    }
+  }
+
   renderPills() {
     return this.controllers.selectedIds.selectedIds.map((azureId) => html`
       <fwc-people-picker-pill
@@ -157,9 +176,10 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   renderSearch() {
     return html`
       <fwc-people-picker-search
-        placeholder="Search for..."
+        placeholder=${this.placeholder}
         @input=${this.handleInput}
-        @clearinput=${this.handleClearInput}>
+        @clearinput=${this.handleClearInput}
+        @keydown=${this.handleKeyDownSearchInput}>
       </fwc-people-picker-search>
     `;
   }

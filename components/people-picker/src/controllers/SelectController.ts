@@ -35,7 +35,6 @@ export class SelectController implements ReactiveController {
 
   // needed to be a ReactiveController
   hostConnected(): void { }
-  hostDisconnected(): void { }
 
   triggerRemoveEvent(azureId: string): void {
     this.#host.dispatchEvent(new RemovePersonEvent(azureId));

@@ -1,15 +1,17 @@
-import { ReactiveController, ReactiveControllerHost } from "lit";
+import { ReactiveController } from "lit";
 import { PersonInfo } from "packages/person/lib/types";
+import { PeoplePickerElement } from "../components/picker/element";
 
 /**
  * Controller to manage the selected ids
  */
 export class SelectedController implements ReactiveController {
-  #host: ReactiveControllerHost;
+  #host: PeoplePickerElement;
   #selectedPeople: Map<string, PersonInfo> = new Map();
 
-  constructor(host: ReactiveControllerHost) {
+  constructor(host: PeoplePickerElement) {
     this.#host = host;
+    this.#host.addController(this);
   }
 
   // needed to comply with the ReactiveController interface
@@ -45,7 +47,13 @@ export class SelectedController implements ReactiveController {
    * @param person PersonInfo to add to the selected people
    */
   addPerson(person: PersonInfo): void {
-    this.#selectedPeople.set(person.azureId, person);
+    if (this.#host.multiple) {
+      this.#selectedPeople.set(person.azureId, person);
+    } else {
+      this.#selectedPeople.clear();
+      this.#selectedPeople.set(person.azureId, person);
+    }
+
     this.#host.requestUpdate();
   }
 

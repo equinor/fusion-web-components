@@ -19,12 +19,12 @@ IconElement;
 export class ListItemElement extends LitElement implements ListItemElementProps {
   static styles: CSSResult[] = [listItemStyle];
 
+  private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
+
   static override shadowRootOptions = {
     ...LitElement.shadowRootOptions,
     delegatesFocus: true,
   };
-
-  private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
 
   /**
    * The custom data source of the person to display in the pill

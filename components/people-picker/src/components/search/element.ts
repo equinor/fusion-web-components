@@ -25,7 +25,7 @@ export class SearchElement extends LitElement implements SearchElementProps {
   @query('input#people-search')
   inputElement!: HTMLInputElement;
 
-  protected updated(changedProperties: PropertyValues): void {
+  updated(changedProperties: PropertyValues): void {
     // Sync input element value when property changes
     if (changedProperties.has('value') && this.inputElement) {
       this.inputElement.value = this.value;

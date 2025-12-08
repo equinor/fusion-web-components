@@ -32,7 +32,7 @@ export class ListElement extends LitElement implements ListElementProps {
 
   /**
    * The maximum height of the list in pixels
-   * Default is 250px
+   * Default is 250
    */
   @property({ type: Number })
   maxHeight: number = 250; // in pixels
@@ -48,8 +48,8 @@ export class ListElement extends LitElement implements ListElementProps {
     return this.dataSources.map(dataSource => html`
       <li>
         <fwc-people-picker-list-item
-          tabindex="0"
           .dataSource=${dataSource}
+          tabindex="0">
         </fwc-people-picker-list-item>
       </li>
     `);

@@ -35,6 +35,7 @@ export type PersonInfo = {
   managerAzureUniqueId?: string;
   accountClassification?: AccountClassification;
   isExpired?: boolean;
+  avatarUrl?: string;
 };
 
 export type PersonDetails = PersonInfo & {
@@ -84,6 +85,9 @@ export type PersonSuggestResult = {
     accountType?: 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
     jobTitle?: string;
     department?: string;
+    fullDepartment?: string;
+    employeeNumber?: string;
+    managerAzureUniqueId?: string;
     upn?: string;
     mobilePhone?: string;
   };

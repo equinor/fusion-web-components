@@ -56,8 +56,7 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  */
 export class PersonAvatarElement
   extends LitElement
-  implements PersonAvatarElementProps, PersonInfoControllerHost, PersonPhotoControllerHost
-{
+  implements PersonAvatarElementProps, PersonInfoControllerHost, PersonPhotoControllerHost {
   static styles: CSSResult[] = [style];
 
   @property({ type: String })
@@ -282,16 +281,34 @@ export class PersonAvatarElement
     />`;
   }
 
+  protected renderImage(person: Partial<AvatarData>): TemplateResult {
+    if (this.showLetter) {
+      return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
+    }
+
+    if (person.avatarUrl) {
+      return html`<img src="${person.avatarUrl}" alt="${person.name}" />`;
+    }
+
+    return this.tasks?.photo.render({
+      complete: (src) => html`<img src="${src}" alt="${person.name}" />`,
+      pending: () => this.renderImagePlaceholder(true),
+      error: () => {
+        return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
+      },
+    }) ?? html``;
+  }
+
   protected render(): TemplateResult {
     if (!this.tasks) {
       return this.renderImagePlaceholder();
     }
     return html`<div id="root">
       ${this.tasks.info.render({
-        complete: (details: AvatarData) => {
-          const { accountType, accountClassification, name } = details;
-          const classes = classMap(this.getRenderClasses(accountType, accountClassification));
-          return html`<fwc-avatar
+      complete: (details) => {
+        const { accountType, accountClassification } = details;
+        const classes = classMap(this.getRenderClasses(accountType, accountClassification));
+        return html`<fwc-avatar
             class=${classes}
             .size=${this.size}
             ?clickable=${this.clickable}
@@ -301,28 +318,19 @@ export class PersonAvatarElement
             @mouseout=${this.handleMouseOut}
             border
           >
-            ${this.showLetter
-              ? html`${name?.substring(0, 1)?.toUpperCase()}`
-              : this.tasks?.photo.render({
-                  complete: (src) => html`<img src="${src}" alt="${name}" />`,
-                  pending: () => this.renderImagePlaceholder(true),
-                  error: () => {
-                    console.log('failed');
-                    return html`${name?.substring(0, 1)?.toUpperCase()}`;
-                  },
-                })}
+            ${this.renderImage(details)}
           </fwc-avatar>`;
-        },
-        pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
-        error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
-      })}
+      },
+      pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
+      error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
+    })}
       <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
         <slot name="floating">
           ${when(
-            this.isFloatingOpen,
-            () =>
-              html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
-          )}
+      this.isFloatingOpen,
+      () =>
+        html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
+    )}
         </slot>
       </div>
     </div>`;

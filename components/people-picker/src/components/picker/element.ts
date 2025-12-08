@@ -5,8 +5,7 @@ import { PersonInfo, PersonSuggestResult, PersonSuggestResults, PersonSuggestTas
 
 import type { PeoplePickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
-import { SelectedIdsController } from "../../controllers/SelectedIdsController";
-import { AddPersonEvent, RemovePersonEvent } from "../../controllers/SelectController";
+import { SelectedController } from "../../controllers/SelectedController";
 import { pickerContext } from "../../controllers/context";
 
 /* Other personComponents */
@@ -14,9 +13,9 @@ import { default as PillElement } from "../pill";
 import { default as SearchElement } from "../search";
 import { default as ListElement } from "../list";
 /* Register the webcomponents */
-PillElement;
 SearchElement;
 ListElement;
+PillElement;
 
 export class PeoplePickerElement extends LitElement implements PeoplePickerElementProps {
   static styles: CSSResult[] = [pickerStyle];
@@ -26,7 +25,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   };
 
   protected controllers = {
-    selectedIds: new SelectedIdsController(this),
+    selectedPeople: new SelectedController(this),
   };
 
   private _provider = new ContextProvider(this, {
@@ -78,11 +77,12 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   listElement?: ListElement;
 
   updated() {
-    this.value = this.controllers.selectedIds.selectedIds.join(',');
+    this.value = this.controllers.selectedPeople.selectedIds.join();
 
     this._provider.setValue({
       subTitle: this.subTitle,
       secondarySubTitle: this.secondarySubTitle,
+      selected: this.controllers.selectedPeople,
     });
   }
 
@@ -100,30 +100,13 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     this.searchElement?.clear();
   }
 
-  handleSelect(event: AddPersonEvent) {
-    const { azureId } = event.detail;
-    if (azureId) {
-      if (this.multiple) {
-        this.controllers.selectedIds.add(azureId);
-      } else {
-        this.controllers.selectedIds.selectedIds = [azureId];
-      }
-    }
-  }
-
-  handleDeselect(event: RemovePersonEvent) {
-    const { azureId } = event.detail;
-    if (azureId) {
-      this.controllers.selectedIds.remove(azureId);
-    }
-  }
-
   keyboardHandler(event: KeyboardEvent) {
     // delete pills when backspacing empty input and there are selected pills
     if (event.key === 'Backspace') {
-      if (!this.search && this.controllers.selectedIds.selectedIds.length) {
-        const lastItem = this.controllers.selectedIds.selectedIds[this.controllers.selectedIds.selectedIds.length - 1];
-        this.controllers.selectedIds.remove(lastItem ?? '');
+      const { selectedPeople } = this.controllers.selectedPeople;
+      if (!this.search && selectedPeople.size > 0) {
+        const lastId = [...selectedPeople.keys()][selectedPeople.size - 1];
+        this.controllers.selectedPeople.removePerson(lastId);
       }
     }
 
@@ -138,15 +121,16 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
       name: person.name,
       jobTitle: person.person?.jobTitle,
       department: person.person?.department,
+      managerAzureUniqueId: person.person?.managerAzureUniqueId,
       upn: person.person?.upn,
       mobilePhone: person.person?.mobilePhone,
       accountType: person.person?.accountType,
+      isExpired: person.isExpired,
+      avatarUrl: person.avatarUrl,
     };
   }
 
   handleKeyDownSearchInput(event: KeyboardEvent) {
-    console.log(event.key);
-
     // add/remove first person from searchresults
     if (event.key === 'Enter') {
       const { value: people } = this.tasks.search.value ?? {};
@@ -155,20 +139,22 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
       }
 
       const firstPerson = people[0];
-
-      if (this.controllers.selectedIds.selectedIds.includes(firstPerson.azureUniqueId)) {
-        this.controllers.selectedIds.remove(firstPerson.azureUniqueId);
+      if (this.controllers.selectedPeople.selectedPeople.has(firstPerson.azureUniqueId)) {
+        this.controllers.selectedPeople.removePerson(firstPerson.azureUniqueId);
       } else {
-        this.controllers.selectedIds.add(firstPerson.azureUniqueId);
+        this.controllers.selectedPeople.addPerson(this.mapToPersonInfo(firstPerson));
       }
+    }
+
+    if (event.key === 'ArrowDown') {
+      this.listElement?.focus();
     }
   }
 
   renderPills() {
-    return this.controllers.selectedIds.selectedIds.map((azureId) => html`
+    return [...this.controllers.selectedPeople.selectedPeople.values()].map((person) => html`
       <fwc-people-picker-pill
-        azureId=${azureId}
-        @removeperson=${this.handleDeselect}
+        .dataSource=${person}
       </fwc-people-picker-pill>
     `);
   }
@@ -190,11 +176,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
         return html`
           <fwc-people-picker-list
             .dataSources=${people.value.map((person) => this.mapToPersonInfo(person))}
-            .multiple=${this.multiple}
-            .selectedIds=${this.controllers.selectedIds.selectedIds}
             totalCount=${`${people.count}/${people.totalCount}`}
-            @addperson=${this.handleSelect}
-            @removeperson=${this.handleDeselect}
           </fwc-people-picker-list>`;
       },
       pending: () => html`<p>Loading...</p>`,

@@ -9,7 +9,6 @@ import { pickerContext } from "../../controllers/context";
 
 import type { PillElementProps } from "./types";
 import { pillStyle } from "./element.css";
-import { SelectController } from "../../controllers/SelectController";
 
 // register the webcomponents
 import { IconElement } from '@equinor/fusion-wc-icon';
@@ -20,27 +19,11 @@ IconElement;
 export class PillElement extends LitElement implements PillElementProps {
   static styles: CSSResult[] = [pillStyle];
 
-  controllers = {
-    select: new SelectController(this),
-  };
-
   tasks = {
     info: new PersonInfoTask(this),
   };
 
   private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
-
-  /**
-   * The Azure ID of the person to resolve person info for
-   */
-  @property({ type: String })
-  azureId?: string;
-
-  /**
-   * The unique email(upn) of the person to resolve person info for
-   */
-  @property({ type: String })
-  upn?: string;
 
   /**
    * The custom data source of the person to display in the pill
@@ -55,7 +38,7 @@ export class PillElement extends LitElement implements PillElementProps {
       }
     },
   })
-  dataSource?: PersonInfo;
+  dataSource: PersonInfo = {} as PersonInfo;
 
   personSubtitle(person: Partial<PersonInfo>) {
     if (person.isExpired) {
@@ -77,30 +60,26 @@ export class PillElement extends LitElement implements PillElementProps {
   }
 
   deleteButton(azureId: string) {
-    return html`<button type="button" @click=${() => this.controllers.select.triggerRemoveEvent(azureId)}>
+    return html`<button type="button" @click=${() => this._context.value?.selected.removePerson(azureId)}>
       <fwc-icon icon="close"></fwc-icon>
     </button>`;
   }
 
   render() {
-    return this.tasks.info.render({
-      complete: (person: Partial<PersonInfo>) => {
-        return html`<div id="person-pill">
-          <div id="person-pill-avatar">
-            <fwc-person-avatar azureId=${person.azureId} size="small"></fwc-person-avatar>
-          </div>
-          <div id="person-pill-name">
-            <p>${person.name}</p>
-            ${this.personSubtitle(person)}
-          </div>
-          <div id="person-pill-delete">
-            ${this.deleteButton(person.azureId ?? '')}
-          </div>
-        </div>`;
-      },
-      pending: () => html`<p>Resolving person info...</p>`,
-      error: () => html`<p>Error resolving personInfo</p>`,
-    });
+    return html`
+      <div id="person-pill">
+        <div id="person-pill-avatar">
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
+        </div>
+        <div id="person-pill-name">
+          <p>${this.dataSource.name}</p>
+          ${this.personSubtitle(this.dataSource)}
+        </div>
+        <div id="person-pill-delete">
+          ${this.deleteButton(this.dataSource.azureId)}
+        </div>
+      </div>
+    `;
   }
 }
 

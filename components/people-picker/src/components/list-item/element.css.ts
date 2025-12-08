@@ -15,12 +15,15 @@ export const listItemStyle: CSSResult = css`
     padding: 0.5rem;
 
     &:hover, &:focus {
-      background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
-      outline: none;
+      background: ${unsafeCSS(theme.colors.interactive.primary__selected_hover.getVariable('color'))};
+    }
+    
+    &:focus {
+      outline: 2px inset ${unsafeCSS(theme.colors.interactive.focus.getVariable('color'))};
     }
 
     &.selected {
-      background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
+      background: ${unsafeCSS(theme.colors.interactive.secondary__highlight.getVariable('color'))};
 
       &:hover, &:focus {
         background: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};

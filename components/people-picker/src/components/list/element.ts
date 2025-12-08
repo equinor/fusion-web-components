@@ -4,11 +4,8 @@ import { classMap } from "lit/directives/class-map.js";
 
 import type { PersonInfo } from "@equinor/fusion-wc-person";
 
-
 import type { ListElementProps } from "./types";
 import { listStyle } from "./element.css";
-
-import { SelectController } from "../../controllers/SelectController";
 
 /* Other personComponents */
 import { default as PersonPickerListItemElement } from '../list-item';
@@ -24,20 +21,6 @@ export class ListElement extends LitElement implements ListElementProps {
     delegatesFocus: true,
   };
 
-  protected controllers = {
-    select: new SelectController(this),
-  };
-
-
-  /**
-   * The Azure ID of the person to resolve person info for
-   */
-  @property({
-    type: Array,
-    converter: (value: string | null) => value ? value.split(',').map((id) => id.trim()) : []
-  })
-  azureIds?: string[];
-
   /**
    * The custom data source of the person to display in the pill
    */
@@ -45,13 +28,7 @@ export class ListElement extends LitElement implements ListElementProps {
     type: Array,
     converter: (value: string | null) => value ? JSON.parse(value) : []
   })
-  dataSources?: PersonInfo[];
-
-  /**
-   * Array of selected IDs of the person
-   */
-  @property({ type: Array })
-  selectedIds?: string[];
+  dataSources: PersonInfo[] = [];
 
   /**
    * The maximum height of the list in pixels
@@ -67,66 +44,20 @@ export class ListElement extends LitElement implements ListElementProps {
   @property({ type: String })
   totalCount: string = '0/0';
 
-  selectTrigger(element: HTMLElement) {
-    const dataSource = element.getAttribute('dataSource');
-    const azureId = element.getAttribute('azureId');
-
-    const selectedId: string = azureId ?? JSON.parse(dataSource ?? '{ "azureId": null }').azureId ?? '';
-
-    if (!selectedId) {
-      console.error('Person-picker: Could not retreive selected ID from element');
-      return;
-    }
-
-    if (this.selectedIds?.includes(selectedId)) {
-      this.controllers.select.triggerRemoveEvent(selectedId);
-    } else {
-      this.controllers.select.triggerAddEvent(selectedId);
-    }
-  }
-
-  handleSelectClick(event: Event) {
-    this.selectTrigger(event.target as HTMLElement);
-  }
-
-  handleSelectKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      this.selectTrigger(event.target as HTMLElement);
-    }
-  }
-
   renderListItems() {
-    if (this.dataSources) {
-      return this.dataSources.map(dataSource => html`
-        <li>
-          <fwc-people-picker-list-item
-            tabindex="0"
-            dataSource=${JSON.stringify(dataSource)}
-            .selected=${this.selectedIds?.includes(dataSource.azureId)}
-            @click=${this.handleSelectClick}
-            @keydown=${this.handleSelectKeyDown}>
-          </fwc-people-picker-list-item>
-        </li>
-      `);
-    } else if (this.azureIds) {
-      return this.azureIds.map(azureId => html`
-        <li>
-          <fwc-people-picker-list-item
-            tabindex="0"
-            azureId=${azureId}
-            .selected=${this.selectedIds?.includes(azureId)}
-            @click=${this.handleSelectClick}
-            @keydown=${this.handleSelectKeyDown}>
-          </fwc-people-picker-list-item>
-        </li>
-      `);
-    }
-
-    return html``;
+    return this.dataSources.map(dataSource => html`
+      <li>
+        <fwc-people-picker-list-item
+          tabindex="0"
+          .dataSource=${dataSource}
+        </fwc-people-picker-list-item>
+      </li>
+    `);
   }
 
   renderTotalCount() {
-    if ((this.dataSources?.length ?? 0) === 0 && (this.azureIds?.length ?? 0) === 0) {
+    // if there are no data sources, don't render the total count
+    if (this.dataSources.length === 0) {
       return html``;
     }
 
@@ -139,7 +70,7 @@ export class ListElement extends LitElement implements ListElementProps {
 
   render() {
     const cssClasses = classMap({
-      active: (this.dataSources?.length ?? 0) > 0 || (this.azureIds?.length ?? 0) > 0,
+      active: this.dataSources.length > 0,
     });
 
     return html`

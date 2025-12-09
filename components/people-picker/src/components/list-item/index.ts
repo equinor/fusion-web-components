@@ -3,6 +3,7 @@ import { fusionElement } from '@equinor/fusion-wc-core';
 import { ListItemElement } from './element';
 import type { ListItemElementProps } from './types';
 
+export { NavigateListItemEvent } from './events';
 export type { ListItemElementProps };
 
 export const tag = 'fwc-people-picker-list-item';

@@ -1,15 +1,15 @@
 import { ReactiveController } from "lit";
 import { PersonInfo } from "packages/person/lib/types";
-import { PeoplePickerElement } from "../components/picker/element";
+import { PickerElement } from "../components/picker/element";
 
 /**
  * Controller to manage the selected ids
  */
 export class SelectedController implements ReactiveController {
-  #host: PeoplePickerElement;
+  #host: PickerElement;
   #selectedPeople: Map<string, PersonInfo> = new Map();
 
-  constructor(host: PeoplePickerElement) {
+  constructor(host: PickerElement) {
     this.#host = host;
     this.#host.addController(this);
   }

@@ -3,21 +3,23 @@ import { property, query, state } from "lit/decorators.js";
 import { ContextProvider } from '@lit/context';
 import { PersonInfo, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 
-import type { PeoplePickerElementProps } from "./types";
+import type { PickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
 import { SelectedController } from "../../controllers/SelectedController";
 import { pickerContext } from "../../controllers/context";
+import { NavigateController } from "./NavigateController";
 
 /* Other personComponents */
 import { default as PillElement } from "../pill";
 import { default as SearchElement } from "../search";
 import { default as ListElement } from "../list";
+
 /* Register the webcomponents */
 SearchElement;
 ListElement;
 PillElement;
 
-export class PeoplePickerElement extends LitElement implements PeoplePickerElementProps {
+export class PickerElement extends LitElement implements PickerElementProps {
   static styles: CSSResult[] = [pickerStyle];
 
   protected tasks = {
@@ -26,6 +28,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
 
   protected controllers = {
     selectedPeople: new SelectedController(this),
+    navigate: new NavigateController(this),
   };
 
   private _provider = new ContextProvider(this, {
@@ -75,21 +78,6 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
 
   @query('fwc-people-picker-list')
   listElement?: ListElement;
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this.removeEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
-  }
-
-  handleNavigateToSearch(event: CustomEvent<void>): void {
-    event.stopPropagation();
-    this.searchElement?.focus();
-  }
 
   updated() {
     this.value = this.controllers.selectedPeople.selectedIds.join();
@@ -164,7 +152,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     if (event.key === 'ArrowDown') {
       // Important: Prevent page scrolling when focusing the list item
       event.preventDefault();
-      this.listElement?.focusItemAtIndex(0);
+      this.listElement?.controllers.navigate.focusItemAtIndex(0);
     }
   }
 
@@ -217,4 +205,4 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   };
 }
 
-export default PeoplePickerElement;
+export default PickerElement;

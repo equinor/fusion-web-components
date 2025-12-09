@@ -1,4 +1,4 @@
-import { type CSSResult, html, LitElement } from "lit";
+import { type CSSResult, html, LitElement, TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ContextConsumer } from "@lit/context";
@@ -11,6 +11,7 @@ import type { PersonInfo } from "@equinor/fusion-wc-person";
 import type { ListItemElementProps } from "./types";
 import { listItemStyle } from "./element.css";
 import { pickerContext } from "../../controllers/context";
+import { NavigateController } from "./NavigateController";
 
 // register webcomponents
 PersonAvatarElement;
@@ -24,6 +25,10 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   static override shadowRootOptions = {
     ...LitElement.shadowRootOptions,
     delegatesFocus: true,
+  };
+
+  protected controllers = {
+    navigate: new NavigateController(this),
   };
 
   /**
@@ -41,13 +46,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   })
   dataSource: PersonInfo = {} as PersonInfo;
 
-  updated() {
-    if (!this.dataSource) {
-      throw new Error('dataSource property is required for PeoplePickerListItem');
-    }
-  }
-
-  selectAction() {
+  selectAction(): void {
     if (this._context.value?.selected.selectedPeople.has(this.dataSource.azureId)) {
       this._context.value?.selected.removePerson(this.dataSource.azureId);
     } else {
@@ -55,11 +54,11 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
     }
   }
 
-  handleSelectClick() {
+  handleSelectClick(): void {
     this.selectAction();
   }
 
-  handleSelectKeyDown(event: KeyboardEvent) {
+  handleSelectKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.selectAction();
@@ -68,26 +67,13 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
 
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      this.navigateToAdjacentItem(event.key === 'ArrowDown' ? 1 : -1);
+      const direction = event.key === 'ArrowDown' ? 1 : -1;
+      this.controllers.navigate.navigateToAdjacentItem(direction);
       return;
     }
   }
 
-  /**
-   * Navigate to the next or previous focusable item
-   * @param direction - 1 for next, -1 for previous
-   */
-  private navigateToAdjacentItem(direction: number): void {
-    // Dispatch a custom event to the list element
-    const event = new CustomEvent('navigate-list-item', {
-      detail: { direction, sourceElement: this },
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
-  }
-
-  renderSubTitle(person: Partial<PersonInfo>) {
+  renderSubTitle(person: Partial<PersonInfo>): TemplateResult {
     const subTitle = this._context.value?.subTitle ?? '';
 
     if (!subTitle) {
@@ -102,7 +88,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
     return html``;
   }
 
-  renderSecondarySubTitle(person: Partial<PersonInfo>) {
+  renderSecondarySubTitle(person: Partial<PersonInfo>): TemplateResult {
     if (person.isExpired) {
       return html`<p id="expired">Account expired</p>`;
     }
@@ -121,7 +107,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
     return html``;
   }
 
-  render() {
+  render(): TemplateResult {
     const cssClasses = {
       selected: this._context.value?.selected.selectedPeople.has(this.dataSource.azureId) ?? false,
     };

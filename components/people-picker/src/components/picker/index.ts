@@ -1,25 +1,25 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 
-import { PeoplePickerElement } from './element';
-import type { PeoplePickerElementProps } from './types';
+import { PickerElement } from './element';
+import type { PickerElementProps } from './types';
 
-export type { PeoplePickerElementProps };
+export type { PickerElementProps };
 
 export const tag = 'fwc-people-picker';
 
 @fusionElement(tag)
 
-export default class _ extends PeoplePickerElement { }
+export default class _ extends PickerElement { }
 
 declare global {
   interface HTMLElementTagNameMap {
-    [tag]: PeoplePickerElement;
+    [tag]: PickerElement;
   }
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<PeoplePickerElementProps & React.HTMLAttributes<PeoplePickerElement>>,
-        PeoplePickerElement
+        React.PropsWithChildren<PickerElementProps & React.HTMLAttributes<PickerElement>>,
+        PickerElement
       >;
     }
   }

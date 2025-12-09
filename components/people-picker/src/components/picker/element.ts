@@ -1,7 +1,7 @@
 import { type CSSResult, html, LitElement } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { ContextProvider } from '@lit/context';
-import { PersonInfo, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
+import { PersonInfo, PersonResolveTask, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 
 import type { PickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
@@ -23,7 +23,8 @@ export class PickerElement extends LitElement implements PickerElementProps {
   static styles: CSSResult[] = [pickerStyle];
 
   protected tasks = {
-    search: new PersonSuggestTask(this),
+    suggest: new PersonSuggestTask(this),
+    resolve: new PersonResolveTask(this),
   };
 
   protected controllers = {
@@ -60,15 +61,32 @@ export class PickerElement extends LitElement implements PickerElementProps {
    * The property from PersonInfo to display as subtitle in the pill
    * Default is jobTitle
    */
-  @property({ type: String })
+  @property({ attribute: 'subtitle', type: String })
   subTitle: keyof PersonInfo = 'jobTitle';
 
   /**
    * The property from PersonInfo to display as secondary subtitle in the pill
    * Default is department
    */
-  @property({ type: String })
+  @property({ attribute: 'secondarysubtitle', type: String })
   secondarySubTitle: keyof PersonInfo = 'department';
+
+  /**
+   * The Azure IDs of the selected people.
+   * should be a comma seperated string of Azure IDs.
+   * The ids will be resolved on mount only.
+   * 
+   */
+  @property({ attribute: 'preselectedids', type: Array, converter: (value: string | null) => value ? JSON.parse(value) : [] })
+  preselectedIds: string[] = [];
+
+  /**
+   * The PersonInfo objects of the selected people
+   * should be a JSON string of PersonInfo objects.
+   * The people will be resolved on mount only.
+   */
+  @property({ attribute: 'preselectedpeople', type: Array, converter: (value: string | null) => value ? JSON.parse(value) : [] })
+  preselectedPeople: PersonInfo[] = [];
 
   @state()
   search: string = '';
@@ -79,9 +97,30 @@ export class PickerElement extends LitElement implements PickerElementProps {
   @query('fwc-people-picker-list')
   listElement?: ListElement;
 
+  connectedCallback() {
+    super.connectedCallback();
+
+    // throw error if both preselectedIds and preselectedPeople are set
+    if (this.preselectedIds.length && this.preselectedPeople.length) {
+      throw new Error('preselectedIds and preselectedPeople cannot be used together, choose one.');
+    }
+
+    // if preselectedPeople is set, convert it to preselectedIds to trigger task
+    if (this.preselectedPeople.length) {
+      this.controllers.selectedPeople.addPeople(this.preselectedPeople);
+    }
+  }
+
   updated() {
+    // update value attribute twith controlles selected ids
     this.value = this.controllers.selectedPeople.selectedIds.join();
 
+    // populate preselected items
+    if (this.tasks.resolve.value?.length && this.controllers.selectedPeople.selectedIds.length === 0) {
+      this.controllers.selectedPeople.addPeople(this.tasks.resolve.value.map((person) => this.mapToPersonInfo(person.account)));
+    }
+
+    // update provider context
     this._provider.setValue({
       subTitle: this.subTitle,
       secondarySubTitle: this.secondarySubTitle,
@@ -136,7 +175,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
   handleKeyDownSearchInput(event: KeyboardEvent) {
     // add/remove first person from searchresults
     if (event.key === 'Enter') {
-      const { value: people } = this.tasks.search.value ?? {};
+      const { value: people } = this.tasks.suggest.value ?? {};
       if (!people?.length) {
         return;
       }
@@ -176,7 +215,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
   }
 
   renderPickerList() {
-    return this.tasks.search.render({
+    return this.tasks.suggest.render({
       complete: (people: PersonSuggestResults) => {
         return html`
           <fwc-people-picker-list

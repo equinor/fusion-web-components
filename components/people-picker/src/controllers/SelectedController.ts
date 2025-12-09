@@ -57,6 +57,12 @@ export class SelectedController implements ReactiveController {
     this.#host.requestUpdate();
   }
 
+  addPeople(people: PersonInfo[]): void {
+    people.forEach((person) => {
+      this.addPerson(person);
+    });
+  }
+
   /**
    * Remove a person from the selected people
    * @param id String id to remove the person from the selected people

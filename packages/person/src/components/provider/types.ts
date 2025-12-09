@@ -1,5 +1,5 @@
 import { ReactiveControllerHost } from 'lit';
-import { PersonDetails, AzureIdOrUpnObj, PersonInfo, PersonSearchResult, PersonSuggestResults } from '../../types';
+import { PersonDetails, AzureIdOrUpnObj, PersonInfo, PersonSearchResult, PersonSuggestResults, PersonResolveResults } from '../../types';
 
 type ResolverArgs<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
@@ -17,4 +17,5 @@ export interface PersonResolver {
   getPhoto?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
   search?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
   suggest?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSuggestResults>;
+  resolve?: (args: ResolverArgs<{ azureIds: string[] }>) => ResolverResult<PersonResolveResults>;
 }

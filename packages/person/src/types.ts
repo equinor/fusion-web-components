@@ -36,6 +36,7 @@ export type PersonInfo = {
   accountClassification?: AccountClassification;
   isExpired?: boolean;
   avatarUrl?: string;
+  avatarColor?: string;
 };
 
 export type PersonDetails = PersonInfo & {
@@ -106,3 +107,13 @@ export type PersonSuggestResults = {
   count: number;
   value: PersonSuggestResult[];
 };
+
+export type PersonResolveResult = {
+  success: boolean;
+  statusCode: number;
+  errorMessage: string | null;
+  indentifier: string;
+  account: PersonSuggestResult;
+}
+
+export type PersonResolveResults = PersonResolveResult[];

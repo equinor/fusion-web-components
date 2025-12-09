@@ -1,4 +1,4 @@
-import { Task } from '@lit-labs/task';
+import { Task } from '@lit/task';
 import { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from './resolve-task-event';
 import { PersonSuggestResults } from '../types';
@@ -18,19 +18,25 @@ const emptyPersonSuggestResults: PersonSuggestResults = {
   value: [],
 };
 
+const maxResults = 10;
+
 export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
   constructor(public host: PersonSuggestControllerHost) {
     super(
       host,
-      ([search], options): Promise<PersonSuggestResults> => {
+      async ([search], options): Promise<PersonSuggestResults> => {
         const { signal } = options ?? {};
         if (!search || search?.length < 3) {
-          return Promise.resolve(emptyPersonSuggestResults);
+          return emptyPersonSuggestResults;
         } else if (search && search?.length >= 3) {
-          const result = resolveTaskEvent(host, new RequestResolvePersonSuggestEvent({ search, signal }));
+          const result = await resolveTaskEvent(host, new RequestResolvePersonSuggestEvent({ search, signal }));
+          if (result.count > maxResults) {
+            result.value = result.value.slice(0, maxResults);
+            result.count = maxResults;
+          }
           return result;
         }
-        return Promise.resolve(emptyPersonSuggestResults);
+        return emptyPersonSuggestResults;
       },
       () => [host.search],
     );

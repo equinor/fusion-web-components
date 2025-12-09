@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import { PeoplePickerElement, type PeoplePickerElementProps } from '@equinor/fusion-wc-people-picker';
 
-import { personProviderDecorator } from './person-provider';
+import { generatePerson, generateIds, personProviderDecorator } from './person-provider';
 
 PeoplePickerElement;
 
@@ -17,7 +17,14 @@ const meta: Meta<typeof PeoplePickerElement> = {
 };
 
 const render = (props: PeoplePickerElementProps) => html`
-  <fwc-people-picker multiple=${ifDefined(props.multiple)}></fwc-people-picker>
+  <fwc-people-picker
+    multiple=${ifDefined(props.multiple)}
+    preselectedids=${ifDefined(props.preselectedIds)}
+    preselectedpeople=${ifDefined(props.preselectedPeople)}
+    subtitle=${ifDefined(props.subTitle)}
+    secondarysubtitle=${ifDefined(props.secondarySubTitle)}
+    placeholder=${ifDefined(props.placeholder)}>
+  </fwc-people-picker>
 `;
 
 export const Single: Story = {
@@ -27,6 +34,23 @@ export const Single: Story = {
 export const Multiple: Story = {
   args: {
     multiple: true,
+  },
+  render,
+};
+
+export const preselectedIds: Story = {
+  args: {
+    multiple: true,
+    preselectedIds: JSON.stringify(generateIds(1, 2)),
+  },
+  render,
+};
+
+const resolvedPeople = generateIds(1, 3).map((azureId) => generatePerson({ azureId }));
+export const preselectedPeople: Story = {
+  args: {
+    multiple: true,
+    preselectedPeople: JSON.stringify(resolvedPeople),
   },
   render,
 };

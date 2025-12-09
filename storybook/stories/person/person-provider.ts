@@ -11,6 +11,11 @@ const uuid2number = (x: string) => {
   return Number(x.replace(/[-]|[a-z]/g, '').substring(0, 15));
 };
 
+export const generateIds = (min: number, max: number): string[] => {
+  const count = faker.number.int({ min, max });
+  return new Array(count).fill(undefined).map(() => faker.string.uuid());
+};
+
 const generateManager = (azureId?: string): PersonDetails['manager'] => {
   faker.seed(uuid2number(azureId ?? '0') + 1);
   return {
@@ -54,6 +59,8 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
     mobilePhone: faker.phone.number(),
     isExpired: faker.datatype.boolean({ probability: 0.1 }),
     officeLocation: faker.location.city(),
+    avatarColor: faker.color.rgb(),
+    avatarUrl: faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false }),
     get positions() {
       return generatePositions(this.azureId);
     },
@@ -88,12 +95,12 @@ const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult
       mobilePhone: person.mobilePhone,
     },
     isExpired: person.isExpired ?? false,
-    avatarColor: faker.color.rgb(),
-    avatarUrl: faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false }),
+    avatarColor: person.avatarColor ?? '',
+    avatarUrl: person.avatarUrl ?? '',
   };
 };
 
-const resolver: PersonResolver = {
+export const resolver: PersonResolver = {
   getDetails: generatePerson,
   getInfo: generatePerson,
   getPhoto: (args: { azureId?: string; upn?: string }) => {
@@ -124,8 +131,8 @@ const resolver: PersonResolver = {
     });
   },
   suggest: (args) => {
-    const genertedCount = faker.number.int({ min: 3, max: 10 });
-    const value = new Array(genertedCount).fill(undefined).map((_, i) => {
+    const generatedCount = faker.number.int({ min: 3, max: 25 });
+    const value = new Array(generatedCount).fill(undefined).map((_, i) => {
       faker.seed(
         args.search
           .split('')
@@ -135,10 +142,21 @@ const resolver: PersonResolver = {
       return generateSuggestedPerson({ azureId: faker.string.uuid() });
     });
     return {
-      totalCount: genertedCount * 3,
-      count: genertedCount,
+      totalCount: generatedCount * 3,
+      count: generatedCount,
       value,
     };
+  },
+  resolve: (args) => {
+    return args.azureIds.map((azureId) => {
+      return {
+        success: true,
+        statusCode: 200,
+        errorMessage: null,
+        indentifier: azureId,
+        account: generateSuggestedPerson({ azureId }),
+      };
+    });
   },
 };
 

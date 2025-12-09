@@ -16,6 +16,11 @@ export class ClearInputEvent extends CustomEvent<void> {
 export class SearchElement extends LitElement implements SearchElementProps {
   static styles: CSSResult[] = [searchStyle];
 
+  static override shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
+
   @property({ type: String, reflect: true })
   value = '';
 
@@ -30,6 +35,21 @@ export class SearchElement extends LitElement implements SearchElementProps {
     if (changedProperties.has('value') && this.inputElement) {
       this.inputElement.value = this.value;
     }
+  }
+
+  handleFocus() {
+    const searchLength = this.inputElement.value.length;
+    this.inputElement.setSelectionRange(searchLength, searchLength);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('focus', this.handleFocus);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('focus', this.handleFocus);
   }
 
   handleInput(event: InputEvent) {
@@ -56,7 +76,9 @@ export class SearchElement extends LitElement implements SearchElementProps {
     return html`
       <div id="input">
         <input type="text" id="people-search" placeholder=${this.placeholder} @input=${this.handleInput} />
-        ${this.value ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>` : html``}
+        <div id="clear-button-container">
+          ${this.value ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>` : html``}
+        </div>
       </div>
     `;
   }

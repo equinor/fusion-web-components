@@ -76,6 +76,21 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
   @query('fwc-people-picker-list')
   listElement?: ListElement;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
+  }
+
+  handleNavigateToSearch(event: CustomEvent<void>): void {
+    event.stopPropagation();
+    this.searchElement?.focus();
+  }
+
   updated() {
     this.value = this.controllers.selectedPeople.selectedIds.join();
 
@@ -147,14 +162,14 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     }
 
     if (event.key === 'ArrowDown') {
-      this.listElement?.focus();
+      this.listElement?.focusItemAtIndex(0);
     }
   }
 
   renderPills() {
     return [...this.controllers.selectedPeople.selectedPeople.values()].map((person) => html`
       <fwc-people-picker-pill
-        .dataSource=${person}
+        .dataSource=${person}>
       </fwc-people-picker-pill>
     `);
   }
@@ -176,7 +191,7 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
         return html`
           <fwc-people-picker-list
             .dataSources=${people.value.map((person) => this.mapToPersonInfo(person))}
-            totalCount=${`${people.count}/${people.totalCount}`}
+            totalCount=${`${people.count}/${people.totalCount}`}>
           </fwc-people-picker-list>`;
       },
       pending: () => html`<p>Loading...</p>`,

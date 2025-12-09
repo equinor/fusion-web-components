@@ -60,9 +60,31 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   }
 
   handleSelectKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
       this.selectAction();
+      return;
     }
+
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.navigateToAdjacentItem(event.key === 'ArrowDown' ? 1 : -1);
+      return;
+    }
+  }
+
+  /**
+   * Navigate to the next or previous focusable item
+   * @param direction - 1 for next, -1 for previous
+   */
+  private navigateToAdjacentItem(direction: number): void {
+    // Dispatch a custom event to the list element
+    const event = new CustomEvent('navigate-list-item', {
+      detail: { direction, sourceElement: this },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
   }
 
   renderSubTitle(person: Partial<PersonInfo>) {

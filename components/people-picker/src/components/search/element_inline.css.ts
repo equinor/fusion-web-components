@@ -3,17 +3,20 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const searchStyle: CSSResult = css`
   :host {
-    display: inline-block;
+    display: block;
+    width: 225px;
+    --search-input-height: 30px;
   }
   #input {
-    background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    position: relative;
-    height: 30px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border: none;
     outline: none;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
+    height: var(--search-input-height);
+    background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     border: 1px solid transparent;
     border-radius: calc(var(--fwc-avatar-size, 3.5rem) * 0.5);
 
@@ -23,22 +26,31 @@ export const searchStyle: CSSResult = css`
   }
 
   input {
+    flex: 1;
     font-family: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontFamily'))};
     font-size: 1rem;
     line-height: 1.5;
     letter-spacing: 0.025em;
-    padding: 5px 12px;
+    padding: 0 5px 0 12px;
     background: transparent;
     border: none;
     outline: none;
   }
   
+  #clear-button-container {
+    position: relative;
+    height: var(--search-input-height);
+    width: var(--search-input-height);
+  }
+    
   #clear-button {
-    --fusion-close-btn-padding: calc(${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))} * 0.4);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background: none;
     outline: none;
-    padding: var(--fusion-close-btn-padding);
-    margin: var(--fusion-close-btn-margin);
     color: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
     border: none;
     border-radius: 100%;

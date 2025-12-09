@@ -118,6 +118,9 @@ export class PickerElement extends LitElement implements PickerElementProps {
     // populate preselected items
     if (this.tasks.resolve.value?.length && this.controllers.selectedPeople.selectedIds.length === 0) {
       this.controllers.selectedPeople.addPeople(this.tasks.resolve.value.map((person) => this.mapToPersonInfo(person.account)));
+
+      // reset task value since we already have populated the people
+      this.preselectedIds = [];
     }
 
     // update provider context

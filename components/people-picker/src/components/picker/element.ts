@@ -162,6 +162,8 @@ export class PeoplePickerElement extends LitElement implements PeoplePickerEleme
     }
 
     if (event.key === 'ArrowDown') {
+      // Important: Prevent page scrolling when focusing the list item
+      event.preventDefault();
       this.listElement?.focusItemAtIndex(0);
     }
   }

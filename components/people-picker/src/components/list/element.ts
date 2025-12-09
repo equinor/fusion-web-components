@@ -69,7 +69,6 @@ export class ListElement extends LitElement implements ListElementProps {
   focusItemAtIndex(index: number): void {
     const items = this.listItems;
     if (index >= 0 && index < items.length) {
-      // Focus the target item
       const targetItem = items[index];
       if (targetItem) {
         targetItem.focus();

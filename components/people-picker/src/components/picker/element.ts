@@ -172,6 +172,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
       accountType: person.person?.accountType,
       isExpired: person.isExpired,
       avatarUrl: person.avatarUrl,
+      avatarColor: person.avatarColor,
     };
   }
 

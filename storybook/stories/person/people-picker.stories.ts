@@ -2,7 +2,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { PeoplePickerElement, type PeoplePickerElementProps } from '@equinor/fusion-wc-people-picker';
+import { PeoplePickerElement, PickerPersonAddedEvent, PickerPersonRemovedEvent, PickerSelectionChangedEvent, type PeoplePickerElementProps } from '@equinor/fusion-wc-people-picker';
 
 import { generatePerson, generateIds, personProviderDecorator } from './person-provider';
 
@@ -16,6 +16,18 @@ const meta: Meta<typeof PeoplePickerElement> = {
   decorators: [personProviderDecorator],
 };
 
+const handleSelectionChanged = (e: PickerSelectionChangedEvent) => {
+  console.log('fwc-people-picker::selection-changed', e.detail);
+};
+
+const handlePersonAdded = (e: PickerPersonAddedEvent) => {
+  console.log('fwc-people-picker::person-added', e.detail);
+};
+
+const handlePersonRemoved = (e: PickerPersonRemovedEvent) => {
+  console.log('fwc-people-picker::person-removed', e.detail);
+};
+
 const render = (props: PeoplePickerElementProps) => html`
   <fwc-people-picker
     multiple=${ifDefined(props.multiple)}
@@ -23,7 +35,10 @@ const render = (props: PeoplePickerElementProps) => html`
     preselectedpeople=${ifDefined(props.preselectedPeople)}
     subtitle=${ifDefined(props.subTitle)}
     secondarysubtitle=${ifDefined(props.secondarySubTitle)}
-    placeholder=${ifDefined(props.placeholder)}>
+    placeholder=${ifDefined(props.placeholder)}
+    @selection-changed=${handleSelectionChanged}
+    @person-added=${handlePersonAdded}
+    @person-removed=${handlePersonRemoved}>
   </fwc-people-picker>
 `;
 

@@ -1,6 +1,7 @@
 import { ReactiveController } from "lit";
 import { PersonInfo } from "packages/person/lib/types";
 import { PickerElement } from "../components/picker/element";
+import { PickerPersonAddedEvent, PickerPersonRemovedEvent, PickerSelectionChangedEvent } from "../events";
 
 /**
  * Controller to manage the selected ids
@@ -45,8 +46,9 @@ export class SelectedController implements ReactiveController {
   /**
    * Add a person to the selected people
    * @param person PersonInfo to add to the selected people
+   * @param dispatchSelectionEvent Whether to dispatch the selection-changed event, default is true
    */
-  addPerson(person: PersonInfo): void {
+  addPerson(person: PersonInfo, dispatchSelectionEvent = true): void {
     if (this.#host.multiple) {
       this.#selectedPeople.set(person.azureId, person);
     } else {
@@ -54,13 +56,24 @@ export class SelectedController implements ReactiveController {
       this.#selectedPeople.set(person.azureId, person);
     }
 
+    if (dispatchSelectionEvent) {
+      this.#host.dispatchEvent(new PickerSelectionChangedEvent(Array.from(this.#selectedPeople.values())));
+    }
+
+    this.#host.dispatchEvent(new PickerPersonAddedEvent(person));
     this.#host.requestUpdate();
   }
 
+  /**
+   * Add multiple people to the selectedPeople Map
+   * @param people Array of PersonInfo to add to the selectedPeople Map
+   */
   addPeople(people: PersonInfo[]): void {
     people.forEach((person) => {
-      this.addPerson(person);
+      this.addPerson(person, false);
     });
+
+    this.#host.dispatchEvent(new PickerSelectionChangedEvent(Array.from(this.#selectedPeople.values())));
   }
 
   /**
@@ -68,7 +81,16 @@ export class SelectedController implements ReactiveController {
    * @param id String id to remove the person from the selected people
    */
   removePerson(id: string): void {
+    const person = this.#selectedPeople.get(id);
+    if (!person) {
+      return;
+    }
+
     this.#selectedPeople.delete(id);
+
+    this.#host.dispatchEvent(new PickerPersonRemovedEvent(person));
+    this.#host.dispatchEvent(new PickerSelectionChangedEvent(Array.from(this.#selectedPeople.values())));
+
     this.#host.requestUpdate();
   }
 }

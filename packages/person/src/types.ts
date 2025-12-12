@@ -113,7 +113,7 @@ export type PersonResolveResult = {
   statusCode: number;
   errorMessage: string | null;
   indentifier: string;
-  account: PersonSuggestResult;
+  account: PersonSuggestResult | null;
 }
 
 export type PersonResolveResults = PersonResolveResult[];

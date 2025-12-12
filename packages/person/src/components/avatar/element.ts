@@ -161,6 +161,15 @@ export class PersonAvatarElement
    */
   static openedPersonAvatars: PersonAvatarElement[] = [];
 
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    // if the dataSource is set and the avatarUrl is not set, set the azureId to resolve the photo from tasks
+    if (this.dataSource && !this.dataSource.avatarUrl) {
+      this.azureId = this.dataSource.azureId;
+    }
+  }
+
   async handleFloatingUi(): Promise<VoidFunction> {
     const root = await this.root;
     const floating = await this.floating;

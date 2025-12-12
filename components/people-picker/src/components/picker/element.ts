@@ -223,6 +223,17 @@ export class PickerElement extends LitElement implements PickerElementProps {
   renderPickerList() {
     return this.tasks.suggest.render({
       complete: (people: PersonSuggestResults) => {
+
+        if (this.search.length > 0) {
+          if (this.search.length < 3) {
+            return html`<p>Please enter at least 3 characters</p>`;
+          }
+
+          if (people.totalCount === 0) {
+            return html`<p>No results found</p>`;
+          }
+        }
+
         return html`
           <fwc-people-picker-list
             .dataSources=${people.value.map((person) => this.mapToPersonInfo(person))}
@@ -230,7 +241,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
           </fwc-people-picker-list>`;
       },
       pending: () => html`<p>Loading...</p>`,
-      error: () => html`<p id="error">Error while resolving people api</p>`,
+      error: () => html`<p class="error">Error while resolving people api</p>`,
     })
   }
 

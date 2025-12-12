@@ -27,9 +27,13 @@ export const listStyle: CSSResult = css`
   }
   #total-count {
     position: absolute;
-    bottom: 0.5rem;
-    right: 2rem;
-    font-size: 0.75em;
+    bottom: 0.6rem;
+    right: 1.1rem;
+    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
     color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
+    font-size: 0.75em;
+    padding: 0.5em 1.5em;
+    line-height: 1;
+    border-radius: 12px;
   }
 `;

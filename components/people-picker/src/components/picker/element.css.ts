@@ -37,10 +37,15 @@ export const pickerStyle: CSSResult = css`
     top: 105%;
     left: 0;
     width: 100%;
-  }
 
-  #error {
-    color: var(--fwc-color-text-static_icons__primary_red, #c41212);
-    font-size: var(--fwc-font-size-body_short, 0.875rem);
+    & > p {
+      margin: 0.25rem 0;
+      font-size: ${unsafeCSS(theme.typography.paragraph.meta.getVariable('fontSize'))};
+      font-style: italic;
+
+      &.error {
+        color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+      }
+    }
   }
 `;

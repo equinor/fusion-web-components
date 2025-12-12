@@ -36,6 +36,8 @@ export class PickerElement extends LitElement implements PickerElementProps {
     context: pickerContext,
   });
 
+  #timeoutId: ReturnType<typeof setTimeout> | null = null;
+
   /**
    * The value of the person picker
    * Contains a comma separated list of azureIds of the selected persons
@@ -115,9 +117,13 @@ export class PickerElement extends LitElement implements PickerElementProps {
     // update value attribute twith controlles selected ids
     this.value = this.controllers.selectedPeople.selectedIds.join();
 
-    // populate preselected items
+    // populate preselected items if not already done
     if (this.tasks.resolve.value?.length && this.controllers.selectedPeople.selectedIds.length === 0) {
-      this.controllers.selectedPeople.addPeople(this.tasks.resolve.value.map((person) => this.mapToPersonInfo(person.account)));
+      // add successfully resolved people to selected people
+      this.controllers.selectedPeople.addPeople(
+        this.tasks.resolve.value.filter((person) => person.success)
+          .map((person) => this.mapToPersonInfo(person.account!))
+      );
 
       // reset task value since we already have populated the people
       this.preselectedIds = [];
@@ -132,8 +138,15 @@ export class PickerElement extends LitElement implements PickerElementProps {
   }
 
   handleInput(event: InputEvent) {
+    if (this.#timeoutId) {
+      clearTimeout(this.#timeoutId);
+    }
+
     const value = (event.target as HTMLInputElement).value;
-    this.search = value;
+
+    this.#timeoutId = setTimeout(() => {
+      this.search = value;
+    }, 300);
   }
 
   handleClearInput() {
@@ -207,17 +220,6 @@ export class PickerElement extends LitElement implements PickerElementProps {
     `);
   }
 
-  renderSearch() {
-    return html`
-      <fwc-people-picker-search
-        placeholder=${this.placeholder}
-        @input=${this.handleInput}
-        @clearinput=${this.handleClearInput}
-        @keydown=${this.handleKeyDownSearchInput}>
-      </fwc-people-picker-search>
-    `;
-  }
-
   renderPickerList() {
     return this.tasks.suggest.render({
       complete: (people: PersonSuggestResults) => {
@@ -237,7 +239,13 @@ export class PickerElement extends LitElement implements PickerElementProps {
       <div id="person-picker" @keydown=${this.keyboardHandler}>
         <div id="picker">
           ${this.renderPills()}
-          ${this.renderSearch()}
+          
+          <fwc-people-picker-search
+            placeholder=${this.placeholder}
+            @input=${this.handleInput}
+            @clearinput=${this.handleClearInput}
+            @keydown=${this.handleKeyDownSearchInput}>
+          </fwc-people-picker-search>
         </div>
 
         <div id="search-results">

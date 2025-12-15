@@ -2,6 +2,7 @@ import { type CSSResult, html, LitElement } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { ContextProvider } from '@lit/context';
 import { PersonInfo, PersonResolveTask, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
+import { DotsProgressElement } from "@equinor/fusion-wc-progress-indicator";
 
 import type { PickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
@@ -18,6 +19,7 @@ import { default as ListElement } from "../list";
 SearchElement;
 ListElement;
 PillElement;
+DotsProgressElement;
 
 export class PickerElement extends LitElement implements PickerElementProps {
   static styles: CSSResult[] = [pickerStyle];
@@ -186,6 +188,9 @@ export class PickerElement extends LitElement implements PickerElementProps {
       isExpired: person.isExpired,
       avatarUrl: person.avatarUrl,
       avatarColor: person.avatarColor,
+      applicationId: person.application?.applicationId,
+      applicationName: person.application?.applicationName,
+      servicePrincipalType: person.application?.servicePrincipalType,
     };
   }
 
@@ -240,7 +245,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
             totalCount=${`${people.count}/${people.totalCount}`}>
           </fwc-people-picker-list>`;
       },
-      pending: () => html`<p>Loading...</p>`,
+      pending: () => html`<p><fwc-dots-progress size="small" color="primary" /></p>`,
       error: () => html`<p class="error">Error while resolving people api</p>`,
     })
   }

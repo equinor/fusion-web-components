@@ -17,7 +17,7 @@ export const listItemStyle: CSSResult = css`
     &:hover, &:focus {
       background: ${unsafeCSS(theme.colors.interactive.primary__selected_hover.getVariable('color'))};
     }
-    
+
     &:focus {
       outline: 2px inset ${unsafeCSS(theme.colors.interactive.focus.getVariable('color'))};
     }
@@ -31,6 +31,12 @@ export const listItemStyle: CSSResult = css`
     }
   }
 
+  #item-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+ 
   #item-name p {
     margin: .1rem 0 0 0;
     font-size: 0.8rem;

@@ -27,7 +27,7 @@ export const listStyle: CSSResult = css`
   }
   #total-count {
     position: absolute;
-    bottom: 0.6rem;
+    bottom: 0.4rem;
     right: 1.1rem;
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
     color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
@@ -35,5 +35,6 @@ export const listStyle: CSSResult = css`
     padding: 0.5em 1.5em;
     line-height: 1;
     border-radius: 12px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
   }
 `;

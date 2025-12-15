@@ -1,6 +1,7 @@
 import { type CSSResult, html, LitElement, TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { ContextConsumer } from "@lit/context";
 
 import { IconElement } from '@equinor/fusion-wc-icon';
@@ -118,7 +119,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
         @click=${this.handleSelectClick}
         @keydown=${this.handleSelectKeyDown}>
         <div id="item-avatar">
-          <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small" showLetter=${ifDefined(this.dataSource.applicationId)}></fwc-person-avatar>
         </div>
         <div id="item-name">
           <p>${this.dataSource.name}</p>

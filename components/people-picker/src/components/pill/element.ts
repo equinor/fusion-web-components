@@ -1,5 +1,6 @@
 import { type CSSResult, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { ContextConsumer } from '@lit/context';
 
 import type { PersonInfo } from "@equinor/fusion-wc-person";
@@ -69,7 +70,7 @@ export class PillElement extends LitElement implements PillElementProps {
     return html`
       <div id="person-pill">
         <div id="person-pill-avatar">
-          <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small" showLetter=${ifDefined(this.dataSource.applicationId)}></fwc-person-avatar>
         </div>
         <div id="person-pill-name">
           <p>${this.dataSource.name}</p>

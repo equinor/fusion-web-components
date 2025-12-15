@@ -26,7 +26,14 @@ export const pillStyle: CSSResult = css`
     transform: scale(0.95) translate(-1px, 0px);
   }
 
+  #person-pill-name {
+    max-width: 140px;
+  }
+    
   #person-pill-name p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     margin: 0;
     font-size: 0.75rem;
     

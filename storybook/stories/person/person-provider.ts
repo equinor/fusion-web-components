@@ -71,15 +71,16 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
 };
 
 const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult => {
-  const person = generatePerson({ azureId: args.azureId });
-  return {
-    azureUniqueId: person.azureId,
-    name: person.name,
-    accountType: faker.helpers.arrayElement([
-      'Person',
-      'SystemAccount',
-    ]),
-    person: {
+  const generatedPerson = generatePerson({ azureId: args.azureId });
+  const accountType = faker.helpers.arrayElement([
+    'Person',
+    'SystemAccount',
+  ]);
+
+  let person: PersonSuggestResult['person'] | undefined;
+  let application: PersonSuggestResult['application'] | undefined;
+  if (accountType === 'Person') {
+    person = {
       accountType: faker.helpers.arrayElement([
         'Employee',
         'Consultant',
@@ -89,14 +90,33 @@ const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult
         'Local',
         'TemporaryEmployee',
       ]),
-      jobTitle: person.jobTitle,
-      department: person.department,
-      upn: person.upn,
-      mobilePhone: person.mobilePhone,
-    },
-    isExpired: person.isExpired ?? false,
-    avatarColor: person.avatarColor ?? '',
-    avatarUrl: person.avatarUrl ?? '',
+      jobTitle: generatedPerson.jobTitle,
+      department: generatedPerson.department,
+      upn: generatedPerson.upn,
+      mobilePhone: generatedPerson.mobilePhone,
+    }
+  } else if (accountType === 'SystemAccount') {
+    application = {
+      applicationId: faker.string.uuid(),
+      applicationName: faker.company.name(),
+      servicePrincipalType: faker.helpers.arrayElement([
+        'Application',
+        'ManagedIdentity',
+        'ServicePrincipal',
+        'Unknown',
+      ]),
+    }
+  }
+
+  return {
+    azureUniqueId: generatedPerson.azureId,
+    name: generatedPerson.name,
+    accountType,
+    person,
+    application,
+    isExpired: generatedPerson.isExpired ?? false,
+    avatarColor: generatedPerson.avatarColor ?? '',
+    avatarUrl: generatedPerson.avatarUrl ?? '',
   };
 };
 

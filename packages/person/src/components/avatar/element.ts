@@ -290,6 +290,20 @@ export class PersonAvatarElement
     />`;
   }
 
+  protected renderApplicationBadge(person: Partial<AvatarData>): TemplateResult {
+    if (!person.applicationId) {
+      return html``;
+    }
+
+    return html`
+      <div slot="badge" id="application-badge" style="background-color: ${person.avatarColor};">
+        <fwc-icon
+          icon="apps"
+        ></fwc-icon>
+      </div>
+    `;
+  }
+
   protected renderImage(person: Partial<AvatarData>): TemplateResult {
     if (this.showLetter) {
       return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
@@ -328,6 +342,7 @@ export class PersonAvatarElement
             border
           >
             ${this.renderImage(details)}
+            ${this.renderApplicationBadge(details)}
           </fwc-avatar>`;
       },
       pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,

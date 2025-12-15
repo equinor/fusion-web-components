@@ -37,6 +37,9 @@ export type PersonInfo = {
   isExpired?: boolean;
   avatarUrl?: string;
   avatarColor?: string;
+  applicationId?: string;
+  applicationName?: string;
+  servicePrincipalType?: ServicePrincipalType;
 };
 
 export type PersonDetails = PersonInfo & {
@@ -78,12 +81,18 @@ export enum PersonAvailability {
 
 export type PersonItemSize = 'small' | 'medium' | 'large';
 
+export type PersonSuggestResultAccountType = 'Person' | 'SystemAccount' | 'Unknown';
+
+export type ServicePrincipalType = 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown';
+
+export type PersonSuggestResultPersonAccountType = 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+
 export type PersonSuggestResult = {
   azureUniqueId: string;
   name?: string;
-  accountType: 'Person' | 'SystemAccount' | 'Unknown';
+  accountType: PersonSuggestResultAccountType;
   person?: {
-    accountType?: 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+    accountType?: PersonSuggestResultPersonAccountType;
     jobTitle?: string;
     department?: string;
     fullDepartment?: string;
@@ -95,7 +104,7 @@ export type PersonSuggestResult = {
   application?: {
     applicationId?: string;
     applicationName?: string;
-    servicePrincipalType?: 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown'
+    servicePrincipalType?: ServicePrincipalType;
   };
   avatarColor: string;
   avatarUrl: string;

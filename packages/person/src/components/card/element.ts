@@ -39,8 +39,7 @@ Skeleton;
 
 export class PersonCardElement
   extends LitElement
-  implements PersonCardElementProps, PersonDetailControllerHost, PersonPhotoControllerHost
-{
+  implements PersonCardElementProps, PersonDetailControllerHost, PersonPhotoControllerHost {
   static styles: CSSResult[] = styles;
 
   /** Azure unique id */
@@ -93,7 +92,7 @@ export class PersonCardElement
 
   /** Maximum width of the component */
   @property({ type: Number, reflect: true })
-  maxWidth = 300;
+  maxWidth = 250;
 
   /** Height of content */
   @property({ type: Number, reflect: true })
@@ -117,7 +116,7 @@ export class PersonCardElement
           href="/apps/people-search/person?user=${details.azureId}"
           icon="home"
           rounded
-          size="small"
+          size="x-small"
         ></fwc-icon-button>
 
         <fwc-icon-button
@@ -125,7 +124,7 @@ export class PersonCardElement
           href="mailto:${details.mail}"
           icon="email"
           rounded
-          size="small"
+          size="x-small"
         ></fwc-icon-button>
 
         <fwc-icon-button
@@ -133,7 +132,7 @@ export class PersonCardElement
           href="https://teams.microsoft.com/l/chat/0/0?users=${details.mail}"
           icon="comment_chat"
           rounded
-          size="small"
+          size="x-small"
         ></fwc-icon-button>
 
         <fwc-icon-button
@@ -141,14 +140,14 @@ export class PersonCardElement
           href="https://teams.microsoft.com/l/call/0/0?users=${details.mail}"
           icon="call"
           rounded
-          size="small"
+          size="x-small"
         ></fwc-icon-button>
 
         <fwc-icon-button
           title="Delve"
           href="https://eur.delve.office.com/?v=work&u=${details.azureId}"
           rounded
-          size="small"
+          size="x-small"
         >
           ${delveIcon}
         </fwc-icon-button>
@@ -224,14 +223,14 @@ export class PersonCardElement
   protected renderProjects(details: CardData): TemplateResult | null {
     const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
     if (filterProjects.length === 0) return null;
-    return html`<div class="info-item">
-      <div class="info-item_heading" title="Tasks the current person is allocated to">Tasks</div>
-      <div class="person-card-projects__projects">
-        ${filterProjects.map((p) => {
-          return html`<div class="person-card-projects__project">${p}</div>`;
-        })}
+    return html`
+      <div class="info-item">
+        <div class="info-item_heading" title="Tasks the current person is allocated to">Tasks</div>
+        <div class="person-card-projects__projects">
+          ${filterProjects.map((p) => html`<div class="person-card-projects__project">${p}</div>`)}
+        </div>
       </div>
-    </div>`;
+    `;
   }
 
   /**
@@ -240,31 +239,23 @@ export class PersonCardElement
   protected renderPositions(details: CardData): TemplateResult | null {
     const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
     if (filterPositions.length === 0) return null;
-    return html`<div class="info-item">
-      <div class="info-item_heading" title="Unique list of generic task positions the person is allocated to">
-        Task positions
+    return html`
+      <div class="info-item">
+        <div class="info-item_heading" title="Unique list of generic task positions the person is allocated to">
+          Task positions
+        </div>
+        <div class="person-card-projects__projects">
+          ${filterPositions.map((p) => html`<div class="person-card-projects__project">${p}</div>`)}
+        </div>
       </div>
-      <div class="person-card-projects__projects">
-        ${filterPositions.map((p) => {
-          return html`<div class="person-card-projects__project">${p}</div>`;
-        })}
-      </div>
-    </div>`;
+    `;
   }
 
   public renderManager(manager: Required<CardData>['manager']): TemplateResult | void {
-    const size = (() => {
-      switch (this.size) {
-        case 'large':
-          return 'medium';
-        default:
-          return this.size;
-      }
-    })();
     return html`
-      <div class="manager">
+      <div class="info-item">
         <div class="info-item_heading">Reports to</div>
-        <fwc-person-card-manager size="${size}" .dataSource=${manager}>
+        <fwc-person-card-manager .dataSource=${manager}>
       </div>
     `;
   }
@@ -328,7 +319,7 @@ export class PersonCardElement
         <fwc-avatar
           title="${details.accountType}"
           class="${this.getAccountTypeColorClass(details.accountType)}"
-          .size=${this.size}
+          size="small"
           .src=${pictureSrc}
           .value=${this.getInitial(details.name)}
           border=${true}
@@ -338,7 +329,7 @@ export class PersonCardElement
         <fwc-avatar
           title="${details.accountType}"
           class="${this.getAccountTypeColorClass(details.accountType)}"
-          .size=${this.size}
+          size="small"
           .value=${this.getInitial(details.name)}
           border=${true}
         ></fwc-avatar>
@@ -346,6 +337,24 @@ export class PersonCardElement
     })}`;
   }
 
+  protected renderPersonName(details: CardData): TemplateResult {
+    if (!details.name) {
+      return html``;
+    };
+
+    return html`
+      <header title="${details.name}" class="person-card__name copyable-text">
+        <span class="copyable-text__text">${details.name}</span>
+        <button
+          class="copyable-text__button"
+          @click=${{ handleEvent: () => this.copyToClipboard(details.name) }}
+          title="Copy name"
+        >
+          <fwc-icon icon="copy"></fwc-icon>
+        </button>
+      </header>
+    `;
+  }
   /**
    * Renders the error
    */
@@ -361,19 +370,18 @@ export class PersonCardElement
     return html`
       <div class="person-card__section" style="max-width:${this.maxWidth}px">
         ${this.tasks.details.render({
-          complete: (details: CardData) => {
-            return html`<div class="person-card__heading">
+      complete: (details: CardData) => {
+        return html`<div class="person-card__heading">
                 <div class="fwc-person-avatar">
                   <fwc-person-avatar
-                    .size=${this.size}
+                    size="small"
                     .azureId=${details.azureId}
                     .dataSource=${details}
                     trigger="none"
                   ></fwc-person-avatar>
                 </div>
                 <div class="person-card__header">
-                  ${details.name &&
-                  html`<header title="${details.name}" class="person-card__name">${details.name}</header>`}
+                  ${this.renderPersonName(details)}
                   ${details.department && html`<div class="person-card__department">${details.department}</div>`}
                   ${details.jobTitle && html`<div class="person-card__jobtitle">${details.jobTitle}</div>`}
                 </div>
@@ -382,15 +390,17 @@ export class PersonCardElement
               <div class="person-card__content" style="max-height:${this.contentHeight}px">
                 <div class="info-item">
                   <div class="info-item_heading">Contact</div>
-                  ${this.renderMobile(details)} ${this.renderEmail(details)}
+                  ${this.renderMobile(details)}
+                  ${this.renderEmail(details)}
                 </div>
-                ${details.manager && this.renderManager(details.manager)} ${this.renderProjects(details)}
+                ${details.manager && this.renderManager(details.manager)}
+                ${this.renderProjects(details)}
                 ${this.renderPositions(details)}
               </div>`;
-          },
-          pending: () => this.renderPending(),
-          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-        })}
+      },
+      pending: () => this.renderPending(),
+      error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+    })}
       </div>
     `;
   }

@@ -1,4 +1,4 @@
-import { type CSSResult, html, LitElement } from "lit";
+import { type CSSResult, html, LitElement, TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { ContextConsumer } from '@lit/context';
@@ -41,7 +41,7 @@ export class PillElement extends LitElement implements PillElementProps {
   })
   dataSource: PersonInfo = {} as PersonInfo;
 
-  personSubtitle(person: Partial<PersonInfo>) {
+  personSubtitle(person: Partial<PersonInfo>): TemplateResult {
     if (person.isExpired) {
       return html`<p id="subtitle-expired">Account expired</p>`;
     }
@@ -60,6 +60,14 @@ export class PillElement extends LitElement implements PillElementProps {
     return html``;
   }
 
+  renderServicePrincipalType(person: Partial<PersonInfo>): TemplateResult {
+    if (!person.servicePrincipalType) {
+      return html``;
+    }
+
+    return html`<p>${person.servicePrincipalType}</p>`;
+  }
+
   deleteButton(azureId: string) {
     return html`<button type="button" @click=${() => this._context.value?.selected.removePerson(azureId)}>
       <fwc-icon icon="close"></fwc-icon>
@@ -70,11 +78,12 @@ export class PillElement extends LitElement implements PillElementProps {
     return html`
       <div id="person-pill">
         <div id="person-pill-avatar">
-          <fwc-person-avatar .dataSource=${this.dataSource} size="small" showLetter=${ifDefined(this.dataSource.applicationId)}></fwc-person-avatar>
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small" showLetter=${ifDefined(this.dataSource.applicationId)} customColor=${this.dataSource.avatarColor}></fwc-person-avatar>
         </div>
         <div id="person-pill-name">
           <p>${this.dataSource.name}</p>
           ${this.personSubtitle(this.dataSource)}
+          ${this.renderServicePrincipalType(this.dataSource)}
         </div>
         <div id="person-pill-delete">
           ${this.deleteButton(this.dataSource.azureId)}

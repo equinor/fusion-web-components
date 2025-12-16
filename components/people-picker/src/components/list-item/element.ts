@@ -108,6 +108,14 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
     return html``;
   }
 
+  renderServicePrincipalType(person: Partial<PersonInfo>): TemplateResult {
+    if (!person.servicePrincipalType) {
+      return html``;
+    }
+
+    return html`<p>${person.servicePrincipalType}</p>`;
+  }
+
   render(): TemplateResult {
     const cssClasses = {
       selected: this._context.value?.selected.selectedPeople.has(this.dataSource.azureId) ?? false,
@@ -119,12 +127,13 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
         @click=${this.handleSelectClick}
         @keydown=${this.handleSelectKeyDown}>
         <div id="item-avatar">
-          <fwc-person-avatar .dataSource=${this.dataSource} size="small" showLetter=${ifDefined(this.dataSource.applicationId)}></fwc-person-avatar>
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small" showLetter=${ifDefined(this.dataSource.applicationId)} customColor=${this.dataSource.avatarColor}></fwc-person-avatar>
         </div>
         <div id="item-name">
           <p>${this.dataSource.name}</p>
           ${this.renderSubTitle(this.dataSource)}
           ${this.renderSecondarySubTitle(this.dataSource)}
+          ${this.renderServicePrincipalType(this.dataSource)}
         </div>
       </div>
     `;

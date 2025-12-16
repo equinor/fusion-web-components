@@ -111,6 +111,12 @@ export class PersonAvatarElement
   showLetter?: boolean;
 
   /**
+   * Custom color of the avatar.
+   */
+  @property({ type: String })
+  customColor?: string;
+
+  /**
    * @internal
    */
   @queryAsync('#floating')
@@ -331,7 +337,9 @@ export class PersonAvatarElement
       complete: (details) => {
         const { accountType, accountClassification } = details;
         const classes = classMap(this.getRenderClasses(accountType, accountClassification));
+        const avatarColorVariable = this.customColor ? `--fwc-avatar-color: ${this.customColor}` : '';
         return html`<fwc-avatar
+            style=${avatarColorVariable}
             class=${classes}
             .size=${this.size}
             ?clickable=${this.clickable}
@@ -353,7 +361,7 @@ export class PersonAvatarElement
           ${when(
       this.isFloatingOpen,
       () =>
-        html`<fwc-person-card onclick="event.stopPropagation()" .azureId="${this.azureId}" .upn="${this.upn}" />`,
+        html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${this.dataSource}" .azureId="${this.azureId}" .upn="${this.upn}" customColor=${this.customColor} />`,
     )}
         </slot>
       </div>

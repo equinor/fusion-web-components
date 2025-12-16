@@ -98,6 +98,10 @@ export class PersonCardElement
   @property({ type: Number, reflect: true })
   contentHeight = 150;
 
+  /** Custom color of the avatar */
+  @property({ type: String })
+  customColor?: string;
+
   /**
    * Render person job title
    */
@@ -109,6 +113,20 @@ export class PersonCardElement
    * Render the icon bar
    */
   protected renderIconBar(details: CardData): TemplateResult {
+    if (details.applicationId) {
+      return html`
+        <slot name="icon-bar">
+          <fwc-icon-button
+            title="Open application in azure portal"
+            href="${`https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/${details.applicationId}/isMSAApp~/false`}"
+            icon="home"
+            rounded
+            size="x-small"
+          ></fwc-icon-button>
+        </slot>
+      `;
+    }
+
     return html`
       <slot name="icon-bar">
         <fwc-icon-button
@@ -177,44 +195,69 @@ export class PersonCardElement
    * Render person email
    */
   protected renderEmail(details: CardData): TemplateResult {
-    return html`${details.mail
-      ? html`<div class="person-card-info__row">
-          <div class="person-card-info__link">
-            <fwc-icon title="Email: ${details.mail}" class="person-card-info__icon" icon="email"></fwc-icon>
-            <a title="Email: ${details.mail}" href="mailto:${details.mail}">${details.mail}</a>
-          </div>
-          <fwc-icon-button
-            class="person-card-info__copy"
-            title="Copy email"
-            @click=${{ handleEvent: () => this.copyToClipboard(details.mail) }}
-            icon="copy"
-            rounded
-            size="x-small"
-          />
-        </div>`
-      : null}`;
+    const mail = details.mail ?? details.upn;
+    if (!mail) {
+      return html``;
+    }
+
+    return html`
+      <div class="person-card-info__row">
+        <div class="person-card-info__link">
+          <fwc-icon title="Email: ${mail}" class="person-card-info__icon" icon="email"></fwc-icon>
+          <a title="Email: ${mail}" href="mailto:${mail}">${mail}</a>
+        </div>
+        <fwc-icon-button
+          class="person-card-info__copy"
+          title="Copy email"
+          @click=${{ handleEvent: () => this.copyToClipboard(mail) }}
+          icon="copy"
+          rounded
+          size="x-small"
+        />
+      </div>
+    `;
   }
 
   /**
    * Render person mobile phone
    */
   protected renderMobile(details: CardData): TemplateResult {
-    return html`${details.mobilePhone
-      ? html`<div class="person-card-info__row">
-          <div class="person-card-info__link">
-            <fwc-icon title="Mobile: ${details.mobilePhone}" class="person-card-info__icon" icon="phone"></fwc-icon>
-            <a title="Mobile: ${details.mobilePhone}" href="callto:${details.mobilePhone}">${details.mobilePhone}</a>
-          </div>
-          <fwc-icon-button
-            class="person-card-info__copy"
-            title="Copy phone number"
-            @click=${{ handleEvent: () => this.copyToClipboard(details.mobilePhone) }}
-            icon="copy"
-            rounded
-            size="x-small"
-          />
-        </div>`
-      : null}`;
+    if (!details.mobilePhone) {
+      return html``;
+    }
+    return html`
+      <div class="person-card-info__row">
+        <div class="person-card-info__link">
+          <fwc-icon title="Mobile: ${details.mobilePhone}" class="person-card-info__icon" icon="phone"></fwc-icon>
+          <a title="Mobile: ${details.mobilePhone}" href="callto:${details.mobilePhone}">${details.mobilePhone}</a>
+        </div>
+        <fwc-icon-button
+          class="person-card-info__copy"
+          title="Copy phone number"
+          @click=${{ handleEvent: () => this.copyToClipboard(details.mobilePhone) }}
+          icon="copy"
+          rounded
+          size="x-small"
+        />
+      </div>
+    `;
+  }
+
+  protected renderContact(details: CardData): TemplateResult {
+    const mobile = details.mobilePhone;
+    const email = details.mail ?? details.upn;
+
+    if (!mobile && !email) {
+      return html``;
+    }
+
+    return html`
+      <div class="info-item">
+        <div class="info-item_heading">Contact</div>
+        ${this.renderMobile(details)}
+        ${this.renderEmail(details)}
+      </div>
+    `;
   }
 
   /**
@@ -251,7 +294,10 @@ export class PersonCardElement
     `;
   }
 
-  public renderManager(manager: Required<CardData>['manager']): TemplateResult | void {
+  public renderManager(manager: Required<CardData>['manager'] | undefined): TemplateResult | void {
+    if (!manager) {
+      return html``;
+    }
     return html`
       <div class="info-item">
         <div class="info-item_heading">Reports to</div>
@@ -372,31 +418,29 @@ export class PersonCardElement
         ${this.tasks.details.render({
       complete: (details: CardData) => {
         return html`<div class="person-card__heading">
-                <div class="fwc-person-avatar">
-                  <fwc-person-avatar
-                    size="small"
-                    .azureId=${details.azureId}
-                    .dataSource=${details}
-                    trigger="none"
-                  ></fwc-person-avatar>
-                </div>
-                <div class="person-card__header">
-                  ${this.renderPersonName(details)}
-                  ${details.department && html`<div class="person-card__department">${details.department}</div>`}
-                  ${details.jobTitle && html`<div class="person-card__jobtitle">${details.jobTitle}</div>`}
-                </div>
-              </div>
-              <div class="person-card__iconbar">${this.renderIconBar(details)}</div>
-              <div class="person-card__content" style="max-height:${this.contentHeight}px">
-                <div class="info-item">
-                  <div class="info-item_heading">Contact</div>
-                  ${this.renderMobile(details)}
-                  ${this.renderEmail(details)}
-                </div>
-                ${details.manager && this.renderManager(details.manager)}
-                ${this.renderProjects(details)}
-                ${this.renderPositions(details)}
-              </div>`;
+                    <div class="fwc-person-avatar">
+                      <fwc-person-avatar
+                        size="small"
+                        .azureId=${details.azureId}
+                        .dataSource=${details}
+                        trigger="none"
+                        customColor=${this.customColor}
+                      ></fwc-person-avatar>
+                    </div>
+                    <div class="person-card__header">
+                      ${this.renderPersonName(details)}
+                      ${details.department && html`<div class="person-card__department">${details.department}</div>`}
+                      ${details.jobTitle && html`<div class="person-card__jobtitle">${details.jobTitle}</div>`}
+                      ${details.servicePrincipalType && html`<div class="person-card__jobtitle">${details.servicePrincipalType}</div>`}
+                    </div>
+                  </div>
+                  <div class="person-card__iconbar">${this.renderIconBar(details)}</div>
+                  <div class="person-card__content" style="max-height:${this.contentHeight}px">
+                    ${this.renderContact(details)}
+                    ${this.renderManager(details.manager)}
+                    ${this.renderProjects(details)}
+                    ${this.renderPositions(details)}
+                  </div>`;
       },
       pending: () => this.renderPending(),
       error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),

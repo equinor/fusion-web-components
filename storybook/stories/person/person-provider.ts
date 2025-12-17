@@ -59,7 +59,7 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
     mobilePhone: faker.phone.number(),
     isExpired: faker.datatype.boolean({ probability: 0.1 }),
     officeLocation: faker.location.city(),
-    avatarColor: faker.color.rgb(),
+    avatarColor: faker.helpers.arrayElement(['#bebebe', '#eb0037', '#ff92a8', '#000']),
     avatarUrl: faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false }),
     get positions() {
       return generatePositions(this.azureId);

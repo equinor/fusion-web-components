@@ -98,10 +98,6 @@ export class PersonCardElement
   @property({ type: Number, reflect: true })
   contentHeight = 150;
 
-  /** Custom color of the avatar */
-  @property({ type: String })
-  customColor?: string;
-
   /**
    * Render person job title
    */
@@ -192,6 +188,30 @@ export class PersonCardElement
   };
 
   /**
+   * Render person mobile phone
+   */
+  protected renderMobile(details: CardData): TemplateResult {
+    if (!details.mobilePhone) {
+      return html``;
+    }
+
+    return html`
+      <div class="person-card-info__link">
+        <fwc-icon title="Mobile: ${details.mobilePhone}" class="person-card-info__icon" icon="phone"></fwc-icon>
+        <a class="person-card-info__text" title="Mobile: ${details.mobilePhone}" href="callto:${details.mobilePhone}">${details.mobilePhone}</a>
+        <fwc-icon-button
+          class="person-card-info__copy"
+          title="Copy phone number"
+          @click=${{ handleEvent: () => this.copyToClipboard(details.mobilePhone) }}
+          icon="copy"
+          rounded
+          size="x-small"
+        ></fwc-icon-button>
+      </div>
+    `;
+  }
+
+  /**
    * Render person email
    */
   protected renderEmail(details: CardData): TemplateResult {
@@ -201,11 +221,9 @@ export class PersonCardElement
     }
 
     return html`
-      <div class="person-card-info__row">
-        <div class="person-card-info__link">
-          <fwc-icon title="Email: ${mail}" class="person-card-info__icon" icon="email"></fwc-icon>
-          <a title="Email: ${mail}" href="mailto:${mail}">${mail}</a>
-        </div>
+      <div class="person-card-info__link">
+        <fwc-icon title="Email: ${mail}" class="person-card-info__icon" icon="email"></fwc-icon>
+        <a class="person-card-info__text" title="Email: ${mail}" href="mailto:${mail}">${mail}</a>
         <fwc-icon-button
           class="person-card-info__copy"
           title="Copy email"
@@ -213,36 +231,16 @@ export class PersonCardElement
           icon="copy"
           rounded
           size="x-small"
-        />
+        ></fwc-icon-button>
       </div>
     `;
   }
 
   /**
-   * Render person mobile phone
+   * Render contact information
+   * @param details - type CardData
+   * @returns TemplateResult
    */
-  protected renderMobile(details: CardData): TemplateResult {
-    if (!details.mobilePhone) {
-      return html``;
-    }
-    return html`
-      <div class="person-card-info__row">
-        <div class="person-card-info__link">
-          <fwc-icon title="Mobile: ${details.mobilePhone}" class="person-card-info__icon" icon="phone"></fwc-icon>
-          <a title="Mobile: ${details.mobilePhone}" href="callto:${details.mobilePhone}">${details.mobilePhone}</a>
-        </div>
-        <fwc-icon-button
-          class="person-card-info__copy"
-          title="Copy phone number"
-          @click=${{ handleEvent: () => this.copyToClipboard(details.mobilePhone) }}
-          icon="copy"
-          rounded
-          size="x-small"
-        />
-      </div>
-    `;
-  }
-
   protected renderContact(details: CardData): TemplateResult {
     const mobile = details.mobilePhone;
     const email = details.mail ?? details.upn;
@@ -254,8 +252,12 @@ export class PersonCardElement
     return html`
       <div class="info-item">
         <div class="info-item_heading">Contact</div>
-        ${this.renderMobile(details)}
-        ${this.renderEmail(details)}
+        <div class="person-card-info__row">
+          ${this.renderMobile(details)}
+        </div>
+        <div class="person-card-info__row">
+          ${this.renderEmail(details)}
+        </div>
       </div>
     `;
   }
@@ -390,7 +392,7 @@ export class PersonCardElement
 
     return html`
       <header title="${details.name}" class="person-card__name copyable-text">
-        <span class="copyable-text__text">${details.name}</span>
+        <p class="copyable-text__text">${details.name}</p>
         <button
           class="copyable-text__button"
           @click=${{ handleEvent: () => this.copyToClipboard(details.name) }}
@@ -413,19 +415,30 @@ export class PersonCardElement
     if (!this.tasks) {
       return this.renderPending();
     }
+    const avatarSize = () => {
+      switch (this.size) {
+        case 'small':
+          return 'x-small';
+        case 'large':
+          return 'medium';
+        default:
+          return 'small';
+      }
+    };
     return html`
       <div class="person-card__section" style="max-width:${this.maxWidth}px">
         ${this.tasks.details.render({
       complete: (details: CardData) => {
         return html`<div class="person-card__heading">
                     <div class="fwc-person-avatar">
-                      <fwc-person-avatar
-                        size="small"
-                        .azureId=${details.azureId}
-                        .dataSource=${details}
-                        trigger="none"
-                        customColor=${this.customColor}
-                      ></fwc-person-avatar>
+                      <slot name="avatar-element">
+                        <fwc-person-avatar
+                          size=${avatarSize()}
+                          .azureId=${details.azureId}
+                          .dataSource=${details}
+                          trigger="none"
+                        ></fwc-person-avatar>
+                      </slot>
                     </div>
                     <div class="person-card__header">
                       ${this.renderPersonName(details)}

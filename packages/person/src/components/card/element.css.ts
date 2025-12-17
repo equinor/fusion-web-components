@@ -64,6 +64,7 @@ const style: CSSResult = css`
     flex-direction: column;
   }
   .person-card__header {
+    flex: 1;  
     overflow: hidden;
   }
   .person-card__name {
@@ -76,6 +77,7 @@ const style: CSSResult = css`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    line-height: 1.1;
   }
   .person-card__profession {
     display: flex;
@@ -113,26 +115,34 @@ const style: CSSResult = css`
     font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable("fontSize"))} * var(--content-resize, 1));
     font-weight: ${unsafeCSS(theme.typography.input.label.getVariable("fontWeight"))};
   }
-  .person-card-info__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: var(--small-size-space);
-  }
-  .person-card-info__row:hover {
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
-  }
-  .person-card-info__row:not(:hover) .person-card-info__copy {
-    visibility: hidden;
-  }
+
   .person-card-info__link {
     display: flex;
     align-items: center;
-    column-gap: var(--small-size-space);
+    justify-content: space-between;
+    column-gap: calc(var(--small-size-space) * 0.5);
     font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * var(--content-resize, 1));
+    
+    &:hover {
+      background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
+
+      .person-card-info__copy {
+        opacity: 1;
+      }
+    }
   }
   .person-card-info__icon {
     font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * var(--content-resize, 1));
+  }
+  .person-card-info__text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .person-card-info__copy {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
   }
   .person-card-projects__projects {
     display: flex;
@@ -148,8 +158,6 @@ const style: CSSResult = css`
   }
   .copyable-text {
     position: relative;
-    display: flex;
-    align-items: center;
     
     .copyable-text__text {
       overflow: hidden;
@@ -157,26 +165,27 @@ const style: CSSResult = css`
       white-space: nowrap;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      margin: 0;
+      width: 100%;
     }
     
     .copyable-text__button {
-      opacity: 0;
+      display: none;
       position: absolute;
       right: 0;
-      top: 0;
+      top: -0.1em;
       z-index: 1;
       border: none;
       outline: none;
       background: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
       cursor: pointer;
-      font-size: 0.5rem;
+      font-size: 0.55rem;
       padding: 0.5em;
       border-radius: 100%;
 
       fwc-icon {
         position: relative;
         top: 0.2em;
-
       }
 
       &:hover, &:focus {
@@ -185,7 +194,7 @@ const style: CSSResult = css`
     }
     
     &:hover .copyable-text__button {
-      opacity: 1;
+      display: block;
     }
   }
 `;

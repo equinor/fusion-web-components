@@ -328,44 +328,52 @@ export class PersonAvatarElement
     }) ?? html``;
   }
 
+  protected renderAvatarElement(details: Partial<AvatarData>): TemplateResult {
+    const { accountType, accountClassification } = details;
+    const classes = classMap(this.getRenderClasses(accountType, accountClassification));
+    const avatarColorVariable = this.customColor ? `--fwc-avatar-color: ${this.customColor}` : '';
+    return html`
+      <fwc-avatar
+        style=${avatarColorVariable}
+        class=${classes}
+        .size=${this.size}
+        ?clickable=${this.clickable}
+        ?disabled=${this.disabled}
+        @click=${this.handleOnClick}
+        @mouseover=${this.handleMouseOver}
+        @mouseout=${this.handleMouseOut}
+        border
+      >
+        ${this.renderImage(details)}
+        ${this.renderApplicationBadge(details)}
+      </fwc-avatar>
+    `;
+  }
+
   protected render(): TemplateResult {
     if (!this.tasks) {
       return this.renderImagePlaceholder();
     }
-    return html`<div id="root">
-      ${this.tasks.info.render({
+    return html`
+      <div id="root">
+        ${this.tasks.info.render({
       complete: (details) => {
-        const { accountType, accountClassification } = details;
-        const classes = classMap(this.getRenderClasses(accountType, accountClassification));
-        const avatarColorVariable = this.customColor ? `--fwc-avatar-color: ${this.customColor}` : '';
-        return html`<fwc-avatar
-            style=${avatarColorVariable}
-            class=${classes}
-            .size=${this.size}
-            ?clickable=${this.clickable}
-            ?disabled=${this.disabled}
-            @click=${this.handleOnClick}
-            @mouseover=${this.handleMouseOver}
-            @mouseout=${this.handleMouseOut}
-            border
-          >
-            ${this.renderImage(details)}
-            ${this.renderApplicationBadge(details)}
-          </fwc-avatar>`;
+        return html`
+          ${this.renderAvatarElement(details)}
+          <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}" >
+            <slot name="floating" >
+              ${when(this.isFloatingOpen, () =>
+          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${details}" customColor=${this.customColor}><span slot="avatar-element">${this.renderAvatarElement(details)}</span></fwc-person-card>`,
+        )}
+            </slot>
+          </div>
+        `;
       },
-      pending: () => html`<fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
+      pending: () => html`< fwc - avatar size = ${this.size}> ${this.renderImagePlaceholder(true)} </fwc-avatar>`,
       error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
     })}
-      <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
-        <slot name="floating">
-          ${when(
-      this.isFloatingOpen,
-      () =>
-        html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${this.dataSource}" .azureId="${this.azureId}" .upn="${this.upn}" customColor=${this.customColor} />`,
-    )}
-        </slot>
-      </div>
-    </div>`;
+    </div>
+  `;
   }
 
   public renderImagePlaceholder(inactive?: boolean): TemplateResult {

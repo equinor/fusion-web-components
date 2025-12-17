@@ -8,4 +8,5 @@ export interface PickerElementProps {
   multiple?: boolean;
   subTitle?: keyof PersonInfo;
   secondarySubTitle?: keyof PersonInfo;
+  showSelectedPeople?: boolean;
 }

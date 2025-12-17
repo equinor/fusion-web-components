@@ -33,6 +33,7 @@ const render = (props: PeoplePickerElementProps) => html`
     multiple=${ifDefined(props.multiple)}
     preselectedids=${ifDefined(props.preselectedIds)}
     preselectedpeople=${ifDefined(props.preselectedPeople)}
+    showselectedpeople=${ifDefined(props.showSelectedPeople)}
     subtitle=${ifDefined(props.subTitle)}
     secondarysubtitle=${ifDefined(props.secondarySubTitle)}
     placeholder=${ifDefined(props.placeholder)}
@@ -43,6 +44,9 @@ const render = (props: PeoplePickerElementProps) => html`
 `;
 
 export const Single: Story = {
+  args: {
+    multiple: false,
+  },
   render,
 };
 
@@ -66,6 +70,14 @@ export const preselectedPeople: Story = {
   args: {
     multiple: true,
     preselectedPeople: JSON.stringify(resolvedPeople),
+  },
+  render,
+};
+
+export const hideSelectedPeople: Story = {
+  args: {
+    multiple: false,
+    showSelectedPeople: false,
   },
   render,
 };

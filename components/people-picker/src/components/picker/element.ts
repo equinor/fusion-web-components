@@ -1,4 +1,4 @@
-import { type CSSResult, html, LitElement } from "lit";
+import { type CSSResult, html, HTMLTemplateResult, LitElement } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { ContextProvider } from '@lit/context';
 import { PersonInfo, PersonResolveTask, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
@@ -58,7 +58,9 @@ export class PickerElement extends LitElement implements PickerElementProps {
   /**
    * Whether the person picker should allow multiple selections.
    */
-  @property({ type: Boolean, converter: (value: string | null) => !!value })
+  @property({
+    type: Boolean, converter: (value: string | null) => value === 'true'
+  })
   multiple: boolean = false;
 
   /**
@@ -92,6 +94,17 @@ export class PickerElement extends LitElement implements PickerElementProps {
   @property({ attribute: 'preselectedpeople', type: Array, converter: (value: string | null) => value ? JSON.parse(value) : [] })
   preselectedPeople: PersonInfo[] = [];
 
+  /**
+   * Whether to show the selected people pills.
+   * If false, the selected people will not be shown but the value will be set to the selected people's azureId.
+   * @ps The multiple property must be false for this to make any effect.
+   */
+  @property({
+    type: Boolean,
+    converter: (value: string | null) => value === 'true'
+  })
+  showSelectedPeople: boolean = true;
+
   @state()
   search: string = '';
 
@@ -116,9 +129,6 @@ export class PickerElement extends LitElement implements PickerElementProps {
   }
 
   updated() {
-    // update value attribute twith controlles selected ids
-    this.value = this.controllers.selectedPeople.selectedIds.join();
-
     // populate preselected items if not already done
     if (this.tasks.resolve.value?.length && this.controllers.selectedPeople.selectedIds.length === 0) {
       // add successfully resolved people to selected people
@@ -217,7 +227,11 @@ export class PickerElement extends LitElement implements PickerElementProps {
     }
   }
 
-  renderPills() {
+  renderPills(): HTMLTemplateResult[] | null {
+    if (!this.showSelectedPeople && !this.multiple) {
+      return null;
+    }
+
     return [...this.controllers.selectedPeople.selectedPeople.values()].map((person) => html`
       <fwc-people-picker-pill
         .dataSource=${person}>
@@ -243,7 +257,8 @@ export class PickerElement extends LitElement implements PickerElementProps {
           <fwc-people-picker-list
             .dataSources=${people.value.map((person) => this.mapToPersonInfo(person))}
             totalCount=${`${people.count}/${people.totalCount}`}>
-          </fwc-people-picker-list>`;
+          </fwc-people-picker-list>
+        `;
       },
       pending: () => html`<p><fwc-dots-progress size="small" color="primary" /></p>`,
       error: () => html`<p class="error">Error while resolving people api</p>`,

@@ -15,8 +15,10 @@ export class SelectedController implements ReactiveController {
     this.#host.addController(this);
   }
 
-  // needed to comply with the ReactiveController interface
-  hostConnected(): void { }
+  hostUpdated(): void {
+    // update components value attribute with selectedIds joined by comma
+    this.#host.value = this.selectedIds.join();
+  }
 
   /**
    * Get the selected ids

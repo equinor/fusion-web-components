@@ -1,5 +1,6 @@
 import { CSSResult, html, TemplateResult, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
 import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
@@ -97,6 +98,10 @@ export class PersonCardElement
   /** Height of content */
   @property({ type: Number, reflect: true })
   contentHeight = 150;
+
+  /** Custom color */
+  @property({ type: String })
+  customColor?: string;
 
   /**
    * Render person job title
@@ -431,14 +436,13 @@ export class PersonCardElement
       complete: (details: CardData) => {
         return html`<div class="person-card__heading">
                     <div class="fwc-person-avatar">
-                      <slot name="avatar-element">
-                        <fwc-person-avatar
-                          size=${avatarSize()}
-                          .azureId=${details.azureId}
-                          .dataSource=${details}
-                          trigger="none"
-                        ></fwc-person-avatar>
-                      </slot>
+                      <fwc-person-avatar
+                        size=${avatarSize()}
+                        .azureId=${details.azureId}
+                        .dataSource=${details}
+                        trigger="none"
+                        customColor=${ifDefined(this.customColor)}
+                      ></fwc-person-avatar>
                     </div>
                     <div class="person-card__header">
                       ${this.renderPersonName(details)}

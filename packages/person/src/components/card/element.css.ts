@@ -21,6 +21,7 @@ const styleSizes = css`
 const style: CSSResult = css`
   :host {
     display: inline-flex;
+    text-align: left;
     --x-small-size-space: calc(
       ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable("padding"))} * var(--content-resize, 1)
     );

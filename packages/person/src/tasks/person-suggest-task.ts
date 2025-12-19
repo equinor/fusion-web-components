@@ -18,8 +18,6 @@ const emptyPersonSuggestResults: PersonSuggestResults = {
   value: [],
 };
 
-const maxResults = 10;
-
 export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
   constructor(public host: PersonSuggestControllerHost) {
     super(
@@ -30,10 +28,6 @@ export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
           return emptyPersonSuggestResults;
         } else if (search && search?.length >= 3) {
           const result = await resolveTaskEvent(host, new RequestResolvePersonSuggestEvent({ search, signal }));
-          if (result.count > maxResults) {
-            result.value = result.value.slice(0, maxResults);
-            result.count = maxResults;
-          }
           return result;
         }
         return emptyPersonSuggestResults;

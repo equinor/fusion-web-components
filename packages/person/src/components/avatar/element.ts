@@ -337,7 +337,7 @@ export class PersonAvatarElement
         style=${avatarColorVariable}
         class=${classes}
         .size=${this.size}
-        ?clickable=${this.clickable}
+        clickable=${this.clickable}
         ?disabled=${this.disabled}
         @click=${this.handleOnClick}
         @mouseover=${this.handleMouseOver}
@@ -363,13 +363,13 @@ export class PersonAvatarElement
           <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}" >
             <slot name="floating" >
               ${when(this.isFloatingOpen, () =>
-          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${details}" customColor=${this.customColor}><span slot="avatar-element">${this.renderAvatarElement(details)}</span></fwc-person-card>`,
+          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${details}" customColor=${this.customColor}></fwc-person-card>`,
         )}
             </slot>
           </div>
         `;
       },
-      pending: () => html`< fwc - avatar size = ${this.size}> ${this.renderImagePlaceholder(true)} </fwc-avatar>`,
+      pending: () => html`< fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
       error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
     })}
     </div>

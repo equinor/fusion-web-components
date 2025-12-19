@@ -2,7 +2,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { PeoplePickerElement, PickerPersonAddedEvent, PickerPersonRemovedEvent, PickerSelectionChangedEvent, type PeoplePickerElementProps, PeopleViewerElement, PeopleViewerElementProps } from '@equinor/fusion-wc-people-picker';
+import { PeoplePickerElement, PickerPersonAddedEvent, PickerPersonRemovedEvent, PickerSelectionChangedEvent, type PeoplePickerElementProps, PeopleViewerElement, PeopleViewerElementProps } from '@equinor/fusion-wc-people';
 import type { PersonInfo } from '@equinor/fusion-wc-person';
 
 import { generatePerson, generateIds, personProviderDecorator } from './person-provider';

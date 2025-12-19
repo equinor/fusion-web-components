@@ -40,11 +40,8 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  components/people-picker:
+  components/people:
     dependencies:
-      '@equinor/fusion-wc-button':
-        specifier: workspace:^
-        version: link:../../packages/button
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../../packages/core
@@ -991,9 +988,9 @@ importers:
       '@equinor/fusion-wc-menu':
         specifier: workspace:^
         version: link:../packages/menu
-      '@equinor/fusion-wc-people-picker':
+      '@equinor/fusion-wc-people':
         specifier: workspace:^
-        version: link:../components/people-picker
+        version: link:../components/people
       '@equinor/fusion-wc-person':
         specifier: workspace:^
         version: link:../packages/person

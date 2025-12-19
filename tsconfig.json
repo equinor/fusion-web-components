@@ -49,7 +49,7 @@
 			"path": "./packages/menu"
 		},
 		{
-			"path": "./components/people-picker"
+			"path": "./components/people"
 		},
 		{
 			"path": "./packages/person"

@@ -1,7 +1,7 @@
 import { type CSSResult, html, HTMLTemplateResult, LitElement } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { ContextProvider } from '@lit/context';
-import { PersonInfo, PersonResolveTask, PersonSuggestResult, PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
+import { type PersonInfo, PersonResolveTask, type PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 import { DotsProgressElement } from "@equinor/fusion-wc-progress-indicator";
 
 import type { PickerElementProps } from "./types";
@@ -9,6 +9,7 @@ import { pickerStyle } from "./element.css";
 import { SelectedController } from "../../controllers/SelectedController";
 import { pickerContext } from "../../controllers/context";
 import { NavigateController } from "./NavigateController";
+import { mapToPersonInfo } from "../../utils";
 
 /* Other personComponents */
 import { default as PillElement } from "../pill";
@@ -134,7 +135,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
       // add successfully resolved people to selected people
       this.controllers.selectedPeople.addPeople(
         this.tasks.resolve.value.filter((person) => person.success)
-          .map((person) => this.mapToPersonInfo(person.account!))
+          .map((person) => mapToPersonInfo(person.account!))
       );
 
       // reset task value since we already have populated the people
@@ -185,25 +186,6 @@ export class PickerElement extends LitElement implements PickerElementProps {
     }
   }
 
-  mapToPersonInfo(person: PersonSuggestResult): PersonInfo {
-    return {
-      azureId: person.azureUniqueId,
-      name: person.name,
-      jobTitle: person.person?.jobTitle,
-      department: person.person?.department,
-      managerAzureUniqueId: person.person?.managerAzureUniqueId,
-      upn: person.person?.upn,
-      mobilePhone: person.person?.mobilePhone,
-      accountType: person.person?.accountType,
-      isExpired: person.isExpired,
-      avatarUrl: person.avatarUrl,
-      avatarColor: person.avatarColor,
-      applicationId: person.application?.applicationId,
-      applicationName: person.application?.applicationName,
-      servicePrincipalType: person.application?.servicePrincipalType,
-    };
-  }
-
   handleKeyDownSearchInput(event: KeyboardEvent) {
     // add/remove first person from searchresults
     if (event.key === 'Enter') {
@@ -216,7 +198,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
       if (this.controllers.selectedPeople.selectedPeople.has(firstPerson.azureUniqueId)) {
         this.controllers.selectedPeople.removePerson(firstPerson.azureUniqueId);
       } else {
-        this.controllers.selectedPeople.addPerson(this.mapToPersonInfo(firstPerson));
+        this.controllers.selectedPeople.addPerson(mapToPersonInfo(firstPerson));
       }
     }
 
@@ -255,7 +237,7 @@ export class PickerElement extends LitElement implements PickerElementProps {
 
         return html`
           <fwc-people-picker-list
-            .dataSources=${people.value.map((person) => this.mapToPersonInfo(person))}
+            .dataSources=${people.value.map((person) => mapToPersonInfo(person))}
             totalCount=${`${people.count}/${people.totalCount}`}>
           </fwc-people-picker-list>
         `;

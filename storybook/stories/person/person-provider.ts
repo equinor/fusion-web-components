@@ -56,7 +56,7 @@ export const generatePerson = (args: { azureId?: string; upn?: string }): Person
     jobTitle: faker.person.jobTitle(),
     department: faker.commerce.department().toUpperCase(),
     mail: fakeUpn,
-    mobilePhone: faker.phone.number(),
+    mobilePhone: faker.phone.number({ style: 'international' }),
     isExpired: faker.datatype.boolean({ probability: 0.1 }),
     officeLocation: faker.location.city(),
     avatarColor: faker.helpers.arrayElement(['#bebebe', '#eb0037', '#ff92a8', '#000']),
@@ -94,6 +94,7 @@ const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult
       department: generatedPerson.department,
       upn: generatedPerson.upn,
       mobilePhone: generatedPerson.mobilePhone,
+      managerAzureUniqueId: generatedPerson.manager?.azureUniqueId,
     }
   } else if (accountType === 'SystemAccount') {
     application = {

@@ -4,7 +4,6 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { ContextConsumer } from '@lit/context';
 
 import type { PersonInfo } from "@equinor/fusion-wc-person";
-import { PersonInfoTask } from "@equinor/fusion-wc-person";
 
 import { pickerContext } from "../../controllers/context";
 
@@ -19,10 +18,6 @@ IconElement;
 
 export class PillElement extends LitElement implements PillElementProps {
   static styles: CSSResult[] = [pillStyle];
-
-  tasks = {
-    info: new PersonInfoTask(this),
-  };
 
   private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
 
@@ -46,7 +41,7 @@ export class PillElement extends LitElement implements PillElementProps {
       return html`<p id="subtitle-expired">Account expired</p>`;
     }
 
-    const subTitle = this._context.value?.subTitle ?? '';
+    const subTitle = this._context.value?.subTitle ?? 'department';
 
     if (!subTitle) {
       return html``;
@@ -69,9 +64,11 @@ export class PillElement extends LitElement implements PillElementProps {
   }
 
   deleteButton(azureId: string) {
-    return html`<button type="button" @click=${() => this._context.value?.selected.removePerson(azureId)}>
-      <fwc-icon icon="close"></fwc-icon>
-    </button>`;
+    return html`
+      <button type="button" @click=${() => this._context.value?.selected?.removePerson(azureId)}>
+        <fwc-icon icon="close"></fwc-icon>
+      </button>
+    `;
   }
 
   render() {

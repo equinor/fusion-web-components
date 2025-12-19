@@ -5,7 +5,7 @@ import { SelectedController } from './SelectedController';
 export type PickerContext = {
   subTitle: keyof PersonInfo;
   secondarySubTitle: keyof PersonInfo;
-  selected: SelectedController;
+  selected?: SelectedController;
 };
 
 export const pickerContext = createContext<PickerContext>('people-picker');

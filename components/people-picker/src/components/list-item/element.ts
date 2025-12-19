@@ -48,10 +48,10 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   dataSource: PersonInfo = {} as PersonInfo;
 
   selectAction(): void {
-    if (this._context.value?.selected.selectedPeople.has(this.dataSource.azureId)) {
-      this._context.value?.selected.removePerson(this.dataSource.azureId);
+    if (this._context.value?.selected?.selectedPeople.has(this.dataSource.azureId)) {
+      this._context.value?.selected?.removePerson(this.dataSource.azureId);
     } else {
-      this._context.value?.selected.addPerson(this.dataSource);
+      this._context.value?.selected?.addPerson(this.dataSource);
     }
   }
 
@@ -118,7 +118,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
 
   render(): TemplateResult {
     const cssClasses = {
-      selected: this._context.value?.selected.selectedPeople.has(this.dataSource.azureId) ?? false,
+      selected: this._context.value?.selected?.selectedPeople.has(this.dataSource.azureId) ?? false,
     };
     return html`
       <div id="item"

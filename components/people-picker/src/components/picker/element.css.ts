@@ -37,6 +37,7 @@ export const pickerStyle: CSSResult = css`
     top: 105%;
     left: 0;
     width: 100%;
+    z-index: 1;
 
     & > p {
       margin: 0.25rem 0;

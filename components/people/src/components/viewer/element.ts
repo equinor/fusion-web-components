@@ -160,6 +160,7 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
     return html`
       <div id="root">
         <div id="view-mode">
+          <p>Viewing ${this.people.length} people</p>
           <fwc-icon-button @click=${() => this.viewMode = 'list'} color=${this.viewMode === 'list' ? 'success' : 'primary'} icon="list" size="x-small" title="List view"></fwc-icon-button>
           <fwc-icon-button @click=${() => this.viewMode = 'table'} color=${this.viewMode === 'table' ? 'success' : 'primary'} icon="view_module" size="x-small" title="Table view"></fwc-icon-button>
         </div>

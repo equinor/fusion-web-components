@@ -14,12 +14,18 @@ export const peopleViewerStyle: CSSResult = css`
   }
   #view-mode {
     display: flex;
-    flex-flow: row wrap;
     justify-content: flex-end;
+    align-items: center;
+    gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     margin-bottom: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     position: absolute;
     top: -1.8em;
     right: 0;
+
+    p {
+      margin: 0;
+      font-size: ${unsafeCSS(theme.typography.paragraph.meta.getVariable('fontSize'))};
+    }
   }
   #pills {
     display: flex;

@@ -67,8 +67,20 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
   @property({ type: String })
   secondarySubTitle: keyof PersonInfo = 'department';
 
+  /**
+   * The columns to display in the table view
+   * Should be a comma seperated list of column names
+   * Default is ['avatar', 'name', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove']
+   */
   @property({ type: Array, converter: (value: string | null) => value ? JSON.parse(value) : [] })
   tableColumns: PeopleViewerElementProps['tableColumns'] = ['avatar', 'name', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'];
+
+  /**
+   * Whether to show the view mode selector
+   * Default is true
+   */
+  @property({ type: Boolean, converter: (value: string | null) => value === 'true' })
+  showViewMode = true;
 
   // State to trigger task for resolving the people on mount
   @state()
@@ -174,19 +186,28 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
     `;
   }
 
-  render() {
+  renderViewMode(): TemplateResult {
+    if (!this.showViewMode) {
+      return html``;
+    }
+
     return html`
-      <div id="root">
-        <div id="view-mode">
-          <p>Viewing ${this.people.length} people</p>
-          <fwc-icon-button @click=${() => this.viewMode = 'list'} color=${this.viewMode === 'list' ? 'success' : 'primary'} icon="list" size="x-small" rounded title="List view"></fwc-icon-button>
-          <fwc-icon-button @click=${() => this.viewMode = 'table'} color=${this.viewMode === 'table' ? 'success' : 'primary'} icon="view_week" size="x-small" rounded title="Table view"></fwc-icon-button>
-        </div>
-        ${this.renderContentMode()}
+      <div id="view-mode">
+        <p>Viewing ${this.people.length} people</p>
+        <fwc-icon-button @click=${() => this.viewMode = 'list'} color=${this.viewMode === 'list' ? 'success' : 'primary'} icon="list" size="x-small" rounded title="List view"></fwc-icon-button>
+        <fwc-icon-button @click=${() => this.viewMode = 'table'} color=${this.viewMode === 'table' ? 'success' : 'primary'} icon="view_week" size="x-small" rounded title="Table view"></fwc-icon-button>
       </div>
     `;
   }
 
+  render(): TemplateResult {
+    return html`
+      <div id="root">
+        ${this.renderViewMode()}
+        ${this.renderContentMode()}
+      </div>
+    `;
+  }
 }
 
 export default PeopleViewerElement;

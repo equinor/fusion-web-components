@@ -28,6 +28,7 @@ const render = (props: PeopleViewerElementProps) => html`
   <fwc-people-viewer
     .people=${ifDefined(props.people)}
     .resolveIds=${ifDefined(props.resolveIds)}
+    showViewMode=${ifDefined(props.showViewMode)}
     @person-removed=${handlePersonRemoved}
   >
   </fwc-people-viewer>

@@ -5,6 +5,7 @@ export interface PeopleViewerElementProps {
   people?: string | PersonInfo[];
   subTitle?: keyof PersonInfo;
   secondarySubTitle?: keyof PersonInfo;
-  viewMode?: 'list' | 'table';
   tableColumns?: ('avatar' | 'name' | 'type' | 'email' | 'mobilePhone' | 'jobTitle' | 'department' | 'manager' | 'remove')[];
+  viewMode?: 'list' | 'table';
+  showViewMode?: boolean;
 }

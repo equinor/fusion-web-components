@@ -77,7 +77,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   renderSubTitle(person: Partial<PersonInfo>): TemplateResult {
     const subTitle = this._context.value?.subTitle ?? '';
 
-    if (!subTitle) {
+    if (!subTitle || person.isExpired) {
       return html``;
     }
 
@@ -109,7 +109,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   }
 
   renderServicePrincipalType(person: Partial<PersonInfo>): TemplateResult {
-    if (!person.servicePrincipalType) {
+    if (!person.servicePrincipalType || person.isExpired) {
       return html``;
     }
 

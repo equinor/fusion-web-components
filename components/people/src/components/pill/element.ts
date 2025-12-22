@@ -56,7 +56,7 @@ export class PillElement extends LitElement implements PillElementProps {
   }
 
   renderServicePrincipalType(person: Partial<PersonInfo>): TemplateResult {
-    if (!person.servicePrincipalType) {
+    if (!person.servicePrincipalType || person.isExpired) {
       return html``;
     }
 

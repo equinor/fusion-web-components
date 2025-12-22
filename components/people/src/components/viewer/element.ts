@@ -9,7 +9,7 @@ import { IconButtonElement } from '@equinor/fusion-wc-button';
 import type { PeopleViewerElementProps } from "./types";
 import { peopleViewerStyle } from "./element.css";
 
-import { mapToPersonInfo } from "../../utils";
+import { mapToPersonInfo, ucFirst } from "../../utils";
 import { pickerContext } from "../../controllers/context";
 import { PickerPersonRemovedEvent } from "../../events";
 
@@ -53,10 +53,6 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
   @property({ type: String, reflect: true })
   viewMode: 'list' | 'table' = 'list';
 
-  // State to trigger task for resolving the people on mount
-  @state()
-  preselectedIds: string[] = [];
-
   /**
    * The property from PersonInfo to display as subtitle in the pill
    * Default is jobTitle
@@ -70,6 +66,13 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
    */
   @property({ type: String })
   secondarySubTitle: keyof PersonInfo = 'department';
+
+  @property({ type: Array, converter: (value: string | null) => value ? JSON.parse(value) : [] })
+  tableColumns: PeopleViewerElementProps['tableColumns'] = ['avatar', 'name', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'];
+
+  // State to trigger task for resolving the people on mount
+  @state()
+  preselectedIds: string[] = [];
 
   connectedCallback() {
     super.connectedCallback();
@@ -113,6 +116,41 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
     return html`<p>No people provided</p>`;
   }
 
+  renderTableColumns(): TemplateResult[] | undefined {
+    return this.tableColumns?.map(column => html`<th class="${column}">${ucFirst(column)}</th>`);
+  }
+
+  renderTableRows(): TemplateResult[] {
+    return this.people.map((person) => {
+      return html`
+        <tr>
+          ${this.tableColumns?.map((column) => {
+        if (column === 'avatar') {
+          return html`<td class="avatar"><fwc-person-avatar .dataSource=${person} trigger="none" size="small" showLetter=${ifDefined(person.applicationId)} customColor=${person.avatarColor}></fwc-person-avatar></td>`;
+        }
+        if (column === 'name') {
+          return html`<td class="name">${person.name ?? person.applicationName ?? 'Unknown'}</td>`;
+        }
+        if (column === 'type') {
+          return html`<td class="type">${person.applicationId ? 'Application' : person.accountType}</td>`;
+        }
+        if (column === 'email') {
+          return html`<td class="email">${person.upn}</td>`;
+        }
+        if (column === 'manager') {
+          return html`<td class="manager">${person.managerAzureUniqueId && html`<fwc-person-table-cell size="small" .azureId=${person.managerAzureUniqueId} .subHeading=${(person: PersonInfo) => person.upn}></fwc-person-table-cell>`}</td>`;
+        }
+        if (column === 'remove') {
+          return html`<td class="remove"><fwc-icon-button @click=${() => this.handleAzureIdRemoved(new CustomEvent<string>('azureid-removed', { detail: person.azureId }))} icon="close" size="x-small" rounded title="Remove person"></fwc-icon-button></td>`;
+        }
+
+        return html`<td class="${column}">${person[column]}</td>`
+      })}
+        </tr>
+      `;
+    });
+  }
+
   renderContentMode(): TemplateResult {
     if (this.viewMode === 'list') {
       return html`
@@ -125,31 +163,11 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
         <table>
           <thead>
             <tr>
-              <th>Avatar</th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Email</th>
-              <th>Mobile Phone</th>
-              <th>Job Title</th>
-              <th>Department</th>
-              <th>Manager</th>
-              <th>Remove</th>
+              ${this.renderTableColumns()}
             </tr>
           </thead>
           <tbody>
-            ${this.people.map(person => html`
-              <tr>
-                <td><fwc-person-avatar .dataSource=${person} size="small" showLetter=${ifDefined(person.applicationId)} customColor=${person.avatarColor}></fwc-person-avatar></td>
-                <td>${person.name ?? person.applicationName ?? 'Unknown'}</td>
-                <td>${person.applicationId ? 'Application' : person.accountType}</td>
-                <td>${person.upn}</td>
-                <td>${person.mobilePhone}</td>
-                <td>${person.jobTitle}</td>
-                <td>${person.department}</td>
-                <td>${person.managerAzureUniqueId && html`<fwc-person-table-cell size="small" .azureId=${person.managerAzureUniqueId} .subHeading=${(person: PersonInfo) => person.upn}></fwc-person-table-cell>`}</td>
-                <td><fwc-icon-button @click=${() => this.handleAzureIdRemoved(new CustomEvent<string>('azureid-removed', { detail: person.azureId }))} icon="close" size="x-small" title="Remove person"></fwc-icon-button></td>
-              </tr>
-            `)}
+            ${this.renderTableRows()}
           </tbody>
         </table>
       </div>
@@ -161,8 +179,8 @@ export class PeopleViewerElement extends LitElement implements PeopleViewerEleme
       <div id="root">
         <div id="view-mode">
           <p>Viewing ${this.people.length} people</p>
-          <fwc-icon-button @click=${() => this.viewMode = 'list'} color=${this.viewMode === 'list' ? 'success' : 'primary'} icon="list" size="x-small" title="List view"></fwc-icon-button>
-          <fwc-icon-button @click=${() => this.viewMode = 'table'} color=${this.viewMode === 'table' ? 'success' : 'primary'} icon="view_module" size="x-small" title="Table view"></fwc-icon-button>
+          <fwc-icon-button @click=${() => this.viewMode = 'list'} color=${this.viewMode === 'list' ? 'success' : 'primary'} icon="list" size="x-small" rounded title="List view"></fwc-icon-button>
+          <fwc-icon-button @click=${() => this.viewMode = 'table'} color=${this.viewMode === 'table' ? 'success' : 'primary'} icon="view_week" size="x-small" rounded title="Table view"></fwc-icon-button>
         </div>
         ${this.renderContentMode()}
       </div>

@@ -42,6 +42,9 @@ importers:
 
   components/people:
     dependencies:
+      '@equinor/fusion-wc-button':
+        specifier: workspace:^
+        version: link:../../packages/button
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../../packages/core

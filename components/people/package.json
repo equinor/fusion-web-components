@@ -29,6 +29,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@equinor/fusion-wc-button": "workspace:^",
 		"@equinor/fusion-wc-core": "workspace:^",
 		"@equinor/fusion-wc-icon": "workspace:^",
 		"@equinor/fusion-wc-person": "workspace:^",

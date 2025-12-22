@@ -9,9 +9,6 @@ export const peopleViewerStyle: CSSResult = css`
   }
   #root {
     position: relative;
-    padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
-    border: 1px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-    border-radius: 0.5rem;
   }
   #view-mode {
     display: flex;

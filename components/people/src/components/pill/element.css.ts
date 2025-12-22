@@ -21,11 +21,6 @@ export const pillStyle: CSSResult = css`
     }
   }
 
-  #person-pill-avatar {
-    margin-bottom: -3.5px;
-    transform: scale(0.95) translate(-1px, 0px);
-  }
-
   #person-pill-name {
     max-width: 140px;
   }

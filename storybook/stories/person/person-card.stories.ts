@@ -3,13 +3,13 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import PersonCard, { PersonCardElementProps } from '@equinor/fusion-wc-person/card';
+import { PersonCardElement, type PersonCardElementProps } from '@equinor/fusion-wc-person';
 import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
 
-PersonCard;
+PersonCardElement;
 
 const avatarSeed = 1;
 

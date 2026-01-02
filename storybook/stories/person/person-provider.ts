@@ -1,14 +1,19 @@
-import { PersonAccountType, PersonDetails } from '@equinor/fusion-wc-person';
-import PersonProvider, { PersonResolver } from '@equinor/fusion-wc-person/provider';
+import { PersonAccountType, PersonDetails, PersonSuggestResult } from '@equinor/fusion-wc-person';
+import { PersonProviderElement, type PersonResolver } from '@equinor/fusion-wc-person';
 import { faker } from '@faker-js/faker';
 import { html } from 'lit';
 
-PersonProvider;
+PersonProviderElement;
 
 faker.seed(123);
 
 const uuid2number = (x: string) => {
   return Number(x.replace(/[-]|[a-z]/g, '').substring(0, 15));
+};
+
+export const generateIds = (min: number, max: number): string[] => {
+  const count = faker.number.int({ min, max });
+  return new Array(count).fill(undefined).map(() => faker.string.uuid());
 };
 
 const generateManager = (azureId?: string): PersonDetails['manager'] => {
@@ -34,7 +39,7 @@ const generatePositions = (azureId?: string): PersonDetails['positions'] => {
   });
 };
 
-const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails => {
+export const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails => {
   args.azureId && faker.seed(uuid2number(args.azureId));
   const fakeUpn = faker.internet.email({ provider: 'equinor.com' });
   return {
@@ -49,10 +54,13 @@ const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails
     ]),
     accountClassification: faker.helpers.arrayElement(['Internal', 'External']),
     jobTitle: faker.person.jobTitle(),
-    department: faker.commerce.department(),
+    department: faker.commerce.department().toUpperCase(),
     mail: fakeUpn,
-    mobilePhone: faker.phone.number(),
+    mobilePhone: faker.phone.number({ style: 'international' }),
+    isExpired: faker.datatype.boolean({ probability: 0.1 }),
     officeLocation: faker.location.city(),
+    avatarColor: faker.helpers.arrayElement(['#bebebe', '#eb0037', '#ff92a8', '#000']),
+    avatarUrl: faker.image.urlPicsumPhotos({ height: 64, width: 120, blur: 0, grayscale: false }),
     get positions() {
       return generatePositions(this.azureId);
     },
@@ -62,7 +70,58 @@ const generatePerson = (args: { azureId?: string; upn?: string }): PersonDetails
   };
 };
 
-const resolver: PersonResolver = {
+const generateSuggestedPerson = (args: { azureId: string }): PersonSuggestResult => {
+  const generatedPerson = generatePerson({ azureId: args.azureId });
+  const accountType = faker.helpers.arrayElement([
+    'Person',
+    'SystemAccount',
+  ]);
+
+  let person: PersonSuggestResult['person'] | undefined;
+  let application: PersonSuggestResult['application'] | undefined;
+  if (accountType === 'Person') {
+    person = {
+      accountType: faker.helpers.arrayElement([
+        'Employee',
+        'Consultant',
+        'Enterprise',
+        'EnterpriseExternal',
+        'External',
+        'Local',
+        'TemporaryEmployee',
+      ]),
+      jobTitle: generatedPerson.jobTitle,
+      department: generatedPerson.department,
+      upn: generatedPerson.upn,
+      mobilePhone: generatedPerson.mobilePhone,
+      managerAzureUniqueId: generatedPerson.manager?.azureUniqueId,
+    }
+  } else if (accountType === 'SystemAccount') {
+    application = {
+      applicationId: faker.string.uuid(),
+      applicationName: faker.company.name(),
+      servicePrincipalType: faker.helpers.arrayElement([
+        'Application',
+        'ManagedIdentity',
+        'ServicePrincipal',
+        'Unknown',
+      ]),
+    }
+  }
+
+  return {
+    azureUniqueId: generatedPerson.azureId,
+    name: generatedPerson.name,
+    accountType,
+    person,
+    application,
+    isExpired: generatedPerson.isExpired ?? false,
+    avatarColor: generatedPerson.avatarColor ?? '',
+    avatarUrl: generatedPerson.avatarUrl ?? '',
+  };
+};
+
+export const resolver: PersonResolver = {
   getDetails: generatePerson,
   getInfo: generatePerson,
   getPhoto: (args: { azureId?: string; upn?: string }) => {
@@ -89,11 +148,39 @@ const resolver: PersonResolver = {
           .map((x) => x.charCodeAt(0))
           .reduce((acc, item) => (acc += item), 0) + i,
       );
-      return generatePerson({ azureId: String(faker.string.uuid()) });
+      return generatePerson({ azureId: faker.string.uuid() });
+    });
+  },
+  suggest: (args) => {
+    const generatedCount = faker.number.int({ min: 3, max: 25 });
+    const value = new Array(generatedCount).fill(undefined).map((_, i) => {
+      faker.seed(
+        args.search
+          .split('')
+          .map((x) => x.charCodeAt(0))
+          .reduce((acc, item) => (acc += item), 0) + i,
+      );
+      return generateSuggestedPerson({ azureId: faker.string.uuid() });
+    });
+    return {
+      totalCount: generatedCount * 3,
+      count: generatedCount,
+      value,
+    };
+  },
+  resolve: (args) => {
+    return args.azureIds.map((azureId) => {
+      return {
+        success: true,
+        statusCode: 200,
+        errorMessage: null,
+        indentifier: azureId,
+        account: generateSuggestedPerson({ azureId }),
+      };
     });
   },
 };
 
-export const personProviderDecorator = (story) => {
+export const personProviderDecorator = (story: CallableFunction) => {
   return html`<fwc-person-provider .resolver=${resolver}>${story()}</fwc-person-provider>`;
 };

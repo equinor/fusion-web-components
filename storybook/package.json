@@ -37,6 +37,7 @@
     "@equinor/fusion-wc-list": "workspace:^",
     "@equinor/fusion-wc-markdown": "workspace:^",
     "@equinor/fusion-wc-menu": "workspace:^",
+    "@equinor/fusion-wc-people": "workspace:^",
     "@equinor/fusion-wc-person": "workspace:^",
     "@equinor/fusion-wc-picture": "workspace:^",
     "@equinor/fusion-wc-popover": "workspace:^",

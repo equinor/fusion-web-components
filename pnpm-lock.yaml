@@ -59,8 +59,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -87,8 +87,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -127,8 +127,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -155,8 +155,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -186,8 +186,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -220,8 +220,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -245,8 +245,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -273,8 +273,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -298,8 +298,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -323,8 +323,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -363,8 +363,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -430,8 +430,8 @@ importers:
         version: 1.41.3
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -461,8 +461,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -516,8 +516,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -538,8 +538,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -566,8 +566,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -591,8 +591,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -619,8 +619,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -644,8 +644,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -690,8 +690,8 @@ importers:
         version: 13.0.0
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -724,8 +724,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -749,8 +749,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -777,8 +777,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -805,8 +805,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -836,8 +836,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -864,8 +864,8 @@ importers:
         version: 3.3.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
-        specifier: ^0.10.10
-        version: 0.10.10
+        specifier: ^0.11.0
+        version: 0.11.0
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -1170,12 +1170,21 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@custom-elements-manifest/analyzer@0.10.10':
-    resolution: {integrity: sha512-R1pbKssP3Psb2OiGfheiUbXtBgTGQ0Vu5cn2CHSdZoJV66oZPSSw/TdCf8WlnQ6dfKSy5L8hNneClnmD80GEwA==}
+  '@custom-elements-manifest/analyzer@0.11.0':
+    resolution: {integrity: sha512-F2jQFk6igV5vrTZYDBLVr0GDQF3cTJ2VwwzPdsmkzUE+SHiYAQNKYebIq8qphZdJeTcZtVhvw336FQVZsMqh4A==}
     hasBin: true
 
-  '@custom-elements-manifest/find-dependencies@0.0.6':
-    resolution: {integrity: sha512-2iVksJ156XuaeeC6jB6oMG6k9ROHS3W1delwJLL804yQMri9NnQW78JDCYMtFfW8b4locUG+3+hrtAHxk+fNGg==}
+  '@custom-elements-manifest/find-dependencies@0.0.7':
+    resolution: {integrity: sha512-icHEBPHcOXSrpDOFkQhvM7vljEbqrEReW251RBxSzDctXzYWIL0Hk2yMDINn3d6mZ4KSsqLZlaFiGFp/2nn9rA==}
+
+  '@emnapi/core@1.7.0':
+    resolution: {integrity: sha512-pJdKGq/1iquWYtv1RRSljZklxHCOCAJFJrImO5ZLKPJVJlVUcs8yFwNQlqS0Lo8xT1VAXXTCZocF9n26FWEKsw==}
+
+  '@emnapi/runtime@1.7.0':
+    resolution: {integrity: sha512-oAYoQnCYaQZKVS53Fq23ceWMRxq5EhQsE0x0RdQ55jT7wagMu5k+fS39v1fiSLrtrLQlXwVINenqhLMtTrV/1Q==}
+
+  '@emnapi/wasi-threads@1.1.0':
+    resolution: {integrity: sha512-WI0DdZ8xFSbgMjR1sFsKABJ/C5OnRrjT06JXbZKexJGrDuPTzZdDYfFlsgcCXCyf+suG5QU2e/y1Wo2V/OapLQ==}
 
   '@equinor/eds-icons@0.22.0':
     resolution: {integrity: sha512-4SmPT67rUbl6qFyOCiSsue68EERgEGaXl9Xx6DkScW46AMbM6OdX3New1hctx1MIb6YdNlkHc/WwXTc+MG9j9Q==}
@@ -1761,6 +1770,9 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
+  '@napi-rs/wasm-runtime@1.0.7':
+    resolution: {integrity: sha512-SeDnOO0Tk7Okiq6DbXmmBODgOAb9dp9gjlphokTUxmt8U3liIP1ZsozBahH69j/RJv+Rfs6IwUKHTgQYJ/HBAw==}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1772,6 +1784,101 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@oxc-resolver/binding-android-arm-eabi@11.13.1':
+    resolution: {integrity: sha512-YijiebZnGbKtwhLJXmUkOTS2iFF5Mh7TZb3SpVGrbgH6t2flJn7K+k78FJN7tc2lfixdlI1amkcCbTCgV+2WwQ==}
+    cpu: [arm]
+    os: [android]
+
+  '@oxc-resolver/binding-android-arm64@11.13.1':
+    resolution: {integrity: sha512-cURsasEvObw/KCi8eRuZhHiT4agR4cui6uWX8ss2z/Ok23f8W+P8fvEZD0iUMIAmHwyAxA93RxNTIKh48zK39A==}
+    cpu: [arm64]
+    os: [android]
+
+  '@oxc-resolver/binding-darwin-arm64@11.13.1':
+    resolution: {integrity: sha512-IKsn9oeVrbWpbE+PanGr5C4tRPVhVuBh/ZY8I7bbqaxBjemlgKKNGNSq73VDzQjRApJgjjzsVDgkTwTrKivLGg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxc-resolver/binding-darwin-x64@11.13.1':
+    resolution: {integrity: sha512-FW9toaDOXSLmP3lYXsXPalQKLs8eXwZCNUOPeng84MExl+ALe0Ik+sif/U6P/nqJgVdVm4MEiZcnnNtQ+Bn29Q==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxc-resolver/binding-freebsd-x64@11.13.1':
+    resolution: {integrity: sha512-9EODydJ8P/DhEmVIdcjLnlDXAw9hot2NLuwY1/6gp3fKNXsqz3s9ch/vlDpq0CMtvjQ3Z4a2P+4IsH5A73Eh/A==}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@oxc-resolver/binding-linux-arm-gnueabihf@11.13.1':
+    resolution: {integrity: sha512-Ud/q31NNEFXVy9mwO1jbXXsuqYd8ftoweL4z9MZ5wahlncnzPYKcEGSdBfSi7TKct4KU8EdvAxi+F9wdO1dCGw==}
+    cpu: [arm]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-arm-musleabihf@11.13.1':
+    resolution: {integrity: sha512-4x/eNAoQ7Ec2n81S2akaBeDbM4ceuy8R4sd41p1ETnM5PBhvBzWSuf75vQp4K1dLyKKPe+fw+uG4eIpgzqvj8A==}
+    cpu: [arm]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-arm64-gnu@11.13.1':
+    resolution: {integrity: sha512-435Sf0a1KKjU7jgB5gcisTq6WMxQQVfsmKWAcQ3VhbXU/NpaUUZaezKmZJXNiAO1sUY6/zRJnTaPtsBq9msYlQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-arm64-musl@11.13.1':
+    resolution: {integrity: sha512-Okb7KgPJvA/Db0QwdVziuYs5MZQEq9PC5MEDrBK7jmcqQL2RO+mk7oztqSegcNJ7kMyNM7Zi2cN9G69g4Cs3zg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-ppc64-gnu@11.13.1':
+    resolution: {integrity: sha512-HyM9+MlH7bWQtjtGzhxVMVhIuy2C1+MqavBfSMyY2d9SSdxcKvboMhl/0vTTMH/R94z8n/gP5XSJ1M6/BC30Pw==}
+    cpu: [ppc64]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-riscv64-gnu@11.13.1':
+    resolution: {integrity: sha512-ukJFu+798IzODSIupFAbouehJOLqQwhz56VlzRXi+42xtsmtZ+NLla2CXlaw1V9nMB7HLEQU1+XklkeFsIxz4g==}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-riscv64-musl@11.13.1':
+    resolution: {integrity: sha512-gCr05/1CbuKQ/E39pzVjBLE/amtdvFpHeEd6lUOshnoInZ48g33b+1/CNyeO+B1CoiIydYGrkbyIoIeSMWzSsw==}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-s390x-gnu@11.13.1':
+    resolution: {integrity: sha512-ojQVasxjsZGCxt+ygyipCSp74P22WdUToBLM8D9qVm/yehOtxIT8nv0FyQrc4DOpqzGPxQS2OcgvLag+9AhsFg==}
+    cpu: [s390x]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-x64-gnu@11.13.1':
+    resolution: {integrity: sha512-Vr28gTydAegrq+qmQu4IvR+LEq3A8amuHdOPSOwMM44cwpIvEDd4MmhimfEqoWjcfVZy9vpd5mPZZY6C/lHq9g==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxc-resolver/binding-linux-x64-musl@11.13.1':
+    resolution: {integrity: sha512-a2g2nv3IulLb9lHd8ZDGEnWIpNXcZviLiEKt+PHP3k3d86U1adlL5rNmImjF+eNGReTyttlX/hYNT4UIPo7IjA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxc-resolver/binding-wasm32-wasi@11.13.1':
+    resolution: {integrity: sha512-PhvfJQG6IyI9uN1c5NAZqfl1N9lLF1XdenX+H3aHYHlADPiOgwtpQgBETSD2L3ySeR7jLzJRVFUrWEu4uDz7Lg==}
+    engines: {node: '>=14.0.0'}
+    cpu: [wasm32]
+
+  '@oxc-resolver/binding-win32-arm64-msvc@11.13.1':
+    resolution: {integrity: sha512-hyKUC0JQbTKoaPw3r9XHWHtj+B/win36VjTyKDd0OjG71UeyAhZiJBjoNJwfmnTIPcQS4YNesjNkqqDe4qN44w==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxc-resolver/binding-win32-ia32-msvc@11.13.1':
+    resolution: {integrity: sha512-0/y+YMQJEd8kltqPTAUi1PHsYTUi/7UL8Jkhh6BODn3VBQIMMfHhyS8MH4geYJLEJUxuRxGKtya57GOTAN2WSw==}
+    cpu: [ia32]
+    os: [win32]
+
+  '@oxc-resolver/binding-win32-x64-msvc@11.13.1':
+    resolution: {integrity: sha512-0r1P/PDUD936rZShGdfnqNFdozRVgFYrcdajm1ZZ8wMoN594YkjKmlM3z3DB6arS+Bz7RhA9uLXcP74GqZ/lAw==}
+    cpu: [x64]
+    os: [win32]
 
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
@@ -2173,6 +2280,9 @@ packages:
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
+
+  '@tybys/wasm-util@0.10.1':
+    resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
 
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
@@ -3636,6 +3746,9 @@ packages:
   outdent@0.5.0:
     resolution: {integrity: sha512-/jHxFIzoMXdqPzTaCpFzAAWhpkSjZPF4Vsn6jAfNpmbH/ymsmd7Qc6VE9BGn0L6YMj6uwpQLxCECpus4ukKS9Q==}
 
+  oxc-resolver@11.13.1:
+    resolution: {integrity: sha512-/MS37pbsjfdujmuiM/qONFToT8zjDh78xOhVOPStG7fiZlE0b8od8XOfLhqovL0NnMR0ojumTUWF4LK/U15qDQ==}
+
   p-filter@2.1.0:
     resolution: {integrity: sha512-ZBxxZ5sL2HghephhpGAQdoskxplTwr7ICaehZwLIlfL6acuVgZPm8yBNuRAFBGEqtD/hmUeq9eqLg2ys9Xr/yw==}
     engines: {node: '>=8'}
@@ -4640,9 +4753,9 @@ snapshots:
       human-id: 4.1.3
       prettier: 2.8.8
 
-  '@custom-elements-manifest/analyzer@0.10.10':
+  '@custom-elements-manifest/analyzer@0.11.0':
     dependencies:
-      '@custom-elements-manifest/find-dependencies': 0.0.6
+      '@custom-elements-manifest/find-dependencies': 0.0.7
       '@github/catalyst': 1.7.0
       '@web/config-loader': 0.1.3
       chokidar: 3.5.2
@@ -4653,9 +4766,26 @@ snapshots:
       globby: 11.0.4
       typescript: 5.4.5
 
-  '@custom-elements-manifest/find-dependencies@0.0.6':
+  '@custom-elements-manifest/find-dependencies@0.0.7':
     dependencies:
+      oxc-resolver: 11.13.1
       rs-module-lexer: 2.6.0
+
+  '@emnapi/core@1.7.0':
+    dependencies:
+      '@emnapi/wasi-threads': 1.1.0
+      tslib: 2.8.1
+    optional: true
+
+  '@emnapi/runtime@1.7.0':
+    dependencies:
+      tslib: 2.8.1
+    optional: true
+
+  '@emnapi/wasi-threads@1.1.0':
+    dependencies:
+      tslib: 2.8.1
+    optional: true
 
   '@equinor/eds-icons@0.22.0': {}
 
@@ -5340,6 +5470,13 @@ snapshots:
       '@types/react': 19.2.2
       react: 19.2.0
 
+  '@napi-rs/wasm-runtime@1.0.7':
+    dependencies:
+      '@emnapi/core': 1.7.0
+      '@emnapi/runtime': 1.7.0
+      '@tybys/wasm-util': 0.10.1
+    optional: true
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -5351,6 +5488,65 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
+
+  '@oxc-resolver/binding-android-arm-eabi@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-android-arm64@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-darwin-arm64@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-darwin-x64@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-freebsd-x64@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-arm-gnueabihf@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-arm-musleabihf@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-arm64-gnu@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-arm64-musl@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-ppc64-gnu@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-riscv64-gnu@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-riscv64-musl@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-s390x-gnu@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-x64-gnu@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-linux-x64-musl@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-wasm32-wasi@11.13.1':
+    dependencies:
+      '@napi-rs/wasm-runtime': 1.0.7
+    optional: true
+
+  '@oxc-resolver/binding-win32-arm64-msvc@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-win32-ia32-msvc@11.13.1':
+    optional: true
+
+  '@oxc-resolver/binding-win32-x64-msvc@11.13.1':
+    optional: true
 
   '@pkgr/core@0.2.9': {}
 
@@ -5719,6 +5915,11 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.1
 
+  '@tybys/wasm-util@0.10.1':
+    dependencies:
+      tslib: 2.8.1
+    optional: true
+
   '@types/aria-query@5.0.4': {}
 
   '@types/babel__core@7.20.5':
@@ -5938,7 +6139,7 @@ snapshots:
 
   '@web/config-loader@0.1.3':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -7402,6 +7603,28 @@ snapshots:
   orderedmap@2.1.1: {}
 
   outdent@0.5.0: {}
+
+  oxc-resolver@11.13.1:
+    optionalDependencies:
+      '@oxc-resolver/binding-android-arm-eabi': 11.13.1
+      '@oxc-resolver/binding-android-arm64': 11.13.1
+      '@oxc-resolver/binding-darwin-arm64': 11.13.1
+      '@oxc-resolver/binding-darwin-x64': 11.13.1
+      '@oxc-resolver/binding-freebsd-x64': 11.13.1
+      '@oxc-resolver/binding-linux-arm-gnueabihf': 11.13.1
+      '@oxc-resolver/binding-linux-arm-musleabihf': 11.13.1
+      '@oxc-resolver/binding-linux-arm64-gnu': 11.13.1
+      '@oxc-resolver/binding-linux-arm64-musl': 11.13.1
+      '@oxc-resolver/binding-linux-ppc64-gnu': 11.13.1
+      '@oxc-resolver/binding-linux-riscv64-gnu': 11.13.1
+      '@oxc-resolver/binding-linux-riscv64-musl': 11.13.1
+      '@oxc-resolver/binding-linux-s390x-gnu': 11.13.1
+      '@oxc-resolver/binding-linux-x64-gnu': 11.13.1
+      '@oxc-resolver/binding-linux-x64-musl': 11.13.1
+      '@oxc-resolver/binding-wasm32-wasi': 11.13.1
+      '@oxc-resolver/binding-win32-arm64-msvc': 11.13.1
+      '@oxc-resolver/binding-win32-ia32-msvc': 11.13.1
+      '@oxc-resolver/binding-win32-x64-msvc': 11.13.1
 
   p-filter@2.1.0:
     dependencies:

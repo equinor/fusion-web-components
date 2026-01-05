@@ -49,7 +49,7 @@
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-icon": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.10",
-    "lit": "3.3.0",
+    "lit": "3.3.2",
     "marked": "^16.4.1",
     "prismjs": "^1.29.0",
     "prosemirror-commands": "^1.7.1",

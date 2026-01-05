@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.6
+
+### Patch Changes
+
+- [#2079](https://github.com/equinor/fusion-web-components/pull/2079) [`24b41d1`](https://github.com/equinor/fusion-web-components/commit/24b41d147ecfde8497ce8ffa4f6ec02cf24e6648) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update storybook from 9.1.10 to 9.1.17
+
 ## 5.0.5
 
 ### Patch Changes

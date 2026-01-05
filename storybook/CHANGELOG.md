@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#2091](https://github.com/equinor/fusion-web-components/pull/2091) [`81f666b`](https://github.com/equinor/fusion-web-components/commit/81f666b6af774dfdbd358872a0aa09544bc68330) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Update Storybook to 10.1.11
+
 ## 5.0.6
 
 ### Patch Changes

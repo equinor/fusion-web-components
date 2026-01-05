@@ -2,7 +2,7 @@ name: Setup Node
 Description: General setup of node
 inputs:
   node-version:
-    default: 20
+    default: 24
   turbo-cache:
     default: false
 
@@ -10,7 +10,7 @@ runs:
   using: composite
   steps:
 
-    - uses: pnpm/action-setup@v3
+    - uses: pnpm/action-setup@v4
 
     - uses: actions/setup-node@v4
       with:

@@ -288,8 +288,8 @@ importers:
   packages/icon:
     dependencies:
       '@equinor/eds-icons':
-        specifier: ^0.22.0
-        version: 0.22.0
+        specifier: ^1.2.0
+        version: 1.2.0
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../core
@@ -1198,8 +1198,8 @@ packages:
   '@emnapi/wasi-threads@1.1.0':
     resolution: {integrity: sha512-WI0DdZ8xFSbgMjR1sFsKABJ/C5OnRrjT06JXbZKexJGrDuPTzZdDYfFlsgcCXCyf+suG5QU2e/y1Wo2V/OapLQ==}
 
-  '@equinor/eds-icons@0.22.0':
-    resolution: {integrity: sha512-4SmPT67rUbl6qFyOCiSsue68EERgEGaXl9Xx6DkScW46AMbM6OdX3New1hctx1MIb6YdNlkHc/WwXTc+MG9j9Q==}
+  '@equinor/eds-icons@1.2.0':
+    resolution: {integrity: sha512-oRZcKgQjOJbLeIdmHanjPQJOcYZpeekP2QaIMLEHDbGrNLUI5uFHUqEkcWcSwfqRY+IV07YnEGKFRmspGCCKGg==}
 
   '@equinor/eds-tokens@0.9.2':
     resolution: {integrity: sha512-pDIFei0vsfN3GN12NKWqxskAkYBQd6+Dzjga2liuY81LfnlJs5g9NblamU9WY5w5YdVE5Z8FNjsMKDLs2JIWcw==}
@@ -4557,7 +4557,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@equinor/eds-icons@0.22.0': {}
+  '@equinor/eds-icons@1.2.0': {}
 
   '@equinor/eds-tokens@0.9.2': {}
 

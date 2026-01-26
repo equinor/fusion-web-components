@@ -1,4 +1,4 @@
-import { Task } from '@lit-labs/task';
+import { Task } from '@lit/task';
 import type { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from './resolve-task-event';
 import { type AbortableEventDetail, RequestResolvePersonPhotoEvent } from '../events';

@@ -17,6 +17,7 @@
   "packageManager": "pnpm@10.20.0",
   "scripts": {
     "start": "cd storybook && pnpm run dev",
+    "dev": "pnpm run start",
     "clean": "pnpm clean:build && pnpm clean:node",
     "clean:build": "pnpm -r exec del-cli dist lib tsconfig.tsbuildinfo",
     "clean:node": "pnpm -r exec del-cli node_modules && pnpm exec del-cli node_modules",

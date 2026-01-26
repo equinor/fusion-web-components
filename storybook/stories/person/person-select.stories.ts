@@ -2,7 +2,12 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import PersonSelect, { PersonSelectElementProps, PersonSelectEvent } from '@equinor/fusion-wc-person/select';
+
+import {
+  PersonSelectElement as PersonSelect,
+  PersonSelectElementProps,
+  PersonSelectEvent
+} from '@equinor/fusion-wc-person';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';

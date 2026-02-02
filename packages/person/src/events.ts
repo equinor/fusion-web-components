@@ -49,7 +49,10 @@ export class RequestResolvePersonSearchEvent extends RequestResolveEvent<
   }
 }
 
-type RequestResolvePersonSuggestEventArgs = RequestResolvePersonSearchEventArgs;
+type RequestResolvePersonSuggestEventArgs = {
+  search: string;
+  systemAccounts: boolean;
+};
 export class RequestResolvePersonSuggestEvent extends RequestResolveEvent<
   RequestResolvePersonSuggestEventArgs,
   PersonSuggestResults

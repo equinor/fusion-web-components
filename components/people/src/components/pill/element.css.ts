@@ -6,7 +6,7 @@ export const pillStyle: CSSResult = css`
     display: inline-block;
   }
   
-  #person-pill {
+  #people-pill {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -21,11 +21,16 @@ export const pillStyle: CSSResult = css`
     }
   }
 
-  #person-pill-name {
+  #people-pill-avatar {
+    position: relative;
+    top: 1.7px;
+  }
+
+  #people-pill-name {
     max-width: 140px;
   }
-    
-  #person-pill-name p {
+
+  #people-pill-name p {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -41,7 +46,7 @@ export const pillStyle: CSSResult = css`
     color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
   }
 
-  #person-pill-delete button {
+  #people-pill-delete button {
     --fusion-close-btn-padding: calc(${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))} * 0.4);
     background: none;
     outline: none;

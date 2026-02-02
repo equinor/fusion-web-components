@@ -211,6 +211,7 @@ export const resolver: PersonResolver = {
     }));
   },
   suggest: async (args) => {
+    console.log('Suggest', args);
     const generatedCount = faker.number.int({ min: 3, max: 25 });
     const value = await Promise.all(new Array(generatedCount).fill(undefined).map(async (_, i) => {
       faker.seed(

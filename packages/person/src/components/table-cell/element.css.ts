@@ -27,6 +27,7 @@ const style: CSSResult = css`
   .person-cell__about {
     display: flex;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    align-items: center;
   }
   .person-cell__about--error fwc-skeleton {
     --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.ui.background__danger.getVariable('color'))};

@@ -4,7 +4,6 @@ import { repeat } from "lit/directives/repeat.js";
 
 import { type PersonSuggestResults, PersonSuggestTask } from "@equinor/fusion-wc-person";
 import { DotsProgressElement } from "@equinor/fusion-wc-progress-indicator";
-import { ChipElement } from "@equinor/fusion-wc-chip";
 
 import type { PickerElementProps } from "./types";
 import { pickerStyle } from "./element.css";
@@ -21,7 +20,6 @@ import { default as SearchElement } from "../search";
 
 /* Register the WebComponents */
 DotsProgressElement;
-ChipElement;
 ListElement;
 PillElement;
 SearchElement;
@@ -62,6 +60,9 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
 
   @state()
   search: string = '';
+
+  @property({ type: Boolean })
+  systemAccounts: boolean = false;
 
   @query('fwc-people-picker-search')
   searchElement?: SearchElement;
@@ -134,7 +135,6 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
     })
   }
 
-  
   renderContentMode(): TemplateResult {
     const renderPicker = ({pills = true}: {pills?: boolean} = {}) => html`
       <div

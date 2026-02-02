@@ -5,13 +5,23 @@ import { styles as theme } from "@equinor/fusion-web-theme";
 import personStyle from "../../style.css";
 
 const styleSizes = css`
-  :host .person-card__content {
-    font-size: 1rem;
-    --fwc-avatar-size: 2.5em;
+  :host {
+    .person-card__section {
+      min-width: 250px;
+    }
+    .person-card__content {
+      font-size: 1rem;
+      --fwc-avatar-size: 2.5em;
+    }
   }
-  :host([size='small']) .person-card__content {
-    font-size: 0.85rem;
-    --fwc-avatar-size: 2rem;
+  :host([size='small']) {
+    .person-card__section {
+      min-width: 200px;
+    }
+    .person-card__content {
+      font-size: 0.85rem;
+      --fwc-avatar-size: 2rem;
+    }
   }
   :host([size='large']) .person-card__content {
     font-size: 1.25rem;
@@ -70,6 +80,10 @@ const style: CSSResult = css`
       
       &:hover {
         color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable("color"))};
+      }
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
       }
     }
   }
@@ -139,7 +153,7 @@ const style: CSSResult = css`
   .info-item_items {
     display: flex;
     flex-direction: column;
-    gap: 0.75em;
+    gap: 0.2em;
     margin-top: var(--small-size-space);
   }
 

@@ -11,8 +11,8 @@ import { pillStyle } from "./element.css";
 
 // register the webcomponents
 import { IconElement } from '@equinor/fusion-wc-icon';
-import { PeopleAvatarElement } from '../avatar';
-PeopleAvatarElement;
+import { PersonAvatarElement } from '@equinor/fusion-wc-person';
+PersonAvatarElement;
 IconElement;
 
 export class PillElement extends LitElement implements PillElementProps {
@@ -73,15 +73,15 @@ export class PillElement extends LitElement implements PillElementProps {
 
   render() {
     return html`
-      <div id="person-pill">
-        <div id="person-pill-avatar">
-          <fwc-people-avatar .dataSource=${this.dataSource}></fwc-people-avatar>
+      <div id="people-pill">
+        <div id="people-pill-avatar">
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
         </div>
-        <div id="person-pill-name">
+        <div id="people-pill-name">
           <p>${this.dataSource.applicationName ?? this.dataSource.name}</p>
           ${this.personSubtitle(this.dataSource)}
         </div>
-        <div id="person-pill-delete">
+        <div id="people-pill-delete">
           ${this.deleteButton(this.dataSource.azureId)}
         </div>
       </div>

@@ -1,28 +1,23 @@
 // TODO - CLEAN UP!
 import { html, LitElement } from 'lit';
 import type { CSSResult, TemplateResult, PropertyValues } from 'lit';
-
 import { property, queryAsync, state } from 'lit/decorators.js';
-import { type ClassInfo, classMap } from 'lit/directives/class-map.js';
 import { when } from 'lit/directives/when.js';
-
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
-import type { AvatarData, PersonAvatarElementProps } from './types';
-import { type AccountClassification, PersonAccountType, PersonAvailability } from '../../types';
-import '../card';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
-import style from './element.css';
-import { type PersonInfoControllerHost, PersonInfoTask } from '../../tasks/person-info-task';
-import { type PersonPhotoControllerHost, PersonPhotoTask } from '../../tasks/person-photo-task';
 
-import Badge, { BadgeColor, type BadgeElementProps } from '@equinor/fusion-wc-badge';
-import Avatar, { type AvatarElementProps } from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import Icon, { type IconElementProps } from '@equinor/fusion-wc-icon';
+import Icon from '@equinor/fusion-wc-icon';
+
+import type { AvatarData, PersonAvatarElementProps } from './types';
+import style from './element.css';
+import { PersonResolveTask } from '../../tasks';
+import { mapResolveToPersonInfo } from '../../utils';
+import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
+import { PersonCardElement } from '../card';
 
 // persist elements
-Badge;
-Avatar;
+PersonCardElement;
 Skeleton;
 Icon;
 
@@ -54,9 +49,7 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  *
  * @summary
  */
-export class PersonAvatarElement
-  extends LitElement
-  implements PersonAvatarElementProps, PersonInfoControllerHost, PersonPhotoControllerHost {
+export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
 
   @property({ type: String })
@@ -65,8 +58,11 @@ export class PersonAvatarElement
   @property({ type: String })
   public upn?: string;
 
-  @property({ type: String })
+  @property({ type: Object })
   public dataSource?: AvatarData;
+
+  @property({ type: Array })
+  resolveIds: string[] = [];
 
   /**
    * @internal
@@ -79,7 +75,7 @@ export class PersonAvatarElement
    * @type {'click' | 'hover' | 'disabled'}
    */
   @property({ type: String, reflect: true })
-  size?: AvatarElementProps['size'];
+  size?: PersonAvatarElementProps['size'];
 
   @property({ type: String, reflect: true })
   pictureSrc?: string;
@@ -106,15 +102,10 @@ export class PersonAvatarElement
 
   /**
    * Sets the avatar to show a letter instead of an image.
+   * @deprecated The letter rendering has been removed. The letter will be shown automatically if no image is available.
    */
   @property({ type: Boolean })
   showLetter?: boolean;
-
-  /**
-   * Custom color of the avatar.
-   */
-  @property({ type: String })
-  customColor?: string;
 
   /**
    * @internal
@@ -131,16 +122,15 @@ export class PersonAvatarElement
   /**
    * @internal
    */
-  private tasks?: {
-    info: PersonInfoTask;
-    photo: PersonPhotoTask;
-  };
+  @state()
+  protected intersected = false;
 
   /**
    * @internal
    */
-  @state()
-  protected intersected = false;
+  private tasks?: {
+    resolve: PersonResolveTask,
+  };
 
   /**
    * @internal
@@ -153,28 +143,19 @@ export class PersonAvatarElement
           if (this.intersected) {
             this.controllers.observer.unobserve(this);
             this.tasks = {
-              info: new PersonInfoTask(this),
-              photo: new PersonPhotoTask(this),
+              resolve: new PersonResolveTask(this)
             };
           }
         }
       },
     }),
+    propertyMapper: new ResolvePropertyMapper(this),
   };
 
   /**
    * @internal
    */
   static openedPersonAvatars: PersonAvatarElement[] = [];
-
-  connectedCallback(): void {
-    super.connectedCallback();
-
-    // if the dataSource is set, also set the azureId to resolve the photo from tasks
-    if (this.dataSource) {
-      this.azureId = this.dataSource.azureId;
-    }
-  }
 
   async handleFloatingUi(): Promise<VoidFunction> {
     const root = await this.root;
@@ -213,136 +194,51 @@ export class PersonAvatarElement
     }
   }
 
-  /**
-   * Returns the badge color for the current presence
-   */
-  protected getRenderClasses(
-    accountType?: PersonAccountType[keyof PersonAccountType],
-    accountClassification?: AccountClassification,
-  ): ClassInfo {
-    const isEmployee = accountType === PersonAccountType.Employee;
-    const isConsultantOrEnterprise =
-      accountType === PersonAccountType.Consultant || accountType === PersonAccountType.Enterprise;
-    const isExternal = accountType === PersonAccountType.External;
-
-    return {
-      'employee-color': isEmployee && accountClassification === 'Internal',
-      'consultant-color': isConsultantOrEnterprise,
-      'external-color': isExternal,
-      'external-hire-color': isEmployee && accountClassification === 'External',
-    };
-  }
-
-  /**
-   * Returns the badge color for the current presence
-   */
-  protected getBadgeColor(availability: PersonAvailability): BadgeElementProps['color'] {
-    if (this.disabled) {
-      return BadgeColor.Disabled;
+  protected renderBadge(person: Partial<AvatarData>): TemplateResult {
+    if (person.applicationId || person.accountType === 'Admin') {
+      const badgeIcon = person.applicationId ? 'apps' : 'star_filled';
+      return html`
+        <div slot="badge" id="avatar-badge" style="background-color: ${person.avatarColor};">
+          <fwc-icon
+            icon="${badgeIcon}"
+          ></fwc-icon>
+        </div>
+      `;
     }
 
-    switch (availability) {
-      case PersonAvailability.Available:
-      case PersonAvailability.AvailableIdle:
-        return BadgeColor.Success;
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
-        return BadgeColor.Warning;
-      case PersonAvailability.Busy:
-      case PersonAvailability.BusyIdle:
-      case PersonAvailability.DoNotDisturb:
-        return BadgeColor.Danger;
-      default:
-        return BadgeColor.Disabled;
-    }
+    return html``;
   }
 
-  /**
-   * Returns the badge icon for the current presence
-   */
-  protected getBadgeIcon(availability: PersonAvailability): IconElementProps['icon'] {
-    switch (availability) {
-      case PersonAvailability.Available:
-        return 'check_circle_outlined';
-      case PersonAvailability.AvailableIdle:
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
-      case PersonAvailability.BusyIdle:
-        return 'time';
-      case PersonAvailability.DoNotDisturb:
-      case PersonAvailability.Busy:
-        return 'blocked';
-      case PersonAvailability.Offline:
-        return 'close_circle_outlined';
-      case PersonAvailability.Pending:
-        return 'more_horizontal';
-      default:
-        return 'do_not_disturb';
+  protected renderImage(person: Partial<AvatarData>): TemplateResult | undefined {
+    if (!person.avatarUrl) {
+      return;
     }
+    return html`<img src="${person.avatarUrl}" alt="${person.name}" />`;
   }
 
-  /**
-   * Renders the presence badge
-   */
-  protected renderBadge(availability: PersonAvailability): TemplateResult {
-    return html`<fwc-badge
-      slot="badge"
-      .color=${this.getBadgeColor(availability)}
-      .icon=${this.getBadgeIcon(availability)}
-      .size=${this.size}
-      position="bottom-right"
-      ?disabled=${this.disabled}
-      circular
-    />`;
-  }
-
-  protected renderApplicationBadge(person: Partial<AvatarData>): TemplateResult {
-    if (!person.applicationId) {
-      return html``;
-    }
-
-    return html`
-      <div slot="badge" id="application-badge" style="background-color: ${person.avatarColor};">
-        <fwc-icon
-          icon="apps"
-        ></fwc-icon>
+  protected renderAvatarElement(details: Partial<AvatarData>, trigger: boolean = true): TemplateResult {
+    if (!trigger) {
+      return html`
+      <div
+        id="avatar-element-container"
+        @click=${this.handleOnClick}
+      >
+        ${this.renderImage(details)}
+        ${this.renderBadge(details)}
       </div>
     `;
-  }
-
-  protected renderImage(person: Partial<AvatarData>): TemplateResult {
-    if (this.showLetter) {
-      return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
     }
 
-    return this.tasks?.photo.render({
-      complete: (src) => html`<img src="${src}" alt="${person.name}" />`,
-      pending: () => this.renderImagePlaceholder(true),
-      error: () => {
-        return html`${person.name?.substring(0, 1)?.toUpperCase()}`;
-      },
-    }) ?? html``;
-  }
-
-  protected renderAvatarElement(details: Partial<AvatarData>): TemplateResult {
-    const { accountType, accountClassification } = details;
-    const classes = classMap(this.getRenderClasses(accountType, accountClassification));
-    const avatarColorVariable = this.customColor ? `--fwc-avatar-color: ${this.customColor}` : '';
     return html`
-      <fwc-avatar
-        style=${avatarColorVariable}
-        class=${classes}
-        .size=${this.size}
-        clickable=${this.clickable}
-        ?disabled=${this.disabled}
+      <div
+        id="avatar-element-container"
         @click=${this.handleOnClick}
         @mouseover=${this.handleMouseOver}
         @mouseout=${this.handleMouseOut}
-        border
       >
         ${this.renderImage(details)}
-        ${this.renderApplicationBadge(details)}
-      </fwc-avatar>
+        ${this.renderBadge(details)}
+      </div>
     `;
   }
 
@@ -352,34 +248,43 @@ export class PersonAvatarElement
     }
     return html`
       <div id="root">
-        ${this.tasks.info.render({
+        ${this.tasks.resolve.render({
       complete: (details) => {
+        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+        if (!person?.avatarUrl) {
+          return;
+        }
         return html`
-          ${this.renderAvatarElement(details)}
-          <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
-            <slot name="floating">
-              ${when(this.isFloatingOpen, () =>
-          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${details}" customColor=${this.customColor}></fwc-person-card>`,
+              ${this.renderAvatarElement(person)}
+              <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
+                <slot name="floating">
+                  ${when(this.isFloatingOpen, () =>
+          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
+                      <div slot="avatar">
+                        ${this.renderAvatarElement(person, false)}
+                      </div>
+                    </fwc-person-card>`,
         )}
-            </slot>
-          </div>
-        `;
+                </slot>
+              </div>
+            `;
       },
-      pending: () => html`< fwc-avatar size=${this.size}>${this.renderImagePlaceholder(true)}</fwc-avatar>`,
-      error: () => html`<fwc-avatar size=${this.size} inactive>${this.renderImagePlaceholder(false)}</fwc-avatar>`,
+      pending: () => html`${this.renderImagePlaceholder(true)}`,
+      error: () => html`${this.renderImagePlaceholder(false)}`,
     })}
-    </div>
-  `;
+      </div>
+    `;
   }
 
   public renderImagePlaceholder(inactive?: boolean): TemplateResult {
-    const { size } = this;
-    return html`<fwc-skeleton
-      size=${size}
-      variant=${SkeletonVariant.Circle}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
+    return html`
+      <fwc-skeleton
+        size=${this.size}
+        variant=${SkeletonVariant.Circle}
+        icon="image"
+        ?inactive=${inactive}
+      ></fwc-skeleton>
+    `;
   }
 
   /**

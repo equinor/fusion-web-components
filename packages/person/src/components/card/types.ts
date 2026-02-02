@@ -1,10 +1,13 @@
 import { PersonItemSize } from '../../types';
-import { PersonDetailControllerHostAttributes } from '../../tasks/person-detail-task';
 import { PersonDetails } from '../../types';
 
 export type CardData = PersonDetails;
 
-export type PersonCardElementProps = PersonDetailControllerHostAttributes & {
+export type PersonCardElementProps = {
+  azureId?: string;
+  upn?: string;
+  dataSource?: CardData;
+  resolveIds?: string[];
   size?: PersonItemSize;
   customColor?: string;
   shadow?: boolean;

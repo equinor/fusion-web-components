@@ -37,11 +37,13 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-  ...Default,
-  render: (props) =>
-    html`${(['small', 'medium', 'large'] as PersonCardElementProps['size'][])
-      .map((size) => ({ ...props, size }))
-      .map(render)}`,
+  render: (props) => html`
+    <div style="display: flex; gap: 1rem; align-items: flex-start;">
+      <fwc-person-card size="small" azureId=${faker.string.uuid()}></fwc-person-card>
+      <fwc-person-card size="medium" azureId=${faker.string.uuid()}></fwc-person-card>
+      <fwc-person-card size="large" azureId=${faker.string.uuid()}></fwc-person-card>
+    </div>
+  `
 };
 
 export default meta;

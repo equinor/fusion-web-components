@@ -3,25 +3,23 @@ import { state } from "lit/decorators.js";
 import { ContextConsumer } from '@lit/context';
 
 import { pickerContext } from "../../controllers/context";
-import type { PeopleProps, TableColumns } from "../../types";
+import type { PeopleProps } from "../../types";
 import { tableViewStyles } from "./element.css";
 import { ClickOutsideController } from "../../controllers/ClickOutsideController";
 
-const fullColumns: TableColumns = ['avatar', 'name', 'azureId', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'];
-export const defaultColumns: TableColumns = ['avatar', 'name', 'azureId', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'remove'];
-const simpleColumns: TableColumns = ['avatar', 'name', 'email', 'mobilePhone', 'jobTitle', 'department', 'remove'];
+type ColumnSet = 'default' | 'full';
 
 type EventDetails = {
   viewMode?: PeopleProps['viewMode'];
-  tableColumns?: TableColumns;
+  tableColumns?: ColumnSet;
   subtitle?: PeopleProps['subtitle'];
 };
-export class TableViewModeChangeEvent extends CustomEvent<EventDetails> {
-  static readonly eventName = 'table-view-change';
+export class ViewModeChangeEvent extends CustomEvent<EventDetails> {
+  static readonly eventName = 'view-mode-change';
   constructor(detail: EventDetails) {
-    super(TableViewModeChangeEvent.eventName, {
+    super(ViewModeChangeEvent.eventName, {
       detail,
-      bubbles: true,
+      bubbles: true, 
       composed: true,
     });
   }
@@ -31,7 +29,7 @@ export class TableViewModeChangeEvent extends CustomEvent<EventDetails> {
  * Base element class for all public people components.
  * All public people components that share the same PeopleProps and controller logic should extend this class.
  */
-export class TableViewModeElement extends LitElement {
+export class ViewModeElement extends LitElement {
   static styles: CSSResult[] = [tableViewStyles];
   private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
   
@@ -39,6 +37,9 @@ export class TableViewModeElement extends LitElement {
 
   @state()
   viewSettingsOpen: boolean = false;
+
+  @state()
+  columnSet: ColumnSet = 'default';
   
   close() {
     this.viewSettingsOpen = false;
@@ -46,24 +47,25 @@ export class TableViewModeElement extends LitElement {
   
   updated(changes: PropertyValues) {
     if (changes.has('viewSettingsOpen') && this.viewSettingsOpen) {
-      console.log('View settings opened, adding click outside listener');
       this._clickOutside.addClickOutsideListener();
+    }
+
+    if (changes.has('columnSet')) {
+      this.dispatchViewModeChange({ tableColumns: this.columnSet });
     }
   }
   
   protected dispatchViewModeChange(detail: EventDetails): void {
-    this.dispatchEvent(new TableViewModeChangeEvent(detail));
+    this.dispatchEvent(new ViewModeChangeEvent(detail));
   }
 
   handleKeyup = (event: KeyboardEvent) => {
-    console.log('handleKeyup', event);
     if (event.key === 'Escape') {
       this.close();
     }
   }
 
   handleClickOutside = (event: MouseEvent) => {
-    console.log('handleClickOutside', event);
     // Use composedPath to check if the click is inside the component (works with Shadow DOM)
     const path = event.composedPath();
     if (path.includes(this)) {
@@ -114,16 +116,12 @@ export class TableViewModeElement extends LitElement {
       <p>Select Table view mode</p>
       <div class="view-settings-options">
         <label>
-          <input type="radio" name="tableviewmode" value="simple" ?checked=${(this._context.value?.tableColumns ?? []).length === simpleColumns.length} @change=${() => this.dispatchViewModeChange({ tableColumns: simpleColumns })}>
-          <p>Simple table</p>
-        </label>
-        <label>
-          <input type="radio" name="tableviewmode" value="full" ?checked=${(this._context.value?.tableColumns ?? []).length === fullColumns.length} @change=${() => this.dispatchViewModeChange({ tableColumns: fullColumns })}>
-          <p>Full table</p>
-        </label>
-        <label>
-          <input type="radio" name="tableviewmode" value="default" ?checked=${(this._context.value?.tableColumns ?? []).length === defaultColumns.length} @change=${() => this.dispatchViewModeChange({ tableColumns: defaultColumns })}>
+          <input type="radio" name="tableviewmode" value="default" ?checked=${this.columnSet === 'default'} @change=${() => this.columnSet = 'default'}>
           <p>Default table</p>
+        </label>
+        <label>
+          <input type="radio" name="tableviewmode" value="full" ?checked=${this.columnSet === 'full'} @change=${() => this.columnSet = 'full'}>
+          <p>Full table</p>
         </label>
       </div>
     `;
@@ -165,4 +163,4 @@ export class TableViewModeElement extends LitElement {
   }
 }
 
-export default TableViewModeElement;
+export default ViewModeElement;

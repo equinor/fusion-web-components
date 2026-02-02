@@ -2,11 +2,6 @@ import { type CSSResult, html, type TemplateResult } from "lit";
 import { repeat } from "lit/directives/repeat.js";
 import { property } from "lit/decorators.js";
 
-import { PersonTableCellElement } from "@equinor/fusion-wc-person";
-import { IconButtonElement } from '@equinor/fusion-wc-button';
-import { ChipElement } from "@equinor/fusion-wc-chip";
-import { IconElement } from '@equinor/fusion-wc-icon';
-
 import { peopleViewerStyle } from "./element.css";
 import { PeopleViewerElementProps } from "./types";
 
@@ -14,14 +9,8 @@ import { PeopleBaseElement } from "../../PeopleBaseElement";
 import { peopleBaseStyle } from "../../PeopleBaseElementStyles";
 
 // register the webcomponents
-import { PeopleAvatarElement } from '../avatar';
 import { PillElement } from '../pill';
-ChipElement;
 PillElement;
-PeopleAvatarElement;
-IconButtonElement;
-PersonTableCellElement;
-IconElement;
 
 export class PeopleViewerElement extends PeopleBaseElement implements PeopleViewerElementProps {
   static styles: CSSResult[] = [peopleBaseStyle, peopleViewerStyle];

@@ -4,7 +4,7 @@ import { classMap } from "lit/directives/class-map.js";
 import { ContextConsumer } from "@lit/context";
 
 import { IconElement } from '@equinor/fusion-wc-icon';
-import { PeopleAvatarElement } from '../avatar';
+import { PersonAvatarElement } from '@equinor/fusion-wc-person';
 
 import type { PersonInfo } from "@equinor/fusion-wc-person";
 
@@ -14,7 +14,7 @@ import { pickerContext } from "../../controllers/context";
 import { NavigateController } from "./NavigateController";
 
 // register webcomponents
-PeopleAvatarElement;
+PersonAvatarElement;
 IconElement;
 
 export class ListItemElement extends LitElement implements ListItemElementProps {
@@ -126,7 +126,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
         @click=${this.handleSelectClick}
         @keydown=${this.handleSelectKeyDown}>
         <div id="item-avatar">
-          <fwc-people-avatar .dataSource=${this.dataSource}></fwc-people-avatar>
+          <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
         </div>
         <div id="item-name">
           <p>${this.dataSource.name}</p>

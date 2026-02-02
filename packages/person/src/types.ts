@@ -86,7 +86,17 @@ export type PersonSuggestResultAccountType = 'Person' | 'SystemAccount' | 'Unkno
 
 export type ServicePrincipalType = 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown';
 
-export type PersonSuggestResultPersonAccountType = 'Employee' | 'Consultant' | 'Enterprise' | 'EnterpriseExternal' | 'External' | 'Local' | 'TemporaryEmployee' | 'Unknown';
+export type PersonSuggestResultPersonAccountType =
+  | 'Employee'
+  | 'Consultant'
+  | 'Enterprise'
+  | 'EnterpriseExternal'
+  | 'External'
+  | 'Local'
+  | 'TemporaryEmployee'
+  | 'System'
+  | 'Admin'
+  | 'Unknown';
 
 export type PersonSuggestResult = {
   azureUniqueId: string;
@@ -125,6 +135,6 @@ export type PersonResolveResult = {
   errorMessage: string | null;
   identifier: string;
   account: PersonSuggestResult | null;
-}
+};
 
 export type PersonResolveResults = PersonResolveResult[];

@@ -77,6 +77,7 @@ const style: CSSResult = css`
   }
 
   #content {
+    position: absolute;
     overflow: hidden;
     border-color: var(--fwc-avatar-background);
     border-style: solid;

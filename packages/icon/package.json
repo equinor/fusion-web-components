@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/eds-icons": "^0.22.0",
+    "@equinor/eds-icons": "^1.2.1",
     "@equinor/fusion-wc-core": "workspace:^",
     "lit": "3.3.2"
   },

@@ -36,7 +36,7 @@
   "dependencies": {
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
-    "@types/react": "^19.2.10",
+    "@types/react": "^19.2.13",
     "prettier": "^3.8.0"
   },
   "devDependencies": {

@@ -51,6 +51,9 @@ const style: CSSResult = css`
       ${unsafeCSS(theme.typography.paragraph.caption.getVariable('lineHeight'))} * var(--text-resize, 1)
     );
   }
+  .person-cell__sub-heading-expired {
+    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+  }
 `;
 
 export default style;

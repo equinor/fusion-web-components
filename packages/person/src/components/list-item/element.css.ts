@@ -55,6 +55,9 @@ const style: CSSResult = css`
       ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))} * var(--content-resize, 1)
     );
   }
+  .person-list__sub-heading-expired {
+    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+  }
   .person-list__toolbar {
     display: flex;
     align-items: center;

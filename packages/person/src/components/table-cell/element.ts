@@ -118,7 +118,7 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
    * Renders person cell title
    */
   protected renderHeading(details: TableCellData): TemplateResult {
-    const titleText = this.heading(details);
+    const titleText = this.heading(details) ?? details.name ?? details.applicationName ?? details.azureId;
     if (!titleText) {
       return html``;
     }
@@ -130,6 +130,11 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
    */
   private renderSubHeading(details: TableCellData): TemplateResult {
     const subTitleText = this.subHeading ? this.subHeading(details) : undefined;
+
+    if (details.isExpired) {
+      return html`<div class="person-cell__sub-heading person-cell__sub-heading-expired">Account expired</div>`;
+    }
+
     return html`${subTitleText ? html`<div class="person-cell__sub-heading">${unsafeHTML(subTitleText)}</div>` : null}`;
   }
 
@@ -137,6 +142,18 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     if (!this.tasks) {
       return this.renderPending(false);
     }
+
+    const avatarSize = () => {
+      switch (this.size) {
+        case 'small':
+          return 'x-small';
+        case 'large':
+          return 'medium';
+        default:
+          return 'small';
+      }
+    };
+
     return html`
       <div class="person-cell__item">
         ${this.tasks.resolve.render({
@@ -147,7 +164,7 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
         }
         return html`<div class="person-cell__about">
               ${this.showAvatar
-            ? html`<fwc-person-avatar .dataSource=${person} size="small" trigger="disabled" />`
+            ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
             : null}
               <div class="person-cell__content">
                 ${this.renderHeading(person)}

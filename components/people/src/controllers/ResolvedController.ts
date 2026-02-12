@@ -14,7 +14,7 @@ type ResolvedControllerHost = ReactiveControllerHost & EventTarget & PeopleProps
     selected: SelectedController;
   };
   errors: string[];
-  initalresolved: boolean;
+  initialresolved: boolean;
 };
 
 /**
@@ -39,7 +39,7 @@ export class ResolvedController implements ReactiveController {
     }
 
     if (
-      !this.#host.initalresolved &&
+      !this.#host.initialresolved &&
       this.#host.tasks.resolve.value &&
       this.#host.tasks.resolve.value.length > 0
     ) {
@@ -59,7 +59,7 @@ export class ResolvedController implements ReactiveController {
       }
 
       // this will prevent reapplying resolved people on subsequent updates
-      this.#host.initalresolved = true;
+      this.#host.initialresolved = true;
     }
   }
 

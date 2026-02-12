@@ -1,7 +1,7 @@
 import type { ReactiveController, ReactiveControllerHost } from "lit";
-import { PersonInfo } from "packages/person/lib/types";
+import type { PersonInfo } from "@equinor/fusion-wc-person";
 import { PersonAddedEvent, PersonRemovedEvent, SelectionChangedEvent } from "../events";
-import { PeopleProps } from "../types";
+import type { PeopleProps } from "../types";
 
 type SelectedControllerHost = ReactiveControllerHost & EventTarget & PeopleProps;
 /**
@@ -142,8 +142,8 @@ export class SelectedController implements ReactiveController {
       }
 
       const aValue = a[1][sortingColumn as keyof PersonInfo];
-      const bValue = b[1][sortingColumn as keyof PersonInfo];  
-      
+      const bValue = b[1][sortingColumn as keyof PersonInfo];
+
       if (aValue === bValue) {
         return 0;
       }

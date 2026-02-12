@@ -25,8 +25,8 @@
     "build": "pnpm -r --filter=!'@equinor/fusion-wc-storybook' build",
     "build:docs": "pnpm --filter='@equinor/fusion-wc-storybook' build",
     "build:clean": "pnpm clean:clean && pnpm build",
-    "lint": "eslint ./packages/*/src/**",
-    "lint:report": "eslint --output-file eslint-report.log.json --format json packages/*/src",
+    "lint": "eslint ./packages/*/src/** ./components/*/src/**",
+    "lint:report": "eslint --output-file eslint-report.log.json --format json ./packages/*/src ./components/*/src",
     "test:pack": "pnpm -r pack --dry-run",
     "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
     "changeset:publish": "pnpm changeset tag && pnpm publish -r"

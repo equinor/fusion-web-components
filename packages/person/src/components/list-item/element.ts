@@ -97,7 +97,11 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
    * Render person job department
    */
   private renderDepartment(details: ListItemData): TemplateResult {
-    return html`${details.department ? html`<div class="person-list__sub-heading">${details.department}</div>` : null}`;
+    if (details.isExpired) {
+      return html`<div class="person-list__sub-heading person-list__sub-heading-expired">Account expired</div>`;
+    }
+
+    return html`<div class="person-list__sub-heading">${details.department ?? details.applicationId ?? details.azureId ?? html`&nbsp;`}</div>`;
   }
 
   /**

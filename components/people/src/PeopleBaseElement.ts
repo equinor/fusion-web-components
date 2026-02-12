@@ -3,17 +3,17 @@ import { property, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import { ContextProvider } from "@lit/context";
 
-import { PersonResolveTask, PersonSuggestTask, type PersonInfo, PersonAvatarElement } from "@equinor/fusion-wc-person";
+import { PersonAvatarElement, PersonResolveTask, type PersonSuggestTask, type PersonInfo } from "@equinor/fusion-wc-person";
 import { IconButtonElement } from "@equinor/fusion-wc-button";
 import { IconElement } from "@equinor/fusion-wc-icon";
 import { ChipElement } from "@equinor/fusion-wc-chip";
 
 import { pickerContext } from "./controllers/context";
-import SelectedController from "./controllers/SelectedController";
-import ResolvedController from "./controllers/ResolvedController";
-import { PeopleProps, TableColumns } from "./types";
-import { NavigateController } from "./components/picker/NavigateController";
-import { ClickOutsideController } from "./controllers/ClickOutsideController";
+import { SelectedController } from "./controllers/SelectedController";
+import { ResolvedController } from "./controllers/ResolvedController";
+import type { PeopleProps, TableColumns } from "./types";
+import type { NavigateController } from "./components/picker/NavigateController";
+import type { ClickOutsideController } from "./controllers/ClickOutsideController";
 import { ucFirst } from "./utils";
 import { ViewModeElement, type ViewModeChangeEvent } from "./components/view-mode";
 
@@ -53,9 +53,9 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     default: TableColumns;
     full: TableColumns;
   } = {
-    full: ['avatar', 'name', 'azureId', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'],
-    default: ['avatar', 'name', 'email', 'jobTitle', 'department', 'remove'],
-  }
+      full: ['avatar', 'name', 'azureId', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'],
+      default: ['avatar', 'name', 'email', 'jobTitle', 'department', 'remove'],
+    }
 
   /**
    * The value of the element
@@ -99,10 +99,10 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
 
   /**
    * Important: To prevent multiple resolving on each update, this flag is used to track if the initial resolve has been done.
-   * vitial in ResolvedController
+   * vital in ResolvedController
   */
   @state()
-  initalresolved: boolean = false;
+  initialresolved: boolean = false;
 
   /**
    * The property from PersonInfo to display as subtitle in the pill
@@ -168,11 +168,11 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     // when updating the editable property, hide/show the remove column in table view
     if (changes.has('editable') && this.editable === false) {
       this.hideEditColumn();
-      this.hideColumnm('remove');
+      this.hideColumn('remove');
     }
 
     if (changes.has('tableColumns') && this.editable === false && this.tableColumns.includes('remove')) {
-      this.hideColumnm('remove');
+      this.hideColumn('remove');
     }
 
     // update provider context
@@ -184,7 +184,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       viewMode: this.viewMode,
     });
   }
-  
+
   hideEditColumn() {
     this.columnSet = {
       default: this.columnSet.default.filter(col => col !== 'remove'),
@@ -192,10 +192,10 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     };
   }
 
-  hideColumnm(column: string) {
+  hideColumn(column: string) {
     this.tableColumns = this.tableColumns?.filter(col => col !== column);
   }
-  
+
   renderTableColumns(): TemplateResult[] | undefined {
     const noSortColumns = ['avatar', 'remove'];
     return this.tableColumns?.map(column => html`
@@ -209,13 +209,13 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
             </div>
           `}
           <div class="table-column-delete">
-            <fwc-icon title="${`Hide ${column} column from view`}" icon="blocked" size="x-small" @click=${() => this.hideColumnm(column)}></fwc-icon>
+            <fwc-icon title="${`Hide ${column} column from view`}" icon="blocked" size="x-small" @click=${() => this.hideColumn(column)}></fwc-icon>
           </div>
         </div>
       </th>
     `);
   }
-  
+
   renderTableRows() {
     return repeat(
       [...this.controllers.selected.selectedPeople.values()],
@@ -224,25 +224,25 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
         return html`
           <tr>
             ${this.tableColumns?.map((column) => {
-              switch (column) {
-                case 'avatar':
-                  return html`<td class="avatar"><fwc-person-avatar .dataSource=${person} size="small" trigger="none"></fwc-person-avatar></td>`;
-                case 'name':
-                  return html`<td class="name">${person.name ?? person.applicationName ?? 'Unknown'}</td>`;
-                case 'type':
-                  return html`<td class="type">${person.applicationId ? 'Application' : person.accountType}</td>`;
-                case 'email':
-                  return html`<td class="email">${person.mail}</td>`;
-                case 'jobTitle':
-                  return html`<td class="jobTitle">${person.jobTitle === person.azureId ? '' : person.jobTitle}</td>`;
-                case 'manager':
-                  return html`<td class="manager">${person.managerAzureUniqueId && html`<fwc-person-table-cell size="small" .azureId=${person.managerAzureUniqueId} .subHeading=${(person: PersonInfo) => person.mail}></fwc-person-table-cell>`}</td>`;
-                case 'remove':
-                  return html`<td class="remove"><fwc-icon-button @click=${() => this.controllers.selected.removePerson(person.azureId)} icon="close" size="x-small" rounded title="Remove person"></fwc-icon-button></td>`;
-                default:
-                  return html`<td class="${column}">${person[column]}</td>`;
-              }
-            })}
+          switch (column) {
+            case 'avatar':
+              return html`<td class="avatar"><fwc-person-avatar .dataSource=${person} size="small" trigger="none"></fwc-person-avatar></td>`;
+            case 'name':
+              return html`<td class="name">${person.name ?? person.applicationName ?? 'Unknown'}</td>`;
+            case 'type':
+              return html`<td class="type">${person.applicationId ? 'Application' : person.accountType}</td>`;
+            case 'email':
+              return html`<td class="email">${person.mail}</td>`;
+            case 'jobTitle':
+              return html`<td class="jobTitle">${person.jobTitle === person.azureId ? '' : person.jobTitle}</td>`;
+            case 'manager':
+              return html`<td class="manager">${person.managerAzureUniqueId && html`<fwc-person-table-cell size="small" .azureId=${person.managerAzureUniqueId} .subHeading=${(person: PersonInfo) => person.mail}></fwc-person-table-cell>`}</td>`;
+            case 'remove':
+              return html`<td class="remove"><fwc-icon-button @click=${() => this.controllers.selected.removePerson(person.azureId)} icon="close" size="x-small" rounded title="Remove person"></fwc-icon-button></td>`;
+            default:
+              return html`<td class="${column}">${person[column]}</td>`;
+          }
+        })}
           </tr>
         `;
       });
@@ -252,7 +252,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     if (!this.showViewMode) {
       return html``;
     }
-    
+
     const handler = (e: ViewModeChangeEvent) => {
       const { detail } = e;
       if (detail.viewMode) {
@@ -265,7 +265,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
         this.subtitle = detail.subtitle;
       }
     }
-    
+
     return html`
       <fwc-people-view-mode @view-mode-change=${handler}></fwc-people-view-mode>
     `;

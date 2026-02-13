@@ -45,7 +45,7 @@ export class PillElement extends LitElement implements PillElementProps {
       return html`<p>${person.servicePrincipalType}</p>`;
     }
 
-    const subtitle = this._context.value?.subtitle ?? 'department';
+    const subtitle = this._context.value?.subtitle ?? 'jobTitle';
 
     if (!subtitle) {
       return;
@@ -78,7 +78,7 @@ export class PillElement extends LitElement implements PillElementProps {
           <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
         </div>
         <div id="people-pill-name">
-          <p>${this.dataSource.applicationName ?? this.dataSource.name}</p>
+          <p>${this.dataSource.name || this.dataSource.applicationName || 'No name available'}</p>
           ${this.personSubtitle(this.dataSource)}
         </div>
         <div id="people-pill-delete">

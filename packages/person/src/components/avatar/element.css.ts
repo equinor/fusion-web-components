@@ -43,7 +43,7 @@ const style: CSSResult = css`
     width: max-content;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 10000;
   }
 
   #avatar-badge {

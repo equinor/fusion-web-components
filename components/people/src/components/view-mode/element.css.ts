@@ -27,7 +27,7 @@ export const tableViewStyles: CSSResult = css`
     padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    z-index: 10000;
     display: none;
 
     &.open {

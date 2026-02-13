@@ -113,15 +113,27 @@ export class PersonCardElement
   };
 
   createApplicationEntraLink(applicationId: string): string {
-    return `https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/${applicationId}/isMSAApp~/false`;
+    return `https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/${applicationId}`;
+  }
+
+  createManagedIdentityEntraLink(azureId: string, applicationId?: string): string {
+    const urlParts = [
+      'https://portal.azure.com/#view/Microsoft_AAD_IAM/ManagedAppMenuBlade/~/Overview',
+      `objectId/${azureId}`,
+    ];
+    if (applicationId) {
+      urlParts.push(`appId/${applicationId}`);
+    }
+
+    return urlParts.join('/');
   }
 
   /**
    * Render the icon bar
    */
   protected renderIconBar(details: CardData): TemplateResult {
-    const generateLink = (props: { title: string, href: string, icon: string, hasValue: boolean }): TemplateResult => {
-      const { title, href, icon, hasValue } = props;
+    const generateLink = (props: { title: string, href: string, icon: string, hasValue: boolean, blank?: boolean }): TemplateResult => {
+      const { title, href, icon, hasValue, blank } = props;
       const iconElement = icon === 'delveIcon' ? html`<fwc-icon>${delveIcon}</fwc-icon>` : html`<fwc-icon icon="${icon}"></fwc-icon>`;
 
       if (!hasValue) {
@@ -143,6 +155,7 @@ export class PersonCardElement
         <a
           title="${title}"
           href="${href}"
+          target="${blank ? '_blank' : '_self'}"
         >
           ${iconElement}
         </a>
@@ -150,13 +163,19 @@ export class PersonCardElement
     };
 
     if (details.applicationId) {
+      const href =
+        details.servicePrincipalType === 'Application'
+          ? this.createApplicationEntraLink(details.applicationId)
+          : this.createManagedIdentityEntraLink(details.azureId, details.applicationId);
+
       return html`
         <slot name="icon-bar">
           ${generateLink({
         title: 'Open application in azure portal',
-        href: this.createApplicationEntraLink(details.applicationId),
+        href,
         icon: 'home',
         hasValue: Boolean(details.applicationId),
+        blank: true,
       })}
         </slot>
       `;
@@ -169,6 +188,7 @@ export class PersonCardElement
       href: `/apps/people-search/person?user=${details.azureId}`,
       icon: 'home',
       hasValue: Boolean(details.azureId),
+      blank: true,
     })}
 
 
@@ -209,13 +229,33 @@ export class PersonCardElement
     }
   }
 
+  renderCopyToClipboardIcon(value: string, title: string): TemplateResult {
+    return html`
+      <button
+        class="copyable-text__button"
+        @click=${{ handleEvent: () => this.copyToClipboard(value) }}
+        title=${title}
+      >
+        <fwc-icon icon="copy"></fwc-icon>
+      </button>
+    `;
+  }
+
   renderCopyableContact(value: string, href: string, icon: string, title: string): TemplateResult {
     return html`
       <div class="person-card-info__link copyable-text" title="${title}">
         <fwc-icon class="person-card-info__icon" icon="${icon === 'entraIcon' ? null : icon}">${entraIcon}</fwc-icon>
         ${href ?
-        html`<a class="person-card-info__text" href="${href}">${value}${this.renderCopyToClipboardIcon(value, `Copy ${title} to clipboard`)}</a>` :
-        html`<p class="person-card-info__text" title="${title}">${value}${this.renderCopyToClipboardIcon(value, `Copy ${title} to clipboard`)}</p>`
+        html`
+          <a class="person-card-info__text" href="${href}">${value}</a>
+          <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, `Copy to clipboard`)}</div>
+        ` :
+        html`
+          <p class="person-card-info__text">${value}</p>
+          <div class="copyable-text__actions">
+            ${this.renderCopyToClipboardIcon(value, `Copy to clipboard`)}
+          </div>
+        `
       }
       </div>
     `;
@@ -229,7 +269,7 @@ export class PersonCardElement
       return html``;
     }
 
-    return this.renderCopyableContact(mobilePhone, `callto:${mobilePhone}`, 'phone', 'Mobile');
+    return this.renderCopyableContact(mobilePhone, `callto:${mobilePhone}`, 'phone', 'Mobile Phone Number');
   }
 
   /**
@@ -243,7 +283,7 @@ export class PersonCardElement
       return this.renderCopyableContact('No user email', '', 'email', 'The user does not have an email address');
     }
 
-    return this.renderCopyableContact(details.mail, `mailto:${details.mail}`, 'email', 'Email');
+    return this.renderCopyableContact(details.mail, `mailto:${details.mail}`, 'email', 'Email address');
   }
 
   protected renderAzureId(details: CardData): TemplateResult {
@@ -255,15 +295,72 @@ export class PersonCardElement
       return 'Azure ID'
     };
 
-    return this.renderCopyableContact(details.azureId, `/apps/people-search/person?user=${details.azureId}`, 'entraIcon', title());
+    const href = () => {
+      if (details.applicationId) {
+        if (details.servicePrincipalType === 'Application') {
+          return this.createApplicationEntraLink(details.applicationId);
+        }
+
+        return this.createManagedIdentityEntraLink(details.azureId);
+      }
+      return `/apps/people-search/person?user=${details.azureId}`;
+    };
+
+    return html`
+      <div class="person-card-info__link copyable-text" title="${title()}">
+        <fwc-icon class="person-card-info__icon">${entraIcon}</fwc-icon>
+        <p class="person-card-info__text">${details.azureId}</p>
+        <div class="copyable-text__actions">
+          ${this.renderCopyToClipboardIcon(details.azureId, `Copy to clipboard`)}
+          <button
+            class="copyable-text__button"
+            @click=${(e: MouseEvent) => {
+        e.preventDefault();
+        window.open(href(), '_blank');
+      }}
+            title="Open in ${details.applicationId ? 'Azure Portal' : 'People Search'}"
+          >
+            <fwc-icon icon="external_link"></fwc-icon>
+          </button>
+        </div>
+      </div>
+    `;
   }
 
-  protected renderApplicationId(applicationId: string | undefined): TemplateResult {
-    if (!applicationId) {
+  protected renderApplicationId(details: CardData): TemplateResult {
+    if (!details.applicationId) {
       return html``;
     }
 
-    return this.renderCopyableContact(applicationId, this.createApplicationEntraLink(applicationId), 'apps', 'This is the unique application ID of this application in your directory. You can use this application ID if you ever need help from Microsoft Support, or if you want to perform operations against this specific instance of the application using Microsoft Graph or PowerShell APIs.');
+    const href = () => {
+      if (details.servicePrincipalType === 'Application') {
+        return this.createApplicationEntraLink(details.applicationId ?? '');
+      }
+
+      return this.createManagedIdentityEntraLink(details.azureId, details.applicationId);
+    };
+
+    const title = 'This is the unique application ID of this application in your directory. You can use this application ID if you ever need help from Microsoft Support, or if you want to perform operations against this specific instance of the application using Microsoft Graph or PowerShell APIs.';
+
+    return html`
+      <div class="person-card-info__link copyable-text" title="${title}">
+        <fwc-icon class="person-card-info__icon" icon="apps"></fwc-icon>
+        <p class="person-card-info__text">${details.applicationId}</p>
+        <div class="copyable-text__actions">
+          ${this.renderCopyToClipboardIcon(details.applicationId, `Copy to clipboard`)}
+          <button
+            class="copyable-text__button"
+            @click=${(e: MouseEvent) => {
+        e.preventDefault();
+        window.open(href(), '_blank');
+      }}
+            title="Open in Azure Portal"
+          >
+            <fwc-icon icon="external_link"></fwc-icon>
+          </button>
+        </div>
+      </div>
+    `;
   }
 
   protected renderUpn(upn: string | undefined): TemplateResult {
@@ -271,7 +368,7 @@ export class PersonCardElement
       return html``;
     }
 
-    return this.renderCopyableContact(upn, `mailto:${upn}`, 'person', 'UPN');
+    return this.renderCopyableContact(upn, '', 'person', 'User Principal Name - Username that looks like an email (but might not receive emails).');
   }
 
   protected renderEmployeeNumber(employeeNumber: string | undefined): TemplateResult {
@@ -288,7 +385,7 @@ export class PersonCardElement
    * @returns TemplateResult
    */
   protected renderContact(details: CardData): TemplateResult {
-    const { mobilePhone, upn, applicationId, employeeNumber } = details;
+    const { mobilePhone, upn, employeeNumber } = details;
 
     return html`
       <div class="info-item">
@@ -299,7 +396,7 @@ export class PersonCardElement
           ${details.applicationId || this.showExtraContactInfo
         ? html`
               ${this.renderAzureId(details)}
-              ${this.renderApplicationId(applicationId)}
+              ${this.renderApplicationId(details)}
               ${this.renderUpn(upn)}
               ${this.renderEmployeeNumber(employeeNumber)}
             `
@@ -318,18 +415,6 @@ export class PersonCardElement
     `;
   }
 
-  renderCopyToClipboardIcon(value: string, title: string): TemplateResult {
-    return html`
-      <button
-        class="copyable-text__button"
-        @click=${{ handleEvent: () => this.copyToClipboard(value) }}
-        title=${title}
-      >
-        <fwc-icon icon="copy"></fwc-icon>
-      </button>
-    `;
-  }
-
   protected renderPersonName(details: CardData): TemplateResult {
     const name = details.applicationName ?? details.name;
 
@@ -340,7 +425,9 @@ export class PersonCardElement
     return html`
       <header title="Person name" class="person-card__name copyable-text">
         <p class="copyable-text__text">${name}</p>
-        ${this.renderCopyToClipboardIcon(name, "Copy name")}
+        <div class="copyable-text__actions">
+          ${this.renderCopyToClipboardIcon(name, "Copy name")}
+        </div>
       </header>
     `;
   }

@@ -182,11 +182,6 @@ const style: CSSResult = css`
     white-space: nowrap;
     margin: 0;
   }
-  .person-card-info__copy {
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
-    font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * 0.6 * var(--content-resize, 1));
-  }
   .person-card-info__show_more {
     font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * var(--content-resize, 1));
   }
@@ -215,12 +210,19 @@ const style: CSSResult = css`
       width: 100%;
     }
     
-    .copyable-text__button {
+    .copyable-text__actions {
       display: none;
       position: absolute;
       right: 0;
       top: -0.1em;
       z-index: 1;
+    }
+
+    &:hover .copyable-text__actions {
+      display: flex;
+    }
+
+    .copyable-text__button {
       border: none;
       outline: none;
       background: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
@@ -237,10 +239,6 @@ const style: CSSResult = css`
       &:hover, &:focus {
         background: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
       }
-    }
-    
-    &:hover .copyable-text__button {
-      display: block;
     }
   }
 `;

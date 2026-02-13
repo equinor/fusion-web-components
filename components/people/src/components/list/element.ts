@@ -1,18 +1,23 @@
 import { type CSSResult, html, LitElement } from "lit";
 import { property, queryAll } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import { ContextConsumer } from "@lit/context";
 
 import type { PersonInfo } from "@equinor/fusion-wc-person";
+import { FormfieldElement } from "@equinor/fusion-wc-formfield";
+import { CheckboxElement } from "@equinor/fusion-wc-checkbox";
 
 import type { ListElementProps } from "./types";
 import { listStyle } from "./element.css";
 import { NavigateController } from "./NavigateController";
 
-/* Other personComponents */
+import { pickerContext } from "../../controllers/context";
 import { default as ListItemElement } from '../list-item';
 
 // register the webcomponents
 ListItemElement;
+FormfieldElement;
+CheckboxElement;
 
 export class ListElement extends LitElement implements ListElementProps {
   static styles: CSSResult[] = [listStyle];
@@ -21,6 +26,8 @@ export class ListElement extends LitElement implements ListElementProps {
     ...LitElement.shadowRootOptions,
     delegatesFocus: true,
   };
+
+  private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
 
   controllers = {
     navigate: new NavigateController(this),
@@ -69,9 +76,22 @@ export class ListElement extends LitElement implements ListElementProps {
       return html``;
     }
 
+    console.log('Rendering total count with systemAccounts:', this._context.value?.systemAccounts);
+
     return html`
-      <div id="total-count">
-        Displaying ${this.totalCount} results
+      <div id="search-meta">
+        <p>Displaying ${this.totalCount} results</p>
+        <fwc-formfield title="Include system accounts in search results" label="System accounts">
+          <fwc-checkbox style="--fwc-checkbox-size: 14px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(e: Event) => {
+        this.dispatchEvent(new CustomEvent('toggle-system-accounts', {
+          detail: {
+            systemAccounts: (e.target as CheckboxElement).checked,
+          },
+          bubbles: true,
+          composed: true,
+        }));
+      }}></fwc-checkbox>
+        </fwc-formfield>
       </div>
     `;
   }

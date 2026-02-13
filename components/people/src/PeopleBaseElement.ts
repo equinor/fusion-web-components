@@ -156,6 +156,12 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   @property({ type: Boolean })
   editable: boolean = true;
 
+  /**
+   * Whether to include system accounts in the search results
+   */
+  @property({ type: Boolean })
+  systemAccounts: boolean = true;
+
   @state()
   viewSettingsOpen: boolean = false;
 
@@ -182,6 +188,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       editable: this.editable,
       selected: this.controllers.selected,
       viewMode: this.viewMode,
+      systemAccounts: this.systemAccounts,
     });
   }
 

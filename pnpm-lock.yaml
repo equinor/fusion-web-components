@@ -45,12 +45,18 @@ importers:
       '@equinor/fusion-wc-button':
         specifier: workspace:^
         version: link:../../packages/button
+      '@equinor/fusion-wc-checkbox':
+        specifier: workspace:^
+        version: link:../../packages/checkbox
       '@equinor/fusion-wc-chip':
         specifier: workspace:^
         version: link:../../packages/chip
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../../packages/core
+      '@equinor/fusion-wc-formfield':
+        specifier: workspace:^
+        version: link:../../packages/formfield
       '@equinor/fusion-wc-icon':
         specifier: workspace:^
         version: link:../../packages/icon

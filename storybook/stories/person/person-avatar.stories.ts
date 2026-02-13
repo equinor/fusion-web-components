@@ -3,12 +3,11 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import PersonAvatar, { type PersonAvatarElementProps } from '@equinor/fusion-wc-person/avatar';
+import PersonAvatar, { type PersonAvatarElementProps, type AvatarSize } from '@equinor/fusion-wc-person/avatar';
 import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
-import type { AvatarElementProps } from '@equinor/fusion-wc-avatar';
 import { PersonAccountType } from '@equinor/fusion-wc-person';
 
 PersonAvatar;
@@ -44,17 +43,10 @@ export const Default: Story = {
   render,
 };
 
-export const ImgAndLetter: Story = {
-  ...Default,
-  render: (props) => {
-    return html`${render(props)}${render({ showLetter: true, azureId: props.azureId })}`;
-  },
-};
-
 export const Sizes: Story = {
   ...Default,
   render: (props) =>
-    html`${(['small', 'medium', 'large'] as AvatarElementProps['size'][])
+    html`${(['small', 'medium', 'large'] as AvatarSize[])
       .map((size) => ({ ...props, size }))
       .map(render)}`,
 };
@@ -62,20 +54,6 @@ export const Sizes: Story = {
 export const Disabled: Story = {
   ...Default,
   render: (props) => render({ ...props, disabled: true }),
-};
-
-export const Employees: Story = {
-  name: 'External/Internal Employee',
-  ...Default,
-  render: (props) => {
-    return html`${render({
-      ...props,
-      dataSource: { accountType: PersonAccountType.Employee, accountClassification: 'External' },
-    })}${render({
-      ...props,
-      dataSource: { accountType: PersonAccountType.Employee, accountClassification: 'Internal' },
-    })}`;
-  },
 };
 
 export const CornerPositions: Story = {

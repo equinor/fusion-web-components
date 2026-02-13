@@ -38,8 +38,10 @@
 	"license": "ISC",
 	"dependencies": {
 		"@equinor/fusion-wc-button": "workspace:^",
+		"@equinor/fusion-wc-checkbox": "workspace:^",
 		"@equinor/fusion-wc-chip": "workspace:^",
 		"@equinor/fusion-wc-core": "workspace:^",
+		"@equinor/fusion-wc-formfield": "workspace:^",
 		"@equinor/fusion-wc-icon": "workspace:^",
 		"@equinor/fusion-wc-person": "workspace:^",
 		"@equinor/fusion-wc-progress-indicator": "workspace:^",

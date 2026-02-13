@@ -126,8 +126,10 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
         return html`
           <fwc-people-picker-list
             .dataSources=${people.value.map((person) => mapToPersonInfo(person))}
-            totalCount=${`${people.count}/${people.totalCount}`}>
-          </fwc-people-picker-list>
+            totalCount=${`${people.count}/${people.totalCount}`}
+            @toggle-system-accounts=${(e: CustomEvent) => {
+            this.systemAccounts = e.detail.systemAccounts;
+          }}></fwc-people-picker-list>
         `;
       },
       pending: () => html`<p><fwc-dots-progress size="small" color="primary" /></p>`,
@@ -136,7 +138,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
   }
 
   renderContentMode(): TemplateResult {
-    const renderPicker = ({pills = true}: {pills?: boolean} = {}) => html`
+    const renderPicker = ({ pills = true }: { pills?: boolean } = {}) => html`
       <div
         id="person-picker"
         tabindex="0"
@@ -158,9 +160,9 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
         </div>
       </div>
     `;
-    
+
     if (this.viewMode === 'list') {
-      return renderPicker() ;
+      return renderPicker();
     }
 
     return html`
@@ -174,7 +176,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
           <tbody>
             <tr>
               <td colspan=${this.tableColumns.length}>
-                ${renderPicker({pills: false})}
+                ${renderPicker({ pills: false })}
               </td>
             </tr>
             ${this.renderTableRows()}

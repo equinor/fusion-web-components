@@ -25,7 +25,7 @@ export const listStyle: CSSResult = css`
     padding: 0;
     margin: 0;
   }
-  #total-count {
+  #search-meta {
     position: absolute;
     bottom: 0.4rem;
     right: 1.1rem;
@@ -36,5 +36,8 @@ export const listStyle: CSSResult = css`
     line-height: 1;
     border-radius: 12px;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
   }
 `;

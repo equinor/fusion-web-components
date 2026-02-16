@@ -4,58 +4,65 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 export const searchStyle: CSSResult = css`
   :host {
     display: block;
+    width: 225px;
+    --search-input-height: 30px;
   }
   #input {
-    background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    position: relative;
-    height: 36px;
-    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border: none;
-    box-sizing: border-box;
-    box-shadow: inset 0px -1px 0px 0px ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     outline: none;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
+    height: var(--search-input-height);
+    background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    border: 1px solid transparent;
+    border-radius: calc(var(--fwc-avatar-size, 3.5rem) * 0.5);
 
-    &:focus-within {
-      box-shadow: none;
-      outline: 2px solid ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    &:hover, &:focus-within {
+      border-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
     }
   }
 
   input {
-    width: 100%;
+    flex: 1;
     font-family: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontFamily'))};
     font-size: 1rem;
     line-height: 1.5;
     letter-spacing: 0.025em;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 6px 8px;
+    padding: 0 5px 0 12px;
     background: transparent;
     border: none;
     outline: none;
   }
   
-  button {
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    margin-right: 5px;
-    color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
+  #clear-button-container {
+    position: relative;
+    height: var(--search-input-height);
+    width: var(--search-input-height);
+  }
     
+  #clear-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: none;
+    outline: none;
+    color: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
+    border: none;
+    border-radius: 100%;
+    line-height: 0;
+    font-size: 0.75rem;
+
     &:hover, &:focus {
-      background: ${unsafeCSS(theme.colors.interactive.focus.getVariable('color'))};
-      color: ${unsafeCSS(theme.colors.text.static_icons__primary_white.getVariable('color'))};
+      background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.value.hex)};
+    }
+  
+    &:active {
+      background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
     }
   }
 `;

@@ -76,6 +76,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   renderSubtitle(person: Partial<PersonInfo>): TemplateResult {
     const subtitle = this._context.value?.subtitle ?? '';
 
+    // IsExpired is rendered in the secondary subtitle, but if expired we want to skip rendering the main subtitle as well
     if (!subtitle || person.isExpired) {
       return html``;
     }
@@ -107,14 +108,6 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
     return html``;
   }
 
-  renderServicePrincipalType(person: Partial<PersonInfo>): TemplateResult {
-    if (!person.servicePrincipalType || person.isExpired) {
-      return html``;
-    }
-
-    return html`<p>${person.servicePrincipalType}</p>`;
-  }
-
   render(): TemplateResult {
     const cssClasses = {
       selected: this._context.value?.selected?.selectedPeople.has(this.dataSource.azureId) ?? false,
@@ -132,7 +125,6 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
           <p>${this.dataSource.name}</p>
           ${this.renderSubtitle(this.dataSource)}
           ${this.renderSecondarySubtitle(this.dataSource)}
-          ${this.renderServicePrincipalType(this.dataSource)}
         </div>
       </div>
     `;

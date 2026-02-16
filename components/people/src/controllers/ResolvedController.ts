@@ -69,7 +69,7 @@ export class ResolvedController implements ReactiveController {
     if (person.statusCode === 404) {
       name = `Person do not exist in Entra ID`;
     } else if (person.statusCode === 400) {
-      name = 'Not a valid guid';
+      name = 'Not a valid guid/upn';
     }
 
     return {

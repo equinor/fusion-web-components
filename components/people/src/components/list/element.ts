@@ -76,12 +76,11 @@ export class ListElement extends LitElement implements ListElementProps {
       return html``;
     }
 
-    console.log('Rendering total count with systemAccounts:', this._context.value?.systemAccounts);
-
     return html`
       <div id="search-meta">
         <p>Displaying ${this.totalCount} results</p>
-        <fwc-formfield title="Include system accounts in search results" label="System accounts">
+        |
+        <label title="Include system accounts in search results">
           <fwc-checkbox style="--fwc-checkbox-size: 14px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(e: Event) => {
         this.dispatchEvent(new CustomEvent('toggle-system-accounts', {
           detail: {
@@ -91,7 +90,8 @@ export class ListElement extends LitElement implements ListElementProps {
           composed: true,
         }));
       }}></fwc-checkbox>
-        </fwc-formfield>
+        System accounts
+        </label>
       </div>
     `;
   }

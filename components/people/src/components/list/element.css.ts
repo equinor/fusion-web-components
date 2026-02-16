@@ -39,5 +39,11 @@ export const listStyle: CSSResult = css`
     display: flex;
     align-items: center;
     gap: 0.5em;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.25em;
+    }
   }
 `;

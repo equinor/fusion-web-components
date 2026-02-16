@@ -31,6 +31,7 @@ export type PersonInfo = {
   upn?: string;
   mobilePhone?: string;
   accountType?: PersonAccountType[keyof PersonAccountType];
+  accountLabel?: string;
   officeLocation?: string;
   managerAzureUniqueId?: string;
   accountClassification?: AccountClassification;
@@ -102,6 +103,7 @@ export type PersonSuggestResult = {
   azureUniqueId: string;
   name?: string;
   accountType: PersonSuggestResultAccountType;
+  accountLabel: string;
   person?: {
     accountType?: PersonSuggestResultPersonAccountType;
     jobTitle?: string;

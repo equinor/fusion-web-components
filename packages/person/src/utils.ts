@@ -1,23 +1,24 @@
 import type { PersonInfo, PersonResolveResult, PersonSuggestResult } from './types';
 
-export const mapToPersonInfo = (person: PersonSuggestResult): PersonInfo => {
+export const mapToPersonInfo = (account: PersonSuggestResult): PersonInfo => {
   return {
-    azureId: person.azureUniqueId,
-    name: person.name,
-    jobTitle: person.person?.jobTitle,
-    department: person.person?.department,
-    managerAzureUniqueId: person.person?.managerAzureUniqueId,
-    upn: person.person?.upn,
-    mail: person.person?.mail,
-    mobilePhone: person.person?.mobilePhone,
-    accountType: person.person?.accountType ?? person.application?.servicePrincipalType,
-    isExpired: person.isExpired,
-    avatarUrl: person.avatarUrl,
-    avatarColor: person.avatarColor,
-    applicationId: person.application?.applicationId,
-    applicationName: person.application?.applicationName,
-    servicePrincipalType: person.application?.servicePrincipalType,
-    employeeNumber: person.person?.employeeNumber,
+    azureId: account.azureUniqueId,
+    name: account.name,
+    jobTitle: account.person?.jobTitle ?? account.accountLabel,
+    department: account.person?.department,
+    managerAzureUniqueId: account.person?.managerAzureUniqueId,
+    upn: account.person?.upn,
+    mail: account.person?.mail,
+    mobilePhone: account.person?.mobilePhone,
+    accountType: account.person?.accountType ?? account.application?.servicePrincipalType ?? account.accountType,
+    accountLabel: account.accountLabel,
+    isExpired: account.isExpired,
+    avatarUrl: account.avatarUrl,
+    avatarColor: account.avatarColor,
+    applicationId: account.application?.applicationId,
+    applicationName: account.application?.applicationName,
+    servicePrincipalType: account.application?.servicePrincipalType,
+    employeeNumber: account.person?.employeeNumber,
   };
 };
 

@@ -13,4 +13,5 @@ export interface PeopleProps {
   viewMode?: 'list' | 'table';
   showViewMode?: boolean;
   editable?: boolean;
+  systemAccounts?: boolean;
 }

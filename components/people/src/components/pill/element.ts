@@ -40,12 +40,7 @@ export class PillElement extends LitElement implements PillElementProps {
       return html`<p id="subtitle-expired">Account expired</p>`;
     }
 
-    // if the person type is application, display the service principal type
-    if (person.servicePrincipalType) {
-      return html`<p>${person.servicePrincipalType}</p>`;
-    }
-
-    const subtitle = this._context.value?.subtitle ?? 'jobTitle';
+    const subtitle = this._context.value?.subtitle;
 
     if (!subtitle) {
       return;

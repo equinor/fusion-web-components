@@ -37,6 +37,7 @@ const render = (props: PeoplePickerElementProps) => html`
     subtitle=${ifDefined(props.subtitle)}
     secondarysubtitle=${ifDefined(props.secondarySubtitle)}
     placeholder=${ifDefined(props.placeholder)}
+    systemaccounts=${ifDefined(props.systemAccounts)}
     @selection-changed=${handleSelectionChanged}
     @person-added=${handlePersonAdded}
     @person-removed=${handlePersonRemoved}>

@@ -1,5 +1,5 @@
 packages:
+  - 'components'
   - 'packages/**'
-  - 'components/**'
   - 'utils/*'
   - 'storybook'

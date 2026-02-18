@@ -15,9 +15,7 @@ packages/*/build
 packages/*/dist
 packages/*/lib
 
-components/*/package-lock.json
-components/*/build
-components/*/dist
-components/*/lib
+components/dist
+components/lib
 
 docs/

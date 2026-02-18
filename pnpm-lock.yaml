@@ -40,51 +40,18 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  components/people:
+  components:
     dependencies:
-      '@equinor/fusion-wc-button':
-        specifier: workspace:^
-        version: link:../../packages/button
-      '@equinor/fusion-wc-checkbox':
-        specifier: workspace:^
-        version: link:../../packages/checkbox
-      '@equinor/fusion-wc-chip':
-        specifier: workspace:^
-        version: link:../../packages/chip
-      '@equinor/fusion-wc-core':
-        specifier: workspace:^
-        version: link:../../packages/core
-      '@equinor/fusion-wc-formfield':
-        specifier: workspace:^
-        version: link:../../packages/formfield
-      '@equinor/fusion-wc-icon':
-        specifier: workspace:^
-        version: link:../../packages/icon
-      '@equinor/fusion-wc-person':
-        specifier: workspace:^
-        version: link:../../packages/person
-      '@equinor/fusion-wc-progress-indicator':
-        specifier: workspace:^
-        version: link:../../packages/progress-indicator
-      '@equinor/fusion-wc-skeleton':
-        specifier: workspace:^
-        version: link:../../packages/skeleton
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.10
-        version: 0.1.10
-      '@lit/context':
-        specifier: ^1.1.6
-        version: 1.1.6
-      lit:
-        specifier: ^3.0.2
-        version: 3.3.2
+      '@equinor/fusion-wc-people':
+        specifier: workspace:*
+        version: link:../packages/people
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.10.10
         version: 0.10.10
       '@equinor/fusion-wc-builder':
-        specifier: workspace:^
-        version: link:../../utils/builder
+        specifier: workspace:*
+        version: link:../utils/builder
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -515,6 +482,58 @@ importers:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.11.0
         version: 0.11.0
+      '@equinor/fusion-wc-builder':
+        specifier: workspace:^
+        version: link:../../utils/builder
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/people:
+    dependencies:
+      '@equinor/fusion-wc-button':
+        specifier: workspace:^
+        version: link:../button
+      '@equinor/fusion-wc-checkbox':
+        specifier: workspace:^
+        version: link:../checkbox
+      '@equinor/fusion-wc-chip':
+        specifier: workspace:^
+        version: link:../chip
+      '@equinor/fusion-wc-core':
+        specifier: workspace:^
+        version: link:../core
+      '@equinor/fusion-wc-formfield':
+        specifier: workspace:^
+        version: link:../formfield
+      '@equinor/fusion-wc-icon':
+        specifier: workspace:^
+        version: link:../icon
+      '@equinor/fusion-wc-person':
+        specifier: workspace:^
+        version: link:../person
+      '@equinor/fusion-wc-progress-indicator':
+        specifier: workspace:^
+        version: link:../progress-indicator
+      '@equinor/fusion-wc-skeleton':
+        specifier: workspace:^
+        version: link:../skeleton
+      '@equinor/fusion-web-theme':
+        specifier: ^0.1.10
+        version: 0.1.10
+      '@lit/context':
+        specifier: ^1.1.6
+        version: 1.1.6
+      lit:
+        specifier: ^3.0.2
+        version: 3.3.2
+    devDependencies:
+      '@custom-elements-manifest/analyzer':
+        specifier: ^0.10.10
+        version: 0.10.10
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder
@@ -968,82 +987,82 @@ importers:
         version: 7.3.1(@types/node@25.2.0)(terser@5.46.0)
     devDependencies:
       '@equinor/fusion-wc-avatar':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/avatar
       '@equinor/fusion-wc-badge':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/badge
       '@equinor/fusion-wc-button':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/button
       '@equinor/fusion-wc-checkbox':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/checkbox
       '@equinor/fusion-wc-chip':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/chip
       '@equinor/fusion-wc-date':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/date
       '@equinor/fusion-wc-divider':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/divider
       '@equinor/fusion-wc-formfield':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/formfield
       '@equinor/fusion-wc-icon':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/icon
       '@equinor/fusion-wc-list':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/list
       '@equinor/fusion-wc-markdown':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/markdown
       '@equinor/fusion-wc-menu':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/menu
       '@equinor/fusion-wc-people':
-        specifier: workspace:^
-        version: link:../components/people
+        specifier: workspace:*
+        version: link:../packages/people
       '@equinor/fusion-wc-person':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/person
       '@equinor/fusion-wc-picture':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/picture
       '@equinor/fusion-wc-popover':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/popover
       '@equinor/fusion-wc-progress-indicator':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/progress-indicator
       '@equinor/fusion-wc-radio':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/radio
       '@equinor/fusion-wc-ripple':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/ripple
       '@equinor/fusion-wc-searchable-dropdown':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/searchable-dropdown
       '@equinor/fusion-wc-select':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/select
       '@equinor/fusion-wc-skeleton':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/skeleton
       '@equinor/fusion-wc-switch':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/switch
       '@equinor/fusion-wc-textarea':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/textarea
       '@equinor/fusion-wc-textinput':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/textinput
       '@equinor/fusion-wc-theme':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../packages/theme
       '@storybook/react-webpack5':
         specifier: ^10.2.3
@@ -1517,9 +1536,6 @@ packages:
 
   '@lit/context@1.1.6':
     resolution: {integrity: sha512-M26qDE6UkQbZA2mQ3RjJ3Gzd8TxP+/0obMgE5HfkfLhEEyYE3Bui4A5XHiGPjy0MUGAyxB3QgVuw2ciS0kHn6A==}
-
-  '@lit/reactive-element@2.1.1':
-    resolution: {integrity: sha512-N+dm5PAYdQ8e6UlywyyrgI2t++wFGXfHx+dSJ1oBrg6FAxUj40jId++EaRm80MKX5JnlH1sBsyZ5h0bcZKemCg==}
 
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
@@ -4951,11 +4967,7 @@ snapshots:
 
   '@lit/context@1.1.6':
     dependencies:
-      '@lit/reactive-element': 2.1.1
-
-  '@lit/reactive-element@2.1.1':
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.5.0
+      '@lit/reactive-element': 2.1.2
 
   '@lit/reactive-element@2.1.2':
     dependencies:

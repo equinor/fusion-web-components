@@ -1,0 +1,39 @@
+{
+  "name": "@equinor/fusion-web-components",
+  "version": "0.0.0",
+  "description": "Package with collection of Fusion web components",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/types/index.d.ts"
+    },
+    "./people": {
+      "import": "./lib/people.js",
+      "types": "./lib/types/people.d.ts"
+    },
+    "./package.json": "./package.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
+	"customElements": "lib/custom-elements.json",
+  "scripts": {
+    "build": "tsc -b",
+    "postbuild": "pnpm typedoc",
+    "typedoc": "cem analyze --litelement --globs \"*/src/**/element.ts\" --outdir lib",
+    "prepack": "pnpm build && fwc-build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@equinor/fusion-wc-people": "workspace:*"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.10",
+	  "@equinor/fusion-wc-builder": "workspace:*",
+	  "tslib": "^2.8.1",
+	  "typescript": "^5.9.3"
+  }
+}

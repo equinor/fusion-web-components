@@ -49,9 +49,6 @@
 			"path": "./packages/menu"
 		},
 		{
-			"path": "./components/people"
-		},
-		{
 			"path": "./packages/person"
 		},
 		{

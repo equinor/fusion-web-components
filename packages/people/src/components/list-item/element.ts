@@ -117,12 +117,13 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
         tabindex="0"
         class=${classMap(cssClasses)}
         @click=${this.handleSelectClick}
-        @keydown=${this.handleSelectKeyDown}>
+        @keydown=${this.handleSelectKeyDown}
+      >
         <div id="item-avatar">
           <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
         </div>
         <div id="item-name">
-          <p>${this.dataSource.name}</p>
+          <p>${this.dataSource.name || this.dataSource.applicationName || 'No name available'}</p>
           ${this.renderSubtitle(this.dataSource)}
           ${this.renderSecondarySubtitle(this.dataSource)}
         </div>

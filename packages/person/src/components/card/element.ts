@@ -416,7 +416,7 @@ export class PersonCardElement
   }
 
   protected renderPersonName(details: CardData): TemplateResult {
-    const name = details.applicationName ?? details.name;
+    const name = details.name || details.applicationName || 'No name available';
 
     if (!name) {
       return html``;

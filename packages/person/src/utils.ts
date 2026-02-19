@@ -30,7 +30,7 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
   let name = person.errorMessage ?? 'Unknown error';
 
   if (person.statusCode === 404) {
-    name = `Person do not exist in Entra ID`;
+    name = `Person does not exist in Entra ID`;
   } else if (person.statusCode === 400) {
     name = 'Not a valid guid';
   }

@@ -6,3 +6,4 @@ export { default as PersonProviderElement, type PersonResolver } from './compone
 export { default as PersonSelectElement, type PersonSelectElementProps, PersonSelectEvent } from './components/select';
 export * from './types';
 export * from './tasks';
+export * from './utils';

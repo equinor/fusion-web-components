@@ -237,7 +237,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
             case 'name':
               return html`<td class="name">${person.name ?? person.applicationName ?? 'Unknown'}</td>`;
             case 'type':
-              return html`<td class="type">${person.applicationId ? 'Application' : person.accountType}</td>`;
+              return html`<td class="type">${person.accountType}</td>`;
             case 'email':
               return html`<td class="email">${person.mail}</td>`;
             case 'jobTitle':

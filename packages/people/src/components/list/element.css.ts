@@ -28,22 +28,27 @@ export const listStyle: CSSResult = css`
   #search-meta {
     position: absolute;
     bottom: 0.4rem;
-    right: 1.1rem;
+    right: 1.4rem;
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
     color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     font-size: 0.75em;
-    padding: 0.5em 1.5em;
+    padding: 0.2em 1em;
     line-height: 1;
-    border-radius: 12px;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     gap: 0.5em;
+
+    p {
+      margin: 0;
+    }
 
     label {
       display: flex;
       align-items: center;
       gap: 0.25em;
+      font-size: 0.95em;
     }
   }
 `;

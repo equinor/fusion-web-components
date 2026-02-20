@@ -1,6 +1,7 @@
 import { type CSSResult, html, LitElement, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { when } from 'lit/directives/when.js';
 import { ContextConsumer } from '@lit/context';
 
 import { IconElement } from '@equinor/fusion-wc-icon';
@@ -47,6 +48,11 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
   dataSource: PersonInfo = {} as PersonInfo;
 
   selectAction(): void {
+    // If the item is a "no results found" item, we don't want to do anything on click or enter key
+    if (this.dataSource.azureId === 'no-results-found') {
+      return;
+    }
+
     if (this._context.value?.selected?.selectedPeople.has(this.dataSource.azureId)) {
       this._context.value?.selected?.removePerson(this.dataSource.azureId);
     } else {
@@ -120,7 +126,7 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
         @keydown=${this.handleSelectKeyDown}
       >
         <div id="item-avatar">
-          <fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>
+          ${when(this.dataSource.azureId !== 'no-results-found', () => html`<fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>`)}
         </div>
         <div id="item-name">
           <p>${this.dataSource.name || this.dataSource.applicationName || 'No name available'}</p>

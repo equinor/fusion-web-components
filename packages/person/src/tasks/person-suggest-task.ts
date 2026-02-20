@@ -25,10 +25,27 @@ export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
       host,
       async ([search, systemAccounts], options): Promise<PersonSuggestResults> => {
         const { signal } = options ?? {};
-        if (!search || search?.length < 3) {
+        if (!search) {
           return emptyPersonSuggestResults;
-        } else if (search && search?.length >= 3) {
+        } else if (search && search?.length > 0) {
           const result = await resolveTaskEvent(host, new RequestResolvePersonSuggestEvent({ search, systemAccounts, signal }));
+          if (result.count === 0) {
+            const emptyResult: PersonSuggestResults = {
+              ...emptyPersonSuggestResults,
+              value: [
+                {
+                  azureUniqueId: 'no-results-found',
+                  name: 'No search results found',
+                  accountLabel: 'Try a different search term or activate system accounts',
+                  accountType: 'Unknown',
+                  avatarColor: '',
+                  avatarUrl: '',
+                  isExpired: false,
+                }
+              ],
+            };
+            return emptyResult;
+          }
           return result;
         }
         return emptyPersonSuggestResults;

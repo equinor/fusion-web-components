@@ -88,6 +88,7 @@ export type PersonSuggestResultAccountType = 'Person' | 'SystemAccount' | 'Unkno
 export type ServicePrincipalType = 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown';
 
 export type PersonSuggestResultPersonAccountType =
+  | 'Unknown'
   | 'Employee'
   | 'Consultant'
   | 'Enterprise'
@@ -97,7 +98,8 @@ export type PersonSuggestResultPersonAccountType =
   | 'TemporaryEmployee'
   | 'System'
   | 'Admin'
-  | 'Unknown';
+  | 'MeetingRoom';
+
 
 export type PersonSuggestResult = {
   azureUniqueId: string;

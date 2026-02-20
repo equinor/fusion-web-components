@@ -116,14 +116,12 @@ export class PersonCardElement
     return `https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/${applicationId}`;
   }
 
-  createManagedIdentityEntraLink(azureId: string, applicationId?: string): string {
+  createManagedIdentityEntraLink(azureId: string, applicationId: string): string {
     const urlParts = [
       'https://portal.azure.com/#view/Microsoft_AAD_IAM/ManagedAppMenuBlade/~/Overview',
       `objectId/${azureId}`,
+      `appId/${applicationId}`
     ];
-    if (applicationId) {
-      urlParts.push(`appId/${applicationId}`);
-    }
 
     return urlParts.join('/');
   }
@@ -301,7 +299,7 @@ export class PersonCardElement
           return this.createApplicationEntraLink(details.applicationId);
         }
 
-        return this.createManagedIdentityEntraLink(details.azureId);
+        return this.createManagedIdentityEntraLink(details.azureId, details.applicationId);
       }
       return `/apps/people-search/person?user=${details.azureId}`;
     };
@@ -337,7 +335,7 @@ export class PersonCardElement
         return this.createApplicationEntraLink(details.applicationId ?? '');
       }
 
-      return this.createManagedIdentityEntraLink(details.azureId, details.applicationId);
+      return this.createManagedIdentityEntraLink(details.azureId, details.applicationId ?? '');
     };
 
     const title = 'This is the unique application ID of this application in your directory. You can use this application ID if you ever need help from Microsoft Support, or if you want to perform operations against this specific instance of the application using Microsoft Graph or PowerShell APIs.';
@@ -446,8 +444,8 @@ export class PersonCardElement
 
     return html`
       ${details.department && html`<div class="person-card__department" title="Department">${details.department}</div>`}
-      ${details.jobTitle && html`<div class="person-card__jobtitle" title="Job Title">${details.jobTitle}</div>`}
-      ${details.servicePrincipalType && html`<div class="person-card__jobtitle" title="Service Principal Type">${details.servicePrincipalType}</div>`}
+      ${details.accountLabel && html`<div class="person-card__jobtitle" title="Job Title">${details.accountLabel}</div>`}
+      ${details.applicationId && html`<div class="person-card__jobtitle" title="Account type">${details.accountType}</div>`}
     `;
   }
 

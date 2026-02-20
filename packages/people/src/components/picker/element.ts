@@ -57,12 +57,31 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
     converter: (value: string | null) => value === 'true'
   })
   showSelectedPeople: boolean = true;
+  /**
+   * Whether to include system accounts in the search results
+   * Default is false
+   */
+  @property({ type: Boolean })
+  systemAccounts: boolean = false;
+
+  /**
+   * The title to show when there are no results found. 
+   * This is useful to provide a better user experience when the search returns no results, 
+   * as it can be used to provide guidance to the user on how to get better results.
+   */
+  @property({ type: String })
+  noResultTitle: string = '';
+
+  /**
+   * The subtitle to show when there are no results found.
+   * This is useful to provide a better user experience when the search returns no results, 
+   * as it can be used to provide guidance to the user on how to get better results.
+   */
+  @property({ type: String })
+  noResultSubtitle: string = '';
 
   @state()
   search: string = '';
-
-  @property({ type: Boolean })
-  systemAccounts: boolean = false;
 
   @query('fwc-people-picker-search')
   searchElement?: SearchElement;
@@ -112,14 +131,13 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
   renderPickerList() {
     return this.tasks.suggest?.render({
       complete: (people: PersonSuggestResults) => {
-        if (this.search.length > 0) {
-          // needed in components since controler returns empty result when search is less than 3 characters
-          if (this.search.length < 3) {
-            return html`<p>Please enter at least 3 characters</p>`;
-          }
 
-          if (people.totalCount === 0) {
-            return html`<p>No results found</p>`;
+        if (people.value.length === 1 && people.value[0].azureUniqueId === 'no-results-found') {
+          if (this.noResultTitle) {
+            people.value[0].name = this.noResultTitle;
+          }
+          if (this.noResultSubtitle) {
+            people.value[0].accountLabel = this.noResultSubtitle;
           }
         }
 

@@ -81,7 +81,7 @@ export class ListElement extends LitElement implements ListElementProps {
         <p>Displaying ${this.totalCount} results</p>
         |
         <label title="Include system accounts in search results">
-          <fwc-checkbox style="--fwc-checkbox-size: 14px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(e: Event) => {
+          <fwc-checkbox style="--fwc-checkbox-size: 12px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(e: Event) => {
         this.dispatchEvent(new CustomEvent('toggle-system-accounts', {
           detail: {
             systemAccounts: (e.target as CheckboxElement).checked,

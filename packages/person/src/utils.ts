@@ -4,13 +4,13 @@ export const mapToPersonInfo = (account: PersonSuggestResult): PersonInfo => {
   return {
     azureId: account.azureUniqueId,
     name: account.name,
-    jobTitle: account.person?.jobTitle ?? account.accountLabel,
+    jobTitle: account.person?.jobTitle || account.accountLabel,
     department: account.person?.department,
     managerAzureUniqueId: account.person?.managerAzureUniqueId,
     upn: account.person?.upn,
     mail: account.person?.mail,
     mobilePhone: account.person?.mobilePhone,
-    accountType: account.person?.accountType ?? account.application?.servicePrincipalType ?? account.accountType,
+    accountType: account.application ? account.accountType : account.person?.accountType,
     accountLabel: account.accountLabel,
     isExpired: account.isExpired,
     avatarUrl: account.avatarUrl,
@@ -39,6 +39,7 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
     azureId: person.identifier,
     name,
     jobTitle: person.identifier,
+    accountLabel: person.identifier,
     isExpired: false, // set to not expired since we want to show the azureId for the failed person in the pill
     avatarUrl: resolveFailedAvatarUrl(),
     avatarColor: '#ff92a8',

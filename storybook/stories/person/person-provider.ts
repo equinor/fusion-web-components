@@ -86,7 +86,7 @@ export const generatePerson = async (args: { azureId?: string; upn?: string; acc
   const fakeUpn = faker.internet.email({ provider: 'equinor.com' });
   const avatarColor = faker.helpers.arrayElement(['#bebebe', '#eb0037', '#ff92a8', '#000']);
   const name = faker.person.fullName();
-    
+
   const application: PersonSuggestResult['application'] = {};
   if (args.accountType === 'SystemAccount') {
     application.applicationId = faker.string.uuid();
@@ -100,7 +100,7 @@ export const generatePerson = async (args: { azureId?: string; upn?: string; acc
   }
 
   const avatarUrl = await avatarSvg(avatarColor, args.accountType === 'SystemAccount' ? application.applicationName ?? name : name, args.accountType ?? '');
-  
+
   return {
     azureId,
     upn: args.upn ?? fakeUpn,
@@ -172,6 +172,7 @@ const generateSuggestedPerson = async (args: { azureId: string }): Promise<Perso
     azureUniqueId: generatedPerson.azureId,
     name: generatedPerson.name,
     accountType,
+    accountLabel: generatedPerson.servicePrincipalType ?? generatedPerson.jobTitle ?? '',
     person,
     application,
     isExpired: generatedPerson.isExpired ?? false,
@@ -211,8 +212,7 @@ export const resolver: PersonResolver = {
     }));
   },
   suggest: async (args) => {
-    console.log('Suggest', args);
-    const generatedCount = faker.number.int({ min: 3, max: 25 });
+    const generatedCount = faker.datatype.boolean({ probability: 0.9 }) ? faker.number.int({ min: 3, max: 10 }) : 0;
     const value = await Promise.all(new Array(generatedCount).fill(undefined).map(async (_, i) => {
       faker.seed(
         args.search

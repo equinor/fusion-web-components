@@ -38,11 +38,23 @@ const render = (props: PeoplePickerElementProps) => html`
     secondarysubtitle=${ifDefined(props.secondarySubtitle)}
     placeholder=${ifDefined(props.placeholder)}
     systemaccounts=${ifDefined(props.systemAccounts)}
+    noresulttitle=${ifDefined(props.noResultTitle)}
+    noresultsubtitle=${ifDefined(props.noResultSubTitle)}
     @selection-changed=${handleSelectionChanged}
     @person-added=${handlePersonAdded}
     @person-removed=${handlePersonRemoved}>
   </fwc-people-picker>
 `;
+
+
+export const Default: Story = {
+  args: {
+    multiple: true,
+    noResultTitle: 'No niggas available',
+    noResultSubTitle: 'go look in the hood',
+  },
+  render,
+};
 
 export const Single: Story = {
   args: {
@@ -51,9 +63,11 @@ export const Single: Story = {
   render,
 };
 
-export const Multiple: Story = {
+export const CustomNotFoundTitle: Story = {
   args: {
     multiple: true,
+    noResultTitle: '*Sways hand*',
+    noResultSubTitle: 'These are not the droids you are looking for.',
   },
   render,
 };

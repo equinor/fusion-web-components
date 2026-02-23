@@ -18,8 +18,8 @@ importers:
         specifier: ^2.29.8
         version: 2.29.8(@types/node@25.2.3)
       '@types/react':
-        specifier: ^19.2.10
-        version: 19.2.10
+        specifier: ^19.2.14
+        version: 19.2.14
       prettier:
         specifier: ^3.8.0
         version: 3.8.1
@@ -2248,9 +2248,6 @@ packages:
 
   '@types/prismjs@1.26.5':
     resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
-
-  '@types/react@19.2.10':
-    resolution: {integrity: sha512-WPigyYuGhgZ/cTPRXB2EwUw+XvsRA3GqHlsP4qteqrnnjDrApbS7MxcGr/hke5iUoeB7E/gQtrs9I37zAJ0Vjw==}
 
   '@types/react@19.2.14':
     resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
@@ -5845,10 +5842,6 @@ snapshots:
       undici-types: 7.16.0
 
   '@types/prismjs@1.26.5': {}
-
-  '@types/react@19.2.10':
-    dependencies:
-      csstype: 3.2.3
 
   '@types/react@19.2.14':
     dependencies:

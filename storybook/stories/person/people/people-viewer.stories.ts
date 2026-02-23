@@ -5,14 +5,14 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { PeoplePickerElement, PersonAddedEvent, PersonRemovedEvent, SelectionChangedEvent, type PeoplePickerElementProps, PeopleViewerElement, PeopleViewerElementProps } from '@equinor/fusion-wc-people';
 import type { PersonInfo } from '@equinor/fusion-wc-person';
 
-import { generatePerson, generateIds, personProviderDecorator } from './person-provider';
+import { generatePerson, generateIds, personProviderDecorator } from '../person-provider';
 
 PeoplePickerElement;
 
 type Story = StoryObj<PeoplePickerElementProps & PeopleViewerElementProps>;
 
 const meta: Meta<typeof PeopleViewerElement> = {
-  title: 'viewer',
+  title: 'people/viewer',
   component: 'fwc-people-viewer',
   decorators: [personProviderDecorator],
 };

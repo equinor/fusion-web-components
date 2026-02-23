@@ -4,14 +4,14 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import { PeoplePickerElement, PersonAddedEvent, PersonRemovedEvent, SelectionChangedEvent, type PeoplePickerElementProps } from '@equinor/fusion-wc-people';
 
-import { generatePerson, generateIds, personProviderDecorator } from './person-provider';
+import { generatePerson, generateIds, personProviderDecorator } from '../person-provider';
 
 PeoplePickerElement;
 
 type Story = StoryObj<PeoplePickerElementProps>;
 
 const meta: Meta<typeof PeoplePickerElement> = {
-  title: 'picker',
+  title: 'people/picker',
   component: 'fwc-people-picker',
   decorators: [personProviderDecorator],
 };
@@ -39,7 +39,7 @@ const render = (props: PeoplePickerElementProps) => html`
     placeholder=${ifDefined(props.placeholder)}
     systemaccounts=${ifDefined(props.systemAccounts)}
     noresulttitle=${ifDefined(props.noResultTitle)}
-    noresultsubtitle=${ifDefined(props.noResultSubTitle)}
+    noresultsubtitle=${ifDefined(props.noResultSubtitle)}
     @selection-changed=${handleSelectionChanged}
     @person-added=${handlePersonAdded}
     @person-removed=${handlePersonRemoved}>
@@ -50,8 +50,6 @@ const render = (props: PeoplePickerElementProps) => html`
 export const Default: Story = {
   args: {
     multiple: true,
-    noResultTitle: 'No niggas available',
-    noResultSubTitle: 'go look in the hood',
   },
   render,
 };
@@ -67,9 +65,12 @@ export const CustomNotFoundTitle: Story = {
   args: {
     multiple: true,
     noResultTitle: '*Sways hand*',
-    noResultSubTitle: 'These are not the droids you are looking for.',
+    noResultSubtitle: 'These are not the droids you are looking for.',
   },
-  render,
+  render: (props: PeoplePickerElementProps) => html`
+    <p><strong>Note:</strong> The suggest method fails 10% of the time, keep searching to see the no results state.</p>
+    ${render(props)}
+  `,
 };
 
 export const resolveIds: Story = {
@@ -77,7 +78,10 @@ export const resolveIds: Story = {
     multiple: true,
     resolveIds: generateIds(3, 100).join(','),
   },
-  render,
+  render: (props: PeoplePickerElementProps) => html`
+    <p><strong>Note:</strong> The people with the provided resolveIds will be added as selected on initial render.</p>
+    ${render(props)}
+  `,
 };
 
 export const people: Story = {

@@ -102,7 +102,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * vital in ResolvedController
   */
   @state()
-  initialresolved: boolean = false;
+  initialResolved: boolean = false;
 
   /**
    * The property from PersonInfo to display as subtitle in the pill

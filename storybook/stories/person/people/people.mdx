@@ -2,24 +2,16 @@ import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } fr
 
 import { PackageInfo } from '@components'
 
-import * as CodeStories from './people-viewer.stories';
+import * as CodeStories from './people-picker.stories';
 
 import pkg from '@equinor/fusion-wc-people/package.json';
+import Readme from '@equinor/fusion-wc-people/README.md?raw';
 import Log from '@equinor/fusion-wc-people/CHANGELOG.md?raw';
 
-<Meta of={CodeStories} />
+<Meta title='people' />
 
 <PackageInfo pkg={pkg}/>
 
-The People-Viewer component is used to display a list or table of people.
-
-```html
-<fwc-people-viewer></fwc-people-viewer>
-```
-
-<ArgTypes />
-
-<Stories />
+<Markdown>{Readme}</Markdown>
 
 <Markdown>{Log}</Markdown>
- 

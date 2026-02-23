@@ -1,7 +1,7 @@
 import type { ReactiveController } from 'lit';
 
 import type { ListElement } from './element';
-import { NavigateListItemEvent } from '../list-item';
+import type { NavigateListItemEvent } from '../list-item';
 
 export class NavigateController implements ReactiveController {
   #host: ListElement;

@@ -67,7 +67,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "@equinor/fusion-wc-builder": "workspace:^",
-    "@types/prismjs": "^1.26.3",
+    "@types/prismjs": "^1.26.6",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3"
   },

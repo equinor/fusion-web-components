@@ -28,8 +28,7 @@ export class NavigateController implements ReactiveController {
   }
 
   handleKeyDownSearchInput(event: KeyboardEvent) {
-    const { controllers, tasks, listElement, viewMode, search, searchElement } = this.#host;
-
+    const { controllers, tasks, listElement, viewMode, search } = this.#host;
     // select/deselect first person from searchresults when pressing enter in search input
     if (event.key === 'Enter') {
       const { value: people } = tasks.suggest?.value ?? {};
@@ -63,7 +62,7 @@ export class NavigateController implements ReactiveController {
 
     // clear search input when pressing escape
     if (event.key === 'Escape') {
-      searchElement?.clear();
+      this.#host.clearSearch();
     }
   }
 }

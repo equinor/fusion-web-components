@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skills": {
+    "fusion-issue-author-bug": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "computedHash": "6390236687897efd12bed4f44f7ccf498c4ad59ff93d714e041656dc1a07c711"
+    },
+    "fusion-issue-author-feature": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "computedHash": "2f29dd1a8a0dc06b5fa103ec7e558f8e43128bb22b216dca3b552391e0c48540"
+    },
+    "fusion-issue-author-task": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "computedHash": "f79b98e4f4b33ff63896f97526872571fe765115e6562582f5c5936590e28c9f"
+    },
+    "fusion-issue-author-user-story": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "computedHash": "5bd4ce26ff47d3bbb03c4ad2b167c43bbc30bfc2c16493b402017e946a7282d8"
+    },
+    "fusion-issue-authoring": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "computedHash": "6eb90fe4e4333a32b84157200423720307181b7e78edfc25ee3934e54f1f74ef"
+    }
+  }
+}

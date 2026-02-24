@@ -5,6 +5,8 @@
 
 ### [Storybook](https://equinor.github.io/fusion-web-components/)
 
+### [Contributing](./CONTRIBUTING.md)
+
 ## General
 | Component | Package | Status
 | --------- | ------- | ------

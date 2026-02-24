@@ -8,6 +8,7 @@ on:
     paths:
       - 'packages/**'
       - '.changeset/*.md'
+      - '.github/workflows/release.yml'
 
 jobs:
   release-pkg:
@@ -46,6 +47,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_CONFIG_PROVENANCE: true
+          NPM_TOKEN: ''
+          NODE_AUTH_TOKEN: ''
 
   documentation:
     name: Update documentation

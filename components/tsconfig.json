@@ -6,4 +6,9 @@
 		"declarationDir": "./lib/types"
 	},
 	"include": ["src/*"],
+	"references": [
+		{
+			"path": "../packages/people"
+		}
+	],
 }

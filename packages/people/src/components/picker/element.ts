@@ -160,7 +160,6 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
       <div
         id="person-picker"
         tabindex="0"
-        @keydown=${this.controllers.navigate?.handlePickerKeyDown}
         class=${this.viewMode}
       >
         <div id="picker">

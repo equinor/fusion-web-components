@@ -9,16 +9,16 @@ export class NavigateController implements ReactiveController {
   constructor(host: PickerElement) {
     this.#host = host;
     this.#host.addController(this);
+    this.handleKeyDownSearchInput = this.handleKeyDownSearchInput.bind(this);
+    this.handleNavigateToSearch = this.handleNavigateToSearch.bind(this);
   }
 
   hostConnected(): void {
-    this.#host.addEventListener('navigate-to-search', this.handleNavigateToSearch.bind(this) as EventListener);
-    this.handleKeyDownSearchInput = this.handleKeyDownSearchInput.bind(this);
-    this.handlePickerKeyDown = this.handlePickerKeyDown.bind(this);
+    this.#host.addEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
   }
 
   hostDisconnected(): void {
-    this.#host.removeEventListener('navigate-to-search', this.handleNavigateToSearch.bind(this) as EventListener);
+    this.#host.removeEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
     this.#host.removeController(this);
   }
 
@@ -28,40 +28,42 @@ export class NavigateController implements ReactiveController {
   }
 
   handleKeyDownSearchInput(event: KeyboardEvent) {
-    // add/remove first person from searchresults
+    const { controllers, tasks, listElement, viewMode, search, searchElement } = this.#host;
+
+    // select/deselect first person from searchresults when pressing enter in search input
     if (event.key === 'Enter') {
-      const { value: people } = this.#host.tasks.suggest?.value ?? {};
+      const { value: people } = tasks.suggest?.value ?? {};
       if (!people?.length) {
         return;
       }
 
       const firstPerson = people[0];
-      if (this.#host.controllers.selected.selectedPeople.has(firstPerson.azureUniqueId)) {
-        this.#host.controllers.selected.removePerson(firstPerson.azureUniqueId);
+      if (controllers.selected.selectedPeople.has(firstPerson.azureUniqueId)) {
+        controllers.selected.removePerson(firstPerson.azureUniqueId);
       } else {
-        this.#host.controllers.selected.addPerson(mapToPersonInfo(firstPerson));
+        controllers.selected.addPerson(mapToPersonInfo(firstPerson));
       }
     }
 
+    // navigate to list if pressing down arrow in search input
     if (event.key === 'ArrowDown') {
       // Important: Prevent page scrolling when focusing the list item
       event.preventDefault();
-      this.#host.listElement?.controllers.navigate.focusItemAtIndex(0);
+      listElement?.controllers.navigate.focusItemAtIndex(0);
     }
-  }
 
-  handlePickerKeyDown(event: KeyboardEvent) {
-    // delete pills when backspacing empty input and there are people to delete
-    if (event.key === 'Backspace' && this.#host.viewMode === 'list' && !this.#host.search) {
-      const { selectedPeople } = this.#host.controllers.selected;
+    // delete PeoplePills when backspacing empty input and there are people to delete
+    if (event.key === 'Backspace' && viewMode === 'list' && !search) {
+      const { selectedPeople } = controllers.selected;
       if (selectedPeople.size > 0) {
         const lastId = [...selectedPeople.keys()][selectedPeople.size - 1];
-        this.#host.controllers.selected.removePerson(lastId);
+        controllers.selected.removePerson(lastId);
       }
     }
 
+    // clear search input when pressing escape
     if (event.key === 'Escape') {
-      this.#host.clearSearch();
+      searchElement?.clear();
     }
   }
 }

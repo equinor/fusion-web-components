@@ -1,28 +1,30 @@
-import { CSSResult, html, TemplateResult, LitElement } from 'lit';
+import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { TaskStatus } from '@lit/task';
 
-import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
-import { CardData, PersonCardElementProps } from './types';
-
-import styles from './element.css';
-import { PersonPhotoTask, PersonPhotoControllerHost } from '../../tasks/person-photo-task';
-import { PersonDetailTask, PersonDetailControllerHost } from '../../tasks/person-detail-task';
-
-import './element.manager';
-import delveIcon from './delve.svg';
-
-import Avatar from '@equinor/fusion-wc-avatar';
-import Badge, { BadgeColor, BadgeElementProps } from '@equinor/fusion-wc-badge';
 import Icon from '@equinor/fusion-wc-icon';
 import IconButton from '@equinor/fusion-wc-button/icon-button';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-Avatar;
-Badge;
+import { PersonItemSize, PersonResolveResult } from '../../types';
+import { CardData, PersonCardElementProps } from './types';
+
+import { PersonResolveTask } from '../../tasks';
+import styles from './element.css';
+import { mapResolveToPersonInfo } from '../../utils';
+
+import delveIcon from './delve.svg';
+import entraIcon from './entra.svg';
+import { PersonCardAdditionalInfoElement } from './element.additional-info';
+
+import '../avatar';
+import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
+
 Icon;
 IconButton;
 Skeleton;
+PersonCardAdditionalInfoElement;
 
 /**
  * Element for displaying a persons card with person avatar and person info.
@@ -39,8 +41,7 @@ Skeleton;
 
 export class PersonCardElement
   extends LitElement
-  implements PersonCardElementProps, PersonDetailControllerHost, PersonPhotoControllerHost
-{
+  implements PersonCardElementProps {
   static styles: CSSResult[] = styles;
 
   /** Azure unique id */
@@ -50,22 +51,46 @@ export class PersonCardElement
   @property({ type: String })
   public upn?: string;
 
-  @property({ type: String })
+  @property({ type: Object })
   public dataSource?: CardData;
 
-  /**
-   * @internal
-   */
-  private tasks?: {
-    details: PersonDetailTask;
-    photo: PersonPhotoTask;
-  };
+  @property({ type: Array })
+  resolveIds: string[] = [];
+
+  @property({ type: Boolean })
+  public shadow: boolean = true;
+
+  /** Size of the component */
+  @property({ type: String, reflect: true })
+  size: PersonItemSize = 'medium';
+
+  /** Maximum width of the component */
+  @property({ type: Number, reflect: true })
+  maxWidth = 250;
+
+  /** Height of content */
+  @property({ type: Number, reflect: true })
+  contentHeight = 150;
+
+  /** Custom color */
+  @property({ type: String })
+  customColor?: string;
+
+  @state()
+  showExtraContactInfo = false;
 
   /**
    * @internal
    */
   @state()
   protected intersected = false;
+
+  /**
+   * @internal
+   */
+  private tasks?: {
+    resolve: PersonResolveTask;
+  };
 
   /**
    * @internal
@@ -78,272 +103,331 @@ export class PersonCardElement
           if (this.intersected) {
             this.controllers.observer.unobserve(this);
             this.tasks = {
-              details: new PersonDetailTask(this),
-              photo: new PersonPhotoTask(this),
+              resolve: new PersonResolveTask(this),
             };
           }
         }
       },
     }),
+    propertyMapper: new ResolvePropertyMapper(this),
   };
 
-  /** Size of the component */
-  @property({ type: String, reflect: true })
-  size: PersonItemSize = 'medium';
+  createApplicationEntraLink(applicationId: string): string {
+    return `https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/${applicationId}`;
+  }
 
-  /** Maximum width of the component */
-  @property({ type: Number, reflect: true })
-  maxWidth = 300;
+  createManagedIdentityEntraLink(azureId: string, applicationId: string): string {
+    const urlParts = [
+      'https://portal.azure.com/#view/Microsoft_AAD_IAM/ManagedAppMenuBlade/~/Overview',
+      `objectId/${azureId}`,
+      `appId/${applicationId}`
+    ];
 
-  /** Height of content */
-  @property({ type: Number, reflect: true })
-  contentHeight = 150;
-
-  /**
-   * Render person job title
-   */
-  protected renderJobTitle(details: CardData): TemplateResult {
-    return html`${details.jobTitle ? html`<div class="person-card__jobtitle">${details.jobTitle}</div>` : null}`;
+    return urlParts.join('/');
   }
 
   /**
    * Render the icon bar
    */
   protected renderIconBar(details: CardData): TemplateResult {
+    const generateLink = (props: { title: string, href: string, icon: string, hasValue: boolean, blank?: boolean }): TemplateResult => {
+      const { title, href, icon, hasValue, blank } = props;
+      const iconElement = icon === 'delveIcon' ? html`<fwc-icon>${delveIcon}</fwc-icon>` : html`<fwc-icon icon="${icon}"></fwc-icon>`;
+
+      if (!hasValue) {
+        return html`
+          <a
+            title="${title}"
+            href="${href}"
+            @click="${(e: MouseEvent) => {
+            e.preventDefault();
+            return;
+          }}"
+            class="disabled"
+          >
+            ${iconElement}
+          </a>
+        `;
+      }
+      return html`
+        <a
+          title="${title}"
+          href="${href}"
+          target="${blank ? '_blank' : '_self'}"
+        >
+          ${iconElement}
+        </a>
+      `;
+    };
+
+    if (details.applicationId) {
+      const href =
+        details.servicePrincipalType === 'Application'
+          ? this.createApplicationEntraLink(details.applicationId)
+          : this.createManagedIdentityEntraLink(details.azureId, details.applicationId);
+
+      return html`
+        <slot name="icon-bar">
+          ${generateLink({
+        title: 'Open application in azure portal',
+        href,
+        icon: 'home',
+        hasValue: Boolean(details.applicationId),
+        blank: true,
+      })}
+        </slot>
+      `;
+    }
+
     return html`
       <slot name="icon-bar">
-        <fwc-icon-button
-          title="Open profile"
-          href="/apps/people-search/person?user=${details.azureId}"
-          icon="home"
-          rounded
-          size="small"
-        ></fwc-icon-button>
+        ${generateLink({
+      title: 'Open profile',
+      href: `/apps/people-search/person?user=${details.azureId}`,
+      icon: 'home',
+      hasValue: Boolean(details.azureId),
+      blank: true,
+    })}
 
-        <fwc-icon-button
-          title="Email: ${details.mail}"
-          href="mailto:${details.mail}"
-          icon="email"
-          rounded
-          size="small"
-        ></fwc-icon-button>
 
-        <fwc-icon-button
-          title="Chat in Teams"
-          href="https://teams.microsoft.com/l/chat/0/0?users=${details.mail}"
-          icon="comment_chat"
-          rounded
-          size="small"
-        ></fwc-icon-button>
+        ${generateLink({
+      title: `Email: ${details.mail}`,
+      href: `mailto:${details.mail}`,
+      icon: 'email',
+      hasValue: Boolean(details.mail),
+    })}
 
-        <fwc-icon-button
-          title="Call in Teams"
-          href="https://teams.microsoft.com/l/call/0/0?users=${details.mail}"
-          icon="call"
-          rounded
-          size="small"
-        ></fwc-icon-button>
+        ${generateLink({
+      title: "Chat in Teams",
+      href: `https://teams.microsoft.com/l/chat/0/0?users=${details.mail}`,
+      icon: "comment_chat",
+      hasValue: Boolean(details.mail),
+    })}
+        
+        ${generateLink({
+      title: "Call in Teams",
+      href: `https://teams.microsoft.com/l/call/0/0?users=${details.mail}`,
+      icon: "call",
+      hasValue: Boolean(details.mail),
+    })}
 
-        <fwc-icon-button
-          title="Delve"
-          href="https://eur.delve.office.com/?v=work&u=${details.azureId}"
-          rounded
-          size="small"
-        >
-          ${delveIcon}
-        </fwc-icon-button>
+        ${generateLink({
+      title: "Delve",
+      href: `https://eur.delve.office.com/?v=work&u=${details.azureId}`,
+      icon: "delveIcon",
+      hasValue: Boolean(details.azureId),
+    })}
       </slot>
     `;
-  }
-
-  /**
-   * Render the account TYPE status
-   */
-  protected renderTypeStatus(details: CardData): TemplateResult {
-    return html`<div class="person-card-type__row">
-      ${details.accountType
-        ? html`<div class="person-card-type__icon ${this.getAccountTypeColorClass(details.accountType)}"></div>
-            ${details.accountType}`
-        : null}
-    </div>`;
   }
 
   protected copyToClipboard = (textToCopy: string | undefined) => {
     if (textToCopy) {
       navigator.clipboard.writeText(textToCopy);
     }
-  };
-
-  /**
-   * Render person email
-   */
-  protected renderEmail(details: CardData): TemplateResult {
-    return html`${details.mail
-      ? html`<div class="person-card-info__row">
-          <div class="person-card-info__link">
-            <fwc-icon title="Email: ${details.mail}" class="person-card-info__icon" icon="email"></fwc-icon>
-            <a title="Email: ${details.mail}" href="mailto:${details.mail}">${details.mail}</a>
-          </div>
-          <fwc-icon-button
-            class="person-card-info__copy"
-            title="Copy email"
-            @click=${{ handleEvent: () => this.copyToClipboard(details.mail) }}
-            icon="copy"
-            rounded
-            size="x-small"
-          />
-        </div>`
-      : null}`;
   }
 
-  /**
-   * Render person mobile phone
-   */
-  protected renderMobile(details: CardData): TemplateResult {
-    return html`${details.mobilePhone
-      ? html`<div class="person-card-info__row">
-          <div class="person-card-info__link">
-            <fwc-icon title="Mobile: ${details.mobilePhone}" class="person-card-info__icon" icon="phone"></fwc-icon>
-            <a title="Mobile: ${details.mobilePhone}" href="callto:${details.mobilePhone}">${details.mobilePhone}</a>
-          </div>
-          <fwc-icon-button
-            class="person-card-info__copy"
-            title="Copy phone number"
-            @click=${{ handleEvent: () => this.copyToClipboard(details.mobilePhone) }}
-            icon="copy"
-            rounded
-            size="x-small"
-          />
-        </div>`
-      : null}`;
-  }
-
-  /**
-   * Render person projects
-   */
-  protected renderProjects(details: CardData): TemplateResult | null {
-    const filterProjects = [...new Set(details.positions?.map((p) => p.project.name))];
-    if (filterProjects.length === 0) return null;
-    return html`<div class="info-item">
-      <div class="info-item_heading" title="Tasks the current person is allocated to">Tasks</div>
-      <div class="person-card-projects__projects">
-        ${filterProjects.map((p) => {
-          return html`<div class="person-card-projects__project">${p}</div>`;
-        })}
-      </div>
-    </div>`;
-  }
-
-  /**
-   * Render person positions
-   */
-  protected renderPositions(details: CardData): TemplateResult | null {
-    const filterPositions = [...new Set(details.positions?.map((p) => p.name))];
-    if (filterPositions.length === 0) return null;
-    return html`<div class="info-item">
-      <div class="info-item_heading" title="Unique list of generic task positions the person is allocated to">
-        Task positions
-      </div>
-      <div class="person-card-projects__projects">
-        ${filterPositions.map((p) => {
-          return html`<div class="person-card-projects__project">${p}</div>`;
-        })}
-      </div>
-    </div>`;
-  }
-
-  public renderManager(manager: Required<CardData>['manager']): TemplateResult | void {
-    const size = (() => {
-      switch (this.size) {
-        case 'large':
-          return 'medium';
-        default:
-          return this.size;
-      }
-    })();
+  renderCopyToClipboardIcon(value: string, title: string): TemplateResult {
     return html`
-      <div class="manager">
-        <div class="info-item_heading">Reports to</div>
-        <fwc-person-card-manager size="${size}" .dataSource=${manager}>
+      <button
+        class="copyable-text__button"
+        @click=${{ handleEvent: () => this.copyToClipboard(value) }}
+        title=${title}
+      >
+        <fwc-icon icon="copy"></fwc-icon>
+      </button>
+    `;
+  }
+
+  renderCopyableContact(value: string, href: string, icon: string, title: string): TemplateResult {
+    return html`
+      <div class="person-card-info__link copyable-text" title="${title}">
+        <fwc-icon class="person-card-info__icon" icon="${icon === 'entraIcon' ? null : icon}">${entraIcon}</fwc-icon>
+        ${href ?
+        html`
+          <a class="person-card-info__text" href="${href}">${value}</a>
+          <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, `Copy to clipboard`)}</div>
+        ` :
+        html`
+          <p class="person-card-info__text">${value}</p>
+          <div class="copyable-text__actions">
+            ${this.renderCopyToClipboardIcon(value, `Copy to clipboard`)}
+          </div>
+        `
+      }
       </div>
     `;
   }
 
   /**
-   * Returns the badge color for the current presence
+   * Render person mobile phone
    */
-  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeElementProps['color'] {
-    switch (availability) {
-      case PersonAvailability.Available:
-      case PersonAvailability.AvailableIdle:
-        return BadgeColor.Success;
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
-        return BadgeColor.Warning;
-      case PersonAvailability.Busy:
-      case PersonAvailability.BusyIdle:
-      case PersonAvailability.DoNotDisturb:
-        return BadgeColor.Danger;
-      default:
-        return BadgeColor.Disabled;
+  protected renderMobile(mobilePhone: string | undefined): TemplateResult {
+    if (!mobilePhone) {
+      return html``;
     }
+
+    return this.renderCopyableContact(mobilePhone, `callto:${mobilePhone}`, 'phone', 'Mobile Phone Number');
   }
 
   /**
-   * Returns the icon size deppending on the avatar
+   * Render person email
    */
-  public getStatusIconSize(size: PersonItemSize): PersonItemSize {
-    switch (size) {
-      case 'small':
-      case 'medium':
-        return 'medium';
-      case 'large':
-        return 'medium';
-      default:
-        return 'small';
+  protected renderEmail(details: CardData): TemplateResult {
+    if (!details.mail) {
+      if (details.applicationId) {
+        return html``;
+      }
+      return this.renderCopyableContact('No user email', '', 'email', 'The user does not have an email address');
     }
+
+    return this.renderCopyableContact(details.mail, `mailto:${details.mail}`, 'email', 'Email address');
+  }
+
+  protected renderAzureId(details: CardData): TemplateResult {
+    const title = () => {
+      if (details.applicationId) {
+        return 'This is the unique ID of the service principal object associated with this application. This ID can be useful when performing management operations against this application using PowerShell or other programmatic interfaces.';
+      }
+
+      return 'Azure ID'
+    };
+
+    const href = () => {
+      if (details.applicationId) {
+        if (details.servicePrincipalType === 'Application') {
+          return this.createApplicationEntraLink(details.applicationId);
+        }
+
+        return this.createManagedIdentityEntraLink(details.azureId, details.applicationId);
+      }
+      return `/apps/people-search/person?user=${details.azureId}`;
+    };
+
+    return html`
+      <div class="person-card-info__link copyable-text" title="${title()}">
+        <fwc-icon class="person-card-info__icon">${entraIcon}</fwc-icon>
+        <p class="person-card-info__text">${details.azureId}</p>
+        <div class="copyable-text__actions">
+          ${this.renderCopyToClipboardIcon(details.azureId, `Copy to clipboard`)}
+          <button
+            class="copyable-text__button"
+            @click=${(e: MouseEvent) => {
+        e.preventDefault();
+        window.open(href(), '_blank');
+      }}
+            title="Open in ${details.applicationId ? 'Azure Portal' : 'People Search'}"
+          >
+            <fwc-icon icon="external_link"></fwc-icon>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  protected renderApplicationId(details: CardData): TemplateResult {
+    if (!details.applicationId) {
+      return html``;
+    }
+
+    const href = () => {
+      if (details.servicePrincipalType === 'Application') {
+        return this.createApplicationEntraLink(details.applicationId ?? '');
+      }
+
+      return this.createManagedIdentityEntraLink(details.azureId, details.applicationId ?? '');
+    };
+
+    const title = 'This is the unique application ID of this application in your directory. You can use this application ID if you ever need help from Microsoft Support, or if you want to perform operations against this specific instance of the application using Microsoft Graph or PowerShell APIs.';
+
+    return html`
+      <div class="person-card-info__link copyable-text" title="${title}">
+        <fwc-icon class="person-card-info__icon" icon="apps"></fwc-icon>
+        <p class="person-card-info__text">${details.applicationId}</p>
+        <div class="copyable-text__actions">
+          ${this.renderCopyToClipboardIcon(details.applicationId, `Copy to clipboard`)}
+          <button
+            class="copyable-text__button"
+            @click=${(e: MouseEvent) => {
+        e.preventDefault();
+        window.open(href(), '_blank');
+      }}
+            title="Open in Azure Portal"
+          >
+            <fwc-icon icon="external_link"></fwc-icon>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  protected renderUpn(upn: string | undefined): TemplateResult {
+    if (!upn) {
+      return html``;
+    }
+
+    return this.renderCopyableContact(upn, '', 'person', 'User Principal Name - Username that looks like an email (but might not receive emails).');
+  }
+
+  protected renderEmployeeNumber(employeeNumber: string | undefined): TemplateResult {
+    if (!employeeNumber) {
+      return html``;
+    }
+
+    return this.renderCopyableContact(employeeNumber, '', 'assignment_user', 'Employee Number');
   }
 
   /**
-   * Renders the avatar badge
+   * Render contact information
+   * @param details - type CardData
+   * @returns TemplateResult
    */
-  protected renderBadge(availability: PersonAvailability): TemplateResult {
-    return html`<fwc-badge
-      class="fwc-person-avatar-badge"
-      slot="badge"
-      .color=${this.getAvatarBadgeColor(availability)}
-      .size=${this.size}
-      position="bottom-right"
-      circular
-    />`;
+  protected renderContact(details: CardData): TemplateResult {
+    const { mobilePhone, upn, employeeNumber } = details;
+
+    return html`
+      <div class="info-item">
+        <div class="info-item_heading">Contact</div>
+        <div class="info-item_items">
+          ${this.renderMobile(mobilePhone)}
+          ${this.renderEmail(details)}
+          ${details.applicationId || this.showExtraContactInfo
+        ? html`
+              ${this.renderAzureId(details)}
+              ${this.renderApplicationId(details)}
+              ${this.renderUpn(upn)}
+              ${this.renderEmployeeNumber(employeeNumber)}
+            `
+        : html``
+      }
+          
+          ${!details.applicationId ? html`
+            <a class="person-card-info__show_more" href="#" @click=${(e: Event) => {
+          e.preventDefault();
+          this.showExtraContactInfo = !this.showExtraContactInfo;
+        }}>Show ${this.showExtraContactInfo ? 'less' : 'more'}</a>
+            ` : html``
+      }
+        </div>
+      </div>
+    `;
   }
 
-  /**
-   * Renders the avatar
-   */
-  protected renderAvatar(details: CardData): TemplateResult {
-    // TODO error and pending
-    return html`${this.tasks?.photo.render({
-      complete: (pictureSrc) => html`
-        <fwc-avatar
-          title="${details.accountType}"
-          class="${this.getAccountTypeColorClass(details.accountType)}"
-          .size=${this.size}
-          .src=${pictureSrc}
-          .value=${this.getInitial(details.name)}
-          border=${true}
-        ></fwc-avatar>
-      `,
-      pending: () => html`
-        <fwc-avatar
-          title="${details.accountType}"
-          class="${this.getAccountTypeColorClass(details.accountType)}"
-          .size=${this.size}
-          .value=${this.getInitial(details.name)}
-          border=${true}
-        ></fwc-avatar>
-      `,
-    })}`;
+  protected renderPersonName(details: CardData): TemplateResult {
+    const name = details.name || details.applicationName || 'No name available';
+
+    if (!name) {
+      return html``;
+    };
+
+    return html`
+      <header title="Person name" class="person-card__name copyable-text">
+        <p class="copyable-text__text">${name}</p>
+        <div class="copyable-text__actions">
+          ${this.renderCopyToClipboardIcon(name, "Copy name")}
+        </div>
+      </header>
+    `;
   }
 
   /**
@@ -353,50 +437,21 @@ export class PersonCardElement
     return html`${error}`;
   }
 
-  /** {@inheritDoc} */
-  protected render(): TemplateResult {
-    if (!this.tasks) {
-      return this.renderPending();
+  protected renderPersonDepartments(details: CardData): TemplateResult {
+    if (details.isExpired) {
+      return html`<div class="person-card__expired">Account Expired</div>`;
     }
+
     return html`
-      <div class="person-card__section" style="max-width:${this.maxWidth}px">
-        ${this.tasks.details.render({
-          complete: (details: CardData) => {
-            return html`<div class="person-card__heading">
-                <div class="fwc-person-avatar">
-                  <fwc-person-avatar
-                    .size=${this.size}
-                    .azureId=${details.azureId}
-                    .dataSource=${details}
-                    trigger="none"
-                  ></fwc-person-avatar>
-                </div>
-                <div class="person-card__header">
-                  ${details.name &&
-                  html`<header title="${details.name}" class="person-card__name">${details.name}</header>`}
-                  ${details.department && html`<div class="person-card__department">${details.department}</div>`}
-                  ${details.jobTitle && html`<div class="person-card__jobtitle">${details.jobTitle}</div>`}
-                </div>
-              </div>
-              <div class="person-card__iconbar">${this.renderIconBar(details)}</div>
-              <div class="person-card__content" style="max-height:${this.contentHeight}px">
-                <div class="info-item">
-                  <div class="info-item_heading">Contact</div>
-                  ${this.renderMobile(details)} ${this.renderEmail(details)}
-                </div>
-                ${details.manager && this.renderManager(details.manager)} ${this.renderProjects(details)}
-                ${this.renderPositions(details)}
-              </div>`;
-          },
-          pending: () => this.renderPending(),
-          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-        })}
-      </div>
+      ${details.department && html`<div class="person-card__department" title="Department">${details.department}</div>`}
+      ${details.accountLabel && html`<div class="person-card__jobtitle" title="Job Title">${details.accountLabel}</div>`}
+      ${details.applicationId && html`<div class="person-card__jobtitle" title="Account type">${details.accountType}</div>`}
     `;
   }
 
   protected renderPending() {
-    return html` <div class="person-card__heading">
+    return html`
+      <div class="person-card__heading">
         <fwc-skeleton-wrapper direction="horizontal">
           ${this.renderImagePlaceholder(false, this.size)}
           <fwc-skeleton-wrapper direction="vertical">
@@ -414,17 +469,20 @@ export class PersonCardElement
             ${this.renderTextPlaceholder(false, SkeletonSize.small)}
           </fwc-skeleton-wrapper>
         </div>
-      </div>`;
+      </div>
+    `;
   }
 
   public renderImagePlaceholder(inactive?: boolean, size?: string, list?: boolean): TemplateResult {
-    return html`<fwc-skeleton
-      class="${list ? 'person-list__avatar' : ''}"
-      size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
-      variant=${SkeletonVariant.Circle}
-      icon="image"
-      ?inactive=${inactive}
-    ></fwc-skeleton>`;
+    return html`
+      <fwc-skeleton
+        class="${list ? 'person-list__avatar' : ''}"
+        size=${list ? this.getToolbarPlaceholderIconSize(size ?? 'small') : size}
+        variant=${SkeletonVariant.Circle}
+        icon="image"
+        ?inactive=${inactive}
+      ></fwc-skeleton>
+    `;
   }
 
   /**
@@ -444,27 +502,56 @@ export class PersonCardElement
     return 'small';
   }
 
-  /**
-   * Returns color classes for the account type
-   */
-  public getAccountTypeColorClass(accountType?: PersonAccountType[keyof PersonAccountType]): string | void {
-    switch (accountType) {
-      case PersonAccountType.Employee:
-        return 'fwc-person-type__employee';
-      case PersonAccountType.Consultant:
-      case PersonAccountType.Enterprise:
-        return 'fwc-person-type__consultant';
-      case PersonAccountType.External:
-        return 'fwc-person-type__external';
-      case PersonAccountType.ExternalHire:
-        return 'fwc-person-type__external-hire';
+  /** {@inheritDoc} */
+  protected render(): TemplateResult {
+    if (!this.tasks) {
+      return this.renderPending();
     }
-  }
+    const avatarSize = () => {
+      switch (this.size) {
+        case 'small':
+          return 'x-small';
+        case 'large':
+          return 'medium';
+        default:
+          return 'small';
+      }
+    };
 
-  /**
-   * Returns the first character in the person's name as upper case initial
-   */
-  public getInitial(name?: string): string | undefined {
-    return name?.substring(0, 1)?.toUpperCase();
+    if (this.tasks.resolve.status === TaskStatus.COMPLETE) {
+      if ((this.tasks.resolve.value?.length ?? 0) > 0) {
+        this.dataSource = mapResolveToPersonInfo(this.tasks.resolve.value?.[0] as PersonResolveResult);
+        this.resolveIds = [];
+      }
+    } else {
+      return this.renderPending();
+    }
+
+    return html`
+      <div class="person-card__section ${this.shadow ? 'shadow' : ''}" style="max-width:${this.maxWidth}px; max-height:${this.maxWidth}px">
+        ${this.dataSource && html`
+          <div class="person-card__heading">
+            <div class="fwc-person-avatar">
+              <slot name="avatar">
+                <fwc-person-avatar
+                  size=${avatarSize()}
+                  .dataSource=${this.dataSource}
+                  trigger="none"
+                ></fwc-person-avatar>
+              </slot>
+            </div>
+            <div class="person-card__header">
+              ${this.renderPersonName(this.dataSource)}
+              ${this.renderPersonDepartments(this.dataSource)}
+            </div>
+          </div>
+          <div class="person-card__iconbar">${this.renderIconBar(this.dataSource)}</div>
+          <div class="person-card__content">
+            ${this.renderContact(this.dataSource)}
+            ${!this.dataSource.applicationId ? html`<fwc-person-card-additional-info azureid=${this.dataSource.azureId}></fwc-person-card-additional-info>` : null}
+          </div>
+        `}
+      </div>
+    `;
   }
 }

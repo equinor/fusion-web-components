@@ -3,13 +3,13 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import PersonCard, { PersonCardElementProps } from '@equinor/fusion-wc-person/card';
+import { PersonCardElement, type PersonCardElementProps } from '@equinor/fusion-wc-person';
 import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
 
-PersonCard;
+PersonCardElement;
 
 const avatarSeed = 1;
 
@@ -37,11 +37,13 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-  ...Default,
-  render: (props) =>
-    html`${(['small', 'medium', 'large'] as PersonCardElementProps['size'][])
-      .map((size) => ({ ...props, size }))
-      .map(render)}`,
+  render: (props) => html`
+    <div style="display: flex; gap: 1rem; align-items: flex-start;">
+      <fwc-person-card size="small" azureId=${faker.string.uuid()}></fwc-person-card>
+      <fwc-person-card size="medium" azureId=${faker.string.uuid()}></fwc-person-card>
+      <fwc-person-card size="large" azureId=${faker.string.uuid()}></fwc-person-card>
+    </div>
+  `
 };
 
 export default meta;

@@ -8,11 +8,14 @@
 node_modules
 
 storybook/package-lock.json
+storybook/dist
 
 packages/*/package-lock.json
 packages/*/build
 packages/*/dist
-storybook/dist
 packages/*/lib
+
+components/dist
+components/lib
 
 docs/

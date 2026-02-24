@@ -24,7 +24,6 @@ const render = (props: AvatarElementProps & { slotBadge?: HTMLTemplateResult }) 
     size="${ifDefined(props.size)}"
     value="${ifDefined(props.value)}"
     color="${ifDefined(props.color)}"
-    border="${ifDefined(props.border)}"
     elevated="${ifDefined(props.elevated)}"
     >${props.slotBadge}</fwc-avatar
   >
@@ -49,7 +48,6 @@ export const ColorsWithBorder: Story = {
   ...Default,
   args: {
     ...Default.args,
-    border: true,
   },
   render: (props) =>
     html`${Object.values(AvatarColor)
@@ -98,9 +96,9 @@ export const WithBadge: Story = {
       }))
       .map(render)}
     ${Object.values(BadgePosition)
-      .map((position) => ({
-        ...props,
-        slotBadge: html`<fwc-badge
+        .map((position) => ({
+          ...props,
+          slotBadge: html`<fwc-badge
           slot="badge"
           size="${props.size}"
           position=${position}
@@ -108,14 +106,14 @@ export const WithBadge: Story = {
           color="success"
           circular
         />`,
-      }))
-      .map(render)}
+        }))
+        .map(render)}
     ${Object.values(BadgeColor)
-      .map((color) => ({
-        ...props,
-        slotBadge: html`<fwc-badge slot="badge" size="${props.size}" icon="person" color=${color} circular />`,
-      }))
-      .map(render)} `,
+        .map((color) => ({
+          ...props,
+          slotBadge: html`<fwc-badge slot="badge" size="${props.size}" icon="person" color=${color} circular />`,
+        }))
+        .map(render)} `,
 };
 
 export const Clickable: Story = {

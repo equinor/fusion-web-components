@@ -1,0 +1,21 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/addon-docs/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './people-picker.stories';
+
+import pkg from '@equinor/fusion-wc-people/package.json';
+import Readme from '@equinor/fusion-wc-people/README.md?raw';
+import Log from '@equinor/fusion-wc-people/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+Interactive person selector with search, keyboard navigation, and multi-select support.
+
+```ts
+<fwc-people-picker></fwc-people-picker>
+```
+
+<Stories />

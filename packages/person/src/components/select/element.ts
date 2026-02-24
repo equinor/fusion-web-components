@@ -6,7 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { cache } from 'lit/directives/cache.js';
-import { TaskStatus } from '@lit-labs/task';
+import { TaskStatus } from '@lit/task';
 
 import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
@@ -225,10 +225,10 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
 
       return html`
         ${repeat(
-          result,
-          (item) => item.azureId,
-          (item) => {
-            return html`
+        result,
+        (item) => item.azureId,
+        (item) => {
+          return html`
               <fwc-list-item
                 graphic="avatar"
                 .activated=${this.controllers.element.selectedIds.has(item.azureId)}
@@ -247,17 +247,17 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
                 </span>
               </fwc-list-item>
             `;
-          },
-        )}
+        },
+      )}
       `;
     };
 
     return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controllers.element.handleSelect}>
       ${this.tasks.search.render({
-        complete: renderListItems,
-        pending: pendingListItem,
-        error: errorListItem,
-      })}
+      complete: renderListItems,
+      pending: pendingListItem,
+      error: errorListItem,
+    })}
     </fwc-list>`;
   }
 
@@ -277,18 +277,18 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
     return html`${cache(
       html`<ul id="selected-persons">
         ${repeat(
-          people,
-          (item) => item.azureId,
-          (item) => {
-            return html`<li>
+        people,
+        (item) => item.azureId,
+        (item) => {
+          return html`<li>
               <fwc-person-list-item
                 size="small"
                 azureid="${item.azureId}"
                 @click=${() => (this.controllers.element.isOpen = true)}
               ></fwc-person-list-item>
             </li>`;
-          },
-        )}
+        },
+      )}
       </ul>`,
     )}`;
   }
@@ -329,21 +329,21 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
             @focus=${() => {
-              this.controllers.element.isOpen = true;
-            }}
+        this.controllers.element.isOpen = true;
+      }}
             @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
               ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen
-                ? html`<fwc-icon
+        ? html`<fwc-icon
                     tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
                     class="trailing interactive"
                     icon=${this.trailingIcon}
                     @click=${this.controllers.element.closeClick}
                     @keydown=${this.controllers.element.closeClick}
                   ></fwc-icon>`
-                : html``}
+        : html``}
             </span>
           </slot>
         </div>

@@ -27,6 +27,7 @@ const style: CSSResult = css`
   .person-cell__about {
     display: flex;
     column-gap: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    align-items: center;
   }
   .person-cell__about--error fwc-skeleton {
     --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.ui.background__danger.getVariable('color'))};
@@ -49,6 +50,9 @@ const style: CSSResult = css`
     line-height: calc(
       ${unsafeCSS(theme.typography.paragraph.caption.getVariable('lineHeight'))} * var(--text-resize, 1)
     );
+  }
+  .person-cell__sub-heading-expired {
+    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
   }
 `;
 

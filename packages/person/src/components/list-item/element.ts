@@ -1,20 +1,20 @@
-import { CSSResult, html, LitElement, TemplateResult } from 'lit';
+import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
-import { PersonAccountType, PersonAvailability, PersonItemSize } from '../../types';
+import { PersonItemSize } from '../../types';
 import style from './element.css';
 // TODO - NOPE
 import personStyle from '../../style.css';
 import { ListItemData, PersonListItemElementProps } from './types';
-import { PersonInfoTask, PersonInfoControllerHost } from '../../tasks/person-info-task';
+import { PersonResolveTask } from '../../tasks';
 
-import Avatar from '@equinor/fusion-wc-avatar';
-import Badge, { type BadgeElementProps, BadgeColor } from '@equinor/fusion-wc-badge';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+import { mapResolveToPersonInfo } from '../../utils';
+import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
+import { PersonAvatarElement } from '../avatar';
 
-Avatar;
-Badge;
+PersonAvatarElement;
 Skeleton;
 
 /**
@@ -29,7 +29,7 @@ Skeleton;
  *
  */
 
-export class PersonListItemElement extends LitElement implements PersonListItemElementProps, PersonInfoControllerHost {
+export class PersonListItemElement extends LitElement implements PersonListItemElementProps {
   static styles: CSSResult[] = [style, personStyle];
 
   /** Unique person Azure ID */
@@ -39,21 +39,32 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   @property({ type: String })
   public upn?: string;
 
-  @property({ type: String })
+  @property({ type: Object })
   public dataSource?: ListItemData;
 
-  /**
-   * @internal
-   */
-  private tasks?: {
-    info: PersonInfoTask;
-  };
+  @property({ type: Array })
+  resolveIds: string[] = [];
+
+  /** Size of component */
+  @property({ type: String, reflect: true })
+  size: PersonItemSize = 'medium';
+
+  /** Clickable List Item */
+  @property({ type: Boolean, reflect: true })
+  clickable = false;
 
   /**
    * @internal
    */
   @state()
   protected intersected = false;
+
+  /**
+   * @internal
+   */
+  private tasks?: {
+    resolve: PersonResolveTask;
+  };
 
   /**
    * @internal
@@ -66,21 +77,14 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
           if (this.intersected) {
             this.controllers.observer.unobserve(this);
             this.tasks = {
-              info: new PersonInfoTask(this),
+              resolve: new PersonResolveTask(this),
             };
           }
         }
       },
     }),
+    propertyMapper: new ResolvePropertyMapper(this),
   };
-
-  /** Size of component */
-  @property({ type: String, reflect: true })
-  size: PersonItemSize = 'medium';
-
-  /** Clickable List Item */
-  @property({ type: Boolean, reflect: true })
-  clickable = false;
 
   /**
    * Renders person name
@@ -93,40 +97,11 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
    * Render person job department
    */
   private renderDepartment(details: ListItemData): TemplateResult {
-    return html`${details.department ? html`<div class="person-list__sub-heading">${details.department}</div>` : null}`;
-  }
-
-  /**
-   * Returns the badge color for the current presence
-   */
-  protected getAvatarBadgeColor(availability: PersonAvailability): BadgeElementProps['color'] {
-    switch (availability) {
-      case PersonAvailability.Available:
-      case PersonAvailability.AvailableIdle:
-        return BadgeColor.Success;
-      case PersonAvailability.Away:
-      case PersonAvailability.BeRightBack:
-        return BadgeColor.Warning;
-      case PersonAvailability.Busy:
-      case PersonAvailability.BusyIdle:
-      case PersonAvailability.DoNotDisturb:
-        return BadgeColor.Danger;
-      default:
-        return BadgeColor.Disabled;
+    if (details.isExpired) {
+      return html`<div class="person-list__sub-heading person-list__sub-heading-expired">Account expired</div>`;
     }
-  }
 
-  /**
-   * Renders the avatar badge
-   */
-  protected renderBadge(availability: PersonAvailability): TemplateResult {
-    return html`<fwc-badge
-      class="fwc-person-avatar-badge"
-      slot="badge"
-      .color=${this.getAvatarBadgeColor(availability)}
-      position="bottom-right"
-      circular
-    />`;
+    return html`<div class="person-list__sub-heading">${details.department ?? details.applicationId ?? details.azureId ?? html`&nbsp;`}</div>`;
   }
 
   /**
@@ -143,21 +118,28 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     // TODO why are title and department spaced, if to inline elements, wrap it <span>
     return html`
       <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
-        ${this.tasks.info.render({
-          complete: (details) => {
-            return html`<div class="person-list__about">
+        ${this.tasks.resolve.render({
+      complete: (details) => {
+        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+        if (!person?.avatarUrl) {
+          return;
+        }
+        return html`
+              <div class="person-list__about">
                 <div class="person-list__avatar">
-                  <fwc-person-avatar azureId=${details.azureId} .dataSource=${details} />
+                  <fwc-person-avatar .dataSource=${person} size="small"></fwc-person-avatar>
                 </div>
                 <div class="person-list__content">
-                  ${this.renderTitle(details as ListItemData)} ${this.renderDepartment(details as ListItemData)}
+                  ${this.renderTitle(person)}
+                  ${this.renderDepartment(person)}
                 </div>
               </div>
-              <slot class="person-list__toolbar"></slot>`;
-          },
-          pending: () => this.renderPending(),
-          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-        })}
+              <slot class="person-list__toolbar"></slot>
+            `;
+      },
+      pending: () => this.renderPending(),
+      error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+    })}
       </div>
     `;
   }
@@ -200,30 +182,6 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
       return 'x-small';
     }
     return 'small';
-  }
-
-  /**
-   * Returns color classes for the account type
-   */
-  public getAccountTypeColorClass(accountType?: PersonAccountType[keyof PersonAccountType]): string | void {
-    switch (accountType) {
-      case PersonAccountType.Employee:
-        return 'fwc-person-type__employee';
-      case PersonAccountType.Consultant:
-      case PersonAccountType.Enterprise:
-        return 'fwc-person-type__consultant';
-      case PersonAccountType.External:
-        return 'fwc-person-type__external';
-      case PersonAccountType.ExternalHire:
-        return 'fwc-person-type__external-hire';
-    }
-  }
-
-  /**
-   * Returns the first character in the person's name as upper case initial
-   */
-  public getInitial(name?: string): string | undefined {
-    return name?.substring(0, 1)?.toUpperCase();
   }
 
   /**

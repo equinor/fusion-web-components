@@ -29,7 +29,9 @@
     "lint:report": "eslint --output-file eslint-report.log.json --format json ./packages/*/src ./components/src",
     "test:pack": "pnpm -r pack --dry-run",
     "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
-    "changeset:publish": "pnpm changeset tag && pnpm publish -r"
+    "changeset:publish": "pnpm changeset tag && pnpm publish -r",
+    "trust:npm": "bash ./scripts/trust-all-npm-packages.sh",
+    "trust:npm:dry-run": "DRY_RUN=1 bash ./scripts/trust-all-npm-packages.sh"
   },
   "keywords": [],
   "author": "",

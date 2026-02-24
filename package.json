@@ -45,7 +45,7 @@
   "devDependencies": {
     "@equinor/eslint-config-fusion": "^2.0.0",
     "del-cli": "^7.0.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.26.0",
     "eslint-plugin-prettier": "^5.5.5",
     "typescript": "^5.9.3"
   }

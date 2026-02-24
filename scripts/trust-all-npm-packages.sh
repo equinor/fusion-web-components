@@ -21,7 +21,7 @@ if ! command -v npm >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! npm help 2>/dev/null | grep -Eq '(^|[[:space:]])trust,'; then
+if ! npm trust -h >/dev/null 2>&1; then
   npm_version="$(npm --version 2>/dev/null || echo unknown)"
   echo "Your npm version (${npm_version}) does not support 'npm trust'." >&2
   echo "Install an npm version with trusted publishing CLI support, then re-run." >&2

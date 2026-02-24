@@ -1,10 +1,15 @@
 name: Setup Node
-Description: General setup of node
+description: General setup of node
 inputs:
   node-version:
-    default: 24
+    description: Node.js version to use
+    default: '24'
   turbo-cache:
-    default: false
+    description: Enable turbo cache setup
+    default: 'false'
+  registry-url:
+    description: npm registry URL
+    default: https://registry.npmjs.org
 
 runs:
   using: composite
@@ -16,6 +21,7 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
+        registry-url: ${{ inputs.registry-url }}
 
     # - name: enable turbo cache
     #   if: ${{ inputs.turbo-cache == 'true' }}

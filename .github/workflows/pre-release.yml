@@ -11,6 +11,9 @@ jobs:
   publish:
     name: Publish to PR
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout project
         uses: actions/checkout@v6
@@ -22,11 +25,10 @@ jobs:
 
       - name: Config git user
         run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Create snapshot
         uses: ./.github/workflows/actions/changeset-snapshot
         with:
           tag: ${{ inputs.tag }}
-          npm-token: ${{ secrets.NPM_AUTH_TOKEN }}

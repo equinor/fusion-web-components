@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.1
+
+### Patch Changes
+
+- [`3661fb7`](https://github.com/equinor/fusion-web-components/commit/3661fb72eb938db542f67bd448f21644b6108232) Thanks [@odinr](https://github.com/odinr)! - Validation changeset to test OIDC trusted publishing for newly added packages and confirm the OIDC release workflow works as expected.
+  - `@equinor/fusion-wc-people`: validation bump for OIDC workflow verification
+  - `@equinor/fusion-web-components`: validation bump for OIDC workflow verification
+
 ## 1.0.0
 
 ### Major Changes

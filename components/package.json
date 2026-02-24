@@ -1,6 +1,6 @@
 {
   "name": "@equinor/fusion-web-components",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Package with collection of Fusion web components",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
@@ -17,7 +17,7 @@
     "./README.md": "./README.md",
     "./CHANGELOG.md": "./CHANGELOG.md"
   },
-	"customElements": "lib/custom-elements.json",
+  "customElements": "lib/custom-elements.json",
   "scripts": {
     "build": "tsc -b",
     "postbuild": "pnpm typedoc",
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.10",
-	  "@equinor/fusion-wc-builder": "workspace:*",
-	  "tslib": "^2.8.1",
-	  "typescript": "^5.9.3"
+    "@equinor/fusion-wc-builder": "workspace:*",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3"
   }
 }

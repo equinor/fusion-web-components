@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#2069](https://github.com/equinor/fusion-web-components/pull/2069) [`1a72d5a`](https://github.com/equinor/fusion-web-components/commit/1a72d5a1045610347cb55353a362d88167ecbfc8) Thanks [@eikeland](https://github.com/eikeland)! - Added RequestResolvePersonSuggestEvent and RequestResolvePersonResolveEvent for requesting person suggestions and person resolution operations.
+
+- [#2069](https://github.com/equinor/fusion-web-components/pull/2069) [`1a72d5a`](https://github.com/equinor/fusion-web-components/commit/1a72d5a1045610347cb55353a362d88167ecbfc8) Thanks [@eikeland](https://github.com/eikeland)! - Enhanced person card component UI with additional info sections and improved styling. Added SVG enhancements. Exported all tasks from main index for better accessibility. Updated all type exports to use type keyword for better TypeScript semantics.
+
+- [#2069](https://github.com/equinor/fusion-web-components/pull/2069) [`1a72d5a`](https://github.com/equinor/fusion-web-components/commit/1a72d5a1045610347cb55353a362d88167ecbfc8) Thanks [@eikeland](https://github.com/eikeland)! - Added PersonSuggestTask and PersonSuggestControllerHost for handling person and system account suggestions. Added PersonResolveTask and PersonResolveControllerHost for resolving person identifiers.
+
+- [#2069](https://github.com/equinor/fusion-web-components/pull/2069) [`1a72d5a`](https://github.com/equinor/fusion-web-components/commit/1a72d5a1045610347cb55353a362d88167ecbfc8) Thanks [@eikeland](https://github.com/eikeland)! - Added new types PersonSuggestResult, PersonSuggestResults, PersonResolveResult, PersonResolveResults and enums ServicePrincipalType, PersonSuggestResultAccountType, PersonSuggestResultPersonAccountType. Enhanced PersonInfo type with isExpired, avatarUrl, avatarColor, applicationId, applicationName, servicePrincipalType, and employeeNumber properties. Enhanced PersonResolver interface with optional suggest() and resolve() methods.
+
 ## 3.2.4
 
 ### Patch Changes

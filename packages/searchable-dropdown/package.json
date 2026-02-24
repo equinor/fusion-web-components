@@ -33,6 +33,11 @@
   "PeerDependencies": {
     "@equinor/fusion-web-theme": "^0.1.7"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/searchable-dropdown"
+  },
   "publishConfig": {
     "access": "public"
   },

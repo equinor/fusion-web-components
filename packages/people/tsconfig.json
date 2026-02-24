@@ -1,9 +1,20 @@
 {
-	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"rootDir": "src",
-		"outDir": "./lib",
-		"declarationDir": "./lib/types"
-	},
-	"include": ["src/**/*"]
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "./lib",
+    "declarationDir": "./lib/types"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../button" },
+    { "path": "../checkbox" },
+    { "path": "../chip" },
+    { "path": "../core" },
+    { "path": "../formfield" },
+    { "path": "../icon" },
+    { "path": "../person" },
+    { "path": "../progress-indicator" },
+    { "path": "../skeleton" }
+  ]
 }

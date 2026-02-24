@@ -8,6 +8,7 @@
   "references": [
     { "path": "../checkbox" },
     { "path": "../core" },
+    { "path": "../divider" },
     { "path": "../icon" },
     { "path": "../picture" },
     { "path": "../radio" }

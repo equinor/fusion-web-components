@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [#2143](https://github.com/equinor/fusion-web-components/pull/2143) [`056e538`](https://github.com/equinor/fusion-web-components/commit/056e53841599edd1462e7f6ab6912ccd695b7c55) Thanks [@eikeland](https://github.com/eikeland)! - Fix escape-key handling to close or refocus picker elements without unintended clicks.
+
+  Removes unnecessary padding on top of people components.
+
 ## 1.0.1
 
 ### Patch Changes

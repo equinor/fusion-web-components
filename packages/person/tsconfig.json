@@ -7,8 +7,6 @@
   },
   "include": ["src/**/*"],
   "references": [
-    { "path": "../avatar" },
-    { "path": "../badge" },
     { "path": "../button" },
     { "path": "../core" },
     { "path": "../icon" },

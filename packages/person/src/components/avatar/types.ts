@@ -9,7 +9,7 @@ export type PersonAvatarElementProps = {
   azureId?: string;
   upn?: string;
   dataSource?: AvatarData;
-  resolveIds?: string[]; 
+  resolveIds?: string[];
   size?: AvatarSize;
   showFloatingOn?: PersonAvatarShowCardOnType;
   clickable?: boolean;

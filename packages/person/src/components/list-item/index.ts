@@ -5,12 +5,10 @@ import { PersonListItemElementProps } from './types';
 export * from './element';
 export * from './types';
 
-export { AvatarSize } from '@equinor/fusion-wc-avatar';
-
 export const tag = 'fwc-person-list-item';
 
 @fusionElement(tag)
-export default class _ extends PersonListItemElement {}
+export default class _ extends PersonListItemElement { }
 
 declare global {
   interface HTMLElementTagNameMap {

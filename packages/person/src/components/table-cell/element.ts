@@ -2,7 +2,6 @@ import { CSSResult, html, LitElement, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import Avatar from '@equinor/fusion-wc-avatar';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
 import { PersonItemSize } from '../../types';
@@ -14,7 +13,6 @@ import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
 import { PersonResolveTask } from '../../tasks';
 import { mapResolveToPersonInfo } from '../../utils';
 
-Avatar;
 Skeleton;
 
 /**

@@ -27,8 +27,7 @@ export class ClickOutsideController implements ReactiveController {
   }
 
   private handleClickOutside(event: MouseEvent): void {
-    const path = event.composedPath();
-    if (path.includes(this.#host)) {
+    if (event.composedPath().includes(this.#host)) {
       return;
     }
 
@@ -42,9 +41,17 @@ export class ClickOutsideController implements ReactiveController {
 
   private handleKeyup(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
+      if (event.composedPath().includes(this.#host) || event.composedPath().some(el => {
+        const element = el as HTMLElement;
+        return element.tagName === 'FWC-PEOPLE-PICKER-LIST-ITEM';
+      })) {
+        return;
+      }
+
       if ('close' in this.#host) {
         this.#host.close();
       }
+
       this.removeClickOutsideListener();
     }
   }

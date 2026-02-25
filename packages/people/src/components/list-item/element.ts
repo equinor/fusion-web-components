@@ -77,6 +77,11 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
       this.controllers.navigate.navigateToAdjacentItem(direction);
       return;
     }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.dispatchEvent(new CustomEvent('navigate-to-search', { bubbles: true, composed: true }));
+    }
   }
 
   renderSubtitle(person: Partial<PersonInfo>): TemplateResult {

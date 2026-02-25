@@ -5,12 +5,12 @@ export const peopleBaseStyle: CSSResult = css`
   :host {
     display: block;
     --fwc-view-mode-position: 30px;
-    padding-top: var(--fwc-view-mode-position);
   }
+
   #root {
     position: relative;
   }
-  
+
   fwc-people-table-view-mode {
     position: absolute;
     top: calc(var(--fwc-view-mode-position) * -1);
@@ -45,7 +45,7 @@ export const peopleBaseStyle: CSSResult = css`
       opacity: 1;
     }
   }
-  
+
   .column-actions {
     position: absolute;
     top: 0;
@@ -55,6 +55,7 @@ export const peopleBaseStyle: CSSResult = css`
     display: flex;
     flex-flow: row nowrap;
   }
+
   .table-column-sort {
     position: relative;
     top: 6px;
@@ -62,6 +63,7 @@ export const peopleBaseStyle: CSSResult = css`
     flex-direction: column;
     gap: 0;
   }
+
   .table-column-delete {
     position: relative;
     top: 14px;
@@ -92,14 +94,12 @@ export const peopleBaseStyle: CSSResult = css`
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
 
-  /* Avatar and action columns */
   table tr .avatar, table tr .remove {
     width: 60px;
     text-align: center;
     padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
   }
 
-  /* Responsive design */
   @media (max-width: 768px) {
     table th,
     table td {

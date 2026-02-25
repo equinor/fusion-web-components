@@ -155,7 +155,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
     })
   }
 
-  renderContentMode(): TemplateResult {
+  renderContent(): TemplateResult {
     const renderPicker = ({ pills = true }: { pills?: boolean } = {}) => html`
       <div
         id="person-picker"
@@ -207,7 +207,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
     return html`
       <div id="root">
         ${this.renderViewMode()}
-        ${this.renderContentMode()}
+        ${this.renderContent()}
         ${this.renderErrors()}
       </div>
     `;

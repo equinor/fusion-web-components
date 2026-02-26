@@ -4,12 +4,11 @@ import { PersonCardElementProps } from './types';
 
 export * from './element';
 export * from './types';
-export { AvatarSize } from '@equinor/fusion-wc-avatar';
 
 export const tag = 'fwc-person-card';
 
 @fusionElement(tag)
-export default class _ extends PersonCardElement {}
+export default class _ extends PersonCardElement { }
 
 declare global {
   interface HTMLElementTagNameMap {

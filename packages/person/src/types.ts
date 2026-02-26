@@ -5,6 +5,17 @@ export type PersonPresence = {
   availability: PersonAvailability[keyof PersonAvailability];
 };
 
+/**
+ * only included for backward compatibility with existing implementations.
+ * @deprecated This enum will be removed in a future release.
+ */
+export enum AvatarSizeEnum {
+  XSmall = 'x-small',
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+};
+
 export type Position = {
   id: string;
   name: string;

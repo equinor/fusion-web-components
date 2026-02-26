@@ -1,16 +1,17 @@
 import type { PersonAvatarShowCardOnType } from './element';
+import { type PersonInfo as AvatarData } from '../../types';
 
-import type { PersonInfo as AvatarData } from '../../types';
-export type { PersonInfo as AvatarData } from '../../types';
+export type { AvatarData };
 
-export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large';
+// export this when deprecating AvatarSizeEnum
+// export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large';
 
 export type PersonAvatarElementProps = {
   azureId?: string;
   upn?: string;
   dataSource?: AvatarData;
-  resolveIds?: string[]; 
-  size?: AvatarSize;
+  resolveIds?: string[];
+  size?: 'x-small' | 'small' | 'medium' | 'large';
   showFloatingOn?: PersonAvatarShowCardOnType;
   clickable?: boolean;
   disabled?: boolean;

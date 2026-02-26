@@ -2,13 +2,17 @@ import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonAvatarElement } from './element';
 import { PersonAvatarElementProps } from './types';
 
+// important for backwards compatibility
+// remove when deprecating AvatarSizeEnum
+export { AvatarSizeEnum as AvatarSize } from '../../types';
+
 export * from './element';
 export * from './types';
 
 export const tag = 'fwc-person-avatar';
 
 @fusionElement(tag)
-export default class _ extends PersonAvatarElement {}
+export default class _ extends PersonAvatarElement { }
 
 declare global {
   interface HTMLElementTagNameMap {

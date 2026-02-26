@@ -57,8 +57,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@equinor/fusion-wc-avatar": "workspace:^",
-    "@equinor/fusion-wc-badge": "workspace:^",
     "@equinor/fusion-wc-button": "workspace:^",
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-icon": "workspace:^",

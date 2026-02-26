@@ -546,12 +546,6 @@ importers:
 
   packages/person:
     dependencies:
-      '@equinor/fusion-wc-avatar':
-        specifier: workspace:^
-        version: link:../avatar
-      '@equinor/fusion-wc-badge':
-        specifier: workspace:^
-        version: link:../badge
       '@equinor/fusion-wc-button':
         specifier: workspace:^
         version: link:../button

@@ -6,7 +6,7 @@ export type PersonTableCellElementProps<T extends TableCellData = TableCellData>
   azureId?: string;
   upn?: string;
   dataSource?: TableCellData;
-  resolveIds?: string[];
+  resolveId?: string;
   size?: PersonItemSize;
   showAvatar: boolean;
   heading: (person: T) => string | undefined;

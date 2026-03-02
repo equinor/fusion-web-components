@@ -5,6 +5,7 @@ type PersonElement = ReactiveControllerHost & {
   azureId?: string;
   upn?: string;
   dataSource?: PersonDetails;
+  resolveId?: string;
   resolveIds?: string[];
 };
 
@@ -35,9 +36,18 @@ export class ResolvePropertyMapper implements ReactiveController {
       this.#host.upn = undefined;
     }
 
+    if (this.#host.resolveId) {
+      this.#host.resolveIds = [this.#host.resolveId];
+      this.#host.resolveId = undefined;
+    }
+
     if (this.#host.dataSource && !this.#host.dataSource.avatarUrl) {
-      this.#host.resolveIds = [this.#host.dataSource.azureId];
-      this.#host.dataSource = undefined;
+      if (this.#host.dataSource.azureId) {
+        this.#host.resolveIds = [this.#host.dataSource.azureId];
+        this.#host.dataSource = undefined;
+      } else {
+        console.warn('DataSource must include the azureId property to resolve person details.');
+      }
     }
   }
 }

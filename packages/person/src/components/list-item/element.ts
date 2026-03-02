@@ -32,17 +32,37 @@ Skeleton;
 export class PersonListItemElement extends LitElement implements PersonListItemElementProps {
   static styles: CSSResult[] = [style, personStyle];
 
-  /** Unique person Azure ID */
+  /** 
+   * Unique person AzureId 
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public azureId?: string;
 
+  /**
+   * Unique person User Principal Name
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public upn?: string;
 
+  /**
+   * Unique id used to resolve person details.
+   * Can be azureId or upn.
+   * Using this property will take precedence over azureId and upn.
+   */
+  @property({ type: String })
+  resolveId?: string;
+
+  /**
+   * Person details data source. If provided, it will be used to render the component without resolving the details.
+   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
+   */
   @property({ type: Object })
   public dataSource?: ListItemData;
 
-  @property({ type: Array })
+  /** Internal state used to trigger resolve task */
+  @state()
   resolveIds: string[] = [];
 
   /** Size of component */
@@ -119,12 +139,12 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     return html`
       <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
               <div class="person-list__about">
                 <div class="person-list__avatar">
                   <fwc-person-avatar .dataSource=${person} size="small"></fwc-person-avatar>
@@ -136,10 +156,10 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
               </div>
               <slot class="person-list__toolbar"></slot>
             `;
-      },
-      pending: () => this.renderPending(),
-      error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-    })}
+          },
+          pending: () => this.renderPending(),
+          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+        })}
       </div>
     `;
   }

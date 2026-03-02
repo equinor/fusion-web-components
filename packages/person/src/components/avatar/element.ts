@@ -52,16 +52,37 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
 export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
 
+  /** 
+   * Unique person AzureId 
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public azureId?: string;
 
+  /**
+   * Unique person User Principal Name
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public upn?: string;
 
+  /**
+   * Unique id used to resolve person details.
+   * Can be azureId or upn.
+   * Using this property will take precedence over azureId and upn.
+   */
+  @property({ type: String })
+  resolveId?: string;
+
+  /**
+   * Person details data source. If provided, it will be used to render the component without resolving the details.
+   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
+   */
   @property({ type: Object })
   public dataSource?: AvatarData;
 
-  @property({ type: Array })
+  /** Internal state used to trigger resolve task */
+  @state()
   resolveIds: string[] = [];
 
   /**

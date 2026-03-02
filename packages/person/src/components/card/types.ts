@@ -7,7 +7,7 @@ export type PersonCardElementProps = {
   azureId?: string;
   upn?: string;
   dataSource?: CardData;
-  resolveIds?: string[];
+  resolveId?: string;
   size?: PersonItemSize;
   customColor?: string;
   shadow?: boolean;

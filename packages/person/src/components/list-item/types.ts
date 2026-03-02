@@ -6,6 +6,6 @@ export type PersonListItemElementProps = {
   azureId?: string;
   upn?: string;
   dataSource?: ListItemData;
-  resolveIds?: string[];
+  resolveId?: string;
   size?: PersonItemSize;
 };

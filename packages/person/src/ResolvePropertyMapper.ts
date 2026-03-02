@@ -5,6 +5,7 @@ type PersonElement = ReactiveControllerHost & {
   azureId?: string;
   upn?: string;
   dataSource?: PersonDetails;
+  resolveId?: string;
   resolveIds?: string[];
 };
 
@@ -25,20 +26,44 @@ export class ResolvePropertyMapper implements ReactiveController {
   }
 
   hostUpdated(): void {
+    this.#host.resolveIds = this.resolveIdsFromProperty();
+
+    // Clear the old properties to avoid reresolving.
+    this.#host.dataSource = undefined;
+    this.#host.resolveId = undefined;
+    this.#host.azureId = undefined;
+    this.#host.upn = undefined;
+  }
+
+  resolveIdsFromProperty(): string[] | undefined {
+    const resolveIds = this.#host.resolveIds;
+
+    if (resolveIds && resolveIds.length > 0) {
+      // resolveIds is already set, do not override it.
+      return resolveIds;
+    }
+
+    // 1. dataSource
+    if (this.#host.dataSource?.azureId && !this.#host.dataSource.avatarUrl) {
+      return [this.#host.dataSource.azureId];
+    }
+    
+    // 2. resolveId
+    if (this.#host.resolveId) {
+      return [this.#host.resolveId];
+    }
+
+    // 3. azureId
     if (this.#host.azureId) {
-      this.#host.resolveIds = [this.#host.azureId];
-      this.#host.azureId = undefined;
+      return [this.#host.azureId];
     }
-
+    
+    // 4. upn
     if (this.#host.upn) {
-      this.#host.resolveIds = [this.#host.upn];
-      this.#host.upn = undefined;
+      return [this.#host.upn];
     }
 
-    if (this.#host.dataSource && !this.#host.dataSource.avatarUrl) {
-      this.#host.resolveIds = [this.#host.dataSource.azureId];
-      this.#host.dataSource = undefined;
-    }
+    return resolveIds;
   }
 }
 

@@ -34,24 +34,43 @@ Skeleton;
 export class PersonTableCellElement extends LitElement implements PersonTableCellElementProps {
   static styles: CSSResult[] = [style, personStyle];
 
-  /** Unique person Azure ID */
+  /**
+   * Unique person AzureId
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public azureId?: string;
 
-  /** Unique person email(upn) */
+  /**
+   * Unique person User Principal Name
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public upn?: string;
 
-  /** Custom person data source */
+  /**
+   * Unique id used to resolve person details.
+   * Can be azureId or upn.
+   * Using this property will take precedence over azureId and upn.
+   */
+  @property({ type: String })
+  resolveId?: string;
+
+  /**
+   * Person details data source. If provided, it will be used to render the component without resolving the details.
+   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
+   */
   @property({ type: Object })
   public dataSource?: TableCellData;
 
-  @property({ type: Array })
+  /** Internal state used to trigger resolve task */
+  @state()
   resolveIds: string[] = [];
 
   /** Function to determine heading based on person data */
   @property({ type: Function })
-  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) => person.applicationName ?? person.name;
+  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) =>
+    person.applicationName ?? person.name;
 
   /** Function to determine sub heading based on person data */
   @property({ type: Function })
@@ -155,24 +174,21 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     return html`
       <div class="person-cell__item">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`<div class="person-cell__about">
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`<div class="person-cell__about">
               ${this.showAvatar
-            ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
-            : null}
-              <div class="person-cell__content">
-                ${this.renderHeading(person)}
-                ${this.renderSubHeading(person)}
-              </div>
+                ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
+                : null}
+              <div class="person-cell__content">${this.renderHeading(person)} ${this.renderSubHeading(person)}</div>
             </div>`;
-      },
-      pending: () => this.renderPending(false),
-      error: () => this.renderPending(true),
-    })}
+          },
+          pending: () => this.renderPending(false),
+          error: () => this.renderPending(true),
+        })}
       </div>
     `;
   }

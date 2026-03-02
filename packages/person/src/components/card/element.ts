@@ -39,24 +39,45 @@ PersonCardAdditionalInfoElement;
  *
  */
 
-export class PersonCardElement
-  extends LitElement
-  implements PersonCardElementProps {
+export class PersonCardElement extends LitElement implements PersonCardElementProps {
   static styles: CSSResult[] = styles;
 
-  /** Azure unique id */
+  /**
+   * Unique person AzureId
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public azureId?: string;
 
+  /**
+   * Unique person User Principal Name
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public upn?: string;
 
+  /**
+   * Unique id used to resolve person details.
+   * Can be azureId or upn.
+   * Using this property will take precedence over azureId and upn.
+   */
+  @property({ type: String })
+  resolveId?: string;
+
+  /**
+   * Person details data source. If provided, it will be used to render the component without resolving the details.
+   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
+   */
   @property({ type: Object })
   public dataSource?: CardData;
 
-  @property({ type: Array })
+  /** Internal state used to trigger resolve task */
+  @state()
   resolveIds: string[] = [];
 
+  /**
+   * Whether to show shadow around the card. Default is true.
+   */
   @property({ type: Boolean })
   public shadow: boolean = true;
 
@@ -120,7 +141,7 @@ export class PersonCardElement
     const urlParts = [
       'https://portal.azure.com/#view/Microsoft_AAD_IAM/ManagedAppMenuBlade/~/Overview',
       `objectId/${azureId}`,
-      `appId/${applicationId}`
+      `appId/${applicationId}`,
     ];
 
     return urlParts.join('/');
@@ -130,9 +151,16 @@ export class PersonCardElement
    * Render the icon bar
    */
   protected renderIconBar(details: CardData): TemplateResult {
-    const generateLink = (props: { title: string, href: string, icon: string, hasValue: boolean, blank?: boolean }): TemplateResult => {
+    const generateLink = (props: {
+      title: string;
+      href: string;
+      icon: string;
+      hasValue: boolean;
+      blank?: boolean;
+    }): TemplateResult => {
       const { title, href, icon, hasValue, blank } = props;
-      const iconElement = icon === 'delveIcon' ? html`<fwc-icon>${delveIcon}</fwc-icon>` : html`<fwc-icon icon="${icon}"></fwc-icon>`;
+      const iconElement =
+        icon === 'delveIcon' ? html`<fwc-icon>${delveIcon}</fwc-icon>` : html`<fwc-icon icon="${icon}"></fwc-icon>`;
 
       if (!hasValue) {
         return html`
@@ -140,24 +168,16 @@ export class PersonCardElement
             title="${title}"
             href="${href}"
             @click="${(e: MouseEvent) => {
-            e.preventDefault();
-            return;
-          }}"
+              e.preventDefault();
+              return;
+            }}"
             class="disabled"
           >
             ${iconElement}
           </a>
         `;
       }
-      return html`
-        <a
-          title="${title}"
-          href="${href}"
-          target="${blank ? '_blank' : '_self'}"
-        >
-          ${iconElement}
-        </a>
-      `;
+      return html`<a title="${title}" href="${href}" target="${blank ? '_blank' : '_self'}">${iconElement}</a>`;
     };
 
     if (details.applicationId) {
@@ -169,12 +189,12 @@ export class PersonCardElement
       return html`
         <slot name="icon-bar">
           ${generateLink({
-        title: 'Open application in azure portal',
-        href,
-        icon: 'home',
-        hasValue: Boolean(details.applicationId),
-        blank: true,
-      })}
+            title: 'Open application in azure portal',
+            href,
+            icon: 'home',
+            hasValue: Boolean(details.applicationId),
+            blank: true,
+          })}
         </slot>
       `;
     }
@@ -182,41 +202,36 @@ export class PersonCardElement
     return html`
       <slot name="icon-bar">
         ${generateLink({
-      title: 'Open profile',
-      href: `/apps/people-search/person?user=${details.azureId}`,
-      icon: 'home',
-      hasValue: Boolean(details.azureId),
-      blank: true,
-    })}
-
-
+          title: 'Open profile',
+          href: `/apps/people-search/person?user=${details.azureId}`,
+          icon: 'home',
+          hasValue: Boolean(details.azureId),
+          blank: true,
+        })}
         ${generateLink({
-      title: `Email: ${details.mail}`,
-      href: `mailto:${details.mail}`,
-      icon: 'email',
-      hasValue: Boolean(details.mail),
-    })}
-
+          title: `Email: ${details.mail}`,
+          href: `mailto:${details.mail}`,
+          icon: 'email',
+          hasValue: Boolean(details.mail),
+        })}
         ${generateLink({
-      title: "Chat in Teams",
-      href: `https://teams.microsoft.com/l/chat/0/0?users=${details.mail}`,
-      icon: "comment_chat",
-      hasValue: Boolean(details.mail),
-    })}
-        
+          title: 'Chat in Teams',
+          href: `https://teams.microsoft.com/l/chat/0/0?users=${details.mail}`,
+          icon: 'comment_chat',
+          hasValue: Boolean(details.mail),
+        })}
         ${generateLink({
-      title: "Call in Teams",
-      href: `https://teams.microsoft.com/l/call/0/0?users=${details.mail}`,
-      icon: "call",
-      hasValue: Boolean(details.mail),
-    })}
-
+          title: 'Call in Teams',
+          href: `https://teams.microsoft.com/l/call/0/0?users=${details.mail}`,
+          icon: 'call',
+          hasValue: Boolean(details.mail),
+        })}
         ${generateLink({
-      title: "Delve",
-      href: `https://eur.delve.office.com/?v=work&u=${details.azureId}`,
-      icon: "delveIcon",
-      hasValue: Boolean(details.azureId),
-    })}
+          title: 'Delve',
+          href: `https://eur.delve.office.com/?v=work&u=${details.azureId}`,
+          icon: 'delveIcon',
+          hasValue: Boolean(details.azureId),
+        })}
       </slot>
     `;
   }
@@ -225,15 +240,11 @@ export class PersonCardElement
     if (textToCopy) {
       navigator.clipboard.writeText(textToCopy);
     }
-  }
+  };
 
   renderCopyToClipboardIcon(value: string, title: string): TemplateResult {
     return html`
-      <button
-        class="copyable-text__button"
-        @click=${{ handleEvent: () => this.copyToClipboard(value) }}
-        title=${title}
-      >
+      <button class="copyable-text__button" @click=${{ handleEvent: () => this.copyToClipboard(value) }} title=${title}>
         <fwc-icon icon="copy"></fwc-icon>
       </button>
     `;
@@ -243,18 +254,15 @@ export class PersonCardElement
     return html`
       <div class="person-card-info__link copyable-text" title="${title}">
         <fwc-icon class="person-card-info__icon" icon="${icon === 'entraIcon' ? null : icon}">${entraIcon}</fwc-icon>
-        ${href ?
-        html`
-          <a class="person-card-info__text" href="${href}">${value}</a>
-          <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, `Copy to clipboard`)}</div>
-        ` :
-        html`
-          <p class="person-card-info__text">${value}</p>
-          <div class="copyable-text__actions">
-            ${this.renderCopyToClipboardIcon(value, `Copy to clipboard`)}
-          </div>
-        `
-      }
+        ${href
+          ? html`
+              <a class="person-card-info__text" href="${href}">${value}</a>
+              <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, 'Copy to clipboard')}</div>
+            `
+          : html`
+              <p class="person-card-info__text">${value}</p>
+              <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, 'Copy to clipboard')}</div>
+            `}
       </div>
     `;
   }
@@ -290,7 +298,7 @@ export class PersonCardElement
         return 'This is the unique ID of the service principal object associated with this application. This ID can be useful when performing management operations against this application using PowerShell or other programmatic interfaces.';
       }
 
-      return 'Azure ID'
+      return 'Azure ID';
     };
 
     const href = () => {
@@ -313,9 +321,9 @@ export class PersonCardElement
           <button
             class="copyable-text__button"
             @click=${(e: MouseEvent) => {
-        e.preventDefault();
-        window.open(href(), '_blank');
-      }}
+              e.preventDefault();
+              window.open(href(), '_blank');
+            }}
             title="Open in ${details.applicationId ? 'Azure Portal' : 'People Search'}"
           >
             <fwc-icon icon="external_link"></fwc-icon>
@@ -338,7 +346,8 @@ export class PersonCardElement
       return this.createManagedIdentityEntraLink(details.azureId, details.applicationId ?? '');
     };
 
-    const title = 'This is the unique application ID of this application in your directory. You can use this application ID if you ever need help from Microsoft Support, or if you want to perform operations against this specific instance of the application using Microsoft Graph or PowerShell APIs.';
+    const title =
+      'This is the unique application ID of this application in your directory. You can use this application ID if you ever need help from Microsoft Support, or if you want to perform operations against this specific instance of the application using Microsoft Graph or PowerShell APIs.';
 
     return html`
       <div class="person-card-info__link copyable-text" title="${title}">
@@ -349,9 +358,9 @@ export class PersonCardElement
           <button
             class="copyable-text__button"
             @click=${(e: MouseEvent) => {
-        e.preventDefault();
-        window.open(href(), '_blank');
-      }}
+              e.preventDefault();
+              window.open(href(), '_blank');
+            }}
             title="Open in Azure Portal"
           >
             <fwc-icon icon="external_link"></fwc-icon>
@@ -366,7 +375,12 @@ export class PersonCardElement
       return html``;
     }
 
-    return this.renderCopyableContact(upn, '', 'person', 'User Principal Name - Username that looks like an email (but might not receive emails).');
+    return this.renderCopyableContact(
+      upn,
+      '',
+      'person',
+      'User Principal Name - Username that looks like an email (but might not receive emails).',
+    );
   }
 
   protected renderEmployeeNumber(employeeNumber: string | undefined): TemplateResult {
@@ -389,25 +403,25 @@ export class PersonCardElement
       <div class="info-item">
         <div class="info-item_heading">Contact</div>
         <div class="info-item_items">
-          ${this.renderMobile(mobilePhone)}
-          ${this.renderEmail(details)}
+          ${this.renderMobile(mobilePhone)} ${this.renderEmail(details)}
           ${details.applicationId || this.showExtraContactInfo
-        ? html`
-              ${this.renderAzureId(details)}
-              ${this.renderApplicationId(details)}
-              ${this.renderUpn(upn)}
-              ${this.renderEmployeeNumber(employeeNumber)}
-            `
-        : html``
-      }
-          
-          ${!details.applicationId ? html`
-            <a class="person-card-info__show_more" href="#" @click=${(e: Event) => {
-          e.preventDefault();
-          this.showExtraContactInfo = !this.showExtraContactInfo;
-        }}>Show ${this.showExtraContactInfo ? 'less' : 'more'}</a>
-            ` : html``
-      }
+            ? html`
+                ${this.renderAzureId(details)} ${this.renderApplicationId(details)} ${this.renderUpn(upn)}
+                ${this.renderEmployeeNumber(employeeNumber)}
+              `
+            : html``}
+          ${!details.applicationId
+            ? html` <a
+                class="person-card-info__show_more"
+                href="#"
+                @click=${(e: Event) => {
+                  e.preventDefault();
+                  this.showExtraContactInfo = !this.showExtraContactInfo;
+                }}
+              >
+                Show ${this.showExtraContactInfo ? 'less' : 'more'}
+              </a>`
+            : html``}
         </div>
       </div>
     `;
@@ -418,14 +432,12 @@ export class PersonCardElement
 
     if (!name) {
       return html``;
-    };
+    }
 
     return html`
       <header title="Person name" class="person-card__name copyable-text">
         <p class="copyable-text__text">${name}</p>
-        <div class="copyable-text__actions">
-          ${this.renderCopyToClipboardIcon(name, "Copy name")}
-        </div>
+        <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(name, 'Copy name')}</div>
       </header>
     `;
   }
@@ -444,8 +456,10 @@ export class PersonCardElement
 
     return html`
       ${details.department && html`<div class="person-card__department" title="Department">${details.department}</div>`}
-      ${details.accountLabel && html`<div class="person-card__jobtitle" title="Job Title">${details.accountLabel}</div>`}
-      ${details.applicationId && html`<div class="person-card__jobtitle" title="Account type">${details.accountType}</div>`}
+      ${details.accountLabel &&
+      html`<div class="person-card__jobtitle" title="Job Title">${details.accountLabel}</div>`}
+      ${details.applicationId &&
+      html`<div class="person-card__jobtitle" title="Account type">${details.accountType}</div>`}
     `;
   }
 
@@ -528,8 +542,12 @@ export class PersonCardElement
     }
 
     return html`
-      <div class="person-card__section ${this.shadow ? 'shadow' : ''}" style="max-width:${this.maxWidth}px; max-height:${this.maxWidth}px">
-        ${this.dataSource && html`
+      <div
+        class="person-card__section ${this.shadow ? 'shadow' : ''}"
+        style="max-width:${this.maxWidth}px; max-height:${this.maxWidth}px"
+      >
+        ${this.dataSource &&
+        html`
           <div class="person-card__heading">
             <div class="fwc-person-avatar">
               <slot name="avatar">
@@ -541,14 +559,17 @@ export class PersonCardElement
               </slot>
             </div>
             <div class="person-card__header">
-              ${this.renderPersonName(this.dataSource)}
-              ${this.renderPersonDepartments(this.dataSource)}
+              ${this.renderPersonName(this.dataSource)} ${this.renderPersonDepartments(this.dataSource)}
             </div>
           </div>
           <div class="person-card__iconbar">${this.renderIconBar(this.dataSource)}</div>
           <div class="person-card__content">
             ${this.renderContact(this.dataSource)}
-            ${!this.dataSource.applicationId ? html`<fwc-person-card-additional-info azureid=${this.dataSource.azureId}></fwc-person-card-additional-info>` : null}
+            ${!this.dataSource.applicationId && this.dataSource.azureId
+              ? html`
+                  <fwc-person-card-additional-info azureid=${this.dataSource.azureId}></fwc-person-card-additional-info>
+                `
+              : null}
           </div>
         `}
       </div>

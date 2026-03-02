@@ -52,16 +52,37 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
 export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
 
+  /**
+   * Unique person AzureId
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public azureId?: string;
 
+  /**
+   * Unique person User Principal Name
+   * @deprecated use resolveId instead.
+   */
   @property({ type: String })
   public upn?: string;
 
+  /**
+   * Unique id used to resolve person details.
+   * Can be azureId or upn.
+   * Using this property will take precedence over azureId and upn.
+   */
+  @property({ type: String })
+  resolveId?: string;
+
+  /**
+   * Person details data source. If provided, it will be used to render the component without resolving the details.
+   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
+   */
   @property({ type: Object })
   public dataSource?: AvatarData;
 
-  @property({ type: Array })
+  /** Internal state used to trigger resolve task */
+  @state()
   resolveIds: string[] = [];
 
   /**
@@ -77,6 +98,9 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   @property({ type: String, reflect: true })
   size?: PersonAvatarElementProps['size'];
 
+  /**
+   * @deprecated pictureSrc is no longer in use.
+   */
   @property({ type: String, reflect: true })
   pictureSrc?: string;
 
@@ -129,7 +153,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
    * @internal
    */
   private tasks?: {
-    resolve: PersonResolveTask,
+    resolve: PersonResolveTask;
   };
 
   /**
@@ -143,7 +167,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
           if (this.intersected) {
             this.controllers.observer.unobserve(this);
             this.tasks = {
-              resolve: new PersonResolveTask(this)
+              resolve: new PersonResolveTask(this),
             };
           }
         }
@@ -199,9 +223,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
       const badgeIcon = person.applicationId ? 'apps' : 'star_filled';
       return html`
         <div slot="badge" id="avatar-badge" style="background-color: ${person.avatarColor};">
-          <fwc-icon
-            icon="${badgeIcon}"
-          ></fwc-icon>
+          <fwc-icon icon="${badgeIcon}"></fwc-icon>
         </div>
       `;
     }
@@ -219,14 +241,10 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   protected renderAvatarElement(details: Partial<AvatarData>, trigger: boolean = true): TemplateResult {
     if (!trigger) {
       return html`
-      <div
-        id="avatar-element-container"
-        @click=${this.handleOnClick}
-      >
-        ${this.renderImage(details)}
-        ${this.renderBadge(details)}
-      </div>
-    `;
+        <div id="avatar-element-container" @click=${this.handleOnClick}>
+          ${this.renderImage(details)} ${this.renderBadge(details)}
+        </div>
+      `;
     }
 
     return html`
@@ -236,8 +254,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
         @mouseover=${this.handleMouseOver}
         @mouseout=${this.handleMouseOut}
       >
-        ${this.renderImage(details)}
-        ${this.renderBadge(details)}
+        ${this.renderImage(details)} ${this.renderBadge(details)}
       </div>
     `;
   }
@@ -249,29 +266,34 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     return html`
       <div id="root">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
               ${this.renderAvatarElement(person)}
-              <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
+              <div
+                id="floating"
+                @mouseover="${this.handleFloatingMouseOver}"
+                @mouseout="${this.handleFloatingMouseOut}"
+              >
                 <slot name="floating">
-                  ${when(this.isFloatingOpen, () =>
-          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
-                      <div slot="avatar">
-                        ${this.renderAvatarElement(person, false)}
-                      </div>
-                    </fwc-person-card>`,
-        )}
+                  ${when(
+                    this.isFloatingOpen,
+                    () => html`
+                      <fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
+                        <div slot="avatar">${this.renderAvatarElement(person, false)}</div>
+                      </fwc-person-card>
+                    `,
+                  )}
                 </slot>
               </div>
             `;
-      },
-      pending: () => html`${this.renderImagePlaceholder(true)}`,
-      error: () => html`${this.renderImagePlaceholder(false)}`,
-    })}
+          },
+          pending: () => html`${this.renderImagePlaceholder(true)}`,
+          error: () => html`${this.renderImagePlaceholder(false)}`,
+        })}
       </div>
     `;
   }

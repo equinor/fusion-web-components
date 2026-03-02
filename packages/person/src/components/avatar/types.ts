@@ -6,11 +6,13 @@ export type { AvatarData };
 // export this when deprecating AvatarSizeEnum
 // export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large';
 
-export type PersonAvatarElementProps = {
+export interface PersonAvatarElementProps {
+  /** @deprecated Use resolveId instead. */
   azureId?: string;
+  /** @deprecated Use resolveId instead. */
   upn?: string;
   dataSource?: AvatarData;
-  resolveIds?: string[];
+  resolveId?: string;
   size?: 'x-small' | 'small' | 'medium' | 'large';
   showFloatingOn?: PersonAvatarShowCardOnType;
   clickable?: boolean;
@@ -18,4 +20,4 @@ export type PersonAvatarElementProps = {
   pictureSrc?: string;
   trigger?: PersonAvatarShowCardOnType;
   showLetter?: boolean;
-};
+}

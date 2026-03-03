@@ -34,6 +34,27 @@ export const Default: Story = {
   render,
 };
 
+export const AzureId: Story = {
+  args: {
+    azureId: faker.string.uuid(),
+  },
+  render: (props) => html`<fwc-person-list-item azureId=${ifDefined(props.azureId)}></fwc-person-list-item>`,
+};
+
+export const Upn: Story = {
+  args: {
+    upn: faker.internet.email(),
+  },
+  render: (props) => html`<fwc-person-list-item upn=${ifDefined(props.upn)}></fwc-person-list-item>`,
+};
+
+export const ResolveId: Story = {
+  args: {
+    resolveId: faker.internet.email(),
+  },
+  render: (props) => html`<fwc-person-list-item resolveId=${ifDefined(props.resolveId)}></fwc-person-list-item>`,
+};
+
 export const Sizes: Story = {
   ...Default,
   render: (props) =>

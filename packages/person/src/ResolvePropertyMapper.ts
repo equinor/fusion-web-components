@@ -6,7 +6,7 @@ type PersonElement = ReactiveControllerHost & {
   upn?: string;
   dataSource?: PersonDetails;
   resolveId?: string;
-  resolveIds?: string[];
+  resolveIds: string[];
 };
 
 /**
@@ -26,39 +26,34 @@ export class ResolvePropertyMapper implements ReactiveController {
   }
 
   hostUpdated(): void {
+    // set resolveIds based on the properties.
     this.#host.resolveIds = this.resolveIdsFromProperty();
-
-    // Clear the old properties to avoid reresolving.
-    this.#host.dataSource = undefined;
-    this.#host.resolveId = undefined;
-    this.#host.azureId = undefined;
-    this.#host.upn = undefined;
   }
 
-  resolveIdsFromProperty(): string[] | undefined {
-    const resolveIds = this.#host.resolveIds;
+  resolveIdsFromProperty(): string[] {
+    const { resolveIds } = this.#host;
 
-    if (resolveIds && resolveIds.length > 0) {
-      // resolveIds is already set, do not override it.
+    // Do not edit resolveIds if already set
+    if (resolveIds.length > 0) {
       return resolveIds;
     }
 
-    // 1. dataSource
+    /**
+     * The order of the following if's are important. do not edit.
+     * order: dataSource -> resolveId -> azureId -> upn
+     */
     if (this.#host.dataSource?.azureId && !this.#host.dataSource.avatarUrl) {
       return [this.#host.dataSource.azureId];
     }
-    
-    // 2. resolveId
+
     if (this.#host.resolveId) {
       return [this.#host.resolveId];
     }
 
-    // 3. azureId
     if (this.#host.azureId) {
       return [this.#host.azureId];
     }
-    
-    // 4. upn
+
     if (this.#host.upn) {
       return [this.#host.upn];
     }

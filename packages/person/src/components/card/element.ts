@@ -1,13 +1,12 @@
 import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
-import { TaskStatus } from '@lit/task';
 
 import Icon from '@equinor/fusion-wc-icon';
 import IconButton from '@equinor/fusion-wc-button/icon-button';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-import { PersonItemSize, PersonResolveResult } from '../../types';
+import { PersonItemSize } from '../../types';
 import { CardData, PersonCardElementProps } from './types';
 
 import { PersonResolveTask } from '../../tasks';
@@ -532,46 +531,47 @@ export class PersonCardElement extends LitElement implements PersonCardElementPr
       }
     };
 
-    if (this.tasks.resolve.status === TaskStatus.COMPLETE) {
-      if ((this.tasks.resolve.value?.length ?? 0) > 0) {
-        this.dataSource = mapResolveToPersonInfo(this.tasks.resolve.value?.[0] as PersonResolveResult);
-        this.resolveIds = [];
-      }
-    } else {
-      return this.renderPending();
-    }
-
     return html`
-      <div
-        class="person-card__section ${this.shadow ? 'shadow' : ''}"
-        style="max-width:${this.maxWidth}px; max-height:${this.maxWidth}px"
-      >
-        ${this.dataSource &&
-        html`
-          <div class="person-card__heading">
-            <div class="fwc-person-avatar">
-              <slot name="avatar">
-                <fwc-person-avatar
-                  size=${avatarSize()}
-                  .dataSource=${this.dataSource}
-                  trigger="none"
-                ></fwc-person-avatar>
-              </slot>
-            </div>
-            <div class="person-card__header">
-              ${this.renderPersonName(this.dataSource)} ${this.renderPersonDepartments(this.dataSource)}
-            </div>
-          </div>
-          <div class="person-card__iconbar">${this.renderIconBar(this.dataSource)}</div>
-          <div class="person-card__content">
-            ${this.renderContact(this.dataSource)}
-            ${!this.dataSource.applicationId && this.dataSource.azureId
-              ? html`
-                  <fwc-person-card-additional-info azureid=${this.dataSource.azureId}></fwc-person-card-additional-info>
-                `
-              : null}
-          </div>
-        `}
+      <div id="root">
+        ${this.tasks.resolve.render({
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
+              <div
+                class="person-card__section ${this.shadow ? 'shadow' : ''}"
+                style="max-width:${this.maxWidth}px; max-height:${this.maxWidth}px"
+              >
+                <div class="person-card__heading">
+                  <div class="fwc-person-avatar">
+                    <slot name="avatar">
+                      <fwc-person-avatar size=${avatarSize()} .dataSource=${person} trigger="none"></fwc-person-avatar>
+                    </slot>
+                  </div>
+                  <div class="person-card__header">
+                    ${this.renderPersonName(person)} ${this.renderPersonDepartments(person)}
+                  </div>
+                </div>
+                <div class="person-card__iconbar">${this.renderIconBar(person)}</div>
+                <div class="person-card__content">
+                  ${this.renderContact(person)}
+                  ${!person.applicationId && person.azureId
+                    ? html`
+                        <fwc-person-card-additional-info azureid=${person.azureId}></fwc-person-card-additional-info>
+                      `
+                    : null}
+                </div>
+              </div>
+            `;
+          },
+          pending: () => html`${this.renderPending()}`,
+          error: (e) => {
+            console.error('Failed to resolve person', e);
+            return html`${this.renderPending()}`;
+          },
+        })}
       </div>
     `;
   }

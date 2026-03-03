@@ -30,7 +30,9 @@ const render = (props: PersonAvatarElementProps) => html`
     .trigger="${ifDefined(props.trigger)}"
     size="${ifDefined(props.size)}"
     pictureSrc=${ifDefined(props.pictureSrc)}
-    azureId=${ifDefined(props.azureId)}
+    azureid=${ifDefined(props.azureId)}
+    upn=${ifDefined(props.upn)}
+    resolveid=${ifDefined(props.resolveId)}
     ?disabled=${ifDefined(props.disabled)}
     ?showLetter=${ifDefined(props.showLetter)}
   ></fwc-person-avatar>
@@ -54,6 +56,27 @@ export const Sizes: Story = {
 export const Disabled: Story = {
   ...Default,
   render: (props) => render({ ...props, disabled: true }),
+};
+
+export const ResolveId: Story = {
+  args: {
+    resolveId: String(faker.internet.email()),
+  },
+  render,
+};
+
+export const Upn: Story = {
+  args: {
+    upn: String(faker.internet.email()),
+  },
+  render,
+};
+
+export const AzureId: Story = {
+  args: {
+    azureId: String(faker.string.uuid()),
+  },
+  render,
 };
 
 export const CornerPositions: Story = {

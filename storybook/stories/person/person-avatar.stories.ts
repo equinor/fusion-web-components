@@ -8,7 +8,6 @@ import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
-import { PersonAccountType } from '@equinor/fusion-wc-person';
 
 PersonAvatar;
 
@@ -75,6 +74,14 @@ export const Upn: Story = {
 export const AzureId: Story = {
   args: {
     azureId: String(faker.string.uuid()),
+  },
+  render,
+};
+
+export const TriggerClick: Story = {
+  args: {
+    azureId: String(faker.string.uuid()),
+    trigger: 'click',
   },
   render,
 };

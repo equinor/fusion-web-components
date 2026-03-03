@@ -1,9 +1,8 @@
 // TODO - CLEAN UP!
-import { html, LitElement } from 'lit';
-import type { CSSResult, TemplateResult, PropertyValues } from 'lit';
-import { property, queryAsync, state } from 'lit/decorators.js';
+import { html } from 'lit';
+import type { CSSResult, TemplateResult } from 'lit';
+import { property, query } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
@@ -11,10 +10,9 @@ import Icon from '@equinor/fusion-wc-icon';
 
 import type { AvatarData, PersonAvatarElementProps } from './types';
 import style from './element.css';
-import { PersonResolveTask } from '../../tasks';
 import { mapResolveToPersonInfo } from '../../utils';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
 import { PersonCardElement } from '../card';
+import { PersonBaseElement } from '../base';
 
 // persist elements
 PersonCardElement;
@@ -39,51 +37,22 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  *
  * @tag fwc-person-avatar
  *
- * @property {string} azureId - Azure unique id for the person.
+ * @property {string} resolveId - AzureId or UPN for user to resolve.
+ * @property {AvatarData} dataSource - Custom data source for the person.
  * @property {AvatarSize} size - Size of the avatar.
  * @property {boolean} clickable - Sets the avatar to be clickable to render hover/ripple effects.
  * @property {disabled} disabled - Sets the avatar to be rendered as disabled.
  * @property {boolean} showLetter - Sets the avatar to show letter instead of an image.
  *
+ * @deperecated azureId - Use resolveId instead.
+ * @deperecated upn - Use resolveId instead.
+ *
  * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
  *
  * @summary
  */
-export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps {
+export class PersonAvatarElement extends PersonBaseElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
-
-  /**
-   * Unique person AzureId
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public azureId?: string;
-
-  /**
-   * Unique person User Principal Name
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public upn?: string;
-
-  /**
-   * Unique id used to resolve person details.
-   * Can be azureId or upn.
-   * Using this property will take precedence over azureId and upn.
-   */
-  @property({ type: String })
-  resolveId?: string;
-
-  /**
-   * Person details data source. If provided, it will be used to render the component without resolving the details.
-   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
-   */
-  @property({ type: Object })
-  public dataSource?: AvatarData;
-
-  /** Internal state used to trigger resolve task */
-  @state()
-  resolveIds: string[] = [];
 
   /**
    * @internal
@@ -134,56 +103,23 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   /**
    * @internal
    */
-  @queryAsync('#floating')
-  public floating!: Promise<HTMLDivElement>;
+  @query('#floating')
+  public floating!: HTMLDivElement;
 
   /**
    * @internal
    */
-  @queryAsync('#root')
-  public root!: Promise<HTMLDivElement>;
-
-  /**
-   * @internal
-   */
-  @state()
-  protected intersected = false;
-
-  /**
-   * @internal
-   */
-  private tasks?: {
-    resolve: PersonResolveTask;
-  };
-
-  /**
-   * @internal
-   */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this),
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
+  @query('#root')
+  public root!: HTMLDivElement;
 
   /**
    * @internal
    */
   static openedPersonAvatars: PersonAvatarElement[] = [];
 
-  async handleFloatingUi(): Promise<VoidFunction> {
-    const root = await this.root;
-    const floating = await this.floating;
+  handleFloatingUi(): VoidFunction {
+    const root = this.root;
+    const floating = this.floating;
 
     const update = () => {
       computePosition(root, floating, {
@@ -205,18 +141,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     return autoUpdate(root, floating, update);
   }
 
-  cleanup?: () => void;
-
-  async updated(props: PropertyValues) {
-    if (props.has('isFloatingOpen')) {
-      if (this.isFloatingOpen) {
-        this.cleanup = await this.handleFloatingUi();
-      } else if (this.cleanup) {
-        this.cleanup();
-        delete this.cleanup;
-      }
-    }
-  }
+  cleanup: VoidFunction = () => {};
 
   protected renderBadge(person: Partial<AvatarData>): TemplateResult {
     if (person.applicationId || person.accountType === 'Admin') {
@@ -322,6 +247,8 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   static hideFloating(el: PersonAvatarElement): void {
     window.removeEventListener('click', clickOutside);
     el.isFloatingOpen = false;
+    el.cleanup();
+    el.cleanup = () => {};
     const index = PersonAvatarElement.openedPersonAvatars.indexOf(el);
     if (index != -1) {
       delete PersonAvatarElement.openedPersonAvatars[index];
@@ -338,6 +265,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     PersonAvatarElement.openedPersonAvatars.push(this);
     window.addEventListener('click', clickOutside);
     this.isFloatingOpen = true;
+    this.cleanup = this.handleFloatingUi();
   }
 
   /**

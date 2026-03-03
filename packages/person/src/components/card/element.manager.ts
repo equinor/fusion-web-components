@@ -41,7 +41,7 @@ export class PersonCardManagerElement extends LitElement {
   render(): HTMLTemplateResult {
     const { name, department, azureUniqueId } = this.dataSource ?? {};
     return html`<div class="root">
-      <fwc-person-avatar azureid=${azureUniqueId} trigger="none" size="small"></fwc-person-avatar>
+      <fwc-person-avatar resolveid=${azureUniqueId} trigger="none" size="small"></fwc-person-avatar>
       <section>
         ${name && html`<header title="${name}" class="name">${name}</header>`}
         ${department && html`<span class="department">${department}</span>`}

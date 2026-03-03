@@ -1,15 +1,10 @@
 import { PersonItemSize } from '../../types';
 import { PersonDetails } from '../../types';
+import { PersonBaseElementProps } from '../base';
 
 export type CardData = PersonDetails;
 
-export interface PersonCardElementProps {
-  /** @deprecated Use resolveId instead. */
-  azureId?: string;
-  /** @deprecated Use resolveId instead. */
-  upn?: string;
-  dataSource?: CardData;
-  resolveId?: string;
+export interface PersonCardElementProps extends PersonBaseElementProps {
   size?: PersonItemSize;
   customColor?: string;
   shadow?: boolean;

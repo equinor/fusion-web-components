@@ -1,18 +1,16 @@
-import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { html, type CSSResult, type TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
+import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
 import { PersonItemSize } from '../../types';
 import style from './element.css';
 // TODO - NOPE
 import personStyle from '../../style.css';
 import { ListItemData, PersonListItemElementProps } from './types';
-import { PersonResolveTask } from '../../tasks';
 
-import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { mapResolveToPersonInfo } from '../../utils';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
 import { PersonAvatarElement } from '../avatar';
+import { PersonBaseElement } from '../base';
 
 PersonAvatarElement;
 Skeleton;
@@ -23,47 +21,17 @@ Skeleton;
  *
  * @tag fwc-person-list-item
  *
- * @property {string} azureId - Azure unique id for the person.
+ * @property {string} resolveId - AzureId or UPN for the person to resolve.
+ * @property {ListItemData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} clickable - Make whole List Item clickable
  *
+ * @deperecated azureId - Use resolveId instead.
+ * @deperecated upn - Use resolveId instead.
  */
 
-export class PersonListItemElement extends LitElement implements PersonListItemElementProps {
+export class PersonListItemElement extends PersonBaseElement implements PersonListItemElementProps {
   static styles: CSSResult[] = [style, personStyle];
-
-  /**
-   * Unique person AzureId
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public azureId?: string;
-
-  /**
-   * Unique person User Principal Name
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public upn?: string;
-
-  /**
-   * Unique id used to resolve person details.
-   * Can be azureId or upn.
-   * Using this property will take precedence over azureId and upn.
-   */
-  @property({ type: String })
-  resolveId?: string;
-
-  /**
-   * Person details data source. If provided, it will be used to render the component without resolving the details.
-   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
-   */
-  @property({ type: Object })
-  public dataSource?: ListItemData;
-
-  /** Internal state used to trigger resolve task */
-  @state()
-  resolveIds: string[] = [];
 
   /** Size of component */
   @property({ type: String, reflect: true })
@@ -72,39 +40,6 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   /** Clickable List Item */
   @property({ type: Boolean, reflect: true })
   clickable = false;
-
-  /**
-   * @internal
-   */
-  @state()
-  protected intersected = false;
-
-  /**
-   * @internal
-   */
-  private tasks?: {
-    resolve: PersonResolveTask;
-  };
-
-  /**
-   * @internal
-   */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this),
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
 
   /**
    * Renders person name

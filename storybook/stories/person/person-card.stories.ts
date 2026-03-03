@@ -26,7 +26,7 @@ const meta: Meta<typeof cem> = {
 };
 
 const render = (props: PersonCardElementProps) => html`
-  <fwc-person-card size="${ifDefined(props.size)}" azureid=${ifDefined(props.azureId)} upn=${ifDefined(props.upn)} resolveid=${ifDefined(props.resolveId)} .datasource=${props.dataSource}></fwc-person-card>
+  <fwc-person-card size="${ifDefined(props.size)}" azureid=${ifDefined(props.azureId)} upn=${ifDefined(props.upn)} resolveid=${ifDefined(props.resolveId)} .dataSource=${props.dataSource}></fwc-person-card>
 `;
 
 export const Default: Story = {

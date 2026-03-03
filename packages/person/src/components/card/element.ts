@@ -1,6 +1,5 @@
-import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
+import { html, type CSSResult, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
 import Icon from '@equinor/fusion-wc-icon';
 import IconButton from '@equinor/fusion-wc-button/icon-button';
@@ -9,7 +8,6 @@ import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skel
 import { PersonItemSize } from '../../types';
 import { CardData, PersonCardElementProps } from './types';
 
-import { PersonResolveTask } from '../../tasks';
 import styles from './element.css';
 import { mapResolveToPersonInfo } from '../../utils';
 
@@ -18,7 +16,7 @@ import entraIcon from './entra.svg';
 import { PersonCardAdditionalInfoElement } from './element.additional-info';
 
 import '../avatar';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
+import { PersonBaseElement } from '../base';
 
 Icon;
 IconButton;
@@ -31,48 +29,18 @@ PersonCardAdditionalInfoElement;
  *
  * @tag fwc-person-card
  *
- * @property {string} azureId - Azure unique id for the person.
+ * @property {string} resolveId - AzureId or UPN for the person to resolve.
+ * @property {CardData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {number} maxWidth - Set maximum width of person card in pixels, default value 300
  * @property {number} contentHeight - Set height of person content in pixels, default value 150
  *
+ * @deperecated azureId - Use resolveId instead.
+ * @deperecated upn - Use resolveId instead.
  */
 
-export class PersonCardElement extends LitElement implements PersonCardElementProps {
+export class PersonCardElement extends PersonBaseElement implements PersonCardElementProps {
   static styles: CSSResult[] = styles;
-
-  /**
-   * Unique person AzureId
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public azureId?: string;
-
-  /**
-   * Unique person User Principal Name
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public upn?: string;
-
-  /**
-   * Unique id used to resolve person details.
-   * Can be azureId or upn.
-   * Using this property will take precedence over azureId and upn.
-   */
-  @property({ type: String })
-  resolveId?: string;
-
-  /**
-   * Person details data source. If provided, it will be used to render the component without resolving the details.
-   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
-   */
-  @property({ type: Object })
-  public dataSource?: CardData;
-
-  /** Internal state used to trigger resolve task */
-  @state()
-  resolveIds: string[] = [];
 
   /**
    * Whether to show shadow around the card. Default is true.
@@ -98,39 +66,6 @@ export class PersonCardElement extends LitElement implements PersonCardElementPr
 
   @state()
   showExtraContactInfo = false;
-
-  /**
-   * @internal
-   */
-  @state()
-  protected intersected = false;
-
-  /**
-   * @internal
-   */
-  private tasks?: {
-    resolve: PersonResolveTask;
-  };
-
-  /**
-   * @internal
-   */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this),
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
 
   createApplicationEntraLink(applicationId: string): string {
     return `https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/appId/${applicationId}`;

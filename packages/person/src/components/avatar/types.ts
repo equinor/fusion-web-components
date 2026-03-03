@@ -1,18 +1,13 @@
 import type { PersonAvatarShowCardOnType } from './element';
 import { type PersonInfo as AvatarData } from '../../types';
+import { PersonBaseElementProps } from '../base';
 
 export type { AvatarData };
 
 // export this when deprecating AvatarSizeEnum
 // export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large';
 
-export interface PersonAvatarElementProps {
-  /** @deprecated Use resolveId instead. */
-  azureId?: string;
-  /** @deprecated Use resolveId instead. */
-  upn?: string;
-  dataSource?: AvatarData;
-  resolveId?: string;
+export interface PersonAvatarElementProps extends PersonBaseElementProps {
   size?: 'x-small' | 'small' | 'medium' | 'large';
   showFloatingOn?: PersonAvatarShowCardOnType;
   clickable?: boolean;

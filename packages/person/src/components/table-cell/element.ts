@@ -1,6 +1,5 @@
-import { CSSResult, html, LitElement, TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { CSSResult, html, TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
@@ -9,9 +8,8 @@ import personStyle from '../../style.css';
 
 import { TableCellData, PersonTableCellElementProps } from './types';
 import style from './element.css';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
-import { PersonResolveTask } from '../../tasks';
 import { mapResolveToPersonInfo } from '../../utils';
+import { PersonBaseElement } from '../base';
 
 Skeleton;
 
@@ -21,51 +19,19 @@ Skeleton;
  *
  * @tag fwc-person-table-cell
  *
- * @property {string} azureId - Azure unique id for the person.
- * @property {string} upn - Unique email(upn) for the person.
+ * @property {string} upnresolveId - AzureId or UPN for the person to resolve.
  * @property {TableCellData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} showAvatar - Show Avatar in cell
  * @property {(person: ListItemData) => string | undefined} heading - Function to determine title based on person data.
  * @property {(person: ListItemData) => string | undefined} subHeading - Function to determine title based on person data.
  *
+ * @deperecated azureId - Use resolveId instead.
+ * @deperecated upn - Use resolveId instead.
  */
 
-export class PersonTableCellElement extends LitElement implements PersonTableCellElementProps {
+export class PersonTableCellElement extends PersonBaseElement implements PersonTableCellElementProps {
   static styles: CSSResult[] = [style, personStyle];
-
-  /**
-   * Unique person AzureId
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public azureId?: string;
-
-  /**
-   * Unique person User Principal Name
-   * @deprecated use resolveId instead.
-   */
-  @property({ type: String })
-  public upn?: string;
-
-  /**
-   * Unique id used to resolve person details.
-   * Can be azureId or upn.
-   * Using this property will take precedence over azureId and upn.
-   */
-  @property({ type: String })
-  resolveId?: string;
-
-  /**
-   * Person details data source. If provided, it will be used to render the component without resolving the details.
-   * If the dataSource does not contain an avatarUrl, the component will attempt to resolve the details.
-   */
-  @property({ type: Object })
-  public dataSource?: TableCellData;
-
-  /** Internal state used to trigger resolve task */
-  @state()
-  resolveIds: string[] = [];
 
   /** Function to determine heading based on person data */
   @property({ type: Function })
@@ -97,39 +63,6 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     },
   })
   showAvatar: boolean = false;
-
-  /**
-   * @internal
-   */
-  @state()
-  protected intersected = false;
-
-  /**
-   * @internal
-   */
-  private tasks?: {
-    resolve: PersonResolveTask;
-  };
-
-  /**
-   * @internal
-   */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this),
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
 
   /**
    * Renders person cell title

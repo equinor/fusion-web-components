@@ -7,7 +7,6 @@ import { fusionElement } from '@equinor/fusion-wc-core';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 @fusionElement('fwc-person-card-manager')
-
 export class PersonCardManagerElement extends LitElement {
   static styles: CSSResult[] = [
     css`
@@ -23,7 +22,7 @@ export class PersonCardManagerElement extends LitElement {
       }
       .name {
         font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable('fontWeight'))};
-        font-size: ${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))};
+        font-size: ${unsafeCSS(theme.typography.input.helper.getVariable('fontSize'))};
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -31,7 +30,7 @@ export class PersonCardManagerElement extends LitElement {
         -webkit-box-orient: vertical;
       }
       .department {
-        font-size: ${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))};
+        font-size: ${unsafeCSS(theme.typography.input.helper.getVariable('fontSize'))};
       }
     `,
   ];

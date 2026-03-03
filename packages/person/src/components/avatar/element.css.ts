@@ -31,7 +31,7 @@ const style: CSSResult = css`
     position: relative;
     width: var(--fwc-avatar-size);
     height: var(--fwc-avatar-size);
-    
+
     img {
       width: 100%;
       height: 100%;

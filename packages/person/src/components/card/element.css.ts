@@ -1,8 +1,8 @@
-import { css, unsafeCSS, type CSSResult } from "lit";
-import { styles as theme } from "@equinor/fusion-web-theme";
+import { css, unsafeCSS, type CSSResult } from 'lit';
+import { styles as theme } from '@equinor/fusion-web-theme';
 
 // TODO - remove!
-import personStyle from "../../style.css";
+import personStyle from '../../style.css';
 
 const styleSizes = css`
   :host {
@@ -33,13 +33,13 @@ const style: CSSResult = css`
     display: inline-flex;
     text-align: left;
     --x-small-size-space: calc(
-      ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable("padding"))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))} * var(--content-resize, 1)
     );
     --small-size-space: calc(
-      ${unsafeCSS(theme.spacing.comfortable.small.getVariable("padding"))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))} * var(--content-resize, 1)
     );
     --medium-size-space: calc(
-      ${unsafeCSS(theme.spacing.comfortable.medium.getVariable("padding"))} * var(--content-resize, 1)
+      ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} * var(--content-resize, 1)
     );
   }
 
@@ -47,16 +47,16 @@ const style: CSSResult = css`
     display: flex;
     flex-direction: column;
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
-    border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable("padding"))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     min-width: 200px;
-    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable("color"))};
-    
+    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
+
     &.shadow {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     }
   }
-  
+
   .person-card__heading {
     display: flex;
     align-items: center;
@@ -71,15 +71,15 @@ const style: CSSResult = css`
     gap: var(--medium-size-space);
     padding: calc(var(--small-size-space) * 0.5) var(--small-size-space);
     border-bottom: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
-    font-size: calc(${unsafeCSS(theme.typography.paragraph.meta.getVariable("fontSize"))} * var(--content-resize, 1));
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    font-size: calc(${unsafeCSS(theme.typography.paragraph.meta.getVariable('fontSize'))} * var(--content-resize, 1));
 
     a {
-      color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable("color"))};
+      color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
       text-decoration: none;
-      
+
       &:hover {
-        color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable("color"))};
+        color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
       }
       &.disabled {
         pointer-events: none;
@@ -93,12 +93,12 @@ const style: CSSResult = css`
     flex-direction: column;
   }
   .person-card__header {
-    flex: 1;  
+    flex: 1;
     overflow: hidden;
   }
   .person-card__name {
     display: -webkit-box;
-    font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable("fontWeight"))};
+    font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable('fontWeight'))};
     font-size: calc(0.9em * var(--content-resize, 1));
   }
   .person-card__department,
@@ -140,15 +140,15 @@ const style: CSSResult = css`
     margin: 0 var(--medium-size-space);
     padding: var(--small-size-space) 0;
     border-top: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
 
     &:first-child {
       border-top: none;
     }
   }
   .info-item_heading {
-    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable("fontSize"))} * var(--content-resize, 1));
-    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable("fontWeight"))};
+    font-size: calc(${unsafeCSS(theme.typography.input.label.getVariable('fontSize'))} * var(--content-resize, 1));
+    font-weight: ${unsafeCSS(theme.typography.input.label.getVariable('fontWeight'))};
   }
   .info-item_items {
     display: flex;
@@ -163,9 +163,9 @@ const style: CSSResult = css`
     justify-content: space-between;
     column-gap: calc(var(--small-size-space) * 0.5);
     font-size: calc(0.66rem * var(--content-resize, 1));
-    
+
     &:hover {
-      background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
+      background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
 
       .person-card-info__copy {
         opacity: 1;
@@ -173,7 +173,9 @@ const style: CSSResult = css`
     }
   }
   .person-card-info__icon {
-    font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * 0.9 * var(--content-resize, 1));
+    font-size: calc(
+      ${unsafeCSS(theme.typography.input.helper.getVariable('fontSize'))} * 0.9 * var(--content-resize, 1)
+    );
   }
   .person-card-info__text {
     flex: 1;
@@ -183,7 +185,7 @@ const style: CSSResult = css`
     margin: 0;
   }
   .person-card-info__show_more {
-    font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * var(--content-resize, 1));
+    font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable('fontSize'))} * var(--content-resize, 1));
   }
   .person-card-projects__projects {
     display: flex;
@@ -191,15 +193,15 @@ const style: CSSResult = css`
     gap: var(--small-size-space);
   }
   .person-card-projects__project {
-    font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable("fontSize"))} * var(--content-resize, 1));
+    font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable('fontSize'))} * var(--content-resize, 1));
     padding: 2px 6px;
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
+    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
     border-radius: 4px;
   }
   .copyable-text {
     position: relative;
-    
+
     .copyable-text__text {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -209,7 +211,7 @@ const style: CSSResult = css`
       margin: 0;
       width: 100%;
     }
-    
+
     .copyable-text__actions {
       display: none;
       position: absolute;
@@ -225,7 +227,7 @@ const style: CSSResult = css`
     .copyable-text__button {
       border: none;
       outline: none;
-      background: ${unsafeCSS(theme.colors.ui.background__light.getVariable("color"))};
+      background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
       cursor: pointer;
       font-size: 0.55rem;
       padding: 0.5em;
@@ -236,8 +238,9 @@ const style: CSSResult = css`
         top: 0.2em;
       }
 
-      &:hover, &:focus {
-        background: ${unsafeCSS(theme.colors.ui.background__medium.getVariable("color"))};
+      &:hover,
+      &:focus {
+        background: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
       }
     }
   }

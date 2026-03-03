@@ -8,7 +8,7 @@ export * from './types';
 export const tag = 'fwc-person-table-cell';
 
 @fusionElement(tag)
-export default class _ extends PersonTableCellElement { }
+export default class _ extends PersonTableCellElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

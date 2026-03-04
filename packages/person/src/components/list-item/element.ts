@@ -25,9 +25,6 @@ Skeleton;
  * @property {ListItemData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} clickable - Make whole List Item clickable
- *
- * @deperecated azureId - Use resolveId instead.
- * @deperecated upn - Use resolveId instead.
  */
 
 export class PersonListItemElement extends PersonBaseElement implements PersonListItemElementProps {

@@ -34,9 +34,6 @@ PersonCardAdditionalInfoElement;
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {number} maxWidth - Set maximum width of person card in pixels, default value 300
  * @property {number} contentHeight - Set height of person content in pixels, default value 150
- *
- * @deperecated azureId - Use resolveId instead.
- * @deperecated upn - Use resolveId instead.
  */
 
 export class PersonCardElement extends PersonBaseElement implements PersonCardElementProps {

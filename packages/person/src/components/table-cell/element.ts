@@ -19,15 +19,12 @@ Skeleton;
  *
  * @tag fwc-person-table-cell
  *
- * @property {string} upnresolveId - AzureId or UPN for the person to resolve.
+ * @property {string} resolveId - AzureId or UPN for the person to resolve.
  * @property {TableCellData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} showAvatar - Show Avatar in cell
  * @property {(person: ListItemData) => string | undefined} heading - Function to determine title based on person data.
  * @property {(person: ListItemData) => string | undefined} subHeading - Function to determine title based on person data.
- *
- * @deperecated azureId - Use resolveId instead.
- * @deperecated upn - Use resolveId instead.
  */
 
 export class PersonTableCellElement extends PersonBaseElement implements PersonTableCellElementProps {

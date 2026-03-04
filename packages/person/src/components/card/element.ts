@@ -60,10 +60,6 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
   @property({ type: Number, reflect: true })
   contentHeight = 150;
 
-  /** Custom color */
-  @property({ type: String })
-  customColor?: string;
-
   @state()
   showExtraContactInfo = false;
 

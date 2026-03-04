@@ -6,6 +6,5 @@ export type CardData = PersonDetails;
 
 export interface PersonCardElementProps extends PersonBaseElementProps {
   size?: PersonItemSize;
-  customColor?: string;
   shadow?: boolean;
 }

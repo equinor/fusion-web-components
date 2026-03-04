@@ -10,9 +10,12 @@ export type { AvatarData };
 export interface PersonAvatarElementProps extends PersonBaseElementProps {
   size?: 'x-small' | 'small' | 'medium' | 'large';
   showFloatingOn?: PersonAvatarShowCardOnType;
-  clickable?: boolean;
   disabled?: boolean;
-  pictureSrc?: string;
   trigger?: PersonAvatarShowCardOnType;
+  /** @deprecated clickable is no longer in use. use trigger instead. */
+  clickable?: boolean;
+  /** @deprecated pictureSrc is no longer in use. */
+  pictureSrc?: string;
+  /** @deprecated showLetter is no longer in use. */
   showLetter?: boolean;
 }

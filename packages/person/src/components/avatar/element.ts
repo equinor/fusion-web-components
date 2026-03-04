@@ -1,7 +1,7 @@
 // TODO - CLEAN UP!
 import { html } from 'lit';
 import type { CSSResult, TemplateResult } from 'lit';
-import { property, query } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 
@@ -40,12 +40,14 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  * @property {string} resolveId - AzureId or UPN for user to resolve.
  * @property {AvatarData} dataSource - Custom data source for the person.
  * @property {AvatarSize} size - Size of the avatar.
- * @property {boolean} clickable - Sets the avatar to be clickable to render hover/ripple effects.
- * @property {disabled} disabled - Sets the avatar to be rendered as disabled.
- * @property {boolean} showLetter - Sets the avatar to show letter instead of an image.
+ * @property {boolean} disabled - Sets the avatar to be rendered as disabled.
+ * @property {string} trigger - Defines the trigger for showing the floating card. Can be 'click', 'hover' or 'none'. Default is 'hover'.
  *
  * @deperecated azureId - Use resolveId instead.
  * @deperecated upn - Use resolveId instead.
+ * @deprecated clickable - Use trigger instead.
+ * @deprecated pictureSrc - The pictureSrc property is no longer in use.
+ * @deprecated showLetter - The letter rendering has been removed. The letter will be shown automatically if no image is available.
  *
  * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
  *
@@ -53,12 +55,6 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  */
 export class PersonAvatarElement extends PersonBaseElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
-
-  /**
-   * @internal
-   */
-  @property({ type: Boolean, attribute: false, reflect: false })
-  isFloatingOpen = false;
 
   /**
    * Size of the avatar.
@@ -75,6 +71,7 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
 
   /**
    * Sets the avatar to be clickable to render hover/ripple effects.
+   * @deprecated clickable is no longer in use. use trigger instead.
    */
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
@@ -85,7 +82,6 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
    */
   @property({ type: String, attribute: 'trigger', reflect: true })
   trigger: PersonAvatarShowCardOnType = 'hover';
-  // showFloatingOn: PersonAvatarShowCardOnType = 'hover';
 
   /**
    * Sets the avatar to be rendered as disabled.
@@ -99,6 +95,12 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
    */
   @property({ type: Boolean })
   showLetter?: boolean;
+
+  /**
+   * @internal
+   */
+  @state()
+  isFloatingOpen = false;
 
   /**
    * @internal

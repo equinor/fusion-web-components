@@ -3,6 +3,7 @@ import { html } from 'lit';
 import type { CSSResult, TemplateResult } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
@@ -43,13 +44,7 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  * @property {boolean} disabled - Sets the avatar to be rendered as disabled.
  * @property {string} trigger - Defines the trigger for showing the floating card. Can be 'click', 'hover' or 'none'. Default is 'hover'.
  *
- * @deperecated azureId - Use resolveId instead.
- * @deperecated upn - Use resolveId instead.
- * @deprecated clickable - Use trigger instead.
- * @deprecated pictureSrc - The pictureSrc property is no longer in use.
- * @deprecated showLetter - The letter rendering has been removed. The letter will be shown automatically if no image is available.
- *
- * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
+ * @fires click - When the element is clicked, only fires when `disabled` is set to `false`.
  *
  * @summary
  */
@@ -190,8 +185,11 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
     if (!this.tasks) {
       return this.renderImagePlaceholder();
     }
+    const classes = classMap({
+      disabled: this.disabled ?? false,
+    });
     return html`
-      <div id="root">
+      <div id="root" class=${classes}>
         ${this.tasks.resolve.render({
           complete: (details) => {
             const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;

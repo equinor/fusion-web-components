@@ -18,13 +18,13 @@ const style: CSSResult = css`
     display: inline-flex;
   }
 
-  :host([disabled]) {
-    opacity: 0.5;
-  }
-
   #root {
     position: relative;
     display: inline-flex;
+
+    &.disabled {
+      opacity: 0.5;
+    }
   }
 
   #avatar-element-container {

@@ -7,7 +7,7 @@ export type PickerContext = {
   secondarySubtitle: keyof PersonInfo;
   editable: boolean;
   selected?: InstanceType<typeof SelectedController>;
-  viewMode?: 'list' | 'table';
+  display?: 'list' | 'table';
   tableColumns?: Array<'avatar' | 'name' | 'azureId' | 'type' | 'email' | 'mobilePhone' | 'jobTitle' | 'department' | 'manager' | 'remove'>;
   systemAccounts: boolean;
 };

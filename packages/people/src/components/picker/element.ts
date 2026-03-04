@@ -57,6 +57,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
     converter: (value: string | null) => value === 'true'
   })
   showSelectedPeople: boolean = true;
+
   /**
    * Whether to include system accounts in the search results
    * Default is false
@@ -160,7 +161,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
       <div
         id="person-picker"
         tabindex="0"
-        class=${this.viewMode}
+        class=${this.display}
       >
         <div id="picker">
           ${pills ? this.renderPills() : ''}
@@ -178,7 +179,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
       </div>
     `;
 
-    if (this.viewMode === 'list') {
+    if (this.display === 'list') {
       return renderPicker();
     }
 

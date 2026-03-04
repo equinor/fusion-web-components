@@ -30,9 +30,9 @@ const handlePersonRemoved = (e: PersonRemovedEvent) => {
 
 const render = (props: PeoplePickerElementProps) => html`
   <fwc-people-picker
-    multiple=${ifDefined(props.multiple)}
-    resolveids=${ifDefined(props.resolveIds)}
     people=${ifDefined(props.people)}
+    resolveids=${ifDefined(props.resolveIds)}
+    multiple=${ifDefined(props.multiple)}
     showselectedpeople=${ifDefined(props.showSelectedPeople)}
     subtitle=${ifDefined(props.subtitle)}
     secondarysubtitle=${ifDefined(props.secondarySubtitle)}
@@ -40,6 +40,8 @@ const render = (props: PeoplePickerElementProps) => html`
     systemaccounts=${ifDefined(props.systemAccounts)}
     noresulttitle=${ifDefined(props.noResultTitle)}
     noresultsubtitle=${ifDefined(props.noResultSubtitle)}
+    display=${ifDefined(props.display)}
+    displaytoggle=${ifDefined(props.displayToggle)}
     @selection-changed=${handleSelectionChanged}
     @person-added=${handlePersonAdded}
     @person-removed=${handlePersonRemoved}>

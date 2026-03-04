@@ -126,10 +126,11 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   errors: string[] = [];
 
   /**
-   * The view mode to display the people in the viewer
+   * The display mode for the people in the component, either 'list' or 'table'.
+   * Default is 'list'.
    */
   @property({ type: String, reflect: true })
-  viewMode: 'list' | 'table' = 'list';
+  display: 'list' | 'table' = 'list';
 
   /**
    * The columns to display in the table view
@@ -143,11 +144,11 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   tableColumns: TableColumns = this.columnSet.default;
 
   /**
-   * Whether to show the view mode selector
+   * Whether to show the display mode selector
    * Default is true
    */
   @property({ type: Boolean, converter: (value: string | null) => value === 'true' })
-  showViewMode = true;
+  displayToggle = true;
 
   /**
    * Whether the people are editable (can be removed)
@@ -187,7 +188,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       secondarySubtitle: this.secondarySubtitle,
       editable: this.editable,
       selected: this.controllers.selected,
-      viewMode: this.viewMode,
+      display: this.display,
       systemAccounts: this.systemAccounts,
     });
   }
@@ -256,14 +257,14 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   }
 
   renderViewMode(): TemplateResult {
-    if (!this.showViewMode) {
+    if (!this.displayToggle) {
       return html``;
     }
 
     const handler = (e: ViewModeChangeEvent) => {
       const { detail } = e;
-      if (detail.viewMode) {
-        this.viewMode = detail.viewMode;
+      if (detail.display) {
+        this.display = detail.display;
       }
       if (detail.tableColumns) {
         this.tableColumns = this.columnSet[detail.tableColumns];

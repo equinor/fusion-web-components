@@ -10,8 +10,8 @@ export interface PeopleProps {
   subtitle?: keyof PersonInfo;
   secondarySubtitle?: keyof PersonInfo;
   tableColumns?: TableColumns | string;
-  viewMode?: 'list' | 'table';
-  showViewMode?: boolean;
+  display?: 'list' | 'table';
+  displayToggle?: boolean;
   editable?: boolean;
   systemAccounts?: boolean;
 }

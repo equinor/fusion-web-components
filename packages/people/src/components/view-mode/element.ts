@@ -10,7 +10,7 @@ import { ClickOutsideController } from '../../controllers/ClickOutsideController
 type ColumnSet = 'default' | 'full';
 
 type EventDetails = {
-  viewMode?: PeopleProps['viewMode'];
+  display?: PeopleProps['display'];
   tableColumns?: ColumnSet;
   subtitle?: PeopleProps['subtitle'];
 };
@@ -76,7 +76,7 @@ export class ViewModeElement extends LitElement {
   }
 
   protected renderSettings(): TemplateResult {
-    if (this._context.value?.viewMode === 'list') {
+    if (this._context.value?.display === 'list') {
       return html`
         <p>Select Subtitle field</p>
         <div class="view-settings-options">
@@ -132,16 +132,16 @@ export class ViewModeElement extends LitElement {
       <div id="view-mode">
         <p>Viewing ${this._context.value?.selected?.selectedPeople.size ?? 0} people</p>
         <fwc-icon-button
-          color=${this._context.value?.viewMode === 'list' ? 'success' : 'primary'}
+          color=${this._context.value?.display === 'list' ? 'success' : 'primary'}
           icon="list"
           size="x-small"
           rounded
           title="List view"
-          @click=${() => this.dispatchViewModeChange({ viewMode: 'list' })}
+          @click=${() => this.dispatchViewModeChange({ display: 'list' })}
         ></fwc-icon-button>
         <fwc-icon-button
-          @click=${() => this.dispatchViewModeChange({ viewMode: 'table' })}
-          color=${this._context.value?.viewMode === 'table' ? 'success' : 'primary'}
+          @click=${() => this.dispatchViewModeChange({ display: 'table' })}
+          color=${this._context.value?.display === 'table' ? 'success' : 'primary'}
           icon="view_week"
           size="x-small"
           rounded title="Table view"

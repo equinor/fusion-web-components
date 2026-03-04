@@ -37,7 +37,7 @@ export class PeopleViewerElement extends PeopleBaseElement implements PeopleView
   }
 
   renderContentMode(): TemplateResult {
-    if (this.viewMode === 'list') {
+    if (this.display === 'list') {
       return html`
         <div id="pills">
           ${this.renderPills()}

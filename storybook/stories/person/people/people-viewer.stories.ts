@@ -27,8 +27,8 @@ const render = (props: PeopleViewerElementProps) => html`
   <fwc-people-viewer
     people=${ifDefined(props.people)}
     resolveids=${ifDefined(props.resolveIds)}
-    showViewMode=${ifDefined(props.showViewMode)}
-    viewMode=${ifDefined(props.viewMode)}
+    display=${ifDefined(props.display)}
+    displaytoggle=${ifDefined(props.displayToggle)}
     tableColumns=${ifDefined(props.tableColumns)}
     @person-removed=${handlePersonRemoved}
   >
@@ -97,7 +97,6 @@ export const Default: Story = {
 export const resolveIds: Story = {
   args: {
     resolveIds: generateIds(4, 16).join(','),
-    viewMode: 'table',
   },
   render,
 };

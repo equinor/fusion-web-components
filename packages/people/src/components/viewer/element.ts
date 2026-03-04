@@ -28,9 +28,11 @@ export class PeopleViewerElement extends PeopleBaseElement implements PeopleView
 
   renderPills() {
     if (this.controllers.selected.selectedPeople.size > 0) {
-      return repeat(this.controllers.selected.selectedPeople.values(), (person) => person.azureId, (person) => html`
-        <fwc-people-pill .dataSource=${person}></fwc-people-pill>
-      `);
+      return repeat(
+        this.controllers.selected.selectedPeople.values(),
+        (person) => person.azureId,
+        (person) => html` <fwc-people-pill .dataSource=${person}></fwc-people-pill> `,
+      );
     }
 
     return html`<p>No people provided</p>`;
@@ -38,11 +40,7 @@ export class PeopleViewerElement extends PeopleBaseElement implements PeopleView
 
   renderContentMode(): TemplateResult {
     if (this.display === 'list') {
-      return html`
-        <div id="pills">
-          ${this.renderPills()}
-        </div>
-      `;
+      return html` <div id="pills">${this.renderPills()}</div> `;
     }
     return html`
       <div id="table">
@@ -61,13 +59,7 @@ export class PeopleViewerElement extends PeopleBaseElement implements PeopleView
   }
 
   render(): TemplateResult {
-    return html`
-      <div id="root">
-        ${this.renderViewMode()}
-        ${this.renderContentMode()}
-        ${this.renderErrors()}
-      </div>
-    `;
+    return html` <div id="root">${this.renderViewMode()} ${this.renderContentMode()} ${this.renderErrors()}</div> `;
   }
 }
 

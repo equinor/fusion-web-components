@@ -14,7 +14,7 @@ export const tableViewStyles: CSSResult = css`
     margin-bottom: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
 
     p {
-      margin: 0;  
+      margin: 0;
       font-size: ${unsafeCSS(theme.typography.paragraph.meta.getVariable('fontSize'))};
     }
   }

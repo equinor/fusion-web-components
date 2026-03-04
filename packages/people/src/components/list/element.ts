@@ -38,7 +38,7 @@ export class ListElement extends LitElement implements ListElementProps {
    */
   @property({
     type: Array,
-    converter: (value: string | null) => value ? JSON.parse(value) : []
+    converter: (value: string | null) => (value ? JSON.parse(value) : []),
   })
   dataSources: PersonInfo[] = [];
 
@@ -60,14 +60,13 @@ export class ListElement extends LitElement implements ListElementProps {
   listItems!: NodeListOf<ListItemElement>;
 
   renderListItems() {
-    return this.dataSources.map(dataSource => html`
-      <li>
-        <fwc-people-picker-list-item
-          .dataSource=${dataSource}
-          tabindex="0">
-        </fwc-people-picker-list-item>
-      </li>
-    `);
+    return this.dataSources.map(
+      (dataSource) => html`
+        <li>
+          <fwc-people-picker-list-item .dataSource=${dataSource} tabindex="0"> </fwc-people-picker-list-item>
+        </li>
+      `,
+    );
   }
 
   renderTotalCount() {
@@ -81,16 +80,22 @@ export class ListElement extends LitElement implements ListElementProps {
         <p>Displaying ${this.totalCount} results</p>
         |
         <label title="Include system accounts in search results">
-          <fwc-checkbox style="--fwc-checkbox-size: 12px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(e: Event) => {
-        this.dispatchEvent(new CustomEvent('toggle-system-accounts', {
-          detail: {
-            systemAccounts: (e.target as CheckboxElement).checked,
-          },
-          bubbles: true,
-          composed: true,
-        }));
-      }}></fwc-checkbox>
-        System accounts
+          <fwc-checkbox
+            style="--fwc-checkbox-size: 12px;"
+            .checked=${this._context.value?.systemAccounts ?? false}
+            @change=${(e: Event) => {
+              this.dispatchEvent(
+                new CustomEvent('toggle-system-accounts', {
+                  detail: {
+                    systemAccounts: (e.target as CheckboxElement).checked,
+                  },
+                  bubbles: true,
+                  composed: true,
+                }),
+              );
+            }}
+          ></fwc-checkbox>
+          System accounts
         </label>
       </div>
     `;
@@ -108,7 +113,7 @@ export class ListElement extends LitElement implements ListElementProps {
             ${this.renderListItems()}
           </ul>
         </div>
-        
+
         ${this.renderTotalCount()}
       </div>
     `;

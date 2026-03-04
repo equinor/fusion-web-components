@@ -121,47 +121,49 @@ export class SelectedController implements ReactiveController {
 
   /**
    * Sorts the selected people by the given column and direction
-   * 
+   *
    * @param column string name of the column to sort by
    * @param direction 'asc' | 'desc'
    * @ps Does not trigger any events
    */
   sortColumn(column: string, direction: 'asc' | 'desc'): void {
-    this.#selectedPeople = new Map([...this.#selectedPeople.entries()].toSorted((a, b) => {
-      let sortingColumn = column;
+    this.#selectedPeople = new Map(
+      [...this.#selectedPeople.entries()].toSorted((a, b) => {
+        let sortingColumn = column;
 
-      // map certain column names to PersonInfo properties
-      if (column === 'email') {
-        sortingColumn = 'mail';
-      }
-      if (column === 'type') {
-        sortingColumn = 'accountType';
-      }
-      if (column === 'manager') {
-        sortingColumn = 'managerAzureUniqueId';
-      }
+        // map certain column names to PersonInfo properties
+        if (column === 'email') {
+          sortingColumn = 'mail';
+        }
+        if (column === 'type') {
+          sortingColumn = 'accountType';
+        }
+        if (column === 'manager') {
+          sortingColumn = 'managerAzureUniqueId';
+        }
 
-      const aValue = a[1][sortingColumn as keyof PersonInfo];
-      const bValue = b[1][sortingColumn as keyof PersonInfo];
+        const aValue = a[1][sortingColumn as keyof PersonInfo];
+        const bValue = b[1][sortingColumn as keyof PersonInfo];
 
-      if (aValue === bValue) {
-        return 0;
-      }
+        if (aValue === bValue) {
+          return 0;
+        }
 
-      if (aValue && bValue === undefined) {
+        if (aValue && bValue === undefined) {
+          return direction === 'asc' ? 1 : -1;
+        }
+
+        if (bValue && aValue === undefined) {
+          return direction === 'asc' ? -1 : 1;
+        }
+
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
+          return direction === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+        }
+
         return direction === 'asc' ? 1 : -1;
-      }
-
-      if (bValue && aValue === undefined) {
-        return direction === 'asc' ? -1 : 1;
-      }
-
-      if (typeof aValue === 'string' && typeof bValue === 'string') {
-        return direction === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
-      }
-
-      return direction === 'asc' ? 1 : -1;
-    }));
+      }),
+    );
 
     this.#host.requestUpdate();
   }

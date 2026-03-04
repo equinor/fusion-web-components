@@ -5,7 +5,7 @@ export const pillStyle: CSSResult = css`
   :host {
     display: inline-block;
   }
-  
+
   #people-pill {
     display: flex;
     flex-flow: row nowrap;
@@ -16,7 +16,8 @@ export const pillStyle: CSSResult = css`
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     border: 1px solid transparent;
 
-    &:hover, &:focus-within {
+    &:hover,
+    &:focus-within {
       border-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
     }
   }
@@ -36,7 +37,7 @@ export const pillStyle: CSSResult = css`
     text-overflow: ellipsis;
     margin: 0;
     font-size: 0.75rem;
-    
+
     &:first-child {
       font-weight: ${unsafeCSS(theme.typography.paragraph.body_short_bold.getVariable('fontWeight'))};
     }
@@ -58,10 +59,11 @@ export const pillStyle: CSSResult = css`
     line-height: 0;
     font-size: 0.75rem;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.value.hex)};
     }
-  
+
     &:active {
       background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
     }

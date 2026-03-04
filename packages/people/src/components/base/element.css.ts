@@ -1,4 +1,4 @@
-import { css, unsafeCSS, type CSSResult } from "lit";
+import { css, unsafeCSS, type CSSResult } from 'lit';
 import { styles as theme } from '@equinor/fusion-web-theme';
 
 export const peopleBaseStyle: CSSResult = css`
@@ -33,14 +33,15 @@ export const peopleBaseStyle: CSSResult = css`
     font-size: 0.75rem;
     color: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))}
+      ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     text-align: left;
     border-bottom: 2px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
     position: sticky;
     top: 0;
     z-index: 1;
     position: relative;
-    
+
     &:hover .column-actions {
       opacity: 1;
     }
@@ -70,7 +71,8 @@ export const peopleBaseStyle: CSSResult = css`
   }
 
   table td {
-    padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))} ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
+    padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))}
+      ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     border-bottom: 1px solid ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
     vertical-align: middle;
     overflow: hidden;
@@ -94,7 +96,8 @@ export const peopleBaseStyle: CSSResult = css`
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
 
-  table tr .avatar, table tr .remove {
+  table tr .avatar,
+  table tr .remove {
     width: 60px;
     text-align: center;
     padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
@@ -103,10 +106,12 @@ export const peopleBaseStyle: CSSResult = css`
   @media (max-width: 768px) {
     table th,
     table td {
-      padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))} ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))};
+      padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))}
+        ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))};
     }
 
-    table tr .avatar, table tr .remove {
+    table tr .avatar,
+    table tr .remove {
       width: 50px;
     }
   }

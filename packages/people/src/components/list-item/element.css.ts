@@ -14,7 +14,8 @@ export const listItemStyle: CSSResult = css`
     margin: 0;
     padding: 0.5rem;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: ${unsafeCSS(theme.colors.interactive.primary__selected_hover.getVariable('color'))};
     }
 
@@ -25,7 +26,8 @@ export const listItemStyle: CSSResult = css`
     &.selected {
       background: ${unsafeCSS(theme.colors.interactive.secondary__highlight.getVariable('color'))};
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
       }
     }
@@ -36,9 +38,9 @@ export const listItemStyle: CSSResult = css`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
- 
+
   #item-name p {
-    margin: .1rem 0 0 0;
+    margin: 0.1rem 0 0 0;
     font-size: 0.8rem;
 
     &:first-child {

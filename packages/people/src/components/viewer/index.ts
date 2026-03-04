@@ -9,8 +9,7 @@ export * from './types';
 export const tag = 'fwc-people-viewer';
 
 @fusionElement(tag)
-
-export default class _ extends PeopleViewerElement { }
+export default class _ extends PeopleViewerElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

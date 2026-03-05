@@ -1,5 +1,5 @@
 ---
-"@equinor/fusion-wc-person": patch
+"@equinor/fusion-wc-person": minor
 ---
 
 Fix avatar component property API: support `resolveId` (singular) instead of `resolveIds` (plural)

@@ -1,6 +1,5 @@
-import { CSSResult, html, LitElement, TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { CSSResult, html, TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
@@ -9,9 +8,8 @@ import personStyle from '../../style.css';
 
 import { TableCellData, PersonTableCellElementProps } from './types';
 import style from './element.css';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
-import { PersonResolveTask } from '../../tasks';
 import { mapResolveToPersonInfo } from '../../utils';
+import { PersonBaseElement } from '../base';
 
 Skeleton;
 
@@ -21,37 +19,21 @@ Skeleton;
  *
  * @tag fwc-person-table-cell
  *
- * @property {string} azureId - Azure unique id for the person.
- * @property {string} upn - Unique email(upn) for the person.
+ * @property {string} resolveId - AzureId or UPN for the person to resolve.
  * @property {TableCellData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} showAvatar - Show Avatar in cell
  * @property {(person: ListItemData) => string | undefined} heading - Function to determine title based on person data.
  * @property {(person: ListItemData) => string | undefined} subHeading - Function to determine title based on person data.
- *
  */
 
-export class PersonTableCellElement extends LitElement implements PersonTableCellElementProps {
+export class PersonTableCellElement extends PersonBaseElement implements PersonTableCellElementProps {
   static styles: CSSResult[] = [style, personStyle];
-
-  /** Unique person Azure ID */
-  @property({ type: String })
-  public azureId?: string;
-
-  /** Unique person email(upn) */
-  @property({ type: String })
-  public upn?: string;
-
-  /** Custom person data source */
-  @property({ type: Object })
-  public dataSource?: TableCellData;
-
-  @property({ type: Array })
-  resolveIds: string[] = [];
 
   /** Function to determine heading based on person data */
   @property({ type: Function })
-  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) => person.applicationName ?? person.name;
+  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) =>
+    person.applicationName ?? person.name;
 
   /** Function to determine sub heading based on person data */
   @property({ type: Function })
@@ -78,39 +60,6 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     },
   })
   showAvatar: boolean = false;
-
-  /**
-   * @internal
-   */
-  @state()
-  protected intersected = false;
-
-  /**
-   * @internal
-   */
-  private tasks?: {
-    resolve: PersonResolveTask;
-  };
-
-  /**
-   * @internal
-   */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this),
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
 
   /**
    * Renders person cell title
@@ -155,24 +104,21 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     return html`
       <div class="person-cell__item">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`<div class="person-cell__about">
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`<div class="person-cell__about">
               ${this.showAvatar
-            ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
-            : null}
-              <div class="person-cell__content">
-                ${this.renderHeading(person)}
-                ${this.renderSubHeading(person)}
-              </div>
+                ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
+                : null}
+              <div class="person-cell__content">${this.renderHeading(person)} ${this.renderSubHeading(person)}</div>
             </div>`;
-      },
-      pending: () => this.renderPending(false),
-      error: () => this.renderPending(true),
-    })}
+          },
+          pending: () => this.renderPending(false),
+          error: () => this.renderPending(true),
+        })}
       </div>
     `;
   }

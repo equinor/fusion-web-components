@@ -1,14 +1,11 @@
 import { PersonInfo, PersonItemSize } from '../../types';
+import { PersonBaseElementProps } from '../base';
 
 export type TableCellData = PersonInfo;
 
-export type PersonTableCellElementProps<T extends TableCellData = TableCellData> = {
-  azureId?: string;
-  upn?: string;
-  dataSource?: TableCellData;
-  resolveIds?: string[];
+export interface PersonTableCellElementProps<T extends TableCellData = TableCellData> extends PersonBaseElementProps {
   size?: PersonItemSize;
   showAvatar: boolean;
   heading: (person: T) => string | undefined;
   subHeading?: (person: T) => string | undefined;
-};
+}

@@ -10,7 +10,7 @@ import { ClickOutsideController } from '../../controllers/ClickOutsideController
 type ColumnSet = 'default' | 'full';
 
 type EventDetails = {
-  viewMode?: PeopleProps['viewMode'];
+  display?: PeopleProps['display'];
   tableColumns?: ColumnSet;
   subtitle?: PeopleProps['subtitle'];
 };
@@ -33,7 +33,7 @@ export class ViewModeElement extends LitElement {
   static styles: CSSResult[] = [tableViewStyles];
   private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
 
-  private _clickOutside = new ClickOutsideController(this)
+  private _clickOutside = new ClickOutsideController(this);
 
   @state()
   viewSettingsOpen: boolean = false;
@@ -63,7 +63,7 @@ export class ViewModeElement extends LitElement {
     if (event.key === 'Escape') {
       this.close();
     }
-  }
+  };
 
   handleClickOutside = (event: MouseEvent) => {
     // Use composedPath to check if the click is inside the component (works with Shadow DOM)
@@ -73,39 +73,81 @@ export class ViewModeElement extends LitElement {
     }
 
     this.close();
-  }
+  };
 
   protected renderSettings(): TemplateResult {
-    if (this._context.value?.viewMode === 'list') {
+    if (this._context.value?.display === 'list') {
       return html`
         <p>Select Subtitle field</p>
         <div class="view-settings-options">
           <label>
-            <input type="radio" name="subtitle" value="jobTitle" ?checked=${this._context.value?.subtitle === 'jobTitle'} @change=${() => this.dispatchViewModeChange({ subtitle: 'jobTitle' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="jobTitle"
+              ?checked=${this._context.value?.subtitle === 'jobTitle'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'jobTitle' })}
+            />
             <p>JobTitle</p>
           </label>
           <label>
-            <input type="radio" name="subtitle" value="department" ?checked=${this._context.value?.subtitle === 'department'} @change=${() => this.dispatchViewModeChange({ subtitle: 'department' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="department"
+              ?checked=${this._context.value?.subtitle === 'department'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'department' })}
+            />
             <p>Department</p>
           </label>
           <label>
-            <input type="radio" name="subtitle" value="email" ?checked=${this._context.value?.subtitle === 'mail'} @change=${() => this.dispatchViewModeChange({ subtitle: 'mail' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="email"
+              ?checked=${this._context.value?.subtitle === 'mail'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'mail' })}
+            />
             <p>Email</p>
           </label>
           <label>
-            <input type="radio" name="subtitle" value="mobilePhone" ?checked=${this._context.value?.subtitle === 'mobilePhone'} @change=${() => this.dispatchViewModeChange({ subtitle: 'mobilePhone' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="mobilePhone"
+              ?checked=${this._context.value?.subtitle === 'mobilePhone'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'mobilePhone' })}
+            />
             <p>MobilePhone</p>
           </label>
           <label>
-            <input type="radio" name="subtitle" value="accountType" ?checked=${this._context.value?.subtitle === 'accountType'} @change=${() => this.dispatchViewModeChange({ subtitle: 'accountType' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="accountType"
+              ?checked=${this._context.value?.subtitle === 'accountType'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'accountType' })}
+            />
             <p>AccountType</p>
           </label>
           <label>
-            <input type="radio" name="subtitle" value="employeeNumber" ?checked=${this._context.value?.subtitle === 'employeeNumber'} @change=${() => this.dispatchViewModeChange({ subtitle: 'employeeNumber' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="employeeNumber"
+              ?checked=${this._context.value?.subtitle === 'employeeNumber'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'employeeNumber' })}
+            />
             <p>EmployeeNumber</p>
           </label>
           <label>
-            <input type="radio" name="subtitle" value="azureId" ?checked=${this._context.value?.subtitle === 'azureId'} @change=${() => this.dispatchViewModeChange({ subtitle: 'azureId' })}>
+            <input
+              type="radio"
+              name="subtitle"
+              value="azureId"
+              ?checked=${this._context.value?.subtitle === 'azureId'}
+              @change=${() => this.dispatchViewModeChange({ subtitle: 'azureId' })}
+            />
             <p>AzureId</p>
           </label>
         </div>
@@ -116,11 +158,23 @@ export class ViewModeElement extends LitElement {
       <p>Select Table view mode</p>
       <div class="view-settings-options">
         <label>
-          <input type="radio" name="tableviewmode" value="default" ?checked=${this.columnSet === 'default'} @change=${() => this.columnSet = 'default'}>
+          <input
+            type="radio"
+            name="tableviewmode"
+            value="default"
+            ?checked=${this.columnSet === 'default'}
+            @change=${() => (this.columnSet = 'default')}
+          />
           <p>Default table</p>
         </label>
         <label>
-          <input type="radio" name="tableviewmode" value="full" ?checked=${this.columnSet === 'full'} @change=${() => this.columnSet = 'full'}>
+          <input
+            type="radio"
+            name="tableviewmode"
+            value="full"
+            ?checked=${this.columnSet === 'full'}
+            @change=${() => (this.columnSet = 'full')}
+          />
           <p>Full table</p>
         </label>
       </div>
@@ -132,32 +186,30 @@ export class ViewModeElement extends LitElement {
       <div id="view-mode">
         <p>Viewing ${this._context.value?.selected?.selectedPeople.size ?? 0} people</p>
         <fwc-icon-button
-          color=${this._context.value?.viewMode === 'list' ? 'success' : 'primary'}
+          color=${this._context.value?.display === 'list' ? 'success' : 'primary'}
           icon="list"
           size="x-small"
           rounded
           title="List view"
-          @click=${() => this.dispatchViewModeChange({ viewMode: 'list' })}
+          @click=${() => this.dispatchViewModeChange({ display: 'list' })}
         ></fwc-icon-button>
         <fwc-icon-button
-          @click=${() => this.dispatchViewModeChange({ viewMode: 'table' })}
-          color=${this._context.value?.viewMode === 'table' ? 'success' : 'primary'}
+          @click=${() => this.dispatchViewModeChange({ display: 'table' })}
+          color=${this._context.value?.display === 'table' ? 'success' : 'primary'}
           icon="view_week"
           size="x-small"
-          rounded title="Table view"
+          rounded
           title="Table view"
         ></fwc-icon-button>
         <fwc-icon-button
-          @click=${() => this.viewSettingsOpen = !this.viewSettingsOpen}
+          @click=${() => (this.viewSettingsOpen = !this.viewSettingsOpen)}
           color=${this.viewSettingsOpen ? 'success' : 'primary'}
           icon="settings"
           size="x-small"
           rounded
           title="Setting view options"
         ></fwc-icon-button>
-        <div id="view-settings" class=${this.viewSettingsOpen ? 'open' : 'closed'}>
-          ${this.renderSettings()}
-        </div>
+        <div id="view-settings" class=${this.viewSettingsOpen ? 'open' : 'closed'}>${this.renderSettings()}</div>
       </div>
     `;
   }

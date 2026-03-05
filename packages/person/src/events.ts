@@ -1,4 +1,11 @@
-import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult, PersonSuggestResults, PersonResolveResults } from './types';
+import type {
+  AzureIdOrUpnObj,
+  PersonDetails,
+  PersonInfo,
+  PersonSearchResult,
+  PersonSuggestResults,
+  PersonResolveResults,
+} from './types';
 
 export type AbortableEventDetail<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }

@@ -8,8 +8,7 @@ export type { SearchElementProps, ClearInputEvent };
 export const tag = 'fwc-people-picker-search';
 
 @fusionElement(tag)
-
-export default class _ extends SearchElement { }
+export default class _ extends SearchElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -1,9 +1,9 @@
 // TODO - CLEAN UP!
-import { html, LitElement } from 'lit';
-import type { CSSResult, TemplateResult, PropertyValues } from 'lit';
-import { property, queryAsync, state } from 'lit/decorators.js';
+import { html } from 'lit';
+import type { CSSResult, TemplateResult } from 'lit';
+import { property, query, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { computePosition, shift, offset, autoPlacement, autoUpdate } from '@floating-ui/dom';
 
 import Skeleton, { SkeletonVariant } from '@equinor/fusion-wc-skeleton';
@@ -11,10 +11,9 @@ import Icon from '@equinor/fusion-wc-icon';
 
 import type { AvatarData, PersonAvatarElementProps } from './types';
 import style from './element.css';
-import { PersonResolveTask } from '../../tasks';
 import { mapResolveToPersonInfo } from '../../utils';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
 import { PersonCardElement } from '../card';
+import { PersonBaseElement } from '../base';
 
 // persist elements
 PersonCardElement;
@@ -39,36 +38,18 @@ export type PersonAvatarShowCardOnType = 'click' | 'hover' | 'none';
  *
  * @tag fwc-person-avatar
  *
- * @property {string} azureId - Azure unique id for the person.
+ * @property {string} resolveId - AzureId or UPN for user to resolve.
+ * @property {AvatarData} dataSource - Custom data source for the person.
  * @property {AvatarSize} size - Size of the avatar.
- * @property {boolean} clickable - Sets the avatar to be clickable to render hover/ripple effects.
- * @property {disabled} disabled - Sets the avatar to be rendered as disabled.
- * @property {boolean} showLetter - Sets the avatar to show letter instead of an image.
+ * @property {boolean} disabled - Sets the avatar to be rendered as disabled.
+ * @property {string} trigger - Defines the trigger for showing the floating card. Can be 'click', 'hover' or 'none'. Default is 'hover'.
  *
- * @fires click - When the element is clicked, only fires when `clickable` is set to `true` and `disabled` is set to `false`.
+ * @fires click - When the element is clicked, only fires when `disabled` is set to `false`.
  *
  * @summary
  */
-export class PersonAvatarElement extends LitElement implements PersonAvatarElementProps {
+export class PersonAvatarElement extends PersonBaseElement implements PersonAvatarElementProps {
   static styles: CSSResult[] = [style];
-
-  @property({ type: String })
-  public azureId?: string;
-
-  @property({ type: String })
-  public upn?: string;
-
-  @property({ type: Object })
-  public dataSource?: AvatarData;
-
-  @property({ type: Array })
-  resolveIds: string[] = [];
-
-  /**
-   * @internal
-   */
-  @property({ type: Boolean, attribute: false, reflect: false })
-  isFloatingOpen = false;
 
   /**
    * Size of the avatar.
@@ -77,11 +58,15 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   @property({ type: String, reflect: true })
   size?: PersonAvatarElementProps['size'];
 
+  /**
+   * @deprecated pictureSrc is no longer in use.
+   */
   @property({ type: String, reflect: true })
   pictureSrc?: string;
 
   /**
    * Sets the avatar to be clickable to render hover/ripple effects.
+   * @deprecated clickable is no longer in use. use trigger instead.
    */
   @property({ type: Boolean, reflect: true })
   clickable?: boolean;
@@ -92,7 +77,6 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
    */
   @property({ type: String, attribute: 'trigger', reflect: true })
   trigger: PersonAvatarShowCardOnType = 'hover';
-  // showFloatingOn: PersonAvatarShowCardOnType = 'hover';
 
   /**
    * Sets the avatar to be rendered as disabled.
@@ -110,56 +94,29 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   /**
    * @internal
    */
-  @queryAsync('#floating')
-  public floating!: Promise<HTMLDivElement>;
-
-  /**
-   * @internal
-   */
-  @queryAsync('#root')
-  public root!: Promise<HTMLDivElement>;
-
-  /**
-   * @internal
-   */
   @state()
-  protected intersected = false;
+  isFloatingOpen = false;
 
   /**
    * @internal
    */
-  private tasks?: {
-    resolve: PersonResolveTask,
-  };
+  @query('#floating')
+  public floating!: HTMLDivElement;
 
   /**
    * @internal
    */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this)
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
+  @query('#root')
+  public root!: HTMLDivElement;
 
   /**
    * @internal
    */
   static openedPersonAvatars: PersonAvatarElement[] = [];
 
-  async handleFloatingUi(): Promise<VoidFunction> {
-    const root = await this.root;
-    const floating = await this.floating;
+  handleFloatingUi(): VoidFunction {
+    const root = this.root;
+    const floating = this.floating;
 
     const update = () => {
       computePosition(root, floating, {
@@ -181,27 +138,14 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     return autoUpdate(root, floating, update);
   }
 
-  cleanup?: () => void;
-
-  async updated(props: PropertyValues) {
-    if (props.has('isFloatingOpen')) {
-      if (this.isFloatingOpen) {
-        this.cleanup = await this.handleFloatingUi();
-      } else if (this.cleanup) {
-        this.cleanup();
-        delete this.cleanup;
-      }
-    }
-  }
+  cleanup: VoidFunction = () => {};
 
   protected renderBadge(person: Partial<AvatarData>): TemplateResult {
     if (person.applicationId || person.accountType === 'Admin') {
       const badgeIcon = person.applicationId ? 'apps' : 'star_filled';
       return html`
         <div slot="badge" id="avatar-badge" style="background-color: ${person.avatarColor};">
-          <fwc-icon
-            icon="${badgeIcon}"
-          ></fwc-icon>
+          <fwc-icon icon="${badgeIcon}"></fwc-icon>
         </div>
       `;
     }
@@ -219,14 +163,10 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   protected renderAvatarElement(details: Partial<AvatarData>, trigger: boolean = true): TemplateResult {
     if (!trigger) {
       return html`
-      <div
-        id="avatar-element-container"
-        @click=${this.handleOnClick}
-      >
-        ${this.renderImage(details)}
-        ${this.renderBadge(details)}
-      </div>
-    `;
+        <div id="avatar-element-container" @click=${this.handleOnClick}>
+          ${this.renderImage(details)} ${this.renderBadge(details)}
+        </div>
+      `;
     }
 
     return html`
@@ -236,8 +176,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
         @mouseover=${this.handleMouseOver}
         @mouseout=${this.handleMouseOut}
       >
-        ${this.renderImage(details)}
-        ${this.renderBadge(details)}
+        ${this.renderImage(details)} ${this.renderBadge(details)}
       </div>
     `;
   }
@@ -246,32 +185,40 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     if (!this.tasks) {
       return this.renderImagePlaceholder();
     }
+    const classes = classMap({
+      disabled: this.disabled ?? false,
+    });
     return html`
-      <div id="root">
+      <div id="root" class=${classes}>
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
               ${this.renderAvatarElement(person)}
-              <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
+              <div
+                id="floating"
+                @mouseover="${this.handleFloatingMouseOver}"
+                @mouseout="${this.handleFloatingMouseOut}"
+              >
                 <slot name="floating">
-                  ${when(this.isFloatingOpen, () =>
-          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
-                      <div slot="avatar">
-                        ${this.renderAvatarElement(person, false)}
-                      </div>
-                    </fwc-person-card>`,
-        )}
+                  ${when(
+                    this.isFloatingOpen,
+                    () => html`
+                      <fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
+                        <div slot="avatar">${this.renderAvatarElement(person, false)}</div>
+                      </fwc-person-card>
+                    `,
+                  )}
                 </slot>
               </div>
             `;
-      },
-      pending: () => html`${this.renderImagePlaceholder(true)}`,
-      error: () => html`${this.renderImagePlaceholder(false)}`,
-    })}
+          },
+          pending: () => html`${this.renderImagePlaceholder(true)}`,
+          error: () => html`${this.renderImagePlaceholder(false)}`,
+        })}
       </div>
     `;
   }
@@ -300,6 +247,8 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
   static hideFloating(el: PersonAvatarElement): void {
     window.removeEventListener('click', clickOutside);
     el.isFloatingOpen = false;
+    el.cleanup();
+    el.cleanup = () => {};
     const index = PersonAvatarElement.openedPersonAvatars.indexOf(el);
     if (index != -1) {
       delete PersonAvatarElement.openedPersonAvatars[index];
@@ -316,6 +265,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     PersonAvatarElement.openedPersonAvatars.push(this);
     window.addEventListener('click', clickOutside);
     this.isFloatingOpen = true;
+    this.cleanup = this.handleFloatingUi();
   }
 
   /**

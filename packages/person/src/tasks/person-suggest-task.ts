@@ -28,7 +28,10 @@ export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
         if (!search) {
           return emptyPersonSuggestResults;
         } else if (search && search?.length > 0) {
-          const result = await resolveTaskEvent(host, new RequestResolvePersonSuggestEvent({ search, systemAccounts, signal }));
+          const result = await resolveTaskEvent(
+            host,
+            new RequestResolvePersonSuggestEvent({ search, systemAccounts, signal }),
+          );
           if (result.count === 0) {
             const emptyResult: PersonSuggestResults = {
               ...emptyPersonSuggestResults,
@@ -41,7 +44,7 @@ export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
                   avatarColor: '',
                   avatarUrl: '',
                   isExpired: false,
-                }
+                },
               ],
             };
             return emptyResult;

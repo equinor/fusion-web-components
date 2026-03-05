@@ -28,7 +28,7 @@ export class NavigateController implements ReactiveController {
   }
 
   handleKeyDownSearchInput(event: KeyboardEvent) {
-    const { controllers, tasks, listElement, viewMode, search } = this.#host;
+    const { controllers, tasks, listElement, display, search } = this.#host;
     // select/deselect first person from searchresults when pressing enter in search input
     if (event.key === 'Enter') {
       const { value: people } = tasks.suggest?.value ?? {};
@@ -52,7 +52,7 @@ export class NavigateController implements ReactiveController {
     }
 
     // delete PeoplePills when backspacing empty input and there are people to delete
-    if (event.key === 'Backspace' && viewMode === 'list' && !search) {
+    if (event.key === 'Backspace' && display === 'list' && !search) {
       const { selectedPeople } = controllers.selected;
       if (selectedPeople.size > 0) {
         const lastId = [...selectedPeople.keys()][selectedPeople.size - 1];

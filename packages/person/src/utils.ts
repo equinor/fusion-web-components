@@ -44,7 +44,7 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
     avatarUrl: resolveFailedAvatarUrl(),
     avatarColor: '#ff92a8',
   };
-}
+};
 
 export const resolveFailedAvatarUrl = (avatarColor: string = '#eb0037') => {
   const svgString = `

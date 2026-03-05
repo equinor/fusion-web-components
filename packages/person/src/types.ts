@@ -14,7 +14,7 @@ export enum AvatarSizeEnum {
   Small = 'small',
   Medium = 'medium',
   Large = 'large',
-};
+}
 
 export type Position = {
   id: string;
@@ -110,7 +110,6 @@ export type PersonSuggestResultPersonAccountType =
   | 'System'
   | 'Admin'
   | 'MeetingRoom';
-
 
 export type PersonSuggestResult = {
   azureUniqueId: string;

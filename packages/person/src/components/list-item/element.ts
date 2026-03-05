@@ -1,21 +1,19 @@
-import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
-import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
+import { html, type CSSResult, type TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
+import { SkeletonElement, SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
 import { PersonItemSize } from '../../types';
 import style from './element.css';
 // TODO - NOPE
 import personStyle from '../../style.css';
 import { ListItemData, PersonListItemElementProps } from './types';
-import { PersonResolveTask } from '../../tasks';
 
-import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 import { mapResolveToPersonInfo } from '../../utils';
-import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
 import { PersonAvatarElement } from '../avatar';
+import { PersonBaseElement } from '../base';
 
 PersonAvatarElement;
-Skeleton;
+SkeletonElement;
 
 /**
  * Element for displaying a persons card with person avatar and person info.
@@ -23,27 +21,14 @@ Skeleton;
  *
  * @tag fwc-person-list-item
  *
- * @property {string} azureId - Azure unique id for the person.
+ * @property {string} resolveId - AzureId or UPN for the person to resolve.
+ * @property {ListItemData} dataSource - Custom data source for the person.
  * @property {PersonItemSize} size - Size of the avatar, also used for font size
  * @property {boolean} clickable - Make whole List Item clickable
- *
  */
 
-export class PersonListItemElement extends LitElement implements PersonListItemElementProps {
+export class PersonListItemElement extends PersonBaseElement implements PersonListItemElementProps {
   static styles: CSSResult[] = [style, personStyle];
-
-  /** Unique person Azure ID */
-  @property({ type: String })
-  public azureId?: string;
-
-  @property({ type: String })
-  public upn?: string;
-
-  @property({ type: Object })
-  public dataSource?: ListItemData;
-
-  @property({ type: Array })
-  resolveIds: string[] = [];
 
   /** Size of component */
   @property({ type: String, reflect: true })
@@ -52,39 +37,6 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
   /** Clickable List Item */
   @property({ type: Boolean, reflect: true })
   clickable = false;
-
-  /**
-   * @internal
-   */
-  @state()
-  protected intersected = false;
-
-  /**
-   * @internal
-   */
-  private tasks?: {
-    resolve: PersonResolveTask;
-  };
-
-  /**
-   * @internal
-   */
-  protected controllers = {
-    observer: new IntersectionController(this, {
-      callback: (e) => {
-        if (!this.intersected) {
-          this.intersected = !!e.find((x) => x.isIntersecting);
-          if (this.intersected) {
-            this.controllers.observer.unobserve(this);
-            this.tasks = {
-              resolve: new PersonResolveTask(this),
-            };
-          }
-        }
-      },
-    }),
-    propertyMapper: new ResolvePropertyMapper(this),
-  };
 
   /**
    * Renders person name
@@ -101,7 +53,11 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
       return html`<div class="person-list__sub-heading person-list__sub-heading-expired">Account expired</div>`;
     }
 
-    return html`<div class="person-list__sub-heading">${details.department ?? details.applicationId ?? details.azureId ?? html`&nbsp;`}</div>`;
+    return html`
+      <div class="person-list__sub-heading">
+        ${details.department ?? details.applicationId ?? details.azureId ?? html`&nbsp;`}
+      </div>
+    `;
   }
 
   /**
@@ -119,27 +75,24 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     return html`
       <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`
+          complete: (details) => {
+            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
               <div class="person-list__about">
                 <div class="person-list__avatar">
                   <fwc-person-avatar .dataSource=${person} size="small"></fwc-person-avatar>
                 </div>
-                <div class="person-list__content">
-                  ${this.renderTitle(person)}
-                  ${this.renderDepartment(person)}
-                </div>
+                <div class="person-list__content">${this.renderTitle(person)} ${this.renderDepartment(person)}</div>
               </div>
               <slot class="person-list__toolbar"></slot>
             `;
-      },
-      pending: () => this.renderPending(),
-      error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-    })}
+          },
+          pending: () => this.renderPending(),
+          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+        })}
       </div>
     `;
   }

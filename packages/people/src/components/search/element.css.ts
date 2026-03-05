@@ -20,7 +20,8 @@ export const searchStyle: CSSResult = css`
     border: 1px solid transparent;
     border-radius: calc(var(--fwc-avatar-size, 3.5rem) * 0.5);
 
-    &:hover, &:focus-within {
+    &:hover,
+    &:focus-within {
       border-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
     }
   }
@@ -36,13 +37,13 @@ export const searchStyle: CSSResult = css`
     border: none;
     outline: none;
   }
-  
+
   #clear-button-container {
     position: relative;
     height: var(--search-input-height);
     width: var(--search-input-height);
   }
-    
+
   #clear-button {
     position: absolute;
     top: 0;
@@ -57,10 +58,11 @@ export const searchStyle: CSSResult = css`
     line-height: 0;
     font-size: 0.75rem;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.value.hex)};
     }
-  
+
     &:active {
       background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
     }

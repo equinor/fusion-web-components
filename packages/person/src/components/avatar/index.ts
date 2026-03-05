@@ -12,7 +12,7 @@ export * from './types';
 export const tag = 'fwc-person-avatar';
 
 @fusionElement(tag)
-export default class _ extends PersonAvatarElement { }
+export default class _ extends PersonAvatarElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

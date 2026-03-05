@@ -2,9 +2,9 @@ import { type CSSResult, html, LitElement, PropertyValues } from 'lit';
 import { property } from 'lit/decorators/property.js';
 import { query } from 'lit/decorators/query.js';
 
-import type { SearchElementProps } from "./types";
+import type { SearchElementProps } from './types';
 
-import { searchStyle } from "./element.css";
+import { searchStyle } from './element.css';
 
 export class ClearInputEvent extends CustomEvent<void> {
   static readonly eventName = 'clearinput';
@@ -77,7 +77,9 @@ export class SearchElement extends LitElement implements SearchElementProps {
       <div id="input">
         <input type="text" id="people-search" placeholder=${this.placeholder} @input=${this.handleInput} />
         <div id="clear-button-container">
-          ${this.value ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>` : html``}
+          ${this.value
+            ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>`
+            : html``}
         </div>
       </div>
     `;

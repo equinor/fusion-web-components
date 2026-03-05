@@ -76,9 +76,7 @@ export class PillElement extends LitElement implements PillElementProps {
           <p>${this.dataSource.name || this.dataSource.applicationName || 'No name available'}</p>
           ${this.personSubtitle(this.dataSource)}
         </div>
-        <div id="people-pill-delete">
-          ${this.deleteButton(this.dataSource.azureId)}
-        </div>
+        <div id="people-pill-delete">${this.deleteButton(this.dataSource.azureId)}</div>
       </div>
     `;
   }

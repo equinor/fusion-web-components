@@ -1,11 +1,8 @@
 import { PersonInfo, PersonItemSize } from '../../types';
+import { PersonBaseElementProps } from '../base';
 
 export type ListItemData = PersonInfo;
 
-export type PersonListItemElementProps = {
-  azureId?: string;
-  upn?: string;
-  dataSource?: ListItemData;
-  resolveIds?: string[];
+export interface PersonListItemElementProps extends PersonBaseElementProps {
   size?: PersonItemSize;
-};
+}

@@ -124,19 +124,22 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
       selected: this._context.value?.selected?.selectedPeople.has(this.dataSource.azureId) ?? false,
     };
     return html`
-      <div id="item"
+      <div
+        id="item"
         tabindex="0"
         class=${classMap(cssClasses)}
         @click=${this.handleSelectClick}
         @keydown=${this.handleSelectKeyDown}
       >
         <div id="item-avatar">
-          ${when(this.dataSource.azureId !== 'no-results-found', () => html`<fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>`)}
+          ${when(
+            this.dataSource.azureId !== 'no-results-found',
+            () => html`<fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>`,
+          )}
         </div>
         <div id="item-name">
           <p>${this.dataSource.name || this.dataSource.applicationName || 'No name available'}</p>
-          ${this.renderSubtitle(this.dataSource)}
-          ${this.renderSecondarySubtitle(this.dataSource)}
+          ${this.renderSubtitle(this.dataSource)} ${this.renderSecondarySubtitle(this.dataSource)}
         </div>
       </div>
     `;

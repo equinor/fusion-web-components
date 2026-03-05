@@ -18,20 +18,20 @@ const style: CSSResult = css`
     display: inline-flex;
   }
 
-  :host([disabled]) {
-    opacity: 0.5;
-  }
-
   #root {
     position: relative;
     display: inline-flex;
+
+    &.disabled {
+      opacity: 0.5;
+    }
   }
 
   #avatar-element-container {
     position: relative;
     width: var(--fwc-avatar-size);
     height: var(--fwc-avatar-size);
-    
+
     img {
       width: 100%;
       height: 100%;

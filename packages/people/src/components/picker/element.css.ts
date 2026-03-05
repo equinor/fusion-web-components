@@ -30,17 +30,17 @@ export const pickerStyle: CSSResult = css`
     flex-flow: row wrap;
     gap: 0.5rem;
   }
-  
+
   #search-results {
     width: 100%;
-    
+
     .list & {
       position: absolute;
       top: 105%;
       left: 0;
       z-index: 1000;
     }
-    
+
     & > p {
       margin: 0.25rem 0;
       font-size: ${unsafeCSS(theme.typography.paragraph.meta.getVariable('fontSize'))};

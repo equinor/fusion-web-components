@@ -1,4 +1,3 @@
-
 export { mapToPersonInfo, mapResolveToPersonInfo, resolveFailedAvatarUrl } from '@equinor/fusion-wc-person';
 
 export const ucFirst = (string: string) => {

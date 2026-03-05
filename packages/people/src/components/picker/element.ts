@@ -54,9 +54,10 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
    */
   @property({
     type: Boolean,
-    converter: (value: string | null) => value === 'true'
+    converter: (value: string | null) => value === 'true',
   })
   showSelectedPeople: boolean = true;
+
   /**
    * Whether to include system accounts in the search results
    * Default is false
@@ -65,8 +66,8 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
   systemAccounts: boolean = false;
 
   /**
-   * The title to show when there are no results found. 
-   * This is useful to provide a better user experience when the search returns no results, 
+   * The title to show when there are no results found.
+   * This is useful to provide a better user experience when the search returns no results,
    * as it can be used to provide guidance to the user on how to get better results.
    */
   @property({ type: String })
@@ -74,7 +75,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
 
   /**
    * The subtitle to show when there are no results found.
-   * This is useful to provide a better user experience when the search returns no results, 
+   * This is useful to provide a better user experience when the search returns no results,
    * as it can be used to provide guidance to the user on how to get better results.
    */
   @property({ type: String })
@@ -121,17 +122,18 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
   renderPills() {
     if (!this.showSelectedPeople && !this.multiple) {
       return;
-    };
+    }
 
-    return repeat([...this.controllers.selected.selectedPeople.values()], (person) => person.azureId, (person) => html`
-      <fwc-people-pill .dataSource=${person}></fwc-people-pill>
-    `);
+    return repeat(
+      [...this.controllers.selected.selectedPeople.values()],
+      (person) => person.azureId,
+      (person) => html` <fwc-people-pill .dataSource=${person}></fwc-people-pill> `,
+    );
   }
 
   renderPickerList() {
     return this.tasks.suggest?.render({
       complete: (people: PersonSuggestResults) => {
-
         if (people.value.length === 1 && people.value[0].azureUniqueId === 'no-results-found') {
           if (this.noResultTitle) {
             people.value[0].name = this.noResultTitle;
@@ -146,22 +148,19 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
             .dataSources=${people.value.map((person) => mapToPersonInfo(person))}
             totalCount=${`${people.count}/${people.totalCount}`}
             @toggle-system-accounts=${(e: CustomEvent) => {
-            this.systemAccounts = e.detail.systemAccounts;
-          }}></fwc-people-picker-list>
+              this.systemAccounts = e.detail.systemAccounts;
+            }}
+          ></fwc-people-picker-list>
         `;
       },
       pending: () => html`<p><fwc-dots-progress size="small" color="primary" /></p>`,
       error: () => this.errors.push('Failed to suggest people from people api'),
-    })
+    });
   }
 
   renderContent(): TemplateResult {
     const renderPicker = ({ pills = true }: { pills?: boolean } = {}) => html`
-      <div
-        id="person-picker"
-        tabindex="0"
-        class=${this.viewMode}
-      >
+      <div id="person-picker" tabindex="0" class=${this.display}>
         <div id="picker">
           ${pills ? this.renderPills() : ''}
           <fwc-people-picker-search
@@ -169,16 +168,15 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
             @focusin=${() => this.controllers.clickOutside?.addClickOutsideListener()}
             @input=${this.handleInput}
             @clearinput=${this.handleClearInput}
-            @keydown=${this.controllers.navigate?.handleKeyDownSearchInput}>
+            @keydown=${this.controllers.navigate?.handleKeyDownSearchInput}
+          >
           </fwc-people-picker-search>
         </div>
-        <div id="search-results">
-          ${this.renderPickerList()}
-        </div>
+        <div id="search-results">${this.renderPickerList()}</div>
       </div>
     `;
 
-    if (this.viewMode === 'list') {
+    if (this.display === 'list') {
       return renderPicker();
     }
 
@@ -192,9 +190,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
           </thead>
           <tbody>
             <tr>
-              <td colspan=${this.tableColumns.length}>
-                ${renderPicker({ pills: false })}
-              </td>
+              <td colspan=${this.tableColumns.length}>${renderPicker({ pills: false })}</td>
             </tr>
             ${this.renderTableRows()}
           </tbody>
@@ -204,14 +200,8 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
   }
 
   render() {
-    return html`
-      <div id="root">
-        ${this.renderViewMode()}
-        ${this.renderContent()}
-        ${this.renderErrors()}
-      </div>
-    `;
-  };
+    return html` <div id="root">${this.renderViewMode()} ${this.renderContent()} ${this.renderErrors()}</div> `;
+  }
 }
 
 export default PickerElement;

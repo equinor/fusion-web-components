@@ -80,10 +80,10 @@ const avatarSvg = async (avatarColor: string, name: string, accountType: string)
   });
 };
 
-export const generatePerson = async (args: { azureId?: string; upn?: string; accountType?: string }): Promise<PersonDetails> => {
+export const generatePerson = async (args: { azureId?: string; upn?: string; accountType?: string; }): Promise<PersonDetails> => {
   args.azureId && faker.seed(uuid2number(args.azureId));
   const azureId = args.azureId ?? faker.string.uuid();
-  const fakeUpn = faker.internet.email({ provider: 'equinor.com' });
+  const fakeUpn = args.upn ?? faker.internet.email({ provider: 'equinor.com' });
   const avatarColor = faker.helpers.arrayElement(['#bebebe', '#eb0037', '#ff92a8', '#000']);
   const name = faker.person.fullName();
 
@@ -132,12 +132,13 @@ export const generatePerson = async (args: { azureId?: string; upn?: string; acc
   };
 };
 
-const generateSuggestedPerson = async (args: { azureId: string }): Promise<PersonSuggestResult> => {
+const generateSuggestedPerson = async (args: { azureId: string; upn?: string }): Promise<PersonSuggestResult> => {
+  const { azureId, upn } = args;
   const accountType = faker.helpers.arrayElement([
     'Person',
     'SystemAccount',
   ]);
-  const generatedPerson = await generatePerson({ azureId: args.azureId, accountType });
+  const generatedPerson = await generatePerson({ azureId, accountType, upn });
 
   let person: PersonSuggestResult['person'] | undefined;
   let application: PersonSuggestResult['application'] | undefined;
@@ -229,15 +230,17 @@ export const resolver: PersonResolver = {
     };
   },
   resolve: async (args) => {
-    return await Promise.all(args.resolveIds.map(async (azureId) => {
+    return await Promise.all(args.resolveIds.map(async (id) => {
+      const azureId = id.includes('@') ? faker.string.uuid() : id;
+      const upn = id.includes('@') ? id : undefined;
       const success = faker.datatype.boolean({ probability: 0.9 });
       const statusCode = success ? 200 : faker.helpers.arrayElement([400, 404]);
       return {
         success,
         statusCode,
-        errorMessage: success ? null : `Could not resolve profile with identifier: ${azureId}`,
-        identifier: azureId,
-        account: success ? await generateSuggestedPerson({ azureId }) : null,
+        errorMessage: success ? null : `Could not resolve profile with identifier: ${id}`,
+        identifier: id,
+        account: success ? await generateSuggestedPerson({ azureId, upn }) : null,
       };
     }));
   },

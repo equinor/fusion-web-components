@@ -1,6 +1,6 @@
 import { html, type CSSResult, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
+import { SkeletonElement, SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
 import { PersonItemSize } from '../../types';
 import style from './element.css';
@@ -13,7 +13,7 @@ import { PersonAvatarElement } from '../avatar';
 import { PersonBaseElement } from '../base';
 
 PersonAvatarElement;
-Skeleton;
+SkeletonElement;
 
 /**
  * Element for displaying a persons card with person avatar and person info.

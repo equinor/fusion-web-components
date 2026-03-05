@@ -93,7 +93,6 @@ export class PersonCardAdditionalInfoElement extends LitElement {
       return html``;
     }
 
-    // TODO make avatar have pending state!
     return html`<div id="root">${this.renderManager()} ${this.renderProjects()} ${this.renderPositions()}</div>`;
   }
 }

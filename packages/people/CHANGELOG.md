@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#2155](https://github.com/equinor/fusion-web-components/pull/2155) [`6081b7e`](https://github.com/equinor/fusion-web-components/commit/6081b7ecf8cab5fe0a91bfd1cf5457c245bf29dd) Thanks [@eikeland](https://github.com/eikeland)! - **Breaking change**
+  Rename public display props in people components for consistency:
+  - `viewMode` is replaced by `display`
+  - `showViewMode` is replaced by `displayToggle`
+
+  **Refactored**
+  Also refines picker/viewer behavior and selected-people state handling.
+
+### Patch Changes
+
+- Updated dependencies [[`6081b7e`](https://github.com/equinor/fusion-web-components/commit/6081b7ecf8cab5fe0a91bfd1cf5457c245bf29dd)]:
+  - @equinor/fusion-wc-person@3.4.0
+
 ## 1.0.2
 
 ### Patch Changes

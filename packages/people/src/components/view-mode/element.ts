@@ -200,7 +200,6 @@ export class ViewModeElement extends LitElement {
           size="x-small"
           rounded
           title="Table view"
-          title="Table view"
         ></fwc-icon-button>
         <fwc-icon-button
           @click=${() => (this.viewSettingsOpen = !this.viewSettingsOpen)}

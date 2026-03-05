@@ -83,6 +83,8 @@ export abstract class PersonBaseElement extends LitElement implements PersonBase
         this.resolveIds = [this.azureId];
       } else if (this.upn) {
         this.resolveIds = [this.upn];
+      } else {
+        this.resolveIds = [];
       }
     }
   }

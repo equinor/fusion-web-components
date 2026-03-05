@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.4.0
+
+### Minor Changes
+
+- [#2155](https://github.com/equinor/fusion-web-components/pull/2155) [`6081b7e`](https://github.com/equinor/fusion-web-components/commit/6081b7ecf8cab5fe0a91bfd1cf5457c245bf29dd) Thanks [@eikeland](https://github.com/eikeland)! - Fix avatar component property API: support `resolveId` (singular) instead of `resolveIds` (plural)
+
+  Added new `resolveId` property to PersonAvatarElement and related components (card, list-item, table-cell) for improved developer experience. The resolved ID is internally mapped to `resolveIds` array to trigger the task.
+
+  Also improved handling of the `dataSource` property to prevent errors when `azureId` is not provided.
+
 ## 3.3.1
 
 ### Patch Changes

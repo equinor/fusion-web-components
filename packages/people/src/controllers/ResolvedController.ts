@@ -6,16 +6,18 @@ import type { PeopleProps } from '../types';
 import type { SelectedController } from './SelectedController';
 import { mapResolveToPersonInfo } from '../utils';
 
-type ResolvedControllerHost = ReactiveControllerHost & EventTarget & PeopleProps & {
-  tasks: {
-    resolve: PersonResolveTask;
+type ResolvedControllerHost = ReactiveControllerHost &
+  EventTarget &
+  PeopleProps & {
+    tasks: {
+      resolve: PersonResolveTask;
+    };
+    controllers: {
+      selected: SelectedController;
+    };
+    errors: string[];
+    initialResolved: boolean;
   };
-  controllers: {
-    selected: SelectedController;
-  };
-  errors: string[];
-  initialResolved: boolean;
-};
 
 /**
  * Controller to manage the resolved people
@@ -43,10 +45,9 @@ export class ResolvedController implements ReactiveController {
       this.#host.tasks.resolve.value &&
       this.#host.tasks.resolve.value.length > 0
     ) {
-
       // map resolved people to PersonInfo objects
       const resolvedPeople = this.#host.tasks.resolve.value.map((person) => {
-        return mapResolveToPersonInfo(person)
+        return mapResolveToPersonInfo(person);
       });
 
       // add all resolved people to selected people to prevent triggering selection-changed event for each person

@@ -1,6 +1,6 @@
-import { LitElement, TemplateResult, PropertyValues, html } from 'lit';
+import { LitElement, type TemplateResult, type PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { IconElement, IconName } from '@equinor/fusion-wc-icon';
+import { IconElement, type IconName } from '@equinor/fusion-wc-icon';
 import styles from './element.css';
 
 IconElement;
@@ -127,14 +127,18 @@ export class ChipElement extends LitElement implements ChipElementProps {
    * Render the graphic element.
    */
   protected renderGraphic(): TemplateResult | null {
-    return this.icon ? html`<fwc-icon icon=${this.icon}></fwc-icon>` : html`<slot name="graphic"></slot>`;
+    return this.icon
+      ? html`<fwc-icon icon=${this.icon}></fwc-icon>`
+      : html`<slot name="graphic"></slot>`;
   }
 
   /**
    * Render the remove icon.
    */
   protected renderRemoveIcon(): TemplateResult | null {
-    return this.removable ? html`<fwc-icon icon="close"></fwc-icon>` : html`<slot name="remove"></slot>`;
+    return this.removable
+      ? html`<fwc-icon icon="close"></fwc-icon>`
+      : html`<slot name="remove"></slot>`;
   }
 
   /**

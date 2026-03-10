@@ -2,7 +2,13 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { PeoplePickerElement, PersonAddedEvent, PersonRemovedEvent, SelectionChangedEvent, type PeoplePickerElementProps } from '@equinor/fusion-wc-people';
+import {
+  PeoplePickerElement,
+  type PersonAddedEvent,
+  type PersonRemovedEvent,
+  type SelectionChangedEvent,
+  type PeoplePickerElementProps,
+} from '@equinor/fusion-wc-people';
 
 import { generatePerson, generateIds, personProviderDecorator } from '../person-provider';
 
@@ -45,7 +51,6 @@ const render = (props: PeoplePickerElementProps) => html`
     @person-removed=${handlePersonRemoved}>
   </fwc-people-picker>
 `;
-
 
 export const Default: Story = {
   args: {
@@ -90,7 +95,9 @@ export const people: Story = {
   },
   loaders: [
     async () => {
-      const resolvedPeople = await Promise.all(generateIds(1, 3).map((azureId) => generatePerson({ azureId })));
+      const resolvedPeople = await Promise.all(
+        generateIds(1, 3).map((azureId) => generatePerson({ azureId })),
+      );
       return { resolvedPeople };
     },
   ],

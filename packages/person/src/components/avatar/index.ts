@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonAvatarElement } from './element';
-import { PersonAvatarElementProps } from './types';
+import type { PersonAvatarElementProps } from './types';
 
 // important for backwards compatibility
 // remove when deprecating AvatarSizeEnum
@@ -12,7 +12,7 @@ export * from './types';
 export const tag = 'fwc-person-avatar';
 
 @fusionElement(tag)
-export default class _ extends PersonAvatarElement { }
+export default class _ extends PersonAvatarElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -21,7 +21,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<PersonAvatarElementProps & React.HTMLAttributes<PersonAvatarElement>>,
+        React.PropsWithChildren<
+          PersonAvatarElementProps & React.HTMLAttributes<PersonAvatarElement>
+        >,
         PersonAvatarElement
       >;
     }

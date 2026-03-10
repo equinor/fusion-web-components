@@ -5,7 +5,7 @@ import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
 import {
   MarkdownViewerElement,
-  MarkdownViewerElementProps,
+  type MarkdownViewerElementProps,
 } from '@equinor/fusion-wc-markdown';
 import cem from '@equinor/fusion-wc-markdown/custom-elements.json';
 import markdownExample from './markdown.example.md?raw';

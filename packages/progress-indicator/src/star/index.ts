@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { StarProgressElement, StarProgressElementProps } from './element';
+import { StarProgressElement, type StarProgressElementProps } from './element';
 
 export * from './element';
 
@@ -16,7 +16,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<StarProgressElementProps & React.HTMLAttributes<StarProgressElement>>,
+        React.PropsWithChildren<
+          StarProgressElementProps & React.HTMLAttributes<StarProgressElement>
+        >,
         StarProgressElement
       >;
     }

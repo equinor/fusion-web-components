@@ -1,10 +1,10 @@
-import { type CSSResult, html, LitElement, PropertyValues } from 'lit';
+import { type CSSResult, html, LitElement, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators/property.js';
 import { query } from 'lit/decorators/query.js';
 
-import type { SearchElementProps } from "./types";
+import type { SearchElementProps } from './types';
 
-import { searchStyle } from "./element.css";
+import { searchStyle } from './element.css';
 
 export class ClearInputEvent extends CustomEvent<void> {
   static readonly eventName = 'clearinput';

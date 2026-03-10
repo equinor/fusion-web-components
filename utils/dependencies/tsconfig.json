@@ -16,6 +16,6 @@
     "importHelpers": true,
     "composite": true,
     "outDir": "./bin",
-    "rootDir": "./src",
+    "rootDir": "./src"
   }
 }

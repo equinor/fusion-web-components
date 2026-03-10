@@ -38,7 +38,7 @@ export class ListElement extends LitElement implements ListElementProps {
    */
   @property({
     type: Array,
-    converter: (value: string | null) => value ? JSON.parse(value) : []
+    converter: (value: string | null) => (value ? JSON.parse(value) : []),
   })
   dataSources: PersonInfo[] = [];
 
@@ -47,27 +47,29 @@ export class ListElement extends LitElement implements ListElementProps {
    * Default is 250
    */
   @property({ type: Number })
-  maxHeight: number = 250; // in pixels
+  maxHeight = 250; // in pixels
 
   /**
    * The total count of the results
    * Default is 0/0
    */
   @property({ type: String })
-  totalCount: string = '0/0';
+  totalCount = '0/0';
 
   @queryAll('fwc-people-picker-list-item')
   listItems!: NodeListOf<ListItemElement>;
 
   renderListItems() {
-    return this.dataSources.map(dataSource => html`
+    return this.dataSources.map(
+      (dataSource) => html`
       <li>
         <fwc-people-picker-list-item
           .dataSource=${dataSource}
           tabindex="0">
         </fwc-people-picker-list-item>
       </li>
-    `);
+    `,
+    );
   }
 
   renderTotalCount() {
@@ -81,15 +83,19 @@ export class ListElement extends LitElement implements ListElementProps {
         <p>Displaying ${this.totalCount} results</p>
         |
         <label title="Include system accounts in search results">
-          <fwc-checkbox style="--fwc-checkbox-size: 12px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(e: Event) => {
-        this.dispatchEvent(new CustomEvent('toggle-system-accounts', {
-          detail: {
-            systemAccounts: (e.target as CheckboxElement).checked,
-          },
-          bubbles: true,
-          composed: true,
-        }));
-      }}></fwc-checkbox>
+          <fwc-checkbox style="--fwc-checkbox-size: 12px;" .checked=${this._context.value?.systemAccounts ?? false} @change=${(
+            e: Event,
+          ) => {
+            this.dispatchEvent(
+              new CustomEvent('toggle-system-accounts', {
+                detail: {
+                  systemAccounts: (e.target as CheckboxElement).checked,
+                },
+                bubbles: true,
+                composed: true,
+              }),
+            );
+          }}></fwc-checkbox>
         System accounts
         </label>
       </div>

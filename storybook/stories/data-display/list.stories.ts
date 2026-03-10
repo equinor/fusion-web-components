@@ -6,7 +6,7 @@ import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
 import {
   ListElement,
-  ListElementProps,
+  type ListElementProps,
   ListItemElement,
   CheckListItemElement,
   RadioListItemElement,

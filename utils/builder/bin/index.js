@@ -46,10 +46,8 @@ var plugin_commonjs_1 = __importDefault(require("@rollup/plugin-commonjs"));
 var plugin_json_1 = __importDefault(require("@rollup/plugin-json"));
 var plugin_terser_1 = __importDefault(require("@rollup/plugin-terser"));
 var lodash_camelcase_1 = __importDefault(require("lodash.camelcase"));
-var path_1 = __importDefault(require("path"));
-var fs_1 = __importDefault(require("fs"));
-// import filesize from 'filesize';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+var node_path_1 = __importDefault(require("node:path"));
+var node_fs_1 = __importDefault(require("node:fs"));
 var pkg = require("".concat(process.cwd(), "/package.json"));
 var outputOptions = {
     name: (0, lodash_camelcase_1.default)(pkg.name),
@@ -84,7 +82,7 @@ var outputOptions = {
                 output = (_b.sent()).output;
                 for (_i = 0, output_1 = output; _i < output_1.length; _i++) {
                     _a = output_1[_i], fileName = _a.fileName, type = _a.type;
-                    size = fs_1.default.statSync(path_1.default.join(outputOptions.dir, fileName)).size;
+                    size = node_fs_1.default.statSync(node_path_1.default.join(outputOptions.dir, fileName)).size;
                     console.log("[".concat(type, "]"), fileName, size);
                 }
                 return [2 /*return*/];

@@ -45,7 +45,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
    * Default is 'Start typing name'
    */
   @property()
-  placeholder: string = 'Search for...';
+  placeholder = 'Search for...';
 
   /**
    * Whether to show the selected people pills.
@@ -54,34 +54,34 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
    */
   @property({
     type: Boolean,
-    converter: (value: string | null) => value === 'true'
+    converter: (value: string | null) => value === 'true',
   })
-  showSelectedPeople: boolean = true;
+  showSelectedPeople = true;
   /**
    * Whether to include system accounts in the search results
    * Default is false
    */
   @property({ type: Boolean })
-  systemAccounts: boolean = false;
+  systemAccounts = false;
 
   /**
-   * The title to show when there are no results found. 
-   * This is useful to provide a better user experience when the search returns no results, 
+   * The title to show when there are no results found.
+   * This is useful to provide a better user experience when the search returns no results,
    * as it can be used to provide guidance to the user on how to get better results.
    */
   @property({ type: String })
-  noResultTitle: string = '';
+  noResultTitle = '';
 
   /**
    * The subtitle to show when there are no results found.
-   * This is useful to provide a better user experience when the search returns no results, 
+   * This is useful to provide a better user experience when the search returns no results,
    * as it can be used to provide guidance to the user on how to get better results.
    */
   @property({ type: String })
-  noResultSubtitle: string = '';
+  noResultSubtitle = '';
 
   @state()
-  search: string = '';
+  search = '';
 
   @query('fwc-people-picker-search')
   searchElement?: SearchElement;
@@ -121,17 +121,20 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
   renderPills() {
     if (!this.showSelectedPeople && !this.multiple) {
       return;
-    };
+    }
 
-    return repeat([...this.controllers.selected.selectedPeople.values()], (person) => person.azureId, (person) => html`
+    return repeat(
+      [...this.controllers.selected.selectedPeople.values()],
+      (person) => person.azureId,
+      (person) => html`
       <fwc-people-pill .dataSource=${person}></fwc-people-pill>
-    `);
+    `,
+    );
   }
 
   renderPickerList() {
     return this.tasks.suggest?.render({
       complete: (people: PersonSuggestResults) => {
-
         if (people.value.length === 1 && people.value[0].azureUniqueId === 'no-results-found') {
           if (this.noResultTitle) {
             people.value[0].name = this.noResultTitle;
@@ -146,13 +149,13 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
             .dataSources=${people.value.map((person) => mapToPersonInfo(person))}
             totalCount=${`${people.count}/${people.totalCount}`}
             @toggle-system-accounts=${(e: CustomEvent) => {
-            this.systemAccounts = e.detail.systemAccounts;
-          }}></fwc-people-picker-list>
+              this.systemAccounts = e.detail.systemAccounts;
+            }}></fwc-people-picker-list>
         `;
       },
       pending: () => html`<p><fwc-dots-progress size="small" color="primary" /></p>`,
       error: () => this.errors.push('Failed to suggest people from people api'),
-    })
+    });
   }
 
   renderContent(): TemplateResult {
@@ -211,7 +214,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
         ${this.renderErrors()}
       </div>
     `;
-  };
+  }
 }
 
 export default PickerElement;

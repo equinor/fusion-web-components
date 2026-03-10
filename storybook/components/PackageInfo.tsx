@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Title, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
 import { styled } from 'storybook/theming';
@@ -42,7 +42,11 @@ export const renderDependencies = (deps: Record<string, string>) => {
       {Object.keys(deps).map((dep) => {
         const scope = deps[dep].replace(/\^/, '');
         return (
-          <Dependency key={dep} href={`https://www.npmjs.com/package/${dep}/v/${scope}`} target="_blank">
+          <Dependency
+            key={dep}
+            href={`https://www.npmjs.com/package/${dep}/v/${scope}`}
+            target="_blank"
+          >
             <span data-version>{scope}</span>
             <span data-package>{dep}</span>
           </Dependency>

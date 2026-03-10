@@ -23,11 +23,11 @@ const meta: Meta<typeof cem> = {
 
 const render = (props: PersonListItemElementProps) => html`
   ${new Array(30).fill(undefined).map((_, i) => {
-  faker.seed(i);
-  return html`
+    faker.seed(i);
+    return html`
     <fwc-person-list-item size="${ifDefined(props.size)}" azureId=${faker.string.uuid()}></fwc-person-list-item>
   `;
-})}
+  })}
 `;
 
 export const Default: Story = {

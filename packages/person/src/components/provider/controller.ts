@@ -1,11 +1,11 @@
-import { ReactiveController } from 'lit';
-import { PersonResolver, PersonResolverHost } from './types';
+import type { ReactiveController } from 'lit';
+import type { PersonResolver, PersonResolverHost } from './types';
 import {
   RequestResolvePersonDetailEvent,
   RequestResolvePersonInfoEvent,
   RequestResolvePersonSearchEvent,
   RequestResolvePersonPhotoEvent,
-  ResolveEventDetail,
+  type ResolveEventDetail,
   RequestResolvePersonSuggestEvent,
   RequestResolvePersonResolveEvent,
 } from '../../events';

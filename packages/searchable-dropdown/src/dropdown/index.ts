@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { SearchableDropdownElement } from './element';
-import { SearchableDropdownProps } from '../types';
+import type { SearchableDropdownProps } from '../types';
 export * from './element';
 
 export { sddStyles } from './element.css';
@@ -17,7 +17,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<SearchableDropdownProps & React.HTMLAttributes<SearchableDropdownElement>>,
+        React.PropsWithChildren<
+          SearchableDropdownProps & React.HTMLAttributes<SearchableDropdownElement>
+        >,
         SearchableDropdownElement
       >;
     }

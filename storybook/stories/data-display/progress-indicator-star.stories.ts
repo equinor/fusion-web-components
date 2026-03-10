@@ -3,7 +3,10 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import { StarProgressElement, StarProgressElementProps } from '@equinor/fusion-wc-progress-indicator';
+import {
+  StarProgressElement,
+  type StarProgressElementProps,
+} from '@equinor/fusion-wc-progress-indicator';
 import cem from '@equinor/fusion-wc-progress-indicator/custom-elements.json';
 
 StarProgressElement;

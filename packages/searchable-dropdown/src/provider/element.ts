@@ -1,6 +1,6 @@
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { SearchableDropdownResolver, SearchableDropdownConnectEvent } from '../types';
+import { type SearchableDropdownResolver, SearchableDropdownConnectEvent } from '../types';
 
 /**
  * Provider element for the searchabledropdown component

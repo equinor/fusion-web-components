@@ -1,4 +1,4 @@
-import { CSSResult, HTMLTemplateResult, html } from 'lit';
+import { type CSSResult, type HTMLTemplateResult, html } from 'lit';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list-item.css';
 import style from './element.css';

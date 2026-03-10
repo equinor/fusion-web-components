@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { MenuElement, MenuElementProps } from '@equinor/fusion-wc-menu';
+import { MenuElement, type MenuElementProps } from '@equinor/fusion-wc-menu';
 import cem from '@equinor/fusion-wc-menu/custom-elements.json';
 
 MenuElement;

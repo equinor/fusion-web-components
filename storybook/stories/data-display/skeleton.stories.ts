@@ -1,10 +1,14 @@
-import { CSSResult, HTMLTemplateResult, css, html } from 'lit';
+import { type CSSResult, type HTMLTemplateResult, css, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import Skeleton, { SkeletonElementProps, SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import Skeleton, {
+  type SkeletonElementProps,
+  SkeletonSize,
+  SkeletonVariant,
+} from '@equinor/fusion-wc-skeleton';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 import cem from '@equinor/fusion-wc-skeleton/lib/custom-elements.json';
 import style from '@equinor/fusion-wc-icon/src/element.css';
 
@@ -19,7 +23,9 @@ const meta: Meta<typeof cem> = {
   component: 'fwc-skeleton',
 };
 
-const render = (props: SkeletonElementProps & { slot?: HTMLTemplateResult; style?: CSSResult }) => html`
+const render = (
+  props: SkeletonElementProps & { slot?: HTMLTemplateResult; style?: CSSResult },
+) => html`
   <fwc-skeleton
     ?fluid="${ifDefined(props.fluid)}"
     ?inactive="${ifDefined(props.inactive)}"
@@ -66,7 +72,8 @@ export const withText: Story = {
 
 export const withIcon: Story = {
   ...Default,
-  render: (props) => render({ ...props, slot: html`<fwc-icon icon=${'slack' satisfies IconName}></fwc-icon>` }),
+  render: (props) =>
+    render({ ...props, slot: html`<fwc-icon icon=${'slack' satisfies IconName}></fwc-icon>` }),
 };
 
 export const CustomColor: Story = {

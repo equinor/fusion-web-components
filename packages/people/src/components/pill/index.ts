@@ -9,8 +9,7 @@ export * from './types';
 export const tag = 'fwc-people-pill';
 
 @fusionElement(tag)
-
-export default class _ extends PillElement { }
+export default class _ extends PillElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

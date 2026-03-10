@@ -1,6 +1,6 @@
 import { LitElement } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
-import { IntersectionEvent, IntersectionEventInit } from './events/intersection-event';
+import { IntersectionEvent, type IntersectionEventInit } from './events/intersection-event';
 
 // convert cvs to float array
 const converter = (s: string | null) => s?.split(',').map((v) => parseFloat(v));

@@ -10,13 +10,13 @@ import { TaskStatus } from '@lit/task';
 
 import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
-import { PersonSearchTask, PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
+import { PersonSearchTask, type PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
 
 import type { PersonInfo, PersonSearchResult } from '../../types';
 import type { SelectedPersonProp } from './index';
 
 import IconElement from '@equinor/fusion-wc-icon';
-import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
+import ListElement, { type ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
 import { PersonListItemElement } from '../list-item';
 import { PersonAvatarElement } from '../avatar';
@@ -56,7 +56,10 @@ PersonAvatarElement;
  * interface renderListItems(items: TResult): HTMLTemplateResult;
  * ```
  */
-export class PersonSelectElement extends LitElement implements PersonSearchControllerHost, SelectedPersonProp {
+export class PersonSelectElement
+  extends LitElement
+  implements PersonSearchControllerHost, SelectedPersonProp
+{
   /* style object css */
   static styles: CSSResult[] = psStyles;
 
@@ -132,7 +135,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
         } catch {
           if (value?.match('@')) {
             return { upn: value.toLocaleLowerCase() };
-          } else if (value?.length) {
+          }
+          if (value?.length) {
             return { azureId: value.toLocaleLowerCase() };
           }
         }
@@ -215,7 +219,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true"> Start typing to search. </fwc-list-item>
         `;
-      } else if (!result.length && this.search.length) {
+      }
+      if (!result.length && this.search.length) {
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
             No matching person found
@@ -225,10 +230,10 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
 
       return html`
         ${repeat(
-        result,
-        (item) => item.azureId,
-        (item) => {
-          return html`
+          result,
+          (item) => item.azureId,
+          (item) => {
+            return html`
               <fwc-list-item
                 graphic="avatar"
                 .activated=${this.controllers.element.selectedIds.has(item.azureId)}
@@ -247,17 +252,17 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
                 </span>
               </fwc-list-item>
             `;
-        },
-      )}
+          },
+        )}
       `;
     };
 
     return html`<fwc-list activatable=${true} multi=${this.multiple} @action=${this.controllers.element.handleSelect}>
       ${this.tasks.search.render({
-      complete: renderListItems,
-      pending: pendingListItem,
-      error: errorListItem,
-    })}
+        complete: renderListItems,
+        pending: pendingListItem,
+        error: errorListItem,
+      })}
     </fwc-list>`;
   }
 
@@ -277,18 +282,18 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
     return html`${cache(
       html`<ul id="selected-persons">
         ${repeat(
-        people,
-        (item) => item.azureId,
-        (item) => {
-          return html`<li>
+          people,
+          (item) => item.azureId,
+          (item) => {
+            return html`<li>
               <fwc-person-list-item
                 size="small"
                 azureid="${item.azureId}"
                 @click=${() => (this.controllers.element.isOpen = true)}
               ></fwc-person-list-item>
             </li>`;
-        },
-      )}
+          },
+        )}
       </ul>`,
     )}`;
   }
@@ -298,7 +303,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
-    const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
+    const dense =
+      ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const disabled = this.disabled ? true : undefined;
 
@@ -308,7 +314,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
       dense: dense == true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
-      'selected-persons': this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
+      'selected-persons':
+        this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
     };
 
     /** Select person by selectedPerson property on info task */
@@ -329,21 +336,23 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
             dense=${ifDefined(dense)}
             placeholder=${this.placeholder}
             @focus=${() => {
-        this.controllers.element.isOpen = true;
-      }}
+              this.controllers.element.isOpen = true;
+            }}
             @keyup=${this.controllers.element.handleKeyup}
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
-              ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen
-        ? html`<fwc-icon
+              ${
+                this.controllers.element.selectedIds.size || this.controllers.element.isOpen
+                  ? html`<fwc-icon
                     tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
                     class="trailing interactive"
                     icon=${this.trailingIcon}
                     @click=${this.controllers.element.closeClick}
                     @keydown=${this.controllers.element.closeClick}
                   ></fwc-icon>`
-        : html``}
+                  : html``
+              }
             </span>
           </slot>
         </div>

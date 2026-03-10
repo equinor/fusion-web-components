@@ -13,8 +13,8 @@ import {
 import { wrapInList, splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
 import { undo, redo } from 'prosemirror-history';
 import { undoInputRule } from 'prosemirror-inputrules';
-import { Command, EditorState, Transaction } from 'prosemirror-state';
-import { Schema } from 'prosemirror-model';
+import type { Command, EditorState, Transaction } from 'prosemirror-state';
+import type { Schema } from 'prosemirror-model';
 
 const mac = typeof navigator != 'undefined' ? /Mac/.test(navigator.platform) : false;
 
@@ -79,10 +79,13 @@ export function buildKeymap(schema: Schema) {
   if ((type = schema.nodes.blockquote)) bind('Ctrl->', wrapIn(type));
   if ((type = schema.nodes.hard_break)) {
     const br = type,
-      cmd = chainCommands(exitCode, (state: EditorState, dispatch: ((tr: Transaction) => void) | undefined) => {
-        if (dispatch) dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
-        return true;
-      });
+      cmd = chainCommands(
+        exitCode,
+        (state: EditorState, dispatch: ((tr: Transaction) => void) | undefined) => {
+          if (dispatch) dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
+          return true;
+        },
+      );
     bind('Mod-Enter', cmd);
     bind('Shift-Enter', cmd);
     if (mac) bind('Ctrl-Enter', cmd);

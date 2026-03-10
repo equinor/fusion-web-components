@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { DateRangeElement, DateRangeElementProps } from './element';
+import { DateRangeElement, type DateRangeElementProps } from './element';
 
 export { DateRangeElement, DateRangeElementProps } from './element';
 

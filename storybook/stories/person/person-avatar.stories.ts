@@ -3,7 +3,10 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import PersonAvatar, { type PersonAvatarElementProps, type AvatarSize } from '@equinor/fusion-wc-person/avatar';
+import PersonAvatar, {
+  type PersonAvatarElementProps,
+  type AvatarSize,
+} from '@equinor/fusion-wc-person/avatar';
 import cem from '@equinor/fusion-wc-person/custom-elements.json';
 
 import { faker } from '@faker-js/faker';

@@ -1,4 +1,4 @@
-import { PersonInfo, PersonItemSize } from '../../types';
+import type { PersonInfo, PersonItemSize } from '../../types';
 
 export type TableCellData = PersonInfo;
 

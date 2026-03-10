@@ -1,5 +1,5 @@
 import type { PersonAvatarShowCardOnType } from './element';
-import { type PersonInfo as AvatarData } from '../../types';
+import type { PersonInfo as AvatarData } from '../../types';
 
 export type { AvatarData };
 

@@ -1,7 +1,7 @@
-import { svg, SVGTemplateResult } from 'lit';
+import { svg, type SVGTemplateResult } from 'lit';
 // import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import * as edsIcons from '@equinor/eds-icons';
-import { IconData } from '@equinor/eds-icons';
+import type { IconData } from '@equinor/eds-icons';
 
 export type IconName = keyof typeof edsIcons;
 

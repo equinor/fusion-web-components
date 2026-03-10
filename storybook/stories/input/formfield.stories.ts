@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { FormfieldElement, FormfieldElementProps } from '@equinor/fusion-wc-formfield';
+import { FormfieldElement, type FormfieldElementProps } from '@equinor/fusion-wc-formfield';
 import { CheckboxElement } from '@equinor/fusion-wc-checkbox';
 import { SwitchElement } from '@equinor/fusion-wc-switch';
 import { RadioElement } from '@equinor/fusion-wc-radio';

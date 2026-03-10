@@ -1,0 +1,74 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": ["**", "!.changeset"]
+  },
+  "formatter": {
+    "enabled": true,
+    "lineWidth": 100,
+    "useEditorconfig": true,
+    "indentStyle": "space"
+  },
+  "assist": { "actions": { "source": { "organizeImports": "off" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noBannedTypes": "warn",
+        "useLiteralKeys": "error",
+        "useOptionalChain": "error"
+      },
+      "performance": {
+        "noAccumulatingSpread": "warn"
+      },
+      "style": {
+        "noParameterAssign": "warn",
+        "useShorthandFunctionType": "warn",
+        "noUselessElse": "warn",
+        "useExportType": "warn",
+        "useLiteralEnumMembers": "warn",
+        "noNonNullAssertion": "warn",
+        "noUnusedTemplateLiteral": "warn",
+        "useNodejsImportProtocol": "warn",
+        "useTemplate": "warn",
+        "noInferrableTypes": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noEmptyBlockStatements": "warn",
+        "noConfusingVoidType": "warn",
+        "noGlobalIsNan": "warn",
+        "noDoubleEquals": "warn",
+        "noAssignInExpressions": "warn",
+        "noImplicitAnyLet": "warn"
+      },
+      "a11y": {
+        "noStaticElementInteractions": "warn"
+      },
+      "correctness": {
+        "useUniqueElementIds": "warn"
+      }
+    },
+    "includes": ["**", "!node_modules", "!**/dist/**", "!**/lib/**", "!**/bin/**", "!package.json"]
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto",
+      "bracketSpacing": true
+    }
+  }
+}

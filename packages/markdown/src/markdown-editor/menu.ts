@@ -1,7 +1,7 @@
-import { MarkType } from 'prosemirror-model';
-import { Command, EditorState, Plugin } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-import { MdMenuItemType, getMenuItemByType } from './menuItems';
+import type { MarkType } from 'prosemirror-model';
+import { type Command, type EditorState, Plugin } from 'prosemirror-state';
+import type { EditorView } from 'prosemirror-view';
+import { type MdMenuItemType, getMenuItemByType } from './menuItems';
 
 export type MenuItem = {
   command: Command;
@@ -20,14 +20,17 @@ export class MenuView {
     this.editorView = editorView;
 
     this.dom = menuContainer;
-    items.forEach(({ dom }) => this.dom.appendChild(dom));
+    this.items.forEach(({ dom }) => {
+      this.dom.appendChild(dom);
+    });
     this.update();
 
     this.dom.addEventListener('mousedown', (e: Event) => {
       e.preventDefault();
       editorView.focus();
       items.forEach(({ command, dom }) => {
-        if (dom.contains(e.target as Node)) command(editorView.state, editorView.dispatch, editorView);
+        if (dom.contains(e.target as Node))
+          command(editorView.state, editorView.dispatch, editorView);
       });
     });
   }

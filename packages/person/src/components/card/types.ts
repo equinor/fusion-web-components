@@ -1,5 +1,5 @@
-import { PersonItemSize } from '../../types';
-import { PersonDetails } from '../../types';
+import type { PersonItemSize } from '../../types';
+import type { PersonDetails } from '../../types';
 
 export type CardData = PersonDetails;
 

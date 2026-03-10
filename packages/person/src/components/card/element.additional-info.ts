@@ -5,13 +5,12 @@ import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonDetailTask } from '../../tasks';
 import { TaskStatus } from '@lit/task';
 
-import {SkeletonElement} from '@equinor/fusion-wc-skeleton';
+import { SkeletonElement } from '@equinor/fusion-wc-skeleton';
 SkeletonElement;
 
 import './element.manager';
 
 @fusionElement('fwc-person-card-additional-info')
-
 export class PersonCardAdditionalInfoElement extends LitElement {
   /** Azure unique id */
   @property()
@@ -19,12 +18,12 @@ export class PersonCardAdditionalInfoElement extends LitElement {
 
   tasks = {
     details: new PersonDetailTask(this),
-  }
- 
+  };
+
   protected createRenderRoot(): HTMLElement {
     return this;
   }
- 
+
   renderManager(): HTMLTemplateResult | undefined {
     const { value } = this.tasks.details;
     if (!value?.manager) {
@@ -38,19 +37,19 @@ export class PersonCardAdditionalInfoElement extends LitElement {
       </div>
     `;
   }
-  
+
   renderProjects(): HTMLTemplateResult | undefined {
     const { value } = this.tasks.details;
     if (!value?.positions) {
       return;
-    };
+    }
 
     const filterProjects = [...new Set(value.positions?.map((p) => p.project.name))];
-    
+
     if (filterProjects.length === 0) {
       return;
-    };
-    
+    }
+
     return html`
       <div class="info-item">
         <div class="info-item_heading" title="Tasks the current person is allocated to">Tasks</div>
@@ -60,18 +59,18 @@ export class PersonCardAdditionalInfoElement extends LitElement {
       </div>
     `;
   }
-  
+
   renderPositions(): HTMLTemplateResult | undefined {
     const { value } = this.tasks.details;
     if (!value?.positions) {
       return;
-    };
+    }
 
     const filterPositions = [...new Set(value.positions?.map((p) => p.name))];
     if (filterPositions.length === 0) {
       return;
-    };
-    
+    }
+
     return html`
       <div class="info-item">
         <div class="info-item_heading" title="Unique list of generic task positions the person is allocated to">

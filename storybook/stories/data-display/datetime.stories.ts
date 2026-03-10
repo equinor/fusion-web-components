@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { DateTimeElement, DateTimeElementProps } from '@equinor/fusion-wc-date';
+import { DateTimeElement, type DateTimeElementProps } from '@equinor/fusion-wc-date';
 import cem from '@equinor/fusion-wc-date/custom-elements.json';
 
 DateTimeElement;
@@ -36,7 +36,8 @@ export const Default: Story = {
 
 export const Formatting: Story = {
   ...Default,
-  render: (props) => html`${render({ ...props, format: 'yyyy-mm-dd' })} ${render({ ...props, format: 'd MMMM yy' })}`,
+  render: (props) =>
+    html`${render({ ...props, format: 'yyyy-mm-dd' })} ${render({ ...props, format: 'd MMMM yy' })}`,
 };
 
 export default meta;

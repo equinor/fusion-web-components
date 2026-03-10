@@ -7,8 +7,7 @@ export * from './element';
 export const tag = 'fwc-people-view-mode';
 
 @fusionElement(tag)
-
-export default class _ extends ViewModeElement { }
+export default class _ extends ViewModeElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

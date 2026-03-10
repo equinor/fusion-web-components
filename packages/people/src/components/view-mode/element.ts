@@ -1,4 +1,4 @@
-import { LitElement, PropertyValues, html, type CSSResult, type TemplateResult } from 'lit';
+import { LitElement, type PropertyValues, html, type CSSResult, type TemplateResult } from 'lit';
 import { state } from 'lit/decorators.js';
 import { ContextConsumer } from '@lit/context';
 
@@ -33,10 +33,10 @@ export class ViewModeElement extends LitElement {
   static styles: CSSResult[] = [tableViewStyles];
   private _context = new ContextConsumer(this, { context: pickerContext, subscribe: true });
 
-  private _clickOutside = new ClickOutsideController(this)
+  private _clickOutside = new ClickOutsideController(this);
 
   @state()
-  viewSettingsOpen: boolean = false;
+  viewSettingsOpen = false;
 
   @state()
   columnSet: ColumnSet = 'default';
@@ -63,7 +63,7 @@ export class ViewModeElement extends LitElement {
     if (event.key === 'Escape') {
       this.close();
     }
-  }
+  };
 
   handleClickOutside = (event: MouseEvent) => {
     // Use composedPath to check if the click is inside the component (works with Shadow DOM)
@@ -73,7 +73,7 @@ export class ViewModeElement extends LitElement {
     }
 
     this.close();
-  }
+  };
 
   protected renderSettings(): TemplateResult {
     if (this._context.value?.viewMode === 'list') {
@@ -116,11 +116,11 @@ export class ViewModeElement extends LitElement {
       <p>Select Table view mode</p>
       <div class="view-settings-options">
         <label>
-          <input type="radio" name="tableviewmode" value="default" ?checked=${this.columnSet === 'default'} @change=${() => this.columnSet = 'default'}>
+          <input type="radio" name="tableviewmode" value="default" ?checked=${this.columnSet === 'default'} @change=${() => (this.columnSet = 'default')}>
           <p>Default table</p>
         </label>
         <label>
-          <input type="radio" name="tableviewmode" value="full" ?checked=${this.columnSet === 'full'} @change=${() => this.columnSet = 'full'}>
+          <input type="radio" name="tableviewmode" value="full" ?checked=${this.columnSet === 'full'} @change=${() => (this.columnSet = 'full')}>
           <p>Full table</p>
         </label>
       </div>
@@ -148,7 +148,7 @@ export class ViewModeElement extends LitElement {
           title="Table view"
         ></fwc-icon-button>
         <fwc-icon-button
-          @click=${() => this.viewSettingsOpen = !this.viewSettingsOpen}
+          @click=${() => (this.viewSettingsOpen = !this.viewSettingsOpen)}
           color=${this.viewSettingsOpen ? 'success' : 'primary'}
           icon="settings"
           size="x-small"

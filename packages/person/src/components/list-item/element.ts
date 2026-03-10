@@ -2,11 +2,11 @@ import { html, LitElement, type CSSResult, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
-import { PersonItemSize } from '../../types';
+import type { PersonItemSize } from '../../types';
 import style from './element.css';
 // TODO - NOPE
 import personStyle from '../../style.css';
-import { ListItemData, PersonListItemElementProps } from './types';
+import type { ListItemData, PersonListItemElementProps } from './types';
 import { PersonResolveTask } from '../../tasks';
 
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
@@ -119,12 +119,13 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
     return html`
       <div class="person-list__item ${this.clickable ? 'person-list__item-clickable' : ''}">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`
+          complete: (details) => {
+            const person =
+              details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
               <div class="person-list__about">
                 <div class="person-list__avatar">
                   <fwc-person-avatar .dataSource=${person} size="small"></fwc-person-avatar>
@@ -136,10 +137,10 @@ export class PersonListItemElement extends LitElement implements PersonListItemE
               </div>
               <slot class="person-list__toolbar"></slot>
             `;
-      },
-      pending: () => this.renderPending(),
-      error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
-    })}
+          },
+          pending: () => this.renderPending(),
+          error: () => this.renderTextPlaceholder(true, SkeletonSize.Medium),
+        })}
       </div>
     `;
   }

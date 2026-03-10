@@ -30,7 +30,7 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
   let name = person.errorMessage ?? 'Unknown error';
 
   if (person.statusCode === 404) {
-    name = `Person does not exist in Entra ID`;
+    name = 'Person does not exist in Entra ID';
   } else if (person.statusCode === 400) {
     name = 'Not a valid guid';
   }
@@ -44,9 +44,9 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
     avatarUrl: resolveFailedAvatarUrl(),
     avatarColor: '#ff92a8',
   };
-}
+};
 
-export const resolveFailedAvatarUrl = (avatarColor: string = '#eb0037') => {
+export const resolveFailedAvatarUrl = (avatarColor = '#eb0037') => {
   const svgString = `
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
       <style>

@@ -9,11 +9,9 @@ import json from '@rollup/plugin-json';
 import terser from '@rollup/plugin-terser';
 
 import camelCase from 'lodash.camelcase';
-import path from 'path';
-import fs from 'fs';
-// import filesize from 'filesize';
+import path from 'node:path';
+import fs from 'node:fs';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require(`${process.cwd()}/package.json`);
 
 const outputOptions = {
@@ -29,7 +27,6 @@ const outputOptions = {
     plugins: [resolve(), commonJs(), json()],
   });
 
-  // @ts-ignore
   const { output } = await bundle.write({
     name: camelCase(pkg.name),
     format: 'esm',

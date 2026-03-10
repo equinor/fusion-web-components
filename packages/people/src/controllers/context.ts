@@ -8,7 +8,18 @@ export type PickerContext = {
   editable: boolean;
   selected?: InstanceType<typeof SelectedController>;
   viewMode?: 'list' | 'table';
-  tableColumns?: Array<'avatar' | 'name' | 'azureId' | 'type' | 'email' | 'mobilePhone' | 'jobTitle' | 'department' | 'manager' | 'remove'>;
+  tableColumns?: Array<
+    | 'avatar'
+    | 'name'
+    | 'azureId'
+    | 'type'
+    | 'email'
+    | 'mobilePhone'
+    | 'jobTitle'
+    | 'department'
+    | 'manager'
+    | 'remove'
+  >;
   systemAccounts: boolean;
 };
 

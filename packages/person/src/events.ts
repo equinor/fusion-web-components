@@ -1,10 +1,19 @@
-import type { AzureIdOrUpnObj, PersonDetails, PersonInfo, PersonSearchResult, PersonSuggestResults, PersonResolveResults } from './types';
+import type {
+  AzureIdOrUpnObj,
+  PersonDetails,
+  PersonInfo,
+  PersonSearchResult,
+  PersonSuggestResults,
+  PersonResolveResults,
+} from './types';
 
 export type AbortableEventDetail<T = unknown> = T extends object
   ? { [K in keyof T]: T[K] } & { signal?: AbortSignal }
   : { signal?: AbortSignal };
 
-export type ResolveEventDetail<T = unknown, R = unknown> = AbortableEventDetail<T> & { result?: R | Promise<R> };
+export type ResolveEventDetail<T = unknown, R = unknown> = AbortableEventDetail<T> & {
+  result?: R | Promise<R>;
+};
 
 abstract class RequestResolveEvent<T, R> extends CustomEvent<ResolveEventDetail<T, R>> {
   constructor(
@@ -23,13 +32,19 @@ export class RequestResolvePersonPhotoEvent extends RequestResolveEvent<AzureIdO
   }
 }
 
-export class RequestResolvePersonInfoEvent extends RequestResolveEvent<AzureIdOrUpnObj, PersonInfo> {
+export class RequestResolvePersonInfoEvent extends RequestResolveEvent<
+  AzureIdOrUpnObj,
+  PersonInfo
+> {
   static readonly eventName = 'request-resolve-person-info';
   constructor(detail: AbortableEventDetail<AzureIdOrUpnObj>, options?: CustomEventInit) {
     super(RequestResolvePersonInfoEvent.eventName, detail, options);
   }
 }
-export class RequestResolvePersonDetailEvent extends RequestResolveEvent<AzureIdOrUpnObj, PersonDetails> {
+export class RequestResolvePersonDetailEvent extends RequestResolveEvent<
+  AzureIdOrUpnObj,
+  PersonDetails
+> {
   static readonly eventName = 'request-resolve-person-detail';
   constructor(detail: AbortableEventDetail<AzureIdOrUpnObj>, options?: CustomEventInit) {
     super(RequestResolvePersonDetailEvent.eventName, detail, options);
@@ -44,7 +59,10 @@ export class RequestResolvePersonSearchEvent extends RequestResolveEvent<
   PersonSearchResult
 > {
   static readonly eventName = 'request-resolve-person-search';
-  constructor(detail: AbortableEventDetail<RequestResolvePersonSearchEventArgs>, options?: CustomEventInit) {
+  constructor(
+    detail: AbortableEventDetail<RequestResolvePersonSearchEventArgs>,
+    options?: CustomEventInit,
+  ) {
     super(RequestResolvePersonSearchEvent.eventName, detail, options);
   }
 }
@@ -58,7 +76,10 @@ export class RequestResolvePersonSuggestEvent extends RequestResolveEvent<
   PersonSuggestResults
 > {
   static readonly eventName = 'request-resolve-person-suggest';
-  constructor(detail: AbortableEventDetail<RequestResolvePersonSuggestEventArgs>, options?: CustomEventInit) {
+  constructor(
+    detail: AbortableEventDetail<RequestResolvePersonSuggestEventArgs>,
+    options?: CustomEventInit,
+  ) {
     super(RequestResolvePersonSuggestEvent.eventName, detail, options);
   }
 }
@@ -71,7 +92,10 @@ export class RequestResolvePersonResolveEvent extends RequestResolveEvent<
   PersonResolveResults
 > {
   static readonly eventName = 'request-resolve-person-resolve';
-  constructor(detail: AbortableEventDetail<RequestResolvePersonResolveEventArgs>, options?: CustomEventInit) {
+  constructor(
+    detail: AbortableEventDetail<RequestResolvePersonResolveEventArgs>,
+    options?: CustomEventInit,
+  ) {
     super(RequestResolvePersonResolveEvent.eventName, detail, options);
   }
 }

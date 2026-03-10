@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonListItemElement } from './element';
-import { PersonListItemElementProps } from './types';
+import type { PersonListItemElementProps } from './types';
 
 export * from './element';
 export * from './types';
@@ -8,7 +8,7 @@ export * from './types';
 export const tag = 'fwc-person-list-item';
 
 @fusionElement(tag)
-export default class _ extends PersonListItemElement { }
+export default class _ extends PersonListItemElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -17,7 +17,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<PersonListItemElementProps & React.HTMLAttributes<PersonListItemElement>>,
+        React.PropsWithChildren<
+          PersonListItemElementProps & React.HTMLAttributes<PersonListItemElement>
+        >,
         PersonListItemElement
       >;
     }

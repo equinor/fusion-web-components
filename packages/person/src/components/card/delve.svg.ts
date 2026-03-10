@@ -1,4 +1,4 @@
-import { TemplateResult, svg } from 'lit';
+import { type TemplateResult, svg } from 'lit';
 
 export const icon: TemplateResult = svg`<svg height="24" viewBox="0 0 24 24" width="24">
   <path

@@ -1,4 +1,4 @@
-import { CSSResult } from 'lit';
+import type { CSSResult } from 'lit';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list.css';
 import { queryAssignedElements } from 'lit/decorators.js';

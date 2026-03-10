@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { PopoverElement, PopoverElementProps } from './element';
+import { PopoverElement, type PopoverElementProps } from './element';
 
 export * from './element';
 export * from './directories/popperjs';

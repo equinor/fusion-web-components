@@ -15,11 +15,8 @@
     "baseUrl": "./",
     "noEmitHelpers": true,
     "importHelpers": true,
-    "composite": true,
+    "composite": true
   },
-  "include": [
-    "./packages/*/tsconfig.json",
-    "./components/*/tsconfig.json"
-  ],
-  "exclude": ["node_modules"],
+  "include": ["./packages/*/tsconfig.json", "./components/*/tsconfig.json"],
+  "exclude": ["node_modules"]
 }

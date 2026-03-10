@@ -19,7 +19,9 @@ export type IntersectionEventType = 'intersection' | 'intersect-in' | 'intersect
  * Event triggered when intersecting.
  * @typeparam T type of intersection
  */
-export class IntersectionEvent<T extends IntersectionEventType> extends CustomEvent<IntersectionEventDetail> {
+export class IntersectionEvent<
+  T extends IntersectionEventType,
+> extends CustomEvent<IntersectionEventDetail> {
   constructor(type: T, eventInit?: IntersectionEventInit) {
     super(type, eventInit);
   }

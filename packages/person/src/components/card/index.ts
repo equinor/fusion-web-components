@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonCardElement } from './element';
-import { PersonCardElementProps } from './types';
+import type { PersonCardElementProps } from './types';
 
 export * from './element';
 export * from './types';
@@ -8,7 +8,7 @@ export * from './types';
 export const tag = 'fwc-person-card';
 
 @fusionElement(tag)
-export default class _ extends PersonCardElement { }
+export default class _ extends PersonCardElement {}
 
 declare global {
   interface HTMLElementTagNameMap {

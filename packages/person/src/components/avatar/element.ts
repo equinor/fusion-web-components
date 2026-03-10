@@ -129,7 +129,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
    * @internal
    */
   private tasks?: {
-    resolve: PersonResolveTask,
+    resolve: PersonResolveTask;
   };
 
   /**
@@ -143,7 +143,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
           if (this.intersected) {
             this.controllers.observer.unobserve(this);
             this.tasks = {
-              resolve: new PersonResolveTask(this)
+              resolve: new PersonResolveTask(this),
             };
           }
         }
@@ -216,7 +216,7 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     return html`<img src="${person.avatarUrl}" alt="${person.name}" />`;
   }
 
-  protected renderAvatarElement(details: Partial<AvatarData>, trigger: boolean = true): TemplateResult {
+  protected renderAvatarElement(details: Partial<AvatarData>, trigger = true): TemplateResult {
     if (!trigger) {
       return html`
       <div
@@ -249,29 +249,32 @@ export class PersonAvatarElement extends LitElement implements PersonAvatarEleme
     return html`
       <div id="root">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`
+          complete: (details) => {
+            const person =
+              details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`
               ${this.renderAvatarElement(person)}
               <div id="floating" @mouseover="${this.handleFloatingMouseOver}" @mouseout="${this.handleFloatingMouseOut}">
                 <slot name="floating">
-                  ${when(this.isFloatingOpen, () =>
-          html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
+                  ${when(
+                    this.isFloatingOpen,
+                    () =>
+                      html`<fwc-person-card onclick="event.stopPropagation()" .dataSource="${person}">
                       <div slot="avatar">
                         ${this.renderAvatarElement(person, false)}
                       </div>
                     </fwc-person-card>`,
-        )}
+                  )}
                 </slot>
               </div>
             `;
-      },
-      pending: () => html`${this.renderImagePlaceholder(true)}`,
-      error: () => html`${this.renderImagePlaceholder(false)}`,
-    })}
+          },
+          pending: () => html`${this.renderImagePlaceholder(true)}`,
+          error: () => html`${this.renderImagePlaceholder(false)}`,
+        })}
       </div>
     `;
   }

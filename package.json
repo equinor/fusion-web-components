@@ -25,8 +25,9 @@
     "build": "pnpm -r --filter=!'@equinor/fusion-wc-storybook' build",
     "build:docs": "pnpm --filter='@equinor/fusion-wc-storybook' build",
     "build:clean": "pnpm clean:clean && pnpm build",
-    "lint": "eslint ./packages/*/src/** ./components/src",
-    "lint:report": "eslint --output-file eslint-report.log.json --format json ./packages/*/src ./components/src",
+    "lint": "biome lint",
+    "lint:staged": "biome lint --staged",
+    "format": "biome format",
     "test:pack": "pnpm -r pack --dry-run",
     "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
     "changeset:publish": "pnpm changeset tag && pnpm publish -r",
@@ -39,14 +40,11 @@
   "dependencies": {
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
-    "@types/react": "^19.2.14",
-    "prettier": "^3.8.0"
+    "@types/react": "^19.2.14"
   },
   "devDependencies": {
-    "@equinor/eslint-config-fusion": "^2.0.0",
+    "@biomejs/biome": "^2.4.6",
     "del-cli": "^7.0.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-prettier": "^5.5.5",
     "typescript": "^5.9.3"
   }
 }

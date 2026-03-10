@@ -1,7 +1,7 @@
 import { toggleMark, setBlockType } from 'prosemirror-commands';
 import { wrapInList } from 'prosemirror-schema-list';
 import { schema } from 'prosemirror-markdown';
-import { MenuItem } from './menu';
+import type { MenuItem } from './menu';
 import { type IconName, IconElement } from '@equinor/fusion-wc-icon';
 import { clearAllFormatting } from './extentions/clear-formatting';
 
@@ -21,7 +21,7 @@ export type MdMenuItemType =
 
 const icon = (text: string, name: string) => {
   const button = document.createElement('button');
-  button.className = 'button ' + name;
+  button.className = `button ${name}`;
   button.title = name;
   button.innerHTML = text;
   return button;
@@ -33,7 +33,7 @@ const MenuIcon = (icon: IconName) => {
 
 const heading = (level: number) => ({
   command: setBlockType(schema.nodes.heading, { level }),
-  dom: icon('H' + level, 'heading ' + level),
+  dom: icon(`H${level}`, `heading ${level}`),
   type: schema.nodes.heading,
 });
 

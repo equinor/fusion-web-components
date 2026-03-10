@@ -18,7 +18,10 @@ export class NavigateController implements ReactiveController {
   }
 
   hostDisconnected(): void {
-    this.#host.removeEventListener('navigate-to-search', this.handleNavigateToSearch as EventListener);
+    this.#host.removeEventListener(
+      'navigate-to-search',
+      this.handleNavigateToSearch as EventListener,
+    );
     this.#host.removeController(this);
   }
 

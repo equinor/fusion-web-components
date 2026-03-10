@@ -1,13 +1,13 @@
-import { CSSResult, html, LitElement, TemplateResult } from 'lit';
+import { type CSSResult, html, LitElement, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-import { PersonItemSize } from '../../types';
+import type { PersonItemSize } from '../../types';
 import personStyle from '../../style.css';
 
-import { TableCellData, PersonTableCellElementProps } from './types';
+import type { TableCellData, PersonTableCellElementProps } from './types';
 import style from './element.css';
 import { ResolvePropertyMapper } from '../../ResolvePropertyMapper';
 import { PersonResolveTask } from '../../tasks';
@@ -51,7 +51,9 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
 
   /** Function to determine heading based on person data */
   @property({ type: Function })
-  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) => person.applicationName ?? person.name;
+  public heading: <T extends TableCellData>(person: T) => string | undefined = (
+    person: TableCellData,
+  ) => person.applicationName ?? person.name;
 
   /** Function to determine sub heading based on person data */
   @property({ type: Function })
@@ -77,7 +79,7 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
       },
     },
   })
-  showAvatar: boolean = false;
+  showAvatar = false;
 
   /**
    * @internal
@@ -116,7 +118,8 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
    * Renders person cell title
    */
   protected renderHeading(details: TableCellData): TemplateResult {
-    const titleText = this.heading(details) ?? details.name ?? details.applicationName ?? details.azureId;
+    const titleText =
+      this.heading(details) ?? details.name ?? details.applicationName ?? details.azureId;
     if (!titleText) {
       return html``;
     }
@@ -155,24 +158,27 @@ export class PersonTableCellElement extends LitElement implements PersonTableCel
     return html`
       <div class="person-cell__item">
         ${this.tasks.resolve.render({
-      complete: (details) => {
-        const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
-        if (!person?.avatarUrl) {
-          return;
-        }
-        return html`<div class="person-cell__about">
-              ${this.showAvatar
-            ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
-            : null}
+          complete: (details) => {
+            const person =
+              details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            if (!person?.avatarUrl) {
+              return;
+            }
+            return html`<div class="person-cell__about">
+              ${
+                this.showAvatar
+                  ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
+                  : null
+              }
               <div class="person-cell__content">
                 ${this.renderHeading(person)}
                 ${this.renderSubHeading(person)}
               </div>
             </div>`;
-      },
-      pending: () => this.renderPending(false),
-      error: () => this.renderPending(true),
-    })}
+          },
+          pending: () => this.renderPending(false),
+          error: () => this.renderPending(true),
+        })}
       </div>
     `;
   }

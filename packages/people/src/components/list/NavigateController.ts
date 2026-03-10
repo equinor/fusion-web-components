@@ -17,7 +17,10 @@ export class NavigateController implements ReactiveController {
   }
 
   hostDisconnected(): void {
-    this.#host.removeEventListener('navigate-list-item', this.handleNavigateListItem as EventListener);
+    this.#host.removeEventListener(
+      'navigate-list-item',
+      this.handleNavigateListItem as EventListener,
+    );
     this.#host.removeController(this);
   }
 
@@ -45,17 +48,19 @@ export class NavigateController implements ReactiveController {
     // Find which item triggered the event using the source element
     const sourceElement = event.detail.sourceElement;
     if (!sourceElement || sourceElement.tagName !== 'FWC-PEOPLE-PICKER-LIST-ITEM') {
-      return
-    };
+      return;
+    }
 
     const currentIndex = items.indexOf(sourceElement);
 
     // navigate to search input if we are on top of list and still pressing up
     if (currentIndex === 0 && event.detail.direction === -1) {
-      this.#host.dispatchEvent(new CustomEvent('navigate-to-search', {
-        bubbles: true,
-        composed: true,
-      }));
+      this.#host.dispatchEvent(
+        new CustomEvent('navigate-to-search', {
+          bubbles: true,
+          composed: true,
+        }),
+      );
       return;
     }
 

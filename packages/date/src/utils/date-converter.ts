@@ -1,4 +1,4 @@
-import { ComplexAttributeConverter } from 'lit';
+import type { ComplexAttributeConverter } from 'lit';
 
 export const dateConverter: ComplexAttributeConverter<Date | null, string> = {
   fromAttribute: (value) => (value ? new Date(value) : null),

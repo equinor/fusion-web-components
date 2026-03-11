@@ -70,7 +70,8 @@ export const HelpText: Story = {
 
 export const Icon: Story = {
   ...Default,
-  render: (props) => html`${render({ ...props, icon: 'wifi' })} ${render({ ...props, iconTrailing: 'wifi_off' })}`,
+  render: (props) =>
+    html`${render({ ...props, icon: 'wifi' })} ${render({ ...props, iconTrailing: 'wifi_off' })}`,
 };
 
 export const Dense: Story = {
@@ -78,7 +79,7 @@ export const Dense: Story = {
   render: (props) => render({ ...props, dense: true }),
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   ...Default,
   render: (props) => render({ ...props, errorMessage: 'An error occured' }),
 };

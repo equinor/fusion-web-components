@@ -14,12 +14,14 @@ export const resolveTaskEvent = async <TData>(
 
     // If the event was prevented, reject
     if (event.defaultPrevented) {
-      return rej(new Error('Resolve prevented'));
+      rej(new Error('Resolve prevented'));
+      return;
     }
 
     // If a resolver has committed to resolving the request, resolve
     if (event.detail.result) {
-      return res(Promise.resolve(event.detail.result));
+      res(Promise.resolve(event.detail.result));
+      return;
     }
 
     // If no resolver has committed to resolving the request, reject

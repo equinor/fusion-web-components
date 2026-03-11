@@ -20,14 +20,18 @@ export class MenuView {
     this.editorView = editorView;
 
     this.dom = menuContainer;
-    items.forEach(({ dom }) => this.dom.appendChild(dom));
+    this.items.forEach(({ dom }) => {
+      this.dom.appendChild(dom);
+    });
+
     this.update();
 
     this.dom.addEventListener('mousedown', (e: Event) => {
       e.preventDefault();
       editorView.focus();
       items.forEach(({ command, dom }) => {
-        if (dom.contains(e.target as Node)) command(editorView.state, editorView.dispatch, editorView);
+        if (dom.contains(e.target as Node))
+          command(editorView.state, editorView.dispatch, editorView);
       });
     });
   }

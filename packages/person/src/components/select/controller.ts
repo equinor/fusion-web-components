@@ -70,11 +70,15 @@ export class PersonSelectController implements ReactiveController {
     })();
 
     // there are no selected person
-    if (selectedPersonId === undefined) return;
+    if (selectedPersonId === undefined) {
+      return;
+    }
 
     if (!selectedPersonId) {
-      return this.clear();
+      this.clear();
+      return;
     }
+
     // check if upn is a valid email
     if (selectedPersonId.match('@')) {
       this.#host.upn = selectedPersonId;
@@ -82,7 +86,11 @@ export class PersonSelectController implements ReactiveController {
       return;
     }
     // check if azureId is a valid guid
-    if (selectedPersonId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
+    if (
+      selectedPersonId.match(
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+      )
+    ) {
       this.#host.azureId = selectedPersonId;
       this.#host.upn = undefined;
       return;

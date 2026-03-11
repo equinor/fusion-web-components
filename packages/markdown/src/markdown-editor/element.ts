@@ -140,7 +140,7 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.view && this.view.destroy();
+    this.view?.destroy();
   }
 
   private async initializeEditor() {

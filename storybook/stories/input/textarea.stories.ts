@@ -71,7 +71,7 @@ export const Counter: Story = {
   render: (props) => render({ ...props, charCounter: true, maxLength: 15 }),
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   ...Default,
   render: (props) => render({ ...props, errorMessage: 'An error occured' }),
 };

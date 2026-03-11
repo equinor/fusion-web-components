@@ -90,7 +90,7 @@ export class IconButtonElement extends IconButtonBase implements IconButtonEleme
       class="mdc-icon-button mdc-icon-button--display-flex"
       href="${ifDefined(this.href)}"
       target="${ifDefined(this.target)}"
-      aria-label="${this.ariaLabel || this.icon + '_icon-button'}"
+      aria-label="${this.ariaLabel || `${this.icon}_icon-button`}"
       aria-haspopup="${ifDefined(this.ariaHasPopup)}"
       ?disabled="${this.disabled}"
       @focus="${this.handleRippleFocus}"

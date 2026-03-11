@@ -19,7 +19,7 @@ type PopperInstance = Instance & {
   resizeObserver: ResizeObserver;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: needed for directive parameters
 export type PopperModifier = Partial<Modifier<any, any>>;
 
 export type Options<TModifier extends PopperModifier = StrictModifiers> = Partial<

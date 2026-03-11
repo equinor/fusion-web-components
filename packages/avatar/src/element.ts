@@ -171,10 +171,12 @@ export class AvatarElement extends LitElement {
   /**
    * Render the ripple element.
    */
-  protected renderRipple(): HTMLTemplateResult | void {
+  protected renderRipple(): HTMLTemplateResult | undefined {
     if (this.clickable) {
       return html`<fwc-ripple .disabled="${this.disabled}" unbounded></fwc-ripple>`;
     }
+
+    return;
   }
 
   /**

@@ -23,15 +23,15 @@ const meta: Meta<typeof PeoplePickerElement> = {
 };
 
 const handleSelectionChanged = (e: SelectionChangedEvent) => {
-  // console.log('fwc-people-picker::selection-changed', e.detail);
+  console.log('fwc-people-picker::selection-changed', e.detail);
 };
 
 const handlePersonAdded = (e: PersonAddedEvent) => {
-  // console.log('fwc-people-picker::person-added', e.detail);
+  console.log('fwc-people-picker::person-added', e.detail);
 };
 
 const handlePersonRemoved = (e: PersonRemovedEvent) => {
-  // console.log('fwc-people-picker::person-removed', e.detail);
+  console.log('fwc-people-picker::person-removed', e.detail);
 };
 
 const render = (props: PeoplePickerElementProps) => html`
@@ -103,7 +103,7 @@ export const people: Story = {
       return { resolvedPeople };
     },
   ],
-  render: (props: PeoplePickerElementProps, { loaded: { resolvedPeople } }: any) => html`
+  render: (props: PeoplePickerElementProps, { loaded: { resolvedPeople } }) => html`
     <fwc-people-picker
       multiple=${ifDefined(props.multiple)}
       resolveids=${ifDefined(props.resolveIds)}

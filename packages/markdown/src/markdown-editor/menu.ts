@@ -6,7 +6,7 @@ import { type MdMenuItemType, getMenuItemByType } from './menuItems';
 export type MenuItem = {
   command: Command;
   dom: HTMLButtonElement;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: needed for directive parameters
   type?: any;
 };
 

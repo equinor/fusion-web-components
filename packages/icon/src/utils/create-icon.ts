@@ -20,7 +20,7 @@ export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplate
 export const createIcon = (
   nameOrSvgTemplate: IconName | string,
   type: IconType = IconType.EDS,
-): SVGTemplateResult | void => {
+): SVGTemplateResult | undefined => {
   switch (type) {
     case IconType.EDS: {
       const name = nameOrSvgTemplate;
@@ -30,6 +30,7 @@ export const createIcon = (
       }
     }
   }
+  return;
 };
 
 export default createIcon;

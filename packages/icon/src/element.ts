@@ -18,7 +18,7 @@ export class IconElement extends LitElement implements IconElementProps {
   @property()
   public type?: IconType;
 
-  render(): SVGTemplateResult | HTMLTemplateResult | void {
+  render(): SVGTemplateResult | HTMLTemplateResult | undefined {
     if (this.icon) {
       return createIcon(this.icon, this.type);
     }

@@ -25,8 +25,6 @@ const meta: Meta<typeof PeopleViewerElement> = {
   decorators: [personProviderDecorator],
 };
 
-const resolvedPeople = generateIds(3, 12).map((azureId) => generatePerson({ azureId }));
-
 const handlePersonRemoved = (e: PersonRemovedEvent) => {
   console.log('fwc-people-viewer::person-removed', e.detail);
 };
@@ -123,7 +121,7 @@ export const people: Story = {
       return { resolvedPeople };
     },
   ],
-  render: (props: PeopleViewerElementProps, { loaded: { resolvedPeople } }: any) => html`
+  render: (_props: PeopleViewerElementProps, { loaded: { resolvedPeople } }) => html`
     <fwc-people-viewer people=${JSON.stringify(resolvedPeople)}></fwc-people-viewer>
   `,
 };

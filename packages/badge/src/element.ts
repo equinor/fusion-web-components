@@ -136,7 +136,7 @@ export class BadgeElement extends LitElement {
    * @internal
    * Render the icon value if the 'icon' attribute is set or a slotted 'icon' element is provided.
    */
-  protected renderIcon(): HTMLTemplateResult | void {
+  protected renderIcon(): HTMLTemplateResult {
     console.warn('[icon] is deprecated, please slot content');
     return html`<slot name="icon"><fwc-icon icon=${ifDefined(this.icon)}></fwc-icon></slot>`;
   }
@@ -145,7 +145,7 @@ export class BadgeElement extends LitElement {
    * @internal
    * Render the text value if the 'value' attribute is set or a slotted 'value' element is provided.
    */
-  protected renderValue(): HTMLTemplateResult | void {
+  protected renderValue(): HTMLTemplateResult {
     return html`<slot name="value">${this.value}</slot>`;
   }
 
@@ -162,7 +162,7 @@ export class BadgeElement extends LitElement {
   /**
    * @internal
    */
-  protected renderContent(): HTMLTemplateResult | void {
+  protected renderContent(): HTMLTemplateResult {
     if (this.size !== BadgeSize.XSmall) {
       if (this.value) {
         return this.renderValue();

@@ -10,7 +10,6 @@ import Skeleton, {
 } from '@equinor/fusion-wc-skeleton';
 import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 import cem from '@equinor/fusion-wc-skeleton/lib/custom-elements.json';
-import style from '@equinor/fusion-wc-icon/src/element.css';
 
 Skeleton;
 Icon;

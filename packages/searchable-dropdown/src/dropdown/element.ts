@@ -214,7 +214,7 @@ export class SearchableDropdownElement
 
   protected renderItemGraphic(
     item: SearchableDropdownResultItem,
-  ): ReturnType<typeof unsafeHTML> | void {
+  ): ReturnType<typeof unsafeHTML> | undefined {
     const { graphic, graphicType } = item;
     switch (graphicType) {
       case 'inline-html':
@@ -225,12 +225,13 @@ export class SearchableDropdownElement
         if (graphic) {
           return html`<fwc-icon icon="${graphic}" type="${graphicType ?? IconType.EDS}"></fwc-icon>`;
         }
+        return;
     }
   }
 
   protected renderItemMeta(
     item: SearchableDropdownResultItem,
-  ): ReturnType<typeof unsafeHTML> | void {
+  ): ReturnType<typeof unsafeHTML> | undefined {
     const { meta, metaType } = item;
     switch (metaType) {
       case 'inline-html':
@@ -241,6 +242,7 @@ export class SearchableDropdownElement
         if (meta) {
           return html`<fwc-icon icon="${meta}" type="${item.metaType ?? IconType.EDS}"></fwc-icon>`;
         }
+        return;
     }
   }
 

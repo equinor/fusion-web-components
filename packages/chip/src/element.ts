@@ -144,7 +144,7 @@ export class ChipElement extends LitElement implements ChipElementProps {
   /**
    * Render the content.
    */
-  protected renderContent(): TemplateResult | void {
+  protected renderContent(): TemplateResult {
     return this.value ? html`${this.value}` : html`<slot></slot>`;
   }
 

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** biome-ignore-all lint/suspicious/noExplicitAny: is required for compilation */
 type Constructor<T> = {
   new (...args: any[]): T;
 };

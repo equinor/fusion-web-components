@@ -160,10 +160,7 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
     return html`<img src="${person.avatarUrl}" alt="${person.name}" />`;
   }
 
-  protected renderAvatarElement(
-    details: Partial<AvatarData>,
-    trigger = true,
-  ): TemplateResult {
+  protected renderAvatarElement(details: Partial<AvatarData>, trigger = true): TemplateResult {
     if (!trigger) {
       return html`
         <div id="avatar-element-container" @click=${this.handleOnClick}>
@@ -254,7 +251,7 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
     el.cleanup();
     el.cleanup = () => {};
     const index = PersonAvatarElement.openedPersonAvatars.indexOf(el);
-    if (index != -1) {
+    if (index !== -1) {
       delete PersonAvatarElement.openedPersonAvatars[index];
     }
   }

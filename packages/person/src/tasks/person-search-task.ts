@@ -22,7 +22,8 @@ export class PersonSearchTask extends Task<TaskArgs, PersonSearchResult> {
         const { signal } = options ?? {};
         if (!search || search?.length < 3) {
           return Promise.resolve([]);
-        }if (search && search?.length >= 3) {
+        }
+        if (search && search?.length >= 3) {
           const result = resolveTaskEvent(
             host,
             new RequestResolvePersonSearchEvent({ search, signal }),

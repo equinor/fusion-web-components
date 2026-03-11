@@ -29,7 +29,8 @@ export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
         const { signal } = options ?? {};
         if (!search) {
           return emptyPersonSuggestResults;
-        }if (search && search?.length > 0) {
+        }
+        if (search && search?.length > 0) {
           const result = await resolveTaskEvent(
             host,
             new RequestResolvePersonSuggestEvent({ search, systemAccounts, signal }),

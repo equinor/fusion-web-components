@@ -3,7 +3,12 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import { type ChipColor, ChipElement, type ChipElementProps, type ChipSize } from '@equinor/fusion-wc-chip';
+import {
+  type ChipColor,
+  ChipElement,
+  type ChipElementProps,
+  type ChipSize,
+} from '@equinor/fusion-wc-chip';
 import cem from '@equinor/fusion-wc-chip/lib/custom-elements.json';
 
 ChipElement;

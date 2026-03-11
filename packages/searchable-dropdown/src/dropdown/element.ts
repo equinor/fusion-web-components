@@ -1,4 +1,10 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult, type PropertyValues } from 'lit';
+import {
+  html,
+  LitElement,
+  type HTMLTemplateResult,
+  type CSSResult,
+  type PropertyValues,
+} from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { property, state } from 'lit/decorators.js';
@@ -318,7 +324,7 @@ export class SearchableDropdownElement
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controller.isOpen,
-      dense: dense == true,
+      dense: dense === true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
     };

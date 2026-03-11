@@ -135,7 +135,8 @@ export class PersonSelectElement
         } catch {
           if (value?.match('@')) {
             return { upn: value.toLocaleLowerCase() };
-          }if (value?.length) {
+          }
+          if (value?.length) {
             return { azureId: value.toLocaleLowerCase() };
           }
         }
@@ -218,7 +219,8 @@ export class PersonSelectElement
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true"> Start typing to search. </fwc-list-item>
         `;
-      }if (!result.length && this.search.length) {
+      }
+      if (!result.length && this.search.length) {
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
             No matching person found
@@ -309,7 +311,7 @@ export class PersonSelectElement
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controllers.element.isOpen,
-      dense: dense == true,
+      dense: dense === true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
       'selected-persons':

@@ -1,4 +1,10 @@
-import { LitElement, type HTMLTemplateResult, type PropertyValues, html, type CSSResult } from 'lit';
+import {
+  LitElement,
+  type HTMLTemplateResult,
+  type PropertyValues,
+  html,
+  type CSSResult,
+} from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { AvatarSize, AvatarColor } from './static';

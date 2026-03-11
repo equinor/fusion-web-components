@@ -3,7 +3,10 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import { LinkButtonElement, type LinkButtonElementProps } from '@equinor/fusion-wc-button/link-button';
+import {
+  LinkButtonElement,
+  type LinkButtonElementProps,
+} from '@equinor/fusion-wc-button/link-button';
 import cem from '@equinor/fusion-wc-button/custom-elements.json';
 import type { ButtonColor } from '@equinor/fusion-wc-button';
 

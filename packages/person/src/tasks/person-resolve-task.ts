@@ -22,7 +22,8 @@ export class PersonResolveTask extends Task<TaskArgs, PersonResolveResults> {
         const { signal } = options ?? {};
         if (!resolveIds || resolveIds.length === 0) {
           return Promise.resolve([]);
-        }if (resolveIds.length > 0) {
+        }
+        if (resolveIds.length > 0) {
           return resolveTaskEvent(
             host,
             new RequestResolvePersonResolveEvent({ resolveIds, signal }),

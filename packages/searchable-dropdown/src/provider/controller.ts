@@ -36,7 +36,7 @@ export class SearchableDropdownController implements ReactiveController {
           /* resolver is not available */
           return [];
         }
-        let result;
+        let result: SearchableDropdownResult;
         if (!qs) {
           if (this.#initialItems.length) {
             result = this.#initialItems;

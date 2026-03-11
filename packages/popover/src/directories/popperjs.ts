@@ -1,4 +1,10 @@
-import { createPopper, type Modifier, type OptionsGeneric, type StrictModifiers, type Instance } from '@popperjs/core';
+import {
+  createPopper,
+  type Modifier,
+  type OptionsGeneric,
+  type StrictModifiers,
+  type Instance,
+} from '@popperjs/core';
 import {
   directive,
   type PartInfo,

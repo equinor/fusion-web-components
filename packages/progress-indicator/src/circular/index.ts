@@ -16,7 +16,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tagCircular]: React.DetailedHTMLProps<
-        React.PropsWithChildren<CircularProgressElementProps & React.HTMLAttributes<CircularProgressElement>>,
+        React.PropsWithChildren<
+          CircularProgressElementProps & React.HTMLAttributes<CircularProgressElement>
+        >,
         CircularProgressElement
       >;
     }

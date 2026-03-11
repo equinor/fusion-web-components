@@ -6,8 +6,7 @@ import { Preview } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 export const preview: Preview = {
-  decorators: [(story) => html`<fwc-theme>${story()}</fwc-theme>`]
-}
-
+  decorators: [(story) => html`<fwc-theme>${story()}</fwc-theme>`],
+};
 
 export default preview;

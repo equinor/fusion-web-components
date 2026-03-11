@@ -56,7 +56,10 @@ PersonAvatarElement;
  * interface renderListItems(items: TResult): HTMLTemplateResult;
  * ```
  */
-export class PersonSelectElement extends LitElement implements PersonSearchControllerHost, SelectedPersonProp {
+export class PersonSelectElement
+  extends LitElement
+  implements PersonSearchControllerHost, SelectedPersonProp
+{
   /* style object css */
   static styles: CSSResult[] = psStyles;
 
@@ -298,7 +301,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
-    const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
+    const dense =
+      ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const disabled = this.disabled ? true : undefined;
 
@@ -308,7 +312,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
       dense: dense == true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
-      'selected-persons': this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
+      'selected-persons':
+        this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
     };
 
     /** Select person by selectedPerson property on info task */
@@ -335,15 +340,17 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
-              ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen
-                ? html`<fwc-icon
+              ${
+                this.controllers.element.selectedIds.size || this.controllers.element.isOpen
+                  ? html`<fwc-icon
                     tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
                     class="trailing interactive"
                     icon=${this.trailingIcon}
                     @click=${this.controllers.element.closeClick}
                     @keydown=${this.controllers.element.closeClick}
                   ></fwc-icon>`
-                : html``}
+                  : html``
+              }
             </span>
           </slot>
         </div>

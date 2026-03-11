@@ -17,7 +17,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<PersonListItemElementProps & React.HTMLAttributes<PersonListItemElement>>,
+        React.PropsWithChildren<
+          PersonListItemElementProps & React.HTMLAttributes<PersonListItemElement>
+        >,
         PersonListItemElement
       >;
     }

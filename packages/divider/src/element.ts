@@ -1,6 +1,12 @@
 import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { DividerElementProps, DividerColor, DividerSpacing, DividerVariant, DividerOrientation } from './types';
+import {
+  DividerElementProps,
+  DividerColor,
+  DividerSpacing,
+  DividerVariant,
+  DividerOrientation,
+} from './types';
 import style from './element.css';
 
 /**

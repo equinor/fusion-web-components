@@ -4,7 +4,12 @@ import { customElement, property } from 'lit/decorators.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import BadgeElement, { BadgeColor, BadgeElementProps, BadgePosition, BadgeSize } from '@equinor/fusion-wc-badge';
+import BadgeElement, {
+  BadgeColor,
+  BadgeElementProps,
+  BadgePosition,
+  BadgeSize,
+} from '@equinor/fusion-wc-badge';
 import cem from '@equinor/fusion-wc-badge/lib/custom-elements.json';
 import { ifDefined } from 'lit/directives/if-defined.js';
 

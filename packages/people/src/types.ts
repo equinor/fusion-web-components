@@ -1,7 +1,16 @@
 import type { PersonInfo } from '@equinor/fusion-wc-person';
 
 export type TableColumns = Array<
-  'avatar' | 'name' | 'azureId' | 'type' | 'email' | 'mobilePhone' | 'jobTitle' | 'department' | 'manager' | 'remove'
+  | 'avatar'
+  | 'name'
+  | 'azureId'
+  | 'type'
+  | 'email'
+  | 'mobilePhone'
+  | 'jobTitle'
+  | 'department'
+  | 'manager'
+  | 'remove'
 >;
 
 export interface PeopleProps {

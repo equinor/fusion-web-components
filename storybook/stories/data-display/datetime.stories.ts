@@ -36,7 +36,8 @@ export const Default: Story = {
 
 export const Formatting: Story = {
   ...Default,
-  render: (props) => html`${render({ ...props, format: 'yyyy-mm-dd' })} ${render({ ...props, format: 'd MMMM yy' })}`,
+  render: (props) =>
+    html`${render({ ...props, format: 'yyyy-mm-dd' })} ${render({ ...props, format: 'd MMMM yy' })}`,
 };
 
 export default meta;

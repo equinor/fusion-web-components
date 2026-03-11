@@ -62,7 +62,9 @@ export type PersonDetails = PersonInfo & {
 
 export type PersonSearchResult = Array<PersonInfo>;
 
-export type RequiredAndOptionalPick<T, R extends keyof T, O extends keyof Omit<T, R>> = Required<Pick<T, R>> &
+export type RequiredAndOptionalPick<T, R extends keyof T, O extends keyof Omit<T, R>> = Required<
+  Pick<T, R>
+> &
   Pick<T, O>;
 
 export type PersonPicture = {
@@ -96,7 +98,11 @@ export type PersonItemSize = 'small' | 'medium' | 'large';
 
 export type PersonSuggestResultAccountType = 'Person' | 'SystemAccount' | 'Unknown';
 
-export type ServicePrincipalType = 'Application' | 'ManagedIdentity' | 'ServicePrincipal' | 'Unknown';
+export type ServicePrincipalType =
+  | 'Application'
+  | 'ManagedIdentity'
+  | 'ServicePrincipal'
+  | 'Unknown';
 
 export type PersonSuggestResultPersonAccountType =
   | 'Unknown'

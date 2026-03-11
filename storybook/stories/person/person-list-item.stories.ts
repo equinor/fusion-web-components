@@ -23,11 +23,11 @@ const meta: Meta<typeof cem> = {
 
 const render = (props: PersonListItemElementProps) => html`
   ${new Array(30).fill(undefined).map((_, i) => {
-  faker.seed(i);
-  return html`
+    faker.seed(i);
+    return html`
     <fwc-person-list-item size="${ifDefined(props.size)}" azureId=${faker.string.uuid()}></fwc-person-list-item>
   `;
-})}
+  })}
 `;
 
 export const Default: Story = {
@@ -38,21 +38,24 @@ export const AzureId: Story = {
   args: {
     azureId: faker.string.uuid(),
   },
-  render: (props) => html`<fwc-person-list-item azureId=${ifDefined(props.azureId)}></fwc-person-list-item>`,
+  render: (props) =>
+    html`<fwc-person-list-item azureId=${ifDefined(props.azureId)}></fwc-person-list-item>`,
 };
 
 export const Upn: Story = {
   args: {
     upn: faker.internet.email(),
   },
-  render: (props) => html`<fwc-person-list-item upn=${ifDefined(props.upn)}></fwc-person-list-item>`,
+  render: (props) =>
+    html`<fwc-person-list-item upn=${ifDefined(props.upn)}></fwc-person-list-item>`,
 };
 
 export const ResolveId: Story = {
   args: {
     resolveId: faker.internet.email(),
   },
-  render: (props) => html`<fwc-person-list-item resolveId=${ifDefined(props.resolveId)}></fwc-person-list-item>`,
+  render: (props) =>
+    html`<fwc-person-list-item resolveId=${ifDefined(props.resolveId)}></fwc-person-list-item>`,
 };
 
 export const Sizes: Story = {

@@ -10,7 +10,10 @@ import { styles } from './element.css';
 import('@equinor/fusion-wc-icon');
 
 export type TextInputVariant = 'filled' | 'outlined';
-export type ValidityTransform = (value: string, nativeValidity: ValidityState) => Partial<ValidityState>;
+export type ValidityTransform = (
+  value: string,
+  nativeValidity: ValidityState,
+) => Partial<ValidityState>;
 export type TextInputType = TextFieldType;
 export type TextInputCharCounter = 'external' | 'internal';
 
@@ -203,9 +206,9 @@ export class TextInputElement extends TextFieldBase {
       icon=${icon}
       isTrailingIcon=${isTrailingIcon}
       textInput
-      class="mdc-text-field__icon ${isTrailingIcon
-        ? 'mdc-text-field__icon--trailing'
-        : 'mdc-text-field__icon--leading'}"
+      class="mdc-text-field__icon ${
+        isTrailingIcon ? 'mdc-text-field__icon--trailing' : 'mdc-text-field__icon--leading'
+      }"
     ></fwc-icon>`;
   }
 }

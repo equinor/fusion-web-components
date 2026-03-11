@@ -206,7 +206,9 @@ export class SearchableDropdownElement
     </fwc-list-item>`;
   }
 
-  protected renderItemGraphic(item: SearchableDropdownResultItem): ReturnType<typeof unsafeHTML> | void {
+  protected renderItemGraphic(
+    item: SearchableDropdownResultItem,
+  ): ReturnType<typeof unsafeHTML> | void {
     const { graphic, graphicType } = item;
     switch (graphicType) {
       case 'inline-html':
@@ -220,7 +222,9 @@ export class SearchableDropdownElement
     }
   }
 
-  protected renderItemMeta(item: SearchableDropdownResultItem): ReturnType<typeof unsafeHTML> | void {
+  protected renderItemMeta(
+    item: SearchableDropdownResultItem,
+  ): ReturnType<typeof unsafeHTML> | void {
     const { meta, metaType } = item;
     switch (metaType) {
       case 'inline-html':
@@ -259,9 +263,11 @@ export class SearchableDropdownElement
                 return html`
                   <p key=${uuid()} class="section-title">${item.title}</p>
                   ${kids}
-                  ${index + 1 < result.length
-                    ? html`<fwc-divider key=${uuid()} variant="list" color="medium"></fwc-divider>`
-                    : html``}
+                  ${
+                    index + 1 < result.length
+                      ? html`<fwc-divider key=${uuid()} variant="list" color="medium"></fwc-divider>`
+                      : html``
+                  }
                 `;
               }
             }
@@ -305,7 +311,8 @@ export class SearchableDropdownElement
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
-    const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
+    const dense =
+      ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const disabled = this.disabled ? true : undefined;
     const cssClasses = {

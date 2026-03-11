@@ -48,7 +48,9 @@ const set_types_dependencies = async () => {
             }
             changed = true;
             /* merge dependenecy property */
-            pkg[dep] = pkg[dep] ? Object.assign(pkg[dep], addDependencies[dep]) : addDependencies[dep];
+            pkg[dep] = pkg[dep]
+              ? Object.assign(pkg[dep], addDependencies[dep])
+              : addDependencies[dep];
           });
           /* Write to package.json only if any changes  */
           if (changed) {

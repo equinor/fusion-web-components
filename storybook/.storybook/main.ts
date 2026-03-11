@@ -1,7 +1,7 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
-import { fileURLToPath } from "node:url";
+import { fileURLToPath } from 'node:url';
 import remarkGfm from 'remark-gfm';
-import {type StorybookConfig} from '@storybook/web-components-vite';
+import { type StorybookConfig } from '@storybook/web-components-vite';
 import { mergeConfig } from 'vite';
 import { resolve, dirname } from 'path';
 
@@ -12,16 +12,16 @@ export const config: StorybookConfig = {
   stories: [
     {
       directory: '../stories/data-display',
-      titlePrefix: 'Data Display'
+      titlePrefix: 'Data Display',
     },
     {
       directory: '../stories/input',
-      titlePrefix: 'Input'
+      titlePrefix: 'Input',
     },
     {
       directory: '../stories/person',
-      titlePrefix: 'Person'
-    }
+      titlePrefix: 'Person',
+    },
   ],
   framework: '@storybook/web-components-vite',
   addons: [
@@ -34,17 +34,15 @@ export const config: StorybookConfig = {
           },
         },
       },
-    }
+    },
   ],
   async viteFinal(config) {
     // Merge custom configuration into the default config
     return mergeConfig(config, {
       // Add dependencies to pre-optimization
       resolve: {
-        alias: [
-            { find: '@components', replacement: resolve(__dirname, '../components') },
-        ],
-    },
+        alias: [{ find: '@components', replacement: resolve(__dirname, '../components') }],
+      },
     });
   },
 };

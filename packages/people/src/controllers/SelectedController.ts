@@ -70,7 +70,9 @@ export class SelectedController implements ReactiveController {
     }
 
     if (dispatchSelectionEvent) {
-      this.#host.dispatchEvent(new SelectionChangedEvent(Array.from(this.#selectedPeople.values())));
+      this.#host.dispatchEvent(
+        new SelectionChangedEvent(Array.from(this.#selectedPeople.values())),
+      );
     }
 
     this.#host.requestUpdate();

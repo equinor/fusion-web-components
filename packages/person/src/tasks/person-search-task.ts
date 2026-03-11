@@ -8,7 +8,9 @@ export type PersonSearchControllerHostAttributes = {
   search?: string;
 };
 
-export type PersonSearchControllerHost = PersonSearchControllerHostAttributes & ReactiveControllerHost & EventTarget;
+export type PersonSearchControllerHost = PersonSearchControllerHostAttributes &
+  ReactiveControllerHost &
+  EventTarget;
 
 type TaskArgs = [string | undefined];
 
@@ -21,7 +23,10 @@ export class PersonSearchTask extends Task<TaskArgs, PersonSearchResult> {
         if (!search || search?.length < 3) {
           return Promise.resolve([]);
         } else if (search && search?.length >= 3) {
-          const result = resolveTaskEvent(host, new RequestResolvePersonSearchEvent({ search, signal }));
+          const result = resolveTaskEvent(
+            host,
+            new RequestResolvePersonSearchEvent({ search, signal }),
+          );
           if (result) {
             return result;
           }

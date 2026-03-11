@@ -43,7 +43,7 @@ const avatarSvg = async (avatarColor: string, name: string, accountType: string)
   const hasImage = faker.datatype.boolean({ probability: 0.8 });
 
   if (!hasImage || accountType === 'SystemAccount') {
-    const nameArray = name.split(' ').map(x => x.substring(0, 1).toUpperCase());
+    const nameArray = name.split(' ').map((x) => x.substring(0, 1).toUpperCase());
     const initial = `${nameArray.shift()}${nameArray.pop()}`;
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
@@ -80,7 +80,11 @@ const avatarSvg = async (avatarColor: string, name: string, accountType: string)
   });
 };
 
-export const generatePerson = async (args: { azureId?: string; upn?: string; accountType?: string; }): Promise<PersonDetails> => {
+export const generatePerson = async (args: {
+  azureId?: string;
+  upn?: string;
+  accountType?: string;
+}): Promise<PersonDetails> => {
   args.azureId && faker.seed(uuid2number(args.azureId));
   const azureId = args.azureId ?? faker.string.uuid();
   const fakeUpn = args.upn ?? faker.internet.email({ provider: 'equinor.com' });
@@ -99,7 +103,11 @@ export const generatePerson = async (args: { azureId?: string; upn?: string; acc
     ]);
   }
 
-  const avatarUrl = await avatarSvg(avatarColor, args.accountType === 'SystemAccount' ? application.applicationName ?? name : name, args.accountType ?? '');
+  const avatarUrl = await avatarSvg(
+    avatarColor,
+    args.accountType === 'SystemAccount' ? (application.applicationName ?? name) : name,
+    args.accountType ?? '',
+  );
 
   return {
     azureId,
@@ -132,12 +140,12 @@ export const generatePerson = async (args: { azureId?: string; upn?: string; acc
   };
 };
 
-const generateSuggestedPerson = async (args: { azureId: string; upn?: string }): Promise<PersonSuggestResult> => {
+const generateSuggestedPerson = async (args: {
+  azureId: string;
+  upn?: string;
+}): Promise<PersonSuggestResult> => {
   const { azureId, upn } = args;
-  const accountType = faker.helpers.arrayElement([
-    'Person',
-    'SystemAccount',
-  ]);
+  const accountType = faker.helpers.arrayElement(['Person', 'SystemAccount']);
   const generatedPerson = await generatePerson({ azureId, accountType, upn });
 
   let person: PersonSuggestResult['person'] | undefined;
@@ -160,13 +168,13 @@ const generateSuggestedPerson = async (args: { azureId: string; upn?: string }):
       mobilePhone: generatedPerson.mobilePhone,
       managerAzureUniqueId: generatedPerson.manager?.azureUniqueId,
       employeeNumber: generatedPerson.employeeNumber,
-    }
+    };
   } else if (accountType === 'SystemAccount') {
     application = {
       applicationId: generatedPerson.applicationId,
       applicationName: generatedPerson.applicationName,
       servicePrincipalType: generatedPerson.servicePrincipalType,
-    }
+    };
   }
 
   return {
@@ -202,27 +210,33 @@ export const resolver: PersonResolver = {
     });
   },
   search: async (args) => {
-    return await Promise.all(new Array(faker.number.int({ min: 3, max: 10 })).fill(undefined).map(async (_, i) => {
-      faker.seed(
-        args.search
-          .split('')
-          .map((x) => x.charCodeAt(0))
-          .reduce((acc, item) => (acc += item), 0) + i,
-      );
-      return await generatePerson({ azureId: faker.string.uuid() });
-    }));
+    return await Promise.all(
+      new Array(faker.number.int({ min: 3, max: 10 })).fill(undefined).map(async (_, i) => {
+        faker.seed(
+          args.search
+            .split('')
+            .map((x) => x.charCodeAt(0))
+            .reduce((acc, item) => (acc += item), 0) + i,
+        );
+        return await generatePerson({ azureId: faker.string.uuid() });
+      }),
+    );
   },
   suggest: async (args) => {
-    const generatedCount = faker.datatype.boolean({ probability: 0.9 }) ? faker.number.int({ min: 3, max: 10 }) : 0;
-    const value = await Promise.all(new Array(generatedCount).fill(undefined).map(async (_, i) => {
-      faker.seed(
-        args.search
-          .split('')
-          .map((x) => x.charCodeAt(0))
-          .reduce((acc, item) => (acc += item), 0) + i,
-      );
-      return await generateSuggestedPerson({ azureId: faker.string.uuid() });
-    }));
+    const generatedCount = faker.datatype.boolean({ probability: 0.9 })
+      ? faker.number.int({ min: 3, max: 10 })
+      : 0;
+    const value = await Promise.all(
+      new Array(generatedCount).fill(undefined).map(async (_, i) => {
+        faker.seed(
+          args.search
+            .split('')
+            .map((x) => x.charCodeAt(0))
+            .reduce((acc, item) => (acc += item), 0) + i,
+        );
+        return await generateSuggestedPerson({ azureId: faker.string.uuid() });
+      }),
+    );
     return {
       totalCount: generatedCount * 3,
       count: generatedCount,
@@ -230,19 +244,21 @@ export const resolver: PersonResolver = {
     };
   },
   resolve: async (args) => {
-    return await Promise.all(args.resolveIds.map(async (id) => {
-      const azureId = id.includes('@') ? faker.string.uuid() : id;
-      const upn = id.includes('@') ? id : undefined;
-      const success = faker.datatype.boolean({ probability: 0.9 });
-      const statusCode = success ? 200 : faker.helpers.arrayElement([400, 404]);
-      return {
-        success,
-        statusCode,
-        errorMessage: success ? null : `Could not resolve profile with identifier: ${id}`,
-        identifier: id,
-        account: success ? await generateSuggestedPerson({ azureId, upn }) : null,
-      };
-    }));
+    return await Promise.all(
+      args.resolveIds.map(async (id) => {
+        const azureId = id.includes('@') ? faker.string.uuid() : id;
+        const upn = id.includes('@') ? id : undefined;
+        const success = faker.datatype.boolean({ probability: 0.9 });
+        const statusCode = success ? 200 : faker.helpers.arrayElement([400, 404]);
+        return {
+          success,
+          statusCode,
+          errorMessage: success ? null : `Could not resolve profile with identifier: ${id}`,
+          identifier: id,
+          account: success ? await generateSuggestedPerson({ azureId, upn }) : null,
+        };
+      }),
+    );
   },
 };
 

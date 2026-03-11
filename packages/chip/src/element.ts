@@ -127,14 +127,18 @@ export class ChipElement extends LitElement implements ChipElementProps {
    * Render the graphic element.
    */
   protected renderGraphic(): TemplateResult | null {
-    return this.icon ? html`<fwc-icon icon=${this.icon}></fwc-icon>` : html`<slot name="graphic"></slot>`;
+    return this.icon
+      ? html`<fwc-icon icon=${this.icon}></fwc-icon>`
+      : html`<slot name="graphic"></slot>`;
   }
 
   /**
    * Render the remove icon.
    */
   protected renderRemoveIcon(): TemplateResult | null {
-    return this.removable ? html`<fwc-icon icon="close"></fwc-icon>` : html`<slot name="remove"></slot>`;
+    return this.removable
+      ? html`<fwc-icon icon="close"></fwc-icon>`
+      : html`<slot name="remove"></slot>`;
   }
 
   /**

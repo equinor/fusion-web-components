@@ -87,7 +87,9 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
     }): TemplateResult => {
       const { title, href, icon, hasValue, blank } = props;
       const iconElement =
-        icon === 'delveIcon' ? html`<fwc-icon>${delveIcon}</fwc-icon>` : html`<fwc-icon icon="${icon}"></fwc-icon>`;
+        icon === 'delveIcon'
+          ? html`<fwc-icon>${delveIcon}</fwc-icon>`
+          : html`<fwc-icon icon="${icon}"></fwc-icon>`;
 
       if (!hasValue) {
         return html`
@@ -181,15 +183,17 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
     return html`
       <div class="person-card-info__link copyable-text" title="${title}">
         <fwc-icon class="person-card-info__icon" icon="${icon === 'entraIcon' ? null : icon}">${entraIcon}</fwc-icon>
-        ${href
-          ? html`
+        ${
+          href
+            ? html`
               <a class="person-card-info__text" href="${href}">${value}</a>
               <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, 'Copy to clipboard')}</div>
             `
-          : html`
+            : html`
               <p class="person-card-info__text">${value}</p>
               <div class="copyable-text__actions">${this.renderCopyToClipboardIcon(value, 'Copy to clipboard')}</div>
-            `}
+            `
+        }
       </div>
     `;
   }
@@ -202,7 +206,12 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
       return html``;
     }
 
-    return this.renderCopyableContact(mobilePhone, `callto:${mobilePhone}`, 'phone', 'Mobile Phone Number');
+    return this.renderCopyableContact(
+      mobilePhone,
+      `callto:${mobilePhone}`,
+      'phone',
+      'Mobile Phone Number',
+    );
   }
 
   /**
@@ -213,10 +222,20 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
       if (details.applicationId) {
         return html``;
       }
-      return this.renderCopyableContact('No user email', '', 'email', 'The user does not have an email address');
+      return this.renderCopyableContact(
+        'No user email',
+        '',
+        'email',
+        'The user does not have an email address',
+      );
     }
 
-    return this.renderCopyableContact(details.mail, `mailto:${details.mail}`, 'email', 'Email address');
+    return this.renderCopyableContact(
+      details.mail,
+      `mailto:${details.mail}`,
+      'email',
+      'Email address',
+    );
   }
 
   protected renderAzureId(details: CardData): TemplateResult {
@@ -331,14 +350,17 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
         <div class="info-item_heading">Contact</div>
         <div class="info-item_items">
           ${this.renderMobile(mobilePhone)} ${this.renderEmail(details)}
-          ${details.applicationId || this.showExtraContactInfo
-            ? html`
+          ${
+            details.applicationId || this.showExtraContactInfo
+              ? html`
                 ${this.renderAzureId(details)} ${this.renderApplicationId(details)} ${this.renderUpn(upn)}
                 ${this.renderEmployeeNumber(employeeNumber)}
               `
-            : html``}
-          ${!details.applicationId
-            ? html` <a
+              : html``
+          }
+          ${
+            !details.applicationId
+              ? html` <a
                 class="person-card-info__show_more"
                 href="#"
                 @click=${(e: Event) => {
@@ -348,7 +370,8 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
               >
                 Show ${this.showExtraContactInfo ? 'less' : 'more'}
               </a>`
-            : html``}
+              : html``
+          }
         </div>
       </div>
     `;
@@ -383,10 +406,14 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
 
     return html`
       ${details.department && html`<div class="person-card__department" title="Department">${details.department}</div>`}
-      ${details.accountLabel &&
-      html`<div class="person-card__jobtitle" title="Job Title">${details.accountLabel}</div>`}
-      ${details.applicationId &&
-      html`<div class="person-card__jobtitle" title="Account type">${details.accountType}</div>`}
+      ${
+        details.accountLabel &&
+        html`<div class="person-card__jobtitle" title="Job Title">${details.accountLabel}</div>`
+      }
+      ${
+        details.applicationId &&
+        html`<div class="person-card__jobtitle" title="Account type">${details.accountType}</div>`
+      }
     `;
   }
 
@@ -463,7 +490,8 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
       <div id="root">
         ${this.tasks.resolve.render({
           complete: (details) => {
-            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            const person =
+              details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
             if (!person?.avatarUrl) {
               return;
             }
@@ -485,11 +513,13 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
                 <div class="person-card__iconbar">${this.renderIconBar(person)}</div>
                 <div class="person-card__content">
                   ${this.renderContact(person)}
-                  ${!person.applicationId && person.azureId
-                    ? html`
+                  ${
+                    !person.applicationId && person.azureId
+                      ? html`
                         <fwc-person-card-additional-info azureid=${person.azureId}></fwc-person-card-additional-info>
                       `
-                    : null}
+                      : null
+                  }
                 </div>
               </div>
             `;

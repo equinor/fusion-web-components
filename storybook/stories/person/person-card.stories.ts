@@ -57,7 +57,7 @@ export const Sizes: Story = {
       <fwc-person-card size="medium" azureId=${faker.string.uuid()}></fwc-person-card>
       <fwc-person-card size="large" azureId=${faker.string.uuid()}></fwc-person-card>
     </div>
-  `
+  `,
 };
 
 export default meta;

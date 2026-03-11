@@ -28,7 +28,8 @@ export const Default: Story = {
 
 export const Selected: Story = {
   ...Default,
-  render: (props) => html`${render({ ...props, selected: true })} ${render({ ...props, selected: false })}`,
+  render: (props) =>
+    html`${render({ ...props, selected: true })} ${render({ ...props, selected: false })}`,
 };
 
 export const Disabled: Story = {

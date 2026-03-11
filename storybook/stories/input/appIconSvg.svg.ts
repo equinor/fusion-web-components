@@ -5,4 +5,3 @@ export default `
 <path d="M26.5 18H23.5L21 14L18 20.5L15 10.5L12 18.5L9 14H6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
 `;
-

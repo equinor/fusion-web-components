@@ -12,7 +12,9 @@ export type PersonInfoControllerHostAttributes = {
   dataSource?: DataSource;
 };
 
-export type PersonInfoControllerHost = PersonInfoControllerHostAttributes & ReactiveControllerHost & EventTarget;
+export type PersonInfoControllerHost = PersonInfoControllerHostAttributes &
+  ReactiveControllerHost &
+  EventTarget;
 
 type TaskArgs = [DataSource | undefined, string | undefined, string | undefined];
 

@@ -160,7 +160,10 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
     return html`<img src="${person.avatarUrl}" alt="${person.name}" />`;
   }
 
-  protected renderAvatarElement(details: Partial<AvatarData>, trigger: boolean = true): TemplateResult {
+  protected renderAvatarElement(
+    details: Partial<AvatarData>,
+    trigger: boolean = true,
+  ): TemplateResult {
     if (!trigger) {
       return html`
         <div id="avatar-element-container" @click=${this.handleOnClick}>
@@ -192,7 +195,8 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
       <div id="root" class=${classes}>
         ${this.tasks.resolve.render({
           complete: (details) => {
-            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            const person =
+              details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
             if (!person?.avatarUrl) {
               return;
             }

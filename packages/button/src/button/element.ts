@@ -17,7 +17,15 @@ export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
 export type ButtonElementProps = Pick<
   ButtonElement,
-  'label' | 'variant' | 'color' | 'dense' | 'trailingIcon' | 'expandContent' | 'icon' | 'disabled' | 'fullwidth'
+  | 'label'
+  | 'variant'
+  | 'color'
+  | 'dense'
+  | 'trailingIcon'
+  | 'expandContent'
+  | 'icon'
+  | 'disabled'
+  | 'fullwidth'
 >;
 /**
  * @tag fwc-button

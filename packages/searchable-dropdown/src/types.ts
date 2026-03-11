@@ -77,13 +77,18 @@ export interface SearchableDropdownResultItem {
 export interface SearchableDropdownResolver {
   closeHandler?: (e: MouseEvent | KeyboardEvent) => void;
   initialResult?: SearchableDropdownResult;
-  searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
+  searchQuery: (
+    queryString: string,
+  ) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
 }
 
 /**
  * The element the controller is conected to
  */
-export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost, EventTarget {
+export interface SearchableDropdownControllerHost
+  extends SearchableDropdownProps,
+    ReactiveControllerHost,
+    EventTarget {
   dispatchEvent(event: Event): boolean;
   nodeName: string;
   renderRoot: HTMLElement | DocumentFragment;

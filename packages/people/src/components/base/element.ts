@@ -58,7 +58,18 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     default: TableColumns;
     full: TableColumns;
   } = {
-    full: ['avatar', 'name', 'azureId', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'],
+    full: [
+      'avatar',
+      'name',
+      'azureId',
+      'type',
+      'email',
+      'mobilePhone',
+      'jobTitle',
+      'department',
+      'manager',
+      'remove',
+    ],
     default: ['avatar', 'name', 'email', 'jobTitle', 'department', 'remove'],
   };
 
@@ -144,7 +155,8 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    */
   @property({
     type: Array,
-    converter: (value: string | null) => (value ? value.split(',').map((column) => column.trim()) : []),
+    converter: (value: string | null) =>
+      value ? value.split(',').map((column) => column.trim()) : [],
   })
   tableColumns: TableColumns = this.columnSet.default;
 
@@ -183,7 +195,11 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       this.hideColumn('remove');
     }
 
-    if (changes.has('tableColumns') && this.editable === false && this.tableColumns.includes('remove')) {
+    if (
+      changes.has('tableColumns') &&
+      this.editable === false &&
+      this.tableColumns.includes('remove')
+    ) {
       this.hideColumn('remove');
     }
 
@@ -216,9 +232,10 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
         <th class="${column}">
           ${ucFirst(column)}
           <div class="column-actions">
-            ${noSortColumns.includes(column)
-              ? html``
-              : html`
+            ${
+              noSortColumns.includes(column)
+                ? html``
+                : html`
                   <div class="table-column-sort">
                     <fwc-icon
                       title="Sort Asc"
@@ -233,7 +250,8 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
                       @click=${() => this.controllers.selected.sortColumn(column, 'desc')}
                     ></fwc-icon>
                   </div>
-                `}
+                `
+            }
             <div class="table-column-delete">
               <fwc-icon
                 title="${`Hide ${column} column from view`}"
@@ -271,12 +289,14 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
                   return html`<td class="jobTitle">${person.jobTitle === person.azureId ? '' : person.jobTitle}</td>`;
                 case 'manager':
                   return html`<td class="manager">
-                    ${person.managerAzureUniqueId &&
-                    html`<fwc-person-table-cell
+                    ${
+                      person.managerAzureUniqueId &&
+                      html`<fwc-person-table-cell
                       size="small"
                       .azureId=${person.managerAzureUniqueId}
                       .subHeading=${(person: PersonInfo) => person.mail}
-                    ></fwc-person-table-cell>`}
+                    ></fwc-person-table-cell>`
+                    }
                   </td>`;
                 case 'remove':
                   return html`<td class="remove">

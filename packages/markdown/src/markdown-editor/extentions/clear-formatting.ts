@@ -14,7 +14,10 @@ import { collectNodesOfType, collectNodesOfTypes, liftNode } from '../utils/pros
  * @param dispatch - Optional function to dispatch the transaction if changes are made.
  * @returns `true` if any formatting was cleared and changes were made; otherwise, `false`.
  */
-export function clearAllFormatting(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+export function clearAllFormatting(
+  state: EditorState,
+  dispatch?: (tr: Transaction) => void,
+): boolean {
   const paragraphType = state.schema.nodes.paragraph;
 
   if (!paragraphType) {

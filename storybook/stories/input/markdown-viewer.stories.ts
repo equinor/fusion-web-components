@@ -3,10 +3,7 @@ import { html } from 'lit';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import {
-  MarkdownViewerElement,
-  MarkdownViewerElementProps,
-} from '@equinor/fusion-wc-markdown';
+import { MarkdownViewerElement, MarkdownViewerElementProps } from '@equinor/fusion-wc-markdown';
 import cem from '@equinor/fusion-wc-markdown/custom-elements.json';
 import markdownExample from './markdown.example.md?raw';
 import markdownCodeExample from './markdown-code.example.md?raw';

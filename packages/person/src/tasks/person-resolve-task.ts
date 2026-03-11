@@ -8,7 +8,9 @@ export type PersonResolveControllerHostAttributes = {
   resolveIds: string[];
 };
 
-export type PersonResolveControllerHost = PersonResolveControllerHostAttributes & ReactiveControllerHost & EventTarget;
+export type PersonResolveControllerHost = PersonResolveControllerHostAttributes &
+  ReactiveControllerHost &
+  EventTarget;
 
 type TaskArgs = [string[]];
 
@@ -21,7 +23,10 @@ export class PersonResolveTask extends Task<TaskArgs, PersonResolveResults> {
         if (!resolveIds || resolveIds.length === 0) {
           return Promise.resolve([]);
         } else if (resolveIds.length > 0) {
-          return resolveTaskEvent(host, new RequestResolvePersonResolveEvent({ resolveIds, signal }));
+          return resolveTaskEvent(
+            host,
+            new RequestResolvePersonResolveEvent({ resolveIds, signal }),
+          );
         }
         return Promise.resolve([]);
       },

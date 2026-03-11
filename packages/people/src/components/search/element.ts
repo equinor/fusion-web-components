@@ -77,9 +77,11 @@ export class SearchElement extends LitElement implements SearchElementProps {
       <div id="input">
         <input type="text" id="people-search" placeholder=${this.placeholder} @input=${this.handleInput} />
         <div id="clear-button-container">
-          ${this.value
-            ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>`
-            : html``}
+          ${
+            this.value
+              ? html`<button id="clear-button" @click=${this.clearInput}><fwc-icon icon="close"></fwc-icon></button>`
+              : html``
+          }
         </div>
       </div>
     `;

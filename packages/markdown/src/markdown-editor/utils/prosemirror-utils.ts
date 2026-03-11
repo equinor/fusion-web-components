@@ -22,7 +22,12 @@ export interface NodePosition {
  * @param nodeType - The NodeType to match against nodes in the document.
  * @returns An array of NodePosition objects, each containing the position and node of the matched type.
  */
-export function collectNodesOfType(state: EditorState, from: number, to: number, nodeType: NodeType): NodePosition[] {
+export function collectNodesOfType(
+  state: EditorState,
+  from: number,
+  to: number,
+  nodeType: NodeType,
+): NodePosition[] {
   const positions: NodePosition[] = [];
 
   state.doc.nodesBetween(from, to, (node, pos) => {
@@ -78,7 +83,11 @@ export function collectNodesOfTypes(
  * @param node - The ProseMirror node to be lifted.
  * @returns An object containing the (possibly updated) transaction and a boolean indicating if changes were made.
  */
-export function liftNode(tr: Transaction, pos: number, node: Node): { transaction: Transaction; hasChanges: boolean } {
+export function liftNode(
+  tr: Transaction,
+  pos: number,
+  node: Node,
+): { transaction: Transaction; hasChanges: boolean } {
   let hasChanges = false;
 
   const $from = tr.doc.resolve(pos + 1);

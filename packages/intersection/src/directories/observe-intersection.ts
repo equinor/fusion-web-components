@@ -1,4 +1,11 @@
-import { directive, Directive, PartInfo, PartType, AttributePart, DirectiveParameters } from 'lit/directive.js';
+import {
+  directive,
+  Directive,
+  PartInfo,
+  PartType,
+  AttributePart,
+  DirectiveParameters,
+} from 'lit/directive.js';
 import { noChange } from 'lit';
 import * as equal from 'fast-deep-equal/es6';
 
@@ -61,7 +68,11 @@ class ObserveIntersectionDirective extends Directive {
     return this.render(observerInfo);
   }
 
-  createObserver = (el: Element, cb: IntersectionObserverCallback, options?: IntersectionObserverInit): Observer => {
+  createObserver = (
+    el: Element,
+    cb: IntersectionObserverCallback,
+    options?: IntersectionObserverInit,
+  ): Observer => {
     const observer = new Observer(cb, options);
     observer.options = options;
     observer.observe(el);

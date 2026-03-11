@@ -2,7 +2,15 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { PeoplePickerElement, PersonAddedEvent, PersonRemovedEvent, SelectionChangedEvent, type PeoplePickerElementProps, PeopleViewerElement, PeopleViewerElementProps } from '@equinor/fusion-wc-people';
+import {
+  PeoplePickerElement,
+  PersonAddedEvent,
+  PersonRemovedEvent,
+  SelectionChangedEvent,
+  type PeoplePickerElementProps,
+  PeopleViewerElement,
+  PeopleViewerElementProps,
+} from '@equinor/fusion-wc-people';
 import type { PersonInfo } from '@equinor/fusion-wc-person';
 
 import { generatePerson, generateIds, personProviderDecorator } from '../person-provider';
@@ -36,7 +44,11 @@ const render = (props: PeopleViewerElementProps) => html`
 `;
 
 const renderConnected = (props: PeoplePickerElementProps & PeopleViewerElementProps) => {
-  let people: PersonInfo[] = props.people ? typeof props.people === 'string' ? JSON.parse(props.people) : props.people : [];
+  let people: PersonInfo[] = props.people
+    ? typeof props.people === 'string'
+      ? JSON.parse(props.people)
+      : props.people
+    : [];
 
   const setPropPeople = (people: PersonInfo[]) => {
     const peopleViewer = document.getElementById('people-viewer');
@@ -102,11 +114,12 @@ export const resolveIds: Story = {
 };
 
 export const people: Story = {
-  args: {
-  },
+  args: {},
   loaders: [
     async () => {
-      const resolvedPeople = await Promise.all(generateIds(3, 12).map((azureId) => generatePerson({ azureId })));
+      const resolvedPeople = await Promise.all(
+        generateIds(3, 12).map((azureId) => generatePerson({ azureId })),
+      );
       return { resolvedPeople };
     },
   ],

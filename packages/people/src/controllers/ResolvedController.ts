@@ -40,7 +40,11 @@ export class ResolvedController implements ReactiveController {
       this.#host.errors.push('Failed to resolve from people api, see console for more information');
     }
 
-    if (!this.#host.initialResolved && this.#host.tasks.resolve.value && this.#host.tasks.resolve.value.length > 0) {
+    if (
+      !this.#host.initialResolved &&
+      this.#host.tasks.resolve.value &&
+      this.#host.tasks.resolve.value.length > 0
+    ) {
       // map resolved people to PersonInfo objects
       const resolvedPeople = this.#host.tasks.resolve.value.map((person) => {
         return mapResolveToPersonInfo(person);

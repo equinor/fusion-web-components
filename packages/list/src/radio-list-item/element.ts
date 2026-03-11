@@ -93,7 +93,8 @@ export class RadioListItemElement extends ListItemElement {
     };
 
     const text = this.renderText();
-    const graphic = this.graphic && this.graphic !== 'control' && !this.left ? this.renderGraphic() : html``;
+    const graphic =
+      this.graphic && this.graphic !== 'control' && !this.left ? this.renderGraphic() : html``;
     const meta = this.hasMeta && this.left ? this.renderMeta() : html``;
     const ripple = this.renderRipple();
 

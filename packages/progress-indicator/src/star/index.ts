@@ -16,7 +16,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<StarProgressElementProps & React.HTMLAttributes<StarProgressElement>>,
+        React.PropsWithChildren<
+          StarProgressElementProps & React.HTMLAttributes<StarProgressElement>
+        >,
         StarProgressElement
       >;
     }

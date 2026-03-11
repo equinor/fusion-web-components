@@ -3,7 +3,8 @@ import { PersonBaseElementProps } from '../base';
 
 export type TableCellData = PersonInfo;
 
-export interface PersonTableCellElementProps<T extends TableCellData = TableCellData> extends PersonBaseElementProps {
+export interface PersonTableCellElementProps<T extends TableCellData = TableCellData>
+  extends PersonBaseElementProps {
   size?: PersonItemSize;
   showAvatar: boolean;
   heading: (person: T) => string | undefined;

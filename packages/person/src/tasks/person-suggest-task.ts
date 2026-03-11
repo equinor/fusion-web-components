@@ -9,7 +9,9 @@ export type PersonSuggestControllerHostAttributes = {
   systemAccounts: boolean;
 };
 
-export type PersonSuggestControllerHost = PersonSuggestControllerHostAttributes & ReactiveControllerHost & EventTarget;
+export type PersonSuggestControllerHost = PersonSuggestControllerHostAttributes &
+  ReactiveControllerHost &
+  EventTarget;
 
 type TaskArgs = [string, boolean];
 

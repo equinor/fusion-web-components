@@ -3,7 +3,11 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import AvatarElement, { AvatarElementProps, AvatarColor, AvatarSize } from '@equinor/fusion-wc-avatar';
+import AvatarElement, {
+  AvatarElementProps,
+  AvatarColor,
+  AvatarSize,
+} from '@equinor/fusion-wc-avatar';
 import cem from '@equinor/fusion-wc-avatar/lib/custom-elements.json';
 
 import BadgeElement, { BadgeColor, BadgePosition } from '@equinor/fusion-wc-badge';
@@ -96,9 +100,9 @@ export const WithBadge: Story = {
       }))
       .map(render)}
     ${Object.values(BadgePosition)
-        .map((position) => ({
-          ...props,
-          slotBadge: html`<fwc-badge
+      .map((position) => ({
+        ...props,
+        slotBadge: html`<fwc-badge
           slot="badge"
           size="${props.size}"
           position=${position}
@@ -106,14 +110,14 @@ export const WithBadge: Story = {
           color="success"
           circular
         />`,
-        }))
-        .map(render)}
+      }))
+      .map(render)}
     ${Object.values(BadgeColor)
-        .map((color) => ({
-          ...props,
-          slotBadge: html`<fwc-badge slot="badge" size="${props.size}" icon="person" color=${color} circular />`,
-        }))
-        .map(render)} `,
+      .map((color) => ({
+        ...props,
+        slotBadge: html`<fwc-badge slot="badge" size="${props.size}" icon="person" color=${color} circular />`,
+      }))
+      .map(render)} `,
 };
 
 export const Clickable: Story = {

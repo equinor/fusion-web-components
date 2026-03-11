@@ -16,7 +16,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tagDots]: React.DetailedHTMLProps<
-        React.PropsWithChildren<DotsProgressElementProps & React.HTMLAttributes<DotsProgressElement>>,
+        React.PropsWithChildren<
+          DotsProgressElementProps & React.HTMLAttributes<DotsProgressElement>
+        >,
         DotsProgressElement
       >;
     }

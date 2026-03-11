@@ -1,7 +1,10 @@
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import PersonTableCell, { PersonTableCellElementProps, TableCellData } from '@equinor/fusion-wc-person/table-cell';
+import PersonTableCell, {
+  PersonTableCellElementProps,
+  TableCellData,
+} from '@equinor/fusion-wc-person/table-cell';
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';
 
@@ -26,8 +29,8 @@ const render = (props: PersonTableCellElementProps) => html`
 
 export const Default: Story = {
   args: {
-    size: "medium",
-    subHeading: (person: TableCellData) => person.azureId
+    size: 'medium',
+    subHeading: (person: TableCellData) => person.azureId,
   },
   render,
 };
@@ -37,7 +40,7 @@ export const ShowAvatar: Story = {
     ...Default.args,
     showAvatar: true,
     heading: (person: TableCellData) => person.mobilePhone,
-    subHeading: (person: TableCellData) => `<a href="mailto:${person.mail}">${person.mail}</a>`
+    subHeading: (person: TableCellData) => `<a href="mailto:${person.mail}">${person.mail}</a>`,
   },
   render,
 };

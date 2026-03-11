@@ -17,7 +17,10 @@ export class NavigateController implements ReactiveController {
   }
 
   hostDisconnected(): void {
-    this.#host.removeEventListener('navigate-list-item', this.handleNavigateListItem as EventListener);
+    this.#host.removeEventListener(
+      'navigate-list-item',
+      this.handleNavigateListItem as EventListener,
+    );
     this.#host.removeController(this);
   }
 

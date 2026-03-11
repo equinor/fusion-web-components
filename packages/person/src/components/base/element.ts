@@ -74,7 +74,12 @@ export abstract class PersonBaseElement extends LitElement implements PersonBase
 
   /** Map properties to resolveIds */
   updated(changes: PropertyValues): void {
-    if (changes.has('dataSource') || changes.has('resolveId') || changes.has('azureId') || changes.has('upn')) {
+    if (
+      changes.has('dataSource') ||
+      changes.has('resolveId') ||
+      changes.has('azureId') ||
+      changes.has('upn')
+    ) {
       if (this.dataSource?.azureId && !this.dataSource.avatarUrl) {
         this.resolveIds = [this.dataSource.azureId];
       } else if (this.resolveId) {

@@ -2,10 +2,10 @@ import { property } from 'lit/decorators.js';
 import style from './element.css';
 import { IconButtonToggleBase } from '@material/mwc-icon-button-toggle/mwc-icon-button-toggle-base';
 import { styles as mwcStyle } from '@material/mwc-icon-button/mwc-icon-button.css';
-import { CSSResult, html, HTMLTemplateResult } from 'lit';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import { type CSSResult, html, type HTMLTemplateResult } from 'lit';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { IconButtonColor, IconButtonSize } from '../icon-button/types';
+import type { IconButtonColor, IconButtonSize } from '../icon-button/types';
 import { classMap } from 'lit/directives/class-map.js';
 
 // Persist element

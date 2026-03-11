@@ -162,7 +162,7 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
 
   protected renderAvatarElement(
     details: Partial<AvatarData>,
-    trigger: boolean = true,
+    trigger = true,
   ): TemplateResult {
     if (!trigger) {
       return html`

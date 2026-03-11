@@ -1,8 +1,8 @@
 import { Task } from '@lit/task';
-import { ReactiveControllerHost } from 'lit';
+import type { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from './resolve-task-event';
-import { AzureIdOrUpnObj, PersonDetails } from '../types';
-import { AbortableEventDetail, RequestResolvePersonDetailEvent } from '../events';
+import type { AzureIdOrUpnObj, PersonDetails } from '../types';
+import { type AbortableEventDetail, RequestResolvePersonDetailEvent } from '../events';
 
 export type PersonDetailControllerHostAttributes = {
   azureId?: string;

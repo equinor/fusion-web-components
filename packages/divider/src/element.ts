@@ -1,7 +1,7 @@
-import { LitElement, CSSResult, TemplateResult, PropertyValues, html } from 'lit';
+import { LitElement, type CSSResult, type TemplateResult, type PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import {
-  DividerElementProps,
+  type DividerElementProps,
   DividerColor,
   DividerSpacing,
   DividerVariant,

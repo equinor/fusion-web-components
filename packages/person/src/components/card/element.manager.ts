@@ -1,7 +1,7 @@
 import { type CSSResult, type HTMLTemplateResult, LitElement, html, css, unsafeCSS } from 'lit';
 import { property } from 'lit/decorators.js';
 
-import { PersonDetails } from '../../types';
+import type { PersonDetails } from '../../types';
 import { fusionElement } from '@equinor/fusion-wc-core';
 
 import { styles as theme } from '@equinor/fusion-web-theme';

@@ -8,7 +8,7 @@ import {
 } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MarkdownViewerElementProps } from './types';
+import type { MarkdownViewerElementProps } from './types';
 import { marked } from 'marked';
 import { highlightCodeBlocks, codeHighlighterStyles } from './code-highlighter';
 import { tableStyles } from './table.styles';

@@ -1,9 +1,10 @@
-import { LitElement, HTMLTemplateResult, PropertyValues, html, CSSResult } from 'lit';
+import { LitElement, type HTMLTemplateResult, type PropertyValues, html, type CSSResult } from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { AvatarSize, AvatarColor } from './static';
 import Picture from '@equinor/fusion-wc-picture';
-import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
+import type Ripple from '@equinor/fusion-wc-ripple';
+import { RippleHandlers } from '@equinor/fusion-wc-ripple';
 import styles from './element.css';
 
 // Persist element

@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { StarProgressElement, StarProgressElementProps } from './element';
+import { StarProgressElement, type StarProgressElementProps } from './element';
 
 export * from './element';
 

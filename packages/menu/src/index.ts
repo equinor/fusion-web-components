@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import MenuElement, { MenuElementProps } from './element';
+import MenuElement, { type MenuElementProps } from './element';
 export * from './element';
 
 export const tag = 'fwc-menu';

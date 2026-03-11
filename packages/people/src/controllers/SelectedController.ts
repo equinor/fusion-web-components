@@ -55,7 +55,7 @@ export class SelectedController implements ReactiveController {
    * @param person PersonInfo to add to the selected people
    * @param dispatchSelectionEvent Whether to dispatch the selection-changed event, default is true
    */
-  addPerson(person: PersonInfo, dispatchSelectionEvent: boolean = true): void {
+  addPerson(person: PersonInfo, dispatchSelectionEvent = true): void {
     if (this.#host.multiple) {
       if (!this.#selectedPeople.has(person.azureId)) {
         this.#selectedPeople.set(person.azureId, person);

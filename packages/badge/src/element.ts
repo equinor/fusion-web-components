@@ -1,9 +1,10 @@
-import { LitElement, type HTMLTemplateResult, type PropertyValues, html, CSSResult } from 'lit';
+import { LitElement, type HTMLTemplateResult, type PropertyValues, html, type CSSResult } from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BadgeSize, BadgeColor, BadgePosition } from './static';
-import IconElement, { IconName } from '@equinor/fusion-wc-icon';
-import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
+import IconElement, { type IconName } from '@equinor/fusion-wc-icon';
+import type Ripple from '@equinor/fusion-wc-ripple';
+import { RippleHandlers } from '@equinor/fusion-wc-ripple';
 
 import styles from './element.css';
 

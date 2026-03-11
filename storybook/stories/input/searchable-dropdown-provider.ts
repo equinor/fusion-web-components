@@ -1,7 +1,7 @@
 import {
   SearchableDropdownProviderElement,
-  SearchableDropdownResolver,
-  SearchableDropdownResultItem,
+  type SearchableDropdownResolver,
+  type SearchableDropdownResultItem,
 } from '@equinor/fusion-wc-searchable-dropdown';
 import { faker } from '@faker-js/faker';
 import { html } from 'lit';

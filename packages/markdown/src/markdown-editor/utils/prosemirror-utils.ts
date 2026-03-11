@@ -1,6 +1,6 @@
 import { liftTarget } from 'prosemirror-transform';
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Node, NodeType } from 'prosemirror-model';
+import type { EditorState, Transaction } from 'prosemirror-state';
+import type { Node, NodeType } from 'prosemirror-model';
 
 /**
  * Represents the position of a ProseMirror node within a document.

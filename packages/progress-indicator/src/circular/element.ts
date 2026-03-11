@@ -1,4 +1,4 @@
-import { LitElement, svg, TemplateResult } from 'lit';
+import { LitElement, svg, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import styles from './element.css';
 

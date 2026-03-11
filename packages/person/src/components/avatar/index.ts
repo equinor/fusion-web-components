@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonAvatarElement } from './element';
-import { PersonAvatarElementProps } from './types';
+import type { PersonAvatarElementProps } from './types';
 
 // important for backwards compatibility
 // remove when deprecating AvatarSizeEnum

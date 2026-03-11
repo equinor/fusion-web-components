@@ -1,4 +1,4 @@
-import { LitElement, PropertyValues, html, type CSSResult, type TemplateResult } from 'lit';
+import { LitElement, type PropertyValues, html, type CSSResult, type TemplateResult } from 'lit';
 import { state } from 'lit/decorators.js';
 import { ContextConsumer } from '@lit/context';
 
@@ -36,7 +36,7 @@ export class ViewModeElement extends LitElement {
   private _clickOutside = new ClickOutsideController(this);
 
   @state()
-  viewSettingsOpen: boolean = false;
+  viewSettingsOpen = false;
 
   @state()
   columnSet: ColumnSet = 'default';

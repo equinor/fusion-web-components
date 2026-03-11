@@ -44,9 +44,8 @@ export const fusionElement =
       return typeof classOrDescriptor === 'function'
         ? legacyCustomElement(tagName, classOrDescriptor)
         : standardCustomElement(tagName, classOrDescriptor);
-    } else {
-      console.warn(`${tagName} has been defined twice`);
     }
+      console.warn(`${tagName} has been defined twice`);
   };
 
 export default fusionElement;

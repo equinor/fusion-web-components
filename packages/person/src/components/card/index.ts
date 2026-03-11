@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonCardElement } from './element';
-import { PersonCardElementProps } from './types';
+import type { PersonCardElementProps } from './types';
 
 export * from './element';
 export * from './types';

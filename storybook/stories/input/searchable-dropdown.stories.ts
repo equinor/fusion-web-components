@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
 import {
-  SearchableDropdownProps,
+  type SearchableDropdownProps,
   SearchableDropdownElement,
 } from '@equinor/fusion-wc-searchable-dropdown';
 import cem from '@equinor/fusion-wc-searchable-dropdown/lib/custom-elements.json';

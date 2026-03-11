@@ -1,12 +1,12 @@
-import { CSSResult, html, TemplateResult } from 'lit';
+import { type CSSResult, html, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-import { PersonItemSize } from '../../types';
+import type { PersonItemSize } from '../../types';
 import personStyle from '../../style.css';
 
-import { TableCellData, PersonTableCellElementProps } from './types';
+import type { TableCellData, PersonTableCellElementProps } from './types';
 import style from './element.css';
 import { mapResolveToPersonInfo } from '../../utils';
 import { PersonBaseElement } from '../base';
@@ -63,7 +63,7 @@ export class PersonTableCellElement
       },
     },
   })
-  showAvatar: boolean = false;
+  showAvatar = false;
 
   /**
    * Renders person cell title

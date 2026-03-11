@@ -69,7 +69,7 @@ const set_types_dependencies = async () => {
         console.log();
       }
     }
-  } catch (e) {
+  } catch (_e) {
     console.log('Could not process package directories');
   }
 };

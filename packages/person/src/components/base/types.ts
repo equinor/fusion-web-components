@@ -1,4 +1,4 @@
-import { type PersonInfo } from '../../types';
+import type { PersonInfo } from '../../types';
 
 export interface PersonBaseElementProps {
   /** @deprecated Use resolveId instead. */

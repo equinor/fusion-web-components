@@ -1,7 +1,7 @@
 import '@equinor/fusion-wc-theme';
 import './custom_element';
 
-import { Preview } from '@storybook/web-components-vite';
+import type { Preview } from '@storybook/web-components-vite';
 
 import { html } from 'lit';
 

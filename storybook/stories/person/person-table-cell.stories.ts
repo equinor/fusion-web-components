@@ -2,8 +2,8 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import PersonTableCell, {
-  PersonTableCellElementProps,
-  TableCellData,
+  type PersonTableCellElementProps,
+  type TableCellData,
 } from '@equinor/fusion-wc-person/table-cell';
 import { faker } from '@faker-js/faker';
 import { personProviderDecorator } from './person-provider';

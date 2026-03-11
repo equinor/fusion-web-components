@@ -1,6 +1,6 @@
-import { LitElement, CSSResult, HTMLTemplateResult, html } from 'lit';
+import { LitElement, type CSSResult, type HTMLTemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { SkeletonSize, SkeletonVariant } from './static';
+import { type SkeletonSize, SkeletonVariant } from './static';
 import styles from './element.css';
 
 export type SkeletonElementProps = Pick<SkeletonElement, 'size' | 'variant' | 'inactive' | 'fluid'>;

@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { IconButtonElement, IconButtonElementProps } from './element';
+import { IconButtonElement, type IconButtonElementProps } from './element';
 export * from './types';
 export * from './element';
 export const tag = 'fwc-icon-button';

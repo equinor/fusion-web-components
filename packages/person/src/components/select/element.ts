@@ -10,13 +10,13 @@ import { TaskStatus } from '@lit/task';
 
 import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
-import { PersonSearchTask, PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
+import { PersonSearchTask, type PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
 
 import type { PersonInfo, PersonSearchResult } from '../../types';
 import type { SelectedPersonProp } from './index';
 
 import IconElement from '@equinor/fusion-wc-icon';
-import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
+import ListElement, { type ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
 import { PersonListItemElement } from '../list-item';
 import { PersonAvatarElement } from '../avatar';
@@ -135,7 +135,7 @@ export class PersonSelectElement
         } catch {
           if (value?.match('@')) {
             return { upn: value.toLocaleLowerCase() };
-          } else if (value?.length) {
+          }if (value?.length) {
             return { azureId: value.toLocaleLowerCase() };
           }
         }
@@ -218,7 +218,7 @@ export class PersonSelectElement
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true"> Start typing to search. </fwc-list-item>
         `;
-      } else if (!result.length && this.search.length) {
+      }if (!result.length && this.search.length) {
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
             No matching person found

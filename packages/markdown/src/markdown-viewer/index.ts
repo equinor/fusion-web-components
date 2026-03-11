@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { MarkdownViewerElement } from './element';
-import { MarkdownViewerElementProps } from './types';
+import type { MarkdownViewerElementProps } from './types';
 
 export * from './element';
 export * from './types';

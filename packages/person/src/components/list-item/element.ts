@@ -2,11 +2,11 @@ import { html, type CSSResult, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { SkeletonElement, SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-import { PersonItemSize } from '../../types';
+import type { PersonItemSize } from '../../types';
 import style from './element.css';
 // TODO - NOPE
 import personStyle from '../../style.css';
-import { ListItemData, PersonListItemElementProps } from './types';
+import type { ListItemData, PersonListItemElementProps } from './types';
 
 import { mapResolveToPersonInfo } from '../../utils';
 import { PersonAvatarElement } from '../avatar';

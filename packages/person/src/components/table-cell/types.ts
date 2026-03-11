@@ -1,5 +1,5 @@
-import { PersonInfo, PersonItemSize } from '../../types';
-import { PersonBaseElementProps } from '../base';
+import type { PersonInfo, PersonItemSize } from '../../types';
+import type { PersonBaseElementProps } from '../base';
 
 export type TableCellData = PersonInfo;
 

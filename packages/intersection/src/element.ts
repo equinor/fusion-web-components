@@ -1,6 +1,6 @@
 import { LitElement } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
-import { IntersectionEvent, IntersectionEventInit } from './events/intersection-event';
+import { IntersectionEvent, type IntersectionEventInit } from './events/intersection-event';
 
 // convert cvs to float array
 const converter = (s: string | null) => s?.split(',').map((v) => parseFloat(v));
@@ -127,7 +127,9 @@ export class IntersectionElement extends LitElement implements IntersectionEleme
       this.toggleAttribute('intersecting', isIntersecting);
       if (isIntersecting) {
         isIntersecting && this.setAttribute('intersected', '');
-        this.once && (this.disabled = true);
+        if (this.once) {
+          this.disabled = true;
+        }
       }
     }
   }

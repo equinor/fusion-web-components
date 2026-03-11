@@ -4,9 +4,9 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import {
   PeoplePickerElement,
-  PersonAddedEvent,
-  PersonRemovedEvent,
-  SelectionChangedEvent,
+  type PersonAddedEvent,
+  type PersonRemovedEvent,
+  type SelectionChangedEvent,
   type PeoplePickerElementProps,
 } from '@equinor/fusion-wc-people';
 

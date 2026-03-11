@@ -13,8 +13,8 @@ import {
 import { wrapInList, splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
 import { undo, redo } from 'prosemirror-history';
 import { undoInputRule } from 'prosemirror-inputrules';
-import { Command, EditorState, Transaction } from 'prosemirror-state';
-import { Schema } from 'prosemirror-model';
+import type { Command, EditorState, Transaction } from 'prosemirror-state';
+import type { Schema } from 'prosemirror-model';
 
 const mac = typeof navigator != 'undefined' ? /Mac/.test(navigator.platform) : false;
 

@@ -1,6 +1,6 @@
-import { CSSResult } from 'lit';
+import type { CSSResult } from 'lit';
 import { RippleBase } from '@material/mwc-ripple/mwc-ripple-base';
-import { RippleElementProps } from './types';
+import type { RippleElementProps } from './types';
 import { styles as mdcStyle } from '@material/mwc-ripple/mwc-ripple.css';
 
 export { RippleHandlers } from '@material/mwc-ripple/ripple-handlers';

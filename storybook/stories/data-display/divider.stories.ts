@@ -7,7 +7,7 @@ import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import {
   DividerColor,
   DividerElement,
-  DividerElementProps,
+  type DividerElementProps,
   DividerOrientation,
   DividerSpacing,
   DividerVariant,

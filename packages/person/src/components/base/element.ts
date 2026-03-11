@@ -1,10 +1,10 @@
-import { LitElement, PropertyValues } from 'lit';
+import { LitElement, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { IntersectionController } from '@lit-labs/observers/intersection-controller.js';
 
 import { PersonResolveTask } from '../../tasks';
 import type { PersonBaseElementProps } from './types';
-import { PersonInfo } from '../../types';
+import type { PersonInfo } from '../../types';
 
 /**
  * Base element for shared properties between person components

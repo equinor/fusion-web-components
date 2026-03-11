@@ -1,10 +1,10 @@
-import { HTMLTemplateResult, html } from 'lit';
+import { type HTMLTemplateResult, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import AvatarElement, {
-  AvatarElementProps,
+  type AvatarElementProps,
   AvatarColor,
   AvatarSize,
 } from '@equinor/fusion-wc-avatar';

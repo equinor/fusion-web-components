@@ -3,7 +3,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import { ButtonElementProps, ButtonElement, ButtonColor } from '@equinor/fusion-wc-button';
+import { type ButtonElementProps, ButtonElement, type ButtonColor } from '@equinor/fusion-wc-button';
 import cem from '@equinor/fusion-wc-button/custom-elements.json';
 
 console.log(cem);

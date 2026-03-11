@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { IconButtonToggleElement, IconButtonToggleElementProps } from './element';
+import { IconButtonToggleElement, type IconButtonToggleElementProps } from './element';
 export * from './element';
 export const tag = 'fwc-icon-button-toggle';
 

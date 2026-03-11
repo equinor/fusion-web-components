@@ -1,12 +1,12 @@
-import { CSSResult, HTMLTemplateResult, html, PropertyValues } from 'lit';
+import { type CSSResult, type HTMLTemplateResult, html, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import Radio from '@equinor/fusion-wc-radio';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list-item.css';
 import style from './element.css';
-import { GraphicType } from '@material/mwc-list/mwc-list-item-base';
+import type { GraphicType } from '@material/mwc-list/mwc-list-item-base';
 import { ListItemElement } from '../list-item';
 
 // persist elements

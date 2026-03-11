@@ -1,7 +1,7 @@
 import { LitElement } from 'lit';
-import { PersonResolver } from '.';
+import type { PersonResolver } from '.';
 
-import { PersonResolverHost } from './types';
+import type { PersonResolverHost } from './types';
 import { PersonResolverController } from './controller';
 
 // TODO add styling to display: contents

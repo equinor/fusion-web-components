@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { PersonTableCellElement } from './element';
-import { PersonTableCellElementProps } from './types';
+import type { PersonTableCellElementProps } from './types';
 
 export * from './element';
 export * from './types';

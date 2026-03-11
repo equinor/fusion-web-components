@@ -5,8 +5,8 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import {
   DotsProgressElement,
-  DotsProgressElementProps,
-  DotsColorProps,
+  type DotsProgressElementProps,
+  type DotsColorProps,
   DotsSize,
 } from '@equinor/fusion-wc-progress-indicator';
 import cem from '@equinor/fusion-wc-progress-indicator/custom-elements.json';

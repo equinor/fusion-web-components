@@ -1,18 +1,18 @@
 import { type CSSResult, html, LitElement, type PropertyValues, type TemplateResult } from 'lit';
 import { property, queryAsync, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { MarkdownEditorElementProps } from './types';
-import { MenuSizes } from '../types';
+import type { MarkdownEditorElementProps } from './types';
+import type { MenuSizes } from '../types';
 import { baseKeymap } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 import { schema, defaultMarkdownSerializer, defaultMarkdownParser } from 'prosemirror-markdown';
 import { history } from 'prosemirror-history';
-import { EditorState, TextSelection, Transaction, Plugin } from 'prosemirror-state';
+import { EditorState, TextSelection, type Transaction, Plugin } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { Node } from 'prosemirror-model';
+import type { Node } from 'prosemirror-model';
 import { buildKeymap } from './keymap';
 import menuPlugin from './menu';
-import { MdMenuItemType } from './menuItems';
+import type { MdMenuItemType } from './menuItems';
 import { style } from './element.css';
 
 const defaultMenuItem: Array<MdMenuItemType> = ['strong', 'em', 'bullet_list', 'ordered_list'];
@@ -88,7 +88,7 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
     const selection = TextSelection.create(transaction.doc, 0, transaction.doc.content.size);
     transaction.setSelection(selection);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
+    //@ts-expect-error
     transaction.replaceSelectionWith(defaultMarkdownParser.parse(value));
     view.updateState(state.apply(transaction));
   }
@@ -116,7 +116,7 @@ export class MarkdownEditorElement extends LitElement implements MarkdownEditorE
       this.value = this.textContent ? this.textContent.trim() : '';
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
+    //@ts-expect-error
     this.innerHTML = null;
   }
 

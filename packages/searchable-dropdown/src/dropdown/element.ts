@@ -1,4 +1,4 @@
-import { html, LitElement, type HTMLTemplateResult, type CSSResult, PropertyValues } from 'lit';
+import { html, LitElement, type HTMLTemplateResult, type CSSResult, type PropertyValues } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { property, state } from 'lit/decorators.js';
@@ -10,7 +10,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { v4 as uuid } from 'uuid';
 
 import { SearchableDropdownController } from '../provider';
-import {
+import type {
   SearchableDropdownProps,
   SearchableDropdownControllerHost,
   SearchableDropdownResult,

@@ -1,7 +1,7 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import PersonSelectElement from './element';
-import { type SearchableDropdownProps } from '@equinor/fusion-wc-searchable-dropdown';
-import { PersonInfo } from '../../types';
+import type { SearchableDropdownProps } from '@equinor/fusion-wc-searchable-dropdown';
+import type { PersonInfo } from '../../types';
 
 export * from './element';
 

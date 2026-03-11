@@ -1,10 +1,10 @@
 import {
   directive,
   Directive,
-  PartInfo,
+  type PartInfo,
   PartType,
-  AttributePart,
-  DirectiveParameters,
+  type AttributePart,
+  type DirectiveParameters,
 } from 'lit/directive.js';
 import { noChange } from 'lit';
 import * as equal from 'fast-deep-equal/es6';

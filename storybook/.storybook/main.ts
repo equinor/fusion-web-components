@@ -1,7 +1,7 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
 import { fileURLToPath } from 'node:url';
 import remarkGfm from 'remark-gfm';
-import { type StorybookConfig } from '@storybook/web-components-vite';
+import type { StorybookConfig } from '@storybook/web-components-vite';
 import { mergeConfig } from 'vite';
 import { resolve, dirname } from 'path';
 

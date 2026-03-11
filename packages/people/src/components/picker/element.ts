@@ -45,7 +45,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
    * Default is 'Start typing name'
    */
   @property()
-  placeholder: string = 'Search for...';
+  placeholder = 'Search for...';
 
   /**
    * Whether to show the selected people pills.
@@ -56,14 +56,14 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
     type: Boolean,
     converter: (value: string | null) => value === 'true',
   })
-  showSelectedPeople: boolean = true;
+  showSelectedPeople = true;
 
   /**
    * Whether to include system accounts in the search results
    * Default is false
    */
   @property({ type: Boolean })
-  systemAccounts: boolean = false;
+  systemAccounts = false;
 
   /**
    * The title to show when there are no results found.
@@ -71,7 +71,7 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
    * as it can be used to provide guidance to the user on how to get better results.
    */
   @property({ type: String })
-  noResultTitle: string = '';
+  noResultTitle = '';
 
   /**
    * The subtitle to show when there are no results found.
@@ -79,10 +79,10 @@ export class PickerElement extends PeopleBaseElement implements PickerElementPro
    * as it can be used to provide guidance to the user on how to get better results.
    */
   @property({ type: String })
-  noResultSubtitle: string = '';
+  noResultSubtitle = '';
 
   @state()
-  search: string = '';
+  search = '';
 
   @query('fwc-people-picker-search')
   searchElement?: SearchElement;

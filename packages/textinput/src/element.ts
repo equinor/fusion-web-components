@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { html, PropertyValues, TemplateResult } from 'lit';
+import { html, type PropertyValues, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 
-import { TextFieldBase, TextFieldType } from '@material/mwc-textfield/mwc-textfield-base';
+import { TextFieldBase, type TextFieldType } from '@material/mwc-textfield/mwc-textfield-base';
 
-import { IconName } from '@equinor/fusion-wc-icon';
+import type { IconName } from '@equinor/fusion-wc-icon';
 import { styles } from './element.css';
 
 import('@equinor/fusion-wc-icon');
@@ -112,14 +112,14 @@ export class TextInputElement extends TextFieldBase {
    * Leading icon to display in input
    * [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon)
    */
-  // @ts-ignore
+  // @ts-expect-error
   override icon?: IconName;
 
   /**
    * Trailing icon to display in input
    * [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon).
    */
-  // @ts-ignore
+  // @ts-expect-error
   override iconTrailing?: IconName;
 
   /**

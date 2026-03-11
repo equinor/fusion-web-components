@@ -1,7 +1,7 @@
-import { ReactiveController } from 'lit';
-import { PersonSelectElement } from './element';
+import type { ReactiveController } from 'lit';
+import type { PersonSelectElement } from './element';
 
-import { PersonInfo } from '../../types';
+import type { PersonInfo } from '../../types';
 
 export interface ExplicitEventTarget extends Event {
   readonly detail: {

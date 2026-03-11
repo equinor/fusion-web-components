@@ -1,6 +1,6 @@
-import { PersonItemSize } from '../../types';
-import { PersonDetails } from '../../types';
-import { PersonBaseElementProps } from '../base';
+import type { PersonItemSize } from '../../types';
+import type { PersonDetails } from '../../types';
+import type { PersonBaseElementProps } from '../base';
 
 export type CardData = PersonDetails;
 

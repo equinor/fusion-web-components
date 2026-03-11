@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { RadioElement, RadioElementProps } from '@equinor/fusion-wc-radio';
+import { RadioElement, type RadioElementProps } from '@equinor/fusion-wc-radio';
 import cem from '@equinor/fusion-wc-radio/custom-elements.json';
 
 RadioElement;

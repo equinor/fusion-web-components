@@ -1,11 +1,11 @@
-import { html, LitElement, TemplateResult } from 'lit';
+import { html, LitElement, type TemplateResult } from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 
-import { Placement } from '@popperjs/core';
+import type { Placement } from '@popperjs/core';
 
 import style from './element.css';
-import { popperjs, Options, PopperModifier } from './directories/popperjs';
+import { popperjs, type Options, type PopperModifier } from './directories/popperjs';
 
 export type PopoverElementProps = {
   disabled?: boolean;

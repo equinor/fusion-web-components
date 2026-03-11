@@ -5,8 +5,8 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
 import {
   PersonSelectElement as PersonSelect,
-  PersonSelectElementProps,
-  PersonSelectEvent,
+  type PersonSelectElementProps,
+  type PersonSelectEvent,
 } from '@equinor/fusion-wc-person';
 
 import { faker } from '@faker-js/faker';

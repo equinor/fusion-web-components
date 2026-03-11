@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import LinkButtonElement, { LinkButtonElementProps } from './element';
+import LinkButtonElement, { type LinkButtonElementProps } from './element';
 export * from './element';
 
 export const tag = 'fwc-link-button';

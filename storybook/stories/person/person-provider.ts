@@ -1,6 +1,10 @@
-import { PersonAccountType, PersonDetails, PersonSuggestResult } from '@equinor/fusion-wc-person';
+import {
+  PersonAccountType,
+  type PersonDetails,
+  type PersonSuggestResult,
+} from '@equinor/fusion-wc-person';
 import { PersonProviderElement, type PersonResolver } from '@equinor/fusion-wc-person';
-import { cy, faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import { html } from 'lit';
 
 PersonProviderElement;

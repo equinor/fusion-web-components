@@ -5,10 +5,10 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import {
   IconButtonToggleElement,
-  IconButtonToggleElementProps,
+  type IconButtonToggleElementProps,
 } from '@equinor/fusion-wc-button/icon-button-toggle';
 import cem from '@equinor/fusion-wc-button/custom-elements.json';
-import { IconButtonColor, IconButtonSize } from '@equinor/fusion-wc-button/icon-button';
+import type { IconButtonColor, IconButtonSize } from '@equinor/fusion-wc-button/icon-button';
 
 IconButtonToggleElement;
 

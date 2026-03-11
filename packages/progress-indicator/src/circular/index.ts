@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { CircularProgressElement, CircularProgressElementProps } from './element';
+import { CircularProgressElement, type CircularProgressElementProps } from './element';
 
 export * from './element';
 

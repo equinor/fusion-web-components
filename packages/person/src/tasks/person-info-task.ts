@@ -1,8 +1,8 @@
 import { Task } from '@lit/task';
-import { ReactiveControllerHost } from 'lit';
+import type { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from './resolve-task-event';
-import { AzureIdOrUpnObj, PersonInfo } from '../types';
-import { AbortableEventDetail, RequestResolvePersonInfoEvent } from '../events';
+import type { AzureIdOrUpnObj, PersonInfo } from '../types';
+import { type AbortableEventDetail, RequestResolvePersonInfoEvent } from '../events';
 
 type DataSource = Partial<PersonInfo>;
 

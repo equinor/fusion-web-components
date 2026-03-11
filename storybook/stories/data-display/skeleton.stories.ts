@@ -1,14 +1,14 @@
-import { CSSResult, HTMLTemplateResult, css, html } from 'lit';
+import { type CSSResult, type HTMLTemplateResult, css, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import Skeleton, {
-  SkeletonElementProps,
+  type SkeletonElementProps,
   SkeletonSize,
   SkeletonVariant,
 } from '@equinor/fusion-wc-skeleton';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 import cem from '@equinor/fusion-wc-skeleton/lib/custom-elements.json';
 import style from '@equinor/fusion-wc-icon/src/element.css';
 

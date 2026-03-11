@@ -1,6 +1,6 @@
-import { LitElement, TemplateResult, PropertyValues, html } from 'lit';
+import { LitElement, type TemplateResult, type PropertyValues, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { IconElement, IconName } from '@equinor/fusion-wc-icon';
+import { IconElement, type IconName } from '@equinor/fusion-wc-icon';
 import styles from './element.css';
 
 IconElement;

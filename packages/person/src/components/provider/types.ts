@@ -1,5 +1,5 @@
-import { ReactiveControllerHost } from 'lit';
-import {
+import type { ReactiveControllerHost } from 'lit';
+import type {
   PersonDetails,
   AzureIdOrUpnObj,
   PersonInfo,

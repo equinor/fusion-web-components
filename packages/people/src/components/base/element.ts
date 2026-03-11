@@ -78,14 +78,14 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * A comma seperated string of Azure IDs of the people selected
    */
   @property({ type: String, reflect: true })
-  value: string = '';
+  value = '';
 
   /**
    * Whether the element should allow multiple selections.
    * Default is true.
    */
   @property()
-  multiple: boolean = true;
+  multiple = true;
 
   /**
    * The PersonInfo objects to display as selected people.
@@ -118,7 +118,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * vital in ResolvedController
    */
   @state()
-  initialResolved: boolean = false;
+  initialResolved = false;
 
   /**
    * The property from PersonInfo to display as subtitle in the pill
@@ -172,16 +172,16 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * Default is true
    */
   @property({ type: Boolean })
-  editable: boolean = true;
+  editable = true;
 
   /**
    * Whether to include system accounts in the search results
    */
   @property({ type: Boolean })
-  systemAccounts: boolean = true;
+  systemAccounts = true;
 
   @state()
-  viewSettingsOpen: boolean = false;
+  viewSettingsOpen = false;
 
   updated(changes: PropertyValues) {
     // when updating the people property, set the selected people to the new people

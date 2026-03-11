@@ -5,8 +5,8 @@ import Icon from '@equinor/fusion-wc-icon';
 import IconButton from '@equinor/fusion-wc-button/icon-button';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-import { PersonItemSize } from '../../types';
-import { CardData, PersonCardElementProps } from './types';
+import type { PersonItemSize } from '../../types';
+import type { CardData, PersonCardElementProps } from './types';
 
 import styles from './element.css';
 import { mapResolveToPersonInfo } from '../../utils';
@@ -43,7 +43,7 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
    * Whether to show shadow around the card. Default is true.
    */
   @property({ type: Boolean })
-  public shadow: boolean = true;
+  public shadow = true;
 
   /** Size of the component */
   @property({ type: String, reflect: true })
@@ -263,7 +263,7 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
         <fwc-icon class="person-card-info__icon">${entraIcon}</fwc-icon>
         <p class="person-card-info__text">${details.azureId}</p>
         <div class="copyable-text__actions">
-          ${this.renderCopyToClipboardIcon(details.azureId, `Copy to clipboard`)}
+          ${this.renderCopyToClipboardIcon(details.azureId, 'Copy to clipboard')}
           <button
             class="copyable-text__button"
             @click=${(e: MouseEvent) => {
@@ -300,7 +300,7 @@ export class PersonCardElement extends PersonBaseElement implements PersonCardEl
         <fwc-icon class="person-card-info__icon" icon="apps"></fwc-icon>
         <p class="person-card-info__text">${details.applicationId}</p>
         <div class="copyable-text__actions">
-          ${this.renderCopyToClipboardIcon(details.applicationId, `Copy to clipboard`)}
+          ${this.renderCopyToClipboardIcon(details.applicationId, 'Copy to clipboard')}
           <button
             class="copyable-text__button"
             @click=${(e: MouseEvent) => {

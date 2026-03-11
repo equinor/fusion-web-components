@@ -6,8 +6,8 @@ import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
 import {
   MarkdownEditorElement,
-  MarkdownEditorElementProps,
-  MenuSizes as MenuSizesType,
+  type MarkdownEditorElementProps,
+  type MenuSizes as MenuSizesType,
 } from '@equinor/fusion-wc-markdown';
 import cem from '@equinor/fusion-wc-markdown/custom-elements.json';
 import markdownExample from './markdown.example.md?raw';

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Title, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
 import { styled } from 'storybook/theming';

@@ -1,5 +1,5 @@
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Mark, Node } from 'prosemirror-model';
+import type { EditorState, Transaction } from 'prosemirror-state';
+import type { Mark, Node } from 'prosemirror-model';
 
 import { collectNodesOfType, collectNodesOfTypes, liftNode } from '../utils/prosemirror-utils';
 

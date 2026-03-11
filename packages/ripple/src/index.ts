@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { RippleElement } from './element';
-import { RippleElementProps } from './types';
+import type { RippleElementProps } from './types';
 
 export * from './element';
 export * from './types';

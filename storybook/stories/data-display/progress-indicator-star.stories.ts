@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import {
   StarProgressElement,
-  StarProgressElementProps,
+  type StarProgressElementProps,
 } from '@equinor/fusion-wc-progress-indicator';
 import cem from '@equinor/fusion-wc-progress-indicator/custom-elements.json';
 

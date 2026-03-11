@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { DotsProgressElement, DotsProgressElementProps } from './element';
+import { DotsProgressElement, type DotsProgressElementProps } from './element';
 
 export * from './element';
 

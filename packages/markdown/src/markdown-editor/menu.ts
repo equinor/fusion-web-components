@@ -1,7 +1,7 @@
-import { MarkType } from 'prosemirror-model';
-import { Command, EditorState, Plugin } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-import { MdMenuItemType, getMenuItemByType } from './menuItems';
+import type { MarkType } from 'prosemirror-model';
+import { type Command, type EditorState, Plugin } from 'prosemirror-state';
+import type { EditorView } from 'prosemirror-view';
+import { type MdMenuItemType, getMenuItemByType } from './menuItems';
 
 export type MenuItem = {
   command: Command;

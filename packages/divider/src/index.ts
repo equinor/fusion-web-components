@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { DividerElement } from './element';
-import { DividerElementProps } from './types';
+import type { DividerElementProps } from './types';
 
 export * from './element';
 export * from './types';

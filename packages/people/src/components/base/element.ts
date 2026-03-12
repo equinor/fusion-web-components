@@ -58,7 +58,18 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     default: TableColumns;
     full: TableColumns;
   } = {
-    full: ['avatar', 'name', 'azureId', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove'],
+    full: [
+      'avatar',
+      'name',
+      'azureId',
+      'type',
+      'email',
+      'mobilePhone',
+      'jobTitle',
+      'department',
+      'manager',
+      'remove',
+    ],
     default: ['avatar', 'name', 'email', 'jobTitle', 'department', 'remove'],
   };
 
@@ -67,14 +78,14 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * A comma seperated string of Azure IDs of the people selected
    */
   @property({ type: String, reflect: true })
-  value: string = '';
+  value = '';
 
   /**
    * Whether the element should allow multiple selections.
    * Default is true.
    */
   @property()
-  multiple: boolean = true;
+  multiple = true;
 
   /**
    * The PersonInfo objects to display as selected people.
@@ -107,7 +118,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * vital in ResolvedController
    */
   @state()
-  initialResolved: boolean = false;
+  initialResolved = false;
 
   /**
    * The property from PersonInfo to display as subtitle in the pill
@@ -144,7 +155,8 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    */
   @property({
     type: Array,
-    converter: (value: string | null) => (value ? value.split(',').map((column) => column.trim()) : []),
+    converter: (value: string | null) =>
+      value ? value.split(',').map((column) => column.trim()) : [],
   })
   tableColumns: TableColumns = this.columnSet.default;
 
@@ -160,16 +172,16 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
    * Default is true
    */
   @property({ type: Boolean })
-  editable: boolean = true;
+  editable = true;
 
   /**
    * Whether to include system accounts in the search results
    */
   @property({ type: Boolean })
-  systemAccounts: boolean = true;
+  systemAccounts = true;
 
   @state()
-  viewSettingsOpen: boolean = false;
+  viewSettingsOpen = false;
 
   updated(changes: PropertyValues) {
     // when updating the people property, set the selected people to the new people
@@ -183,7 +195,11 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       this.hideColumn('remove');
     }
 
-    if (changes.has('tableColumns') && this.editable === false && this.tableColumns.includes('remove')) {
+    if (
+      changes.has('tableColumns') &&
+      this.editable === false &&
+      this.tableColumns.includes('remove')
+    ) {
       this.hideColumn('remove');
     }
 
@@ -216,9 +232,10 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
         <th class="${column}">
           ${ucFirst(column)}
           <div class="column-actions">
-            ${noSortColumns.includes(column)
-              ? html``
-              : html`
+            ${
+              noSortColumns.includes(column)
+                ? html``
+                : html`
                   <div class="table-column-sort">
                     <fwc-icon
                       title="Sort Asc"
@@ -233,7 +250,8 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
                       @click=${() => this.controllers.selected.sortColumn(column, 'desc')}
                     ></fwc-icon>
                   </div>
-                `}
+                `
+            }
             <div class="table-column-delete">
               <fwc-icon
                 title="${`Hide ${column} column from view`}"
@@ -271,12 +289,14 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
                   return html`<td class="jobTitle">${person.jobTitle === person.azureId ? '' : person.jobTitle}</td>`;
                 case 'manager':
                   return html`<td class="manager">
-                    ${person.managerAzureUniqueId &&
-                    html`<fwc-person-table-cell
+                    ${
+                      person.managerAzureUniqueId &&
+                      html`<fwc-person-table-cell
                       size="small"
                       .azureId=${person.managerAzureUniqueId}
                       .subHeading=${(person: PersonInfo) => person.mail}
-                    ></fwc-person-table-cell>`}
+                    ></fwc-person-table-cell>`
+                    }
                   </td>`;
                 case 'remove':
                   return html`<td class="remove">

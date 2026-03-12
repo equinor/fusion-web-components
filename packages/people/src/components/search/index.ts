@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 
-import { SearchElement, ClearInputEvent } from './element';
+import { SearchElement, type ClearInputEvent } from './element';
 import type { SearchElementProps } from './types';
 
 export type { SearchElementProps, ClearInputEvent };

@@ -10,7 +10,9 @@ export type PersonPhotoControllerHostAttributes = {
   pictureSrc?: string;
 };
 
-export type PersonPhotoControllerHost = PersonPhotoControllerHostAttributes & ReactiveControllerHost & EventTarget;
+export type PersonPhotoControllerHost = PersonPhotoControllerHostAttributes &
+  ReactiveControllerHost &
+  EventTarget;
 
 type TaskArgs = [string | undefined, string | undefined, string | undefined];
 

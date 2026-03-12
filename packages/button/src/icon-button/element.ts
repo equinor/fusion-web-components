@@ -2,11 +2,11 @@ import { property } from 'lit/decorators.js';
 import style from './element.css';
 import { IconButtonBase } from '@material/mwc-icon-button/mwc-icon-button-base';
 import { styles as mwcStyle } from '@material/mwc-icon-button/mwc-icon-button.css';
-import { CSSResult, html, HTMLTemplateResult } from 'lit';
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import { type CSSResult, html, type HTMLTemplateResult } from 'lit';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { IconButtonColor, IconButtonSize } from './types';
-import { LinkButtonTarget } from '../link-button';
+import type { IconButtonColor, IconButtonSize } from './types';
+import type { LinkButtonTarget } from '../link-button';
 
 // Persist element
 Icon;
@@ -90,7 +90,7 @@ export class IconButtonElement extends IconButtonBase implements IconButtonEleme
       class="mdc-icon-button mdc-icon-button--display-flex"
       href="${ifDefined(this.href)}"
       target="${ifDefined(this.target)}"
-      aria-label="${this.ariaLabel || this.icon + '_icon-button'}"
+      aria-label="${this.ariaLabel || `${this.icon}_icon-button`}"
       aria-haspopup="${ifDefined(this.ariaHasPopup)}"
       ?disabled="${this.disabled}"
       @focus="${this.handleRippleFocus}"

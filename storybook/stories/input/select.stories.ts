@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { SelectElement, SelectElementProps } from '@equinor/fusion-wc-select';
+import { SelectElement, type SelectElementProps } from '@equinor/fusion-wc-select';
 import { ListItemElement } from '@equinor/fusion-wc-list';
 import cem from '@equinor/fusion-wc-select/custom-elements.json';
 

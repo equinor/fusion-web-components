@@ -1,5 +1,5 @@
-import { MenuSizes } from '../types';
-import { MdMenuItemType } from './menuItems';
+import type { MenuSizes } from '../types';
+import type { MdMenuItemType } from './menuItems';
 
 export type MarkdownEditorElementProps = {
   menuItems?: Array<MdMenuItemType>;

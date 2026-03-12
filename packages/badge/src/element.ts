@@ -1,9 +1,16 @@
-import { LitElement, type HTMLTemplateResult, type PropertyValues, html, CSSResult } from 'lit';
+import {
+  LitElement,
+  type HTMLTemplateResult,
+  type PropertyValues,
+  html,
+  type CSSResult,
+} from 'lit';
 import { property, queryAsync, eventOptions } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BadgeSize, BadgeColor, BadgePosition } from './static';
-import IconElement, { IconName } from '@equinor/fusion-wc-icon';
-import Ripple, { RippleHandlers } from '@equinor/fusion-wc-ripple';
+import IconElement, { type IconName } from '@equinor/fusion-wc-icon';
+import type Ripple from '@equinor/fusion-wc-ripple';
+import { RippleHandlers } from '@equinor/fusion-wc-ripple';
 
 import styles from './element.css';
 
@@ -129,7 +136,7 @@ export class BadgeElement extends LitElement {
    * @internal
    * Render the icon value if the 'icon' attribute is set or a slotted 'icon' element is provided.
    */
-  protected renderIcon(): HTMLTemplateResult | void {
+  protected renderIcon(): HTMLTemplateResult {
     console.warn('[icon] is deprecated, please slot content');
     return html`<slot name="icon"><fwc-icon icon=${ifDefined(this.icon)}></fwc-icon></slot>`;
   }
@@ -138,7 +145,7 @@ export class BadgeElement extends LitElement {
    * @internal
    * Render the text value if the 'value' attribute is set or a slotted 'value' element is provided.
    */
-  protected renderValue(): HTMLTemplateResult | void {
+  protected renderValue(): HTMLTemplateResult {
     return html`<slot name="value">${this.value}</slot>`;
   }
 
@@ -155,7 +162,7 @@ export class BadgeElement extends LitElement {
   /**
    * @internal
    */
-  protected renderContent(): HTMLTemplateResult | void {
+  protected renderContent(): HTMLTemplateResult {
     if (this.size !== BadgeSize.XSmall) {
       if (this.value) {
         return this.renderValue();

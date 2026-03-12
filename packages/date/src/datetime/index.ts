@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { DateTimeElement, DateTimeElementProps } from './element';
+import { DateTimeElement, type DateTimeElementProps } from './element';
 
 export { DateTimeElement, DateTimeElementProps } from './element';
 

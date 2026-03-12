@@ -1,13 +1,13 @@
-import { ReactiveController } from 'lit';
+import type { ReactiveController } from 'lit';
 import { Task } from '@lit-labs/task';
 
 import {
-  SearchableDropdownResult,
-  SearchableDropdownResolver,
-  SearchableDropdownControllerHost,
+  type SearchableDropdownResult,
+  type SearchableDropdownResolver,
+  type SearchableDropdownControllerHost,
   SearchableDropdownSelectEvent,
 } from '../types';
-import { SearchableDropdownConnectEvent, ExplicitEventTarget } from '../types';
+import { SearchableDropdownConnectEvent, type ExplicitEventTarget } from '../types';
 
 export class SearchableDropdownController implements ReactiveController {
   protected disconnectProvider?: VoidFunction;
@@ -36,7 +36,7 @@ export class SearchableDropdownController implements ReactiveController {
           /* resolver is not available */
           return [];
         }
-        let result;
+        let result: SearchableDropdownResult;
         if (!qs) {
           if (this.#initialItems.length) {
             result = this.#initialItems;

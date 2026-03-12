@@ -47,14 +47,14 @@ export class ListElement extends LitElement implements ListElementProps {
    * Default is 250
    */
   @property({ type: Number })
-  maxHeight: number = 250; // in pixels
+  maxHeight = 250; // in pixels
 
   /**
    * The total count of the results
    * Default is 0/0
    */
   @property({ type: String })
-  totalCount: string = '0/0';
+  totalCount = '0/0';
 
   @queryAll('fwc-people-picker-list-item')
   listItems!: NodeListOf<ListItemElement>;

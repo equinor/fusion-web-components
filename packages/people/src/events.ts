@@ -1,4 +1,4 @@
-import { PersonInfo } from './';
+import type { PersonInfo } from './';
 
 /**
  * Event emitted when the people picker selection changes.

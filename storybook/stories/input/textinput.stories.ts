@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { TextInputElementProps, TextInputElement } from '@equinor/fusion-wc-textinput';
+import { type TextInputElementProps, TextInputElement } from '@equinor/fusion-wc-textinput';
 import cem from '@equinor/fusion-wc-textinput/custom-elements.json';
 
 TextInputElement;
@@ -70,7 +70,8 @@ export const HelpText: Story = {
 
 export const Icon: Story = {
   ...Default,
-  render: (props) => html`${render({ ...props, icon: 'wifi' })} ${render({ ...props, iconTrailing: 'wifi_off' })}`,
+  render: (props) =>
+    html`${render({ ...props, icon: 'wifi' })} ${render({ ...props, iconTrailing: 'wifi_off' })}`,
 };
 
 export const Dense: Story = {
@@ -78,7 +79,7 @@ export const Dense: Story = {
   render: (props) => render({ ...props, dense: true }),
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   ...Default,
   render: (props) => render({ ...props, errorMessage: 'An error occured' }),
 };

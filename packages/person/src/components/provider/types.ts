@@ -1,5 +1,5 @@
-import { ReactiveControllerHost } from 'lit';
-import {
+import type { ReactiveControllerHost } from 'lit';
+import type {
   PersonDetails,
   AzureIdOrUpnObj,
   PersonInfo,
@@ -23,6 +23,8 @@ export interface PersonResolver {
   getInfo?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonInfo>;
   getPhoto?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
   search?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
-  suggest?: (args: ResolverArgs<{ search: string; systemAccounts: boolean }>) => ResolverResult<PersonSuggestResults>;
+  suggest?: (
+    args: ResolverArgs<{ search: string; systemAccounts: boolean }>,
+  ) => ResolverResult<PersonSuggestResults>;
   resolve?: (args: ResolverArgs<{ resolveIds: string[] }>) => ResolverResult<PersonResolveResults>;
 }

@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { ListElement, ListElementProps } from './element';
+import { ListElement, type ListElementProps } from './element';
 export * from './element';
 export { IconName } from '@equinor/fusion-wc-icon';
 

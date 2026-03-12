@@ -7,7 +7,7 @@ import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import {
   DividerColor,
   DividerElement,
-  DividerElementProps,
+  type DividerElementProps,
   DividerOrientation,
   DividerSpacing,
   DividerVariant,
@@ -34,10 +34,25 @@ const render = (props: DividerElementProps) => html`
   />
 `;
 
-const dividerColors: Array<DividerColor> = [DividerColor.Medium, DividerColor.Light, DividerColor.Lighter];
-const dividerSpacings: Array<DividerSpacing> = [DividerSpacing.Small, DividerSpacing.Medium, DividerSpacing.Large];
-const dividerVariants: Array<DividerVariant> = [DividerVariant.Full, DividerVariant.Middle, DividerVariant.List];
-const dividerOrientations: Array<DividerOrientation> = [DividerOrientation.Horizontal, DividerOrientation.Vertical];
+const dividerColors: Array<DividerColor> = [
+  DividerColor.Medium,
+  DividerColor.Light,
+  DividerColor.Lighter,
+];
+const dividerSpacings: Array<DividerSpacing> = [
+  DividerSpacing.Small,
+  DividerSpacing.Medium,
+  DividerSpacing.Large,
+];
+const dividerVariants: Array<DividerVariant> = [
+  DividerVariant.Full,
+  DividerVariant.Middle,
+  DividerVariant.List,
+];
+const dividerOrientations: Array<DividerOrientation> = [
+  DividerOrientation.Horizontal,
+  DividerOrientation.Vertical,
+];
 
 export const Default: Story = {
   args: {},
@@ -61,7 +76,8 @@ export const Vaiant: Story = {
 
 export const orientation: Story = {
   ...Default,
-  render: (props) => html`${dividerOrientations.map((orientation) => render({ ...props, orientation }))}`,
+  render: (props) =>
+    html`${dividerOrientations.map((orientation) => render({ ...props, orientation }))}`,
 };
 
 export default meta;

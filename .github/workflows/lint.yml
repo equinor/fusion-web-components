@@ -6,7 +6,7 @@ on:
       - '**.ts'
 
 jobs:
-  eslint:
+  biome:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,17 +18,8 @@ jobs:
       - name: Build project
         run: pnpm -r build
 
-      - name: Save Code Linting Report JSON
-        run: pnpm lint:report
-        continue-on-error: true
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@v2
 
-      - name: Annotate Code Linting Results
-        uses: ataylorme/eslint-annotate-action@3.0.0
-        with:
-          report-json: "eslint-report.log.json"
-
-      - name: Upload ESLint report
-        uses: actions/upload-artifact@v6
-        with:
-          name: eslint-report.log.json
-          path: eslint-report.log.json
+      - name: Run Biome
+        run: biome ci

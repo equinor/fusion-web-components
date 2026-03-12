@@ -3,7 +3,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import { property } from 'lit/decorators.js';
 
 import { peopleViewerStyle } from './element.css';
-import { PeopleViewerElementProps } from './types';
+import type { PeopleViewerElementProps } from './types';
 
 import { PeopleBaseElement } from '../base';
 import { peopleBaseStyle } from '../base';
@@ -20,7 +20,7 @@ export class PeopleViewerElement extends PeopleBaseElement implements PeopleView
    * Default is false
    */
   @property({ type: Boolean })
-  editable: boolean = false;
+  editable = false;
 
   removePerson(azureId: string) {
     this.controllers.selected.removePerson(azureId);

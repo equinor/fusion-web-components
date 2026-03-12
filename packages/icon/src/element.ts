@@ -1,7 +1,7 @@
-import { IconName } from '@equinor/eds-icons';
-import { HTMLTemplateResult, LitElement, SVGTemplateResult, html } from 'lit';
+import type { IconName } from '@equinor/eds-icons';
+import { type HTMLTemplateResult, LitElement, type SVGTemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import createIcon, { IconType } from './utils/create-icon';
+import createIcon, { type IconType } from './utils/create-icon';
 import { style } from './element.css';
 
 export type IconElementProps = {
@@ -18,7 +18,7 @@ export class IconElement extends LitElement implements IconElementProps {
   @property()
   public type?: IconType;
 
-  render(): SVGTemplateResult | HTMLTemplateResult | void {
+  render(): SVGTemplateResult | HTMLTemplateResult | undefined {
     if (this.icon) {
       return createIcon(this.icon, this.type);
     }

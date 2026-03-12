@@ -9,7 +9,16 @@ export type PickerContext = {
   selected?: InstanceType<typeof SelectedController>;
   display?: 'list' | 'table';
   tableColumns?: Array<
-    'avatar' | 'name' | 'azureId' | 'type' | 'email' | 'mobilePhone' | 'jobTitle' | 'department' | 'manager' | 'remove'
+    | 'avatar'
+    | 'name'
+    | 'azureId'
+    | 'type'
+    | 'email'
+    | 'mobilePhone'
+    | 'jobTitle'
+    | 'department'
+    | 'manager'
+    | 'remove'
   >;
   systemAccounts: boolean;
 };

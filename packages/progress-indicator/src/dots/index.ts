@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { DotsProgressElement, DotsProgressElementProps } from './element';
+import { DotsProgressElement, type DotsProgressElementProps } from './element';
 
 export * from './element';
 
@@ -16,7 +16,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tagDots]: React.DetailedHTMLProps<
-        React.PropsWithChildren<DotsProgressElementProps & React.HTMLAttributes<DotsProgressElement>>,
+        React.PropsWithChildren<
+          DotsProgressElementProps & React.HTMLAttributes<DotsProgressElement>
+        >,
         DotsProgressElement
       >;
     }

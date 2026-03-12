@@ -1,4 +1,4 @@
-import { CSSResult, html, TemplateResult } from 'lit';
+import { type CSSResult, html, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 
@@ -6,7 +6,7 @@ import Checkbox from '@equinor/fusion-wc-checkbox';
 import { ListItemElement } from '../list-item';
 import { styles as mdcStyle } from '@material/mwc-list/mwc-list-item.css';
 import style from './element.css';
-import { GraphicType } from '@material/mwc-list/mwc-list-item-base';
+import type { GraphicType } from '@material/mwc-list/mwc-list-item-base';
 
 // persist elements
 Checkbox;

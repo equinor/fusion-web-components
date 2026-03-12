@@ -30,7 +30,11 @@ export async function highlightCodeBlocks(element: Element): Promise<void> {
     try {
       // Use Prism.highlight with the code content and language
       const code = codeBlock.textContent || '';
-      const highlightedCode = Prism.highlight(code, Prism.languages[language] || Prism.languages.javascript, language);
+      const highlightedCode = Prism.highlight(
+        code,
+        Prism.languages[language] || Prism.languages.javascript,
+        language,
+      );
       codeBlock.innerHTML = highlightedCode;
     } catch (error) {
       // If highlighting fails, just keep the original code

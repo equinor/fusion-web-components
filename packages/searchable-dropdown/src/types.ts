@@ -1,7 +1,7 @@
-import { ReactiveControllerHost } from 'lit';
-import { TextInputElement } from '@equinor/fusion-wc-textinput';
-import { ListElement } from '@equinor/fusion-wc-list';
-import { IconElement, IconType } from '@equinor/fusion-wc-icon';
+import type { ReactiveControllerHost } from 'lit';
+import type { TextInputElement } from '@equinor/fusion-wc-textinput';
+import type { ListElement } from '@equinor/fusion-wc-list';
+import type { IconElement, IconType } from '@equinor/fusion-wc-icon';
 /**
  * Properties/Attributes for web component
  * @autofocus Sets focus on textinput when mounted
@@ -77,13 +77,18 @@ export interface SearchableDropdownResultItem {
 export interface SearchableDropdownResolver {
   closeHandler?: (e: MouseEvent | KeyboardEvent) => void;
   initialResult?: SearchableDropdownResult;
-  searchQuery: (queryString: string) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
+  searchQuery: (
+    queryString: string,
+  ) => Promise<SearchableDropdownResult> | SearchableDropdownResult;
 }
 
 /**
  * The element the controller is conected to
  */
-export interface SearchableDropdownControllerHost extends SearchableDropdownProps, ReactiveControllerHost, EventTarget {
+export interface SearchableDropdownControllerHost
+  extends SearchableDropdownProps,
+    ReactiveControllerHost,
+    EventTarget {
   dispatchEvent(event: Event): boolean;
   nodeName: string;
   renderRoot: HTMLElement | DocumentFragment;

@@ -1,7 +1,7 @@
 import { Task } from '@lit/task';
-import { ReactiveControllerHost } from 'lit';
+import type { ReactiveControllerHost } from 'lit';
 import { resolveTaskEvent } from './resolve-task-event';
-import { PersonSuggestResults } from '../types';
+import type { PersonSuggestResults } from '../types';
 import { RequestResolvePersonSuggestEvent } from '../events';
 
 export type PersonSuggestControllerHostAttributes = {
@@ -9,7 +9,9 @@ export type PersonSuggestControllerHostAttributes = {
   systemAccounts: boolean;
 };
 
-export type PersonSuggestControllerHost = PersonSuggestControllerHostAttributes & ReactiveControllerHost & EventTarget;
+export type PersonSuggestControllerHost = PersonSuggestControllerHostAttributes &
+  ReactiveControllerHost &
+  EventTarget;
 
 type TaskArgs = [string, boolean];
 
@@ -27,7 +29,8 @@ export class PersonSuggestTask extends Task<TaskArgs, PersonSuggestResults> {
         const { signal } = options ?? {};
         if (!search) {
           return emptyPersonSuggestResults;
-        } else if (search && search?.length > 0) {
+        }
+        if (search && search?.length > 0) {
           const result = await resolveTaskEvent(
             host,
             new RequestResolvePersonSuggestEvent({ search, systemAccounts, signal }),

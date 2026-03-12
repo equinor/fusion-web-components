@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { PictureElement, PictureElementProps } from './element';
+import { PictureElement, type PictureElementProps } from './element';
 
 export * from './element';
 export * from './element.css';

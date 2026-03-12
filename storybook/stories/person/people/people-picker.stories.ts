@@ -2,7 +2,13 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
-import { PeoplePickerElement, PersonAddedEvent, PersonRemovedEvent, SelectionChangedEvent, type PeoplePickerElementProps } from '@equinor/fusion-wc-people';
+import {
+  PeoplePickerElement,
+  type PersonAddedEvent,
+  type PersonRemovedEvent,
+  type SelectionChangedEvent,
+  type PeoplePickerElementProps,
+} from '@equinor/fusion-wc-people';
 
 import { generatePerson, generateIds, personProviderDecorator } from '../person-provider';
 
@@ -17,15 +23,15 @@ const meta: Meta<typeof PeoplePickerElement> = {
 };
 
 const handleSelectionChanged = (e: SelectionChangedEvent) => {
-  // console.log('fwc-people-picker::selection-changed', e.detail);
+  console.log('fwc-people-picker::selection-changed', e.detail);
 };
 
 const handlePersonAdded = (e: PersonAddedEvent) => {
-  // console.log('fwc-people-picker::person-added', e.detail);
+  console.log('fwc-people-picker::person-added', e.detail);
 };
 
 const handlePersonRemoved = (e: PersonRemovedEvent) => {
-  // console.log('fwc-people-picker::person-removed', e.detail);
+  console.log('fwc-people-picker::person-removed', e.detail);
 };
 
 const render = (props: PeoplePickerElementProps) => html`
@@ -47,7 +53,6 @@ const render = (props: PeoplePickerElementProps) => html`
     @person-removed=${handlePersonRemoved}>
   </fwc-people-picker>
 `;
-
 
 export const Default: Story = {
   args: {
@@ -92,11 +97,13 @@ export const people: Story = {
   },
   loaders: [
     async () => {
-      const resolvedPeople = await Promise.all(generateIds(1, 3).map((azureId) => generatePerson({ azureId })));
+      const resolvedPeople = await Promise.all(
+        generateIds(1, 3).map((azureId) => generatePerson({ azureId })),
+      );
       return { resolvedPeople };
     },
   ],
-  render: (props: PeoplePickerElementProps, { loaded: { resolvedPeople } }: any) => html`
+  render: (props: PeoplePickerElementProps, { loaded: { resolvedPeople } }) => html`
     <fwc-people-picker
       multiple=${ifDefined(props.multiple)}
       resolveids=${ifDefined(props.resolveIds)}

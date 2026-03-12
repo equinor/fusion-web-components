@@ -1,4 +1,4 @@
-import { CSSResult, css } from 'lit';
+import { type CSSResult, css } from 'lit';
 
 export const style: CSSResult = css`
   :host {

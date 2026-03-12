@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { SwitchElement, SwitchElementProps } from '@equinor/fusion-wc-switch';
+import { SwitchElement, type SwitchElementProps } from '@equinor/fusion-wc-switch';
 import cem from '@equinor/fusion-wc-switch/custom-elements.json';
 
 SwitchElement;
@@ -28,7 +28,8 @@ export const Default: Story = {
 
 export const Selected: Story = {
   ...Default,
-  render: (props) => html`${render({ ...props, selected: true })} ${render({ ...props, selected: false })}`,
+  render: (props) =>
+    html`${render({ ...props, selected: true })} ${render({ ...props, selected: false })}`,
 };
 
 export const Disabled: Story = {

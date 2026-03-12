@@ -3,7 +3,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
-import { CheckboxElement, CheckboxElementProps } from '@equinor/fusion-wc-checkbox';
+import { CheckboxElement, type CheckboxElementProps } from '@equinor/fusion-wc-checkbox';
 import cem from '@equinor/fusion-wc-checkbox/custom-elements.json';
 
 CheckboxElement;

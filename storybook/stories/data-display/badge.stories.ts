@@ -1,14 +1,19 @@
-import { LitElement, html, css, HTMLTemplateResult } from 'lit';
+import { LitElement, html, css, type HTMLTemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import BadgeElement, { BadgeColor, BadgeElementProps, BadgePosition, BadgeSize } from '@equinor/fusion-wc-badge';
+import BadgeElement, {
+  BadgeColor,
+  type BadgeElementProps,
+  BadgePosition,
+  BadgeSize,
+} from '@equinor/fusion-wc-badge';
 import cem from '@equinor/fusion-wc-badge/lib/custom-elements.json';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import IconElement, { IconName } from '@equinor/fusion-wc-icon';
+import IconElement, { type IconName } from '@equinor/fusion-wc-icon';
 
 BadgeElement;
 IconElement;

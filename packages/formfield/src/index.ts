@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { FormfieldElement, FormfieldElementProps } from './element';
+import { FormfieldElement, type FormfieldElementProps } from './element';
 export * from './element';
 
 export const tag = 'fwc-formfield';
@@ -15,7 +15,9 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       [tag]: React.DetailedHTMLProps<
-        React.PropsWithChildren<FormfieldElementProps & React.HTMLAttributes<FormfieldElementProps>>,
+        React.PropsWithChildren<
+          FormfieldElementProps & React.HTMLAttributes<FormfieldElementProps>
+        >,
         FormfieldElement
       >;
     }

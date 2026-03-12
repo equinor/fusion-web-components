@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { html, TemplateResult, PropertyValues } from 'lit';
+import { html, type TemplateResult, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
 
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 
 import styles from './element.css';
 
@@ -17,7 +17,15 @@ export type ButtonVariant = 'contained' | 'outlined' | 'ghost';
 
 export type ButtonElementProps = Pick<
   ButtonElement,
-  'label' | 'variant' | 'color' | 'dense' | 'trailingIcon' | 'expandContent' | 'icon' | 'disabled' | 'fullwidth'
+  | 'label'
+  | 'variant'
+  | 'color'
+  | 'dense'
+  | 'trailingIcon'
+  | 'expandContent'
+  | 'icon'
+  | 'disabled'
+  | 'fullwidth'
 >;
 /**
  * @tag fwc-button
@@ -40,7 +48,7 @@ export class ButtonElement extends ButtonBase implements ButtonElementProps {
    *
    * @attribute {IconName}
    */
-  // @ts-ignore
+  // @ts-expect-error
   override icon?: IconName;
 
   /**

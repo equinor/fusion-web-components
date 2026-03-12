@@ -1,15 +1,30 @@
-import { createPopper, Modifier, OptionsGeneric, StrictModifiers, Instance } from '@popperjs/core';
-import { directive, PartInfo, PartType, AttributePart, Directive, DirectiveParameters } from 'lit/directive.js';
+import {
+  createPopper,
+  type Modifier,
+  type OptionsGeneric,
+  type StrictModifiers,
+  type Instance,
+} from '@popperjs/core';
+import {
+  directive,
+  type PartInfo,
+  PartType,
+  type AttributePart,
+  Directive,
+  type DirectiveParameters,
+} from 'lit/directive.js';
 import { noChange } from 'lit';
 
 type PopperInstance = Instance & {
   resizeObserver: ResizeObserver;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: needed for directive parameters
 export type PopperModifier = Partial<Modifier<any, any>>;
 
-export type Options<TModifier extends PopperModifier = StrictModifiers> = Partial<OptionsGeneric<TModifier>> & {
+export type Options<TModifier extends PopperModifier = StrictModifiers> = Partial<
+  OptionsGeneric<TModifier>
+> & {
   enabled?: boolean;
 };
 
@@ -31,10 +46,10 @@ class PopperJSDirective extends Directive {
     }
   }
 
-  override async render<TElement extends HTMLElement = HTMLElement, TModifier extends PopperModifier = StrictModifiers>(
-    popper: TElement | Promise<TElement>,
-    options?: Options<TModifier>,
-  ) {
+  override async render<
+    TElement extends HTMLElement = HTMLElement,
+    TModifier extends PopperModifier = StrictModifiers,
+  >(popper: TElement | Promise<TElement>, options?: Options<TModifier>) {
     if (this.reference) {
       const target = await Promise.resolve(popper);
       const { enabled, ...popperArgs } = options || {};

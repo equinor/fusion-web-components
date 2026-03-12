@@ -1,7 +1,7 @@
-import { svg, SVGTemplateResult } from 'lit';
+import { svg, type SVGTemplateResult } from 'lit';
 // import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import * as edsIcons from '@equinor/eds-icons';
-import { IconData } from '@equinor/eds-icons';
+import type { IconData } from '@equinor/eds-icons';
 
 export type IconName = keyof typeof edsIcons;
 
@@ -20,7 +20,7 @@ export const createSvg = ({ height, width, svgPathData }: IconData): SVGTemplate
 export const createIcon = (
   nameOrSvgTemplate: IconName | string,
   type: IconType = IconType.EDS,
-): SVGTemplateResult | void => {
+): SVGTemplateResult | undefined => {
   switch (type) {
     case IconType.EDS: {
       const name = nameOrSvgTemplate;
@@ -30,6 +30,7 @@ export const createIcon = (
       }
     }
   }
+  return;
 };
 
 export default createIcon;

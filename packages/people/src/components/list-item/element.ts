@@ -1,4 +1,4 @@
-import { type CSSResult, html, LitElement, TemplateResult } from 'lit';
+import { type CSSResult, html, LitElement, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { when } from 'lit/directives/when.js';
@@ -115,7 +115,9 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
       return html`<p>${person[secondarySubtitle]}</p>`;
     }
 
-    console.warn(`The secondarySubtitle field '${secondarySubtitle}' is not a valid property of the person`);
+    console.warn(
+      `The secondarySubtitle field '${secondarySubtitle}' is not a valid property of the person`,
+    );
     return html``;
   }
 
@@ -134,7 +136,8 @@ export class ListItemElement extends LitElement implements ListItemElementProps 
         <div id="item-avatar">
           ${when(
             this.dataSource.azureId !== 'no-results-found',
-            () => html`<fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>`,
+            () =>
+              html`<fwc-person-avatar .dataSource=${this.dataSource} size="small"></fwc-person-avatar>`,
           )}
         </div>
         <div id="item-name">

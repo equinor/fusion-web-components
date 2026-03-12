@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { html, TemplateResult, PropertyValues } from 'lit';
+import { html, type TemplateResult, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import { ButtonBase } from '@material/mwc-button/mwc-button-base';
 
-import Icon, { IconName } from '@equinor/fusion-wc-icon';
+import Icon, { type IconName } from '@equinor/fusion-wc-icon';
 
 import styles from './element.css';
 import { classMap } from 'lit/directives/class-map.js';
@@ -41,7 +41,7 @@ export class LinkButtonElement extends ButtonBase implements LinkButtonElementPr
    * @See [`fwc-icon`](https://github.com/equinor/fusion-web-components/tree/main/packages/icon)
    * @override
    */
-  // @ts-ignore
+  // @ts-expect-error
   override icon: IconName = '';
 
   @property({ type: String })

@@ -1,5 +1,5 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
-import { IconElement, IconElementProps } from './element';
+import { IconElement, type IconElementProps } from './element';
 
 export { createIcon, IconName, IconType, iconNames } from './utils/create-icon';
 export * from './element';

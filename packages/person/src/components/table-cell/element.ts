@@ -1,12 +1,12 @@
-import { CSSResult, html, TemplateResult } from 'lit';
+import { type CSSResult, html, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Skeleton, { SkeletonSize, SkeletonVariant } from '@equinor/fusion-wc-skeleton';
 
-import { PersonItemSize } from '../../types';
+import type { PersonItemSize } from '../../types';
 import personStyle from '../../style.css';
 
-import { TableCellData, PersonTableCellElementProps } from './types';
+import type { TableCellData, PersonTableCellElementProps } from './types';
 import style from './element.css';
 import { mapResolveToPersonInfo } from '../../utils';
 import { PersonBaseElement } from '../base';
@@ -27,13 +27,17 @@ Skeleton;
  * @property {(person: ListItemData) => string | undefined} subHeading - Function to determine title based on person data.
  */
 
-export class PersonTableCellElement extends PersonBaseElement implements PersonTableCellElementProps {
+export class PersonTableCellElement
+  extends PersonBaseElement
+  implements PersonTableCellElementProps
+{
   static styles: CSSResult[] = [style, personStyle];
 
   /** Function to determine heading based on person data */
   @property({ type: Function })
-  public heading: <T extends TableCellData>(person: T) => string | undefined = (person: TableCellData) =>
-    person.applicationName ?? person.name;
+  public heading: <T extends TableCellData>(person: T) => string | undefined = (
+    person: TableCellData,
+  ) => person.applicationName ?? person.name;
 
   /** Function to determine sub heading based on person data */
   @property({ type: Function })
@@ -59,13 +63,14 @@ export class PersonTableCellElement extends PersonBaseElement implements PersonT
       },
     },
   })
-  showAvatar: boolean = false;
+  showAvatar = false;
 
   /**
    * Renders person cell title
    */
   protected renderHeading(details: TableCellData): TemplateResult {
-    const titleText = this.heading(details) ?? details.name ?? details.applicationName ?? details.azureId;
+    const titleText =
+      this.heading(details) ?? details.name ?? details.applicationName ?? details.azureId;
     if (!titleText) {
       return html``;
     }
@@ -105,14 +110,17 @@ export class PersonTableCellElement extends PersonBaseElement implements PersonT
       <div class="person-cell__item">
         ${this.tasks.resolve.render({
           complete: (details) => {
-            const person = details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
+            const person =
+              details.length > 0 ? mapResolveToPersonInfo(details[0]) : this.dataSource;
             if (!person?.avatarUrl) {
               return;
             }
             return html`<div class="person-cell__about">
-              ${this.showAvatar
-                ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
-                : null}
+              ${
+                this.showAvatar
+                  ? html`<fwc-person-avatar .dataSource=${person} size="${avatarSize()}" trigger="disabled" />`
+                  : null
+              }
               <div class="person-cell__content">${this.renderHeading(person)} ${this.renderSubHeading(person)}</div>
             </div>`;
           },

@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { TextAreaElement, TextAreaElementProps } from '@equinor/fusion-wc-textarea';
+import { TextAreaElement, type TextAreaElementProps } from '@equinor/fusion-wc-textarea';
 import cem from '@equinor/fusion-wc-textarea/custom-elements.json';
 
 TextAreaElement;
@@ -71,7 +71,7 @@ export const Counter: Story = {
   render: (props) => render({ ...props, charCounter: true, maxLength: 15 }),
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   ...Default,
   render: (props) => render({ ...props, errorMessage: 'An error occured' }),
 };

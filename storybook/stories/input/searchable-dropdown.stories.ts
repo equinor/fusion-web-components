@@ -4,7 +4,10 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
 
-import { SearchableDropdownProps, SearchableDropdownElement } from '@equinor/fusion-wc-searchable-dropdown';
+import {
+  type SearchableDropdownProps,
+  SearchableDropdownElement,
+} from '@equinor/fusion-wc-searchable-dropdown';
 import cem from '@equinor/fusion-wc-searchable-dropdown/lib/custom-elements.json';
 import { faker } from '@faker-js/faker';
 import { searchableDropdownProviderDecorator } from './searchable-dropdown-provider';

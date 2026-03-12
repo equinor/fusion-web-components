@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** biome-ignore-all lint/suspicious/noExplicitAny: is required for compilation */
 type Constructor<T> = {
   new (...args: any[]): T;
 };
@@ -38,14 +38,14 @@ const standardCustomElement = (tagName: string, descriptor: ClassDescriptor) => 
   };
 };
 
-export const fusionElement = (tagName: string) => (classOrDescriptor: Constructor<HTMLElement> | ClassDescriptor) => {
-  if (!window.customElements.get(tagName)) {
-    return typeof classOrDescriptor === 'function'
-      ? legacyCustomElement(tagName, classOrDescriptor)
-      : standardCustomElement(tagName, classOrDescriptor);
-  } else {
+export const fusionElement =
+  (tagName: string) => (classOrDescriptor: Constructor<HTMLElement> | ClassDescriptor) => {
+    if (!window.customElements.get(tagName)) {
+      return typeof classOrDescriptor === 'function'
+        ? legacyCustomElement(tagName, classOrDescriptor)
+        : standardCustomElement(tagName, classOrDescriptor);
+    }
     console.warn(`${tagName} has been defined twice`);
-  }
-};
+  };
 
 export default fusionElement;

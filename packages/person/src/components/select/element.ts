@@ -10,13 +10,13 @@ import { TaskStatus } from '@lit/task';
 
 import { PersonSelectController } from './controller';
 import { styles as psStyles } from './element.css';
-import { PersonSearchTask, PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
+import { PersonSearchTask, type PersonSearchControllerHost, PersonInfoTask } from '../../tasks';
 
 import type { PersonInfo, PersonSearchResult } from '../../types';
 import type { SelectedPersonProp } from './index';
 
 import IconElement from '@equinor/fusion-wc-icon';
-import ListElement, { ListItemElement } from '@equinor/fusion-wc-list';
+import ListElement, { type ListItemElement } from '@equinor/fusion-wc-list';
 import TextInputElement from '@equinor/fusion-wc-textinput';
 import { PersonListItemElement } from '../list-item';
 import { PersonAvatarElement } from '../avatar';
@@ -56,7 +56,10 @@ PersonAvatarElement;
  * interface renderListItems(items: TResult): HTMLTemplateResult;
  * ```
  */
-export class PersonSelectElement extends LitElement implements PersonSearchControllerHost, SelectedPersonProp {
+export class PersonSelectElement
+  extends LitElement
+  implements PersonSearchControllerHost, SelectedPersonProp
+{
   /* style object css */
   static styles: CSSResult[] = psStyles;
 
@@ -132,7 +135,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
         } catch {
           if (value?.match('@')) {
             return { upn: value.toLocaleLowerCase() };
-          } else if (value?.length) {
+          }
+          if (value?.length) {
             return { azureId: value.toLocaleLowerCase() };
           }
         }
@@ -215,7 +219,8 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true"> Start typing to search. </fwc-list-item>
         `;
-      } else if (!result.length && this.search.length) {
+      }
+      if (!result.length && this.search.length) {
         return html`
           <fwc-list-item disabled=${true} color="primary" aria-disabled="true">
             No matching person found
@@ -298,17 +303,19 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
    * @returns HTMLTemplateResult
    */
   protected render(): HTMLTemplateResult {
-    const dense = ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
+    const dense =
+      ['page-dense', 'header', 'header-filled'].indexOf(this.variant) > -1 ? true : undefined;
     const variant = ['header', 'page-outlined'].indexOf(this.variant) > -1 ? 'outlined' : 'filled';
     const disabled = this.disabled ? true : undefined;
 
     const cssClasses = {
       'fwc-sdd': true,
       'list-open': this.controllers.element.isOpen,
-      dense: dense == true,
+      dense: dense === true,
       'variant-filled': variant === 'filled',
       'variant-outlined': variant === 'outlined',
-      'selected-persons': this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
+      'selected-persons':
+        this.controllers.element.selectedIds.size > 0 && !this.controllers.element.isOpen,
     };
 
     /** Select person by selectedPerson property on info task */
@@ -335,15 +342,17 @@ export class PersonSelectElement extends LitElement implements PersonSearchContr
           ></fwc-textinput>
           <slot name="trailing">
             <span slot="trailing">
-              ${this.controllers.element.selectedIds.size || this.controllers.element.isOpen
-                ? html`<fwc-icon
+              ${
+                this.controllers.element.selectedIds.size || this.controllers.element.isOpen
+                  ? html`<fwc-icon
                     tabindex=${this.controllers.element.isOpen ? '0' : '-1'}
                     class="trailing interactive"
                     icon=${this.trailingIcon}
                     @click=${this.controllers.element.closeClick}
                     @keydown=${this.controllers.element.closeClick}
                   ></fwc-icon>`
-                : html``}
+                  : html``
+              }
             </span>
           </slot>
         </div>

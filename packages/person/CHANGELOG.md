@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.4.1
+
+### Patch Changes
+
+- [#2175](https://github.com/equinor/fusion-web-components/pull/2175) [`ce90d3a`](https://github.com/equinor/fusion-web-components/commit/ce90d3a5ac784013a48f5c150f728cc47cfe6f19) Thanks [@eikeland](https://github.com/eikeland)! - Improve person card name readability by increasing the title line-height from 1.1 to 1.2.
+  This will fix issues in PersonCard on Edge on Windows.
+
 ## 3.4.0
 
 ### Minor Changes
@@ -63,6 +70,7 @@
 ### Minor Changes
 
 - [#1957](https://github.com/equinor/fusion-web-components/pull/1957) [`73643b1`](https://github.com/equinor/fusion-web-components/commit/73643b102d205ee37d2dd952435e522f18332257) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - - Added a new `showLetter` boolean property to `PersonAvatarElement`.
+
   - When `showLetter` is true, the avatar displays the first letter of the person's name instead of an image.
   - Updated storybook on the following property
 
@@ -158,11 +166,13 @@
 ### Patch Changes
 
 - [#1650](https://github.com/equinor/fusion-web-components/pull/1650) [`4a69b85`](https://github.com/equinor/fusion-web-components/commit/4a69b8586d9c178fb07c4adce143ba77d2dd481a) Thanks [@eikeland](https://github.com/eikeland)! - ### Changes in `PersonSelectController`
+
   - Renamed the `attrSelectPerson` method to `attrSelectedPerson`.
   - Updated the `attrSelectedPerson` method to clear `selectedIds` when `select` is null or an empty string and `selectedIds` size is greater than zero.
   - Added logic to clear previous selections when the `selectedPerson` property changes.
 
   ### Changes in `PersonSelectElement`
+
   - Updated the `updated` method to call `attrSelectedPerson` instead of `attrSelectPerson`.
 
 ## 3.0.3
@@ -170,12 +180,14 @@
 ### Patch Changes
 
 - [#1641](https://github.com/equinor/fusion-web-components/pull/1641) [`4aea53b`](https://github.com/equinor/fusion-web-components/commit/4aea53bbc75790f3afef1cf187710c0848e6bf74) Thanks [@eikeland](https://github.com/eikeland)! - ### Changes in `PersonSelectController`
+
   - Updated the `attrSelectPerson` method to clear `selectedIds` when `personData` or `selectedPerson` is null.
   - Updated the `clearInput` method to reset `azureId` and `upn` properties.
   - Refactored the `clear` method to use `#firePersonSelectEvent` instead of directly dispatching the event.
   - Removed unnecessary comments and cleaned up the code.
 
   ### Changes in `PersonSelectElement`
+
   - Added a new CSS class `.selected-persons` to hide the text input when a person is selected.
   - Updated the `selectedPersonsTemplate` method to be conditionally rendered based on the `selectedIds` size and `isOpen` state.
   - Adjusted the `classMap` to include the `selected-persons` class based on the `selectedIds` size and `isOpen`
@@ -211,12 +223,14 @@
   ### Lines: 199-264
 
   ### Summary of Changes:
+
   1. **New Methods Added:**
      - **`clearInput()`**: Clears the input fields and resets the host's value and search properties.
      - **`clear()`**: Calls `clearInput()`, clears selected IDs, resets the selected person, and dispatches a custom `PersonSelectEvent`.
      - **`closeClick(e: MouseEvent | KeyboardEvent)`**: Handles the close icon click event, blurs the input and close icon, closes the dropdown if open, and calls an external close handler if defined.
 
   ### Detailed Changes:
+
   1. **Method: `clearInput()`**
      - **Purpose:** Clears the input fields and resets the host's value and search properties.
      - **Code:**
@@ -228,6 +242,7 @@
        }
        ```
   2. **Method: `clear()`**
+
      - **Purpose:** Calls `clearInput()`, clears selected IDs, resets the selected person, and dispatches a custom `PersonSelectEvent`.
      - **Code:**
 
@@ -256,6 +271,7 @@
        ```
 
   3. **Method: `closeClick(e: MouseEvent | KeyboardEvent)`**
+
      - **Purpose:** Handles the close icon click event, blurs the input and close icon, closes the dropdown if open, and calls an external close handler if defined.
      - **Code:**
 
@@ -299,6 +315,7 @@
 - [#1553](https://github.com/equinor/fusion-web-components/pull/1553) [`3cdedca`](https://github.com/equinor/fusion-web-components/commit/3cdedcae5b542ccc1936486c97110c42c814ba88) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - **New web component `fwc-person-table-cell`**
 
   Component to display peson avatar and person details in table cell
+
   - Display data with azureId, upn or dataSource
   - Availability to show/hide avatar
   - Choose which details should be displayed in in both rows
@@ -552,6 +569,7 @@
 - [#907](https://github.com/equinor/fusion-web-components/pull/907) [`4729fda`](https://github.com/equinor/fusion-web-components/commit/4729fda8d184d1ab23dca0b32df82a904141b6f2) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - updates the typing of `accountType` to use the string variant of the enum.
 
 - [#902](https://github.com/equinor/fusion-web-components/pull/902) [`93a5f89`](https://github.com/equinor/fusion-web-components/commit/93a5f89d590a71b9c903352a8839be49c4a52d51) Thanks [@odinr](https://github.com/odinr)! - Fix all missing imports of web elements
+
   - fixed imports _(still need more clean-up!)_
   - fixed 'unused' protection of required WC
   - fix un-relative paths
@@ -596,6 +614,7 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
+
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts
@@ -666,6 +685,7 @@
   > all elements can resolve by either providing `azureId` or `upn`
   >
   > _note, missing setting photo source by data source_
+
   - **all elements can resolve by either providing `azureId` or `upn`**
   - **only resolve when intersected in the DOM**
   - **major rework of styling**
@@ -692,6 +712,7 @@
   ### Task
 
   added tasks for rendering person data source async. These jobs emits events that are handled by the closes provider
+
   - info
   - detail
   - photo
@@ -703,10 +724,16 @@
 
   ```ts
   export interface PersonResolver {
-    getDetails?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonDetails>;
-    getInfo?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<PersonInfo>;
+    getDetails?: (
+      args: ResolverArgs<AzureIdOrUpnObj>
+    ) => ResolverResult<PersonDetails>;
+    getInfo?: (
+      args: ResolverArgs<AzureIdOrUpnObj>
+    ) => ResolverResult<PersonInfo>;
     getPhoto?: (args: ResolverArgs<AzureIdOrUpnObj>) => ResolverResult<string>;
-    search?: (args: ResolverArgs<{ search: string }>) => ResolverResult<PersonSearchResult>;
+    search?: (
+      args: ResolverArgs<{ search: string }>
+    ) => ResolverResult<PersonSearchResult>;
   }
   ```
 

@@ -108,12 +108,11 @@ const style: CSSResult = css`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    line-height: 1.1;
+    line-height: 1.2;
   }
   .person-card__expired {
     color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
   }
-
   .person-card__profession {
     display: flex;
     flex-direction: column;

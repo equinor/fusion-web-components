@@ -62,7 +62,7 @@
     "prosemirror-schema-list": "^1.5.1",
     "prosemirror-state": "^1.4.4",
     "prosemirror-transform": "^1.11.0",
-    "prosemirror-view": "^1.41.6"
+    "prosemirror-view": "^1.41.7"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",

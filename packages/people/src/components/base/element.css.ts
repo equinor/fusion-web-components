@@ -96,6 +96,20 @@ export const peopleBaseStyle: CSSResult = css`
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
 
+  table tr .name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    p {
+      margin: 0;
+    }
+
+    p.expired {
+      color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+    }
+  }
+  
   table tr .avatar,
   table tr .remove {
     width: 60px;

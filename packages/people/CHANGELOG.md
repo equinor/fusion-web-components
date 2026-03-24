@@ -1,11 +1,18 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- [#2183](https://github.com/equinor/fusion-web-components/pull/2183) [`fbff2c5`](https://github.com/equinor/fusion-web-components/commit/fbff2c5b80560f85ec3ad9d90953419026f1f14f) Thanks [@eikeland](https://github.com/eikeland)! - Show expired account status in the people table and fix singular versus plural viewing text.
+
 ## 2.0.0
 
 ### Major Changes
 
 - [#2155](https://github.com/equinor/fusion-web-components/pull/2155) [`6081b7e`](https://github.com/equinor/fusion-web-components/commit/6081b7ecf8cab5fe0a91bfd1cf5457c245bf29dd) Thanks [@eikeland](https://github.com/eikeland)! - **Breaking change**
   Rename public display props in people components for consistency:
+
   - `viewMode` is replaced by `display`
   - `showViewMode` is replaced by `displayToggle`
 

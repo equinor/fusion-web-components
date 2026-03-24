@@ -280,7 +280,12 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
                     <fwc-person-avatar .dataSource=${person} size="small" trigger="none"></fwc-person-avatar>
                   </td>`;
                 case 'name':
-                  return html`<td class="name">${person.name ?? person.applicationName ?? 'Unknown'}</td>`;
+                  return html`
+                    <td class="name">
+                      <p>${person.name ?? person.applicationName ?? 'Unknown'}</p>
+                      ${person.isExpired ? html`<p class="expired">Account expired</p>` : null}
+                    </td>
+                  `;
                 case 'type':
                   return html`<td class="type">${person.accountType}</td>`;
                 case 'email':
@@ -291,11 +296,12 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
                   return html`<td class="manager">
                     ${
                       person.managerAzureUniqueId &&
-                      html`<fwc-person-table-cell
-                      size="small"
-                      .azureId=${person.managerAzureUniqueId}
-                      .subHeading=${(person: PersonInfo) => person.mail}
-                    ></fwc-person-table-cell>`
+                      html`
+                        <fwc-person-table-cell
+                        size="small"
+                        .azureId=${person.managerAzureUniqueId}
+                        .subHeading=${(person: PersonInfo) => person.mail}></fwc-person-table-cell>
+                      `
                     }
                   </td>`;
                 case 'remove':

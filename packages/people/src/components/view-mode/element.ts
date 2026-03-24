@@ -182,9 +182,12 @@ export class ViewModeElement extends LitElement {
   }
 
   render(): TemplateResult {
+    const viewingString =
+      this._context.value?.selected?.selectedPeople.size === 1 ? 'person' : 'people';
+
     return html`
       <div id="view-mode">
-        <p>Viewing ${this._context.value?.selected?.selectedPeople.size ?? 0} people</p>
+        <p>Viewing ${this._context.value?.selected?.selectedPeople.size ?? 0} ${viewingString}</p>
         <fwc-icon-button
           color=${this._context.value?.display === 'list' ? 'success' : 'primary'}
           icon="list"

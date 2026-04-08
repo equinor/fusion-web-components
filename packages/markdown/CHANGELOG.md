@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.5.1
+
+### Patch Changes
+
+- [#2203](https://github.com/equinor/fusion-web-components/pull/2203) [`1c8b7e0`](https://github.com/equinor/fusion-web-components/commit/1c8b7e0928566f2fb1c63f8a12a28f7b2e21fdd7) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Re-release @equinor/fusion-wc-markdown
+
 ## 1.5.0
 
 ### Minor Changes
@@ -104,6 +110,7 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
+
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts

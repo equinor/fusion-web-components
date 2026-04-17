@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.12",
+    "@typescript/native-preview": "7.0.0-dev.20260417.1",
     "del-cli": "^7.0.0",
     "typescript": "^6.0.3"
   }

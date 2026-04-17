@@ -11,7 +11,7 @@
     "fwc-build": "bin/index.js"
   },
   "scripts": {
-    "build": "tsc -b"
+    "build": "tsgo -b"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.2",

@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsgo -b",
     "prepack": "pnpm build"
   },
   "keywords": [],

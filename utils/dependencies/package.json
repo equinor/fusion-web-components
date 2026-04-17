@@ -11,7 +11,7 @@
     "fwc-dependencies": "bin/index.js"
   },
   "scripts": {
-    "build": "tsc -b"
+    "build": "tsgo -b"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

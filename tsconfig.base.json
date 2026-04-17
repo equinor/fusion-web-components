@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["esnext", "dom"],
+    "types": ["react"],
     "declaration": true,
     "sourceMap": true,
     "noUnusedLocals": true,
@@ -12,7 +13,6 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "strict": true,
-    "baseUrl": "./",
     "noEmitHelpers": true,
     "importHelpers": true,
     "composite": true

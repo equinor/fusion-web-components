@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "lib": ["esnext", "dom", "dom.iterable"],
+    "lib": ["esnext", "dom"],
+    "types": ["node"],
     "declaration": true,
     "sourceMap": true,
     "noUnusedLocals": true,

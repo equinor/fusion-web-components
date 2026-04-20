@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- [#2215](https://github.com/equinor/fusion-web-components/pull/2215) [`ba38e3c`](https://github.com/equinor/fusion-web-components/commit/ba38e3c22bb508d98281d5976202cf9907fa0165) Thanks [@chdefrene](https://github.com/chdefrene)! - Upgrade from TypeScript 5 to 6
+
 ## 5.1.0
 
 ### Minor Changes
@@ -50,6 +56,7 @@
 ### Patch Changes
 
 - [#1957](https://github.com/equinor/fusion-web-components/pull/1957) [`73643b1`](https://github.com/equinor/fusion-web-components/commit/73643b102d205ee37d2dd952435e522f18332257) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - - Added a new `showLetter` boolean property to `PersonAvatarElement`.
+
   - When `showLetter` is true, the avatar displays the first letter of the person's name instead of an image.
   - Updated storybook on the following property
 
@@ -82,6 +89,7 @@
 ### Patch Changes
 
 - [#1715](https://github.com/equinor/fusion-web-components/pull/1715) [`44aa0a8`](https://github.com/equinor/fusion-web-components/commit/44aa0a8b744e873e19ee6fa9e92da0bd8c3031d8) Thanks [@eikeland](https://github.com/eikeland)! - ### @equinor/fusion-wc-searchable-dropdown
+
   - Fix: support for setting selectedId in initalItems.
   - Fix: better handling of multiple selections.
   - Removed need for mutating result with isSelected, we now keep track of that in selectedItems set.
@@ -111,6 +119,7 @@
 - [#1553](https://github.com/equinor/fusion-web-components/pull/1553) [`3cdedca`](https://github.com/equinor/fusion-web-components/commit/3cdedcae5b542ccc1936486c97110c42c814ba88) Thanks [@AndrejNikolicEq](https://github.com/AndrejNikolicEq)! - **New web component `fwc-person-table-cell`**
 
   Component to display peson avatar and person details in table cell
+
   - Display data with azureId, upn or dataSource
   - Availability to show/hide avatar
   - Choose which details should be displayed in in both rows
@@ -273,6 +282,7 @@
 ### Major Changes
 
 - [#908](https://github.com/equinor/fusion-web-components/pull/908) [`c786e48`](https://github.com/equinor/fusion-web-components/commit/c786e48e725c06499960193e1a4a7a151f3c722f) Thanks [@odinr](https://github.com/odinr)! - Upgrade storybook to V7
+
   - [x] avatar
   - [x] badge
   - [x] button
@@ -298,6 +308,7 @@
   - [ ] progress indicator
 
   **person elements**
+
   - [x] avatar
   - [x] card
   - [x] list item
@@ -314,9 +325,9 @@
   ```js
   const searchResultItem = [
     {
-      id: '1337',
-      title: 'custom svg',
-      subTitle: 'foo bar baz',
+      id: "1337",
+      title: "custom svg",
+      subTitle: "foo bar baz",
       graphic: appIconSvgTemplate,
       graphicType: IconType.SVG,
       meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
@@ -335,6 +346,7 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
+
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts

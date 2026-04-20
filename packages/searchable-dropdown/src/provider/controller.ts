@@ -194,10 +194,12 @@ export class SearchableDropdownController implements ReactiveController {
 
       // add sectioned children flatlist
       if (item.type === 'section' && item.children) {
-        return [...acc, ...item.children];
+        acc.push(...item.children);
+        return acc;
       }
 
-      return [...acc, item];
+      acc.push(item);
+      return acc;
     }, []);
   }
 

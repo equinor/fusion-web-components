@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.5.0
+
+### Minor Changes
+
+- [#2215](https://github.com/equinor/fusion-web-components/pull/2215) [`ba38e3c`](https://github.com/equinor/fusion-web-components/commit/ba38e3c22bb508d98281d5976202cf9907fa0165) Thanks [@chdefrene](https://github.com/chdefrene)! - Upgrade from TypeScript 5 to 6
+
+### Patch Changes
+
+- Updated dependencies [[`ba38e3c`](https://github.com/equinor/fusion-web-components/commit/ba38e3c22bb508d98281d5976202cf9907fa0165)]:
+  - @equinor/fusion-wc-searchable-dropdown@4.1.0
+  - @equinor/fusion-wc-textinput@1.2.0
+  - @equinor/fusion-wc-skeleton@2.2.0
+  - @equinor/fusion-wc-button@2.5.0
+  - @equinor/fusion-wc-icon@2.4.0
+  - @equinor/fusion-wc-list@1.2.0
+
 ## 3.4.1
 
 ### Patch Changes

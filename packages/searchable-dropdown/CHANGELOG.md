@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#2215](https://github.com/equinor/fusion-web-components/pull/2215) [`ba38e3c`](https://github.com/equinor/fusion-web-components/commit/ba38e3c22bb508d98281d5976202cf9907fa0165) Thanks [@chdefrene](https://github.com/chdefrene)! - Upgrade from TypeScript 5 to 6
+
+### Patch Changes
+
+- Updated dependencies [[`ba38e3c`](https://github.com/equinor/fusion-web-components/commit/ba38e3c22bb508d98281d5976202cf9907fa0165)]:
+  - @equinor/fusion-wc-textinput@1.2.0
+  - @equinor/fusion-wc-divider@1.2.0
+  - @equinor/fusion-wc-icon@2.4.0
+  - @equinor/fusion-wc-list@1.2.0
+
 ## 4.0.5
 
 ### Patch Changes
@@ -41,6 +55,7 @@
 ### Major Changes
 
 - [#1715](https://github.com/equinor/fusion-web-components/pull/1715) [`44aa0a8`](https://github.com/equinor/fusion-web-components/commit/44aa0a8b744e873e19ee6fa9e92da0bd8c3031d8) Thanks [@eikeland](https://github.com/eikeland)! - ### @equinor/fusion-wc-searchable-dropdown
+
   - Fix: support for setting selectedId in initalItems.
   - Fix: better handling of multiple selections.
   - Removed need for mutating result with isSelected, we now keep track of that in selectedItems set.
@@ -196,9 +211,9 @@
   ```js
   const searchResultItem = [
     {
-      id: '1337',
-      title: 'custom svg',
-      subTitle: 'foo bar baz',
+      id: "1337",
+      title: "custom svg",
+      subTitle: "foo bar baz",
       graphic: appIconSvgTemplate,
       graphicType: IconType.SVG,
       meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
@@ -224,6 +239,7 @@
 ### Major Changes
 
 - [#868](https://github.com/equinor/fusion-web-components/pull/868) [`a31dd11`](https://github.com/equinor/fusion-web-components/commit/a31dd11a7b8f5515cc62344849b2ce765861267a) Thanks [@odinr](https://github.com/odinr)! - initial update to pnpm
+
   - update all packages to use workspace for local packages
   - fix all missing references
   - cleanup root scripts
@@ -253,6 +269,7 @@
 ### Patch Changes
 
 - [#806](https://github.com/equinor/fusion-web-components/pull/806) [`266cefd`](https://github.com/equinor/fusion-web-components/commit/266cefd493f898f440ce93e92e79964bbd33be59) Thanks [@odinr](https://github.com/odinr)! - align styling
+
   - added vertical padding
   - added interactive color when error
 

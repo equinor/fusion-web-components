@@ -29,7 +29,7 @@ const meta: Meta<BadgeElementProps> = {
 @customElement('storybook-badge-wrapper')
 export class BadgeWrapper extends LitElement {
   @property({ reflect: true, type: Boolean })
-  circular?: boolean;
+  declare circular?: boolean;
 
   static styles = css`
     .root {

@@ -22,6 +22,7 @@ export type IntersectionEventType = 'intersection' | 'intersect-in' | 'intersect
 export class IntersectionEvent<
   T extends IntersectionEventType,
 > extends CustomEvent<IntersectionEventDetail> {
+  // biome-ignore lint/complexity/noUselessConstructor: needed to preserve generic type inference from event type
   constructor(type: T, eventInit?: IntersectionEventInit) {
     super(type, eventInit);
   }

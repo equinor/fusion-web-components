@@ -24,8 +24,10 @@ export const createIcon = (
   switch (type) {
     case IconType.EDS: {
       const name = nameOrSvgTemplate;
+      // biome-ignore lint/performance/noDynamicNamespaceImportAccess: EDS icons are intentionally looked up dynamically by icon name
       const icon = edsIcons[name as keyof typeof edsIcons];
       if (icon) {
+        // biome-ignore lint/performance/noDynamicNamespaceImportAccess: EDS icons are intentionally looked up dynamically by icon name
         return createSvg(edsIcons[name as keyof typeof edsIcons]);
       }
     }

@@ -6,7 +6,7 @@
     "lib": ["esnext", "dom"],
     "types": ["react"],
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

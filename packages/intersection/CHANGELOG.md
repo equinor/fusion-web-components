@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#2226](https://github.com/equinor/fusion-web-components/pull/2226) [`0c2033a`](https://github.com/equinor/fusion-web-components/commit/0c2033a983deece5461c141fcde6d71b6061f20f) Thanks [@odinr](https://github.com/odinr)! - Remove source maps from build output. Source maps were included in packages but referenced source files that were excluded from npm, making them broken and adding unnecessary size.
+
 ## 2.2.0
 
 ### Minor Changes

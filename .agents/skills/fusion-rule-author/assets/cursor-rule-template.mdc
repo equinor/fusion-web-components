@@ -1,0 +1,56 @@
+# Cursor Rule — Starter Template
+
+Use this as the starting structure for `.cursor/rules/<name>.mdc`.
+Set frontmatter fields to control activation mode, then add concise, imperative directives.
+
+---
+
+## Always-apply rule
+
+```markdown
+---
+alwaysApply: true
+---
+
+- 
+- 
+- 
+```
+
+## Glob-scoped rule (activates when matching files are in context)
+
+```markdown
+---
+description: "<what this rule covers>"
+globs: "<glob-pattern>"
+alwaysApply: false
+---
+
+- 
+- 
+- 
+```
+
+## Agent-selected rule (Agent decides relevance from description)
+
+```markdown
+---
+description: "<what this rule covers — be specific for good matching>"
+alwaysApply: false
+---
+
+- 
+- 
+- 
+```
+
+## Manual rule (only applied when @-mentioned in chat)
+
+```markdown
+---
+---
+
+- 
+- 
+- 
+```

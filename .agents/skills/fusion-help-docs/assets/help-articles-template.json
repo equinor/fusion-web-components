@@ -1,0 +1,22 @@
+{
+  "articles": [
+    {
+      "slug": "{{app-prefix}}-getting-started",
+      "title": "Getting Started",
+      "appKey": "{{app-key}}",
+      "sortOrder": 1.0,
+      "summary": "Learn how to get started with {{App Name}}.",
+      "tags": ["getting-started", "onboarding"],
+      "relevantApps": []
+    },
+    {
+      "slug": "{{app-prefix}}-key-concepts",
+      "title": "Key Concepts",
+      "appKey": "{{app-key}}",
+      "sortOrder": 2.0,
+      "summary": "Understand the core concepts behind {{App Name}}.",
+      "tags": ["concepts", "overview"],
+      "relevantApps": []
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "releaseNotes": [
+    {
+      "slug": "{{app-prefix}}-v1-0-initial-release",
+      "title": "Version 1.0 — Initial Release",
+      "appKey": "{{app-key}}",
+      "publishedDate": "{{YYYY-MM-DDT00:00:00Z}}",
+      "tags": ["release", "v1.0"],
+      "relevantApps": []
+    }
+  ]
+}

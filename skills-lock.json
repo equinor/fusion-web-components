@@ -19,6 +19,12 @@
       "skillPath": "skills/.experimental/fusion-dependency-review/SKILL.md",
       "computedHash": "1ef3e75fb9116bc336d60c3d4e0dc75ce4ff91003a9f0abf7bed9c017c35043f"
     },
+    "fusion-help-docs": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fusion-help-docs/SKILL.md",
+      "computedHash": "7e1bc32bd34d1d527a93f24219e5ad3df860dc50845996217fd029bd900994c8"
+    },
     "fusion-issue-authoring": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

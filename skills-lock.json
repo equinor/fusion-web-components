@@ -13,6 +13,12 @@
       "skillPath": "skills/.system/fusion-code-conventions/SKILL.md",
       "computedHash": "b5094425d13bf88e9a9a2c76d439f96c20ad5e03d87f956266518d502446bd12"
     },
+    "fusion-core-services": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.experimental/fusion-core-services/SKILL.md",
+      "computedHash": "1251cd9c046493490e5f82dca96e77c6bdb57354587890988c9cccdbf70bef7d"
+    },
     "fusion-dependency-review": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

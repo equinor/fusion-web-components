@@ -1,0 +1,17 @@
+query PullRequestReviews($owner: String!, $repo: String!, $number: Int!) {
+  repository(owner: $owner, name: $repo) {
+    pullRequest(number: $number) {
+      reviews(first: 100) {
+        nodes {
+          databaseId
+          state
+          author {
+            login
+          }
+          submittedAt
+          url
+        }
+      }
+    }
+  }
+}

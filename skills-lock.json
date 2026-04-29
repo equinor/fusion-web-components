@@ -43,6 +43,12 @@
       "skillPath": "skills/fusion-rules/SKILL.md",
       "computedHash": "ed38f0981c45b3ab9ec79fa3b553c6b18a400cdd1037840b03b1c16c3810aaee"
     },
+    "fusion-skill-authoring": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fusion-skill-authoring/SKILL.md",
+      "computedHash": "7fff89ef0babfe248ae95c5f183de104d07206c9fbcffb4a843cbe33cf9b42bc"
+    },
     "fusion-skills": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

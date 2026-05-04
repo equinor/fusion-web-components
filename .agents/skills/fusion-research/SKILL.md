@@ -4,7 +4,7 @@ description: 'Source-backed research orchestrator for the Fusion ecosystem. Rout
 license: MIT
 compatibility: Works best with Fusion MCP. Dispatches to `agents/framework.agent.md` for `mcp_fusion_search_framework`, `agents/eds.agent.md` for `mcp_fusion_search_eds`, `agents/skills.agent.md` for `mcp_fusion_search_skills`, `agents/docs.agent.md` for `mcp_fusion_search_docs`, and `agents/backend-code.agent.md` for `mcp_fusion_search_backend_code`. If MCP is unavailable, state that clearly rather than guessing.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:

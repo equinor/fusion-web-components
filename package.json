@@ -46,7 +46,7 @@
     "@types/react": "^19.2.14"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.13",
+    "@biomejs/biome": "^2.4.14",
     "del-cli": "^7.0.0",
     "typescript": "^6.0.3"
   }

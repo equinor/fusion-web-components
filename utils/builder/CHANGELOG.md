@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#2261](https://github.com/equinor/fusion-web-components/pull/2261) [`abd3915`](https://github.com/equinor/fusion-web-components/commit/abd39157a95fd9f2ce7f268a4dcf4512dcf0ee5d) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Security patch to override:
+
+  - picomatch >= 4.0.0, < 4.0.4 to 4.0.4
+  - serialize-javascript < 7.0.5 to 7.0.5
+
 ## 3.1.0
 
 ### Minor Changes

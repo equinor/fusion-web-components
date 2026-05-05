@@ -95,8 +95,9 @@ export class SelectedController implements ReactiveController {
   /**
    * Remove a person from the selected people
    * @param id String id to remove the person from the selected people
+   * @param dispatchSelectionEvent Whether to dispatch the selection-changed event, default is true
    */
-  removePerson(id: string): void {
+  removePerson(id: string, dispatchSelectionEvent = true): void {
     const person = this.#selectedPeople.get(id);
     if (!person) {
       return;
@@ -105,9 +106,28 @@ export class SelectedController implements ReactiveController {
     this.#selectedPeople.delete(id);
 
     this.#host.dispatchEvent(new PersonRemovedEvent(person));
-    this.#host.dispatchEvent(new SelectionChangedEvent(Array.from(this.#selectedPeople.values())));
+
+    if (dispatchSelectionEvent) {
+      this.#host.dispatchEvent(
+        new SelectionChangedEvent(Array.from(this.#selectedPeople.values())),
+      );
+    }
 
     this.#host.requestUpdate();
+  }
+
+  /**
+   * Remove multiple people from the selectedPeople Map.
+   * @param people Array of PersonInfo to remove from the selectedPeople Map
+   */
+  removePeople(people: PersonInfo[]): void {
+    people.forEach((person) => {
+      // do not dispatch the selection-changed event for each preselected person
+      this.removePerson(person.azureId, false);
+    });
+
+    // dispatch the selection-changed event after all preselected people have been added
+    this.#host.dispatchEvent(new SelectionChangedEvent(Array.from(this.#selectedPeople.values())));
   }
 
   /**

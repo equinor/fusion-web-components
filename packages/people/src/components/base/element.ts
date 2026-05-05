@@ -90,6 +90,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   /**
    * The PersonInfo objects to display as selected people.
    * Should be a JSON string of PersonInfo objects.
+   * @ps This will make the component an controlled component.
    */
   @property({
     type: Array,
@@ -100,7 +101,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   /**
    * The Azure IDs of the people to resolve and add to selected people.
    * Should be a comma seperated string of Azure IDs.
-   * @ps The ids will be resolved on mount only.
+   * @ps This will make the component a controlled component.
    */
   @property({
     type: Array,
@@ -187,6 +188,11 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     // when updating the people property, set the selected people to the new people
     if (changes.has('people')) {
       this.controllers.selected.setSelectedPeople(this.people);
+    }
+
+    // trigger resolve when resolveIds changes
+    if (changes.has('resolveIds') && this.resolveIds.length > 0) {
+      this.initialResolved = false;
     }
 
     // when updating the editable property, hide/show the remove column in table view

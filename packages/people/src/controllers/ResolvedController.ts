@@ -50,13 +50,27 @@ export class ResolvedController implements ReactiveController {
         return mapResolveToPersonInfo(person);
       });
 
-      // add all resolved people to selected people to prevent triggering selection-changed event for each person
-      if (resolvedPeople.length > 0) {
-        this.#host.controllers.selected.addPeople(resolvedPeople);
+      if (resolvedPeople.length === 0) {
+        return;
       }
 
-      // this will prevent reapplying resolved people on subsequent updates
-      this.#host.initialResolved = true;
+      // check if there are any new people to add by comparing the resolved people with the selected people
+      const hasChanged =
+        new Set([
+          ...resolvedPeople.map((p) => p.azureId),
+          ...this.#host.controllers.selected.selectedIds,
+        ]).size !== this.#host.controllers.selected.selectedIds.length;
+
+      if (hasChanged) {
+        // make sure all from resolvedPeople are added to selected people without removing any existing selected people that are not in resolvedPeople
+        this.#host.controllers.selected.addPeople(resolvedPeople);
+
+        // update resolveIds to match selected people to keep them in sync
+        this.#host.resolveIds = this.#host.controllers.selected.selectedIds;
+
+        // set initialResolved to true to prevent re-applying resolved people on subsequent updates
+        this.#host.initialResolved = true;
+      }
     }
   }
 }

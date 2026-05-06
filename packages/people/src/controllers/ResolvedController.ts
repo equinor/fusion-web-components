@@ -96,7 +96,7 @@ export class ResolvedController implements ReactiveController {
         selected.removePeople(removedPeople);
       }
 
-      // selected.setSelectedPeople(resolvedPeople);
+      // set flag to true to prevent re-parsing on next update
       this.#host.parsedResolved = true;
     }
   }

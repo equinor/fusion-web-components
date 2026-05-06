@@ -5,7 +5,7 @@ import type { PersonResolveResults } from '../types';
 import { RequestResolvePersonResolveEvent } from '../events';
 
 export type PersonResolveControllerHostAttributes = {
-  resolveIds: string[] | undefined;
+  resolveIds?: string[];
 };
 
 export type PersonResolveControllerHost = PersonResolveControllerHostAttributes &

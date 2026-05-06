@@ -126,7 +126,7 @@ export class SelectedController implements ReactiveController {
       this.removePerson(person.azureId, false);
     });
 
-    // dispatch the selection-changed event after all preselected people have been added
+    // dispatch the selection-changed event after all preselected people have been removed
     this.#host.dispatchEvent(new SelectionChangedEvent(Array.from(this.#selectedPeople.values())));
   }
 

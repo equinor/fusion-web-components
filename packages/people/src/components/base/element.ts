@@ -96,7 +96,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
     type: Array,
     converter: (value: string | null) => (value ? JSON.parse(value) : []),
   })
-  people: PersonInfo[] | undefined = undefined;
+  people?: PersonInfo[];
 
   /**
    * The Azure IDs of the people to resolve and add to selected people.
@@ -112,7 +112,7 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       return value.split(',').map((id) => id.trim());
     },
   })
-  resolveIds: string[] | undefined = undefined;
+  resolveIds?: string[];
 
   /**
    * Important: To prevent multiple resolving on each update, this flag is used to track if the initial resolve has been done.

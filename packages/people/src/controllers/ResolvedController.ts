@@ -1,4 +1,5 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
+import { TaskStatus } from '@lit/task';
 
 import type { PersonResolveTask } from '@equinor/fusion-wc-person';
 
@@ -16,7 +17,7 @@ type ResolvedControllerHost = ReactiveControllerHost &
       selected: SelectedController;
     };
     errors: string[];
-    initialResolved: boolean;
+    parsedResolved: boolean;
   };
 
 /**
@@ -40,37 +41,63 @@ export class ResolvedController implements ReactiveController {
       this.#host.errors.push('Failed to resolve from people api, see console for more information');
     }
 
+    const {
+      resolveIds,
+      tasks: { resolve },
+      controllers: { selected },
+    } = this.#host;
+
+    /**
+     * Only run when task is complete and has a value,
+     * or when the component has not yet added resolved to selected people.
+     */
     if (
-      !this.#host.initialResolved &&
-      this.#host.tasks.resolve.value &&
-      this.#host.tasks.resolve.value.length > 0
+      resolve.status !== TaskStatus.COMPLETE ||
+      resolve.value === undefined ||
+      resolveIds === undefined ||
+      this.#host.parsedResolved
     ) {
-      // map resolved people to PersonInfo objects
-      const resolvedPeople = this.#host.tasks.resolve.value.map((person) => {
-        return mapResolveToPersonInfo(person);
-      });
+      return;
+    }
 
-      if (resolvedPeople.length === 0) {
-        return;
+    const noChange = resolve.value.some((person) =>
+      resolveIds.includes(person.account?.azureUniqueId ?? ''),
+    );
+
+    if (noChange && selected.selectedIds.length !== 0) {
+      return;
+    }
+
+    // map resolved people to PersonInfo objects
+    const resolvedPeople = resolve.value.map((person) => {
+      return mapResolveToPersonInfo(person);
+    });
+
+    // check if resolved people are different from selected people
+    const resolvedIds = resolvedPeople.map((person) => person.azureId);
+    const hasChanged =
+      resolvedIds.some((id) => !selected.selectedIds.includes(id)) ||
+      selected.selectedIds.some((id) => !resolvedIds.includes(id));
+
+    if (hasChanged) {
+      const addedPeople = resolvedPeople.filter(
+        (person) => !selected.selectedIds.includes(person.azureId),
+      );
+
+      const removedPeople = [...selected.selectedPeople.values()].filter(
+        (person) => !resolvedIds.includes(person.azureId),
+      );
+
+      if (addedPeople.length > 0) {
+        selected.addPeople(addedPeople);
       }
 
-      // check if there are any new people to add by comparing the resolved people with the selected people
-      const hasChanged =
-        new Set([
-          ...resolvedPeople.map((p) => p.azureId),
-          ...this.#host.controllers.selected.selectedIds,
-        ]).size !== this.#host.controllers.selected.selectedIds.length;
-
-      if (hasChanged) {
-        // make sure all from resolvedPeople are added to selected people without removing any existing selected people that are not in resolvedPeople
-        this.#host.controllers.selected.addPeople(resolvedPeople);
-
-        // update resolveIds to match selected people to keep them in sync
-        this.#host.resolveIds = this.#host.controllers.selected.selectedIds;
-
-        // set initialResolved to true to prevent re-applying resolved people on subsequent updates
-        this.#host.initialResolved = true;
+      if (removedPeople.length > 0) {
+        selected.removePeople(removedPeople);
       }
+
+      // selected.setSelectedPeople(resolvedPeople);
+      this.#host.parsedResolved = true;
     }
   }
 }

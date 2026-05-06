@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#2264](https://github.com/equinor/fusion-web-components/pull/2264) [`4e85d47`](https://github.com/equinor/fusion-web-components/commit/4e85d472be1336b416d18723b1c3c7441b562171) Thanks [@eikeland](https://github.com/eikeland)! - Enhance controlled component behavior and improve selection and resolution management in the people package.
+
 ## 2.1.2
 
 ### Patch Changes

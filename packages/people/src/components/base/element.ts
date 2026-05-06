@@ -90,17 +90,18 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   /**
    * The PersonInfo objects to display as selected people.
    * Should be a JSON string of PersonInfo objects.
+   * @note This will make the component a controlled component.
    */
   @property({
     type: Array,
     converter: (value: string | null) => (value ? JSON.parse(value) : []),
   })
-  people: PersonInfo[] = [];
+  people?: PersonInfo[];
 
   /**
    * The Azure IDs of the people to resolve and add to selected people.
    * Should be a comma seperated string of Azure IDs.
-   * @ps The ids will be resolved on mount only.
+   * @note This will make the component a controlled component.
    */
   @property({
     type: Array,
@@ -111,14 +112,14 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
       return value.split(',').map((id) => id.trim());
     },
   })
-  resolveIds: string[] = [];
+  resolveIds?: string[];
 
   /**
    * Important: To prevent multiple resolving on each update, this flag is used to track if the initial resolve has been done.
    * vital in ResolvedController
    */
   @state()
-  initialResolved = false;
+  parsedResolved = false;
 
   /**
    * The property from PersonInfo to display as subtitle in the pill
@@ -183,10 +184,24 @@ export abstract class PeopleBaseElement extends LitElement implements PeopleProp
   @state()
   viewSettingsOpen = false;
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (this.people && this.resolveIds) {
+      console.warn(
+        'Both people and resolveIds properties are set. This may lead to unexpected behavior as both properties will try to set the selected people. It is recommended to use only one of the properties.',
+      );
+    }
+  }
+
   updated(changes: PropertyValues) {
     // when updating the people property, set the selected people to the new people
-    if (changes.has('people')) {
+    if (changes.has('people') && this.people !== undefined) {
       this.controllers.selected.setSelectedPeople(this.people);
+    }
+
+    // trigger resolve when resolveIds changes
+    if (changes.has('resolveIds') && this.resolveIds !== undefined) {
+      this.parsedResolved = false;
     }
 
     // when updating the editable property, hide/show the remove column in table view

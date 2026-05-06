@@ -5,14 +5,14 @@ import type { PersonResolveResults } from '../types';
 import { RequestResolvePersonResolveEvent } from '../events';
 
 export type PersonResolveControllerHostAttributes = {
-  resolveIds: string[];
+  resolveIds?: string[];
 };
 
 export type PersonResolveControllerHost = PersonResolveControllerHostAttributes &
   ReactiveControllerHost &
   EventTarget;
 
-type TaskArgs = [string[]];
+type TaskArgs = [string[] | undefined];
 
 export class PersonResolveTask extends Task<TaskArgs, PersonResolveResults> {
   constructor(public host: PersonResolveControllerHost) {

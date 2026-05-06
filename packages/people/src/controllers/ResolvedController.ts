@@ -1,4 +1,5 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
+import { TaskStatus } from '@lit/task';
 
 import type { PersonResolveTask } from '@equinor/fusion-wc-person';
 
@@ -16,7 +17,7 @@ type ResolvedControllerHost = ReactiveControllerHost &
       selected: SelectedController;
     };
     errors: string[];
-    initialResolved: boolean;
+    parsedResolved: boolean;
   };
 
 /**
@@ -40,23 +41,63 @@ export class ResolvedController implements ReactiveController {
       this.#host.errors.push('Failed to resolve from people api, see console for more information');
     }
 
-    if (
-      !this.#host.initialResolved &&
-      this.#host.tasks.resolve.value &&
-      this.#host.tasks.resolve.value.length > 0
-    ) {
-      // map resolved people to PersonInfo objects
-      const resolvedPeople = this.#host.tasks.resolve.value.map((person) => {
-        return mapResolveToPersonInfo(person);
-      });
+    const {
+      resolveIds,
+      tasks: { resolve },
+      controllers: { selected },
+    } = this.#host;
 
-      // add all resolved people to selected people to prevent triggering selection-changed event for each person
-      if (resolvedPeople.length > 0) {
-        this.#host.controllers.selected.addPeople(resolvedPeople);
+    /**
+     * Only run when task is complete and has a value,
+     * or when the component has not yet added resolved to selected people.
+     */
+    if (
+      resolve.status !== TaskStatus.COMPLETE ||
+      resolve.value === undefined ||
+      resolveIds === undefined ||
+      this.#host.parsedResolved
+    ) {
+      return;
+    }
+
+    const noChange = resolve.value.some((person) =>
+      resolveIds.includes(person.account?.azureUniqueId ?? ''),
+    );
+
+    if (noChange && selected.selectedIds.length !== 0) {
+      return;
+    }
+
+    // map resolved people to PersonInfo objects
+    const resolvedPeople = resolve.value.map((person) => {
+      return mapResolveToPersonInfo(person);
+    });
+
+    // check if resolved people are different from selected people
+    const resolvedIds = resolvedPeople.map((person) => person.azureId);
+    const hasChanged =
+      resolvedIds.some((id) => !selected.selectedIds.includes(id)) ||
+      selected.selectedIds.some((id) => !resolvedIds.includes(id));
+
+    if (hasChanged) {
+      const addedPeople = resolvedPeople.filter(
+        (person) => !selected.selectedIds.includes(person.azureId),
+      );
+
+      const removedPeople = [...selected.selectedPeople.values()].filter(
+        (person) => !resolvedIds.includes(person.azureId),
+      );
+
+      if (addedPeople.length > 0) {
+        selected.addPeople(addedPeople);
       }
 
-      // this will prevent reapplying resolved people on subsequent updates
-      this.#host.initialResolved = true;
+      if (removedPeople.length > 0) {
+        selected.removePeople(removedPeople);
+      }
+
+      // set flag to true to prevent re-parsing on next update
+      this.#host.parsedResolved = true;
     }
   }
 }

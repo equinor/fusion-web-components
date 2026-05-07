@@ -60,14 +60,6 @@ export class ResolvedController implements ReactiveController {
       return;
     }
 
-    const noChange = resolve.value.some((person) =>
-      resolveIds.includes(person.account?.azureUniqueId ?? ''),
-    );
-
-    if (noChange && selected.selectedIds.length !== 0) {
-      return;
-    }
-
     // map resolved people to PersonInfo objects
     const resolvedPeople = resolve.value.map((person) => {
       return mapResolveToPersonInfo(person);
@@ -80,21 +72,8 @@ export class ResolvedController implements ReactiveController {
       selected.selectedIds.some((id) => !resolvedIds.includes(id));
 
     if (hasChanged) {
-      const addedPeople = resolvedPeople.filter(
-        (person) => !selected.selectedIds.includes(person.azureId),
-      );
-
-      const removedPeople = [...selected.selectedPeople.values()].filter(
-        (person) => !resolvedIds.includes(person.azureId),
-      );
-
-      if (addedPeople.length > 0) {
-        selected.addPeople(addedPeople);
-      }
-
-      if (removedPeople.length > 0) {
-        selected.removePeople(removedPeople);
-      }
+      // sync resolved people to selected people
+      selected.setSelectedPeople(resolvedPeople);
 
       // set flag to true to prevent re-parsing on next update
       this.#host.parsedResolved = true;

@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#2270](https://github.com/equinor/fusion-web-components/pull/2270) [`fe5f37e`](https://github.com/equinor/fusion-web-components/commit/fe5f37ecbf1889700404e05b110e8a1e4af22a72) Thanks [@eikeland](https://github.com/eikeland)! - Simplified resolved-people synchronization by replacing incremental add/remove updates with a full selected-people sync when resolved IDs change.
+
 ## 2.2.0
 
 ### Minor Changes

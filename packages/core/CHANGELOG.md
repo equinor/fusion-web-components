@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#2273](https://github.com/equinor/fusion-web-components/pull/2273) [`de5b4d8`](https://github.com/equinor/fusion-web-components/commit/de5b4d8b4b4006767d7374204d35fa3603cc8be3) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Security patch to override:
+
+  - `fast-uri` <=3.1.1 to 3.1.2
+
 ## 2.0.2
 
 ### Patch Changes

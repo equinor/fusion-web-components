@@ -1,0 +1,18 @@
+import { Canvas, Meta, Controls, Story, Source, ArgTypes, Stories, Markdown } from '@storybook/addon-docs/blocks';
+
+import { PackageInfo } from '@components'
+
+import * as CodeStories from './layout.stories';
+
+import pkg from '@equinor/fusion-wc-layout/package.json';
+import Log from '@equinor/fusion-wc-layout/CHANGELOG.md?raw';
+
+<Meta of={CodeStories} />
+
+<PackageInfo pkg={pkg}/>
+
+<ArgTypes />
+
+<Stories />
+
+<Markdown>{Log}</Markdown>

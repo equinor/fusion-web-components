@@ -12,7 +12,6 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
       "@components": ["./components"],
       "@components/*": ["./components/*"]
@@ -47,6 +46,9 @@
       "path": "../packages/icon"
     },
     {
+      "path": "../packages/layout"
+    },
+    {
       "path": "../packages/list"
     },
     {
@@ -57,6 +59,9 @@
     },
     {
       "path": "../packages/progress-indicator"
+    },
+    {
+      "path": "../packages/page"
     },
     {
       "path": "../packages/person"

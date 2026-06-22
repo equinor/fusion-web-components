@@ -1,0 +1,49 @@
+{
+  "name": "@equinor/fusion-wc-layout",
+  "version": "0.0.1-beta.1",
+  "description": "Layout component for fusion web components",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "postbuild": "pnpm typedoc",
+    "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib",
+    "prepack": "pnpm build && fwc-build"
+  },
+  "exports": {
+    ".": {
+      "default": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./package.json": "./package.json",
+    "./custom-elements.json": "./lib/custom-elements.json",
+    "./README.md": "./README.md",
+    "./CHANGELOG.md": "./CHANGELOG.md"
+  },
+  "keywords": [
+    "fusion",
+    "web components",
+    "layout"
+  ],
+  "author": "@eikeland",
+  "license": "ISC",
+  "dependencies": {
+    "@equinor/fusion-wc-core": "workspace:^",
+    "@equinor/fusion-web-theme": "^0.1.10",
+    "lit": "3.3.3"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@equinor/fusion-wc-builder": "workspace:^",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equinor/fusion-web-components.git",
+    "directory": "packages/layout"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "customElements": "lib/custom-elements.json"
+}

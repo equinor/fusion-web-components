@@ -36,7 +36,6 @@ const style: CSSResult = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-bottom: 4px;
   }
   .person-cell__content-gap {
     row-gap: ${unsafeCSS(theme.spacing.comfortable.x_small.getVariable('padding'))};

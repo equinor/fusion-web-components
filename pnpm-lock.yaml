@@ -751,8 +751,8 @@ importers:
         specifier: ^3.0.2
         version: 3.3.3
       uuid:
-        specifier: ^14.0.0
-        version: 14.0.0
+        specifier: ^14.0.1
+        version: 14.0.1
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.11.0
@@ -948,7 +948,7 @@ importers:
         version: 10.4.0
       '@storybook/addon-docs':
         specifier: ^10.3.6
-        version: 10.3.6(@types/react@19.2.15)(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(terser@5.46.2))(webpack@5.106.2(esbuild@0.27.7))
+        version: 10.3.6(@types/react@19.2.17)(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(terser@5.46.2))(webpack@5.106.2(esbuild@0.27.7))
       '@storybook/builder-vite':
         specifier: ^10.3.6
         version: 10.3.6(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(terser@5.46.2))(webpack@5.106.2(esbuild@0.27.7))
@@ -2326,6 +2326,9 @@ packages:
 
   '@types/react@19.2.15':
     resolution: {integrity: sha512-eRwcGNHve+E8qtEQSSRl6urh+rFop4v8gm6O8rGv25CodbvFdLjA1vVQ1KkiFE0w0UPOnb8tDiFKL5lp0rtY5Q==}
+
+  '@types/react@19.2.17':
+    resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
 
   '@types/resize-observer-browser@0.1.11':
     resolution: {integrity: sha512-cNw5iH8JkMkb3QkCoe7DaZiawbDQEUX8t7iuQaRTyLOyQCR2h+ibBD4GJt7p5yhUHrlOeL7ZtbxNHeipqNsBzQ==}
@@ -4162,8 +4165,8 @@ packages:
   utila@0.4.0:
     resolution: {integrity: sha512-Z0DbgELS9/L/75wZbro8xAnT50pBVFQZ+hUEueGDU5FN51YSCYM+jdxsfCiHjwNP/4LCDD0i/graKpeBnOXKRA==}
 
-  uuid@14.0.0:
-    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
+  uuid@14.0.1:
+    resolution: {integrity: sha512-6ZxzVpzDXDa3bJWaHilVayA+BH/1zmxCJoVgvmqJnid/gPoKHxUrS/aC/T6LGQtNHT+XHG9fXPJB4d+IrU30Ew==}
     hasBin: true
 
   vfile-message@4.0.3:
@@ -5184,10 +5187,10 @@ snapshots:
       '@material/theme': 14.0.0-canary.53b3cad2f.0
       tslib: 2.8.1
 
-  '@mdx-js/react@3.1.1(@types/react@19.2.15)(react@19.2.6)':
+  '@mdx-js/react@3.1.1(@types/react@19.2.17)(react@19.2.6)':
     dependencies:
       '@types/mdx': 2.0.13
-      '@types/react': 19.2.15
+      '@types/react': 19.2.17
       react: 19.2.6
 
   '@napi-rs/wasm-runtime@1.1.1':
@@ -5462,9 +5465,9 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@storybook/addon-docs@10.3.6(@types/react@19.2.15)(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(terser@5.46.2))(webpack@5.106.2(esbuild@0.27.7))':
+  '@storybook/addon-docs@10.3.6(@types/react@19.2.17)(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(terser@5.46.2))(webpack@5.106.2(esbuild@0.27.7))':
     dependencies:
-      '@mdx-js/react': 3.1.1(@types/react@19.2.15)(react@19.2.6)
+      '@mdx-js/react': 3.1.1(@types/react@19.2.17)(react@19.2.6)
       '@storybook/csf-plugin': 10.3.6(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(terser@5.46.2))(webpack@5.106.2(esbuild@0.27.7))
       '@storybook/icons': 2.0.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@storybook/react-dom-shim': 10.3.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
@@ -5757,6 +5760,10 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
+  '@types/react@19.2.17':
+    dependencies:
+      csstype: 3.2.3
+
   '@types/resize-observer-browser@0.1.11': {}
 
   '@types/resolve@1.20.2': {}
@@ -5771,7 +5778,7 @@ snapshots:
 
   '@types/uuid@11.0.0':
     dependencies:
-      uuid: 14.0.0
+      uuid: 14.0.1
 
   '@vitest/expect@3.2.4':
     dependencies:
@@ -7770,7 +7777,7 @@ snapshots:
 
   utila@0.4.0: {}
 
-  uuid@14.0.0: {}
+  uuid@14.0.1: {}
 
   vfile-message@4.0.3:
     dependencies:

@@ -1,5 +1,5 @@
 ---
-'@equinor/fusion-wc-people': minor
+'@equinor/fusion-wc-people': patch
 ---
 
 Add table view story for people picker component and refine table cell styling.

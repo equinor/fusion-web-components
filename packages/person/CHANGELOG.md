@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.5.5
+
+### Patch Changes
+
+- [#2330](https://github.com/equinor/fusion-web-components/pull/2330) [`92b09d3`](https://github.com/equinor/fusion-web-components/commit/92b09d3754dfc381ccf3066b39f183ec1454027f) Thanks [@chdefrene](https://github.com/chdefrene)! - Fix `fwc-person-table-cell` heading/subheading vertical alignment. Removed the `padding-bottom` on `.person-cell__content` that pushed the text block ~4px above the avatar's center, so the name is now truly vertically centered with the avatar and aligns with sibling text when used inside an EDS `Table.Cell`. Fixes equinor/fusion#837.
+
 ## 3.5.4
 
 ### Patch Changes

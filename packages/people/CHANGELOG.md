@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- [#2332](https://github.com/equinor/fusion-web-components/pull/2332) [`a5c4ba5`](https://github.com/equinor/fusion-web-components/commit/a5c4ba52296b9a7c87d0e7a6857556d54da31f9f) Thanks [@eikeland](https://github.com/eikeland)! - Add table view story for people picker component and refine table cell styling.
+
+  - Added new `tableView` story demonstrating the people picker with table display mode
+  - Adjusted CSS selectors for table rows to target `tbody` specifically
+  - Updated avatar column width from 60px to 66px for better visual alignment
+
 ## 2.2.2
 
 ### Patch Changes

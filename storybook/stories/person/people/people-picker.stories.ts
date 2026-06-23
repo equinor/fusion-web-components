@@ -92,9 +92,7 @@ export const resolveIds: Story = {
 };
 
 export const people: Story = {
-  args: {
-    multiple: true,
-  },
+  args: {},
   loaders: [
     async () => {
       const resolvedPeople = await Promise.all(
@@ -108,6 +106,35 @@ export const people: Story = {
       multiple=${ifDefined(props.multiple)}
       resolveids=${ifDefined(props.resolveIds)}
       people=${JSON.stringify(resolvedPeople)}
+      showselectedpeople=${ifDefined(props.showSelectedPeople)}
+      subtitle=${ifDefined(props.subtitle)}
+      secondarysubtitle=${ifDefined(props.secondarySubtitle)}
+      placeholder=${ifDefined(props.placeholder)}
+      @selection-changed=${handleSelectionChanged}
+      @person-added=${handlePersonAdded}
+      @person-removed=${handlePersonRemoved}>
+    </fwc-people-picker>
+  `,
+};
+
+export const tableView: Story = {
+  args: {
+    display: 'table',
+  },
+  loaders: [
+    async () => {
+      const resolvedPeople = await Promise.all(
+        generateIds(5, 10).map((azureId) => generatePerson({ azureId })),
+      );
+      return { resolvedPeople };
+    },
+  ],
+  render: (props: PeoplePickerElementProps, { loaded: { resolvedPeople } }) => html`
+    <fwc-people-picker
+      multiple=${ifDefined(props.multiple)}
+      resolveids=${ifDefined(props.resolveIds)}
+      people=${JSON.stringify(resolvedPeople)}
+      display=${ifDefined(props.display)}
       showselectedpeople=${ifDefined(props.showSelectedPeople)}
       subtitle=${ifDefined(props.subtitle)}
       secondarysubtitle=${ifDefined(props.secondarySubtitle)}

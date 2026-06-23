@@ -96,7 +96,7 @@ export const peopleBaseStyle: CSSResult = css`
     background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
   }
 
-  table tr .name {
+  table tbody tr .name {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -112,7 +112,7 @@ export const peopleBaseStyle: CSSResult = css`
   
   table tr .avatar,
   table tr .remove {
-    width: 60px;
+    width: 66px;
     text-align: center;
     padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
   }

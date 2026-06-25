@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.4
+
+### Patch Changes
+
+- [#2334](https://github.com/equinor/fusion-web-components/pull/2334) [`2093ac9`](https://github.com/equinor/fusion-web-components/commit/2093ac9788e6bf53a550df6a134fb87d4907cf78) Thanks [@eikeland](https://github.com/eikeland)! - Fix `resolveids` on people picker so resolved people are added to the existing selection instead of replacing it. This makes `resolveids` trigger the expected change events, with `selection-changed` reflecting the merged set of people.
+
 ## 2.2.3
 
 ### Patch Changes

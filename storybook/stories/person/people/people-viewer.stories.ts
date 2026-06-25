@@ -70,7 +70,6 @@ const renderConnected = (props: PeoplePickerElementProps & PeopleViewerElementPr
   };
 
   const handleSelectionChanged = (e: SelectionChangedEvent) => {
-    console.log('fwc-people-viewer::selection-changed', e.detail);
     people = [...e.detail];
 
     setPropPeople(people);
@@ -82,8 +81,7 @@ const renderConnected = (props: PeoplePickerElementProps & PeopleViewerElementPr
 
       <fwc-people-picker
         id="people-picker"
-        multiple"false"
-        showselectedpeople="false"
+        resolveids=${generateIds(3, 12).join(',')}
         @person-added=${handlePersonAdded}
         @person-removed=${handlePersonRemoved}
         style="margin-bottom: 1em;">
@@ -92,7 +90,6 @@ const renderConnected = (props: PeoplePickerElementProps & PeopleViewerElementPr
       <fwc-people-viewer
         id="people-viewer"
         people=${JSON.stringify(people)}
-        resolveids=${generateIds(3, 12).join(',')}
         @selection-changed=${handleSelectionChanged}
       >
       </fwc-people-viewer>

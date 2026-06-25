@@ -73,7 +73,7 @@ export class ResolvedController implements ReactiveController {
 
     if (hasChanged) {
       // sync resolved people to selected people
-      selected.setSelectedPeople(resolvedPeople);
+      selected.addPeople(resolvedPeople);
 
       // set flag to true to prevent re-parsing on next update
       this.#host.parsedResolved = true;

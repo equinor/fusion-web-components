@@ -1,6 +1,8 @@
 import { css, type CSSResult } from 'lit';
 
 export const pageStyle: CSSResult = css`
+  :root {
+    height: 100%;}
   .page {
     display: grid;
     grid-template-areas: 
@@ -20,10 +22,10 @@ export const pageStyle: CSSResult = css`
     grid-area: main;
     overflow: hidden;
     overflow-y: auto;
+  }
 
-    & > div {
-      min-height: 100%;
-    }
+  slot[name="main"]::slotted(:first-child) {
+    min-height: 100%;
   }
 
   slot[name="footer"] {

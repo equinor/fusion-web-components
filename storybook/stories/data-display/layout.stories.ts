@@ -25,7 +25,11 @@ const render = (props: LayoutElementProps) => html`
     <fwc-layout sidebar="${ifDefined(props.sidebar)}">
       <div slot="sidebar" style="width: 240px;"><p style="padding: 1em">Sidebar content</p></div>
       <div slot="content">
-        <fwc-page></fwc-page>
+        <fwc-page>
+          <p slot="main" style="padding: 1em">Main content</p>
+          <p slot="header" style="padding: 1em">Header content</p>
+          <p slot="footer" style="padding: 1em">Footer content</p>
+        </fwc-page>
       </div>
     </fwc-layout>
   </div>

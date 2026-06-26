@@ -16,19 +16,11 @@ export class PageElement extends LitElement {
   render() {
     return html`
       <section class="page">
-        <slot name="header">
-          <fwc-page-header><h1 slot="title">Im the Header</h1></fwc-page-header>
-        </slot>
+        <slot name="header"></slot>
         <main>
-          <div style="height: 300%;">
-            <slot name="main">
-              <p>Im the main content</p>
-            </slot>
-          </div>
+            <slot name="main"></slot>
         </main>
-        <slot name="footer">
-          <footer>Im the footer</footer>
-        </slot>
+        <slot name="footer"></slot>
       </section>
     `;
   }

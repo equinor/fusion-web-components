@@ -1,6 +1,6 @@
 import { fusionElement } from '@equinor/fusion-wc-core';
 import { LayoutElement } from './element';
-import { LayoutElementProps } from './types';
+import type { LayoutElementProps } from './types';
 
 export * from './element';
 export * from './types';

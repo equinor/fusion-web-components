@@ -20,7 +20,7 @@
     "@rollup/plugin-terser": "^1.0.0",
     "@types/lodash.camelcase": "^4.3.9",
     "@types/node": "^25.9.1",
-    "filesize": "^11.0.17",
+    "filesize": "^11.0.19",
     "lodash.camelcase": "^4.3.0",
     "rollup": "^4.60.4",
     "tslib": "^2.8.1"

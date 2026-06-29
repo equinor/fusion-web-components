@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.3.5 - 2026-05-07
+
+### patch
+
+- [#170](https://github.com/equinor/fusion-skills/pull/170) [`5e43223`](https://github.com/equinor/fusion-skills/commit/5e432232917b2b1642431d80cf1698bbefe80ee8) - Apply caveman-compress prose style to SKILL.md and references.
+
+
+  - Drop articles, filler, hedging from SKILL.md activation body
+  - Compress instructions, mcp-server, questions references
+
+## 0.3.4 - 2026-05-04
+
+### patch
+
+- [#153](https://github.com/equinor/fusion-skills/pull/153) [`3911da5`](https://github.com/equinor/fusion-skills/commit/3911da5922ab0b392d6c9b93a284ce0746870364) - Clarify sub_issue_id requires object ID, not issue number
+
+
+  - Promote the ID vs number distinction to a prominent warning block above the example
+  - Add a `gh api` command showing how to retrieve the object ID
+  - Add a troubleshooting table covering 404, invalid input, and silent-failure modes
+  - Clarify that `after_id`/`before_id` in reprioritize are also object IDs
+  - Add sub-issue linking activation cues to SKILL.md triggers
+
+  resolves equinor/fusion-skills#79
+
+- [#156](https://github.com/equinor/fusion-skills/pull/156) [`3ed5296`](https://github.com/equinor/fusion-skills/commit/3ed52962820549c21ddbec57df01273c5c930749) - Strengthen devil's-advocate agent for task-planning context
+
+
+  Expands the devil's advocate with:
+  - Auto-escalation to interrogator mode when a task-planning pass surfaces two or more architecture-ambiguity signals (no user trigger required)
+  - Extended Task concerns in moderate mode: premature decomposition, implicit cross-task contracts, and tasks that hide unresolved architecture assumptions
+  - New "Task-planning context" section in interrogator mode with four targeted decision branches: premature decomposition, implicit contracts, sequencing pressure, and hidden assumptions
+
+  resolves equinor/fusion-skills#132
+
 ## 0.3.3 - 2026-04-06
 
 ### patch

@@ -4,7 +4,7 @@ description: "Resolves unresolved GitHub PR review threads end-to-end: evaluates
 license: MIT
 compatibility: Requires GitHub MCP server or gh CLI, and git.
 metadata:
-   version: "0.1.6"
+   version: "0.1.7"
    status: experimental
    owner: "@equinor/fusion-core"
    tags:
@@ -48,28 +48,27 @@ Typical triggers (skill should activate on all of these):
 
 ## When not to use
 
-Do not use this skill when:
-- no unresolved review comments exist,
-- the request is only to summarize or describe feedback without making code changes,
-- all targeted threads are already resolved or outdated and acknowledged,
-- the branch/worktree is intentionally read-only.
+- No unresolved review comments exist
+- Request is only to summarize or describe feedback without code changes
+- All targeted threads are already resolved or outdated and acknowledged
+- Branch/worktree is intentionally read-only
 
 ## Required inputs
 
 Collect before execution:
-- repository owner/name,
-- pull request number or URL,
-- optional review id to scope comments (for example `pullrequestreview-<id>`),
-- branch/worktree decision,
-- required validation commands for the repository.
+- repository owner/name
+- pull request number or URL
+- optional review id to scope comments (e.g. `pullrequestreview-<id>`)
+- branch/worktree decision
+- required validation commands for the repository
 
 > **When a review URL is provided** (`github.com/<owner>/<repo>/pull/<number>#pullrequestreview-<id>`),
 > auto-extract owner, repo, PR number, and review id from it.
 > Only branch/worktree choice and validation commands still need confirming.
 
-Optional context:
-- linked issue reference (for example `equinor/fusion-core-tasks#432`),
-- commit granularity preference when comments overlap the same file.
+Optional:
+- linked issue reference (e.g. `equinor/fusion-core-tasks#432`)
+- commit granularity preference when comments overlap the same file
 
 ## Instructions
 

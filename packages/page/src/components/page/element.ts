@@ -2,9 +2,6 @@ import { LitElement } from 'lit';
 import { html } from 'lit/static-html.js';
 
 import { pageStyle } from './element.css';
-import { HeaderElement } from '../header';
-
-HeaderElement;
 
 /**
  * Element for page

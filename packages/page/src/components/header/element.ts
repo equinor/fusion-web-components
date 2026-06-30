@@ -27,9 +27,7 @@ export class HeaderElement extends LitElement {
         <slot name="actions">
           <div class="actions">Im the actions</div>
         </slot>
-        <slot name="toolbar">
-          <div class="toolbar">Im the toolbar with a long text to test if it wraps correctly. i need even longer text to see how it behaves when it exceeds the available space.</div>
-        </slot>
+        <slot name="toolbar"></slot>
       </header>
     `;
   }

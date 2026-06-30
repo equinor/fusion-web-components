@@ -21,7 +21,7 @@ const meta: Meta<typeof cem> = {
 
 const render = (props: LayoutElementProps) => html`
   <div style="height: 650px">
-    <fwc-layout sidebar="${ifDefined(props.sidebar)}">
+    <fwc-layout ?sidebar="${ifDefined(props.sidebar)}">
       <div slot="sidebar" style="width: 240px;"><p style="padding: 1em">Sidebar content</p></div>
       <div slot="content">
         <fwc-page>

@@ -20,13 +20,9 @@ export class HeaderElement extends LitElement {
   render() {
     return html`
       <header class="${this.collapsed ? 'collapsed' : 'expanded'}">
-        <slot name="breadcrumbs">
-          <nav class="breadcrumbs">home / page / appKey / builds</nav>
-        </slot>
+        <slot name="breadcrumbs"></slot>
         <slot name="title"></slot>
-        <slot name="actions">
-          <div class="actions">Im the actions</div>
-        </slot>
+        <slot name="actions"></slot>
         <slot name="toolbar"></slot>
       </header>
     `;

@@ -1,3 +1,1 @@
-export interface PageElementProps {
-  something?: string;
-}
+export interface PageElementProps {}

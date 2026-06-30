@@ -7,8 +7,7 @@ import { setCustomElementsManifest } from '@storybook/web-components-vite';
 import { LayoutElement, type LayoutElementProps } from '@equinor/fusion-wc-layout';
 import { PageElement } from '@equinor/fusion-wc-page';
 
-import cem from '@equinor/fusion-wc-list/custom-elements.json';
-
+import cem from '@equinor/fusion-wc-layout/custom-elements.json';
 LayoutElement;
 PageElement;
 

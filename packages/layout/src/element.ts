@@ -1,6 +1,5 @@
-import { type TemplateResult, LitElement } from 'lit';
+import { type TemplateResult, LitElement, html } from 'lit';
 import { property } from 'lit/decorators/property.js';
-import { html } from 'lit/static-html.js';
 
 import type { LayoutElementProps } from './types';
 import { layoutStyle } from './element.css';

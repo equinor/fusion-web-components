@@ -23,10 +23,7 @@ export class HeaderElement extends LitElement {
         <slot name="breadcrumbs">
           <nav class="breadcrumbs">home / page / appKey / builds</nav>
         </slot>
-        <slot name="title">
-
-          <h1 class="title">Header</h1>
-        </slot>
+        <slot name="title"></slot>
         <slot name="actions">
           <div class="actions">Im the actions</div>
         </slot>

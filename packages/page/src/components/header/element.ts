@@ -6,7 +6,7 @@ import { headerStyle } from './element.css';
 import { ScrollController } from './ScrollController';
 
 /**
- * Element for page
+ * Element for page header
  * @tag fwc-page-header
  */
 export class HeaderElement extends LitElement {

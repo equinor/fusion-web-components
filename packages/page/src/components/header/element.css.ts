@@ -23,23 +23,23 @@ export const headerStyle: CSSResult = css`
     grid-template-rows: auto auto;
   }
     
-  header.collapsed slot[name="breadcrumbs"] > * {
+  header.collapsed slot[name="breadcrumbs"] {
     display: none;
   }
 
-  slot[name="breadcrumbs"] > * {
+  slot[name="breadcrumbs"] {
     grid-area: breadcrumbs;
   }
 
-  slot[name="title"] > * {
+  slot[name="title"] {
     grid-area: title;
   }
 
-  slot[name="actions"] > * {
+  slot[name="actions"] {
     grid-area: actions;
   }
 
-  slot[name="toolbar"] > * {
+  slot[name="toolbar"] {
     grid-area: toolbar;
   }
 `;

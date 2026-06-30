@@ -1,10 +1,6 @@
 import { css, type CSSResult } from 'lit';
 
 export const pageStyle: CSSResult = css`
-  :host {
-    display: block;
-    height: 100%;
-  }
   .page {
     display: grid;
     grid-template-areas: 

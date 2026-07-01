@@ -3,7 +3,7 @@ name: fusion-issue-authoring
 description: Classify issue type, activate the matching agent mode for type-specific drafting, and enforce shared safety gates before GitHub mutation.
 license: MIT
 metadata:
-  version: "0.3.3"
+  version: "0.3.5"
   status: active
   owner: "@equinor/fusion-core"
   tags:
@@ -24,41 +24,38 @@ This skill uses internal agent modes for type-specific drafting logic:
 - `agents/feature.agent.md`: feature-focused scope and acceptance structure
 - `agents/user-story.agent.md`: role/workflow/scenario-driven story structure
 - `agents/task.agent.md`: checklist-first task decomposition and dependency planning
-- `agents/devils-advocate.agent.md`: always-on quality collaborator that raises key concerns after classification (moderate mode) and runs a full structured interview when explicitly asked or when scope/criteria gaps are significant (interrogator mode)
+- `agents/devils-advocate.agent.md`: always-on quality collaborator that raises key concerns after classification (moderate mode) and runs a full structured interview when explicitly asked, when scope/criteria gaps are significant, or when invoked from `fusion-issue-task-planning` with two or more architecture-ambiguity signals present (interrogator mode)
 
 Agent modes are activated internally based on issue type classification. Users never reference agent files directly. Shared gates (labels, assignee confirmation, draft review, publish confirmation, and mutation sequencing) remain in this skill.
 
 ## When to use
 
-Use this skill when you need to turn ideas, bugs, feature requests, or user needs into clear, actionable GitHub issues.
-Use it as the top-level router for both creating and updating issues.
+Use when turning ideas, bugs, feature requests, or user needs into clear, actionable GitHub issues, and as top-level router for creating and updating issues.
 
 Typical triggers:
 - "create an issue"
 - "draft a ticket"
 - "turn this into a GitHub issue"
 - "help me structure this work item"
-- "update this issue"
-- "maintain/clean up this issue"
+- "update / maintain / clean up this issue"
+- "add this as a sub-issue / set parent issue / link as child"
 
 ## When not to use
 
-Do not use this skill for:
 - Implementing code changes
-- Pull request authoring or review
-- General research tasks not resulting in an issue draft
+- PR authoring or review
+- General research not resulting in an issue draft
 - Mutating GitHub state without explicit user confirmation
 
 ## Required inputs
 
 Collect before publishing:
-- Target repository for issue creation/update
-- Issue intent/context
-- Issue type (Bug, Feature, User Story, Task)
-- Existing issue number/url when updating
-- Repository label set (or confirmation that labels are intentionally skipped). Cache the full label set per repository for the active session and filter locally instead of validating labels one by one. Prefer host session memory when available; otherwise use a `.tmp/` cache file that is never committed.
+- Target repository
+- Issue intent/context and type (Bug, Feature, User Story, Task)
+- Existing issue number/URL when updating
+- Repository label set (or confirmation labels are intentionally skipped). Cache full label set per repo for session; filter locally. Prefer host session memory; otherwise `.tmp/` cache file (never committed).
 - Parent/related issue links and dependency direction (sub-issue vs blocking)
-- Assignee preference (assign to user, specific person, or leave unassigned). Reuse cached assignee-candidate results for the active session and skip candidate searches when the user already gave `@me` or an exact login.
+- Assignee preference (`@me`, specific person, or unassigned). Reuse cached assignee-candidate results; skip searches when user gave `@me` or exact login.
 
 If required details are missing, ask concise clarifying questions from `references/questions.md`.
 If issue destination is unclear, ask explicitly where the issue should be created/updated before drafting mutation commands.
@@ -75,7 +72,7 @@ Classify request as `Bug`, `Feature`, `User Story`, or `Task`, then activate the
 
 If ambiguous, ask only essential clarifying questions.
 
-Devil's advocate pass: `agents/devils-advocate.agent.md` is always active in moderate mode — it surfaces the 2–3 most important concerns after classification without interrupting flow. When the user asks to be "grilled", says "stress-test this", or when scope/criteria gaps are significant, escalate to interrogator mode for a full structured interview before the type-specific agent. The devil's advocate returns confirmed decisions and noted risks, then hands off to the type-specific drafting agent.
+Devil's advocate pass: `agents/devils-advocate.agent.md` is always active in moderate mode — it surfaces the 2–3 most important concerns after classification without interrupting flow. When the user asks to be "grilled", says "stress-test this", when scope/criteria gaps are significant, or when invoked from `fusion-issue-task-planning` with two or more architecture-ambiguity signals present, escalate to interrogator mode for a full structured interview before the type-specific agent. The devil's advocate returns confirmed decisions and noted risks, then hands off to the type-specific drafting agent.
 
 ### Step 2 — Resolve repository and template
 

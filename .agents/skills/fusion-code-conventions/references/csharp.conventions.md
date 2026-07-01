@@ -1,12 +1,12 @@
 # C# Code Conventions
 
-Naming, null safety, async/await, and code style conventions for C# projects.
+C# naming, null safety, async/await, code style.
 
-> **Applicability:** These are org-wide baseline defaults. Repository-level policy (`CONTRIBUTING.md`, ADRs, contributor guides) and tooling configuration (`.editorconfig`, `Directory.Build.props`, analyzer settings) take precedence when they explicitly override a rule below. See the skill's **Precedence and applicability** section for the full resolution order.
+> **Applicability:** Org-wide baseline. Repo policy (`CONTRIBUTING.md`, ADRs) and tooling (`.editorconfig`, `Directory.Build.props`) take precedence on explicit override. See skill **Precedence and applicability** for resolution order.
 
 ## Project structure
 
-ASP.NET Core services commonly follow a layered internal layout similar to:
+Common ASP.NET Core layered layout:
 
 ```
 Controllers/               ← API controllers (MVC)
@@ -25,11 +25,7 @@ Integrations/              ← External service client adapters
 Program.cs                 ← Entry point (and DI registration for minimal APIs)
 ```
 
-Use a `Startup.cs` (with `ConfigureServices` / `Configure`) only when following the older ASP.NET Core Startup class pattern or a custom startup abstraction.
-For minimal APIs using the .NET 6+ hosting model, keep configuration in `Program.cs`; endpoint definitions may live in an `Endpoints/` folder or be organized by feature.
-
-Common reusable packages and shared libraries live in a separate `common/` or `shared/` directory.
-Integration tests live in a sibling `test/` directory, mirroring the production project name.
+Minimal APIs (.NET 6+): `Program.cs`; endpoints in `Endpoints/` or by feature. `Startup.cs` for older patterns only. Reusable packages: `common/` or `shared/`. Integration tests: sibling `test/`.
 
 ## Naming
 
@@ -51,63 +47,63 @@ Integration tests live in a sibling `test/` directory, mirroring the production 
 
 ## Compiler settings and style enforcement
 
-- **Nullable reference types**: `enable` — set globally (via `Directory.Build.props` or project file). New code must not opt out without a documented reason.
-- **TreatWarningsAsErrors**: `true` — warnings are not allowed to accumulate.
-- **ImplicitUsings**: project preference; production services are explicit, test projects may enable it.
-- **GenerateDocumentationFile**: `true` on service/library projects. Warning `1591` (missing XML comment) is suppressed — comments are generated where present but not required on every member.
-- **`csharp_using_directive_placement`**: `outside_namespace` — `using` directives before the namespace declaration.
-- **File-scoped namespaces**: prefer (`csharp_style_namespace_declarations = file_scoped`). Exception: EF Core migration files.
-- Enforce style via `.editorconfig` checked into the repository root.
+- **Nullable reference types**: `enable` — global (`Directory.Build.props` or project file). No opt-out without documented reason.
+- **TreatWarningsAsErrors**: `true` — no warning accumulation.
+- **ImplicitUsings**: project preference; production explicit, tests may enable.
+- **GenerateDocumentationFile**: `true` on service/library projects. Warning `1591` suppressed — generated where present, not required on every member.
+- **`csharp_using_directive_placement`**: `outside_namespace`.
+- **File-scoped namespaces**: prefer (`csharp_style_namespace_declarations = file_scoped`). Exception: EF Core migrations.
+- Enforce via `.editorconfig` in repo root.
 
 ## Null safety
 
-- Nullable reference types are enabled project-wide — no dereference without a null check or null-conditional access (`?.`).
-- Null-forgiving operator (`!`) is used sparingly, typically on `DbSet` properties initialized by EF Core (`= null!`).
-- Use `ArgumentNullException.ThrowIfNull(arg)` for guard checks at method entry points.
-- Prefer `FirstOrDefault()` / `SingleOrDefault()` over `First()` / `Single()` when the result may be absent.
+- Nullable reference types enabled project-wide — no dereference without null check or `?.`.
+- `!` sparingly, typically on EF Core `DbSet` properties (`= null!`).
+- `ArgumentNullException.ThrowIfNull(arg)` for entry-point guards.
+- Prefer `FirstOrDefault()`/`SingleOrDefault()` over `First()`/`Single()` when result may be absent.
 
 ## Async/await
 
-- All I/O methods are `async Task` / `async Task<T>`. Never `async void` outside event handlers.
+- I/O methods: `async Task`/`async Task<T>`. Never `async void` outside event handlers.
 - Never block with `.Result` or `.Wait()`.
 - Accept `CancellationToken cancellationToken = default` in async public methods.
 
 ## Disposables
 
-- `IDisposable` resources are wrapped in `using` statements or `using` declarations.
-- EF Core `DbContext` lifetimes are managed by DI (scoped — not manually disposed in handlers).
+- `IDisposable`: `using` statement or declaration.
+- EF Core `DbContext`: DI-managed, scoped; don't manually dispose.
 
 ## Architecture patterns
 
-- **Thin endpoints**: endpoints should be small and contain little logic. Parse the request, dispatch to a handler, return the result. Business logic belongs in handlers, not in controllers or endpoint definitions.
-- **Minimal APIs and MVC**: minimal APIs (`app.MapGet(...)`) and MVC controllers (`[ApiController]`) are both valid choices. Pick one style per project and apply it consistently.
-- **CQRS / MediatR**: prefer dispatching business logic through handlers (e.g., MediatR `IRequest` + `IRequestHandler`). Separate commands (state-changing) from queries (read-only) into distinct folders.
-- **Authorization**: prefer policy/requirement-based authorization over inline role string checks in action methods.
+- **Thin endpoints**: parse, dispatch, return. No business logic in controllers or endpoint definitions.
+- **Minimal APIs and MVC**: both valid (`app.MapGet(...)` or `[ApiController]`). Pick one style per project.
+- **CQRS / MediatR**: dispatch via handlers (`IRequest` + `IRequestHandler`). Commands (state-changing) and queries (read-only) in distinct folders.
+- **Authorization**: prefer policy/requirement-based over inline role string checks.
 - **API versioning**: `[ApiVersion("X.0")]` + `[MapToApiVersion("X.0")]` from `Asp.Versioning`. Versioned controllers may be split as `partial` classes per version file.
 - **Route naming**: kebab-case path segments (`/orders/{orderId}/line-items`).
 
 ## API response models
 
-- All API response types carry an `Api` prefix (`ApiOrderV2`, `ApiLineItem`).
-- Null properties should be suppressed in JSON output where they add noise: `[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]` (Newtonsoft) or `[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]` (`System.Text.Json`).
-- Pick one JSON serializer per project and use it consistently. Prefer `System.Text.Json` for new projects; Newtonsoft.Json for projects that already rely on it.
-- Versioned response models use a `V2`/`V3` suffix and may inherit from the previous version to extend incrementally.
-- Avoid reusing the same model across different endpoints — each endpoint should have its own request/response types. Shared models create hidden coupling and make it harder to evolve endpoints independently.
-- Response models live close to their controllers (`Controllers/Models/` or `Controllers/ViewModels/`).
+- `Api` prefix on all response types (`ApiOrderV2`, `ApiLineItem`)
+- Suppress null properties where they add noise: `[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]` or `[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]`
+- One JSON serializer per project: `System.Text.Json` for new, Newtonsoft.Json for existing
+- Versioned models: `V2`/`V3` suffix, may inherit previous version
+- Don't reuse models across endpoints — hidden coupling
+- Response models near controllers (`Controllers/Models/` or `Controllers/ViewModels/`)
 
 ## EF Core conventions
 
-- Entity types use a `Db` prefix to distinguish them from domain models (`DbOrder`, `DbLineItem`).
-- `DbSet<T>` properties initialized with `= null!` (EF Core sets them at runtime via DI).
-- Store enum columns as strings: `HasConversion(new EnumToStringConverter<TEnum>())` — improves readability in the database and survives enum reordering.
-- Keep index and relationship configuration in `OnModelCreating` using fluent lambda builders, not data annotations.
+- Entity types: `Db` prefix (`DbOrder`, `DbLineItem`).
+- `DbSet<T>` initialized with `= null!` (EF Core sets at runtime).
+- Enum columns as strings: `HasConversion(new EnumToStringConverter<TEnum>())` — readable in DB, survives reordering.
+- Indexes/relationships: `OnModelCreating` fluent builders, not data annotations.
 
 ## Error handling
 
-- Domain errors are typed exceptions that extend `Exception` directly (`RoleExistsError : Exception`).
-- Constructor sets a formatted message; the class exposes domain-specific read-only properties.
-- Return RFC 7807 Problem Details responses for errors — for minimal APIs use the built-in ProblemDetails helpers (for example `Results.Problem(...)` / `TypedResults.Problem(...)`, depending on target framework); for MVC use `ControllerBase.Problem(...)` and/or the built-in exception handler middleware that produces ProblemDetails.
-- Catch the specific domain exception; let middleware handle unexpected exceptions.
+- Domain errors: typed exceptions extending `Exception` (`RoleExistsError : Exception`).
+- Constructor sets formatted message; class exposes read-only domain props.
+- RFC 7807 Problem Details for errors: minimal APIs use `Results.Problem(...)`/`TypedResults.Problem(...)`; MVC use `ControllerBase.Problem(...)` or exception handler middleware.
+- Catch specific domain exception; middleware handles unexpected.
 
 ## Code style (enforced via `.editorconfig`)
 

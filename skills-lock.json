@@ -7,6 +7,12 @@
       "skillPath": "skills/fusion/SKILL.md",
       "computedHash": "f81d3d244e622ee9388d7d8eefa33a78b740fd8a51023cfc417a4733a00105cd"
     },
+    "fusion-app-react-dev": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.deprecated/fusion-app-react-dev/SKILL.md",
+      "computedHash": "9791ab5f3dae867e28d0bdba710d0878ac8cf4a449c1048ad46dfdee31b85ebd"
+    },
     "fusion-code-conventions": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

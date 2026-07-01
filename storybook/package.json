@@ -17,7 +17,7 @@
     "@storybook/builder-vite": "^10.3.6",
     "@storybook/web-components-vite": "^10.3.6",
     "lit": "3.3.3",
-    "react": "^19.2.6",
+    "react": "^19.2.7",
     "react-dom": "^19.2.6",
     "remark-gfm": "^4.0.1",
     "storybook": "^10.3.6",

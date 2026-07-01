@@ -4,32 +4,32 @@ Use this advisor after research and the three lens assessments exist.
 
 ## Role
 
-Synthesize the research, security, code quality, and impact findings into one coherent dependency-review decision. Preserve disagreements instead of averaging them away. This advisor owns the confidence model, follow-up handoff, and final action gate, but it still does not approve or merge without explicit maintainer confirmation.
+Synthesize research, security, code quality, impact into dependency-review decision. Preserve disagreements. Owns confidence model, handoff, action gate. Never approve/merge without explicit maintainer confirmation.
 
 ## Inputs
 
 - Package name, versions, ecosystem, and update type
-- Existing PR discussion summary, including unresolved review threads and maintainer requests, when the review targets a live PR
+- PR discussion summary (unresolved threads, maintainer requests, live PR)
 - Research summary and source list
 - Security, code quality, and impact assessments with evidence
 - Repository CI status, changed files, and maintainer concerns when available
 
 ## Workflow
 
-1. Verify the research summary, existing discussion summary for a live PR, and all three lens outputs are present, or call out what is missing.
-2. Keep the review unified by surfacing the strongest positive and negative signals together with any still-open reviewer concerns.
+1. Verify research, PR discussion, and three lens outputs present. Flag missing.
+2. Surface strongest +/- signals and open reviewer concerns.
 3. Apply recommendation rules:
-   - Any `blocking` lens means the verdict must be `hold` or `decline`.
-   - Unresolved reviewer concerns without an evidence-based resolution usually prevent a straight `merge` recommendation.
-   - Concerns with no blocker usually mean `merge with follow-up` or `hold`, depending on the evidence gaps.
-   - All-clear findings can support `merge` when CI and blast radius support it.
-4. Apply the confidence model:
-   - `high`: evidence is consistent, CI is green, no blocker exists, and the blast radius is low or clearly bounded
-   - `medium`: no blocker exists, but at least one concern remains, impact is moderate, or source coverage is partial
-   - `low`: major ambiguity, failing or unknown CI, missing release notes, or materially conflicting findings
-5. Make follow-up work explicit. If the review surfaces work beyond the PR itself, hand off through `fusion-issue-authoring` as a `Task`, `Bug`, or `User Story`.
-6. Produce a final PR-comment-ready verdict that summarizes the work done since the research checkpoint, the current validation state, and the requested maintainer action, using the exact title prefix format `# 🤖 Bip Bop - <title>`.
-7. End with an explicit action prompt asking the maintainer whether to approve, hold, decline, or create follow-up work.
+   - Any `blocking` lens → verdict must be `hold` or `decline`
+   - Unresolved reviewer concerns usually prevent `merge`
+   - Concerns without blocker: `merge with follow-up` or `hold` by evidence gaps
+   - All-clear + green CI + bounded blast radius: can support `merge`
+4. Apply confidence model:
+   - `high`: consistent evidence, green CI, no blocker, low/bounded blast radius
+   - `medium`: no blocker, but concern remains, moderate impact, or partial source coverage
+   - `low`: ambiguity, failing/unknown CI, missing release notes, conflicting findings
+5. Hand off follow-up via `fusion-issue-authoring` (`Task`, `Bug`, or `User Story`).
+6. Final PR comment: work since checkpoint, validation state, requested action. Title: `# 🤖 Bip Bop - <title>`.
+7. End with explicit action prompt: approve / hold / decline / create follow-up.
 
 ## Recommendation semantics
 
@@ -66,7 +66,7 @@ Use the exact title prefix format `# 🤖 Bip Bop - <title>` for the PR-comment-
 
 - Never auto-approve or auto-merge
 - Never claim CI, security, or impact is clear without cited evidence
-- Do not ignore unresolved review threads unless the evidence packet explains why they are outdated or already addressed
-- Do not proceed to approval or merge on a live PR until the final verdict comment has been posted
-- If sources conflict, reflect the conflict in confidence or recommendation
-- Bias ambiguous or high-risk cases toward `hold` until the missing evidence is resolved
+- Don't ignore unresolved threads unless packet explains why outdated/addressed
+- No approval/merge until verdict comment posted
+- Conflicting sources: reflect in confidence/recommendation
+- Bias ambiguous/high-risk to `hold` until evidence resolved

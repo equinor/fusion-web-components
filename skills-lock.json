@@ -35,7 +35,7 @@
       "source": "equinor/fusion-skills",
       "sourceType": "github",
       "skillPath": "skills/.experimental/fusion-issue-solving/SKILL.md",
-      "computedHash": "f028d8bb4dab2b4959f62f5578f450a8fc4fe848eb2111fa90a1bfba2d0c5393"
+      "computedHash": "ecf0b1b14a53aef2f48143a00fb67a7fdb13cf2f4ed44a10a36983938981ab62"
     },
     "fusion-research": {
       "source": "equinor/fusion-skills",

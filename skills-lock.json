@@ -55,6 +55,12 @@
       "skillPath": "skills/fusion-skill-authoring/SKILL.md",
       "computedHash": "7fff89ef0babfe248ae95c5f183de104d07206c9fbcffb4a843cbe33cf9b42bc"
     },
+    "fusion-skill-self-report-bug": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.deprecated/fusion-skill-self-report-bug/SKILL.md",
+      "computedHash": "186523eb9ad4eca462c518c6c7be6b63e4ae6af50a7c44b9ca64212d4d6556a9"
+    },
     "fusion-skills": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

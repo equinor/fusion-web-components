@@ -25,6 +25,12 @@
       "skillPath": "skills/.experimental/fusion-github-review-resolution/SKILL.md",
       "computedHash": "31ec168649090359fd7cccefd06871098ee973dfbf1f41ce6d29ef291de8c826"
     },
+    "fusion-issue-author-user-story": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.deprecated/fusion-issue-author-user-story/SKILL.md",
+      "computedHash": "03101699b681b44a669821614c02ef4d1a50f4195650175206d99dd43806b594"
+    },
     "fusion-issue-authoring": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

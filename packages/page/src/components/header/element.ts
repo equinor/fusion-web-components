@@ -7,6 +7,11 @@ import { ScrollController } from './ScrollController';
 /**
  * Element for page header
  * @tag fwc-page-header
+/**
+ * Composes a page header with slots for navigation, title, actions, and
+ * toolbar content, and can collapse as the page scrolls.
+ *
+ * @tag fwc-page-header
  */
 export class HeaderElement extends LitElement {
   static styles = headerStyle;

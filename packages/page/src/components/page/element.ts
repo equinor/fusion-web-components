@@ -11,9 +11,6 @@ import { pageStyle } from './element.css';
  *
  * @tag fwc-page
  */
- * Element for page
- * @tag fwc-page
- */
 export class PageElement extends LitElement {
   static styles = pageStyle;
 

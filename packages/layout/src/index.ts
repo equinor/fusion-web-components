@@ -7,6 +7,11 @@ export * from './types';
 
 export const tag = 'fwc-layout';
 
+/**
+ * Entry point for the fwc-layout component.
+ * Registers the custom element and provides framework typings so it can be
+ * used in HTML, TypeScript, and React JSX.
+ */
 @fusionElement(tag)
 export default class _ extends LayoutElement {}
 

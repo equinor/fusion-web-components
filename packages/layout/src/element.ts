@@ -14,9 +14,6 @@ import { layoutStyle } from './element.css';
  *
  * @tag fwc-layout
  */
- * Element for layout
- * @tag fwc-layout
- */
 export class LayoutElement extends LitElement implements LayoutElementProps {
   static styles = layoutStyle;
 

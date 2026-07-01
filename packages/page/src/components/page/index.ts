@@ -5,6 +5,10 @@ export * from './element';
 
 export const tag = 'fwc-page';
 
+/**
+ * Entry point for the fwc-page component.
+ * Registers the custom element and provides framework typings.
+ */
 @fusionElement(tag)
 export default class _ extends PageElement {}
 

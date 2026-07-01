@@ -23,7 +23,7 @@
       "source": "equinor/fusion-skills",
       "sourceType": "github",
       "skillPath": "skills/.experimental/fusion-github-review-resolution/SKILL.md",
-      "computedHash": "31ec168649090359fd7cccefd06871098ee973dfbf1f41ce6d29ef291de8c826"
+      "computedHash": "eb8e917045ed8229f608683e3eb3c433ea23e75ba27ceda620d820f080d2e2d9"
     },
     "fusion-issue-authoring": {
       "source": "equinor/fusion-skills",

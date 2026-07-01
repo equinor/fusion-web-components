@@ -1,6 +1,6 @@
 # Skill Catalog
 
-Fallback reference used when Fusion MCP is unavailable. Maps intent to the skills that `fusion-skills` agents can route to, with install commands.
+Fallback reference when Fusion MCP is unavailable. Maps intent to skills `fusion-skills` agents can route to, with install commands.
 
 ---
 
@@ -46,7 +46,7 @@ npx -y skills add equinor/fusion-skills fusion-mcp
 
 ## Lifecycle intents (no install needed)
 
-These intents are handled directly by `fusion-skills` agents without requiring a separate skill install:
+Handled by `fusion-skills` agents without separate install:
 
 | Intent | Handled by |
 |--------|-----------|
@@ -67,4 +67,4 @@ These intents are handled directly by `fusion-skills` agents without requiring a
 
 ## When a skill is not in this catalog
 
-If the user's intent does not match any entry above, activate `discovery.agent.md`. Do not invent skill names.
+If user intent does not match any entry above, activate `discovery.agent.md`. Do not invent skill names.

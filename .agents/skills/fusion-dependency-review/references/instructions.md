@@ -1,31 +1,31 @@
 # Detailed workflow
 
-Use this reference for the expanded execution contract. Keep `SKILL.md` focused on activation, high-level orchestration, outputs, and safety; use this file when the run needs step-by-step sequencing.
+Expanded execution contract. Keep `SKILL.md` focused on activation, orchestration, and safety; use this file for step-by-step sequencing.
 
 ## Step 0 — Resolve the target PR
 
 1. If the user already provided a PR URL or PR number, normalize owner, repo, and PR number from that input.
-2. If the request is ambiguous (for example `review the dependency PR`), ask only the minimum follow-up needed to identify the target.
-3. When repository context is known but the PR is not, use GitHub MCP to search or list open dependency PRs and present a shortlist for the user to choose from.
-4. Prefer likely dependency-update candidates first: bot-authored PRs, titles with `deps`, `bump`, `update`, or ecosystem-specific dependency wording.
-5. If multiple plausible PRs remain, do not guess. Wait for the user to choose the PR before continuing.
-6. If live PR access is unavailable, ask the user to provide a PR URL, PR number, or pasted PR summary before starting research.
+2. If request ambiguous (e.g. `review the dependency PR`), ask only minimum follow-up to identify target.
+3. When repo known but PR unknown, use GitHub MCP to list open dependency PRs for user to choose.
+4. Prefer likely dependency-update candidates first: bot-authored PRs, titles with `deps`, `bump`, `update`, or ecosystem-specific wording.
+5. Multiple plausible PRs: don't guess. Wait for user to choose before continuing.
+6. If live PR access unavailable, ask for PR URL, PR number, or pasted summary before starting research.
 
 ## Step 1 — Gather PR context
 
 1. After a single target PR is selected, fetch PR metadata: title, description, changed files, CI status, labels.
-2. Fetch existing top-level PR comments and review threads through GitHub MCP before any analysis, using PR tools that list both timeline comments and threaded review feedback so everything is captured.
+2. Fetch all existing PR comments and review threads via GitHub MCP before analysis (timeline + threaded review feedback).
 3. Summarize the current PR discussion: maintainer requests, reviewer concerns, unresolved threads, prior agent comments, and decisions already made.
-4. If live comment or review-thread retrieval fails, stop before analysis and tell the maintainer that the required PR discussion context could not be loaded.
+4. If retrieval fails, stop before analysis and notify maintainer that PR discussion context could not be loaded.
 5. Identify the dependency being updated: package name, ecosystem, current version, target version.
 6. Determine the update type: patch, minor, or major.
-7. Pull the diff to understand what files changed, typically lockfiles, manifests, or code adaptations.
+7. Pull diff to see changed files (typically lockfiles, manifests, or code adaptations).
 8. Determine whether the PR branch is current, mergeable, or likely to require rebase before patching or revalidation.
-9. If live PR access is unavailable, normalize the user-provided summary into the same fields and continue only if the summary is sufficient.
+9. If no live access, normalize user-provided summary into the same fields and continue only if sufficient.
 
 ## Step 2 — Research and prepare the evidence packet
 
-1. Start from the PR discussion summary created in Step 1 and refine it to highlight maintainer instructions, prior reviewer findings, unanswered questions, and unresolved review threads, clearly distinguishing open concerns from resolved or outdated discussion.
+1. Refine the Step 1 discussion summary: highlight maintainer instructions, prior reviewer findings, unanswered questions, and unresolved threads. Distinguish open concerns from resolved or outdated discussion.
 2. Summarize release notes or changelog changes between the old and new version.
 3. Flag breaking changes, deprecations, peer shifts, or migration steps.
 4. Check for known regressions or open issues against the target version.
@@ -40,8 +40,8 @@ Use this reference for the expanded execution contract. Keep `SKILL.md` focused 
 2. Treat the lens advisors as evidence producers only; the parent skill still owns the unified review.
 3. Chain the research output and lens outputs into `agents/verdict-advisor.md` for the recommendation, confidence, follow-up handoff, and explicit maintainer prompt.
 4. If any lens has a `blocking` assessment, the recommendation must not be `merge` without addressing the blocker first.
-5. Unresolved reviewer concerns or open review threads without an evidence-based resolution should reduce confidence and usually prevent a straight `merge` recommendation.
-6. Treat the verdict as a comment-ready artifact. If patching, rebasing, or focused validation changes the branch state, fold those results into the final verdict before posting it.
+5. Unresolved reviewer concerns without evidence-based resolution reduce confidence and usually prevent a `merge` recommendation.
+6. Treat the verdict as a comment-ready artifact. Fold patching/rebase/validation results into the final verdict before posting.
 
 ## Step 4 — Live PR checkpoints and maintainer decision gates
 

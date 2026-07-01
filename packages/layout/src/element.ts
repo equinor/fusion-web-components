@@ -5,6 +5,15 @@ import type { LayoutElementProps } from './types';
 import { layoutStyle } from './element.css';
 
 /**
+ * Composes content into either:
+ * - a single full-width content area, or
+ * - a two-column layout with an optional sidebar.
+ *
+ * @slot sidebar - Optional secondary content.
+ * @slot content - Primary application content.
+ *
+ * @tag fwc-layout
+ */
  * Element for layout
  * @tag fwc-layout
  */

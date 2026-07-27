@@ -82,7 +82,7 @@ export const TopLayer: Story = {
   args: { topLayer: true, initialText: 'Try me - open above the red overlay' },
   render: (props) => html`
     <div
-      style="position: relative; transform: translateZ(0); padding: 2rem 1rem 6rem; border: 1px dashed gray;"
+      style="position: relative; transform: translateZ(0); padding: 2rem 1rem 260px; border: 1px dashed gray;"
     >
       <p style="margin: 0 0 1rem; font: 0.85rem/1.4 sans-serif;">
         This box creates its own stacking context via

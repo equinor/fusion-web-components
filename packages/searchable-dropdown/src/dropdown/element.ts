@@ -206,10 +206,9 @@ export class SearchableDropdownElement
       this.controller.updateSelectedByProp();
     }
 
-    /* if top-layer mode was just disabled while the popover was showing, tear it down */
-    if (props.has('topLayer') && !this.isTopLayerActive && this.#popoverOpen) {
-      this.#popoverOpen = false;
-      this.#detachPositionListeners();
+    /* revert to default positioning whenever top-layer mode is turned off */
+    if (props.has('topLayer') && !this.isTopLayerActive) {
+      this.#teardownPopover();
     }
 
     if (this.isTopLayerActive) {
@@ -255,6 +254,37 @@ export class SearchableDropdownElement
       }
       this.#detachPositionListeners();
     }
+  }
+
+  /**
+   * Reverts the result list back to its default, shadow-DOM-relative
+   * absolute positioning. Called whenever top-layer mode is turned off, so
+   * neither a lingering top-layer popover state nor the inline
+   * `top`/`left`/`width` styles set by {@link #updatePopoverPosition} for
+   * viewport-relative anchoring stick around and mis-position (or
+   * mis-stack) the list once it falls back to `position: absolute`.
+   *
+   * Always runs the cleanup unconditionally rather than only when
+   * {@link #popoverOpen} is currently true, since the popover may have
+   * already been closed (e.g. via a prior selection) while those inline
+   * styles were still left on the element from when it was last shown.
+   */
+  #teardownPopover(): void {
+    this.#popoverOpen = false;
+    this.#detachPositionListeners();
+
+    const el = this.listSurfaceElement;
+    if (!el) {
+      return;
+    }
+    try {
+      el.hidePopover();
+    } catch {
+      /* already hidden - e.g. the browser auto-hides on popover attribute removal - ignore */
+    }
+    el.style.removeProperty('top');
+    el.style.removeProperty('left');
+    el.style.removeProperty('width');
   }
 
   /**

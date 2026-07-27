@@ -1,6 +1,7 @@
 import {
   html,
   LitElement,
+  nothing,
   type HTMLTemplateResult,
   type CSSResult,
   type PropertyValues,
@@ -37,6 +38,14 @@ IconElement;
 import { sddStyles } from './element.css';
 
 /**
+ * Feature-detects browser support for the Popover API (top layer rendering).
+ * Evaluated once per module load since support does not change at runtime.
+ * @see https://caniuse.com/mdn-api_htmlelement_showpopover
+ */
+const SUPPORTS_POPOVER: boolean =
+  typeof HTMLElement !== 'undefined' && typeof HTMLElement.prototype.showPopover === 'function';
+
+/**
  * Element for SearchableDropdown
  * @tag fwc-searchable-dropdown
  *
@@ -56,6 +65,7 @@ import { sddStyles } from './element.css';
  * @property {string} multiple Able to select multiple items
  * @property {string} placeholder Placeholder text for fwc-textinput element
  * @property {string} selectedId ID that should be selected
+ * @property {boolean} topLayer Render the result list in the browser's top layer via the Popover API instead of a shadow-DOM-relative absolutely positioned box. Opt-in, defaults to false.
  * @property {string} value value for TextInput element
  * @property {'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'} variant Set variant to header|page style
  *
@@ -135,19 +145,143 @@ export class SearchableDropdownElement
   @property({ type: Boolean, attribute: 'select-text-on-focus', reflect: true })
   selectTextOnFocus = false;
 
+  /**
+   * Render the result list in the browser's top layer using the native
+   * [Popover API](https://developer.mozilla.org/docs/Web/API/Popover_API)
+   * (`popover="manual"`) instead of a shadow-DOM-relative, `position:
+   * absolute` box.
+   *
+   * Enable this when the result list must reliably render above content
+   * that creates its own independent stacking context elsewhere in the host
+   * application (e.g. a portal app header, a dialog, or any ancestor with
+   * `transform`/`filter`/`contain`/`z-index`). Ordinary z-index cannot
+   * guarantee precedence over such stacking contexts because it is only
+   * ever compared *within* the nearest containing stacking context - the
+   * top layer paints above the entire document regardless of ancestors.
+   *
+   * The result surface remains anchored to the input and is repositioned on
+   * window resize and on scroll of any ancestor scroll container while
+   * open. Opening/closing stays fully driven by
+   * {@link SearchableDropdownController.isOpen}; outside-click and Escape
+   * handling is unchanged since `popover="manual"` disables the browser's
+   * own light-dismiss behavior.
+   *
+   * Automatically falls back to the default (non-top-layer) behavior in
+   * browsers without Popover API support - see
+   * https://caniuse.com/mdn-api_htmlelement_showpopover.
+   *
+   * @attr top-layer
+   */
+  @property({ type: Boolean, attribute: 'top-layer', reflect: true })
+  topLayer = false;
+
   @query('fwc-textinput')
   textInputElement: TextInputElement | undefined;
 
   @query('fwc-list')
   listElement: ListElement | undefined;
 
+  @query('.list')
+  protected listSurfaceElement?: HTMLDivElement;
+
   @state()
   selectedItems: Set<SearchableDropdownResultItem['id']> = new Set([]);
+
+  /**
+   * Tracks whether the top-layer popover is currently shown, so we only call
+   * `showPopover()`/`hidePopover()` when the state actually transitions.
+   */
+  #popoverOpen = false;
+
+  /**
+   * @returns true when top-layer mode is both requested and supported by
+   * the current browser.
+   */
+  protected get isTopLayerActive(): boolean {
+    return this.topLayer && SUPPORTS_POPOVER;
+  }
 
   updated(props: PropertyValues) {
     if (props.has('selectedId')) {
       this.controller.updateSelectedByProp();
     }
+
+    /* if top-layer mode was just disabled while the popover was showing, tear it down */
+    if (props.has('topLayer') && !this.isTopLayerActive && this.#popoverOpen) {
+      this.#popoverOpen = false;
+      this.#detachPositionListeners();
+    }
+
+    if (this.isTopLayerActive) {
+      this.#syncPopover();
+    }
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.#detachPositionListeners();
+  }
+
+  /**
+   * Shows/hides the top-layer popover to match the controller's open state,
+   * (re)computing its anchored position and (de)registering the listeners
+   * that keep it anchored while open.
+   */
+  #syncPopover(): void {
+    const el = this.listSurfaceElement;
+    if (!el) {
+      return;
+    }
+
+    const shouldBeOpen = this.controller.isOpen;
+    if (shouldBeOpen === this.#popoverOpen) {
+      return;
+    }
+    this.#popoverOpen = shouldBeOpen;
+
+    if (shouldBeOpen) {
+      this.#updatePopoverPosition();
+      try {
+        el.showPopover();
+      } catch {
+        /* already open, or not yet connected - ignore */
+      }
+      this.#attachPositionListeners();
+    } else {
+      try {
+        el.hidePopover();
+      } catch {
+        /* already closed - ignore */
+      }
+      this.#detachPositionListeners();
+    }
+  }
+
+  /**
+   * Anchors the popover to the current position/size of the host, since
+   * top-layer content is taken out of normal flow and positioned relative
+   * to the viewport.
+   */
+  #updatePopoverPosition = (): void => {
+    const el = this.listSurfaceElement;
+    if (!el) {
+      return;
+    }
+    const rect = this.getBoundingClientRect();
+    el.style.left = `${rect.left}px`;
+    el.style.top = `${rect.bottom + 4}px`;
+    el.style.width = `${rect.width}px`;
+  };
+
+  #attachPositionListeners(): void {
+    window.addEventListener('resize', this.#updatePopoverPosition);
+    /* scroll events don't bubble, but they do reach a capturing window listener */
+    window.addEventListener('scroll', this.#updatePopoverPosition, true);
+  }
+
+  #detachPositionListeners(): void {
+    window.removeEventListener('resize', this.#updatePopoverPosition);
+    window.removeEventListener('scroll', this.#updatePopoverPosition, true);
   }
 
   /* Build fwc-list-items */
@@ -355,7 +489,7 @@ export class SearchableDropdownElement
             <span slot="trailing">${this.renderCloseIcon()} </span>
           </slot>
         </div>
-        <div class="list">
+        <div class="list" popover=${this.isTopLayerActive ? 'manual' : nothing}>
           <div class="list-scroll">${this.renderList()}</div>
         </div>
       </div>

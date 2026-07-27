@@ -16,6 +16,7 @@ import type { IconElement, IconType } from '@equinor/fusion-wc-icon';
  * @placeholder TextInput placeholder
  * @selectedId Preselected item id
  * @textInputElement the html node of input
+ * @topLayer Render the result list in the browser top layer (Popover API) so it can appear above independently created stacking contexts. Falls back to default positioning when unsupported.
  * @value The preselected value. shoudl be combined with value
  * @variant Set variant to 'page' | 'page-outlined' | 'page-dense' | 'header' | 'header-filled'
  */
@@ -34,6 +35,7 @@ export interface SearchableDropdownProps {
   selectedId?: string;
   textInputElement?: TextInputElement;
   listElement?: ListElement;
+  topLayer?: boolean;
   value?: string;
   variant?: string;
 }

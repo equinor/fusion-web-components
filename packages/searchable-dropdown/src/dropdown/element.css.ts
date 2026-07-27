@@ -59,6 +59,27 @@ export const fwcsdd: CSSResult = css`
       0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
   }
+  /**
+   * Top-layer mode (topLayer property, popover="manual"): the browser's UA
+   * stylesheet promotes this element to the top layer and makes it
+   * position: fixed, so it must be re-anchored to the viewport instead of
+   * the shadow-DOM-relative host. Position/size is computed and applied
+   * inline by the element (see #updatePopoverPosition); this only resets
+   * the UA defaults (border/padding/background/margin/inset) that would
+   * otherwise fight our own box-shadow/border-radius styling above.
+   */
+  .list[popover] {
+    position: fixed;
+    inset: auto;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    background: transparent;
+    color: inherit;
+  }
   .list-scroll {
     width: 100%;
     height: auto;

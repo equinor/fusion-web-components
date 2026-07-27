@@ -79,7 +79,7 @@ export const SelectTextOnFocus: Story = {
  */
 export const TopLayer: Story = {
   ...Default,
-  args: { topLayer: true },
+  args: { topLayer: false },
   render: (props) => html`
     <div
       style="position: relative; transform: translateZ(0); padding: 2rem 1rem 260px; border: 1px dashed gray;"

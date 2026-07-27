@@ -33,7 +33,7 @@ const render = (props: SearchableDropdownProps) => html`
     multiple="${ifDefined(props.multiple)}"
     selectedId="${ifDefined(props.selectedId)}"
     select-text-on-focus="${ifDefined(props.selectTextOnFocus)}"
-    top-layer="${ifDefined(props.topLayer)}"
+    ?top-layer="${props.topLayer}"
   ></fwc-searchable-dropdown>
 `;
 

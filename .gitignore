@@ -11,6 +11,12 @@ node_modules
 
 storybook/package-lock.json
 storybook/dist
+storybook/storybook-static
+storybook/test-results
+storybook/playwright-report
+storybook/visual-tests/.tsbuild
+storybook/visual-tests/tests/__screenshots__/**/*-actual.png
+storybook/visual-tests/tests/__screenshots__/**/*-diff.png
 
 packages/*/package-lock.json
 packages/*/build

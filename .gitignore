@@ -1,5 +1,6 @@
 .vscode
 .idea
+.tmp
 .DS_STORE
 
 *.log

@@ -1,0 +1,5 @@
+rules:
+  single-export-per-file:
+    excludePattern:
+      - "*.stories.ts"
+      - "*.stories.tsx"

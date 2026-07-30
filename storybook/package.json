@@ -6,7 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev",
-    "build": "storybook build -o ./dist"
+    "build": "storybook build -o ./dist",
+    "build:static": "storybook build -o storybook-static",
+    "test:visual": "pnpm build:static && playwright test --config visual-tests/playwright.config.ts",
+    "test:visual:update": "pnpm build:static && playwright test --config visual-tests/playwright.config.ts --update-snapshots"
   },
   "keywords": [],
   "author": "",
@@ -54,6 +57,8 @@
     "@equinor/fusion-wc-textinput": "workspace:*",
     "@equinor/fusion-wc-theme": "workspace:*",
     "@storybook/react-webpack5": "^10.3.6",
+    "@playwright/test": "^1.56.1",
+    "http-server": "^14.1.1",
     "tslib": "^2.8.1"
   }
 }

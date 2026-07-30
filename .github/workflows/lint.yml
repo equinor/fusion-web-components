@@ -23,3 +23,17 @@ jobs:
 
       - name: Run Biome
         run: biome ci
+
+  fusion-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup node and install deps
+        uses: ./.github/workflows/actions/node-setup
+
+      - name: Run Fusion lint
+        run: pnpm lint:fusion:changed

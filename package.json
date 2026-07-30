@@ -15,7 +15,12 @@
       "picomatch@>=4.0.0 <4.0.4": "4.0.4",
       "serialize-javascript@<7.0.5": "7.0.5",
       "fast-uri@<=3.1.1": "3.1.2"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "tree-sitter-javascript",
+      "tree-sitter-typescript"
+    ]
   },
   "packageManager": "pnpm@10.20.0",
   "scripts": {
@@ -31,6 +36,8 @@
     "check": "biome check",
     "lint": "biome lint",
     "lint:staged": "biome lint --staged",
+    "lint:fusion": "fusion-lint components packages storybook/stories utils",
+    "lint:fusion:changed": "fusion-lint changed --against origin/main --github-actions",
     "format": "biome format",
     "test:pack": "pnpm -r pack --dry-run",
     "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
@@ -48,6 +55,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.14",
+    "@equinor/fusion-lint": "^0.3.0",
     "del-cli": "^7.0.0",
     "typescript": "^6.0.3"
   }

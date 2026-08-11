@@ -1,50 +1,38 @@
 # GitHub MCP server reference
 
-Use this file for GitHub MCP-specific tools and payload examples.
+GitHub MCP tools and payload examples. Server: https://github.com/github/github-mcp-server
 
-- Server repository: https://github.com/github/github-mcp-server
+## Preferred tools
 
-## Preferred issue-authoring tools
+- `mcp_github::issue_write` — create/update issues
+- `mcp_github::search_issues` — duplicates/context search
+- `mcp_github::sub_issue_write` — add/remove/reprioritize sub-issues
+- `mcp_github::search_users` — assignment candidates
+- `mcp_github::add_issue_comment` — add comment
+- `mcp_github::list_issue_types` — list issue types
 
-- `mcp_github::issue_write`: create or update issues.
-- `mcp_github::search_issues`: search issues for duplicates/context.
-- `mcp_github::sub_issue_write`: add/remove/reprioritize sub-issues.
-- `mcp_github::search_users`: search users for assignment candidates.
-- `mcp_github::add_issue_comment`: add comment to issue.
-- `mcp_github::list_issue_types`: list available issue types.
+## High-cost paths and mitigation
 
-## High-cost operations and mitigation
+Expensive: repeated label lookups, repeated assignee searches, repeated `list_issue_types`, broad duplicate searches, second-pass updates for labels/assignees, GraphQL retry loops.
 
-Common expensive paths in issue workflows:
-
-- repeated label lookups for the same repository,
-- repeated assignee-candidate searches for the same repository/org and query,
-- repeated `list_issue_types` calls per issue,
-- repeated duplicate searches with broad queries,
-- unnecessary second-pass issue updates for labels/assignees,
-- GraphQL fallback retries that loop on rate-limit errors.
-
-Mitigation policy:
-
-- cache repository labels per `owner/repo` for the active session,
-- cache assignee-candidate results per `owner/repo` (or owner) and query for the active session,
-- cache issue types per owner for the active session,
-- run one focused duplicate search unless scope materially changes,
-- send full known issue payload in the first `issue_write` call,
-- run GraphQL fallback only when MCP coverage is missing and without retry loops.
+Mitigation:
+- cache labels per `owner/repo` for session
+- cache assignee candidates per `owner/repo+query` for session
+- cache issue types per owner for session
+- one focused duplicate search
+- full payload in first `issue_write`
+- GraphQL fallback only when MCP missing, no retry loops
 
 ## MCP readiness check
 
-Run a read-only probe before issue authoring:
-
-1. Try `mcp_github::search_issues` in the target repository with a lightweight query.
-2. If that succeeds, MCP is ready.
-3. If tools are unavailable or auth fails, run install-assist below.
+1. Try `mcp_github::search_issues` with lightweight query in target repo
+2. Succeeds → MCP ready
+3. Fails → run install-assist
 
 ## Install assist (VS Code)
 
-1. Ensure VS Code supports remote MCP.
-2. Configure GitHub MCP server:
+1. Ensure VS Code supports remote MCP
+2. Add to MCP config:
 
 ```json
 {
@@ -57,77 +45,50 @@ Run a read-only probe before issue authoring:
 }
 ```
 
-3. Open Copilot Chat Agent mode and complete OAuth sign-in if prompted.
-4. Re-run readiness probe (`mcp_github::search_issues`).
+3. Open Copilot Chat Agent mode, complete OAuth if prompted
+4. Re-run readiness probe
 
-If remote MCP is not available in the host, use local server setup from the GitHub MCP server README.
-
-## Tool quick map
-
-- `mcp_github::issue_write` - Create or update issue.
-- `mcp_github::search_issues` - Search issues.
-- `mcp_github::sub_issue_write` - Change sub-issue.
-- `mcp_github::search_users` - Search users.
-- `mcp_github::add_issue_comment` - Add comment to issue.
+No remote MCP available: use local server setup from GitHub MCP server README.
 
 ## Blocking dependency note
 
-There is no dedicated Issues MCP tool in this set for setting blocking/blocked links directly.
-
-- Prefer `mcp_github::sub_issue_write` to organize issues in a logical execution order.
-- Use `mcp_github::add_issue_comment` (or issue body text) to document blocker relationships when needed.
+No dedicated blocking/blocked links tool. Use `mcp_github::sub_issue_write` for execution order; `mcp_github::add_issue_comment` or body text for blocker context.
 
 ## `type` parameter rule
 
-`type` is optional.
+Optional. Get valid values with `mcp_github::list_issue_types`. Send only when repo has issue types configured; omit otherwise.
 
-- Use `mcp_github::list_issue_types` to get valid type values for the organization.
-- Only send `type` when the repository has issue types configured.
-- If issue types are unsupported, omit `type`.
+## Label caching
 
-## Label lookup caching (recommended)
+Never one point lookup per label.
 
-Do **not** validate requested labels with one point lookup per label.
+1. First label request for `owner/repo`: bulk fetch, cache for session
+   - prefer `/memories/session/<owner>-<repo>-labels.json`
+   - fallback: `.tmp/issue-authoring-labels-<owner>-<repo>.json` (never committed)
+2. Cache hit: filter locally, send surviving set in first `issue_write`
+3. Only point lookups + no cache: ask to skip optional labels or use user-confirmed only; no per-label loop
+4. Refresh cache only on repo change or explicit user request
 
-Use this strategy:
+## Assignee caching
 
-1. On the first label request for `owner/repo`, do one repository-wide label fetch or equivalent bulk read and cache the result for the active session.
-2. Prefer a host session-memory artifact when available:
-  - `/memories/session/<owner>-<repo>-labels.json`
-  - fallback: `.tmp/issue-authoring-labels-<owner>-<repo>.json` (never committed)
-3. On cache hit, filter requested labels locally and send only the surviving set in the first `mcp_github::issue_write` call.
-4. If the host only exposes point label lookups and no cached label set exists yet, do not loop through labels. Ask whether to skip optional labels or include only user-confirmed labels in the first mutation and accept a single rejection path.
-5. Refresh the cache only when the repository changes or the user explicitly asks for a reload.
+Never repeat same lookup per session.
 
-## Assignee candidate caching (recommended)
+1. `@me` or exact login → skip `mcp_github::search_users`
+2. Lookup needed: cache by `owner/repo+query`
+   - prefer `/memories/session/<owner>-<repo>-assignee-candidates.json` or `<owner>-assignee-candidates.json`
+   - fallback: `.tmp/issue-authoring-assignee-candidates-<owner>-<repo>.json` (never committed)
+3. Contributors/members available: hydrate cache once, reuse; otherwise reuse first `search_users` result
+4. Rate limits block enrichment: ask to continue unassigned or with `@me`
 
-Do **not** repeat the same assignee-candidate lookup for every issue in a session.
+## Issue type caching
 
-Use this strategy:
+Never call `mcp_github::list_issue_types` every request.
 
-1. If the user says `@me` or gives an exact GitHub login, skip `mcp_github::search_users` entirely.
-2. When lookup is needed, cache candidate results keyed by `owner/repo + query` (or `owner + query` if repository scoping is unavailable).
-3. Prefer a host session-memory artifact when available:
-  - `/memories/session/<owner>-<repo>-assignee-candidates.json`
-  - `/memories/session/<owner>-assignee-candidates.json`
-  - fallback: `.tmp/issue-authoring-assignee-candidates-<owner>-<repo>.json` (never committed)
-4. If the host exposes repository contributors or organization members, hydrate that cache once per session and reuse it. Otherwise, reuse the first `mcp_github::search_users` result for the same query.
-5. If rate limits block candidate enrichment, ask whether to continue unassigned or with `@me` instead of retrying lookup loops.
+1. In-session cache: `owner → [types]`
+2. Cache hit: validate locally. Cache miss: call, then cache
+3. `issue_write` fails on `type` → mark owner `types_unsupported` for session, omit `type`
 
-## Issue type lookup caching (recommended)
-
-Do **not** run `mcp_github::list_issue_types` on every request.
-
-Use this strategy:
-
-1. Keep an in-session cache keyed by organization owner (`owner -> [types]`).
-2. On create/update where `type` may be used:
-  - if cache hit: validate against cached values
-  - if cache miss: call `mcp_github::list_issue_types`, then cache result
-3. If `mcp_github::issue_write` with `type` fails due to unsupported types, mark that owner as `types_unsupported` for the session and omit `type` afterwards.
-
-Optional local cache file for longer runs:
-- `.tmp/issue-type-cache.json` (never committed)
+Optional: `.tmp/issue-type-cache.json` (never committed)
 - refresh when owner changes or validation fails.
 
 ## Duplicate search minimization
@@ -171,6 +132,22 @@ Only include `type` when issue types are supported.
 
 ### Add a sub-issue to a parent issue
 
+> **`sub_issue_id` is the GitHub object ID, NOT the issue number.**
+>
+> | Format | Example | Used in URLs / UI? |
+> |---|---|---|
+> | Issue number | `#79`, `79` | Yes |
+> | Object ID | `3969391411` | No — internal only |
+>
+> **Always retrieve the object ID before calling `sub_issue_write`.**
+>
+> ```bash
+> # Get the object ID for a sub-issue by its number
+> gh api repos/OWNER/REPO/issues/NUMBER -q '.id'
+> # Example: gh api repos/equinor/fusion-skills/issues/79 -q '.id'
+> # Output: 3969391411
+> ```
+
 ```json
 {
   "method": "add",
@@ -181,7 +158,13 @@ Only include `type` when issue types are supported.
 }
 ```
 
-Note: `sub_issue_id` is the sub-issue **ID**, not issue number.
+#### Troubleshooting sub-issue linking
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| 404 error | Used issue number instead of object ID | Run `gh api repos/OWNER/REPO/issues/NUMBER -q '.id'` to get the correct ID |
+| "Invalid input" error | `sub_issue_id` missing or wrong format | Confirm value is a numeric ID (e.g. `3969391411`), not a string or `#79` |
+| Sub-issue not added silently | Parent issue or sub-issue does not exist, or insufficient permissions | Verify both issues exist and the token has write access |
 
 ### Reprioritize sub-issues
 
@@ -196,7 +179,7 @@ Note: `sub_issue_id` is the sub-issue **ID**, not issue number.
 }
 ```
 
-Use either `after_id` or `before_id` for reprioritization.
+Use either `after_id` or `before_id` for reprioritization. Both `sub_issue_id` and `after_id`/`before_id` are object IDs, not issue numbers.
 
 ## Minimal task-batch order
 

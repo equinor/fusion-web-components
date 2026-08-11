@@ -1,6 +1,6 @@
 # Clarifying questions
 
-Use the smallest set of questions needed to draft a useful issue.
+Use minimum questions needed to draft a useful issue.
 
 ## Determine issue type
 

@@ -49,12 +49,6 @@
       "skillPath": "skills/fusion-infra-cli/SKILL.md",
       "computedHash": "a640c43d4072d948da2178e0e4569d535a48409ffdba9e367b186d6c0cffcc61"
     },
-    "fusion-issue-author-feature": {
-      "source": "equinor/fusion-skills",
-      "sourceType": "github",
-      "skillPath": "skills/.deprecated/fusion-issue-author-feature/SKILL.md",
-      "computedHash": "625ea98130f57200cf69bd87f0939d378a0261b59989474701e990551c1af375"
-    },
     "fusion-issue-authoring": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

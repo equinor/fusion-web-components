@@ -37,6 +37,12 @@
       "skillPath": "skills/.experimental/fusion-issue-solving/SKILL.md",
       "computedHash": "f028d8bb4dab2b4959f62f5578f450a8fc4fe848eb2111fa90a1bfba2d0c5393"
     },
+    "fusion-pm-mcp": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.experimental/fusion-pm-mcp/SKILL.md",
+      "computedHash": "ecec5b892be1313a80ba3fd191dad76f900ff48cacde7e070146271931422d45"
+    },
     "fusion-research": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

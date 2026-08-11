@@ -75,4 +75,5 @@ If `fusion-discover-skills` or `fusion-skill-self-report-bug` is installed along
 - No GitHub mutations without confirmation.
 - No remote script execution.
 - No invented skill names or catalog results.
+- Installed skill files are copies (see `skills-lock.json` for `source`) — never edit them in place directly; route content fixes through `agents/author.agent.md` (which redirects to `fusion-skill-authoring`, source repo) and failures through `agents/warden.agent.md` (report mode).
 

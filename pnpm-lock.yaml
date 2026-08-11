@@ -428,8 +428,8 @@ importers:
         specifier: ^3.0.2
         version: 3.3.3
       marked:
-        specifier: ^18.0.4
-        version: 18.0.4
+        specifier: ^18.0.9
+        version: 18.0.9
       prismjs:
         specifier: ^1.29.0
         version: 1.30.0
@@ -3427,8 +3427,8 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
-  marked@18.0.4:
-    resolution: {integrity: sha512-c/BTaKzg0G6ezQx97DAkYU7k0HM6ys0FqYeKBL6hlBByZwy+ycA1+f0vDdjMHKKeEjdgkx0GOv9Il6D+85cOqA==}
+  marked@18.0.9:
+    resolution: {integrity: sha512-/Sa4qiiHZxf0/FQdBBowr9q4r10krCwMvpK48FUBdXdUXScDxiQGR9zCPrFgRVR5LU3iySOiIjy09ZQvADir1w==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -6821,7 +6821,7 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
-  marked@18.0.4: {}
+  marked@18.0.9: {}
 
   mdast-util-find-and-replace@3.0.2:
     dependencies:

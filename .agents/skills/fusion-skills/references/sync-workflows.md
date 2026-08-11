@@ -1,9 +1,6 @@
 # Sync Workflow Patterns
 
-Canonical workflow YAML patterns for the `sync` agent mode.
-
-Both workflows are reusable and hosted at `equinor/fusion-skills`.
-Consumers call them with `uses:` and provide a schedule and optional `with:` inputs.
+Reusable YAML patterns for `sync` agent mode, hosted at `equinor/fusion-skills`. Consumers call with `uses:` and optional `with:` inputs.
 
 ---
 

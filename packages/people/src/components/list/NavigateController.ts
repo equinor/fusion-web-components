@@ -47,7 +47,7 @@ export class NavigateController implements ReactiveController {
 
     // Find which item triggered the event using the source element
     const sourceElement = event.detail.sourceElement;
-    if (!sourceElement || sourceElement.tagName !== 'FWC-PEOPLE-PICKER-LIST-ITEM') {
+    if (sourceElement?.tagName !== 'FWC-PEOPLE-PICKER-LIST-ITEM') {
       return;
     }
 

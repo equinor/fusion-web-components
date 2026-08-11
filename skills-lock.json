@@ -7,12 +7,6 @@
       "skillPath": "skills/fusion/SKILL.md",
       "computedHash": "f81d3d244e622ee9388d7d8eefa33a78b740fd8a51023cfc417a4733a00105cd"
     },
-    "fusion-app-react-dev": {
-      "source": "equinor/fusion-skills",
-      "sourceType": "github",
-      "skillPath": "skills/.deprecated/fusion-app-react-dev/SKILL.md",
-      "computedHash": "9791ab5f3dae867e28d0bdba710d0878ac8cf4a449c1048ad46dfdee31b85ebd"
-    },
     "fusion-code-conventions": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",
@@ -30,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/.experimental/fusion-design/SKILL.md",
       "computedHash": "a0803d560ead467f85261334d00a296ec2e07ad3b63ad8c86e38ae81b0ff58ef"
+    },
+    "fusion-developer-app": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fusion-developer-app/SKILL.md",
+      "computedHash": "dd8eb45d0446cd008cd3015a796848b43dc972d378b2bf51b9c2ec3ae64ad704"
     },
     "fusion-devtools": {
       "source": "equinor/fusion-skills",

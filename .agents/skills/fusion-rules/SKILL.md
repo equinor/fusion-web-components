@@ -3,7 +3,7 @@ name: fusion-rules
 description: 'Entrypoint for AI coding assistant rule authoring across GitHub Copilot, Cursor, and Claude Code. USE FOR: setting up rules, reviewing existing rules, scaffolding instruction files, or asking which editor format to use. DO NOT USE FOR: authoring skills (SKILL.md), agent definitions (.agent.md), or CI enforcement of rule files.'
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -39,25 +39,25 @@ Gateway for AI coding assistant rule authoring. Detects the target editor and ro
 
 ## Intent detection
 
-Detect the target editor from the request. Look for:
+Detect target editor from the request:
 
-- **Copilot** — mentions "copilot", "copilot-instructions", ".github/instructions", "applyTo"
-- **Cursor** — mentions "cursor", ".cursor/rules", "mdc", "alwaysApply", "globs"
-- **Claude Code** — mentions "claude", "CLAUDE.md", ".claude/rules", "paths"
-- **All / unknown** — mentions "rules", "instructions", "set up AI rules", or doesn't specify an editor
+- **Copilot** — "copilot", "copilot-instructions", ".github/instructions", "applyTo"
+- **Cursor** — "cursor", ".cursor/rules", "mdc", "alwaysApply", "globs"
+- **Claude Code** — "claude", "CLAUDE.md", ".claude/rules", "paths"
+- **All / unknown** — "rules", "instructions", "set up AI rules", or no editor specified
 
-Route directly based on detected intent. If no editor is specified, run all three agents.
+Route directly on detected intent. No editor specified → run all three agents.
 
 ## Loading behavior
 
-Load ONLY the routed agent file. Each agent carries the full workflow and references `.system/fusion-rule-author/` assets and templates on demand. Do not preload all agents.
+Load ONLY the routed agent file. Each agent carries the full workflow and references `.system/fusion-rule-author/` assets and templates on demand. Don't preload all agents.
 
 ## Multi-editor workflow
 
 When targeting multiple editors:
 
-1. Run the first agent's scan and interview (Steps 1–3) in full
-2. Pass the scan summary and interview answers as context to the remaining agents — they skip Steps 1–3 and start at Step 4 (Classify)
+1. Run first agent's scan and interview (Steps 1–3) in full
+2. Pass scan summary + interview answers as context to remaining agents — they skip Steps 1–3 and start at Step 4 (Classify)
 3. Each agent drafts, reviews, and writes files for its own editor format
 4. Generate parallel files with equivalent content — no duplication within a single editor
 

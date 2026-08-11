@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.8 - 2026-07-03
+
+### patch
+
+- [#197](https://github.com/equinor/fusion-skills/pull/197) [`380c0a1`](https://github.com/equinor/fusion-skills/commit/380c0a18d417f1c8003b91eae127ec9d8b450622) Thanks [@alftore](https://github.com/alftore)! - Skip the worktree question when already on the PR's head branch
+
+
+  Step 1 now checks whether the current checkout's branch matches the PR's head
+  branch before asking about a dedicated git worktree. If they match, the skill
+  proceeds directly instead of asking a redundant question; the worktree
+  question is only asked when the branch differs or the workspace is on a
+  shared/long-lived branch.
+
+## 0.1.7 - 2026-05-07
+
+### patch
+
+- [#170](https://github.com/equinor/fusion-skills/pull/170) [`5e43223`](https://github.com/equinor/fusion-skills/commit/5e432232917b2b1642431d80cf1698bbefe80ee8) - Apply caveman-compress prose style to SKILL.md.
+
+
+  - Drop articles, filler, hedging from SKILL.md activation body
+
 ## 0.1.6 - 2026-03-24
 
 ### patch

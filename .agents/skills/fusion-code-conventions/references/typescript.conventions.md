@@ -1,14 +1,14 @@
 # TypeScript Code Conventions
 
-Conventions for TypeScript across all contexts — Fusion Framework apps, libraries, scripts, and skill tooling.
+TypeScript conventions: Fusion Framework apps, libraries, scripts, skill tooling.
 
-> **Applicability:** These are org-wide baseline defaults. Repository-level policy (`CONTRIBUTING.md`, ADRs, contributor guides) and tooling configuration (`biome.json`, `tsconfig.json`) take precedence when they explicitly override a rule below. See the skill's **Precedence and applicability** section for the full resolution order.
+> **Applicability:** Org-wide baseline. Repo policy (`CONTRIBUTING.md`, ADRs) and tooling (`biome.json`, `tsconfig.json`) take precedence on explicit override. See skill **Precedence and applicability** for resolution order.
 
 ---
 
 ## TSDoc — mandatory for all exports
 
-Every exported function, component, hook, class, and type MUST have TSDoc.
+All exported functions, components, hooks, classes, types — TSDoc required.
 
 ### Required tags
 
@@ -79,9 +79,7 @@ export const formatTimeRange = (startTime: string, endTime: string): string => {
 | Functions | camelCase | `formatTimeSlot` |
 | Generic type parameter | Single uppercase letter or descriptive PascalCase | `T`, `TItem`, `TResponse` |
 
-**No `I` prefix on interfaces.** `Item`, not `IItem`.
-
-For React-specific naming (components, hooks, event handlers), see `references/react.conventions.md`.
+**No `I` prefix on interfaces.** `Item`, not `IItem`. React naming: see `references/react.conventions.md`.
 
 ---
 
@@ -89,15 +87,15 @@ For React-specific naming (components, hooks, event handlers), see `references/r
 
 ### Strict mode
 
-TypeScript strict mode is always on. This means:
-- `noImplicitAny` — never leave types inferred as `any`.
-- `strictNullChecks` — handle `null` and `undefined` explicitly.
-- `strictFunctionTypes` — contravariance checks on function parameters.
-- `noUncheckedIndexedAccess` — array/object index access returns `T | undefined`.
+Strict mode is always on:
+- `noImplicitAny` — never leave types inferred as `any`
+- `strictNullChecks` — handle `null` and `undefined` explicitly
+- `strictFunctionTypes` — contravariance checks on function parameters
+- `noUncheckedIndexedAccess` — array/object index access returns `T | undefined`
 
 ### No `any`
 
-`any` defeats type safety. It is almost never acceptable.
+Never `any` — defeats type safety.
 
 ```typescript
 // ❌ Any
@@ -112,11 +110,11 @@ const process = (data: unknown): string => {
 };
 ```
 
-Prefer `unknown` for untyped external inputs. Use `z.infer<typeof Schema>` (Zod) or hand-written type guards to narrow.
+Use `unknown` for untyped external inputs. Narrow with `z.infer<typeof Schema>` (Zod) or type guards.
 
 ### Type assertions (`as`)
 
-Avoid `as` when proper typing is possible. Every `as` is a lie to the compiler.
+Avoid `as` — lies to compiler.
 
 ```typescript
 // ❌ Unsafe cast
@@ -129,11 +127,11 @@ function isItem(value: unknown): value is Item {
 const item = isItem(response.data) ? response.data : null;
 ```
 
-When `as` is unavoidable (e.g. DOM APIs, library gaps), add a comment explaining why.
+When `as` unavoidable (e.g. DOM APIs, library gaps), comment why.
 
 ### Non-null assertions (`!`)
 
-Avoid `!` unless the non-null guarantee is obvious from surrounding code. Always add a comment justifying it.
+Avoid `!`; justify with comment when unavoidable.
 
 ```typescript
 // ❌ Silent assumption
@@ -168,9 +166,9 @@ function render(state: LoadState) {
 
 ### Generics
 
-- Constrain generics specifically — avoid `T extends any` or `T extends object`.
-- Use descriptive names when `T` is ambiguous: `TItem`, `TKey`, `TResponse`.
-- Constrain with interfaces when the generic must have a known shape.
+- Constrain specifically — avoid `T extends any` or `T extends object`
+- Descriptive names when `T` ambiguous: `TItem`, `TKey`, `TResponse`
+- Constrain with interfaces when generic needs known shape
 
 ```typescript
 // ❌ Unconstrained
@@ -184,7 +182,7 @@ function getId<T extends { id: string }>(item: T): string {
 
 ### Utility types
 
-Prefer TypeScript utility types over manual type duplication.
+Prefer utility types over manual duplication.
 
 | Need | Use |
 |---|---|
@@ -199,7 +197,7 @@ Prefer TypeScript utility types over manual type duplication.
 
 ### Explicit return types
 
-Always declare explicit return types on exported functions and class methods. On non-exported internal helpers, inferred types are acceptable when the return type is trivially obvious.
+Explicit return types on all exported functions and methods. Unexported helpers: inferred OK when trivially obvious.
 
 ```typescript
 // ✅ Explicit return on export
@@ -215,13 +213,13 @@ const double = (n: number) => n * 2;
 
 ### Variable declarations
 
-- `const` by default.
-- `let` only when reassignment is unavoidable.
-- Never `var`.
+- `const` by default
+- `let` only when reassignment is unavoidable
+- Never `var`
 
 ### Immutable patterns
 
-Prefer `map`, `filter`, `reduce`, `flatMap` over mutable loops that push to arrays.
+Prefer `map`/`filter`/`reduce`/`flatMap` over mutable push loops.
 
 ```typescript
 // ❌ Mutable accumulator
@@ -234,21 +232,21 @@ for (const item of items) {
 const result = items.filter((item) => item.active).map((item) => item.name);
 ```
 
-For complex transforms where the immutable form is unreadable, a `for…of` loop with `const` intermediate bindings is acceptable.
+Complex transforms: `for…of` with `const` bindings is fine when immutable form is unreadable.
 
 ### Single responsibility
 
-Each function, component, and module has one reason to change.
+One reason to change per function, component, module.
 
-- Functions longer than ~40 lines are candidates for extraction.
-- Files longer than ~300 lines are candidates for splitting.
-- A module should export one primary concept; helpers and types should support that concept only.
+- Functions >~40 lines: extract
+- Files >~300 lines: split
+- Module exports one primary concept; helpers/types support it only
 
 ### File organisation
 
-Top-down order within a module:
+Top-down within module:
 
-1. Imports (external → internal → relative, sorted alphabetically within each group)
+1. Imports (external → internal → relative, alphabetical within each group)
 2. Constants
 3. Types and interfaces
 4. Helper functions (unexported)
@@ -257,14 +255,14 @@ Top-down order within a module:
 
 ### Import style
 
-- Named imports over default imports where possible — they survive refactors better.
-- Group imports: external packages → path-aliased internal → relative.
-- Do not import unused symbols (lint enforced).
-- Avoid barrel re-exports (`index.ts`) that pull in more than necessary — they hurt tree-shaking.
+- Named imports — survive refactors
+- Group: external → path-aliased internal → relative
+- No unused symbols (lint enforced)
+- No barrel re-exports (`index.ts`) — hurts tree-shaking
 
 ### Readability over cleverness
 
-Write "stupid code" — simple, linear, predictable flows. Prefer early returns and guard clauses over deeply nested conditions.
+Simple, linear, predictable code. Early returns and guard clauses over nested conditions.
 
 ```typescript
 // ❌ Nested pyramid
@@ -315,10 +313,10 @@ const active = items.filter((item) => item.status !== 'inactive');
 
 ## Async / await
 
-- Always use `async/await` over raw `.then()` chains.
-- Never `await` inside a loop when independent — use `Promise.all`.
-- Always handle rejection: either `try/catch` or `.catch()`.
-- Mark a function `async` only when it contains `await`; otherwise return a plain value or `Promise.resolve()`.
+- `async/await` over raw `.then()` chains
+- No `await` in loops when independent — use `Promise.all`
+- Always handle rejection: `try/catch` or `.catch()`
+- `async` only when function contains `await`; otherwise return plain value
 
 ```typescript
 // ❌ Sequential awaits for independent calls
@@ -345,10 +343,10 @@ function getLabel(): string {
 
 ## Error handling
 
-- Use specific error subtypes with structured context, not bare `new Error('something failed')`.
-- Async errors must be caught and rethrown with additional context to preserve the call chain.
-- Define error class hierarchies for distinct failure scenarios (network, validation, permission).
-- Log errors at the boundary where recovery is decided, not at every rethrow.
+- Specific error subtypes with structured context, not bare `new Error()`.
+- Catch async errors, rethrow with context.
+- Error class hierarchies for distinct failures (network, validation, permission).
+- Log at boundary where recovery decided, not at every rethrow.
 
 ```typescript
 class ApiError extends Error {
@@ -380,12 +378,12 @@ async function fetchItem(id: string): Promise<Item> {
 
 ## Dead code policy
 
-Dead code must be removed, not commented out.
+Remove dead code; don't comment it out.
 
-- Unused imports — remove (lint enforced).
-- Commented-out code blocks — remove; use Git history for recovery.
-- Unreachable branches — remove.
-- Unused variables/parameters — remove or prefix with `_` when required by a callback signature.
+- Unused imports: remove (lint enforced)
+- Commented-out blocks: remove; use Git history
+- Unreachable branches: remove
+- Unused variables/params: remove or prefix `_` when required by callback signature
 
 ```typescript
 // ❌ Commented-out dead code

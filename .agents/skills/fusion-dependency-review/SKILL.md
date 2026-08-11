@@ -4,7 +4,7 @@ description: 'Review dependency PRs with structured research, existing-PR-discus
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.1.3"
+  version: "0.1.4"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -24,7 +24,7 @@ Structured review workflow for dependency update PRs. Produces consistent resear
 
 ## When to use
 
-Use this skill when a dependency PR needs review and you want a consistent, auditable decision process.
+Use when a dependency PR needs review and you want a consistent, auditable decision process.
 
 Typical triggers:
 
@@ -34,12 +34,10 @@ Typical triggers:
 - "Review one of our open dependency PRs"
 - "What changed in this library bump?"
 - "Is this dependency update safe to merge?"
-- A PR title contains dependency update patterns (for example `chore(deps):`, `fix(deps):`, `bump`, `update`)
-- The user shares a PR URL for a dependency update
+- PR title contains dependency update patterns (e.g. `chore(deps):`, `fix(deps):`, `bump`, `update`)
+- User shares a PR URL for a dependency update
 
 ## When not to use
-
-Do not use this skill for:
 
 - Feature PRs or application code reviews (use standard code review workflows)
 - Dependency automation or bot configuration
@@ -48,19 +46,19 @@ Do not use this skill for:
 
 ## Required inputs
 
-Collect before starting the review:
+Collect before starting:
 
 - **Repository** owner and name
-- **PR number or URL** for the dependency update, or a copied PR summary that includes package name, version change, changed files, and CI status
-- Optional: specific review concerns or areas of focus from the maintainer
+- **PR number or URL**, or a copied PR summary including package name, version change, changed files, and CI status
+- Optional: specific review concerns or areas of focus
 
 If required details are missing, ask concise clarifying questions from `references/questions.md`.
 
-If the PR target is missing or ambiguous:
+If PR target is missing or ambiguous:
 
 - Ask only the minimal follow-up question needed to identify the target PR.
-- When repository context is known, use GitHub MCP to list likely open dependency PRs and let the user choose instead of guessing.
-- Keep the shortlist concise and decision-friendly: include PR number, title, dependency/package hint, author, and CI state when available.
+- When repository context is known, use GitHub MCP to list likely open dependency PRs and let user choose.
+- Keep shortlist concise: include PR number, title, dependency/package hint, author, and CI state when available.
 
 Auto-extract from the PR when available:
 
@@ -89,12 +87,12 @@ Keep the lens advisors narrow and independent. The parent skill owns the unified
 
 ### Workflow summary
 
-1. Resolve the target PR with `agents/target-pr-advisor.md` and the concise prompts in `references/questions.md`.
-2. Gather context and build the shared evidence packet with `agents/research-advisor.md`, `assets/review-tracker.md`, and `assets/research-template.md`.
+1. Resolve target PR with `agents/target-pr-advisor.md` and concise prompts in `references/questions.md`.
+2. Gather context and build shared evidence packet with `agents/research-advisor.md`, `assets/review-tracker.md`, and `assets/research-template.md`.
 3. Run `agents/security-advisor.md`, `agents/code-quality-advisor.md`, and `agents/impact-advisor.md` in parallel with the same normalized research packet.
-4. Use `agents/verdict-advisor.md` to produce the recommendation, confidence, follow-up, and explicit maintainer prompt.
-5. Use `agents/source-control-advisor.md` only after the verdict is accepted and only when branch work is required.
-6. Follow `references/instructions.md` for the detailed live-PR contract: target selection, checkpoint comments, decision gates, and handoff timing.
+4. Use `agents/verdict-advisor.md` to produce recommendation, confidence, follow-up, and explicit maintainer prompt.
+5. Use `agents/source-control-advisor.md` only after verdict is accepted and only when branch work is required.
+6. Follow `references/instructions.md` for detailed live-PR contract: target selection, checkpoint comments, decision gates, and handoff timing.
 
 ## Assets
 

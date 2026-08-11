@@ -3,7 +3,7 @@ name: fusion-code-conventions
 description: 'Applies and explains code conventions across TypeScript, React, C#, and Markdown. Enforces naming rules, file naming patterns, TSDoc and XML doc standards, inline comment intent (the *why*, not the *what*), code structure, error handling, async patterns, and dead code policy. Also enforces ADR and contributor doc decisions, and flags decisions that appear stale or misaligned with current tooling. USE FOR: convention questions, code review against project standards, applying naming rules, auditing intent comments, checking TSDoc completeness, enforcing recorded ADR decisions, and flagging stale architectural decisions. DO NOT USE FOR: security vulnerability scanning, performance profiling, runtime debugging, or generating net-new code without a review target.'
 license: MIT
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -28,10 +28,10 @@ compatibility: Works best in runtimes that support skill-local agents (6 agent m
 
 ## When to use
 
-Use this skill whenever code needs to be reviewed, written, or explained against project conventions. It applies at two layers:
+Use when code needs review, writing, or explanation against project conventions. Applies at two layers:
 
-- **Language conventions** — naming, file naming patterns, type system, TSDoc and XML doc standards, code structure, error handling, async patterns, and dead code policy. Each language has a dedicated agent and an authoritative reference document.
-- **Cross-cutting conventions** — applied on every code review regardless of language: intent capture (every non-obvious decision must be documented well enough that the code could be regenerated from comments alone) and constitution enforcement (ADRs and contributor docs are law; deviations require a new decision record; stale decisions are flagged for revision).
+- **Language conventions** — naming, file naming, type system, TSDoc/XML doc standards, code structure, error handling, async patterns, dead code policy. Each language has a dedicated agent and authoritative reference doc.
+- **Cross-cutting conventions** — applied on every review: intent capture (every non-obvious decision must be documented well enough that code could be regenerated from comments alone) and constitution enforcement (ADRs and contributor docs are law; deviations require a new decision record; stale decisions flagged).
 
 Typical triggers:
 - "what are the naming conventions for this project?"
@@ -48,7 +48,6 @@ Typical triggers:
 
 ## When not to use
 
-Do not use this skill for:
 - Security vulnerability scanning (use a dedicated security review skill)
 - Performance profiling or benchmarking
 - High-level architecture or system design decisions
@@ -57,17 +56,17 @@ Do not use this skill for:
 
 ## Precedence and applicability
 
-This skill provides **org-wide baseline conventions**. When it is installed in a repository that also documents its own conventions, the following precedence applies (highest wins):
+This skill provides **org-wide baseline conventions**. When installed in a repository with its own conventions, precedence (highest wins):
 
-1. **Repository-level policy** — docs such as `CONTRIBUTING.md`, contributor guides (for example under `contribute/`), ADRs (wherever they are stored, for example `docs/adr/`), `.github/copilot-instructions.md`, `AGENTS.md`, or equivalent repo-specific files
-2. **Tooling configuration** — files such as `biome.json`, `tsconfig.json`, `.editorconfig`, and linter configs wherever they are defined
+1. **Repository-level policy** — `CONTRIBUTING.md`, contributor guides (`contribute/`), ADRs, `.github/copilot-instructions.md`, `AGENTS.md`, or equivalent
+2. **Tooling configuration** — `biome.json`, `tsconfig.json`, `.editorconfig`, linter configs
 3. **This skill** — all rules in `references/*.conventions.md` and agent modes
 
-When a repository explicitly narrows, relaxes, or contradicts a rule from this skill, the repository policy wins. Agents must not flag code that conforms to the repo's documented conventions, even if it deviates from the skill baseline.
+When a repository explicitly narrows, relaxes, or contradicts a rule from this skill, the repository policy wins. Don't flag code that conforms to repo's documented conventions, even if it deviates from the skill baseline.
 
-If the conflict is not documented anywhere (no ADR, no contributor note, no config), treat the skill rule as the default and recommend the team record their intent — either adopt the baseline or add an explicit override.
+If conflict is undocumented (no ADR, no contributor note, no config), treat the skill rule as default and recommend the team record their intent.
 
-> **For maintainers:** record convention overrides in `CONTRIBUTING.md`, a contributor guide, or an ADR so that both humans and agents discover them consistently.
+> **For maintainers:** record convention overrides in `CONTRIBUTING.md`, a contributor guide, or an ADR so both humans and agents discover them consistently.
 
 ## Agent modes
 
@@ -94,7 +93,7 @@ If required inputs are missing or ambiguous, ask before proceeding.
 - Language or file type (inferred from content if not provided)
 - For constitution checks: path to ADR directory and/or contributor docs (inferred from common locations — `docs/adr/`, `CONTRIBUTING.md`, `contribute/` — if not provided)
 
-When the developer's context or persona is known, consult the matching follow-up file in `assets/` for targeted clarifying questions before reviewing. Ask only the relevant unanswered questions.
+When the developer's context or persona is known, consult the matching follow-up file in `assets/` for targeted clarifying questions. Ask only unanswered questions.
 
 - `assets/framework-core-developer.follow-up.md` — Fusion Framework internals, shared libraries, framework APIs
 - `assets/react-app.follow-up.md` — Fusion React app development
@@ -104,7 +103,7 @@ When the developer's context or persona is known, consult the matching follow-up
 
 ### Step 1 — Classify and route
 
-Detect the primary language of the target code or question, then activate the matching language agent:
+Detect the primary language, then activate the matching language agent:
 - TypeScript (`.ts`, non-component `.tsx`) → `agents/typescript.agent.md`
 - React (`.tsx` with JSX or hooks, component files) → `agents/react.agent.md`
 - Mixed `.tsx` (TypeScript type concerns + React component concerns) → both agents in parallel
@@ -113,31 +112,31 @@ Detect the primary language of the target code or question, then activate the ma
 
 Always activate in parallel on any code review:
 - `agents/intent.agent.md` — every review, regardless of language
-- `agents/constitution.agent.md` — when the project has ADRs (`docs/adr/`, `adr/`) or contributor docs (`CONTRIBUTING.md`, `contribute/`, `.github/copilot-instructions.md`)
+- `agents/constitution.agent.md` — when project has ADRs (`docs/adr/`, `adr/`) or contributor docs (`CONTRIBUTING.md`, `contribute/`, `.github/copilot-instructions.md`)
 
-If the language cannot be determined from context, ask before proceeding.
+If language cannot be determined, ask before proceeding.
 
 ### Step 2 — Apply or explain conventions
 
 Each language agent reads its authoritative reference file first, then:
-- For convention questions: answers directly with a rule explanation and a corrected code example
-- For code review: identifies deviations, states the rule, shows the corrected version
+- For convention questions: answers with rule explanation and corrected code example
+- For code review: identifies deviations, states the rule, shows corrected version
 - Does not flag patterns the project has explicitly configured in `biome.json` or `.editorconfig`
 
-The intent and constitution agents run in parallel and contribute their findings to the combined report.
+The intent and constitution agents run in parallel and contribute findings to the combined report.
 
 ### Step 3 — Present findings
 
 Organise all findings from all agents into a unified report:
 - **Required** — must fix: naming violations, missing TSDoc on exports, `any` types, constitutional violations
 - **Recommended** — should fix: weak intent comments, undocumented magic values, unjustified suppressions
-- **Advisory** — consider: missing decision records, stale ADRs, implicit exceptions that should be formalised
+- **Advisory** — consider: missing decision records, stale ADRs, implicit exceptions to formalise
 
-For each finding: state the rule, the affected code, and the corrected version or recommended action.
+For each finding: state the rule, affected code, and corrected version or recommended action.
 
 ### Step 4 — Apply corrections
 
-Apply only corrections the user explicitly approves. Edit files using workspace tools. Do not rewrite entire files unless the file is under 50 lines.
+Apply only corrections the user explicitly approves. Edit files using workspace tools. Don't rewrite entire files unless under 50 lines.
 
 ## Expected output
 
@@ -148,7 +147,7 @@ Apply only corrections the user explicitly approves. Edit files using workspace 
 ## Safety & constraints
 
 - Never mutate files without explicit user confirmation.
-- Do not flag style choices the project has explicitly opted into via `biome.json` or `.editorconfig`.
-- Do not invent ADR content — only enforce and challenge what is actually documented.
+- Don't flag style choices the project has opted into via `biome.json` or `.editorconfig`.
+- Don't invent ADR content — only enforce and challenge what is actually documented.
 
 

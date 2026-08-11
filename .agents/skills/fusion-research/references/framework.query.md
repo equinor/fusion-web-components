@@ -1,6 +1,6 @@
 # Query Patterns
 
-Use these repeatable search lanes when researching Fusion Framework implementation details through MCP.
+Search lanes for researching Fusion Framework implementation via MCP.
 
 ## Start with the smallest lane that fits
 
@@ -31,7 +31,7 @@ If the first pass is weak or ambiguous:
 
 ## Evidence checklist
 
-Before using a result in the final answer, capture:
+Capture before using a result:
 
 - `metadata.source`
 - `metadata.type`

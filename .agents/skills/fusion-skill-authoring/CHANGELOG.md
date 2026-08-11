@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.3.5 - 2026-07-03
+
+### patch
+
+- [#197](https://github.com/equinor/fusion-skills/pull/197) [`380c0a1`](https://github.com/equinor/fusion-skills/commit/380c0a18d417f1c8003b91eae127ec9d8b450622) Thanks [@alftore](https://github.com/alftore)! - Detect installed-copy provenance before editing an existing skill
+
+
+  Adds a new Step 1 that checks `skills-lock.json` before editing an existing
+  `SKILL.md` or its supporting files. If the target matches a locked entry whose
+  `source` differs from the current repository, it is an installed copy — the
+  skill now surfaces the source repo and redirects there (or offers to draft an
+  issue) instead of silently editing a copy that would be overwritten on the
+  next update.
+
+## 0.3.4 - 2026-05-07
+
+### patch
+
+- [#170](https://github.com/equinor/fusion-skills/pull/170) [`5e43223`](https://github.com/equinor/fusion-skills/commit/5e432232917b2b1642431d80cf1698bbefe80ee8) - Apply caveman-compress prose style to SKILL.md and references.
+
+
+  - Drop articles, filler, hedging from SKILL.md activation body
+  - Compress skill-authoring-platform-references reference
+
 ## 0.3.3 - 2026-03-23
 
 ### patch

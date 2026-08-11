@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@faker-js/faker": "^10.4.0",
+    "@faker-js/faker": "^10.5.0",
     "@storybook/addon-docs": "^10.3.6",
     "@storybook/builder-vite": "^10.3.6",
     "@storybook/web-components-vite": "^10.3.6",

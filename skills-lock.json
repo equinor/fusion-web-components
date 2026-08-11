@@ -43,6 +43,12 @@
       "skillPath": "skills/fusion-devtools/SKILL.md",
       "computedHash": "2b88eb34e8ffe8f45b6cf3fff454dd4ee035ab87ee9a457fec3a45678ed75bcc"
     },
+    "fusion-design": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.experimental/fusion-design/SKILL.md",
+      "computedHash": "a0803d560ead467f85261334d00a296ec2e07ad3b63ad8c86e38ae81b0ff58ef"
+    },
     "fusion-github-review-resolution": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

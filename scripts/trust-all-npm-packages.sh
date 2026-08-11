@@ -56,7 +56,7 @@ trust_matches_target() {
 
 add_trust() {
   local pkg="$1"
-  local cmd=(npm trust github "$pkg" --repo "$REPOSITORY" --file "$WORKFLOW_FILE" --yes)
+  local cmd=(npm trust github "$pkg" --repo "$REPOSITORY" --file "$WORKFLOW_FILE" --allow-publish --yes)
 
   if [[ -n "$ENVIRONMENT" ]]; then
     cmd+=(--environment "$ENVIRONMENT")
@@ -87,6 +87,13 @@ fi
 if ! npm trust -h >/dev/null 2>&1; then
   npm_version="$(npm --version 2>/dev/null || echo unknown)"
   echo "Your npm version (${npm_version}) does not support 'npm trust'." >&2
+  exit 1
+fi
+
+if ! npm trust github -h 2>/dev/null | grep -q -- '--allow-publish'; then
+  npm_version="$(npm --version 2>/dev/null || echo unknown)"
+  echo "Your npm version (${npm_version}) does not support the required 'npm trust --allow-publish' flag." >&2
+  echo "Update npm to 11.15.0 or newer, then rerun this script." >&2
   exit 1
 fi
 

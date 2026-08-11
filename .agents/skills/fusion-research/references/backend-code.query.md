@@ -2,7 +2,7 @@
 
 ## Overview
 
-Backend code search indexes C# implementations across Fusion services, libraries, and infrastructure. Use these search patterns when researching service implementations, API contracts, architectural patterns, or cross-service interactions.
+C# implementation search across Fusion services, libraries, and infrastructure. Use for service implementations, API contracts, architectural patterns, and cross-service interactions.
 
 ## Search lanes
 
@@ -20,7 +20,7 @@ Backend code search indexes C# implementations across Fusion services, libraries
 
 ## Proven search starters
 
-When you don't know the exact service or method, start with high-level intent:
+Start with high-level intent when service/method is unknown:
 
 ```
 "How does fusion-core-services handle authorization for sensitive endpoints"
@@ -45,7 +45,7 @@ When you don't know the exact service or method, start with high-level intent:
 
 ## Evidence capture
 
-For backend code answers, always capture:
+Capture for backend code answers:
 
 | Metadata | Meaning | Captured Example |
 | --- | --- | --- |
@@ -58,7 +58,7 @@ For backend code answers, always capture:
 
 ## Weak signal indicators
 
-Stop and state uncertainty if:
+State uncertainty if:
 - Search returns no results for the service/method you're looking for
 - Results are from unrelated services (e.g., Org service results when querying People service)
 - Code snippets are incomplete (truncated methods, missing context)

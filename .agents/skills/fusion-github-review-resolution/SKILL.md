@@ -4,7 +4,7 @@ description: "Resolves unresolved GitHub PR review threads end-to-end: evaluates
 license: MIT
 compatibility: Requires GitHub MCP server or gh CLI, and git.
 metadata:
-   version: "0.1.6"
+   version: "0.1.8"
    status: experimental
    owner: "@equinor/fusion-core"
    tags:
@@ -48,35 +48,36 @@ Typical triggers (skill should activate on all of these):
 
 ## When not to use
 
-Do not use this skill when:
-- no unresolved review comments exist,
-- the request is only to summarize or describe feedback without making code changes,
-- all targeted threads are already resolved or outdated and acknowledged,
-- the branch/worktree is intentionally read-only.
+- No unresolved review comments exist
+- Request is only to summarize or describe feedback without code changes
+- All targeted threads are already resolved or outdated and acknowledged
+- Branch/worktree is intentionally read-only
 
 ## Required inputs
 
 Collect before execution:
-- repository owner/name,
-- pull request number or URL,
-- optional review id to scope comments (for example `pullrequestreview-<id>`),
-- branch/worktree decision,
-- required validation commands for the repository.
+- repository owner/name
+- pull request number or URL
+- optional review id to scope comments (e.g. `pullrequestreview-<id>`)
+- branch/worktree decision (skip asking if the current checkout is already on the PR's head branch — see step 1)
+- required validation commands for the repository
 
 > **When a review URL is provided** (`github.com/<owner>/<repo>/pull/<number>#pullrequestreview-<id>`),
 > auto-extract owner, repo, PR number, and review id from it.
 > Only branch/worktree choice and validation commands still need confirming.
 
-Optional context:
-- linked issue reference (for example `equinor/fusion-core-tasks#432`),
-- commit granularity preference when comments overlap the same file.
+Optional:
+- linked issue reference (e.g. `equinor/fusion-core-tasks#432`)
+- commit granularity preference when comments overlap the same file
 
 ## Instructions
 
 Follow this phase order unless the user explicitly asks for a different sequence: fetch → analyze → fix → validate → push → reply → resolve → verify. Do not interleave GitHub thread mutations with code-editing retries.
 
-1. Ask whether to use a dedicated git worktree
-   - Ask this before any other workflow questions.
+1. Determine branch/worktree context
+   - Check the current checkout's branch against the PR's head branch first.
+   - If the current branch already matches the PR's head branch, proceed directly there — do not ask about a worktree.
+   - Otherwise (current branch differs, or the workspace is on a shared/long-lived branch like `main`/`master`), ask whether to use a dedicated git worktree before any other workflow questions.
    - If yes, use/create the worktree and continue there.
 
 2. Gather unresolved comments and create working tracker

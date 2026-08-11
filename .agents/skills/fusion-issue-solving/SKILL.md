@@ -3,7 +3,7 @@ name: fusion-issue-solving
 description: 'Handles GitHub issue resolution end-to-end for prompts like "solve #123", "lets solve #123", "work on #123", "work on https://github.com/owner/repo/issues/123", or by pasting a direct GitHub issue URL as the request. USE FOR: solve #123, continue work on issue #123, work on https://github.com/owner/repo/issues/123, paste a GitHub issue URL for implementation work. DO NOT USE FOR: issue drafting only, PR review only, or non-implementation research.'
 license: MIT
 metadata:
-  version: "0.1.6"
+  version: "0.1.7"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -24,7 +24,7 @@ metadata:
 
 ## When to use
 
-Use this skill when the user wants to solve or continue a GitHub issue end-to-end, including short current-repo prompts like `solve #123`, direct GitHub issue URLs, or requests like `lets work on https://github.com/owner/repo/issues/123`.
+Use when the user wants to solve or continue a GitHub issue end-to-end, including short current-repo prompts like `solve #123`, direct GitHub issue URLs, or requests like `lets work on https://github.com/owner/repo/issues/123`.
 
 Typical triggers:
 - "lets solve #123"
@@ -37,27 +37,26 @@ Typical triggers:
 - "work on this ticket: [issue URL]"
 - "research, implement, and prepare a PR for this issue"
 
-Treat GitHub issue URLs as interchangeable with `#123` references for verbs like `solve`, `fix`, `implement`, `continue`, `finish`, or `work on`. A direct GitHub issue URL can also serve as the main request payload for this workflow when no competing intent is stated.
+Treat GitHub issue URLs as interchangeable with `#123` references for verbs like `solve`, `fix`, `implement`, `continue`, `finish`, or `work on`. A direct GitHub issue URL can serve as the main request payload when no competing intent is stated.
 
 ## When not to use
 
-Do not use this skill when:
-- the request is only issue drafting/authoring,
-- no implementation changes are expected,
-- repository write operations are disallowed.
+- Request is only issue drafting/authoring
+- No implementation changes expected
+- Repository write operations are disallowed
 
 ## Required inputs
 
 Collect before execution:
-- issue URL or `owner/repo#number`,
-- repository and branch/worktree decision,
-- acceptance criteria and out-of-scope constraints,
-- required validation commands for the target repository.
+- issue URL or `owner/repo#number`
+- repository and branch/worktree decision
+- acceptance criteria and out-of-scope constraints
+- required validation commands for the target repository
 
-Optional inputs:
-- related issues/PRs,
-- risk areas to prioritize,
-- requested commit/PR granularity.
+Optional:
+- related issues/PRs
+- risk areas to prioritize
+- requested commit/PR granularity
 
 ## Instructions
 

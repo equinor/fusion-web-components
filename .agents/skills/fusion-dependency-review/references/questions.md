@@ -1,6 +1,6 @@
 # Clarifying questions
 
-Use the smallest set of questions needed to start a useful dependency PR review.
+Use minimum questions needed to start a useful dependency PR review.
 
 ## Resolve the target PR
 

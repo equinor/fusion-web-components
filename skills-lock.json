@@ -49,6 +49,12 @@
       "skillPath": "skills/.system/fusion-research/SKILL.md",
       "computedHash": "98db758965c3e3cc33122249cddd8561bc2a832f13414d83a55adb24d302ed5c"
     },
+    "fusion-roles-cli": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fusion-roles-cli/SKILL.md",
+      "computedHash": "9706642db9902629b578a5bfc85b7d81b164cc5f8c544b594cf94db209702200"
+    },
     "fusion-rules": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

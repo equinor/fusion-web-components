@@ -21,7 +21,7 @@
     "react-dom": "^19.2.8",
     "remark-gfm": "^4.0.1",
     "storybook": "^10.5.7",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "^8.2.1"
   },
   "devDependencies": {

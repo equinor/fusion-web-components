@@ -22,7 +22,7 @@
     "remark-gfm": "^4.0.1",
     "storybook": "^10.5.7",
     "typescript": "^7.0.2",
-    "vite": "^8.2.1"
+    "vite": "^8.2.2"
   },
   "devDependencies": {
     "@equinor/fusion-wc-avatar": "workspace:*",

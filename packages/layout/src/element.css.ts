@@ -45,4 +45,3 @@ export const layoutStyle: CSSResult = css`
     min-height: 0;
   }
 `;
- 

@@ -1,15 +1,23 @@
 import { css, type CSSResult } from 'lit';
 
 export const pageStyle: CSSResult = css`
+  :host {
+    display: block;
+    height: 100%;
+    min-height: 0;
+  }
+
   .page {
     display: grid;
     grid-template-areas: 
       'header'
       'main'
       'footer';
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto minmax(0, 1fr) auto;
     grid-template-columns: 1fr;
     height: 100%;
+    min-height: 0;
+    overflow: hidden;
   }
 
   slot[name="header"] {
@@ -18,6 +26,7 @@ export const pageStyle: CSSResult = css`
 
   main {
     grid-area: main;
+    min-height: 0;
     overflow: hidden;
     overflow-y: auto;
   }

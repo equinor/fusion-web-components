@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.2
+
+### Patch Changes
+
+- [#2428](https://github.com/equinor/fusion-web-components/pull/2428) [`d7358d5`](https://github.com/equinor/fusion-web-components/commit/d7358d5804ef030bc46de372a72a70185b03deb2) Thanks [@eikeland](https://github.com/eikeland)! - Fix height containment so layout and page content fill available space while overflowing page content scrolls inside the main region.
+
 ## 0.1.1
 
 ### Patch Changes

@@ -4,7 +4,7 @@
 
 ## Overview
 
-`fwc-layout` is a structural web component for composing application content into a full-height layout with an optional sidebar.
+`fwc-app-layout` is a structural web component for composing application content into a full-height layout with an optional sidebar.
 
 Use it when an application view needs a stable outer layout where primary content can fill the available space, with sidebar content added only when the view needs secondary navigation, filters, or supporting context.
 
@@ -23,11 +23,11 @@ import '@equinor/fusion-wc-layout';
 ## Usage
 
 ```html
-<fwc-layout>
+<fwc-app-layout>
   <section slot="content">
     Main content
   </section>
-</fwc-layout>
+</fwc-app-layout>
 ```
 
 ## Properties
@@ -48,18 +48,18 @@ import '@equinor/fusion-wc-layout';
 ### Content Only
 
 ```html
-<fwc-layout>
+<fwc-app-layout>
   <section slot="content">
     <h1>Project overview</h1>
     <p>Use the content slot for the main view.</p>
   </section>
-</fwc-layout>
+</fwc-app-layout>
 ```
 
 ### With Sidebar
 
 ```html
-<fwc-layout sidebar>
+<fwc-app-layout sidebar>
   <nav slot="sidebar" style="width: 240px;">
     <a href="/projects">Projects</a>
     <a href="/tasks">Tasks</a>
@@ -69,21 +69,21 @@ import '@equinor/fusion-wc-layout';
     <h1>Active projects</h1>
     <p>The content area fills the remaining horizontal space.</p>
   </section>
-</fwc-layout>
+</fwc-app-layout>
 ```
 
-### With `fwc-page`
+### With `fwc-app-page`
 
 ```html
-<fwc-layout sidebar>
+<fwc-app-layout sidebar>
   <nav slot="sidebar">Sidebar content</nav>
 
-  <fwc-page slot="content">
+  <fwc-app-page slot="content">
     <div slot="header">Header content</div>
     <div slot="main">Main content</div>
     <div slot="footer">Footer content</div>
-  </fwc-page>
-</fwc-layout>
+  </fwc-app-page>
+</fwc-app-layout>
 ```
 
 ### React
@@ -92,10 +92,10 @@ import '@equinor/fusion-wc-layout';
 import '@equinor/fusion-wc-layout';
 
 export const ProjectLayout = () => (
-  <fwc-layout sidebar>
+  <fwc-app-layout sidebar>
     <nav slot="sidebar">Sidebar content</nav>
     <section slot="content">Main content</section>
-  </fwc-layout>
+  </fwc-app-layout>
 );
 ```
 

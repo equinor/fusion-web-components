@@ -4,7 +4,7 @@
 
 ## Overview
 
-`fwc-page` is a structural web component for composing application pages with a predictable header, main content, and footer layout.
+`fwc-app-page` is a structural web component for composing application pages with a predictable header, main content, and footer layout.
 
 Use it when a page needs a stable full-height layout where the main content can scroll independently while the header and footer remain in their dedicated regions. The component owns the page grid so consumers only need to provide content for the named slots.
 
@@ -23,7 +23,7 @@ import '@equinor/fusion-wc-page';
 ## Usage
 
 ```html
-<fwc-page>
+<fwc-app-page>
 	<header slot="header">
 		<h1>Project overview</h1>
 	</header>
@@ -35,7 +35,7 @@ import '@equinor/fusion-wc-page';
 	<footer slot="footer">
 		<span>Last updated today</span>
 	</footer>
-</fwc-page>
+</fwc-app-page>
 ```
 
 ## Slots
@@ -51,7 +51,7 @@ import '@equinor/fusion-wc-page';
 ### Page With Actions
 
 ```html
-<fwc-page>
+<fwc-app-page>
 	<div slot="header" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem;">
 		<h1>Portfolio</h1>
 		<button type="button">Create</button>
@@ -65,21 +65,21 @@ import '@equinor/fusion-wc-page';
 	<div slot="footer" style="padding: 1rem;">
 		Showing 24 projects
 	</div>
-</fwc-page>
+</fwc-app-page>
 ```
 
-### With `fwc-layout`
+### With `fwc-app-layout`
 
 ```html
-<fwc-layout sidebar>
+<fwc-app-layout sidebar>
 	<nav slot="sidebar">Sidebar content</nav>
 
-	<fwc-page slot="content">
+	<fwc-app-page slot="content">
 		<div slot="header">Header content</div>
 		<div slot="main">Main content</div>
 		<div slot="footer">Footer content</div>
-	</fwc-page>
-</fwc-layout>
+	</fwc-app-page>
+</fwc-app-layout>
 ```
 
 ### React
@@ -88,11 +88,11 @@ import '@equinor/fusion-wc-page';
 import '@equinor/fusion-wc-page';
 
 export const ProjectPage = () => (
-	<fwc-page>
+	<fwc-app-page>
 		<div slot="header">Project details</div>
 		<div slot="main">Main content</div>
 		<div slot="footer">Status content</div>
-	</fwc-page>
+	</fwc-app-page>
 );
 ```
 

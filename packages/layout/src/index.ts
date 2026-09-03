@@ -5,10 +5,10 @@ import type { LayoutElementProps } from './types';
 export * from './element';
 export * from './types';
 
-export const tag = 'fwc-layout';
+export const tag = 'fwc-app-layout';
 
 /**
- * Entry point for the fwc-layout component.
+ * Entry point for the fwc-app-layout component.
  * Registers the custom element and provides framework typings so it can be
  * used in HTML, TypeScript, and React JSX.
  */

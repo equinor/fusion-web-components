@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.2.0
+
+### Minor Changes
+
+- [#2430](https://github.com/equinor/fusion-web-components/pull/2430) [`e8c54f7`](https://github.com/equinor/fusion-web-components/commit/e8c54f7e7cb3372bb0af7a1d5b13f00d4dee628a) Thanks [@eikeland](https://github.com/eikeland)! - Rename the layout and page custom element tags to `fwc-app-layout` and `fwc-app-page`.
+
 ## 0.1.2
 
 ### Patch Changes

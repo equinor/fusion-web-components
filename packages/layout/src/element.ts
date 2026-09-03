@@ -12,7 +12,7 @@ import { layoutStyle } from './element.css';
  * @slot sidebar - Optional secondary content.
  * @slot content - Primary application content.
  *
- * @tag fwc-layout
+ * @tag fwc-app-layout
  */
 export class LayoutElement extends LitElement implements LayoutElementProps {
   static styles = layoutStyle;

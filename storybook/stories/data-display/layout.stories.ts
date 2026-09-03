@@ -16,21 +16,21 @@ setCustomElementsManifest(cem);
 type Story = StoryObj<LayoutElementProps>;
 
 const meta: Meta<typeof cem> = {
-  component: 'fwc-layout',
+  component: 'fwc-app-layout',
 };
 
 const render = (props: LayoutElementProps) => html`
   <div style="height: 650px">
-    <fwc-layout ?sidebar="${ifDefined(props.sidebar)}">
+    <fwc-app-layout ?sidebar="${ifDefined(props.sidebar)}">
       <div slot="sidebar" style="width: 240px;"><p style="padding: 1em">Sidebar content</p></div>
       <div slot="content">
-        <fwc-page>
+        <fwc-app-page>
           <p slot="main" style="padding: 1em">Main content</p>
           <p slot="header" style="padding: 1em">Header content</p>
           <p slot="footer" style="padding: 1em">Footer content</p>
-        </fwc-page>
+        </fwc-app-page>
       </div>
-    </fwc-layout>
+    </fwc-app-layout>
   </div>
 `;
 

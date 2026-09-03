@@ -3,10 +3,10 @@ import { PageElement } from './element';
 
 export * from './element';
 
-export const tag = 'fwc-page';
+export const tag = 'fwc-app-page';
 
 /**
- * Entry point for the fwc-page component.
+ * Entry point for the fwc-app-page component.
  * Registers the custom element and provides framework typings.
  */
 @fusionElement(tag)

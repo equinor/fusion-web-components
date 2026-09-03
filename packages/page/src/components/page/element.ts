@@ -9,7 +9,7 @@ import { pageStyle } from './element.css';
  * @slot main - Primary page content.
  * @slot footer - Optional page footer content.
  *
- * @tag fwc-page
+ * @tag fwc-app-page
  */
 export class PageElement extends LitElement {
   static styles = pageStyle;

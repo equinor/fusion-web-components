@@ -1,39 +1,31 @@
-# Fusion Skills — Sync + Discover Workflow
+# Fusion Skills - APM Sync Workflow
 
-Copy-pasteable combined workflow that keeps installed skills up to date and discovers new ones.
+Copy-pasteable workflow that keeps declared APM dependencies current through a reviewable pull request.
 
-Save as `.github/workflows/fusion-skills-sync.yml` in your repository.
+Save as `.github/workflows/apm-sync.yml` in your repository.
 
 ```yaml
-name: Fusion Skills Sync
+name: APM Sync
 
 on:
   schedule:
-    - cron: '0 8 * * 1'   # Weekly, Monday 8 AM UTC
+    - cron: '0 8 * * 1' # Weekly, Monday 08:00 UTC
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
-  upgrade:
-    name: Upgrade installed skills
-    uses: equinor/fusion-skills/.github/workflows/skills-update.yml@main
-
-  discover:
-    name: Discover new skills
-    uses: equinor/fusion-skills/.github/workflows/skills-discovery.yml@main
-    with:
-      source: equinor/fusion-skills
+  sync:
+    uses: equinor/fusion-skills/.github/workflows/apm-sync.yml@main
+    permissions:
+      contents: write
+      pull-requests: write
 ```
 
 ## What this does
 
-- **`upgrade`** — checks installed skills for new versions and creates a single PR with all updates.
-- **`discover`** — scans the source catalog for newly released skills and creates one PR per new skill.
-
-Both jobs run in parallel. No secrets needed — they use `github.token` automatically.
+- Runs `microsoft/apm-action` in update mode.
+- Refreshes dependencies within constraints declared in `apm.yml`.
+- Updates `apm.lock.yaml` and redeploys APM-managed context.
+- Opens or updates one pull request when files change.
 
 ## Quick setup
 
@@ -41,10 +33,16 @@ Both jobs run in parallel. No secrets needed — they use `github.token` automat
 mkdir -p .github/workflows
 cp .agents/skills/fusion-skills/assets/workflows/skills-sync.yml.md /dev/stdout \
   | sed -n '/^```yaml$/,/^```$/p' | sed '1d;$d' \
-  > .github/workflows/fusion-skills-sync.yml
-git add .github/workflows/fusion-skills-sync.yml
-git commit -m "ci: add Fusion skills sync + discover workflow"
+  > .github/workflows/apm-sync.yml
+git add .github/workflows/apm-sync.yml
+git commit -m "ci: add APM sync workflow"
 git push
 ```
 
-Or simply copy the YAML block above into `.github/workflows/fusion-skills-sync.yml`.
+Or copy the YAML block above into `.github/workflows/apm-sync.yml`.
+
+APM updates declared dependencies only. Add newly selected skills explicitly with:
+
+```bash
+apm install equinor/fusion-skills/skills/<skill>#^1.6.1 --target copilot
+```

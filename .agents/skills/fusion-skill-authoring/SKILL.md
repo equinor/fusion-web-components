@@ -103,15 +103,15 @@ Repository-specific prefix rules, ownership/lifecycle requirements, release poli
 
 ### Step 1 — Check for installed-copy provenance before editing
 
-Before editing an existing `SKILL.md` (or its `references/`, `assets/`, `agents/`), check `skills-lock.json` at the repository root. Its `skillPath` values are relative to the local skills root (e.g. `caveman-compress/SKILL.md`), not absolute or fully-qualified paths — strip any leading skills-root segment (such as `.agents/skills/` or `skills/`) from the target file's path before comparing. If a stripped entry's `skillPath` matches the target this way and its `source` differs from the current repository, the target is an **installed copy**, not the canonical source.
+Before editing an existing `SKILL.md` (or its `references/`, `assets/`, `agents/`), inspect the repository's `apm.yml` and `apm.lock.yaml`. Use the lockfile's dependency provenance and deployed-file ownership to determine whether the target came from an external APM dependency. If it did, the target is an **installed copy**, not the canonical source.
 
 **If it is an installed copy:**
-- Do not edit in place — local edits are overwritten on the next `npx skills update` and never reach other consumers.
+- Do not edit in place — local edits may be overwritten by the next `apm install` or `apm update` and never reach other consumers.
 - Tell the user the file is installed from `<source>`; changes belong there.
 - Offer to switch to `<source>` and make the change there, or draft a bug/improvement issue against it instead.
 - Only edit locally if the user explicitly confirms a one-off override and accepts it won't persist.
 
-If no `skills-lock.json` exists, or `source` matches the current repository, proceed normally.
+If neither APM file exists, the target has no matching deployed-file ownership, or the source matches the current repository, proceed normally.
 
 ### Step 2 — Decide whether this should be a skill at all
 
@@ -290,7 +290,7 @@ Never:
 - Invent validation results or evaluation evidence
 - Modify unrelated files outside the requested scope
 - Add hidden network access, remote-code execution, or unsafe script guidance
-- Edit a `skills-lock.json`-tracked installed copy in place without first surfacing its source repo and getting explicit confirmation
+- Edit an APM-installed copy in place without first surfacing its source repo and getting explicit confirmation
 
 Always:
 - Keep `SKILL.md` concise; move overflow to direct references

@@ -1,3 +1,7 @@
+---
+description: Review code for intent documentation that preserves non-trivial decisions, constraints, and reasoning.
+---
+
 # Intent Comments Agent
 
 ## When to use

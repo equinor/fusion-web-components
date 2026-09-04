@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4 - 2026-08-31
+
+### patch
+
+- [#223](https://github.com/equinor/fusion-skills/pull/223) [`22d93c3`](https://github.com/equinor/fusion-skills/commit/22d93c3d89eea1bd37a84980c8c183236c305c1f) - Add valid custom-agent frontmatter so APM parses and integrates the constitution and intent agents.
+
 ## 0.1.3 - 2026-05-07
 
 ### patch

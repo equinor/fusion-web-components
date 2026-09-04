@@ -1,3 +1,7 @@
+---
+description: Inspect Fusion skills for quality issues or capture unexpected skill behavior in a triage-ready report.
+---
+
 # Warden Agent
 
 Use this agent to detect quality issues in Fusion skills or to surface and report problems when a Fusion skill behaves unexpectedly.

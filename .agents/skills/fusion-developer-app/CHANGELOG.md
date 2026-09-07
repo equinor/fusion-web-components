@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.4.0 - 2026-08-31
+
+### minor
+
+- [#221](https://github.com/equinor/fusion-skills/pull/221) [`df40bbc`](https://github.com/equinor/fusion-skills/commit/df40bbc28a8d9134ad433fe43d7110996e3e6143) - Route Fusion app test work through dedicated testing and mocking skills
+
+
+  Add test authoring and test-time mocking to developer-app discovery cues, companion metadata,
+  implementation workflow, and expected output. Preserve direct companion-skill routing for users
+  running `fusion-developer-app` without APM through a concise reference and skill-local testing
+  agent template.
+
 ## 0.3.0 - 2026-05-07
 
 ### minor

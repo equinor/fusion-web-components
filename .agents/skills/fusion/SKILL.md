@@ -23,7 +23,7 @@ metadata:
 
 Main gate. Identify intent, route to the right Fusion skill.
 
-**Requires `fusion-skills`** for skill lifecycle operations. If `fusion-skills` is not installed, suggest: `npx -y skills add equinor/fusion-skills fusion-skills`
+**Requires `fusion-skills`** for skill lifecycle operations. If `fusion-skills` is not installed, suggest: `apm install equinor/fusion-skills/skills/fusion-skills#^1.6.1 --target copilot`
 
 ## First-contact response
 
@@ -61,7 +61,7 @@ This skill is a top-level router. It must never re-route back to itself. If you 
 3. **If installed:** redirect the user to invoke that skill directly.
 4. **If not installed but available (active or experimental):** name the skill, state what it does in one sentence, note if experimental, and give the install command:
    ```
-   npx -y skills add equinor/fusion-skills <skill-name>
+   apm install equinor/fusion-skills/skills/<skill-name>#^1.6.1 --target copilot
    ```
 5. **If the skill is experimental:** add a note: "This skill is experimental and may change. Install at your own risk."
 6. **If intent doesn't match any routing entry:** say so and suggest the user describe their goal differently, or use `fusion-skills` discovery to search for a matching skill.

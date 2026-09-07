@@ -31,7 +31,7 @@ Do not reimplement convention rules here — `fusion-code-conventions` is the au
 
 > "`fusion-code-conventions` is required for a full convention review but does not appear to be installed. Install it with:
 > ```
-> npx -y skills add fusion-skills --skill fusion-code-conventions --agent github-copilot
+> apm install equinor/fusion-skills/skills/fusion-code-conventions#^1.6.1 --target copilot
 > ```
 > Once installed, re-run this review for complete coverage including ADR and contributor-doc enforcement.
 > Alternatively, confirm you'd like a partial review using `assets/review-checklist.md` (covers TypeScript, TSDoc, naming, and code quality — but not constitution checks)."

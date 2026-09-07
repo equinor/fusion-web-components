@@ -67,7 +67,7 @@ If intent is genuinely unclear and the user was not already asked a clarifying q
 ## Migration from deprecated skills
 
 If `fusion-discover-skills` or `fusion-skill-self-report-bug` is installed alongside this skill, tell the user:
-> "You have a deprecated skill installed that's now part of `fusion-skills`. You can safely remove it: `npx -y skills remove <deprecated-skill-name>`"
+> "You have a deprecated skill installed that's now part of `fusion-skills`. Remove its dependency from `apm.yml`, then run `apm prune` to reconcile the lockfile and deployed files."
 
 ## Safety
 
@@ -75,5 +75,4 @@ If `fusion-discover-skills` or `fusion-skill-self-report-bug` is installed along
 - No GitHub mutations without confirmation.
 - No remote script execution.
 - No invented skill names or catalog results.
-- Installed skill files are copies (see `skills-lock.json` for `source`) — never edit them in place directly; route content fixes through `agents/author.agent.md` (which redirects to `fusion-skill-authoring`, source repo) and failures through `agents/warden.agent.md` (report mode).
-
+- Installed skill files are copies (use `apm.yml` and `apm.lock.yaml` to inspect dependency provenance and deployed-file ownership) — never edit them in place directly; route content fixes through `agents/author.agent.md` (which redirects to `fusion-skill-authoring`, source repo) and failures through `agents/warden.agent.md` (report mode).

@@ -1,180 +1,109 @@
-# Sync Workflow Patterns
+# APM Sync Workflow Patterns
 
-Reusable YAML patterns for `sync` agent mode, hosted at `equinor/fusion-skills`. Consumers call with `uses:` and optional `with:` inputs.
+Reusable and copyable GitHub Actions patterns for keeping declared APM dependencies current.
 
----
+## Preconditions
 
-## 1. Skill Update Workflow
+- The consumer repository has an `apm.yml` with explicit dependencies.
+- `apm.lock.yaml` and APM-deployed agent files are committed.
+- The workflow has permission to push a branch and open a pull request.
 
-**Purpose:** Refresh installed skills when new versions are released. Creates one PR with all updated skill files and per-skill changelog notes. Also scans for deprecated/archived skills and creates replacement or removal PRs (installs successor when available).
+APM updates declared dependencies only. It does not discover or install undeclared
+Fusion skills automatically.
 
-**File path:** `.github/workflows/skills-update.yml`
+## Reusable workflow
 
-### Minimal consumer pattern
+Use the workflow hosted by `equinor/fusion-skills`:
 
-```yaml
-name: Upgrade Agent Skills
-on:
-  schedule:
-    - cron: '0 8 * * 1'  # Weekly, Monday 8 AM UTC
-  workflow_dispatch:
-
-permissions:
-  contents: write
-  pull-requests: write
-
-jobs:
-  upgrade:
-    uses: equinor/fusion-skills/.github/workflows/skills-update.yml@main
-```
-
-### With optional inputs
+**File path:** `.github/workflows/apm-sync.yml`
 
 ```yaml
-name: Upgrade Agent Skills
+name: APM Sync
+
 on:
   schedule:
-    - cron: '0 8 * * 1'
+    - cron: '0 8 * * 1' # Weekly, Monday 08:00 UTC
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
-  upgrade:
-    uses: equinor/fusion-skills/.github/workflows/skills-update.yml@main
-    with:
-      skip-deprecation-cleanup: false    # set true to disable deprecation scan
-      draft-deprecation-prs: false       # set true for draft removal PRs
-      skip-if-rejected-pr-exists: true   # respect previously-rejected PRs
-      skip-successor-install: false      # set true to only remove (don't install replacement)
-      skills-source: equinor/fusion-skills  # source repo for successor installs
+  sync:
+    uses: equinor/fusion-skills/.github/workflows/apm-sync.yml@main
+    permissions:
+      contents: write
+      pull-requests: write
 ```
 
-### Available `with:` inputs
+Pin `@main` to a Fusion Skills release tag when workflow behavior must remain fixed.
 
-| Input | Type | Default | Description |
-|-------|------|---------|-------------|
-| `skip-deprecation-cleanup` | boolean | `false` | Disable the deprecation scan and removal PRs |
-| `draft-deprecation-prs` | boolean | `false` | Create deprecation removal PRs as drafts |
-| `skip-if-rejected-pr-exists` | boolean | `true` | Skip re-proposing removal when a previous PR was closed without merge |
-| `skip-successor-install` | boolean | `false` | Only remove deprecated skills — don't auto-install their successors |
-| `skills-source` | string | `equinor/fusion-skills` | GitHub `owner/repo` used as source when installing successor skills |
+## Standalone template
 
-### Required permissions
-
-- `contents: write` — commit skill changes
-- `pull-requests: write` — create and manage PRs
-
-No secrets setup needed. The workflow uses `github.token` automatically.
-
----
-
-## 2. Skill Discovery Workflow
-
-**Purpose:** Detect newly released skills in the source catalog and create one PR per new skill for independent review and merge.
-
-**File path:** `.github/workflows/skills-discovery.yml`
-
-### Minimal consumer pattern
+Use this when the repository should own the complete workflow:
 
 ```yaml
-name: Discover New Agent Skills
+name: APM Sync
+
 on:
   schedule:
-    - cron: '0 8 * * 1-5'  # Weekdays 8 AM UTC
+    - cron: '0 8 * * 1' # Weekly, Monday 08:00 UTC
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
-  discover:
-    uses: equinor/fusion-skills/.github/workflows/skills-discovery.yml@main
-    with:
-      source: equinor/fusion-skills
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update APM dependencies
+        uses: microsoft/apm-action@v1
+        with:
+          apm-version: '0.29.0'
+          update: 'true'
+
+      - name: Open pull request if changed
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: chore/apm-sync
+          delete-branch: true
+          commit-message: 'chore(apm): sync dependencies'
+          title: 'chore(apm): sync dependencies'
+          body: |
+            Automated APM dependency sync.
+
+            Review changes to `apm.yml`, `apm.lock.yaml`, and deployed agent files before merging.
 ```
 
-### With optional inputs
+`microsoft/apm-action@v1` update mode runs non-interactive `apm update --yes`.
+It refreshes every dependency to the newest version allowed by its declared ref
+and redeploys owned files. The PR action commits only when the working tree changed.
 
-```yaml
-name: Discover New Agent Skills
-on:
-  schedule:
-    - cron: '0 8 * * 1-5'
-  workflow_dispatch:
+## Adding a newly selected skill
 
-permissions:
-  contents: write
-  pull-requests: write
+Discovery remains a review-time decision. After Fusion MCP or the static catalog
+identifies a skill, add that exact dependency:
 
-jobs:
-  discover:
-    uses: equinor/fusion-skills/.github/workflows/skills-discovery.yml@main
-    with:
-      source: equinor/fusion-skills
-      ignore-file: .github/skills-ignore.json
-      draft-prs: false
-      skip-if-rejected-pr-exists: true
+```bash
+apm install equinor/fusion-skills/skills/<skill>#^1.6.1 --target copilot
 ```
 
-### Available `with:` inputs
-
-| Input | Type | Default | Description |
-|-------|------|---------|-------------|
-| `source` | string | `equinor/fusion-skills` | Skills source repository for `npx skills add --list` |
-| `ignore-file` | string | `.github/skills-ignore.json` | Path to the ignore list in the target repository |
-| `draft-prs` | boolean | `false` | Create skill addition PRs as drafts |
-| `skip-if-rejected-pr-exists` | boolean | `true` | Skip proposing a skill when a previous PR for that skill was closed without merge |
-
-### Required permissions
-
-- `contents: write` — create branches and commit skill files
-- `pull-requests: write` — create and manage PRs
-
----
-
-## 3. Skills Ignore List
-
-**Purpose:** Exclude specific skills from the discovery workflow.
-
-**File path:** `.github/skills-ignore.json`
-
-```json
-{
-  "ignored": [
-    "fusion-example-skill",
-    "fusion-experimental-feature"
-  ]
-}
-```
-
-- Must be valid JSON
-- Array values are skill names (not file paths)
-- Used by the discovery workflow's `ignore-file` input
-- Does not affect the update workflow (updates only affect already-installed skills)
-
----
+Review and commit `apm.yml`, `apm.lock.yaml`, and the deployed agent files
+together. Subsequent scheduled updates are handled by the workflow above.
 
 ## Schedule reference
 
 | Preference | Cron |
 |------------|------|
-| Daily, 8 AM UTC | `0 8 * * *` |
-| Weekdays, 8 AM UTC | `0 8 * * 1-5` |
-| Weekly (Monday), 8 AM UTC | `0 8 * * 1` |
+| Daily, 08:00 UTC | `0 8 * * *` |
+| Weekdays, 08:00 UTC | `0 8 * * 1-5` |
+| Weekly (Monday), 08:00 UTC | `0 8 * * 1` |
 | On-demand only | omit `schedule:`, keep `workflow_dispatch:` |
 
----
+## Safety notes
 
-## Pinning to a release tag
-
-Replace `@main` with a specific tag to pin behavior and avoid unexpected breaking changes:
-
-```yaml
-uses: equinor/fusion-skills/.github/workflows/skills-update.yml@v1.2.3
-```
-
-Check `equinor/fusion-skills` releases for the latest stable tag.
+- Keep dependency ranges bounded and review lockfile changes before merging.
+- Do not pass credentials on the command line or embed them in workflow YAML.
+- Keep `contents: write` and `pull-requests: write` scoped to this job.
+- Do not add `--force`; investigate collisions or security findings instead.

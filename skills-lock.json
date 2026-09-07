@@ -37,6 +37,12 @@
       "skillPath": "skills/fusion-devtools/SKILL.md",
       "computedHash": "2b88eb34e8ffe8f45b6cf3fff454dd4ee035ab87ee9a457fec3a45678ed75bcc"
     },
+    "fusion-framework-mocking": {
+      "source": "equinor/fusion-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.experimental/fusion-framework-mocking/SKILL.md",
+      "computedHash": "e7075238e367fac4c03fc2b0a533655dac7128523a2f28e78ab0942aee1a92c2"
+    },
     "fusion-github-review-resolution": {
       "source": "equinor/fusion-skills",
       "sourceType": "github",

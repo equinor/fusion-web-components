@@ -36,7 +36,7 @@
     "format": "biome format",
     "test:pack": "pnpm -r pack --dry-run",
     "test:publish": "pnpm publish -r --dry-run --no-git-checks --force",
-    "changeset:publish": "pnpm changeset tag && pnpm publish -r",
+    "changeset:publish": "pnpm changeset git-tag && pnpm publish -r",
     "trust:npm": "bash ./scripts/trust-all-npm-packages.sh",
     "trust:npm:dry-run": "DRY_RUN=1 bash ./scripts/trust-all-npm-packages.sh"
   },
@@ -45,7 +45,7 @@
   "license": "ISC",
   "dependencies": {
     "@changesets/changelog-github": "^1.0.1",
-    "@changesets/cli": "^2.31.1",
+    "@changesets/cli": "^3.0.2",
     "@types/react": "^19.2.18"
   },
   "devDependencies": {

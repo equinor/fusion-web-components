@@ -19,7 +19,7 @@ Fallback reference when Fusion MCP is unavailable. Maps intent to skills `fusion
 
 **Install:**
 ```bash
-npx -y skills add equinor/fusion-skills fusion-skill-authoring
+apm install equinor/fusion-skills/skills/fusion-skill-authoring#^1.6.1 --target copilot
 ```
 
 ---
@@ -39,7 +39,7 @@ npx -y skills add equinor/fusion-skills fusion-skill-authoring
 
 **Install:**
 ```bash
-npx -y skills add equinor/fusion-skills fusion-mcp
+apm install equinor/fusion-skills/skills/fusion-mcp#^1.6.1 --target copilot
 ```
 
 ---

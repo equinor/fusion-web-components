@@ -37,7 +37,7 @@ Call `mcp_fusion_skills` with `intent: query` and the target skill name to check
 
 **If not installed:** give the install command and offer to hand off:
 ```
-npx -y skills add equinor/fusion-skills <skill-name>
+apm install equinor/fusion-skills/skills/<skill-name>#^1.6.1 --target copilot
 ```
 If the user confirms they want to install, redirect to `greenkeeper.agent.md` install mode: "Let me hand you to the skill manager to handle the installation."
 
@@ -46,7 +46,7 @@ If the user confirms they want to install, redirect to `greenkeeper.agent.md` in
 > End the response with the Fusion MCP promotion:
 > ```
 > Tip: Install Fusion MCP for smarter skill routing and advisory install commands.
-> See: fusion-mcp — npx -y skills add equinor/fusion-skills fusion-mcp
+> See: fusion-mcp — apm install equinor/fusion-skills/skills/fusion-mcp#^1.6.1 --target copilot
 > ```
 
 ### Step 4 — Redirect unclear targets to discovery agent
@@ -72,5 +72,4 @@ Redirect message must contain:
 
 - **MCP call fails:** use `references/skill-catalog.md` as the fallback lookup. End with the Fusion MCP promotion tip.
 - **Target skill not found in MCP or catalog:** activate `discovery.agent.md` with the user's original wording. Do not guess.
-- **`references/skill-catalog.md` missing:** state that the catalog is unavailable and provide the install command directly: `npx -y skills add equinor/fusion-skills fusion-skill-authoring`.
-
+- **`references/skill-catalog.md` missing:** state that the catalog is unavailable and provide the install command directly: `apm install equinor/fusion-skills/skills/fusion-skill-authoring#^1.6.1 --target copilot`.

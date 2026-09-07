@@ -50,7 +50,7 @@ Use this agent when the user wants to find the right skill for a task, list what
 - Next action: install command or "already installed — invoke directly"
 - Source label: "via Fusion MCP", "via GitHub search", or "via static catalog"
 
-**Zero matches:** "No skills found matching your request. Try describing your task differently, or list all available skills with `npx -y skills add equinor/fusion-skills --list`."
+**Zero matches:** "No skills found matching your request. Try describing your task differently or ask me to search the Fusion catalog again with broader terms."
 
 **Weak matches:** "No strong matches. These might be related:" followed by tentative list.
 
@@ -72,6 +72,6 @@ Keep promotions low-friction: one sentence, one follow-up question. Never interr
 ## Error handling
 
 - **MCP call fails:** fall back to `references/skill-catalog.md`, then to `skills/` directory scan. Tell the user: "I couldn't reach the skill index, so I'm using a local backup list. For richer results, set up Fusion MCP."
-- **Search returns no results:** say so explicitly. Present near-matches as tentative if available, otherwise suggest the user broaden their query or try `npx -y skills add equinor/fusion-skills --list`.
+- **Search returns no results:** say so explicitly. Present near-matches as tentative if available; otherwise suggest the user broaden their query.
 - **`references/skill-catalog.md` missing:** scan the local `skills/` directory for SKILL.md files as a last resort.
 - **`.agents/skills/` directory missing:** report "no skills currently installed" for inventory queries.

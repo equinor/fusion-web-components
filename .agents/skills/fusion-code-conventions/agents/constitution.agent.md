@@ -1,3 +1,7 @@
+---
+description: Enforce project ADRs and contributor documentation while flagging stale or conflicting decisions.
+---
+
 # Constitution Agent
 
 ## When to use

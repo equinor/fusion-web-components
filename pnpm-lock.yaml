@@ -1141,8 +1141,8 @@ importers:
         specifier: ^26.4.1
         version: 26.4.1
       filesize:
-        specifier: ^11.0.22
-        version: 11.0.22
+        specifier: ^11.0.23
+        version: 11.0.23
       lodash.camelcase:
         specifier: ^4.3.0
         version: 4.3.0
@@ -3435,8 +3435,8 @@ packages:
       picomatch:
         optional: true
 
-  filesize@11.0.22:
-    resolution: {integrity: sha512-RlCVs9CY+oSsRnNZn95J9vDXjNjOwddKyTFjOYtA4yxYVIxBnwiVVGJX+TFhsmu3uUf81JDGyijtYL9xgawlTw==}
+  filesize@11.0.23:
+    resolution: {integrity: sha512-EzB9Km94xm3V7szupSlcGVJpkvXWuNtSZmr7qBoj229q7lEJEEYGMk8gwGnA4ZTAGQmHZigTDEIuOfCQXec1fQ==}
     engines: {node: '>= 10.8.0'}
 
   fill-range@7.1.1:
@@ -7178,7 +7178,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
-  filesize@11.0.22: {}
+  filesize@11.0.23: {}
 
   fill-range@7.1.1:
     dependencies:

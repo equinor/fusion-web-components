@@ -1,15 +1,17 @@
 ---
 name: fusion-developer-app
-description: 'Guides feature development in Fusion Framework React apps, including app-scoped framework research needed to choose the right hooks, modules, packages, and integration patterns before implementation. USE FOR: building new features, adding components or pages, creating hooks and services, wiring up API endpoints, extending Fusion module configuration, and answering app implementation questions about which Fusion Framework surface to use. DO NOT USE FOR: issue authoring, skill authoring, CI/CD configuration, backend service changes, or general Fusion documentation that is not tied to app implementation.'
+description: 'Guides feature development in Fusion Framework React apps, including app-scoped framework research, test authoring, and test-time mocking needed to choose and verify the right integration patterns. USE FOR: building features, components, pages, hooks, services, API integrations, module configuration, and their tests. DO NOT USE FOR: issue authoring, skill authoring, CI/CD configuration, backend service changes, or general Fusion documentation unrelated to app implementation.'
 license: MIT
 compatibility: Requires a Fusion Framework React app bootstrapped with @equinor/fusion-framework-cli. Works best when styled-components, @equinor/eds-core-react, and @equinor/fusion-react-* packages are installed.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
   status: active
   owner: "@equinor/fusion-core"
   skills:
     - fusion-research
     - fusion-code-conventions
+    - fusion-framework-testing
+    - fusion-framework-mocking
   tags:
     - fusion-framework
     - react
@@ -20,6 +22,8 @@ metadata:
     - charts
     - ag-charts
     - feature-flag
+    - testing
+    - mocking
   mcp:
     suggested:
       - fusion
@@ -41,12 +45,15 @@ Typical triggers:
 - "Add a chart / people picker / person column to AG Grid"
 - "How do I write a custom Fusion Framework module?"
 - "Should this be a Fusion module or a React context?"
+- "Write tests for this Fusion component / hook / route"
+- "Mock auth, context, feature flags, or HTTP in this test"
 
 Implicit triggers:
 - Building in `src/`
 - References Fusion Framework modules, EDS, `@equinor/fusion-react-*`, or styled-components
 - References app settings, bookmarks, analytics, `app.config.ts`
 - Adding route, page, or data-fetching layer
+- Adding or updating `*.test.ts` / `*.test.tsx`, `vitest.config.ts`, or Fusion test fixtures
 - References charting: `@equinor/fusion-framework-react-ag-charts`, `chart.js`, `react-chartjs-2`
 
 ## When not to use
@@ -75,6 +82,8 @@ For ambiguous requests, consult `assets/follow-up-questions.md` before implement
 - Design/layout specifics when building visual components
 - Fusion module name when extending module configuration
 - Whether state should persist per-user, be shareable via bookmark, or stay runtime-only
+- Expected test layer: pure logic, hook, component, route, complete app, or module graph
+- External boundaries tests must seed: auth, context, services, feature flags, bookmarks, or HTTP
 
 ## Instructions
 
@@ -169,7 +178,13 @@ Identify which module the user needs, then read only the matching reference:
 - Define routes via Fusion Router DSL (`layout`, `index`, `route`, `prefix`) for auto code splitting.
 - Unclear framework API → use `fusion-research` before choosing implementation pattern.
 
-### Step 7 — Validate
+### Step 7 — Add or update tests
+
+Follow `references/testing.md`. Use `agents/testing.md` for focused test creation, maintenance, and
+execution. It routes framework setup/rendering to `fusion-framework-testing` and module/HTTP state
+to `fusion-framework-mocking`.
+
+### Step 8 — Validate
 
 Use `assets/review-checklist.md` as post-generation checklist.
 
@@ -185,14 +200,21 @@ Use `assets/review-checklist.md` as post-generation checklist.
 - All files pass typecheck + lint.
 - Every exported function, component, hook, and type has TSDoc.
 - Styling follows project conventions.
+- Tests cover changed behavior using `fusion-framework-testing`; test-time Fusion state uses
+  `fusion-framework-mocking` where needed.
 - Brief summary of what changed and why.
 
 ## Helper agents
 
 Optional helpers in `agents/`. Use for focused review or mid-implementation guidance. Runtimes without skill-local agents apply criteria inline.
 
-Companion skill: `fusion-research` for source-backed Fusion ecosystem research when implementation is blocked by uncertainty.
+Companion skills:
 
+- `fusion-research` for source-backed Fusion ecosystem research when implementation is blocked by uncertainty.
+- `fusion-framework-testing` for Fusion Framework React test setup, fixtures, rendering, and troubleshooting.
+- `fusion-framework-mocking` for deterministic module state and HTTP/OpenAPI boundaries in tests.
+
+- **`agents/testing.md`** — creates, maintains, and executes app tests; routes to testing/mocking companion skills. Use for changed behavior, test files, fixtures, config, or failures.
 - **`agents/framework.md`** — Fusion Framework integration: modules, HTTP clients, bootstrap, runtime config, settings, bookmarks, analytics. **Prefers `mcp_fusion_search_framework`**; falls back to `mcp_fusion_search_docs`. Consult when wiring `config.ts`, `app.config.ts`, or framework module access.
 - **`agents/styling.md`** — EDS component selection, styled-components, design tokens, accessibility. **Prefers `mcp_fusion_search_eds`**. Consult when building/modifying visual components.
 - **`agents/design.md`** — page/view structure: Fusion Portal shell composition, layout zones, side panel usage, empty/loading state patterns. References `equinor-design-system` for layout ground truth. Delegates component-level checks to `agents/styling.md`. Consult when scaffolding new pages or layout wrappers.

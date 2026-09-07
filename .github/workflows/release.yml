@@ -39,11 +39,10 @@ jobs:
         id: changesets
         uses: changesets/action@v2
         with:
-          title: '🤖 Bip Bop - Fusion Web Components Release'
-          commit: 'chore: version packages'
-          createGithubReleases: true
-          setupGitUser: false
-          publish: pnpm changeset:publish
+          pr-title: '🤖 Bip Bop - Fusion Web Components Release'
+          commit-message: 'chore: version packages'
+          create-github-releases: true
+          publish-script: pnpm changeset:publish
         env:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_CONFIG_PROVENANCE: true

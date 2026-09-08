@@ -4,7 +4,7 @@ description: 'Creates or modernizes repository skills with clear activation cues
 license: MIT
 compatibility: Works best in repositories that can inspect their local skill catalog and run catalog-specific validation commands. Optional helper agents are most useful in Anthropic-compatible runtimes or other clients that support skill-local agents/subagents.
 metadata:
-   version: "0.3.5"
+   version: "0.3.6"
    status: active
    owner: "@equinor/fusion-core"
    tags:

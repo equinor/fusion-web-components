@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.6 - 2026-09-07
+
+### patch
+
+- [#227](https://github.com/equinor/fusion-skills/pull/227) [`596c9c1`](https://github.com/equinor/fusion-skills/commit/596c9c1f679dbfc536f9cd302143e350d3a23f53) - Check APM provenance before editing installed skill copies.
+
 ## 0.3.5 - 2026-07-03
 
 ### patch

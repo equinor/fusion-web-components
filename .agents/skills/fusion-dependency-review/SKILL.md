@@ -4,7 +4,7 @@ description: 'Review dependency PRs with structured research, existing-PR-discus
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.1.4"
+  version: "0.1.5"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -80,7 +80,7 @@ When the runtime supports skill-local advisors, prefer this execution shape inst
   - `agents/security-advisor.md`
   - `agents/code-quality-advisor.md`
   - `agents/impact-advisor.md`
-4. Chain the combined research and lens outputs into `agents/verdict-advisor.md` for recommendation, confidence, handoff, and confirmation wording.
+4. Chain the combined research and lens outputs into `agents/verdict-advisor.md` for recommendation, confidence, readiness, handoff, and confirmation wording.
 5. Chain into `agents/source-control-advisor.md` only if the accepted next step requires PR patching, rebase, conflict resolution, or merge-readiness work.
 
 Keep the lens advisors narrow and independent. The parent skill owns the unified review and should preserve disagreement between advisors instead of flattening it early.
@@ -90,14 +90,14 @@ Keep the lens advisors narrow and independent. The parent skill owns the unified
 1. Resolve target PR with `agents/target-pr-advisor.md` and concise prompts in `references/questions.md`.
 2. Gather context and build shared evidence packet with `agents/research-advisor.md`, `assets/review-tracker.md`, and `assets/research-template.md`.
 3. Run `agents/security-advisor.md`, `agents/code-quality-advisor.md`, and `agents/impact-advisor.md` in parallel with the same normalized research packet.
-4. Use `agents/verdict-advisor.md` to produce recommendation, confidence, follow-up, and explicit maintainer prompt.
+4. Use `agents/verdict-advisor.md` to produce recommendation, confidence, readiness, follow-up, and explicit maintainer prompt.
 5. Use `agents/source-control-advisor.md` only after verdict is accepted and only when branch work is required.
 6. Follow `references/instructions.md` for detailed live-PR contract: target selection, checkpoint comments, decision gates, and handoff timing.
 
 ## Assets
 
 - `assets/research-template.md`: research-comment structure for change summary, breaking changes, known issues, and sources
-- `assets/verdict-template.md`: verdict structure for lens assessments, recommendation, confidence, and follow-up items
+- `assets/verdict-template.md`: verdict structure for lens assessments, recommendation, confidence, readiness, and follow-up items
 - `assets/review-tracker.md`: working checklist and tracker for context, validation, lens outcomes, and handoff decisions
 
 ## References
@@ -133,7 +133,7 @@ If the PR target is resolved, return a structured review containing:
 - Security assessment with evidence
 - Code quality assessment with evidence
 - Impact assessment with evidence
-- Verdict: recommendation, rationale, confidence, and follow-up items
+- Verdict: recommendation, rationale, confidence, readiness, and follow-up items
 - Handoff recommendation when follow-up work should become a tracked issue
 - Explicit action prompt for the maintainer
 
@@ -157,6 +157,9 @@ Always:
 
 - Ask minimal follow-up questions when the target PR is missing or ambiguous
 - Present evidence for each assessment (link to changelog, CVE, CI status)
+- Assess technical recommendation, evidence confidence, and mechanical merge readiness independently
+- Treat pending checks or required approval as readiness gates, not technical reasons to hold
+- Require explicit compatibility evidence for major updates without treating semver category alone as low confidence
 - List candidate dependency PRs for user selection when repository context exists but the PR target does not
 - Fetch existing PR comments and review threads via GitHub MCP before analysis on a live PR
 - Reuse one shared research packet across advisors instead of rediscovering the same facts in each pass — this includes PR metadata, changed files, CI status, and existing discussion

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.5 - 2026-09-07
+
+### patch
+
+- [#238](https://github.com/equinor/fusion-skills/pull/238) [`6ced569`](https://github.com/equinor/fusion-skills/commit/6ced569541a5474b34812d88c5b019397d328f78) - Separate dependency compatibility, evidence confidence, and mechanical merge readiness.
+
+
+  - Allow well-researched major updates to receive high confidence
+  - Keep pending checks and approval from incorrectly forcing a hold verdict
+  - Add explicit readiness states to review outputs and templates
+
 ## 0.1.4 - 2026-05-07
 
 ### patch

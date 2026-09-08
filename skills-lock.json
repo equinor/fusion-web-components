@@ -17,7 +17,7 @@
       "source": "equinor/fusion-skills",
       "sourceType": "github",
       "skillPath": "skills/.experimental/fusion-dependency-review/SKILL.md",
-      "computedHash": "3c7edde1fa83819d26191bbf5a931412632b1c1ef3e0f9856ef7408159b5cf1f"
+      "computedHash": "707b4644acf1f46c9020118b0d4c009d1a346b70e48c02d3c04165e12f2d0bee"
     },
     "fusion-design": {
       "source": "equinor/fusion-skills",

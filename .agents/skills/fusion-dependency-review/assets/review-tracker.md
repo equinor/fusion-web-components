@@ -13,7 +13,7 @@ Use this tracker while reviewing a dependency PR so the research, lens analysis,
 - [ ] Summarize research findings
 - [ ] Post the research checkpoint comment to the PR before any branch mutation
 - [ ] Score security, code quality, and impact lenses
-- [ ] Determine recommendation and confidence
+- [ ] Determine recommendation, confidence, and readiness independently
 - [ ] Identify required follow-up work
 - [ ] Post the final verdict comment to the PR before any approval or merge action
 - [ ] Ask for explicit maintainer confirmation before any approve/merge action
@@ -80,6 +80,7 @@ Use this tracker while reviewing a dependency PR so the research, lens analysis,
 |-------|-------|
 | Recommendation | `merge / merge with follow-up / hold / decline` |
 | Confidence | `high / medium / low` |
+| Readiness | `ready / waiting for checks / waiting for approval / needs changes` |
 | Rationale | |
 
 ## Follow-up handoff
@@ -97,7 +98,8 @@ If additional work is required, make the handoff explicit.
 - [ ] Research checkpoint comment posted to the PR before any rebase, push, approval, or merge action
 - [ ] Lens assessments have evidence
 - [ ] Unresolved reviewer concerns are reflected in the recommendation or explicitly rebutted
-- [ ] Recommendation and confidence are consistent with the evidence
+- [ ] Recommendation, confidence, and readiness are independently consistent with the evidence
+- [ ] Pending checks or approval affect readiness, not technical recommendation or confidence
 - [ ] Any required branch sync or rebase is explicit before patching
 - [ ] Follow-up work is explicit instead of implied
 - [ ] Final verdict comment posted to the PR before any approval or merge action

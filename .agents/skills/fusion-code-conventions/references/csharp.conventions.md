@@ -81,6 +81,10 @@ Minimal APIs (.NET 6+): `Program.cs`; endpoints in `Endpoints/` or by feature. `
 - **Authorization**: prefer policy/requirement-based over inline role string checks.
 - **API versioning**: `[ApiVersion("X.0")]` + `[MapToApiVersion("X.0")]` from `Asp.Versioning`. Versioned controllers may be split as `partial` classes per version file.
 - **Route naming**: kebab-case path segments (`/orders/{orderId}/line-items`).
+- **Declared status codes**: declare every status code an endpoint can actually return, including negative paths (`401`, `403`, `404`, `400` with the typed
+  `ProblemDetails`/`ValidationProblemDetails` body) — not just the happy-path `200`/`201`. For MVC
+  actions use `[ProducesResponseType]`; for minimal APIs use the route handler builder `.Produces(...)`
+  extensions.
 
 ## API response models
 
@@ -104,6 +108,9 @@ Minimal APIs (.NET 6+): `Program.cs`; endpoints in `Endpoints/` or by feature. `
 - Constructor sets formatted message; class exposes read-only domain props.
 - RFC 7807 Problem Details for errors: minimal APIs use `Results.Problem(...)`/`TypedResults.Problem(...)`; MVC use `ControllerBase.Problem(...)` or exception handler middleware.
 - Catch specific domain exception; middleware handles unexpected.
+- Prefer a small static factory class (e.g. `OrderApiError.NotFound(...)`, `.ValidationFailed(...)`)
+  building the enriched `ProblemDetails`/`ValidationProblemDetails` payload, so controller actions
+  stay one-liners instead of constructing `ProblemDetails` inline in every catch block.
 
 ## Code style (enforced via `.editorconfig`)
 
@@ -122,6 +129,10 @@ Minimal APIs (.NET 6+): `Program.cs`; endpoints in `Endpoints/` or by feature. `
 - `GenerateDocumentationFile = true` on all service projects.
 - Warning `1591` is suppressed, so comments are generated where present but not required on every member.
 - Use `<summary>`, `<param>`, `<returns>`, `<remarks>`, `<list>` as needed; `<see cref="..."/>` for cross-references.
+- On controller actions and API request/response model properties, these comments aren't just
+  IntelliSense — when the project enables XML-comment inclusion, `Microsoft.AspNetCore.OpenApi`/
+  Swashbuckle surface them as the generated OpenAPI document's `summary`/`description` fields.
+  Write them for the API's external callers, not only for other developers reading the source.
 
 ## Testing
 

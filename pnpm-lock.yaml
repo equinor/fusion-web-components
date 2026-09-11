@@ -1003,10 +1003,10 @@ importers:
         version: 10.6.0(@types/react@19.2.18)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))
       '@storybook/builder-vite':
         specifier: ^10.6.0
-        version: 10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))
+        version: 10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))
       '@storybook/web-components-vite':
         specifier: ^10.6.0
-        version: 10.6.0(lit@3.3.3)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))
+        version: 10.6.0(lit@3.3.3)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))
       lit:
         specifier: ^3.0.2
         version: 3.3.3
@@ -1027,7 +1027,7 @@ importers:
         version: 7.0.2
       vite:
         specifier: ^8.2.2
-        version: 8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0)
+        version: 8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0)
     devDependencies:
       '@equinor/fusion-wc-avatar':
         specifier: workspace:*
@@ -1138,8 +1138,8 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9
       '@types/node':
-        specifier: ^26.4.1
-        version: 26.4.1
+        specifier: ^26.5.0
+        version: 26.5.0
       filesize:
         specifier: ^11.0.23
         version: 11.0.23
@@ -1156,8 +1156,8 @@ importers:
   utils/dependencies:
     devDependencies:
       '@types/node':
-        specifier: ^26.4.1
-        version: 26.4.1
+        specifier: ^26.5.0
+        version: 26.5.0
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -2671,8 +2671,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@26.4.1':
-    resolution: {integrity: sha512-k97ENvZWtvA6yqz5/FS6a7duDgOPEeOQOc2iKS/nY6mX6qJUKtLnWzQS+Xj6tXweyj6ZcTAK2Qecetnvi9nCLA==}
+  '@types/node@26.5.0':
+    resolution: {integrity: sha512-dVSGpriSoCgz8WnDNTuSSuSv1PC/ALXihO4ulRZt7Md8k9mlbdin3lGOcDE8SnWOgf513ByWlXd7BK4azmyg/A==}
 
   '@types/prismjs@1.26.6':
     resolution: {integrity: sha512-vqlvI7qlMvcCBbVe0AKAb4f97//Hy0EBTaiW8AalRnG/xAN5zOiWWyrNqNXeq8+KAuvRewjCVY1+IPxk4RdNYw==}
@@ -4564,8 +4564,8 @@ packages:
   uc.micro@2.1.0:
     resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
 
-  undici-types@8.3.0:
-    resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
+  undici-types@8.9.0:
+    resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
@@ -6049,11 +6049,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react-dom'
 
-  '@storybook/builder-vite@10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))':
+  '@storybook/builder-vite@10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))':
     dependencies:
       storybook: 10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8)
       ts-dedent: 2.3.0
-      vite: 8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0)
 
   '@storybook/builder-webpack5@10.6.0(esbuild@0.28.2)(postcss@8.5.23)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(typescript@7.0.2)':
     dependencies:
@@ -6213,12 +6213,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/web-components-vite@10.6.0(lit@3.3.3)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))':
+  '@storybook/web-components-vite@10.6.0(lit@3.3.3)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))':
     dependencies:
-      '@storybook/builder-vite': 10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))
+      '@storybook/builder-vite': 10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0))
       '@storybook/web-components': 10.6.0(lit@3.3.3)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8))
       storybook: 10.6.0(@types/react@19.2.18)(prettier@3.8.1)(react@19.2.8)
-      vite: 8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0)
     transitivePeerDependencies:
       - lit
 
@@ -6329,9 +6329,9 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@26.4.1':
+  '@types/node@26.5.0':
     dependencies:
-      undici-types: 8.3.0
+      undici-types: 8.9.0
 
   '@types/prismjs@1.26.6': {}
 
@@ -7183,7 +7183,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 26.4.1
+      '@types/node': 26.5.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -8328,7 +8328,7 @@ snapshots:
 
   uc.micro@2.1.0: {}
 
-  undici-types@8.3.0: {}
+  undici-types@8.9.0: {}
 
   unicorn-magic@0.3.0: {}
 
@@ -8400,7 +8400,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0):
+  vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(terser@5.51.2)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -8408,7 +8408,7 @@ snapshots:
       rolldown: 1.2.5
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 26.4.1
+      '@types/node': 26.5.0
       esbuild: 0.28.2
       fsevents: 2.3.3
       terser: 5.51.2

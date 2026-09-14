@@ -4,7 +4,7 @@ description: 'Main Copilot skill gate for the Fusion ecosystem — cross-domain 
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to inline install commands when unavailable.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator

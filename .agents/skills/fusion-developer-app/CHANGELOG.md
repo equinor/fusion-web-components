@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 - 2026-09-07
+
+### patch
+
+- [#227](https://github.com/equinor/fusion-skills/pull/227) [`596c9c1`](https://github.com/equinor/fusion-skills/commit/596c9c1f679dbfc536f9cd302143e350d3a23f53) - Install the code conventions dependency through Microsoft APM.
+
 ## 0.4.0 - 2026-08-31
 
 ### minor

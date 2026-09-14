@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.5 - 2026-09-07
+
+### patch
+
+- [#237](https://github.com/equinor/fusion-skills/pull/237) [`a6cc390`](https://github.com/equinor/fusion-skills/commit/a6cc3908a11b26454a85484d7def5df1b6a5bd5a) Thanks [@alftore](https://github.com/alftore)! - Close backend-convention gaps found while validating `fusion-developer-services` against
+
+  `equinor/fusion-pss-subsea-catalog`:
+
+  - `csharp.conventions.md`: declare `[ProducesResponseType]` for every status code an action can
+    actually return (including negative paths); note that XML doc comments on controller actions and
+    request/response model properties surface in the generated OpenAPI document's `summary`/
+    `description` fields when the project enables XML-comment inclusion (`Microsoft.AspNetCore.OpenApi`/
+    Swashbuckle), not just IntelliSense; prefer a small static factory class for enriched
+    `ProblemDetails` responses so controller actions stay one-liners.
+
 ## 0.1.4 - 2026-08-31
 
 ### patch

@@ -5,7 +5,7 @@
       "source": "equinor/fusion-skills",
       "sourceType": "github",
       "skillPath": "skills/fusion/SKILL.md",
-      "computedHash": "5693d9cf3abc2118b86a7f87eb479c40e89db05da9a26065af814e1bc6f81f36"
+      "computedHash": "98e2ec6e21af152824b841fb2a450029518811215c14601947479d25332b4cec"
     },
     "fusion-code-conventions": {
       "source": "equinor/fusion-skills",
@@ -29,7 +29,7 @@
       "source": "equinor/fusion-skills",
       "sourceType": "github",
       "skillPath": "skills/fusion-developer-app/SKILL.md",
-      "computedHash": "9bcbecab7704f09f95741d5d117a919af5fe8e9a3a74ffb310eca154d949f5b7"
+      "computedHash": "e062b82c5b447e70ae03a99e8d77682e60a7aebdd0416366b4617175f8904b40"
     },
     "fusion-devtools": {
       "source": "equinor/fusion-skills",

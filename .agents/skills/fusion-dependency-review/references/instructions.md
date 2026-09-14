@@ -38,17 +38,23 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 
 1. Run `agents/security-advisor.md`, `agents/code-quality-advisor.md`, and `agents/impact-advisor.md` in parallel with the same normalized research packet.
 2. Treat the lens advisors as evidence producers only; the parent skill still owns the unified review.
-3. Chain the research output and lens outputs into `agents/verdict-advisor.md` for the recommendation, confidence, follow-up handoff, and explicit maintainer prompt.
+3. Chain the research output and lens outputs into `agents/verdict-advisor.md` for recommendation, confidence, readiness, follow-up handoff, and explicit maintainer prompt.
 4. If any lens has a `blocking` assessment, the recommendation must not be `merge` without addressing the blocker first.
-5. Unresolved reviewer concerns without evidence-based resolution reduce confidence and usually prevent a `merge` recommendation.
-6. Treat the verdict as a comment-ready artifact. Fold patching/rebase/validation results into the final verdict before posting.
+5. Assess each decision dimension independently:
+   - Recommendation describes dependency compatibility and technical risk.
+   - Confidence describes evidence completeness and consistency.
+   - Readiness describes mechanical gates such as pending checks, approval, or required branch changes.
+6. Pending checks or required approval must not turn an otherwise safe recommendation into `hold` or reduce confidence by themselves.
+7. A major version requires explicit compatibility analysis, but semver category alone must not determine confidence.
+8. Unresolved reviewer concerns without evidence-based resolution reduce confidence and usually prevent a `merge` recommendation.
+9. Treat the verdict as a comment-ready artifact. Fold patching/rebase/validation results into readiness before posting.
 
 ## Step 4 — Live PR checkpoints and maintainer decision gates
 
 1. Post the research checkpoint comment before any source-control mutation, rebase, push, approval, or merge.
 2. If the runtime cannot post the research checkpoint comment, stop before mutation and tell the maintainer that the PR record could not be updated.
 3. Post the final verdict comment before any approval, hold, decline, or merge action. Refresh it with any patching or validation results before posting.
-4. Include the existing discussion summary, unresolved reviewer concerns or rationale for treating them as resolved or outdated, lens assessments, recommendation, confidence, follow-up items, and explicit confirmation prompt in the final verdict comment, and keep the exact title prefix format `# 🤖 Bip Bop - <title>`.
+4. Include the existing discussion summary, unresolved reviewer concerns or rationale for treating them as resolved or outdated, lens assessments, recommendation, confidence, readiness, follow-up items, and explicit confirmation prompt in the final verdict comment, and keep the exact title prefix format `# 🤖 Bip Bop - <title>`.
 5. If the runtime cannot post the final verdict comment, stop before approval or merge and tell the maintainer that the PR record could not be updated.
 6. If branch patching is required before approval or merge, use `agents/source-control-advisor.md` only after the verdict is accepted so branch-sync planning, rebase need, validation reruns, and push confirmation stay tied to the chosen next action.
 7. Before any rebase, push, force-push, approval, or merge, ask for explicit maintainer confirmation.

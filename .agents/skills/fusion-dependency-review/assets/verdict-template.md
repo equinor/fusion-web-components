@@ -6,12 +6,13 @@
 | ------ | ----- |
 | Recommendation | `<merge / merge with follow-up / hold / decline>` |
 | Confidence | `<high / medium / low>` |
+| Readiness | `<ready / waiting for checks / waiting for approval / needs changes>` |
 
 ## Work Done Since Research Checkpoint
 
 - Branch action: `<none / rebased onto <base> / conflict resolved / validation-only>`
 - Validation rerun: `<commands and outcome>`
-- PR state now: `<mergeable / conflicted / waiting on CI / ready for maintainer decision>`
+- PR state now: `<mergeable / conflicted / waiting on CI / waiting for approval / ready for maintainer decision>`
 
 ## Existing Discussion Status
 
@@ -52,9 +53,13 @@
 
 ## Blockers And Follow-Up
 
-### Blockers to clear before merge
+### Technical blockers
 
-<!-- Use "None" if nothing blocks merge. Include branch sync or rebase need here when relevant. -->
+<!-- Use "None" when recommendation is merge. Technical blockers affect recommendation. -->
+
+### Mechanical readiness gates
+
+<!-- Use "None" when ready. Checks, approval, changesets, and branch sync belong here. -->
 
 ### Follow-up after merge
 

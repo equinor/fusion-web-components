@@ -46,7 +46,7 @@
   "dependencies": {
     "@changesets/changelog-github": "^1.0.1",
     "@changesets/cli": "^3.0.2",
-    "@types/react": "^19.2.18"
+    "@types/react": "^19.3.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.12",

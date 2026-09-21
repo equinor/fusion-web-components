@@ -1,7 +1,3 @@
-## Story
-
-As a <role>, I want <capability>, so that <outcome>.
-
 ## Problem / opportunity
 
 What problem are we solving, or what opportunity are we addressing?

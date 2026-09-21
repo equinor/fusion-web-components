@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.6 - 2026-09-18
+
+### patch
+
+- [#249](https://github.com/equinor/fusion-skills/pull/249) [`6d6759d`](https://github.com/equinor/fusion-skills/commit/6d6759dfdc645546833306d34eea1c1378a09253) - Remove user-story framing from the Feature fallback template and align Feature agent guidance with the problem-first structure.
+
+
+  Related to: equinor/fusion-core-tasks#2046
+
 ## 0.3.5 - 2026-05-07
 
 ### patch

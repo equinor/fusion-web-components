@@ -3,7 +3,7 @@ name: fusion-issue-authoring
 description: Classify issue type, activate the matching agent mode for type-specific drafting, and enforce shared safety gates before GitHub mutation.
 license: MIT
 metadata:
-  version: "0.3.5"
+  version: "0.3.6"
   status: active
   owner: "@equinor/fusion-core"
   tags:

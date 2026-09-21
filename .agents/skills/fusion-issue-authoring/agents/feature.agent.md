@@ -19,7 +19,7 @@ Do not use this agent mode for bugs, user stories centered on role narratives, o
 1. Confirm routed type is `Feature`.
 2. Draft locally in `.tmp/FEATURE-<context>.md`.
 3. Structure draft with:
-   - Story/problem statement
+   - Problem statement
    - Scope (in/out)
    - Functional requirements
    - Acceptance criteria

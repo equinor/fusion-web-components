@@ -13,7 +13,6 @@ export type PictureEventType = 'picture-load';
  * @typeparam T type of [[PictureEventType]]
  */
 export class PictureEvent<T extends PictureEventType> extends CustomEvent<PictureEventDetail> {
-  // biome-ignore lint/complexity/noUselessConstructor: needed to preserve generic type inference from event type
   constructor(type: T, eventInit?: PictureEventInit) {
     super(type, eventInit);
   }

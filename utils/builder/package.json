@@ -22,7 +22,7 @@
     "@types/node": "^26.6.4",
     "filesize": "^11.0.25",
     "lodash.camelcase": "^4.3.0",
-    "rollup": "^4.63.6",
+    "rollup": "^4.64.0",
     "tslib": "^2.8.1"
   }
 }

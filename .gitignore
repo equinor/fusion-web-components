@@ -21,3 +21,7 @@ components/dist
 components/lib
 
 docs/
+
+
+# APM dependencies
+apm_modules/

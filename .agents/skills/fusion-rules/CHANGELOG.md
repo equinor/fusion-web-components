@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.2 - 2026-10-18
+
+### patch
+
+- [#291](https://github.com/equinor/fusion-skills/pull/291) [`31a05b2`](https://github.com/equinor/fusion-skills/commit/31a05b2a8705e40801dc8373dc3d072991cb5aad) - Point editor agents at the renamed `.md.hbs` rule starters.
+
+
+  resolves equinor/fusion-core-tasks#2445
+
 ## 0.1.1 - 2026-05-07
 
 ### patch

@@ -4,9 +4,11 @@ description: "Resolves unresolved GitHub PR review threads end-to-end: evaluates
 license: MIT
 compatibility: Requires GitHub MCP server or gh CLI, and git.
 metadata:
-   version: "0.1.8"
+   version: "0.2.1"
    status: experimental
    owner: "@equinor/fusion-core"
+   skills:
+      - fusion-agent-content
    tags:
       - github
       - pull-request
@@ -83,6 +85,7 @@ Follow this phase order unless the user explicitly asks for a different sequence
 2. Gather unresolved comments and create working tracker
    - If a review URL with `#pullrequestreview-<id>` was provided, parse owner, repo, PR number, and review id from it before fetching.
    - **Copy or open `assets/review-resolution-checklist.md`—this becomes your working document.** Fill in the context section and update the comment tracking table as you work through each thread.
+   - Draft replies from `assets/replies/fixed.md.hbs` or `assets/replies/declined.md.hbs`. Read the `.hbs` slot header, `assets/partials/agent-content/README.md`, and every named partial before filling; no renderer ships with the skill.
    - Fetch review threads for the PR and filter unresolved threads.
    - If a specific review id or review URL is provided, limit to comments from that review.
    - Within the targeted review, collect all comments associated with that review id (do not include replies from other reviews unless explicitly requested).
@@ -124,7 +127,7 @@ Follow this phase order unless the user explicitly asks for a different sequence
    - If a different agent-authored reply already exists, stop and inspect manually rather than stacking another comment.
     - Do not resolve a thread that is still uncertain; escalate it to the user first.
    - Never resolve a thread without a reply. Never post a reply without then resolving the thread.
-   - Keep replies specific: name the file/line changed and the commit, not just "fixed".
+   - Keep replies specific: name the file/line changed and the commit, not just "fixed". Write them in the shape described in [Human-first replies](#human-first-replies).
 
 7. Verify closure state
    - Re-check review threads and confirm no targeted unresolved threads remain.
@@ -146,8 +149,29 @@ Follow this phase order unless the user explicitly asks for a different sequence
    - By default the script refuses to add another authenticated-user reply to a thread that already contains one; use `--allow-additional-reply` only after manual inspection.
    - Example dry-run:
       - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --include-resolved`
-   - Example apply:
-      - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --apply --message "Addressed in <commit>: <what changed>."`
+   - Example apply (write the multi-line reply to a file first, so the banner and any `<details>` block survive):
+      - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --apply --message-file reply.md`
+
+## Human-first replies
+
+Write every thread reply for the reviewer, not for an agent. When `fusion-agent-content` is installed, use it; otherwise follow this shape:
+
+- First line: `<sub>🤖 Drafted by <agent> (<tool>) · <model> · <effort> reasoning</sub>`, filled from runtime metadata and never guessed (write `model not reported` when unknown).
+- Then one to three sentences: the decision (fixed, partly fixed, or declined), the reason, and the commit that addresses it. A reply this short needs no TL;DR.
+- Fold anything longer (test output, extended reasoning, links) into one `<details><summary>Evidence</summary>` block.
+- Any summary comment or report this skill posts uses the full `fusion-agent-content` shape: banner, quoted `> **TL;DR:**`, prose, folded Details, folded References and evidence.
+
+```markdown
+<sub>🤖 Drafted by fusion-developer (GitHub Copilot) · claude-opus-5.5 · high reasoning</sub>
+
+Fixed in abc1234: `parseConfig` now returns early on an empty file, as suggested.
+
+<details>
+<summary>Evidence</summary>
+
+`bun test config` passes, including the new empty-file case.
+</details>
+```
 
 ## Tooling map (MCP vs GraphQL)
 

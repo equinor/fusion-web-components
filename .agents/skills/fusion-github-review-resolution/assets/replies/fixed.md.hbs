@@ -1,0 +1,17 @@
+{{!--
+Fixed review-thread reply; keep visible prose to three sentences or fewer.
+commit: verified commit reference containing the fix
+change: what changed and in which file
+evidence: optional test command and result, or longer reasoning
+--}}
+{{> agent-content/banner}}
+
+Fixed in {{commit}}: {{change}}.
+{{#if evidence}}
+
+{{#> agent-content/details summary="Evidence"}}
+{{evidence}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

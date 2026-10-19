@@ -1,0 +1,70 @@
+{{!--
+Fallback PR body only when target repository has no template.
+Read assets/pr-body-outline.md for narrative guidance; repository template rules win.
+why: problem and why it matters to linked work now
+startingPoint: prior implementation, decision, or PR
+whatChanges: observable user, operator, or developer behavior after merge
+outOfScope: intentionally unfinished work and where it continues
+boundaries: security, deployment, migration, compatibility, and ownership constraints
+issueRelationships: list with relation (closes or refs), issue (full reference), why; only close when confirmed
+reviewStart: area to review first and why
+reviewVerify: behavior reviewers should check
+reviewRisk: sensitive part
+validation: one line on pass, fail, pre-existing failures, and checks not run with reasons
+filesChanged: grouped file list
+commands: list with command and outcome; use observed results only
+notRun: checks not run with reasons, or None
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Why
+
+{{why}}
+
+## Starting point
+
+{{startingPoint}}
+
+## What changes
+
+{{whatChanges}}
+
+## Out of scope
+
+{{outOfScope}}
+
+## Boundaries
+
+{{boundaries}}
+
+## References
+
+{{#each issueRelationships}}
+- {{relation}} {{issue}} — {{why}}
+{{/each}}
+
+## Review guide
+
+- Start here: {{reviewStart}}
+- Verify: {{reviewVerify}}
+- Risk: {{reviewRisk}}
+
+## Validation
+
+{{validation}}
+
+{{#> agent-content/details summary="Details"}}
+**Files changed:** {{filesChanged}}
+
+| Command | Outcome |
+| --- | --- |
+{{#each commands}}
+| `{{command}}` | {{outcome}} |
+{{/each}}
+
+Not run: {{notRun}}.
+{{/agent-content/details}}
+
+{{> agent-content/references}}

@@ -1,0 +1,143 @@
+{{!--
+Task plan draft; publishing still requires explicit confirmation.
+draftingMode: orchestrated | direct-subordinate | inline
+issueAuthoringAvailability: available | not installed
+issueAuthorTaskAvailability: available | not installed
+runMode: draft-only | draft+publish-ready | publish-now
+planningDepth: minimal | standard | detailed
+issue: full owner/repo#number reference
+title: parent story title
+story: As a / I want / so that statement
+ancestors: list of full parent or ancestor references
+relevantLinks: list of verified issue, PR, or documentation URLs
+acceptanceCriteriaAnchors: list of criteria with stable AC identifiers
+acceptanceCriteriaTraceability: list of AC to task mappings
+tasks: ordered list with number, objective, sequence, acceptanceCriteria, scopeBoundary, deliverable, verification
+niceToHaveTasks: optional list with title and value; not drafted until selected
+dependencyNotes: list of dependencies with reasons
+taskIssueDrafts: list with path, title, sequence, dependsOn; paths use .tmp/TASK-NN-slug.md
+publishPath: orchestrated via fusion-issue-authoring (preferred sub-agent) | subordinate-draft via fusion-issue-author-task then publish via fusion-issue-authoring | draft-only handoff
+postFlightReport: list with issue, exists (yes/no), type, parent, status (ok/fixed/failed)
+assumptions: list of explicit assumptions
+blockers: optional list with what, why, nextAction
+risks: list of risks
+openQuestions: list of unresolved questions
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+# Task Plan Draft — User Story
+
+## Experimental caveat
+EXPERIMENTAL: This workflow is not yet stable and may change.
+
+## Skill availability
+- Drafting mode: {{draftingMode}}
+- `fusion-issue-authoring`: {{issueAuthoringAvailability}}
+- `fusion-issue-author-task`: {{issueAuthorTaskAvailability}}
+
+## Run mode
+- Mode: {{runMode}}
+- Planning depth: {{planningDepth}}
+
+## Issue context
+- Issue: {{issue}}
+- Title: {{title}}
+- Story: {{story}}
+
+## Ancestors and relevant links
+- Parent/ancestor chain:
+{{#each ancestors}}
+  - {{this}}
+{{/each}}
+- Relevant links:
+{{#each relevantLinks}}
+  - {{this}}
+{{/each}}
+
+## Acceptance criteria anchors
+{{#each acceptanceCriteriaAnchors}}
+- {{this}}
+{{/each}}
+
+## Acceptance-criteria traceability
+{{#each acceptanceCriteriaTraceability}}
+- {{this}}
+{{/each}}
+
+## Ordered implementation tasks
+{{#each tasks}}
+- [ ] Task {{number}} — {{objective}}
+  - Sequence: {{sequence}}
+  - Acceptance criteria: {{acceptanceCriteria}}
+  - Scope boundary: {{scopeBoundary}}
+  - Deliverable: {{deliverable}}
+  - Verification: {{verification}}
+{{/each}}
+{{#if niceToHaveTasks}}
+
+## Suggested nice-to-have tasks (not drafted)
+Quality-of-life work that no acceptance criterion requires. Draft only the ones the user picks.
+{{#each niceToHaveTasks}}
+- {{title}} — {{value}}
+{{/each}}
+{{/if}}
+
+## Dependency notes
+{{#each dependencyNotes}}
+- {{this}}
+{{/each}}
+
+## Generated task issue drafts
+{{#each taskIssueDrafts}}
+- Draft: `{{path}}`
+  - Proposed title: {{title}}
+  - Sequence: {{sequence}}
+  - Depends on: {{dependsOn}}
+{{/each}}
+
+## Publish plan (requires explicit confirmation)
+- Publish path: {{publishPath}}
+- Delegated publisher: `fusion-issue-authoring`
+- Delegated inputs:
+  - `owner`, `repo`, `parent story`, `ordered task drafts`, `labels/assignee intent`, `dependency ordering`
+- Delegated behavior contract:
+  - MCP-first issue mutation and verification through `fusion-issue-authoring`
+  - GraphQL fallback only when MCP write coverage is unavailable
+  - Return per-issue post-flight verification (`exists`, `type`, `parent`, `status`)
+- This skill does not call MCP write tools directly for publish/repair.
+- Apply sub-issue ordering from planned sequence
+- Don't list created tasks in the story body or a story comment; the sub-issue list is the record
+
+## Post-flight report
+{{#each postFlightReport}}
+- `{{issue}}` | exists: {{exists}} | type: {{type}} | parent: {{parent}} | status: {{status}}
+{{/each}}
+
+## Assumptions
+{{#each assumptions}}
+- Assumption: {{this}}
+{{/each}}
+{{#if blockers}}
+
+## Blockers (if any)
+{{#each blockers}}
+- Blocker: {{what}}
+  - Why: {{why}}
+  - Next action: {{nextAction}}
+{{/each}}
+{{/if}}
+
+## Risks and open questions
+{{#each risks}}
+- Risk: {{this}}
+{{/each}}
+{{#each openQuestions}}
+- Question: {{this}}
+{{/each}}
+
+## Status
+Status: Awaiting user approval
+
+{{> agent-content/references}}

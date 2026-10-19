@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.2 - 2026-10-18
+
+### patch
+
+- [#292](https://github.com/equinor/fusion-skills/pull/292) [`436001c`](https://github.com/equinor/fusion-skills/commit/436001c67afe82ee68202b3c76ca7825ce0ede34) - Route Fusion app repository maintenance and plan resumption to experimental app greenkeeping,
+
+  keeping skill lifecycle operations and dependency PR review on their existing paths.
+
+  refs equinor/fusion-core-tasks#2455
+
 ## 0.1.1 - 2026-09-07
 
 ### patch

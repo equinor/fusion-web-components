@@ -1,0 +1,58 @@
+{{!--
+Fallback documentation task; Objective is the summary.
+objective: documentation to create or update
+audience: intended readers
+inScope: included work
+outOfScope: excluded work
+outline: list of documentation sections
+stretchGoals: optional list of extras not required for closure
+relatedIssues: verified related issues or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+## Objective
+
+{{objective}}
+
+## Audience
+
+{{audience}}
+
+## Scope
+
+- In scope: {{inScope}}
+- Out of scope: {{outOfScope}}
+
+## Outline
+
+{{#each outline}}
+- {{this}}
+{{/each}}
+
+## Done when
+
+- [ ] Documentation is published/updated
+- [ ] Links and examples are verified
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

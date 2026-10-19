@@ -36,7 +36,7 @@ Synthesize research, security, code quality, impact into dependency-review decis
    - `waiting for approval`: validation is acceptable but review approval is pending
    - `needs changes`: relevant validation failed, changes were requested, or branch work is required
 6. Hand off follow-up via `fusion-issue-authoring` (`Task`, `Bug`, or `User Story`).
-7. Final PR comment: work since checkpoint, readiness, requested action. Title: `# 🤖 Bip Bop - <title>`.
+7. Final PR comment: work since checkpoint, readiness, requested action, shaped by `assets/verdict-template.md.hbs`.
 8. End with explicit action prompt: approve / hold / decline / create follow-up.
 
 ## Recommendation semantics
@@ -78,7 +78,9 @@ Return:
 - PR-comment-ready final verdict comment body
 - Explicit confirmation prompt
 
-Use the exact title prefix format `# 🤖 Bip Bop - <title>` for the PR-comment-ready final verdict comment body.
+Shape the PR-comment-ready final verdict comment body with `assets/verdict-template.md.hbs`: runtime-reported banner, quoted `> **TL;DR:**` with the verdict and the ask, visible decision, blockers, follow-ups, and confirmation prompt, lens analysis folded under Details, and references and evidence last.
+Read its `.hbs` slot header, `assets/partials/agent-content/README.md`, and
+every named partial before filling; no renderer ships with the skill.
 
 ## Guardrails
 

@@ -4,7 +4,7 @@ description: 'Entrypoint for all Fusion skill lifecycle operations. USE FOR: fin
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to `references/skill-catalog.md` and promotes Fusion MCP when unavailable.
 metadata:
-  version: "0.0.0"
+  version: "0.0.1"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -13,6 +13,7 @@ metadata:
     - agents/greenkeeper.agent.md
     - agents/author.agent.md
     - agents/warden.agent.md
+    - fusion-agent-content
   tags:
     - fusion
     - skills
@@ -31,6 +32,11 @@ metadata:
 ---
 
 # Fusion Skills
+
+Failure bug draft: `assets/issue-templates/skill-workflow-failure-bug.md.hbs`.
+Before filling, read its `.hbs` slot header,
+`assets/partials/agent-content/README.md`, and every named partial.
+No renderer ships with the skill.
 
 Skill lifecycle entrypoint. Resolve intent, engage the right agent.
 
@@ -53,6 +59,8 @@ This skill uses `mcp_fusion_skills` — the Fusion MCP tool that handles both sk
 | Install, update, remove, or check skills; set up automation | `agents/greenkeeper.agent.md` |
 | Create, author, or improve a skill | `agents/author.agent.md` |
 | Inspect a skill for quality issues, or report a skill failure | `agents/warden.agent.md` |
+
+Skill bug reports from the warden are written for human readers in the `fusion-agent-content` shape (banner, TL;DR, folded details and evidence).
 
 If the user was routed here from the `fusion` main gate with a partially-resolved intent (e.g., "skills"), proceed directly to the most likely agent without re-asking the top-level question.
 

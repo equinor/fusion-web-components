@@ -66,6 +66,7 @@ Rate-limit fallback:
 - Sub-issues for decomposition under parent objective
 - Sub-issue ordering = prerequisites
 - Stop and fix contradictory links before mutation
+- Sub-issues are the only list of children; no checklist or list of children in the parent body or a parent comment
 
 Quick check:
 1. Start now? If no → later in sub-issue order, note blocker
@@ -91,7 +92,17 @@ See `references/mcp-server.md` for server link, preferred tools, payload example
 
 ## Template fallbacks
 
-- Feature: `assets/issue-templates/feature.md`
-- User Story: `assets/issue-templates/user-story.md`
-- Bug: `assets/issue-templates/bug.md`
-- Task: `assets/issue-templates/task*.md`
+- Feature: `assets/issue-templates/feature.md.hbs`
+- User Story: `assets/issue-templates/user-story.md.hbs`
+- Bug: `assets/issue-templates/bug.md.hbs`
+- Task: `assets/issue-templates/task*.md.hbs`:
+  `assets/issue-templates/task.md.hbs`,
+  `assets/issue-templates/task.documentation.md.hbs`,
+  `assets/issue-templates/task.planning.md.hbs`,
+  `assets/issue-templates/task.research.md.hbs`,
+  `assets/issue-templates/task.spec.md.hbs`,
+  `assets/issue-templates/task.testing.md.hbs`,
+  `assets/issue-templates/task.ux.md.hbs`.
+
+Read the selected `.hbs` slot header, `assets/partials/agent-content/README.md`,
+and every named partial before filling; no renderer ships with the skill.

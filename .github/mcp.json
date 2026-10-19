@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "fusion-mcp": {
+      "type": "http",
+      "url": "https://mcp.api.fusion.equinor.com/mcp",
+      "tools": [
+        "*"
+      ],
+      "id": "",
+      "oauth": {
+        "clientId": "fe06d016-0e42-452e-a3d7-f08325037122"
+      }
+    }
+  }
+}

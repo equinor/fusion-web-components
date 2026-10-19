@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.2.1 - 2026-10-18
+
+### patch
+
+- [#285](https://github.com/equinor/fusion-skills/pull/285) [`8fa30e1`](https://github.com/equinor/fusion-skills/commit/8fa30e119d3959c4691c5e099b15bc6724e7794e) - Extract Fixed and Declined reply templates from the working checklist into
+
+  agent-fillable `.md.hbs` assets with optional evidence and shared provenance.
+  Keep reply/resolve gates and the checklist workflow unchanged.
+
+  resolves equinor/fusion-core-tasks#2440
+
+## 0.2.0 - 2026-10-18
+
+### minor
+
+- [#268](https://github.com/equinor/fusion-skills/pull/268) [`02f4095`](https://github.com/equinor/fusion-skills/commit/02f4095399e20bc3e2625cb8e7ef31315a9e83b3) - Write review-thread replies for human readers, following `fusion-agent-content`.
+
+
+  - Add a "Human-first replies" section: a provenance banner from runtime metadata, one to three sentences with the decision, reason, and commit, and longer evidence folded into one `<details>` block. Summary comments use the full `fusion-agent-content` shape.
+  - Add fixed and declined reply templates to the review checklist, and list `fusion-agent-content` as a companion skill.
+  - Show `--message-file` in the scripted apply example so multi-line replies keep their formatting. Workflow, thread-resolution rules, and scripts are unchanged.
+
 ## 0.1.8 - 2026-07-03
 
 ### patch

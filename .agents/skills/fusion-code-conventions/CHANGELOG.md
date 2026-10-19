@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.7 - 2026-10-18
+
+### patch
+
+- [#269](https://github.com/equinor/fusion-skills/pull/269) [`337e2f1`](https://github.com/equinor/fusion-skills/commit/337e2f17d1704bb2530339fabd6ace3cf93cc5e9) - Explain when to close or reference issues from Markdown
+
+
+  - Markdown conventions now explain what closing keywords and `Refs` do on merge, when each fits, and that agents ask the developer with a recommended default.
+
+  refs equinor/fusion-skills#244
+
+## 0.1.6 - 2026-10-13
+
+### patch
+
+- [#255](https://github.com/equinor/fusion-skills/pull/255) [`fe03c5a`](https://github.com/equinor/fusion-skills/commit/fe03c5a24a5a011d5e6550e4f21d4387bae79ea0) Thanks [@alftore](https://github.com/alftore)! - C# API response models: replace the advice to suppress null properties with `JsonIgnore`/`NullValueHandling.Ignore` with guidance to always serialize every declared property, since optional-by-omission fields make API contracts harder for clients to consume.
+
+
+  C# API response models: collections are never `null`; return an empty array and initialize collection properties to `[]`.
+
 ## 0.1.5 - 2026-09-07
 
 ### patch

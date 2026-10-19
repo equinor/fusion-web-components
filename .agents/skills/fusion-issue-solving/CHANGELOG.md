@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.2.0 - 2026-10-18
+
+### minor
+
+- [#268](https://github.com/equinor/fusion-skills/pull/268) [`02f4095`](https://github.com/equinor/fusion-skills/commit/02f4095399e20bc3e2625cb8e7ef31315a9e83b3) - Shape PR body drafts and delivery reports for human readers. Both now open with a banner naming the drafting agent and model, followed by a short TL;DR in a quote block, and fold file lists, command output, and references into collapsible blocks. The validation result, risks, and closing issues stay visible. Uses `fusion-agent-content` when it is installed.
+
+### patch
+
+- [#269](https://github.com/equinor/fusion-skills/pull/269) [`337e2f1`](https://github.com/equinor/fusion-skills/commit/337e2f17d1704bb2530339fabd6ace3cf93cc5e9) - Ask whether each linked issue should close or only be referenced
+
+
+  - The PR step asks, per linked issue, whether merging should close it (`Closes`) or only reference it (`Refs`), and recommends the most logical choice: close when the PR completes the issue, reference for parent, multi-PR, or cross-repository work.
+  - Intent the user already stated is followed without asking.
+  - In autonomous runs the recommendation is applied, and the PR body and report say which issues will close on merge.
+  - After publishing, the PR body is read back to confirm only the chosen issues use closing keywords.
+
+  refs equinor/fusion-skills#244
+
 ## 0.1.7 - 2026-05-07
 
 ### patch

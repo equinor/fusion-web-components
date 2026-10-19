@@ -1,0 +1,38 @@
+{{!--
+  Source-backed research answer. Fill slots from observed sources; no invented evidence.
+  Insert Markdown as written, drop this header, and unescape literal \{{ sequences.
+  domain: research domain or redirected scope.
+  agent: skill-local research agent path.
+  refinement: yes or no.
+  answer: shortest answer supported by evidence.
+  evidence: list of {source, why, excerpt}; use minimal excerpts or paraphrases.
+  uncertainty: confirmed facts, inferences, and weak results after refinement.
+  nextStep: next verification step or out-of-scope redirect.
+--}}
+# Source-Backed Answer Template
+
+## Scope
+
+- Domain: {{domain}}
+- Agent used: `{{agent}}`
+- Refinement used: {{refinement}}
+
+## Answer
+
+{{answer}}
+
+## Evidence
+
+{{#each evidence}}
+- Source: `{{source}}`
+  - Why it matters: {{why}}
+  - Excerpt: {{excerpt}}
+{{/each}}
+
+## Assumptions or uncertainty
+
+{{uncertainty}}
+
+## Next step
+
+{{nextStep}}

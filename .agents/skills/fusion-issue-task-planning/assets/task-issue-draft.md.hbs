@@ -1,0 +1,51 @@
+{{!--
+Task issue draft; target repository template takes priority and What to do is the TL;DR.
+whatToDo: one to three sentences on the outcome and value to the parent story
+scope: short prose on included and excluded work
+doneWhen: list of objects with criterion and acceptanceCriterion (for example AC-1)
+blockedBy: full references to prerequisite issues, or Nothing
+decisionsRisks: optional decisions, risks, or assumptions the assignee needs
+sequence: task sequence number
+total: total tasks for the parent story
+parentStory: full owner/repo#number reference
+acceptanceCriteriaTraceability: how this task covers each AC anchor
+dependencyNotes: why this task follows or precedes others
+verification: observed or proposed commands and checks; distinguish planned from run
+--}}
+{{> agent-content/banner}}
+
+## What to do
+
+{{whatToDo}}
+
+## Scope
+
+{{scope}}
+
+## Done when
+
+{{#each doneWhen}}
+- [ ] {{criterion}} ({{acceptanceCriterion}})
+{{/each}}
+
+## Blocked by
+
+{{blockedBy}}
+{{#if decisionsRisks}}
+
+## Decisions and risks
+
+{{decisionsRisks}}
+{{/if}}
+
+{{#> agent-content/details summary="Details"}}
+**Sequence:** Task {{sequence}} of {{total}} for {{parentStory}}.
+
+**Acceptance-criteria traceability:** {{acceptanceCriteriaTraceability}}
+
+**Dependency notes:** {{dependencyNotes}}
+
+**Verification:** {{verification}}
+{{/agent-content/details}}
+
+{{> agent-content/references}}

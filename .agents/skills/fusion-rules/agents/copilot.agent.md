@@ -32,7 +32,7 @@ Follow `.system/fusion-rule-author` Steps 1–7, scoped to GitHub Copilot:
 3. **Assess** only `.github/copilot-instructions.md` and `.github/instructions/*.instructions.md`
 4. **Interview** — present scan findings, fill gaps per Step 3
 5. **Classify** into two buckets: always-on (root) and scoped (`applyTo`)
-6. **Draft** using `.system/fusion-rule-author/assets/copilot-instructions-template.md` and `.system/fusion-rule-author/assets/scoped-rule-template.md` (GitHub Copilot section)
+6. **Draft** using `.system/fusion-rule-author/assets/copilot-instructions-template.md.hbs` and `.system/fusion-rule-author/assets/scoped-rule-template.md.hbs` (GitHub Copilot section)
 7. **Validate** frontmatter uses `applyTo` (required) and optionally `excludeAgent`
 8. **Quality gate** — root under ~80 lines, scoped under ~50 lines
 

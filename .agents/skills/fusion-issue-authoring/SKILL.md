@@ -3,9 +3,11 @@ name: fusion-issue-authoring
 description: Classify issue type, activate the matching agent mode for type-specific drafting, and enforce shared safety gates before GitHub mutation.
 license: MIT
 metadata:
-  version: "0.3.6"
+  version: "0.4.1"
   status: active
   owner: "@equinor/fusion-core"
+  skills:
+    - fusion-agent-content
   tags:
     - github
     - issue-authoring
@@ -82,6 +84,7 @@ Devil's advocate pass: `agents/devils-advocate.agent.md` is always active in mod
 - Template precedence:
   1. repository template (`.github/ISSUE_TEMPLATE/`)
   2. specialist fallback template
+- Either way, shape the body as described in [Human-first output](#human-first-output).
 
 ### Step 3 — Check duplicates
 
@@ -103,6 +106,7 @@ Before writing, check user preferences and session memory for a preferred draft 
 Before mutation, confirm:
 - labels (only labels that exist in the target repo)
 - assignee intent (`@me`, specific login, or unassigned)
+- milestone: set one only on `Feature` issues, unless repository guidance (for example `CONTRIBUTING.md` or `contribute/`) says otherwise. User stories, tasks, and bugs get no milestone, not even the parent's; they are tracked through their parent. When the user asks for a milestone on another type, explain the convention and suggest setting it on the parent Feature instead.
 
 Shared gate cache policy:
 - On the first label lookup for `owner/repo`, fetch the repository label set once and cache it for the active session. Prefer `/memories/session/<owner>-<repo>-labels.json` when the host exposes session memory; otherwise use `.tmp/issue-authoring-labels-<owner>-<repo>.json`.
@@ -145,6 +149,13 @@ Before linking:
 - use sub-issues for decomposition
 - use sub-issue ordering to represent prerequisites
 - ensure no contradictory dependency graph
+- keep the sub-issue list as the only list of children: don't repeat child issues as a checklist or list in the parent body or in a parent comment. If sub-issues can't be used (for example across organizations), fall back to one list in the parent body and say why.
+
+## Scope to the minimum
+
+- Draft only the issues needed to resolve the request: the fewest user stories that deliver a feature, the fewest tasks that meet a story's acceptance criteria. Each issue must be needed by its parent.
+- Keep requirements, acceptance criteria, and "Done when" to what is required to close the issue. Put desirable extras under a separate **Stretch goals** heading that does not block closing.
+- After the minimum draft, list nice-to-have quality-of-life issues that could also be created, each with a title and one line of value, and ask whether to draft any. Don't draft or create them by default; in autopilot, list them in the report only.
 
 Use detailed behavior and payload examples in `references/instructions.md` and `references/mcp-server.md`.
 
@@ -158,10 +169,23 @@ Use detailed behavior and payload examples in `references/instructions.md` and `
 
 Use detailed authoring guidance in `references/instructions.md`.
 Fallback template locations:
-- Bug: `assets/issue-templates/bug.md`
-- Feature: `assets/issue-templates/feature.md`
-- User Story: `assets/issue-templates/user-story.md`
-- Task: `assets/issue-templates/task*.md`
+- Bug: `assets/issue-templates/bug.md.hbs`
+- Feature: `assets/issue-templates/feature.md.hbs`
+- User Story: `assets/issue-templates/user-story.md.hbs`
+- Task: `assets/issue-templates/task*.md.hbs`
+
+Before filling a fallback, read its `.hbs` slot header,
+`assets/partials/agent-content/README.md`, and every named partial.
+Fill as Markdown; no renderer ships with the skill.
+
+## Human-first output
+
+Issue bodies are read by people first. When `fusion-agent-content` is installed, shape the body with it. Otherwise follow this outline, which the fallback templates already carry:
+- First line: `<sub>🤖 Drafted by <agent> (<tool>) · <model> · <effort> reasoning</sub>`; without a custom agent, write `Drafted with GitHub Copilot`. Take the model and reasoning effort from the runtime and never guess them; write `model not reported` when unknown.
+- A quoted TL;DR (`> **TL;DR:** ...`) of one to three sentences with the outcome and the ask. Skip it when the first template section already is the summary, such as a task's `Objective`.
+- The template headings, in order, in plain prose. Keep acceptance criteria, decisions, risks, and blocking dependencies visible.
+- A folded `Details` block for supporting material, then a folded `References and evidence` block last, listing the skills, references, and evidence used.
+- With a repository template, keep its headings and add the banner, TL;DR, and folded blocks around them.
 
 ## Expected output
 - Selected agent mode path
@@ -170,6 +194,8 @@ Fallback template locations:
 - Proposed title, body summary, and labels
 - Issue type plan
 - Dependency plan (order + proposed sub-issue/blocking links)
+- Minimum issue set, and any stretch goals kept apart from required criteria
+- Suggested nice-to-have issues (not drafted unless the user picks them)
 - Assignee plan (who will be assigned, or explicit unassigned decision)
 - Explicit status: `Awaiting user content approval` before any publish/update command
 - Any related/duplicate issue links found
@@ -190,4 +216,4 @@ Always:
 - Keep drafts concise and editable
 - Prefer WHAT/WHY over implementation HOW in issue text
 - Use full repository issue references (for example `owner/repo#123`)
-- Use issue-closing keywords when closure is intended (for example `fixes owner/repo#123`, `resolves owner/repo#123`, or `closes owner/repo#123`)
+- When text will close issues on merge (PR bodies, commit messages, changesets), ask per issue whether to close it (`fixes`/`resolves`/`closes owner/repo#123`) or only reference it (`refs owner/repo#123`). Recommend the most logical choice: close when the work completes the issue (the usual case), reference for parent, multi-PR, or cross-repository tracking issues. Follow intent the user already stated; when the user is unavailable, apply the recommendation and say which issues will close

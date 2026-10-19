@@ -1,0 +1,61 @@
+{{!--
+Fallback planning task; Objective is the summary.
+objective: planning goal
+inScope: list of included work
+outOfScope: list of excluded work
+stretchGoals: optional list of extras not required for closure
+relatedIssues: verified related issues or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+## Objective
+
+{{objective}}
+
+## Scope
+
+### In scope
+
+{{#each inScope}}
+- {{this}}
+{{/each}}
+
+### Out of scope
+
+{{#each outOfScope}}
+- {{this}}
+{{/each}}
+
+## Planning output
+
+- Work breakdown
+- Estimates
+- Milestones / rollout approach
+
+## Done when
+
+- [ ] Plan is documented and reviewed
+- [ ] Dependencies and risks are identified
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

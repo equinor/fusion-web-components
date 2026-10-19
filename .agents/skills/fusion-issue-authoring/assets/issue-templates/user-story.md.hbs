@@ -1,0 +1,69 @@
+{{!--
+Fallback user story; target repository template takes priority.
+role: user role
+action: desired action
+value: value delivered to the user
+context: current workflow and pain points
+functionalRequirements: list of observable requirements
+scenarios: list of Given / When / Then scenarios
+stretchGoals: optional list of extras not required for closure
+nonGoals: list of excluded outcomes
+validation: how to verify the story is complete
+relatedIssues: verified related issues or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Story
+
+As a {{role}}, I want {{action}}, so that {{value}}.
+
+## Context
+
+{{context}}
+
+## Functional requirements
+
+{{#each functionalRequirements}}
+- {{this}}
+{{/each}}
+
+## Scenarios
+
+{{#each scenarios}}
+- [ ] {{this}}
+{{/each}}
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Non-goals
+
+{{#each nonGoals}}
+- {{this}}
+{{/each}}
+
+## Validation
+
+{{validation}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

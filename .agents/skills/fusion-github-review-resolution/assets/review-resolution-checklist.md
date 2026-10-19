@@ -53,8 +53,17 @@ Use this checklist while processing unresolved review comments on a pull request
 - [ ] Baseline unresolved thread count captured
 - [ ] Each targeted thread checked for existing agent replies
 - [ ] Any uncertain comments escalated to the user before reply/resolve
-- [ ] Reply text drafted once per thread before mutation
+- [ ] Reply text drafted once per thread before mutation, in the shape under [Reply templates](#reply-templates)
 - [ ] Any failed/uncertain mutation attempts re-checked before retrying
+
+## Reply templates
+
+Use [Fixed](replies/fixed.md.hbs) or [Declined](replies/declined.md.hbs).
+Read the `.hbs` slot header, `assets/partials/agent-content/README.md`, and
+every named partial before filling; no renderer ships with the skill.
+Fill the banner from runtime metadata; never guess the model or effort.
+Keep visible prose to three sentences or fewer; omit the optional Evidence
+block when empty. Shared References and evidence stays last.
 
 ## Pre-push checklist
 

@@ -1,0 +1,66 @@
+{{!--
+Skill workflow failure bug draft; never publish without confirmation.
+summary: what the user tried to do; add to the TL;DR rather than repeat it
+context: skill, workflow step, command, and observation time
+stepsToReproduce: exact or best-effort ordered steps
+expectedBehavior: what should have happened
+actualBehavior: what happened, including the decisive error
+errorOutputEvidence: one line naming the decisive error or output
+impact: who is blocked, severity, and workaround if any
+logs: sanitized logs; redact secrets, tokens, personal data, and internal-only links
+environment: observed OS, shell, runtime, and tool versions
+reproductionOutput: optional sanitized output from a reproduction attempt
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+# Summary
+
+{{summary}}
+
+## Context
+
+{{context}}
+
+## Steps to reproduce
+
+{{#each stepsToReproduce}}
+1. {{this}}
+{{/each}}
+
+## Expected behavior
+
+{{expectedBehavior}}
+
+## Actual behavior
+
+{{actualBehavior}}
+
+## Error/output evidence
+
+{{errorOutputEvidence}}
+
+## Impact
+
+{{impact}}
+
+{{#> agent-content/details summary="Details"}}
+**Sanitized logs and output:**
+
+```text
+{{logs}}
+```
+
+**Environment:** {{environment}}
+{{#if reproductionOutput}}
+
+**Reproduction output:**
+
+```text
+{{reproductionOutput}}
+```
+{{/if}}
+{{/agent-content/details}}
+
+{{> agent-content/references}}

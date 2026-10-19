@@ -37,7 +37,7 @@ Portable, source-backed signals (priority order):
 6. Record breaking changes, deprecations, migration steps.
 7. Look for known regressions or open issues against target version.
 8. Capture notable transitive dependency changes in diff.
-9. Draft findings with sources, discussion context, unknowns. Same content as PR-comment-ready checkpoint. Title: `# 🤖 Bip Bop - <title>`.
+9. Draft findings with sources, discussion context, unknowns. Same content as PR-comment-ready checkpoint, shaped by `assets/research-template.md.hbs`.
 
 ## Portable boundaries
 
@@ -63,7 +63,9 @@ Return:
 - PR-comment-ready research checkpoint body
 - Explicit unknowns or missing evidence
 
-Use the exact title prefix format `# 🤖 Bip Bop - <title>` for the PR-comment-ready research checkpoint body.
+Shape the PR-comment-ready research checkpoint body with `assets/research-template.md.hbs`: runtime-reported banner, quoted `> **TL;DR:**`, visible risks, folded details, and references and evidence last.
+Read its `.hbs` slot header, `assets/partials/agent-content/README.md`, and
+every named partial before filling; no renderer ships with the skill.
 
 ## Guardrails
 

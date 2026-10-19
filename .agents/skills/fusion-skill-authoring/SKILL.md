@@ -4,7 +4,7 @@ description: 'Creates or modernizes repository skills with clear activation cues
 license: MIT
 compatibility: Works best in repositories that can inspect their local skill catalog and run catalog-specific validation commands. Optional helper agents are most useful in Anthropic-compatible runtimes or other clients that support skill-local agents/subagents.
 metadata:
-   version: "0.3.6"
+   version: "0.3.7"
    status: active
    owner: "@equinor/fusion-core"
    tags:
@@ -131,7 +131,7 @@ Capture at least three representative requests before writing long instructions:
 - the behavior the skill should produce,
 - the mistake or gap the skill must prevent.
 
-Use these as acceptance criteria. If you can't define realistic requests, the scope is underspecified or not reusable enough to become a skill.
+Use these as acceptance criteria. Where possible, run them without the skill first and record the baseline gaps; write only what closes those gaps. If you can't define realistic requests, the scope is underspecified or not reusable enough to become a skill.
 
 ### Step 4 — Classify the skill and choose the smallest valid structure
 
@@ -172,7 +172,7 @@ Set degree of freedom intentionally:
 - medium freedom when a preferred pattern exists but adaptation is expected
 - low freedom when workflow is fragile, safety-critical, or sequence-sensitive
 
-Include at least one concrete example in `SKILL.md` or link to one in `references/`.
+Include at least one concrete example in `SKILL.md` or link to one in `references/` (show a good example and what to avoid when style matters). Give one default approach with an escape hatch instead of a menu of options, use one term per concept, and keep time-sensitive notes out of the main flow (use an "Old patterns" section). See `references/skill-authoring-platform-references.md` for content and runtime details.
 
 ### Step 6 — Add supporting files only when they reduce ambiguity
 
@@ -190,7 +190,7 @@ If you add scripts:
 
 If runtime ignores bundled helper agents, follow the same roles inline.
 
-If skill depends on MCP, declare in `metadata.mcp` and document client-specific tool naming in skill content.
+If skill depends on MCP, declare in `metadata.mcp` and name tools by server and tool (clients expose different tool ids for the same tool).
 
 ### Step 7 — Validate discovery, structure, and local policy
 
@@ -210,6 +210,7 @@ Use representative requests from Step 3 to review:
 - Does the description trigger on the right requests and avoid false positives?
 - Can the agent locate all directly referenced files without chasing nested links?
 - Are outputs, approval gates, and safety constraints explicit?
+- When the target runtime can run headless, run the requests in a fresh workspace with the skill installed, compare with the baseline and with each model you target, and note which files the agent reads or ignores.
 
 If subagents are available:
 - `agents/scoper.md` before drafting to decide create vs update vs not-a-skill
@@ -234,7 +235,7 @@ Return authoring result as explicit contract:
 - Installed-copy provenance check before editing an existing skill
 - Reuse before creation
 - Portable first, repository overlays second
-- Representative requests before long-form wordsmithing
+- Representative requests and a baseline before long-form wordsmithing
 - Progressive disclosure instead of overloading `SKILL.md`
 - Explicit safety and approval gates for risky actions
 - Real validation evidence instead of assumed correctness
@@ -247,8 +248,6 @@ Borrowed from Anthropic `skill-creator` pattern but narrowed to Fusion-specific 
 - `agents/reviewer.md` — review drafted skill against discovery, structure, safety, and validation
 - `agents/trigger-tuner.md` — sharpen description wording; compare activation-cue variants
 - `agents/devils-advocate.md` — always-on quality collaborator; moderate mode during authoring, interrogator mode when asked or significant ambiguity detected
-
-If runtime offers no subagents, keep the same review loop inline.
 
 ## Examples
 
@@ -266,7 +265,7 @@ Return:
 - Skill classification: new/update/not-a-skill, capability vs workflow, standalone/orchestrator/subordinate
 - Final activation cues and anti-triggers used
 - Chosen folder structure and rationale
-- At least three representative requests used as acceptance criteria
+- At least three representative requests used as acceptance criteria, with baseline and post-change results when measured
 - Which helper agents were used, if any
 - Validation commands run, pass/fail status, and interpretation
 - Repository-specific overlays applied after portable draft

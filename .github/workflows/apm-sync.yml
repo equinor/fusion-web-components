@@ -1,0 +1,13 @@
+name: APM Sync
+
+on:
+  schedule:
+    - cron: '17 8 * * *' # Daily, 08:17 UTC, including weekends
+  workflow_dispatch:
+
+jobs:
+  sync:
+    uses: equinor/fusion-skills/.github/workflows/apm-sync.yml@main
+    permissions:
+      contents: write
+      pull-requests: write

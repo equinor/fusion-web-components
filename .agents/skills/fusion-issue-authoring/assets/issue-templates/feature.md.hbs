@@ -1,0 +1,73 @@
+{{!--
+Fallback feature issue; target repository template takes priority.
+problemOpportunity: problem being solved or opportunity addressed
+inScope: list of included work
+outOfScope: list of excluded work
+functionalRequirements: list of observable requirements
+acceptanceCriteria: list of Given / When / Then criteria
+dependencies: dependencies or None
+risks: risks or None
+stretchGoals: optional list of extras not required for closure
+relatedIssues: verified issue references or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Problem / opportunity
+
+{{problemOpportunity}}
+
+## Scope
+
+### In scope
+
+{{#each inScope}}
+- {{this}}
+{{/each}}
+
+### Out of scope
+
+{{#each outOfScope}}
+- {{this}}
+{{/each}}
+
+## Functional requirements
+
+{{#each functionalRequirements}}
+- {{this}}
+{{/each}}
+
+## Acceptance criteria
+
+{{#each acceptanceCriteria}}
+- [ ] {{this}}
+{{/each}}
+
+## Dependencies and risks
+
+- Dependencies: {{dependencies}}
+- Risks: {{risks}}
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

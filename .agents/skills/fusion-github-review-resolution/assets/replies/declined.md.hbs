@@ -1,0 +1,16 @@
+{{!--
+Declined review-thread reply; keep visible prose to three sentences or fewer.
+rationale: why the comment does not apply, in one or two sentences
+evidence: optional file, line, test, or link demonstrating the rationale
+--}}
+{{> agent-content/banner}}
+
+No change: {{rationale}}.
+{{#if evidence}}
+
+{{#> agent-content/details summary="Evidence"}}
+{{evidence}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

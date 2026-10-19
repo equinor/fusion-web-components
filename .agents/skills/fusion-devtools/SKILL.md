@@ -6,9 +6,9 @@ compatibility: >
   Requires fdev installed as a .NET global tool
   (dotnet tool install --global --add-source "https://statoil-proview.pkgs.visualstudio.com/Fusion%20-%20Packages/_packaging/Fusion-Public/nuget/v3/index.json" fusion-devtools).
   Requires Azure AD login (fdev login).
-  Works best alongside fusion-backend-dev for understanding API contracts before calling them.
+  Works best alongside fusion-core-services for understanding API contracts before calling them.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
   status: active
   owner: "@equinor/fusion-core"
   tags:

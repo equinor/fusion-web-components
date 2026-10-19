@@ -15,5 +15,8 @@ Use this checklist before considering a new or updated skill ready to ship.
 - [ ] Any bundled `agents/` files have a clear job in the workflow, stay narrowly scoped, and are not present by default out of habit
 - [ ] Optional metadata such as `tags`, `mcp`, `compatibility`, and composition fields reflect real discoverability and runtime needs
 - [ ] At least three representative requests were reviewed against the final skill content
+- [ ] Where the runtime allows it, the requests were run with and without the skill (baseline), more than once, with each targeted model, and the results recorded
+- [ ] Reference files over ~100 lines start with a contents list; one term per concept; no time-sensitive statements outside an "Old patterns" section
+- [ ] MCP tools are named by server and tool; scripts state execute vs read and list their dependencies
 - [ ] Validation appropriate to the target environment was run and evidence was recorded
 - [ ] Content is scoped to the requested change, contains no secret handling, and introduces no hidden network access or remote-code execution patterns

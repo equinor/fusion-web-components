@@ -41,7 +41,7 @@ Follow `.system/fusion-rule-author` Steps 1–7, scoped to Cursor:
 3. **Assess** only `.cursor/rules/**`
 4. **Interview** — present scan findings, fill gaps per Step 3
 5. **Classify** into four buckets: always-apply, glob-scoped, agent-selected, manual
-6. **Draft** using `.system/fusion-rule-author/assets/cursor-rule-template.mdc`
+6. **Draft** using `.system/fusion-rule-author/assets/cursor-rule-template.md.hbs`
 7. **Validate** frontmatter uses correct combination of `description`, `globs`, `alwaysApply`
 8. **Quality gate** — under ~500 lines per file, no `**/*` globs (use `alwaysApply` instead)
 

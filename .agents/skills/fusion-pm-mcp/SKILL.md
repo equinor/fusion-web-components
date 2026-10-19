@@ -1,9 +1,9 @@
 ---
 name: fusion-pm-mcp
-description: 'Explain what Fusion PM MCP is and guide setup of the hosted HTTP+OAuth server for its GitHub project-management retrieval tools. USE FOR: setting up or troubleshooting Fusion PM MCP, understanding its issue/PR/milestone tools, filing a setup bug. DO NOT USE FOR: implementing changes to the fusion-pm-mcp service itself, GitHub issue authoring/triage workflows, or general Fusion Framework/docs/EDS retrieval — use `fusion-mcp` for that.'
+description: 'Explain what Fusion PM MCP is and guide setup of the hosted HTTP+OAuth server for its GitHub project-management tools. USE FOR: setting up or troubleshooting Fusion PM MCP, understanding its issue/PR/milestone tools, filing a setup bug. DO NOT USE FOR: implementing changes to the fusion-pm-mcp service itself, GitHub issue authoring/triage workflows, or general Fusion Framework/docs/EDS retrieval — use `fusion-mcp` for that.'
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.1.2"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -52,7 +52,13 @@ If details are missing, ask concise follow-up questions first.
 1. Explain what this MCP server provides:
    - a caching proxy over the GitHub REST API, exposed as MCP tools, so agents can read project data without hitting GitHub rate limits on every call
    - hosted as a managed service — no local infrastructure required for most users
-   - tools (verify against `tools/list`, the server's actual source is the source of truth over any stale doc): `api_get_issue`, `api_get_parent_issue`, `api_get_child_issues`, `api_get_issue_comments`, `api_list_milestones`, `api_get_milestone`, `api_upsert_issue`, `api_close`, `api_get_metadata_schema`, `api_get_pull_request`, `api_get_pr_comments`, `api_get_pr_reviews`, `api_get_pr_review`, `api_get_review_comments`, `api_resolve_review_comment`
+   - tools, grouped by area (verify against `tools/list`; the live server is the source of truth over any doc, including this one):
+     - issues: `issue_get`, `issue_parent_get`, `issue_children`, `issue_comments`, `issue_create`, `issue_update`, `issue_close`, `issue_set_parent`, `issue_add_blocker`, `issue_remove_blocker`, `repository_labels`
+     - milestones: `milestones`, `milestone_get`, `milestone_work_hierarchy_get`
+     - pull requests: `pull_request_get`, `pull_request_comments`, `pull_request_reviews`, `pull_request_review_get`, `pull_request_review_comments`, `pull_request_review_thread_resolve`, `pull_request_close`
+     - discussions and comments: `discussions`, `discussion_get`, `discussion_search`, `discussion_create`, `discussion_update`, `discussion_comment_create`, `timeline_comment_get`, `timeline_comment_create`
+     - artifacts, snapshots, and reports: `artifact_get`, `artifact_get_evidence`, `artifact_get_schema`, `artifact_search`, `artifact_upsert`, `snapshot_get`, `reports`, `report_by_operation`
+   - tools that create, update, close, resolve, set, add, remove, or upsert change GitHub state or the server's index; use them only after explicit user confirmation
    - responses are cached (default TTL 300s); there is no cache-invalidation tool — stale results clear on their own after the TTL
 2. Guide user to set up the **hosted production server** — the only recommended path:
    - no Docker, no local clone, no env vars to manage
@@ -67,12 +73,12 @@ If details are missing, ask concise follow-up questions first.
 4. Give a validation checklist:
    - run `initialize` and confirm a successful response
    - run `tools/list` and compare against the actual returned tool names — don't assume a fixed list, the surface has changed before
-   - run one non-destructive `tools/call` (e.g. `api_list_milestones` or `api_get_issue`) and confirm a non-empty result
+   - run one non-destructive `tools/call` (e.g. `milestones` or `issue_get`) and confirm a non-empty result
 5. Troubleshoot in documented order:
    - Unauthenticated / hitting rate limits fast → no `X-GitHub-Token` header configured; unauthenticated calls are capped at 60 req/hr
    - `401` or repeated sign-in prompts → re-authenticate via VS Code (sign out/in, or reload the MCP server); if that doesn't resolve it, treat it as a setup bug rather than a known transient issue
    - Results look stale → there is no invalidate-cache tool; results self-clear after the cache TTL (a few minutes)
-6. When setup fails or the user asks to file a bug, produce a bug report draft from `assets/bug-report-template.md`.
+6. When setup fails or the user asks to file a bug, produce a bug report draft from `assets/bug-report-template.md.hbs`. Read its `.hbs` slot header, `assets/partials/agent-content/README.md`, and every named partial before filling; no renderer ships with the skill.
    - default target repository: `equinor/fusion-pm-mcp`
    - include concrete repro steps, expected vs actual behavior, and troubleshooting already attempted
    - include non-sensitive environment details only (OS, VS Code version)
@@ -86,13 +92,13 @@ Return:
 - hosted setup steps tailored to the user's environment
 - validation checklist: `initialize`, `tools/list` (compare against actual returned names), one `tools/call` (expect non-empty result)
 - troubleshooting steps mapped to observed symptoms
-- bug report draft (when setup fails/misbehaves or user requests) using `assets/bug-report-template.md` with default target `equinor/fusion-pm-mcp`
+- bug report draft (when setup fails/misbehaves or user requests) using `assets/bug-report-template.md.hbs` with default target `equinor/fusion-pm-mcp`
 - assumptions and missing information called out explicitly
 
 ## References
 
 - [references/vscode-mcp-config.md](references/vscode-mcp-config.md)
-- [assets/bug-report-template.md](assets/bug-report-template.md)
+- [assets/bug-report-template.md.hbs](assets/bug-report-template.md.hbs)
 
 ## Safety & constraints
 

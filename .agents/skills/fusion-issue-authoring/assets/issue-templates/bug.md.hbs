@@ -1,0 +1,56 @@
+{{!--
+Fallback bug issue; target repository template takes priority.
+description: bug from the user perspective
+stepsToReproduce: exact or best-effort ordered steps
+expectedBehavior: what should happen
+actualBehavior: what currently happens
+appService: affected app or service
+environment: dev, test, prod, or observed environment
+browserRuntimeVersion: observed browser or runtime and version
+impact: affected users and severity
+relatedIssues: verified issue references or None
+details: optional sanitized logs, research, or implementation notes
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Description
+
+{{description}}
+
+## Steps to reproduce
+
+{{#each stepsToReproduce}}
+1. {{this}}
+{{/each}}
+
+## Expected behavior
+
+{{expectedBehavior}}
+
+## Actual behavior
+
+{{actualBehavior}}
+
+## Environment
+
+- App/service: {{appService}}
+- Environment (dev/test/prod): {{environment}}
+- Browser/runtime/version: {{browserRuntimeVersion}}
+
+## Impact
+
+{{impact}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

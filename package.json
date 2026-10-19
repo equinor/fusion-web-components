@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
-    "del-cli": "^7.0.0",
+    "del-cli": "^8.0.1",
     "typescript": "^7.0.2"
   }
 }

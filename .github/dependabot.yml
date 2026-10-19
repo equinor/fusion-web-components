@@ -6,6 +6,13 @@ updates:
       interval: "daily"
     open-pull-requests-limit: 50
     groups:
+      react:
+        applies-to: version-updates
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
       storybook:
         applies-to: version-updates
         patterns:

@@ -5,9 +5,87 @@ on:
     - cron: '17 8 * * 1-5' # Weekdays, 08:17 UTC
   workflow_dispatch:
 
+concurrency:
+  group: apm-sync
+  cancel-in-progress: true
+
+# Local copy of equinor/fusion-skills/.github/workflows/apm-sync.yml. This repository is
+# public and cannot call that internal repository's reusable workflow (the run fails at
+# startup with "workflow was not found"), so the steps live here instead.
 jobs:
   sync:
-    uses: equinor/fusion-skills/.github/workflows/apm-sync.yml@main
+    name: Sync APM dependencies
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
+    env:
+      BASE_BRANCH: ${{ github.event.repository.default_branch }}
+      PR_BRANCH: chore/apm-sync
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ env.BASE_BRANCH }}
+          fetch-depth: 0
+
+      - name: Require APM setup
+        run: |
+          if [ ! -f apm.yml ]; then
+            echo "::error::APM is not configured: root apm.yml is missing."
+            exit 1
+          fi
+
+      - name: Prepare update branch
+        run: |
+          git check-ref-format --branch "$PR_BRANCH"
+          if [ "$PR_BRANCH" = "$BASE_BRANCH" ]; then
+            echo "::error::The update branch must differ from the repository default branch."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git show-ref --verify --quiet "refs/remotes/origin/$PR_BRANCH"; then
+            git switch --create "$PR_BRANCH" --track "origin/$PR_BRANCH"
+            git merge --no-edit "origin/$BASE_BRANCH"
+          else
+            git switch --create "$PR_BRANCH"
+          fi
+
+      # equinor/fusion-skills is an internal repository, so the job token cannot clone it.
+      # APM reads the per-organization token from GITHUB_APM_PAT_EQUINOR.
+      - name: Update APM dependencies
+        uses: microsoft/apm-action@v1
+        env:
+          GITHUB_APM_PAT_EQUINOR: ${{ secrets.APM_FUSION_SKILLS_TOKEN || github.token }}
+        with:
+          apm-version: '0.33.0'
+          update: 'true'
+
+      - name: Create or update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(apm): sync dependencies"
+          fi
+          if git diff --quiet "origin/$BASE_BRANCH" HEAD; then
+            echo "No APM dependency changes to propose."
+            exit 0
+          fi
+          git push origin "HEAD:refs/heads/$PR_BRANCH"
+          pr_number=$(gh pr list --state open --head "$PR_BRANCH" --base "$BASE_BRANCH" \
+            --json number --jq '.[0].number // empty')
+          if [ -n "$pr_number" ]; then
+            echo "Updated existing pull request #$pr_number."
+            exit 0
+          fi
+          gh pr create --base "$BASE_BRANCH" --head "$PR_BRANCH" \
+            --title "chore(apm): sync dependencies" --body-file - <<'EOF'
+          Automated APM dependency sync.
+
+          APM refreshed dependencies within the constraints in `apm.yml`,
+          updated `apm.lock.yaml`, and redeployed managed agent context.
+          Review the complete diff before merging.
+          EOF

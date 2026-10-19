@@ -66,6 +66,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # APM rewrites generated_at/resolved_at in the lockfile on every run. A run that
+          # changes nothing else must not open a PR or add a commit.
+          if git diff --quiet -I'^[[:space:]]*(-[[:space:]]+)?(generated_at|resolved_at):' \
+            && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            git checkout -- .
+          fi
           git add --all
           if ! git diff --cached --quiet; then
             git commit -m "chore(apm): sync dependencies"

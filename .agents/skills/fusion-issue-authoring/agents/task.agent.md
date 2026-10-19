@@ -19,18 +19,22 @@ Do not use this agent mode when the request is clearly a bug, feature, or user-s
 2. Start with a concise checklist of small tasks when request is broad.
 3. For multi-issue requests, define logical order and blockers before drafting.
 4. Draft locally in `.tmp/TASK-<context>.md`.
-5. Use appropriate task template variant (planning/research/spec/testing/documentation/ux/generic).
+5. Use appropriate task template variant (planning/research/spec/testing/documentation/ux/generic). Open with the banner, let `Objective` serve as the TL;DR, and end with the folded Details and References and evidence blocks (see Human-first output in `SKILL.md`).
 6. Include dependency notes and blocker mapping in the draft.
 7. Return draft summary for orchestrator review/publish flow.
 
 Template fallback:
-- `assets/issue-templates/task.md`
-- `assets/issue-templates/task.planning.md`
-- `assets/issue-templates/task.research.md`
-- `assets/issue-templates/task.spec.md`
-- `assets/issue-templates/task.ux.md`
-- `assets/issue-templates/task.testing.md`
-- `assets/issue-templates/task.documentation.md`
+- `assets/issue-templates/task.md.hbs`
+- `assets/issue-templates/task.planning.md.hbs`
+- `assets/issue-templates/task.research.md.hbs`
+- `assets/issue-templates/task.spec.md.hbs`
+- `assets/issue-templates/task.ux.md.hbs`
+- `assets/issue-templates/task.testing.md.hbs`
+- `assets/issue-templates/task.documentation.md.hbs`
+
+Before filling a fallback, read its `.hbs` slot header,
+`assets/partials/agent-content/README.md`, and every named partial.
+No renderer ships with the skill.
 
 ## Expected output
 

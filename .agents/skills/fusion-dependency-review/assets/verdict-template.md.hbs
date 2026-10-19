@@ -1,0 +1,79 @@
+{{!--
+Final verdict comment; post before approval, hold, decline, or merge.
+Write None instead of deleting a visible line. Never guess runtime metadata.
+recommendation: merge | merge with follow-up | hold | decline
+confidence: high | medium | low
+readiness: ready | waiting for checks | waiting for approval | needs changes
+securityCall: clear | concern | blocking
+codeQualityCall: clear | concern | blocking
+impactCall: clear | concern | blocking
+why: two to four sentences on strongest signals; explain concerns without repeating TL;DR
+openReviewerConcerns: unresolved threads or objections, or None
+branchAction: none, rebased onto base, conflict resolved, or validation-only
+validationResult: one-line validation rerun result
+prState: mergeable | conflicted | waiting on CI | waiting for approval | ready for maintainer decision
+technicalBlockers: None when merge, otherwise what must change
+readinessGates: remaining checks, approval, changesets, branch sync, or None
+afterMerge: follow-up summary or None
+followUps: optional list of actionable after-merge items
+issueHandoff: none | Task | Bug | User Story via fusion-issue-authoring
+requestedAction: approve | hold | decline | create follow-up issue
+decisionNote: maintainer decision or PR comment summary; leave empty until known
+securityAnalysis: advisory, attack-surface change, or no material security issue found
+securityEvidence: advisory, changelog, or diff evidence
+codeQualityAnalysis: release stability, API breakage, regression signals, or routine maintenance release
+codeQualityEvidence: upstream CI, changelog, migration note, or issue evidence
+impactAnalysis: blast radius, CI effect, downstream risk, or follow-up need
+impactEvidence: repo CI, changed-file scope, or usage evidence
+validationRerun: exact commands and observed outcomes
+topLevelCommentsReviewed: yes | no
+reviewThreadsReviewed: yes | no
+outdatedOrAnswered: outdated or already answered discussion summary, or None
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+| Recommendation | Confidence | Readiness |
+| -------------- | ---------- | --------- |
+| `{{recommendation}}` | `{{confidence}}` | `{{readiness}}` |
+
+Lens calls: security `{{securityCall}}` · code quality `{{codeQualityCall}}` · impact `{{impactCall}}`.
+
+## Why
+
+{{why}}
+
+Open reviewer concerns: {{openReviewerConcerns}}.
+
+Since the research checkpoint: {{branchAction}}; {{validationResult}}. The PR is now {{prState}}.
+
+## Blockers and follow-up
+
+- **Technical blockers** (affect the recommendation): {{technicalBlockers}}
+- **Readiness gates** (checks, approval, changesets, branch sync): {{readinessGates}}
+- **After merge:** {{afterMerge}}
+{{#each followUps}}
+  - [ ] {{this}}
+{{/each}}
+- **Issue handoff:** {{issueHandoff}}
+
+## Your decision
+
+Requested action: {{requestedAction}}. Please confirm the next action before any rebase, push, approval, or merge.
+
+Decision note: {{decisionNote}}
+
+{{#> agent-content/details summary="Details: lens analysis, validation, and discussion"}}
+**Security: `{{securityCall}}`.** {{securityAnalysis}}. Evidence: {{securityEvidence}}.
+
+**Code quality: `{{codeQualityCall}}`.** {{codeQualityAnalysis}}. Evidence: {{codeQualityEvidence}}.
+
+**Impact: `{{impactCall}}`.** {{impactAnalysis}}. Evidence: {{impactEvidence}}.
+
+**Validation rerun:** {{validationRerun}}
+
+**Discussion reviewed:** top-level PR comments `{{topLevelCommentsReviewed}}`, review threads `{{reviewThreadsReviewed}}`. Outdated or already answered: {{outdatedOrAnswered}}.
+{{/agent-content/details}}
+
+{{> agent-content/references}}

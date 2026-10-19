@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 - 2026-10-13
+
+### patch
+
+- [#255](https://github.com/equinor/fusion-skills/pull/255) [`fe03c5a`](https://github.com/equinor/fusion-skills/commit/fe03c5a24a5a011d5e6550e4f21d4387bae79ea0) Thanks [@alftore](https://github.com/alftore)! - Point the compatibility note to `fusion-core-services` instead of the deprecated `fusion-backend-dev` for understanding API contracts.
+
 ## 0.1.1 - 2026-07-23
 
 ### patch

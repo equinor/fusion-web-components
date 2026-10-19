@@ -1,0 +1,78 @@
+{{!--
+Fusion MCP setup failure bug draft; Summary is the TL;DR.
+summary: failure and impact on the workflow
+os: observed OS
+vsCodeVersion: observed VS Code version
+dockerVersion: observed Docker version
+transportMode: observed MCP transport, for example stdio
+imageBuild: image tag or local build identifier
+preconditions: completed prerequisites and configured credential categories, never values
+stepsToReproduce: exact or best-effort ordered steps
+expectedBehavior: what should happen
+actualBehavior: what happened instead
+initializeResult: observed initialize result
+toolsListResult: observed tools/list result
+toolsCallResult: observed basic non-destructive tools/call result
+troubleshooting: list of troubleshooting already attempted
+logs: sanitized snippets only; remove keys, tokens, and sensitive values
+additionalNotes: list of relevant notes
+--}}
+{{> agent-content/banner}}
+
+## Summary
+
+{{summary}}
+
+## Environment
+
+- OS: {{os}}
+- VS Code version: {{vsCodeVersion}}
+- Docker version: {{dockerVersion}}
+- MCP transport mode (for example `stdio`): {{transportMode}}
+- MCP image/build used (tag or local): {{imageBuild}}
+
+## Preconditions
+
+{{#each preconditions}}
+- {{this}}
+{{/each}}
+
+## Steps to reproduce
+
+{{#each stepsToReproduce}}
+1. {{this}}
+{{/each}}
+
+## Expected behavior
+
+{{expectedBehavior}}
+
+## Actual behavior
+
+{{actualBehavior}}
+
+## Validation evidence
+
+- `initialize` result: {{initializeResult}}
+- `tools/list` result: {{toolsListResult}}
+- basic non-destructive `tools/call` result: {{toolsCallResult}}
+
+## Troubleshooting already attempted
+
+{{#each troubleshooting}}
+- {{this}}
+{{/each}}
+
+{{#> agent-content/details summary="Details"}}
+## Logs / output (sanitized)
+
+{{logs}}
+{{/agent-content/details}}
+
+## Additional notes
+
+{{#each additionalNotes}}
+- {{this}}
+{{/each}}
+
+{{> agent-content/references}}

@@ -1,10 +1,10 @@
 ---
 name: fusion
-description: 'Main Copilot skill gate for the Fusion ecosystem — cross-domain router. USE FOR: routing between different Fusion domains (skills, issues, PRs, reviews) when the right domain skill is unclear; getting install guidance for missing skills. DO NOT USE FOR: skill lifecycle operations (use fusion-skills directly), tasks where a specific Fusion skill is already active.'
+description: 'Main Copilot skill gate for the Fusion ecosystem — cross-domain router. USE FOR: routing between different Fusion domains (skills, issues, PRs, reviews, app maintenance) when the right domain skill is unclear; getting install guidance for missing skills. DO NOT USE FOR: skill lifecycle operations (use fusion-skills directly), tasks where a specific Fusion skill is already active.'
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to inline install commands when unavailable.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -33,6 +33,7 @@ If the user asks "what can you do?" or is clearly exploring for the first time, 
 > - **Find, install, or manage skills** → `fusion-skills`
 > - **Create GitHub issues** → `fusion-issue-authoring`
 > - **Solve issues, review PRs, plan tasks** → experimental skills (ask me to check availability)
+> - **Greenkeep a Fusion app repo** → experimental `fusion-app-greenkeeping`
 >
 > Try: 'find me a skill for...' or 'create an issue for...'"
 
@@ -48,6 +49,7 @@ If the user asks "what can you do?" or is clearly exploring for the first time, 
 | Plan or break down an issue into sub-tasks | `fusion-issue-task-planning` | experimental |
 | Address PR review comments | `fusion-github-review-resolution` | experimental |
 | Review a dependency update PR | `fusion-dependency-review` | experimental |
+| Greenkeep or incrementally improve a Fusion app repo; resume its maintenance plan | `fusion-app-greenkeeping` | experimental |
 
 ## Loop prevention
 
@@ -63,6 +65,8 @@ This skill is a top-level router. It must never re-route back to itself. If you 
    ```
    apm install equinor/fusion-skills/skills/<skill-name>#^1.6.1 --target copilot
    ```
+   For `fusion-app-greenkeeping`, use catalog path `skills/.experimental/fusion-app-greenkeeping`
+   instead of `skills/<skill-name>`; available after release containing skill. App APM profile also includes it.
 5. **If the skill is experimental:** add a note: "This skill is experimental and may change. Install at your own risk."
 6. **If intent doesn't match any routing entry:** say so and suggest the user describe their goal differently, or use `fusion-skills` discovery to search for a matching skill.
 7. If intent is still unclear after reading the request, ask one conversational question:

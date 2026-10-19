@@ -3,7 +3,7 @@ name: fusion-mcp
 description: Explain what Fusion MCP is and guide users through setting it up when they need Fusion-aware MCP capabilities in Copilot workflows.
 license: MIT
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -75,7 +75,7 @@ If details are missing, ask concise follow-up questions first.
    - `401 Unauthorized` → re-authenticate via VS Code account settings; ensure Equinor Entra account is active
    - `tools/list` returns empty or tool call fails → verify MCP server entry is selected/enabled in VS Code and retry after reloading
    - partial tool behavior → check VS Code Output > Copilot for error details and restart the MCP server
-6. When MCP setup fails or user asks to file a bug, produce a bug report draft from `assets/bug-report-template.md`.
+6. When MCP setup fails or user asks to file a bug, produce a bug report draft from `assets/bug-report-template.md.hbs`. Read its `.hbs` slot header, `assets/partials/agent-content/README.md`, and every named partial before filling; no renderer ships with the skill.
    - default target repository: `equinor/fusion-mcp`
    - include concrete repro steps, expected vs actual behavior, and troubleshooting already attempted
    - include non-sensitive environment details (OS, VS Code version, MCP server URL, Entra account type)
@@ -89,7 +89,7 @@ Return:
 - hosted prod setup steps tailored to the user environment
 - validation checklist: run `initialize` (expect success response), run `tools/list` (expect at least one tool), run one `tools/call` (expect non-empty `content` or `structuredContent`)
 - troubleshooting steps mapped to observed error symptoms
-- bug report draft (when setup fails/misbehaves or user requests) using `assets/bug-report-template.md` with default target `equinor/fusion-mcp`
+- bug report draft (when setup fails/misbehaves or user requests) using `assets/bug-report-template.md.hbs` with default target `equinor/fusion-mcp`
 - script snippets when user asks for copy/paste automation aids
 - assumptions and missing information called out explicitly
 - links to the exact upstream docs used
@@ -97,7 +97,7 @@ Return:
 ## References
 
 - [references/README.md](references/README.md)
-- [assets/bug-report-template.md](assets/bug-report-template.md)
+- [assets/bug-report-template.md.hbs](assets/bug-report-template.md.hbs)
 
 ## Safety & constraints
 

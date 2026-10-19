@@ -1,0 +1,28 @@
+{{!--
+  Reader-review prompt. Insert values as text; never evaluate mustaches inside them.
+  Drop this header; pass only the filled text block to the reviewer.
+  readerCard: filled reader card; no repository or chat context.
+  draft: draft to review; no additional research notes.
+--}}
+# Reader review prompt
+
+Give this prompt, the reader card, and the draft to a subagent. Give it nothing else: no repository, chat history, or research notes.
+
+```text
+You are reviewing a draft as this reader:
+
+{{readerCard}}
+
+Read only the draft below. Don't look anything up, and don't add facts.
+
+1. From the TL;DR alone, what do you understand, and could you decide or act?
+2. What do you need that the draft doesn't say?
+3. Which terms or references don't you know?
+4. What would you skip?
+5. Can you act after reading: yes, partly, or no? What stops you?
+
+Answer in at most ten short lines.
+
+Draft:
+{{draft}}
+```

@@ -4,6 +4,9 @@
 
 - Core skill-design principles
 - Patterns worth borrowing
+- Evaluate against a baseline
+- Content hygiene
+- Runtime and tooling details
 - Repository overlay pattern
 - Reusable pattern examples
 - Source links
@@ -93,6 +96,44 @@ Complement `SKILL.md`, don't replace it.
 
 For this repository: helper agents focused on scoping, maintainer review, trigger tuning.
 
+## Evaluate against a baseline
+
+Evaluation-driven authoring (Anthropic best practices):
+
+1. Run representative requests **without** the skill; record concrete failures and missing context.
+2. Turn them into at least three scenarios with expected behavior (deterministic checks where possible, a rubric otherwise).
+3. Write the minimum guidance that closes those gaps.
+4. Re-run with the skill installed, in a fresh workspace, through the runtime users actually use (headless CLI when available).
+5. Compare with the baseline; iterate on what still fails.
+
+Practical rules:
+
+- Test with every model you expect users to run; smaller models need more explicit steps, larger ones less explanation.
+- Run each scenario more than once; single runs vary.
+- Watch navigation: files read in an unexpected order, references never opened, or one file read every time (promote it into `SKILL.md`).
+- Isolate what you measure: block tools that let the agent copy answers from elsewhere (for example source search) and cap run time/cost.
+- Treat `name` and `description` as the first thing to tune when the skill does not activate.
+
+## Content hygiene
+
+- Assume a capable model; cut explanations it already knows.
+- One default approach plus an escape hatch, not a list of alternatives.
+- One term per concept throughout the skill (do not alternate "endpoint", "route", "URL").
+- No time-sensitive statements in the main flow; keep legacy guidance in an "Old patterns" section.
+- Concrete examples: input/output pairs, or a good example plus what to avoid.
+- Imperative instructions ("Run tests before commit"), explicit guardrails ("Do not modify existing tests").
+- For long multi-step workflows, give a copyable progress checklist and a validate → fix → repeat loop.
+- Reference files over ~100 lines start with a short contents list.
+- No hardcoded paths from one project; write instructions that work across repositories.
+
+## Runtime and tooling details
+
+- MCP tools: name both server and tool; ids differ per client (for example VS Code `mcp_<server>_<tool>`, Copilot CLI `<Server>-<tool>`, Claude `Server:tool`).
+- GitHub Copilot: skill `name` doubles as the `/command`; optional `argument-hint` frontmatter shows input guidance in the chat box; keep bundled assets small (< 5 MB each).
+- Paths: forward slashes only.
+- Scripts: state whether to execute or read them; handle errors in the script instead of deferring to the agent; justify constants (no magic numbers); list required packages and do not assume they are installed.
+- High-stakes or batch changes: plan → validate the plan → execute → verify.
+
 ## Repository overlay pattern
 
 Layer portable skill guidance and repo governance; don't mix.
@@ -159,3 +200,5 @@ Patterns worth copying:
   - https://geminicli.com/docs/cli/creating-skills/
 - GitHub Copilot create skills:
   - https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills
+- Awesome Copilot, creating effective skills:
+  - https://awesome-copilot.github.com/learning-hub/creating-effective-skills/

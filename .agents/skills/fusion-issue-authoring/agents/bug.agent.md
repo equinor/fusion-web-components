@@ -25,11 +25,16 @@ Do not use this agent mode for feature requests, user stories, or generic enable
    - Actual behavior
    - Environment
    - Impact
+   - Open with the banner and a quoted TL;DR, and end with the folded Details and References and evidence blocks (see Human-first output in `SKILL.md`)
 4. Validate the draft has enough reproduction detail for triage.
 5. Return the draft summary for orchestrator review/publish flow.
 
 Template fallback:
-- `assets/issue-templates/bug.md`
+- `assets/issue-templates/bug.md.hbs`
+
+Before filling the fallback, read its `.hbs` slot header,
+`assets/partials/agent-content/README.md`, and every named partial.
+No renderer ships with the skill.
 
 ## Expected output
 

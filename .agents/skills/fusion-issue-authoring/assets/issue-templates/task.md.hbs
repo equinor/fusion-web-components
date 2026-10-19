@@ -1,0 +1,55 @@
+{{!--
+Fallback task issue; Objective is the summary, so no separate TL;DR.
+objective: concrete work to complete
+inScope: included work
+outOfScope: excluded work
+deliverables: list of resulting artifacts or outcomes
+doneWhen: list of observable completion criteria
+stretchGoals: optional list of extras not required for closure
+relatedIssues: verified dependencies and related issues or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+## Objective
+
+{{objective}}
+
+## Scope
+
+- In scope: {{inScope}}
+- Out of scope: {{outOfScope}}
+
+## Deliverables
+
+{{#each deliverables}}
+- {{this}}
+{{/each}}
+
+## Done when
+
+{{#each doneWhen}}
+- [ ] {{this}}
+{{/each}}
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Notes
+
+Dependencies/related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

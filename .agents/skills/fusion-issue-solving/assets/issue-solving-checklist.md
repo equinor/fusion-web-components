@@ -15,4 +15,5 @@ Use this checklist while executing the issue-solving workflow.
 | [ ] Run targeted validation | |
 | [ ] Run required repository checks | |
 | [ ] Prepare PR-ready summary | |
+| [ ] Decide close vs reference for each linked issue (ask with a recommended default; autopilot applies it) | |
 | [ ] Record blockers/open follow-ups | |

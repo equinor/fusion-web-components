@@ -51,7 +51,7 @@ No one-click install link is published for this server — use the manual config
 
 - Run `initialize` and confirm a successful response.
 - Run `tools/list` and compare against the actual returned names (see the tool inventory in the skill's `SKILL.md`). Don't assume a fixed list — this has drifted from published docs before; trust the live `tools/list` response over any doc, including this one and `SKILL.md`.
-- Pick one non-destructive tool (e.g. `api_list_milestones` or `api_get_issue`) and confirm a non-empty result.
+- Pick one non-destructive tool (e.g. `milestones` or `issue_get`) and confirm a non-empty result.
 
 ## Troubleshooting quick map
 

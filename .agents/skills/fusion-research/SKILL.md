@@ -4,7 +4,7 @@ description: 'Source-backed research orchestrator for the Fusion ecosystem. Rout
 license: MIT
 compatibility: Works best with Fusion MCP. Dispatches to `agents/framework.agent.md` for `mcp_fusion_search_framework`, `agents/eds.agent.md` for `mcp_fusion_search_eds`, `agents/skills.agent.md` for `mcp_fusion_search_skills`, `agents/docs.agent.md` for `mcp_fusion_search_docs`, and `agents/backend-code.agent.md` for `mcp_fusion_search_backend_code`. If MCP is unavailable, state that clearly rather than guessing.
 metadata:
-  version: "0.4.1"
+  version: "0.4.2"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -99,7 +99,7 @@ If the runtime supports skill-local agents, invoke the agent directly. Otherwise
 
 ### Step 3 — Return the source-backed answer
 
-Use the structure in [assets/source-backed-answer-template.md](assets/source-backed-answer-template.md):
+Read slot header in [assets/source-backed-answer-template.md.hbs](assets/source-backed-answer-template.md.hbs); fill named slots with Markdown, repeat `#each` items, drop template comments:
 - State which domain and agent was used.
 - Include one to three source-backed evidence bullets.
 - End with any remaining assumptions, uncertainty, or the next verification step.
@@ -116,7 +116,7 @@ This skill includes five research agents in `agents/`. Each covers one Fusion re
 
 ## Assets
 
-- [assets/source-backed-answer-template.md](assets/source-backed-answer-template.md)
+- [assets/source-backed-answer-template.md.hbs](assets/source-backed-answer-template.md.hbs)
 - [assets/framework.follow-up.md](assets/framework.follow-up.md) — pre-dispatch scope questions for Framework research
 - [assets/eds.follow-up.md](assets/eds.follow-up.md) — pre-dispatch scope questions for EDS research
 - [assets/skills.follow-up.md](assets/skills.follow-up.md) — pre-dispatch scope questions for skills catalog research

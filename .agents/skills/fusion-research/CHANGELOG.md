@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.2 - 2026-10-18
+
+### patch
+
+- [#291](https://github.com/equinor/fusion-skills/pull/291) [`31a05b2`](https://github.com/equinor/fusion-skills/commit/31a05b2a8705e40801dc8373dc3d072991cb5aad) - Convert source-backed answer template to `.md.hbs` with declared slots, preserving research headings, evidence, and uncertainty.
+
+
+  resolves equinor/fusion-core-tasks#2443
+
 ## 0.4.1 - 2026-05-07
 
 ### patch

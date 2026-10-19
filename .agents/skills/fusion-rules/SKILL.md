@@ -3,7 +3,7 @@ name: fusion-rules
 description: 'Entrypoint for AI coding assistant rule authoring across GitHub Copilot, Cursor, and Claude Code. USE FOR: setting up rules, reviewing existing rules, scaffolding instruction files, or asking which editor format to use. DO NOT USE FOR: authoring skills (SKILL.md), agent definitions (.agent.md), or CI enforcement of rule files.'
 license: MIT
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator

@@ -1,0 +1,62 @@
+{{!--
+Research checkpoint comment; post before branch mutation, rebase, push, approval, or merge.
+Write None instead of deleting a visible line. This is not the Markdown review tracker.
+packageName: dependency name
+ecosystem: npm, pip, cargo, or actual package ecosystem
+fromVersion: previous version
+toVersion: target version
+updateType: patch | minor | major
+usage: runtime | build | test | dev-tooling | mixed
+changedScope: lockfile only | manifest and lockfile | code
+ciState: passing | failing | pending | unknown
+branchState: current | behind base | conflicted | needs rebase
+securityCall: clear | concern | blocking
+qualityCall: clear | concern | blocking
+impactCall: clear | concern | blocking
+likelyVerdict: merge | merge with follow-up | hold | decline
+breakingChanges: breakage, deprecations, peer shifts, migration work, or None identified
+knownIssues: regressions, rollback chatter, freshness uncertainty, or None found
+reviewerConcerns: maintainer requests and open concerns, or None
+upstreamDelta: upstream changes with short changelog excerpts
+stabilitySignals: supporting detail for known issues
+dependencyGraphChanges: transitive, peer, install-script, or unusual lockfile changes
+branchValidationNotes: branch state, rebase need, and validations to rerun
+existingDiscussion: count and key themes of top-level comments
+reviewThreadsTotal: observed review thread count
+reviewThreadsUnresolved: observed unresolved count
+reviewThreadsOutdated: outdated count or not applicable
+alreadyAnswered: answered or outdated discussion summary, or None
+sourcesChecked: list of objects with name and evidence; only include observed sources
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+`{{packageName}}` (`{{ecosystem}}`) goes from `{{fromVersion}}` to `{{toVersion}}`, a `{{updateType}}` update used for `{{usage}}`. The PR changes `{{changedScope}}`. CI is `{{ciState}}` and the branch is `{{branchState}}`.
+
+Early read: security `{{securityCall}}` · quality `{{qualityCall}}` · impact `{{impactCall}}` · likely verdict `{{likelyVerdict}}`.
+
+## Risks
+
+- **Breaking changes and migration work:** {{breakingChanges}}
+- **Known issues:** {{knownIssues}}
+- **Reviewer concerns to carry forward:** {{reviewerConcerns}}
+
+{{#> agent-content/details summary="Details: upstream changes, dependency graph, and discussion"}}
+**Upstream delta:** {{upstreamDelta}}
+
+**Stability signals:** {{stabilitySignals}}
+
+**Dependency graph and transitive changes:** {{dependencyGraphChanges}}
+
+**Branch and validation notes:** {{branchValidationNotes}}
+
+**Existing PR discussion:** {{existingDiscussion}}; review threads {{reviewThreadsTotal}}, {{reviewThreadsUnresolved}}, {{reviewThreadsOutdated}}. Already answered or outdated: {{alreadyAnswered}}.
+
+**Sources checked:**
+{{#each sourcesChecked}}
+- [x] {{name}}: {{evidence}}
+{{/each}}
+{{/agent-content/details}}
+
+{{> agent-content/references}}

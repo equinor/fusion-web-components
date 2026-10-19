@@ -1,0 +1,14 @@
+name: fusion-web-components
+version: 1.0.0
+description: Agent context for the Fusion Web Components library
+targets:
+  - copilot
+
+dependencies:
+  apm:
+    - equinor/fusion-skills/apm/fusion-developer#^1.9.0
+    - equinor/fusion-skills/skills/.experimental/fusion-design#^1.9.0
+    - equinor/fusion-skills/skills/.experimental/fusion-package-scribe#^1.9.0
+    - equinor/fusion-skills/skills/fusion-rules#^1.9.0
+    - equinor/fusion-skills/skills/.experimental/fusion-pm-mcp#^1.9.0
+    - equinor/fusion-skills/skills/fusion#^1.9.0

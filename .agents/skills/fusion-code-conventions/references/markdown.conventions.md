@@ -124,5 +124,6 @@ Limit to one or two alerts per document. Do not nest them.
 
 - Mention a person or team with `@username` or `@org/team`.
 - Reference an issue or PR with `#123` or a full URL.
-- Close an issue from a PR body or commit message with a closing keyword: `Closes #123`, `Fixes #123`, `Resolves #123`.
+- In a PR body or commit message, a closing keyword (`closes #123`, `fixes #123`, `resolves #123`) closes the issue on merge, while `refs #123` links it without closing. Close when the change completes the issue; reference parent, multi-PR, or cross-repository tracking issues.
+- Agents ask the developer which to use for each issue, recommending the more logical choice; when the developer is unavailable, they apply that recommendation.
 

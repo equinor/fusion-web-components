@@ -1,0 +1,63 @@
+{{!--
+Fallback specification task; Objective is the summary.
+objective: specification outcome
+background: context and constraints
+decisionsNeeded: list of decisions to make
+inScope: included work
+outOfScope: excluded work
+stretchGoals: optional list of extras not required for closure
+relatedIssues: verified related issues or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+## Objective
+
+{{objective}}
+
+## Background
+
+{{background}}
+
+## Decisions needed
+
+{{#each decisionsNeeded}}
+- {{this}}
+{{/each}}
+
+## Proposed design
+
+- Architecture/API/data model changes
+- Alternatives considered
+
+## Scope
+
+- In scope: {{inScope}}
+- Out of scope: {{outOfScope}}
+
+## Done when
+
+- [ ] Spec is documented
+- [ ] Stakeholder review is completed
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.3 - 2026-10-18
+
+### patch
+
+- [#285](https://github.com/equinor/fusion-skills/pull/285) [`8fa30e1`](https://github.com/equinor/fusion-skills/commit/8fa30e119d3959c4691c5e099b15bc6724e7794e) - Migrate the MCP setup bug report to an agent-fillable `.md.hbs` template,
+
+  retaining environment and validation evidence sections and sanitization guidance.
+
+  resolves equinor/fusion-core-tasks#2442
+
 ## 1.0.2 - 2026-07-03
 
 ### patch

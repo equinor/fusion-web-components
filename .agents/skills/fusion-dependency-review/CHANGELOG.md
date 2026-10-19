@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.2.1 - 2026-10-18
+
+### patch
+
+- [#285](https://github.com/equinor/fusion-skills/pull/285) [`8fa30e1`](https://github.com/equinor/fusion-skills/commit/8fa30e119d3959c4691c5e099b15bc6724e7794e) - Migrate research checkpoint and verdict comments to `.md.hbs`, preserving
+
+  visible risk, recommendation, readiness, and confirmation gates. Keep the
+  review tracker in Markdown and update all comment-template callers.
+
+  resolves equinor/fusion-core-tasks#2438
+
+## 0.2.0 - 2026-10-18
+
+### minor
+
+- [#268](https://github.com/equinor/fusion-skills/pull/268) [`02f4095`](https://github.com/equinor/fusion-skills/commit/02f4095399e20bc3e2625cb8e7ef31315a9e83b3) - Write dependency review comments for human readers
+
+
+  - Add a "Human-first output" section that uses `fusion-agent-content` when installed, and list it in `metadata.skills`.
+  - Restructure the verdict and research checkpoint templates: a runtime-reported banner, a quoted TL;DR with the verdict and the ask, visible decision, risks, blockers, follow-ups, and confirmation prompt, the lens analysis and upstream notes folded under Details, and references and evidence folded last.
+  - Replace the `# 🤖 Bip Bop - <title>` heading with the banner in the templates, advisors, and detailed instructions. The review workflow and merge-confirmation gates are unchanged.
+
 ## 0.1.5 - 2026-09-07
 
 ### patch

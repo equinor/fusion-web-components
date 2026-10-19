@@ -4,9 +4,11 @@ description: 'Review dependency PRs with structured research, existing-PR-discus
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.1.5"
+  version: "0.2.1"
   status: experimental
   owner: "@equinor/fusion-core"
+  skills:
+    - fusion-agent-content
   tags:
     - github
     - pull-request
@@ -88,16 +90,28 @@ Keep the lens advisors narrow and independent. The parent skill owns the unified
 ### Workflow summary
 
 1. Resolve target PR with `agents/target-pr-advisor.md` and concise prompts in `references/questions.md`.
-2. Gather context and build shared evidence packet with `agents/research-advisor.md`, `assets/review-tracker.md`, and `assets/research-template.md`.
+2. Gather context and build shared evidence packet with `agents/research-advisor.md`, `assets/review-tracker.md`, and `assets/research-template.md.hbs`.
 3. Run `agents/security-advisor.md`, `agents/code-quality-advisor.md`, and `agents/impact-advisor.md` in parallel with the same normalized research packet.
 4. Use `agents/verdict-advisor.md` to produce recommendation, confidence, readiness, follow-up, and explicit maintainer prompt.
 5. Use `agents/source-control-advisor.md` only after verdict is accepted and only when branch work is required.
 6. Follow `references/instructions.md` for detailed live-PR contract: target selection, checkpoint comments, decision gates, and handoff timing.
 
+### Human-first output
+
+Maintainers read the research checkpoint and verdict comments to decide whether to merge. When `fusion-agent-content` is installed, use it to shape both; otherwise follow the shape built into the templates:
+
+- A banner naming the agent, tool, model, and reasoning effort reported by the runtime (never guessed), then a quoted TL;DR (`> **TL;DR:**`) with the verdict and the ask.
+- Short prose for the reasoning that matters. Recommendation, confidence, readiness, blockers, risks, follow-ups, and the confirmation prompt stay visible.
+- Lens analysis, changelog excerpts, and research notes fold under **Details**; skills, references, and sources fold last under **References and evidence**.
+
 ## Assets
 
-- `assets/research-template.md`: research-comment structure for change summary, breaking changes, known issues, and sources
-- `assets/verdict-template.md`: verdict structure for lens assessments, recommendation, confidence, readiness, and follow-up items
+- `assets/research-template.md.hbs`: human-first research checkpoint comment with a TL;DR, visible breaking changes, folded upstream notes, and folded sources
+- `assets/verdict-template.md.hbs`: human-first verdict comment with a TL;DR, visible decision, blockers, and follow-ups, folded lens analysis, and folded references and evidence
+
+Before filling either template, read its `.hbs` slot header,
+`assets/partials/agent-content/README.md`, and every named partial.
+No renderer ships with the skill; `assets/review-tracker.md` stays Markdown.
 - `assets/review-tracker.md`: working checklist and tracker for context, validation, lens outcomes, and handoff decisions
 
 ## References

@@ -1,0 +1,53 @@
+{{!--
+Fallback testing task; Objective is the summary.
+objective: testing covered by this task
+componentsFeatures: components or features under test
+environments: test environments
+testCases: list of observable test cases
+stretchGoals: optional list of extras not required for closure
+relatedIssues: verified related issues or None
+details: optional sanitized supporting material
+--}}
+{{> agent-content/banner}}
+
+## Objective
+
+{{objective}}
+
+## Scope
+
+- Components/features under test: {{componentsFeatures}}
+- Environments: {{environments}}
+
+## Test cases
+
+{{#each testCases}}
+- [ ] {{this}}
+{{/each}}
+
+## Verification criteria
+
+- [ ] Expected behavior validated
+- [ ] Regressions checked
+{{#if stretchGoals}}
+
+## Stretch goals
+
+Optional extras that are nice to have but not required to close this issue.
+
+{{#each stretchGoals}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+## Notes
+
+Related issues: {{relatedIssues}}
+{{#if details}}
+
+{{#> agent-content/details summary="Details"}}
+{{details}}
+{{/agent-content/details}}
+{{/if}}
+
+{{> agent-content/references}}

@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.4.1 - 2026-10-18
+
+### patch
+
+- [#285](https://github.com/equinor/fusion-skills/pull/285) [`8fa30e1`](https://github.com/equinor/fusion-skills/commit/8fa30e119d3959c4691c5e099b15bc6724e7794e) - Migrate all ten fallback issue templates to `.md.hbs`, using named slots,
+
+  content-based optional sections, and shared agent-content partials. Preserve
+  target repository template priority and update agents, references, and asset docs.
+
+  resolves equinor/fusion-core-tasks#2436
+
+## 0.4.0 - 2026-10-18
+
+### minor
+
+- [#268](https://github.com/equinor/fusion-skills/pull/268) [`02f4095`](https://github.com/equinor/fusion-skills/commit/02f4095399e20bc3e2625cb8e7ef31315a9e83b3) - Shape issue bodies for human readers, following `fusion-agent-content` when it is installed.
+
+
+  - Add a "Human-first output" section: a banner naming the drafting agent, model, and reasoning effort reported by the runtime (never guessed), a TL;DR in a quote block, the template headings in plain prose, a folded Details block, and a folded References and evidence block last.
+  - Fallback issue templates now carry the banner placeholder, a quoted TL;DR where no section already summarizes the issue (task templates use `Objective`), and the two folded blocks.
+  - Type agent modes point to the same shape. Acceptance criteria, decisions, risks, and blocking dependencies stay visible.
+
+- [#270](https://github.com/equinor/fusion-skills/pull/270) [`e3c3ab4`](https://github.com/equinor/fusion-skills/commit/e3c3ab46170f91b111f06f840b137e9212aa5980) - Draft the minimum issues, keep stretch goals apart, stop duplicating child issues, and set milestones only on Features
+
+
+  - Drafts only the issues needed to resolve a request (the fewest stories for a feature, the fewest tasks for a story), and keeps requirements and "Done when" to what is required to close.
+  - Desirable extras go under a separate **Stretch goals** heading in the fallback templates, so they don't block closing.
+  - Lists nice-to-have quality-of-life issues as suggestions and asks before drafting any; in autopilot they are only reported.
+  - Treats the sub-issue list as the only list of children: no checklist of child issues in the parent body or a parent comment.
+  - Sets a milestone only on `Feature` issues, unless repository guidance says otherwise. User stories, tasks, and bugs no longer copy their parent's milestone, and a request for one on another type gets the convention explained and the parent Feature suggested.
+
+  resolves equinor/fusion-skills#266
+
+### patch
+
+- [#269](https://github.com/equinor/fusion-skills/pull/269) [`337e2f1`](https://github.com/equinor/fusion-skills/commit/337e2f17d1704bb2530339fabd6ace3cf93cc5e9) - Ask whether linked issues should close or only be referenced
+
+
+  - Replaces "use closing keywords when closure is intended" with an explicit per-issue question and a recommended default: close when the work completes the issue, reference for parent, multi-PR, or cross-repository tracking issues.
+  - Stated intent is followed without asking; when the user is unavailable, the recommendation is applied and the closing issues are named.
+
+  refs equinor/fusion-skills#244
+
 ## 0.3.6 - 2026-09-18
 
 ### patch

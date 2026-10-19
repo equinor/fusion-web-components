@@ -3,9 +3,11 @@ name: fusion-issue-solving
 description: 'Handles GitHub issue resolution end-to-end for prompts like "solve #123", "lets solve #123", "work on #123", "work on https://github.com/owner/repo/issues/123", or by pasting a direct GitHub issue URL as the request. USE FOR: solve #123, continue work on issue #123, work on https://github.com/owner/repo/issues/123, paste a GitHub issue URL for implementation work. DO NOT USE FOR: issue drafting only, PR review only, or non-implementation research.'
 license: MIT
 metadata:
-  version: "0.1.7"
+  version: "0.2.0"
   status: experimental
   owner: "@equinor/fusion-core"
+  skills:
+    - fusion-agent-content
   tags:
     - github
     - github-issue
@@ -106,27 +108,39 @@ Optional:
    - Include validation evidence and known follow-ups.
    - Draft the PR body in a `.tmp/` file with an issue/context-specific name (for example, `.tmp/pr-body-issue-123-scope-summary.md`), not a shared `.tmp/pr-body.md`.
    - Base the draft on `.github/pull_request_template.md` and keep it updated as implementation evolves.
+   - Shape the draft for human readers as described in [Human-first output](#human-first-output).
    - Ask which base branch to target and propose a likely default (typically `main`, or the branch the current branch was cut from).
    - Ask whether the PR should be opened as draft or ready for review.
    - Ask whether the PR should be assigned to the user and whether related issues should be linked.
+   - For each linked issue, ask whether merging should close it (`closes owner/repo#123`) or only reference it (`refs owner/repo#123`), and present the most logical choice as the default:
+     - close (the usual case) when this PR completes the issue's acceptance criteria, such as the issue being solved;
+     - reference when the issue is a parent story or epic, needs more PRs, rollout, or acceptance, or is in another repository that this PR only supports.
+   - If the user already stated the intent ("closes #123", "just reference #123"), follow it without asking.
+   - When the user is unavailable (autonomous or autopilot runs), apply the recommended choice and state in the PR body and delivery report which issues will close on merge.
 
 10. Optional GitHub mutation steps
    - Before any GitHub mutation (create/edit/comment/close), ask for explicit user confirmation.
    - If requested, update issue status/comments with objective progress.
    - Prefer MCP tool mutations over ad hoc API calls when equivalent operations exist.
    - If GitHub API rate limits block mutation, report the failure clearly, stop retry loops, and propose a safe retry sequence.
-   - If requested, create or update the PR using the repository PR template and the `.tmp/` PR body draft file, using the confirmed base branch, draft/ready state, assignee choice, and related issue links.
+   - If requested, create or update the PR using the repository PR template and the `.tmp/` PR body draft file, using the confirmed base branch, draft/ready state, assignee choice, and related issue links (close or reference, as decided above).
+   - After publishing, read the PR body back and verify that exactly the issues chosen for closing use a closing keyword.
+
+## Human-first output
+
+People read the PR body draft (step 9) and the delivery report, so give both the same shape:
+1. A banner line, `<sub>🤖 Drafted by <agent> (<tool>) · <model> · <effort> reasoning</sub>`, filled from runtime metadata and never guessed.
+2. A quoted TL;DR (`> **TL;DR:** ...`) of one to three sentences, then (for the PR body) the repository PR template headings in plain prose.
+3. A folded `<details><summary>Details</summary>` block for file lists and command output, then a folded `<details><summary>References and evidence</summary>` block last, for the skills, references, and evidence used.
+
+Keep the one-line validation result, risks, and the issues that close on merge visible. When `fusion-agent-content` is installed, use it to shape both texts; optionally also use `fusion-pr-documentation` for the PR body when it is installed.
 
 ## Expected output
 
-Return a concise delivery report with:
-- implemented scope vs original issue criteria,
-- files changed,
-- validation commands and outcomes,
-- assignment decisions for primary issue and affected sub-issues,
-- API usage strategy used (MCP-first/cache reuse/fallbacks),
-- open risks/blockers,
-- PR body summary (or `.tmp/` draft file path when created).
+Return a human-first delivery report (see [Human-first output](#human-first-output)):
+- visible: banner, TL;DR of the outcome and what the user needs to do next, a one-line validation result, open risks and blockers, the assignment decisions that need attention, and the `.tmp/` PR body draft path when one was created;
+- folded under **Details**: implemented scope against the original issue criteria, files changed, validation commands and their output, all assignment decisions for the primary issue and sub-issues, and the API usage strategy (MCP-first, cache reuse, fallbacks);
+- folded under **References and evidence**: the skills, references, and sources used.
 
 ## Assets
 

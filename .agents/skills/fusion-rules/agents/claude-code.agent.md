@@ -49,7 +49,7 @@ Follow `.system/fusion-rule-author` Steps 1–7, scoped to Claude Code:
 3. **Assess** `CLAUDE.md`, `.claude/CLAUDE.md`, and `.claude/rules/**/*.md`
 4. **Interview** — present scan findings, fill gaps per Step 3
 5. **Classify** into two buckets: always-on (`CLAUDE.md` / unconditional rules) and path-scoped rules
-6. **Draft** using `.system/fusion-rule-author/assets/claude-rule-template.md`
+6. **Draft** using `.system/fusion-rule-author/assets/claude-rule-template.md.hbs`
 7. **Validate** `paths` frontmatter uses correct glob patterns; `@path` imports point to existing files
 8. **Quality gate** — `CLAUDE.md` under ~200 lines, one topic per rule file
 

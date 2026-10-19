@@ -89,7 +89,8 @@ Minimal APIs (.NET 6+): `Program.cs`; endpoints in `Endpoints/` or by feature. `
 ## API response models
 
 - `Api` prefix on all response types (`ApiOrderV2`, `ApiLineItem`)
-- Suppress null properties where they add noise: `[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]` or `[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]`
+- Always serialize every declared property — avoid `[JsonIgnore]` (incl. `WhenWritingNull`/`WhenWritingDefault`) and `NullValueHandling.Ignore`; properties that come and go make the contract harder for clients (strict schemas, generated types). Emit `null` or `[]` instead, and use a dedicated per-endpoint model when a field should not exist on a response
+- Collections are never `null`: return `[]` when empty. Declare collection properties non-nullable and initialize them (`public IReadOnlyList<ApiLineItem> Items { get; init; } = [];`), and map with `?? []` from nullable sources, so clients can iterate without null checks
 - One JSON serializer per project: `System.Text.Json` for new, Newtonsoft.Json for existing
 - Versioned models: `V2`/`V3` suffix, may inherit previous version
 - Don't reuse models across endpoints — hidden coupling

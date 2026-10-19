@@ -1,0 +1,21 @@
+{{!--
+Content skeleton for agent-written text for people.
+drafter, tldr, references: shared agent-content context; read partials/agent-content/README.md.
+sections: repository template headings in order; each item has heading and body (short prose with decisions, risks, acceptance criteria, validation, and issue closing choices visible).
+details: implementation notes, file lists, command output, raw data.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{#each sections}}
+## {{heading}}
+
+{{body}}
+
+{{/each}}
+{{#> agent-content/details}}
+{{details}}
+{{/agent-content/details}}
+
+{{> agent-content/references}}

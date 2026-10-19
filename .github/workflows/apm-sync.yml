@@ -2,7 +2,7 @@ name: APM Sync
 
 on:
   schedule:
-    - cron: '17 8 * * *' # Daily, 08:17 UTC, including weekends
+    - cron: '17 8 * * 1-5' # Weekdays, 08:17 UTC
   workflow_dispatch:
 
 jobs:

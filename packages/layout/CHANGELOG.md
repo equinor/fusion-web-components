@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.2.1
+
+### Patch Changes
+
+- [#2498](https://github.com/equinor/fusion-web-components/pull/2498) [`46958a1`](https://github.com/equinor/fusion-web-components/commit/46958a15623857825fe76c8a42e07c315a4118dd) Thanks [@chdefrene](https://github.com/chdefrene)! - Raise `@equinor/fusion-web-theme` to `^0.1.12`, which temporarily keeps native browser controls in light mode.
+  
+  Ref: equinor/fusion-core-tasks#2120
+
 ## 0.2.0
 
 ### Minor Changes

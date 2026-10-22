@@ -48,7 +48,7 @@
   "dependencies": {
     "@equinor/fusion-wc-core": "workspace:^",
     "@equinor/fusion-wc-icon": "workspace:^",
-    "@equinor/fusion-web-theme": "^0.1.10",
+    "@equinor/fusion-web-theme": "^0.1.12",
     "lit": "3.3.3",
     "marked": "^18.1.1",
     "prismjs": "^1.29.0",

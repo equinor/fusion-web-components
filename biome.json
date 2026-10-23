@@ -7,7 +7,12 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!.changeset", "!utils/builder/bin"]
+    "includes": [
+      "**",
+      "!.changeset",
+      "!utils/builder/bin",
+      "!storybook/.storybook/preview-head.html"
+    ]
   },
   "formatter": {
     "enabled": true,

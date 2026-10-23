@@ -4,9 +4,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-developer
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
-  version: 1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: 1.11.0
   virtual_path: apm/fusion-developer
   is_virtual: true
   package_type: apm_package
@@ -20,23 +20,23 @@ dependencies:
   - .github/instructions/fusion-work-tracking.instructions.md
   deployed_file_hashes:
     .github/agents/fusion-developer.agent.md: sha256:3bdd14293c8cceedbf440203ebbd46ba3b70382141bdc420b4cf02b2fb34a334
-    .github/agents/fusion-repository-greenkeeper.agent.md: sha256:8890de38a37a59dd4152980e8e3e5cec398286077e4975b320acd7494523501c
+    .github/agents/fusion-repository-greenkeeper.agent.md: sha256:7025676e3342f1fbf548316e5efc4e519ea5c8b3c4fb6d83d1a672226adf6a04
     .github/instructions/fusion-candid-advice.instructions.md: sha256:b91555a983286e3040792d43fb92cb0f94f4e952af3daa57b73bffe3c2c9ffe0
     .github/instructions/fusion-developer-workflow.instructions.md: sha256:fdcf2d98ad3249510a6037ee02502c747328dcc44a896be7d1bc0537a3363976
     .github/instructions/fusion-skill-feedback.instructions.md: sha256:87e3caecf799cbe12a29eeadd860aef1042e12a841d3a0f2a345499ea4a07f6c
     .github/instructions/fusion-work-bounds.instructions.md: sha256:edff44bf8f9ef3c0c9ea7ad3fa9c63936ed1a7574c883c7d549a6dd4d76cf018
     .github/instructions/fusion-work-tracking.instructions.md: sha256:fa8699206f268371d2571b4f98aba12d38ae151669d799c57fe2961542fd5e71
-  content_hash: sha256:4eec4458faa17d0231236007e182419bc3992c4bbf07a32b3b573932dc033a9b
+  content_hash: sha256:b60a748f744d9cb05666bd7c9821471adcc64054da08562ac5dc59f9298e392b
   constraint: ^1.9.0
-  resolved_tag: v1.9.0
-  resolved_at: '2026-10-19T05:45:23+00:00'
+  resolved_tag: v1.11.0
+  resolved_at: '2026-10-23T08:35:17+00:00'
   declared_license: MIT
 - repo_url: equinor/fusion-skills
   name: fusion-design
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
-  version: 1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: 1.11.0
   virtual_path: skills/.experimental/fusion-design
   is_virtual: true
   package_type: claude_skill
@@ -69,14 +69,14 @@ dependencies:
     .agents/skills/fusion-design/references/spacing.md: sha256:a84b5071ce3c7f64a713fb497c9e11489f5b5ce6e0cfe2c4db0e42b0642c3edc
   content_hash: sha256:c9579c4bd027aaa6aa269013d1ce55d6828be0c5a0f9ea0ee47a4991cc9569e1
   constraint: ^1.9.0
-  resolved_tag: v1.9.0
-  resolved_at: '2026-10-19T05:45:23+00:00'
+  resolved_tag: v1.11.0
+  resolved_at: '2026-10-23T08:35:17+00:00'
 - repo_url: equinor/fusion-skills
   name: fusion-package-scribe
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
-  version: 1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: 1.11.0
   virtual_path: skills/.experimental/fusion-package-scribe
   is_virtual: true
   package_type: claude_skill
@@ -105,14 +105,14 @@ dependencies:
     .agents/skills/fusion-package-scribe/references/tsdoc-checklist.md: sha256:fc63de68a83da3b67f96f3e7e9a250f1cb70878bee8abb8785d720b2fc7d6bf9
   content_hash: sha256:da9b8c6f0752f4d89149056d58b35387a122dfa48a37c3c46b82ed92aca4ce71
   constraint: ^1.9.0
-  resolved_tag: v1.9.0
-  resolved_at: '2026-10-19T05:45:23+00:00'
+  resolved_tag: v1.11.0
+  resolved_at: '2026-10-23T08:35:17+00:00'
 - repo_url: equinor/fusion-skills
   name: fusion-pm-mcp
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
-  version: 1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: 1.11.0
   virtual_path: skills/.experimental/fusion-pm-mcp
   is_virtual: true
   package_type: claude_skill
@@ -139,14 +139,14 @@ dependencies:
     .agents/skills/fusion-pm-mcp/references/vscode-mcp-config.md: sha256:4eacad218908b2d1d827bfa73efdf726d9ee32bbb4a303a1b2eeb984e4b75365
   content_hash: sha256:08e74b341814657eb17441716a396ff4b7f8b7d663ae119378cce4948f5f2ad1
   constraint: ^1.9.0
-  resolved_tag: v1.9.0
-  resolved_at: '2026-10-19T05:45:24+00:00'
+  resolved_tag: v1.11.0
+  resolved_at: '2026-10-23T08:35:18+00:00'
 - repo_url: equinor/fusion-skills
   name: fusion
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
-  version: 1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: 1.11.0
   virtual_path: skills/fusion
   is_virtual: true
   package_type: claude_skill
@@ -155,18 +155,18 @@ dependencies:
   - .agents/skills/fusion/CHANGELOG.md
   - .agents/skills/fusion/SKILL.md
   deployed_file_hashes:
-    .agents/skills/fusion/CHANGELOG.md: sha256:746ad104dde76fed0da954e9bf43fd92eb02db6edb72600a59dcf34bccd46e5a
-    .agents/skills/fusion/SKILL.md: sha256:66194d06f6a54820589b3c8f76df6a61c62fdb817d08b5f7615bcc0b8ad0dabc
-  content_hash: sha256:506c20f87e13b08dcc31fe650eec9f573330c8e12aa09e3fa51a47f968210d7f
+    .agents/skills/fusion/CHANGELOG.md: sha256:ec39402af1aff9de1376b0d7583930d43b4d282081e1c6f3864ff5b64dd65741
+    .agents/skills/fusion/SKILL.md: sha256:d48c9c95cf5d04d88089fff90b958061facf69c5baddd4a4a87c961ff4b2ee90
+  content_hash: sha256:1f2377d9baed7d4b2783d2e3b29b979c541968f9e94a5d8f9a0138410a1dd2e2
   constraint: ^1.9.0
-  resolved_tag: v1.9.0
-  resolved_at: '2026-10-19T05:45:29+00:00'
+  resolved_tag: v1.11.0
+  resolved_at: '2026-10-23T08:35:18+00:00'
 - repo_url: equinor/fusion-skills
   name: fusion-rules
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
-  version: 1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: 1.11.0
   virtual_path: skills/fusion-rules
   is_virtual: true
   package_type: claude_skill
@@ -185,13 +185,13 @@ dependencies:
     .agents/skills/fusion-rules/agents/cursor.agent.md: sha256:7b98676093527ba0561cee32c208a9053404f286608d06f6c0fe4ced4ece0935
   content_hash: sha256:7d355b536a2643cfb0de0426116db8483ac83857783ef1c4ac036c26599199a6
   constraint: ^1.9.0
-  resolved_tag: v1.9.0
-  resolved_at: '2026-10-19T05:45:23+00:00'
+  resolved_tag: v1.11.0
+  resolved_at: '2026-10-23T08:35:17+00:00'
 - repo_url: equinor/fusion-skills
   name: fusion-agent-content
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-agent-content
   is_virtual: true
@@ -227,8 +227,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-audience-alignment
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-audience-alignment
   is_virtual: true
@@ -254,8 +254,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-dependency-review
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-dependency-review
   is_virtual: true
@@ -305,10 +305,33 @@ dependencies:
     .agents/skills/fusion-dependency-review/references/questions.md: sha256:da90a96d02fe3322078c7acd3c4d9403146d81f1bf2aced5c0997900d3866c94
   content_hash: sha256:6a8825eac30858fa9b35b1ca09857c6a4548af77b97e4816b62877f11508055e
 - repo_url: equinor/fusion-skills
+  name: fusion-general-greenkeeping
+  host: github.com
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: unknown
+  virtual_path: skills/.experimental/fusion-general-greenkeeping
+  is_virtual: true
+  depth: 2
+  resolved_by: equinor/fusion-skills
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/fusion-general-greenkeeping
+  - .agents/skills/fusion-general-greenkeeping/CHANGELOG.md
+  - .agents/skills/fusion-general-greenkeeping/SKILL.md
+  - .agents/skills/fusion-general-greenkeeping/references/findings-and-output.md
+  - .agents/skills/fusion-general-greenkeeping/references/health-lanes.md
+  deployed_file_hashes:
+    .agents/skills/fusion-general-greenkeeping/CHANGELOG.md: sha256:89a15b617c101598101738a579f98258243f55e9ec08d4719eb5494181d2828a
+    .agents/skills/fusion-general-greenkeeping/SKILL.md: sha256:948bce487b66c7cb2b4268abb08814dc76a108fd0dbd82ea326779df071b3993
+    .agents/skills/fusion-general-greenkeeping/references/findings-and-output.md: sha256:9cbd06ce287e173569f027c0d28fdf182c891508b64cccf0cd15ee70a9531896
+    .agents/skills/fusion-general-greenkeeping/references/health-lanes.md: sha256:680c52ef7cda9495f716dc6183ed60a7fb1b0587c0bc8b9219cd7206b19d5700
+  content_hash: sha256:d50b958051a6da637a275a10cd3cef7d125a21ef20dbc52ad08d2677789bce06
+- repo_url: equinor/fusion-skills
   name: fusion-github-review-resolution
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-github-review-resolution
   is_virtual: true
@@ -356,8 +379,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-issue-solving
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-issue-solving
   is_virtual: true
@@ -377,8 +400,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-issue-task-planning
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-issue-task-planning
   is_virtual: true
@@ -414,8 +437,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-mcp
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-mcp
   is_virtual: true
@@ -451,8 +474,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-pr-documentation
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.experimental/fusion-pr-documentation
   is_virtual: true
@@ -488,10 +511,67 @@ dependencies:
     .agents/skills/fusion-pr-documentation/references/issue-linking.md: sha256:a38b80dbbe2364657411f2d2fdda71f20729c0e0b58c0ba030cb57217d709b01
   content_hash: sha256:86c011ec2d4d91a705cd8aa0cd5f7ca755d6bec444da472a075d9e9aa3b89e0d
 - repo_url: equinor/fusion-skills
+  name: fusion-repository-greenkeeping
+  host: github.com
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
+  version: unknown
+  virtual_path: skills/.experimental/fusion-repository-greenkeeping
+  is_virtual: true
+  depth: 2
+  resolved_by: equinor/fusion-skills
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/fusion-repository-greenkeeping
+  - .agents/skills/fusion-repository-greenkeeping/CHANGELOG.md
+  - .agents/skills/fusion-repository-greenkeeping/SKILL.md
+  - .agents/skills/fusion-repository-greenkeeping/assets/greenkeeper-readiness-report.md.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/README.md
+  - .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/banner.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/details.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/references.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/tldr.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/workflows/apm-sync-reusable.yml.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/workflows/apm-sync.yml.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/workflows/app-deploy.yml.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/workflows/app-monorepo-deploy.yml.hbs
+  - .agents/skills/fusion-repository-greenkeeping/assets/workflows/copilot-setup-steps.yml.hbs
+  - .agents/skills/fusion-repository-greenkeeping/references/app-deployment.md
+  - .agents/skills/fusion-repository-greenkeeping/references/app-monorepo-deployment.md
+  - .agents/skills/fusion-repository-greenkeeping/references/common-workflows.md
+  - .agents/skills/fusion-repository-greenkeeping/references/copilot-readiness.md
+  - .agents/skills/fusion-repository-greenkeeping/references/copilot-setup.md
+  - .agents/skills/fusion-repository-greenkeeping/references/greenkeeper-readiness.md
+  - .agents/skills/fusion-repository-greenkeeping/references/sync-workflows.md
+  - .agents/skills/fusion-repository-greenkeeping/references/workflow-greenkeeping.md
+  deployed_file_hashes:
+    .agents/skills/fusion-repository-greenkeeping/CHANGELOG.md: sha256:7475761dd129c3abfcb35c26f6258a000cf53926a1b147554b57af86b6aeb493
+    .agents/skills/fusion-repository-greenkeeping/SKILL.md: sha256:aca2e0f5395c0ed1bd338322af03dabe85a392f70c2a77bd23ed96482dbcdd32
+    .agents/skills/fusion-repository-greenkeeping/assets/greenkeeper-readiness-report.md.hbs: sha256:b856920786acab037e8dffd9ac860189d4eea76b2d9dc5d060b95177af809fca
+    .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/README.md: sha256:201bbbde9a2ea1420f76f0583a18a154764b965569eb55598e5818286d1b772f
+    .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/banner.hbs: sha256:4dcd4c094ce4dc6637f5d191af62fa68192f0e2e9350716598688e89d99e4d75
+    .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/details.hbs: sha256:1f589654547b5f27956f9bfc5e82cb55fc84067f23f5bb8b829f85fbc11e6f05
+    .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/references.hbs: sha256:69a50bad025e544accb399553a7ac828ff55477714e6feb498d0246be3b9c5ad
+    .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/tldr.hbs: sha256:649fd711a1409bc885d3200bffe69309ed6fa68df2b323077cebf9c6afb5d55c
+    .agents/skills/fusion-repository-greenkeeping/assets/workflows/apm-sync-reusable.yml.hbs: sha256:5b94fa4f0aaf1190683ae8952b45a897d325c5e7597e1fddec8cf3ffd2a7a072
+    .agents/skills/fusion-repository-greenkeeping/assets/workflows/apm-sync.yml.hbs: sha256:e60d89771dd6d708fb5afc82d58cadf1ff914ff8ab9cf8ee8e96a52f5a278660
+    .agents/skills/fusion-repository-greenkeeping/assets/workflows/app-deploy.yml.hbs: sha256:c4923aa510836d207262646edde3ea4698f4a3df9b8f5f175aa46d46b96196e6
+    .agents/skills/fusion-repository-greenkeeping/assets/workflows/app-monorepo-deploy.yml.hbs: sha256:cc712b19eddd91599df98a6ebb34b92a32b543ecc824e07e59e364c579c79630
+    .agents/skills/fusion-repository-greenkeeping/assets/workflows/copilot-setup-steps.yml.hbs: sha256:a642b695d01eb6e12b55dca82d8b40e0d4c742fe538d6498eb58d3da692f4bc8
+    .agents/skills/fusion-repository-greenkeeping/references/app-deployment.md: sha256:04b7c61df724828fa537efe17fe8137852fcf79237d30e8302fbede5cd53e2d0
+    .agents/skills/fusion-repository-greenkeeping/references/app-monorepo-deployment.md: sha256:fb4a304a3b769b3515f11a3358343c93ce9d9854060567a93663ece245ffa456
+    .agents/skills/fusion-repository-greenkeeping/references/common-workflows.md: sha256:7e005c519a1245f47d99788a9eef2f8faa2ff33bf8a2e93aa1b5a5cbc06abe66
+    .agents/skills/fusion-repository-greenkeeping/references/copilot-readiness.md: sha256:7fb17f28a2d21a893c8c64fdc3db9b940e2e3aeee2b861004c0b7977b8e792a9
+    .agents/skills/fusion-repository-greenkeeping/references/copilot-setup.md: sha256:75c2eda33faaeb3543b768bbdb76a761c123399b0df001e4741101aabba57722
+    .agents/skills/fusion-repository-greenkeeping/references/greenkeeper-readiness.md: sha256:21de129e129f161d9eec52e9e25bc59d29f93c402b37a302b20dbc58c13bd97d
+    .agents/skills/fusion-repository-greenkeeping/references/sync-workflows.md: sha256:32b83503ac74ff2432bf44e14960ebd8ac0b6bd2e75178fd373a5f19c4408be9
+    .agents/skills/fusion-repository-greenkeeping/references/workflow-greenkeeping.md: sha256:28e9d623032cd9eea7130aa9ce65a2a047076a4d96f13bf6f33510aead39c0c4
+  content_hash: sha256:d60f89e9eb97ed23f73031c71b07ab34bd015810fb088a24a4c5264a30393cdd
+- repo_url: equinor/fusion-skills
   name: fusion-code-conventions
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.system/fusion-code-conventions
   is_virtual: true
@@ -535,8 +615,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-research
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/.system/fusion-research
   is_virtual: true
@@ -584,8 +664,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-devtools
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/fusion-devtools
   is_virtual: true
@@ -609,8 +689,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-issue-authoring
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/fusion-issue-authoring
   is_virtual: true
@@ -692,8 +772,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-skill-authoring
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/fusion-skill-authoring
   is_virtual: true
@@ -729,8 +809,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-skills
   host: github.com
-  resolved_commit: 40aa2ebfc983c92aed854725369013dc921dc30f
-  resolved_ref: v1.9.0
+  resolved_commit: 25cfed18c49e2580ff69d913daa7770e30b9879b
+  resolved_ref: v1.11.0
   version: unknown
   virtual_path: skills/fusion-skills
   is_virtual: true
@@ -751,28 +831,28 @@ dependencies:
   - .agents/skills/fusion-skills/assets/partials/agent-content/details.hbs
   - .agents/skills/fusion-skills/assets/partials/agent-content/references.hbs
   - .agents/skills/fusion-skills/assets/partials/agent-content/tldr.hbs
-  - .agents/skills/fusion-skills/assets/workflows/skills-sync.yml.md
   - .agents/skills/fusion-skills/references/follow-up-questions.md
+  - .agents/skills/fusion-skills/references/run-feedback.md
+  - .agents/skills/fusion-skills/references/service-mode-contract.md
   - .agents/skills/fusion-skills/references/skill-catalog.md
-  - .agents/skills/fusion-skills/references/sync-workflows.md
   deployed_file_hashes:
-    .agents/skills/fusion-skills/CHANGELOG.md: sha256:fbf46591f394458e67b815fe1be5c5b3f6f777238ff38f9805883673d619767b
-    .agents/skills/fusion-skills/SKILL.md: sha256:51a951876acdb9248a328a00611eefd88c58acafa1d6f42074d134fc98513e04
+    .agents/skills/fusion-skills/CHANGELOG.md: sha256:c82691236d69e7f56f9157e73cb8ba21fed6e97abf06412641f98ce7bd7bde86
+    .agents/skills/fusion-skills/SKILL.md: sha256:6a0c7999025c52afd3679efda72d08134b623792cefab6aabf6519410c7dc9b3
     .agents/skills/fusion-skills/agents/author.agent.md: sha256:f7fdb976d0a08f2bf0c886917159f5ce92b5952cd169ed69bb83d47d67edd5af
     .agents/skills/fusion-skills/agents/discovery.agent.md: sha256:fad752a67c538e1324c071be4dea6f5d0220b3745640aa529e23006539207307
-    .agents/skills/fusion-skills/agents/greenkeeper.agent.md: sha256:c3a0ec5cece23f57c574b9d71b0a7e16ce8a1e22c8d1b282431b9bea4ed87c8b
-    .agents/skills/fusion-skills/agents/warden.agent.md: sha256:489738f9642a241cf7335b57054dc333ea0fdc1c4efb247645238c252d841cd6
+    .agents/skills/fusion-skills/agents/greenkeeper.agent.md: sha256:a631a1f8fa43978e87b253e8ec7653bf8c603bd4f7278206411afd6fffd24ce3
+    .agents/skills/fusion-skills/agents/warden.agent.md: sha256:fafa627bf24f7f29a61276dd0dd80046399e48dfb190cdd82e4ac4c3875d8996
     .agents/skills/fusion-skills/assets/issue-templates/skill-workflow-failure-bug.md.hbs: sha256:4b36a709551a5eceba4ef729a1d7e1d989e53c24340e85640791570e87c7dcf5
     .agents/skills/fusion-skills/assets/partials/agent-content/README.md: sha256:201bbbde9a2ea1420f76f0583a18a154764b965569eb55598e5818286d1b772f
     .agents/skills/fusion-skills/assets/partials/agent-content/banner.hbs: sha256:4dcd4c094ce4dc6637f5d191af62fa68192f0e2e9350716598688e89d99e4d75
     .agents/skills/fusion-skills/assets/partials/agent-content/details.hbs: sha256:1f589654547b5f27956f9bfc5e82cb55fc84067f23f5bb8b829f85fbc11e6f05
     .agents/skills/fusion-skills/assets/partials/agent-content/references.hbs: sha256:69a50bad025e544accb399553a7ac828ff55477714e6feb498d0246be3b9c5ad
     .agents/skills/fusion-skills/assets/partials/agent-content/tldr.hbs: sha256:649fd711a1409bc885d3200bffe69309ed6fa68df2b323077cebf9c6afb5d55c
-    .agents/skills/fusion-skills/assets/workflows/skills-sync.yml.md: sha256:99ce365fb5b7a024e078f3fd392d963d509010d1e0f4d3eca916034cb178fd06
     .agents/skills/fusion-skills/references/follow-up-questions.md: sha256:bfea7f83e0ed2fe7f5da2cec55ae696d4983fbd71f1eda3f2dbe3dba26062cc8
+    .agents/skills/fusion-skills/references/run-feedback.md: sha256:a9aacf5a9651cd2a79cdf6ecd06e615600c9169842fd40c1f22983e16df9f125
+    .agents/skills/fusion-skills/references/service-mode-contract.md: sha256:1b8aa705e44978651ba90a9a558a6a4ffa07bac56ecd2fc6364cb430d0e87e30
     .agents/skills/fusion-skills/references/skill-catalog.md: sha256:5c31548601214c660b6049eaa5e2fe1e7c9c8cc07fa1bb3abe3d5d2f60fc79f4
-    .agents/skills/fusion-skills/references/sync-workflows.md: sha256:f9c33840e9b2e70df9963ea4ba6ba58a2de2e91138f4da19984e522f40d0fb74
-  content_hash: sha256:10e98eb1c97d05e172723ab8f00da2a535d53b03a247e9f93ae810396828d726
+  content_hash: sha256:4adcfe6b63425857fba6a6b8d6a619ed0acf7878d305bd53314f237300cdae14
 deployments:
 - kind: project-relative
   target: copilot
@@ -1449,6 +1529,51 @@ deployments:
   - equinor/fusion-skills/skills/fusion-devtools
   active_owner: equinor/fusion-skills/skills/fusion-devtools
   content_hash: sha256:7c5b75869fd685842da16e591ef983fd81c957e5b30e45c81cbb400c889f8f0e
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-general-greenkeeping
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-general-greenkeeping/CHANGELOG.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  content_hash: sha256:89a15b617c101598101738a579f98258243f55e9ec08d4719eb5494181d2828a
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-general-greenkeeping/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  content_hash: sha256:948bce487b66c7cb2b4268abb08814dc76a108fd0dbd82ea326779df071b3993
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-general-greenkeeping/references/findings-and-output.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  content_hash: sha256:9cbd06ce287e173569f027c0d28fdf182c891508b64cccf0cd15ee70a9531896
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-general-greenkeeping/references/health-lanes.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-general-greenkeeping
+  content_hash: sha256:680c52ef7cda9495f716dc6183ed60a7fb1b0587c0bc8b9219cd7206b19d5700
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-github-review-resolution
@@ -2486,6 +2611,204 @@ deployments:
   content_hash: sha256:a38b80dbbe2364657411f2d2fdda71f20729c0e0b58c0ba030cb57217d709b01
 - kind: project-relative
   target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/CHANGELOG.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:7475761dd129c3abfcb35c26f6258a000cf53926a1b147554b57af86b6aeb493
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:aca2e0f5395c0ed1bd338322af03dabe85a392f70c2a77bd23ed96482dbcdd32
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/greenkeeper-readiness-report.md.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:b856920786acab037e8dffd9ac860189d4eea76b2d9dc5d060b95177af809fca
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/README.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:201bbbde9a2ea1420f76f0583a18a154764b965569eb55598e5818286d1b772f
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/banner.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:4dcd4c094ce4dc6637f5d191af62fa68192f0e2e9350716598688e89d99e4d75
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/details.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:1f589654547b5f27956f9bfc5e82cb55fc84067f23f5bb8b829f85fbc11e6f05
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/references.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:69a50bad025e544accb399553a7ac828ff55477714e6feb498d0246be3b9c5ad
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/partials/agent-content/tldr.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:649fd711a1409bc885d3200bffe69309ed6fa68df2b323077cebf9c6afb5d55c
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/workflows/apm-sync-reusable.yml.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:5b94fa4f0aaf1190683ae8952b45a897d325c5e7597e1fddec8cf3ffd2a7a072
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/workflows/apm-sync.yml.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:e60d89771dd6d708fb5afc82d58cadf1ff914ff8ab9cf8ee8e96a52f5a278660
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/workflows/app-deploy.yml.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:c4923aa510836d207262646edde3ea4698f4a3df9b8f5f175aa46d46b96196e6
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/workflows/app-monorepo-deploy.yml.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:cc712b19eddd91599df98a6ebb34b92a32b543ecc824e07e59e364c579c79630
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/assets/workflows/copilot-setup-steps.yml.hbs
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:a642b695d01eb6e12b55dca82d8b40e0d4c742fe538d6498eb58d3da692f4bc8
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/app-deployment.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:04b7c61df724828fa537efe17fe8137852fcf79237d30e8302fbede5cd53e2d0
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/app-monorepo-deployment.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:fb4a304a3b769b3515f11a3358343c93ce9d9854060567a93663ece245ffa456
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/common-workflows.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:7e005c519a1245f47d99788a9eef2f8faa2ff33bf8a2e93aa1b5a5cbc06abe66
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/copilot-readiness.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:7fb17f28a2d21a893c8c64fdc3db9b940e2e3aeee2b861004c0b7977b8e792a9
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/copilot-setup.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:75c2eda33faaeb3543b768bbdb76a761c123399b0df001e4741101aabba57722
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/greenkeeper-readiness.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:21de129e129f161d9eec52e9e25bc59d29f93c402b37a302b20dbc58c13bd97d
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/sync-workflows.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:32b83503ac74ff2432bf44e14960ebd8ac0b6bd2e75178fd373a5f19c4408be9
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-repository-greenkeeping/references/workflow-greenkeeping.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  active_owner: equinor/fusion-skills/skills/.experimental/fusion-repository-greenkeeping
+  content_hash: sha256:28e9d623032cd9eea7130aa9ce65a2a047076a4d96f13bf6f33510aead39c0c4
+- kind: project-relative
+  target: copilot
   value: .agents/skills/fusion-research
   runtime: null
   scope: project
@@ -2825,7 +3148,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/fusion-skills
   active_owner: equinor/fusion-skills/skills/fusion-skills
-  content_hash: sha256:fbf46591f394458e67b815fe1be5c5b3f6f777238ff38f9805883673d619767b
+  content_hash: sha256:c82691236d69e7f56f9157e73cb8ba21fed6e97abf06412641f98ce7bd7bde86
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-skills/SKILL.md
@@ -2834,7 +3157,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/fusion-skills
   active_owner: equinor/fusion-skills/skills/fusion-skills
-  content_hash: sha256:51a951876acdb9248a328a00611eefd88c58acafa1d6f42074d134fc98513e04
+  content_hash: sha256:6a0c7999025c52afd3679efda72d08134b623792cefab6aabf6519410c7dc9b3
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-skills/agents/author.agent.md
@@ -2861,7 +3184,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/fusion-skills
   active_owner: equinor/fusion-skills/skills/fusion-skills
-  content_hash: sha256:c3a0ec5cece23f57c574b9d71b0a7e16ce8a1e22c8d1b282431b9bea4ed87c8b
+  content_hash: sha256:a631a1f8fa43978e87b253e8ec7653bf8c603bd4f7278206411afd6fffd24ce3
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-skills/agents/warden.agent.md
@@ -2870,7 +3193,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/fusion-skills
   active_owner: equinor/fusion-skills/skills/fusion-skills
-  content_hash: sha256:489738f9642a241cf7335b57054dc333ea0fdc1c4efb247645238c252d841cd6
+  content_hash: sha256:fafa627bf24f7f29a61276dd0dd80046399e48dfb190cdd82e4ac4c3875d8996
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-skills/assets/issue-templates/skill-workflow-failure-bug.md.hbs
@@ -2927,15 +3250,6 @@ deployments:
   content_hash: sha256:649fd711a1409bc885d3200bffe69309ed6fa68df2b323077cebf9c6afb5d55c
 - kind: project-relative
   target: copilot
-  value: .agents/skills/fusion-skills/assets/workflows/skills-sync.yml.md
-  runtime: null
-  scope: project
-  owners:
-  - equinor/fusion-skills/skills/fusion-skills
-  active_owner: equinor/fusion-skills/skills/fusion-skills
-  content_hash: sha256:99ce365fb5b7a024e078f3fd392d963d509010d1e0f4d3eca916034cb178fd06
-- kind: project-relative
-  target: copilot
   value: .agents/skills/fusion-skills/references/follow-up-questions.md
   runtime: null
   scope: project
@@ -2943,6 +3257,24 @@ deployments:
   - equinor/fusion-skills/skills/fusion-skills
   active_owner: equinor/fusion-skills/skills/fusion-skills
   content_hash: sha256:bfea7f83e0ed2fe7f5da2cec55ae696d4983fbd71f1eda3f2dbe3dba26062cc8
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-skills/references/run-feedback.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/fusion-skills
+  active_owner: equinor/fusion-skills/skills/fusion-skills
+  content_hash: sha256:a9aacf5a9651cd2a79cdf6ecd06e615600c9169842fd40c1f22983e16df9f125
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/fusion-skills/references/service-mode-contract.md
+  runtime: null
+  scope: project
+  owners:
+  - equinor/fusion-skills/skills/fusion-skills
+  active_owner: equinor/fusion-skills/skills/fusion-skills
+  content_hash: sha256:1b8aa705e44978651ba90a9a558a6a4ffa07bac56ecd2fc6364cb430d0e87e30
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-skills/references/skill-catalog.md
@@ -2954,22 +3286,13 @@ deployments:
   content_hash: sha256:5c31548601214c660b6049eaa5e2fe1e7c9c8cc07fa1bb3abe3d5d2f60fc79f4
 - kind: project-relative
   target: copilot
-  value: .agents/skills/fusion-skills/references/sync-workflows.md
-  runtime: null
-  scope: project
-  owners:
-  - equinor/fusion-skills/skills/fusion-skills
-  active_owner: equinor/fusion-skills/skills/fusion-skills
-  content_hash: sha256:f9c33840e9b2e70df9963ea4ba6ba58a2de2e91138f4da19984e522f40d0fb74
-- kind: project-relative
-  target: copilot
   value: .agents/skills/fusion/CHANGELOG.md
   runtime: null
   scope: project
   owners:
   - equinor/fusion-skills/skills/fusion
   active_owner: equinor/fusion-skills/skills/fusion
-  content_hash: sha256:746ad104dde76fed0da954e9bf43fd92eb02db6edb72600a59dcf34bccd46e5a
+  content_hash: sha256:ec39402af1aff9de1376b0d7583930d43b4d282081e1c6f3864ff5b64dd65741
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion/SKILL.md
@@ -2978,7 +3301,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/fusion
   active_owner: equinor/fusion-skills/skills/fusion
-  content_hash: sha256:66194d06f6a54820589b3c8f76df6a61c62fdb817d08b5f7615bcc0b8ad0dabc
+  content_hash: sha256:d48c9c95cf5d04d88089fff90b958061facf69c5baddd4a4a87c961ff4b2ee90
 - kind: project-relative
   target: copilot
   value: .github/agents/fusion-developer.agent.md
@@ -2996,7 +3319,7 @@ deployments:
   owners:
   - equinor/fusion-skills/apm/fusion-developer
   active_owner: equinor/fusion-skills/apm/fusion-developer
-  content_hash: sha256:8890de38a37a59dd4152980e8e3e5cec398286077e4975b320acd7494523501c
+  content_hash: sha256:7025676e3342f1fbf548316e5efc4e519ea5c8b3c4fb6d83d1a672226adf6a04
 - kind: project-relative
   target: copilot
   value: .github/instructions/fusion-candid-advice.instructions.md

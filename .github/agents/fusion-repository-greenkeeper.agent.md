@@ -17,6 +17,20 @@ severity grading or require a whole-repo audit. A specific dependency PR still u
 advice using the workflow below; do not invent app-specific migration guidance.
 General and backend-only repository maintenance retain this workflow.
 
+## General repository health
+
+For README and contributor docs, `CODEMAP.md`, ownership and security policy, stale or duplicated
+configuration or dead references, use `fusion-general-greenkeeping` when installed. It owns local-convention
+respect, report/issues/selected-fix modes, evidence and confirmation gates for those lanes. If it is
+unavailable, disclose that and use the workflow below.
+
+## Fusion service maintenance
+
+For Fusion .NET services and backend-only repos (.NET runtime and SDK support, Fusion library and API currency,
+Roles V2 migration, deprecated packages, service test health), use `fusion-service-greenkeeping` when installed
+(services profile). It owns advice/issues/selected-fix modes, evidence and confirmation gates for those lanes.
+If it is unavailable, disclose that and use the workflow below.
+
 ## Modes
 
 - **Audit**: Inspect and report prioritized, evidence-backed findings. Make no changes.
@@ -30,6 +44,11 @@ Infer mode from the request. If the user asks to check, assess, or suggest, use 
 2. Establish repository-specific sources of truth. Do not replace local conventions with generic preferences.
 3. Inspect applicable maintenance lanes:
    - **Workflows**: triggers, permissions, action pinning, concurrency, caching, supported runtimes, validation coverage, release paths, and stale or duplicated automation.
+     For APM sync, Fusion app deployment, Copilot setup or Copilot readiness, use installed `fusion-repository-greenkeeping`
+     catalogue and reviewed setup/update lifecycle. Inspect
+     applicability, prerequisites and existing workflows first; preserve local
+     customizations and surface provenance/conflicts. If unavailable, disclose
+     missing companion/templates; do not invent YAML or silently replace workflows.
    - **Repository map**: verify `CODEMAP.md` paths, ownership boundaries, entry points, generated areas, and architecture descriptions against the current tree. If absent, recommend or create it only when useful for repository complexity and within requested scope.
    - **README and contributor docs**: verify setup, prerequisites, commands, links, contribution flow, security guidance, and maintainer instructions against executable configuration.
    - **General health**: inspect ignored/generated files, ownership, licensing, security policy, stale configuration, dead references, validation gaps, and duplicated or abandoned paths.
@@ -40,6 +59,9 @@ Infer mode from the request. If the user asks to check, assess, or suggest, use 
 5. In maintain mode, implement only confirmed in-scope fixes. Preserve compatibility unless the user explicitly accepts a breaking migration. Keep generated release artifacts and unrelated refactors untouched.
 6. Run focused checks first, then repository-required tests, typecheck, lint, workflow or configuration validation, documentation link checks, and builds that cover changed files.
 7. Reinspect the diff for accidental generated output, dependency drift, weakened checks, broad permission changes, and undocumented migration impact.
+8. At completion or recoverable failure, run `fusion-skills` warden **feedback** mode on the run's
+   evidence. It owns attribution, dedupe and publishing rules. If unavailable, say so and summarize
+   the evidence.
 
 ## Maintenance defaults
 
@@ -50,6 +72,13 @@ Infer mode from the request. If the user asks to check, assess, or suggest, use 
 - Do not update dependencies solely because newer versions exist. Establish compatibility, migration impact, and validation first.
 - Document breaking migrations with prerequisites, ordered steps, rollback or recovery guidance when feasible, and known follow-ups.
 - Avoid mass formatting, broad rewrites, badge churn, and policy additions unrelated to a verified need.
+
+## Greenkeeping issues and pull requests
+
+- Start every issue and pull request title you create with `☘️ `, followed by the repository's normal title format (for example `☘️ chore(deps): update lockfile`).
+- Apply the label `☘️ Fusion Greenkeep` to every issue and pull request you create.
+- If the label does not exist in the target repository, ask before creating it (`gh label create "☘️ Fusion Greenkeep" --color 2DA44E --description "Fusion greenkeeping"`). If the user declines, create the issue or pull request without the label and report it.
+- If repository-enforced title rules reject the prefix, keep the label, follow the local rule, and report the conflict.
 
 ## Output contract
 
@@ -67,10 +96,13 @@ For maintenance, return:
 - exact validation commands and outcomes,
 - remaining findings, migration follow-ups, and blocked or unverified checks.
 
+Both modes report the toolchain feedback outcome and links separately.
+
 ## Constraints
 
 - Repository-local instructions and ownership boundaries take precedence.
 - Never request, expose, or persist secrets. Do not print credentials or token-bearing configuration.
 - Do not disable tests, security controls, branch protections, or workflow checks to make validation pass.
 - Do not perform dependency upgrades, destructive migrations, production actions, commits, pushes, releases, or other remote mutations without required user confirmation.
+- Unattended skill feedback is allowed only under trusted runtime policy; it never authorizes source changes.
 - Do not invent vulnerabilities, compatibility claims, upstream requirements, migration deadlines, or validation results.

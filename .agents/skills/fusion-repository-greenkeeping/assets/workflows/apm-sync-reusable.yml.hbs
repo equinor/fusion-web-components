@@ -1,0 +1,39 @@
+{{!--
+Calls the shared Fusion Skills APM sync workflow from an internal or private equinor repository; public repositories and other organizations use apm-sync.yml.hbs instead. Agent fills by hand; follow fill rules in references/common-workflows.md.
+schedule: five numeric cron fields, weekday 0-6, e.g. 0 8 * * 1; empty string means manual only.
+workflowSha: full 40-hex equinor/fusion-skills commit SHA of the newest release whose .github/workflows/apm-sync.yml accepts the apm-token secret; until a release has it, a main commit that does.
+workflowVersion: release tag of workflowSha, or main when that commit is unreleased; comment only.
+updateBranch: persistent update branch; empty uses the shared default chore/apm-sync.
+apmVersion: exact stable SemVer x.y.z; empty inherits the shared maintained default.
+apmTokenSecret: Actions secret name [A-Za-z_][A-Za-z0-9_]*, not GITHUB_*, with read access to internal dependencies, e.g. APM_FUSION_SKILLS_TOKEN; required for Fusion skills; empty only when every dependency is public.
+--}}
+# fusion-workflow-template: apm-sync-reusable
+# fusion-workflow-version: 1.0.0
+# fusion-workflow-source: https://github.com/equinor/fusion-skills/blob/main/skills/.experimental/fusion-repository-greenkeeping/assets/workflows/apm-sync-reusable.yml.hbs
+# fusion-workflow-owner: @equinor/fusion-core
+# Record source pin and raw inputs in .github/workflows/apm-sync.inputs.json.
+name: APM Sync
+
+on:
+{{#if schedule}}
+  schedule:
+    - cron: "{{schedule}}"
+{{/if}}
+  workflow_dispatch:
+
+jobs:
+  sync:
+    uses: equinor/fusion-skills/.github/workflows/apm-sync.yml@{{workflowSha}} # {{workflowVersion}}
+    permissions:
+      contents: write
+      pull-requests: write
+    # Empty values fall back to the shared workflow's maintained defaults.
+    with:
+      pr-branch: "{{updateBranch}}"
+      apm-version: "{{apmVersion}}"
+{{#if apmTokenSecret}}
+    # github.token cannot read other repositories. Reusable-call jobs cannot read env,
+    # so the validated secret name is referenced directly.
+    secrets:
+      apm-token: $\{{ secrets.{{apmTokenSecret}} }}
+{{/if}}

@@ -1,0 +1,26 @@
+{{!--
+Dependency assessment, not update/merge authorization.
+dependencies: object with packages, upstreamChanges, usageImpact, priorDecisions, advisoryEvidence, compatibility, recommendation; preserve supplied versions/sources and missing evidence.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Dependency decision
+
+- Packages / current and proposed versions: {{dependencies.packages}}
+- Material upstream changes / sources: {{dependencies.upstreamChanges}}
+- Repository usage / impact: {{dependencies.usageImpact}}
+- Existing discussions / decisions: {{dependencies.priorDecisions}}
+- Advisory evidence: {{dependencies.advisoryEvidence}}
+- Compatibility evidence: {{dependencies.compatibility}}
+- Recommended action: {{dependencies.recommendation}}
+
+Outdated is not vulnerable; absent advisories are not proof of safety.
+Release-note review is not demonstrated repository compatibility or merge approval.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

@@ -1,9 +1,9 @@
 ---
 name: fusion-general-greenkeeping
-description: 'Checks general repository health and reports evidence-backed drift without imposing conventions the repository has not adopted. USE FOR: greenkeep this repo, repository health check, README or contributor docs out of date, verify CODEMAP.md paths, ownership or security policy drift, stale or duplicated configuration, dead links and references, turn health findings into issues, fix selected health findings. DO NOT USE FOR: Fusion app maintenance (use fusion-app-greenkeeping), .NET service runtime, Fusion library, Roles V2 or service test maintenance (use fusion-service-greenkeeping), workflow templates or Copilot readiness (use fusion-repository-greenkeeping), dependency PRs (use fusion-dependency-review), skill lifecycle (use fusion-skills), or unattended runs.'
+description: 'Checks repository health against adopted policy and helps discuss assessment reports. USE FOR: greenkeep this repo, repository health check, README or contributor drift, CODEMAP accuracy, ownership or security policy drift, stale configuration, dead references, turn findings into issues, draft or publish a reviewed report discussion, fix selected findings. DO NOT USE FOR: app maintenance (fusion-app-greenkeeping), .NET runtime, Fusion library, Roles V2 or service test maintenance (use fusion-service-greenkeeping), workflow templates or Copilot readiness (fusion-repository-greenkeeping), dependency PRs (fusion-dependency-review), skill lifecycle (fusion-skills), or unattended runs.'
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   status: experimental
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -31,6 +31,7 @@ selects. Repo's own sources of truth beat generic preferences.
 - "Does CODEMAP.md match the tree?" / "find dead links" / "stale or duplicated config?"
 - "Is ownership or security policy current?"
 - "Turn findings into issues" / "fix only findings 2 and 4".
+- "Draft a discussion from this assessment report" / "share these findings for discussion".
 
 ## When not to use
 
@@ -51,8 +52,15 @@ Default **report** (read-only). No credentials or services.
 | report | check, audit, "what's stale" | none |
 | issues | "turn findings into issues" | none until publish confirmed |
 | selected fixes | "fix 2 and 4" | selected findings' files only |
+| discussion | "draft a discussion from this report" | none until final publication explicitly approved |
 
 ## Instructions
+
+Supplied assessment report with enough evidence: skip new investigation and use
+[report/discussion flow](references/report-discussions.md). For supported report
+types, compose supplied findings through installed `fusion-report-authoring`;
+missing companion is explicit, not a silent substitute. Existing report-only output
+and its no-write boundary remain available.
 
 ### 1. Learn the repository's own rules
 
@@ -98,6 +106,12 @@ write: only after maintainer explicitly approves exact path.
 `fusion-issue-authoring` (missing: draft inline); show full content; publish only after explicit
 confirmation. Apply [greenkeeping marker](#repository-policy-handoff).
 
+**Discussion**: follow [shared caller-owned flow](references/report-discussions.md).
+Offer report-only or discussion drafting once; decline/cancel creates nothing.
+Resolve allowed repo/existing category, check related discussions, preview exact
+title/body/destination and obtain final approval. Edits invalidate approval.
+Keep authoring separate from caller's publication authority; preserve issues/fix modes.
+
 **Selected fixes**: recheck each against current source. Edit only files they need; leave unselected
 findings and unrelated changes untouched. Show diff. Verify statically (paths, script names, links).
 Repo commands can run hooks, use network or read credentials: run one only after maintainer
@@ -107,6 +121,8 @@ Stop before commit, push, PR.
 ### 5. Report
 
 Return output below; mark each finding fixed, deferred, unselected or blocked.
+For supported assessments, apply shared reporting before returning; optionally offer
+discussion drafting per shared flow. Do not repeat offer after decline.
 
 ## Service mode
 

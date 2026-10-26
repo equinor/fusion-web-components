@@ -1,0 +1,22 @@
+{{!--
+Repository health against adopted local policy, not generic preferences.
+repositoryHealth: object with policyBaseline, drift, affectedGuidance, maintenance; no universal health score or inferred test-quality verdict.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Repository maintenance decision
+
+- Adopted policy / sources: {{repositoryHealth.policyBaseline}}
+- Observed drift versus suggestions: {{repositoryHealth.drift}}
+- Affected guidance / configuration: {{repositoryHealth.affectedGuidance}}
+- Recommended maintenance: {{repositoryHealth.maintenance}}
+
+Passing builds or partial static inspection do not establish overall repository health.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

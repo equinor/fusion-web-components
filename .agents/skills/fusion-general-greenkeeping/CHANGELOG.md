@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.1 - 2026-10-24
+
+### patch
+
+- [#331](https://github.com/equinor/fusion-skills/pull/331) [`2513163`](https://github.com/equinor/fusion-skills/commit/2513163edad3e78e1df29476322eb6e63106f392) - Add optional, caller-owned assessment-to-discussion assistance with shared report
+
+  authoring, destination checks, final-preview approval and reconciliation boundaries.
+
+  resolves equinor/fusion-core-tasks#2573
+  refs equinor/fusion-core-tasks#2561
+
 ## 0.1.0 - 2026-10-22
 
 ### minor
@@ -26,4 +37,3 @@
   `fusion-service-greenkeeping`.
 
   refs equinor/fusion-core-tasks#2542
-

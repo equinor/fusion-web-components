@@ -1,0 +1,8 @@
+{{!-- evidence: supplied source records with id, source, observation and provenance; unknown provenance remains not supplied. --}}
+{{#> agent-content/details summary="Supporting evidence"}}
+{{#each evidence}}
+- **{{id}}:** {{source}} — {{observation}} Provenance: {{provenance}}.
+{{else}}
+No additional evidence supplied.
+{{/each}}
+{{/agent-content/details}}

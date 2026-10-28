@@ -51,3 +51,12 @@ export const App => {
   );
 }
 ```
+
+## Color scheme
+
+`fwc-theme` always sets `data-color-scheme="light"` on itself when connected (overwriting any existing value).
+Fusion does not support dark mode yet, so EDS variables inside `<fwc-theme>` always resolve to light values, regardless of the OS/browser `prefers-color-scheme` preference.
+This is temporary until Fusion supports dark mode.
+
+> [!NOTE]
+> Content rendered outside `<fwc-theme>` (e.g. portals attached to `document.body`) and the `html`/`body` background are not covered.

@@ -3,7 +3,7 @@ name: fusion-report-authoring
 description: 'Authors evidence-grounded assessment reports from caller-supplied evidence using nine domain templates. USE FOR: assessment report, security report, repository-health report, dependency assessment, bug-investigation summary, test-quality report, architecture assessment, performance report, operational-readiness report, migration-readiness report. DO NOT USE FOR: collecting evidence, running investigations/tests/scanners, daily/weekly project reports, fixing findings, issue drafting, or publishing.'
 license: MIT
 metadata:
-  version: "0.0.1"
+  version: "0.0.2"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:

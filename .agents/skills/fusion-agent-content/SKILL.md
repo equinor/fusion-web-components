@@ -3,7 +3,7 @@ name: fusion-agent-content
 description: 'Shapes text that agents write for people: issues, PR descriptions, review replies, comments, verdicts, bug reports, and delivery reports. Produces a banner naming the agent and model, a quoted TL;DR, human-first prose under the repository template, folded supporting details, and a folded record of the skills, references, and evidence used. USE FOR: drafting or tidying agent-written GitHub text, making a PR or issue body shorter and readable, adding provenance and evidence, "write this up for humans", "add a TL;DR". DO NOT USE FOR: choosing or simulating the audience (use fusion-audience-alignment), skill or agent instruction files, commit messages, end-user product help, or publishing without confirmation.'
 license: MIT
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -64,9 +64,9 @@ Read `assets/content-skeleton.md.hbs`, its slot header, and `assets/partials/age
 ```
 
 - Name the custom agent when one wrote the text, then the tool in parentheses. Without a custom agent, write `Drafted with GitHub Copilot`.
-- Take the model and reasoning effort from the runtime. Never guess. If either is unknown, write `model not reported` or leave out the reasoning part.
-- When several agents contributed, name the one that wrote the text and list the others under references.
-- Update the banner when you rewrite text another model drafted. Don't add one to text the user wrote and asked you to post as is.
+- Before fallback, resolve authoring-turn metadata using [shared fill rules](assets/partials/agent-content/README.md#resolve-drafter-metadata): supplied runtime metadata, bounded supported lookup, honest fallback last. Resolve model/effort independently; keep verified fields.
+- Attribute actual writer, including delegated authorship and model changes; list contributors under references. Refresh banner for substantive rewrite, not unchanged relay or cosmetic formatting.
+- Never infer model/effort or export raw session data. Don't add banner to user-written text posted as is.
 
 ### 3. Write the TL;DR and body for people
 

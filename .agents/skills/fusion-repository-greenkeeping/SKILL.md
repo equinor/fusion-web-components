@@ -4,7 +4,7 @@ description: 'Sets up and maintains reviewed repository workflows while preservi
 license: MIT
 compatibility: No runtime dependencies; agent fills templates by hand. Optional actionlint validates filled YAML. Consumer workflow prerequisites depend on selected template; no MCP or service authentication needed.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:

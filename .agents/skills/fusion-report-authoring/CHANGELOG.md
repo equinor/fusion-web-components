@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.2 - 2026-10-27
+
+### patch
+
+- [#336](https://github.com/equinor/fusion-skills/pull/336) [`bf60e9e`](https://github.com/equinor/fusion-skills/commit/bf60e9e76a812735b3ff0cde8140eb5604a506f7) - Sync shared provenance fill rules: resolve authoring-turn metadata before fallback,
+
+  without bypassing authoring-only access restrictions. Preserve honest fallback,
+  model-change and delegate attribution, and privacy limits.
+
+  fixes equinor/fusion-skills#335
+
 ## 0.0.1 - 2026-10-24
 
 ### patch
@@ -21,4 +32,3 @@
   resolves equinor/fusion-core-tasks#2569
   resolves equinor/fusion-core-tasks#2570
   resolves equinor/fusion-core-tasks#2571
-

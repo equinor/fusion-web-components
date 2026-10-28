@@ -4,7 +4,7 @@ description: 'Review dependency PRs with structured research, existing-PR-discus
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:

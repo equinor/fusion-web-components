@@ -4,7 +4,7 @@ description: 'Researches, drafts, reviews, and updates pull request descriptions
 license: MIT
 compatibility: Requires git and read access to the target repository. Live GitHub verification needs the gh CLI, the GitHub MCP server, or Fusion PM MCP. Publishing needs write access and explicit user confirmation.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:

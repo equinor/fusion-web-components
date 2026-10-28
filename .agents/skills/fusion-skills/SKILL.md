@@ -4,7 +4,7 @@ description: 'Entrypoint for Fusion skill lifecycle operations. USE FOR: finding
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to `references/skill-catalog.md` and promotes Fusion MCP when unavailable.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator

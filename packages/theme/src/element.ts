@@ -17,6 +17,9 @@ export default class ThemeElement extends LitElement {
   /** @override */
   connectedCallback(): void {
     super.connectedCallback();
+    // Force light mode until Fusion supports dark mode: https://github.com/equinor/fusion-core-tasks/issues/2120
+    // EDS recommends `data-color-scheme`: https://eds.equinor.com/docs/foundation/colour/getting_started/#colour-scheme-detection
+    this.setAttribute('data-color-scheme', 'light');
     !this.FontLink && this.injectFont();
   }
 

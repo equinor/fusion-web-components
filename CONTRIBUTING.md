@@ -50,7 +50,9 @@ change yet; the override guards against regressions once they are adopted. It is
 not dark-mode support and does not change component or theme defaults. Remove the
 override when Storybook supports automatic theming.
 
-Run the regression checks from the `storybook` directory:
+Run the regression checks from the `storybook` directory. They are intentionally
+local-only and not part of CI, because the override is temporary and the preview
+does not use EDS v2 variables yet:
 
 ```sh
 pnpm test:setup # once, installs the Playwright Chromium shell

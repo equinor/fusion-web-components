@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.3 - 2026-10-28
+
+### patch
+
+- [#348](https://github.com/equinor/fusion-skills/pull/348) [`1528b11`](https://github.com/equinor/fusion-skills/commit/1528b11a5ad762678ba4b5c977dbf23fe0a55090) - Follow upstream upgrade guides and resolve new tool findings instead of suppressing them.
+
+
+  - Require the upstream upgrade or migration guide and documented migration tooling before hand-editing config
+  - Forbid broad rule downgrades, path-based tool disables, and removed CI checks used only to pass CI; allow narrow, inline-justified suppressions
+  - Surface newly enabled default behaviour as a maintainer decision, using first-class opt-outs meanwhile
+  - Add migration steps to the research checkpoint, verdict template, and review tracker
+
+  resolves equinor/fusion-core-tasks#2611
+
 ## 0.2.2 - 2026-10-27
 
 ### patch

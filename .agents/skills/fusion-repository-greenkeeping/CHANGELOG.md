@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.3.0 - 2026-10-28
+
+### minor
+
+- [#343](https://github.com/equinor/fusion-skills/pull/343) [`be98844`](https://github.com/equinor/fusion-skills/commit/be9884498421149fd25cbaa5133f0b1623980d77) Thanks [@asbjornhaland](https://github.com/asbjornhaland)! - Add agent-filled `dependabot` configuration template so repositories adopting
+
+  SHA-pinned workflow templates keep those pins and their dependencies current.
+
+  - Always covers `github-actions` (root plus local composite actions) and only the
+    npm/pnpm/Yarn, Bun and NuGet directories detected in the repository
+  - Weekly schedule, 7-day cooldown, one PR per action pin; npm/Bun group
+    Fusion Framework, Fusion React, React and EDS families like `fusion-app-template`;
+    every other dependency gets its own PR, with up to 50 open PRs per ecosystem
+    entry; reasoning documented
+  - Detects existing Dependabot or Renovate configuration and reports it instead of
+    overwriting; customized files follow the same provenance-aware three-way update
+
+  resolves equinor/fusion-skills#320
+
+  refs equinor/fusion-skills#299
+
 ## 0.2.1 - 2026-10-27
 
 ### patch

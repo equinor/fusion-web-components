@@ -12,6 +12,7 @@ repository-owned YAML; not a deployment platform or central reusable workflow.
 | [`app-deploy.yml.hbs`](../assets/workflows/app-deploy.yml.hbs) | One registered Fusion Framework app | Frozen app install, local CLI, manifest, OIDC identity, protected GitHub environment per Fusion environment | `.github/workflows/app-deploy.yml` | [Single app](app-deployment.md) |
 | [`app-monorepo-deploy.yml.hbs`](../assets/workflows/app-monorepo-deploy.yml.hbs) | App monorepo using Changesets | Root lockfile/CLI, version/release scripts, app allowlist, release-event credential, shared app prerequisites | `.github/workflows/app-monorepo-deploy.yml` | [Monorepo](app-monorepo-deployment.md) |
 | [`copilot-setup-steps.yml.hbs`](../assets/workflows/copilot-setup-steps.yml.hbs) | Node and/or .NET repository used with Copilot cloud agent or code review | Node: lockfile, exact Node and package manager; .NET: SDK pin and restore targets | `.github/workflows/copilot-setup-steps.yml` | [Copilot setup](copilot-setup.md) |
+| [`dependabot.yml.hbs`](../assets/config/dependabot.yml.hbs) | Any repository without Dependabot or Renovate, especially after adopting SHA-pinned templates | No existing Dependabot/Renovate config; detected lockfile/solution directories | `.github/dependabot.yml` | [Dependabot](dependabot.md) |
 
 Load only selected guide. Setup, repeat and update steps: [reviewed lifecycle](workflow-greenkeeping.md).
 
@@ -35,7 +36,8 @@ lists every slot with its allowed values.
 3. String values are single-line and exclude `"`, `'`, `\`, `` ` ``, `$`, `{`, `}` and
    control characters. Template supplies quotes; insert value verbatim. Only
    `appsJson` holds JSON; its own string values follow this rule. List slots
-   (`environments`) hold such strings.
+   (`environments`, Dependabot directories) hold such strings; numeric slots
+   (`cooldownDays`) are unquoted whole numbers.
 4. Keep `{{#if slot}}` content only when slot is `true` or non-empty, otherwise its
    `{{else}}` content. Repeat `{{#each list}}` content once per item, in order, with
    `{{this}}` as the item. Drop block markers and header comment.
@@ -70,12 +72,12 @@ comment; bump pins only through the [reviewed lifecycle](workflow-greenkeeping.m
 
 Every template and filled workflow carries:
 
-- `fusion-workflow-template`: `apm-sync`, `apm-sync-reusable`, `app-deploy`, `app-monorepo-deploy` or `copilot-setup-steps`;
+- `fusion-workflow-template`: `apm-sync`, `apm-sync-reusable`, `app-deploy`, `app-monorepo-deploy`, `copilot-setup-steps` or `dependabot`;
 - `fusion-workflow-version`: independent template SemVer;
 - `fusion-workflow-source`: canonical source URL;
 - `fusion-workflow-owner`: `@equinor/fusion-core`.
 
-Sidecar `.github/workflows/<name>.inputs.json` records immutable source pin (release
+Sidecar `.github/workflows/<name>.inputs.json` (Dependabot: `.github/dependabot.inputs.json`) records immutable source pin (release
 tag or commit SHA) plus complete non-secret raw inputs; review it with YAML. Pin selects
 original template content; refilling it with recorded inputs reproduces old baseline
 for three-way updates. Header/version is a claim, not proof

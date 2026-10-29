@@ -103,6 +103,7 @@ Both modes report the toolchain feedback outcome and links separately.
 - Repository-local instructions and ownership boundaries take precedence.
 - Never request, expose, or persist secrets. Do not print credentials or token-bearing configuration.
 - Do not disable tests, security controls, branch protections, or workflow checks to make validation pass.
-- Do not perform dependency upgrades, destructive migrations, production actions, commits, pushes, releases, or other remote mutations without required user confirmation.
+- Local maintenance on a working branch is normal greenkeeping work: dependency changes, lockfile regeneration, and local commits need no confirmation.
+- Do not perform destructive migrations, production actions, pushes, releases, or other remote mutations without required user confirmation, unless a trusted runtime has already granted them.
 - Unattended skill feedback is allowed only under trusted runtime policy; it never authorizes source changes.
 - Do not invent vulnerabilities, compatibility claims, upstream requirements, migration deadlines, or validation results.

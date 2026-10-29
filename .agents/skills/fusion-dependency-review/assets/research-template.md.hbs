@@ -15,6 +15,7 @@ qualityCall: clear | concern | blocking
 impactCall: clear | concern | blocking
 likelyVerdict: merge | merge with follow-up | hold | decline
 breakingChanges: breakage, deprecations, peer shifts, migration work, or None identified
+migrationPlan: upgrade guide URL and migration command with output summary, None documented, or not applicable (pure patch)
 knownIssues: regressions, rollback chatter, freshness uncertainty, or None found
 reviewerConcerns: maintainer requests and open concerns, or None
 upstreamDelta: upstream changes with short changelog excerpts
@@ -39,6 +40,7 @@ Early read: security `{{securityCall}}` · quality `{{qualityCall}}` · impact `
 ## Risks
 
 - **Breaking changes and migration work:** {{breakingChanges}}
+- **Upgrade guide and migration tooling:** {{migrationPlan}}
 - **Known issues:** {{knownIssues}}
 - **Reviewer concerns to carry forward:** {{reviewerConcerns}}
 

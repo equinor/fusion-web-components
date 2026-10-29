@@ -74,6 +74,7 @@ Return:
 - Confidence
 - Readiness
 - Follow-up items
+- Migration steps: upgrade guide, migration command, findings fixed, suppressions added with reasons, decisions deferred (see `references/upgrade-migration.md`)
 - Handoff recommendation when needed
 - PR-comment-ready final verdict comment body
 - Explicit confirmation prompt
@@ -92,3 +93,5 @@ every named partial before filling; no renderer ships with the skill.
 - No approval/merge until verdict comment posted
 - Conflicting sources: reflect in confidence/recommendation
 - Bias ambiguous/high-risk to `hold` until evidence resolved
+- Broad rule downgrades, path-based tool disables, or removed CI checks used to pass CI: technical blocker, never `merge`
+- Newly enabled default behaviour: surface as maintainer decision, never decide silently

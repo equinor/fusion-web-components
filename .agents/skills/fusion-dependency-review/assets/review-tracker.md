@@ -10,6 +10,7 @@ Use this tracker while reviewing a dependency PR so the research, lens analysis,
 - [ ] Check branch state and whether rebase or sync is needed before patching
 - [ ] Record the dependency package, versions, and changed files
 - [ ] Gather release notes, changelog, advisories, and known-issue sources
+- [ ] If not a pure patch or breaking change reported: read upstream upgrade guide and run documented migration tooling (`references/upgrade-migration.md`)
 - [ ] Summarize research findings
 - [ ] Post the research checkpoint comment to the PR before any branch mutation
 - [ ] Score security, code quality, and impact lenses
@@ -44,6 +45,8 @@ Use this tracker while reviewing a dependency PR so the research, lens analysis,
 | PR top-level comments | | |
 | Review threads / review comments | | |
 | Release notes / changelog | | |
+| Upstream upgrade / migration guide | | |
+| Migration command / codemod output | | |
 | Security advisories | | |
 | Issue tracker / regressions | | |
 | Dependency graph / diff | | |
@@ -83,6 +86,16 @@ Use this tracker while reviewing a dependency PR so the research, lens analysis,
 | Readiness | `ready / waiting for checks / waiting for approval / needs changes` |
 | Rationale | |
 
+## Migration steps
+
+| Field | Value |
+|-------|-------|
+| Upgrade guide | |
+| Migration command | |
+| Findings fixed | |
+| Suppressions added (with reasons) | |
+| Decisions deferred | |
+
 ## Follow-up handoff
 
 If additional work is required, make the handoff explicit.
@@ -102,5 +115,7 @@ If additional work is required, make the handoff explicit.
 - [ ] Pending checks or approval affect readiness, not technical recommendation or confidence
 - [ ] Any required branch sync or rebase is explicit before patching
 - [ ] Follow-up work is explicit instead of implied
+- [ ] No broad rule downgrades, path-based tool disables, or removed CI checks; suppressions are narrow with inline reasons
+- [ ] Newly enabled default behaviour flagged as maintainer decision
 - [ ] Final verdict comment posted to the PR before any approval or merge action
 - [ ] Maintainer confirmation requested before any rebase, push, force-push, approve, or merge action

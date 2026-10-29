@@ -34,7 +34,8 @@ Keep source-control steps explicit and safe when a dependency PR branch needs ma
    - If a rebase causes the dependency diff to widen beyond the intended package update, stop and reconstruct the minimal intended delta instead of accepting unrelated lockfile churn.
 5. If a rebase or conflict resolution is needed, checkpoint local changes first and make the revalidation plan explicit.
 6. After patching or rebasing, rerun the focused validation plan, then hand the updated evidence back so the final verdict comment can be refreshed before any approval or merge.
-7. Ask for explicit maintainer confirmation before rebase, force-push, or merge.
+7. When patching to adapt to the upgrade, follow `references/upgrade-migration.md`: run documented migration tooling first, fix new findings in code, use only narrow inline-justified suppressions, and keep new default behaviour off through first-class opt-outs. Report each step for the verdict migration fields.
+8. Ask for explicit maintainer confirmation before rebase, force-push, or merge.
 
 ## Output contract
 
@@ -51,6 +52,7 @@ Return:
 
 - When operating inside a repository with repo-local workflow instructions, defer to those rules for commit conventions, validation commands, changeset requirements, and branch-refresh policy. Repo-local instructions take precedence over inline guidance in this advisor.
 - Do not use destructive recovery commands such as `git reset --hard`
+- Never downgrade or disable rules repository-wide, add glob/path overrides that weaken checks, or remove CI checks to get CI green
 - Do not force-push without explicit maintainer confirmation
 - Do not start git mutation on a live PR until the research checkpoint comment is posted
 - Keep git operations non-interactive and scoped to the dependency PR branch

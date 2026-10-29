@@ -26,13 +26,14 @@ Assess whether the target version looks well-tested, stable, and compatible enou
 2. Check for API changes that could affect the consuming repository.
 3. Look for evidence that the target version is tested and intentionally released.
 4. Scan for regressions, rollback chatter, or open compatibility issues.
-5. Produce one of `clear`, `concern`, or `blocking` with concise evidence.
+5. Scan PR diff for config or code that weakens checks to pass CI: repository-wide rule downgrades, glob/path overrides, disabled formatters or linters, removed CI checks, unexplained inline suppressions. Apply `references/upgrade-migration.md`.
+6. Produce one of `clear`, `concern`, or `blocking` with concise evidence.
 
 ## Assessment scale
 
 - `clear`: Well-signaled release, no relevant API breakage, and no meaningful regression evidence.
 - `concern`: Manageable API change, very fresh release with limited feedback, or partial quality evidence.
-- `blocking`: Known regressions, failing upstream quality signal, or API surface changes that likely require substantial adaptation.
+- `blocking`: Known regressions, failing upstream quality signal, API surface changes that likely require substantial adaptation, or broad suppressions/overrides added to pass CI.
 
 ## Output contract
 

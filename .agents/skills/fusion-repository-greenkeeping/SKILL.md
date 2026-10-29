@@ -1,10 +1,10 @@
 ---
 name: fusion-repository-greenkeeping
-description: 'Sets up and maintains reviewed repository workflows while preserving local configuration. USE FOR: APM sync automation, single-app Fusion deployment, Changesets app-monorepo releases, Copilot setup steps, Copilot readiness checks of setup and review instructions, read-only Greenkeeper enrolment readiness reports, workflow prerequisites, repeated setup, provenance-aware upgrades and customization conflicts. DO NOT USE FOR: skill discovery/install/update (use fusion-skills), general app maintenance (use fusion-app-greenkeeping), dependency PR reviews, backend/portal deployment, arbitrary CI generation or unattended rollout.'
+description: 'Sets up and maintains reviewed repository workflows while preserving local configuration. USE FOR: APM sync automation, single-app Fusion deployment, Changesets app-monorepo releases, Copilot setup steps, Dependabot config keeping SHA-pinned actions and dependencies current, Copilot readiness checks of setup and review instructions, read-only Greenkeeper enrolment readiness reports, workflow prerequisites, repeated setup, provenance-aware upgrades and customization conflicts. DO NOT USE FOR: skill discovery/install/update (use fusion-skills), general app maintenance (use fusion-app-greenkeeping), dependency PR reviews, backend/portal deployment, arbitrary CI generation or unattended rollout.'
 license: MIT
 compatibility: No runtime dependencies; agent fills templates by hand. Optional actionlint validates filled YAML. Consumer workflow prerequisites depend on selected template; no MCP or service authentication needed.
 metadata:
-  version: "0.2.1"
+  version: "0.3.0"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -16,6 +16,7 @@ metadata:
     - deployment
     - changesets
     - copilot
+    - dependabot
 ---
 
 # Repository Workflow Greenkeeping
@@ -32,6 +33,7 @@ Greenkeeper enrolment readiness: run [readiness report](references/greenkeeper-r
 - "Set up APM sync" / "keep our skills dependencies updated in CI" (public or private repo).
 - "Add deployment workflow for this Fusion app" / "deploy apps released by Changesets".
 - "Set up copilot-setup-steps" / "Copilot can't build or test this Node or .NET repo".
+- "Add Dependabot" / "who updates our pinned action SHAs?".
 - "Check our Copilot instructions" / "why does Copilot review ignore our rules?"
 - "Is this repo ready for the Greenkeeper?" / "what must we fix before enrolling?"
 - "Is our workflow template current?" / "update deploy workflow, keep our changes".
@@ -42,6 +44,7 @@ Greenkeeper enrolment readiness: run [readiness report](references/greenkeeper-r
 - Discover/install/update skills: `fusion-skills`.
 - Broader app maintenance: `fusion-app-greenkeeping`; specific dependency PR: `fusion-dependency-review`.
 - Backend/portal deployment, arbitrary CI generation, automatic fleet rollout or promotion.
+- Renovate configuration or dependency PR auto-merge.
 
 ## Required inputs
 
@@ -55,9 +58,11 @@ Collect secret/variable names and authorization evidence, never credential value
 1. Inspect workflows by purpose, not filename. Reuse existing release manager;
    missing, duplicate or ambiguous matches need explicit maintainer decision.
 2. Choose [APM](references/sync-workflows.md), [single app](references/app-deployment.md)
-   [Changesets monorepo](references/app-monorepo-deployment.md) or
-   [Copilot setup](references/copilot-setup.md). Verify prerequisites;
-   unavailable access/tooling is blocked/unverified, not a passing deployment check.
+   [Changesets monorepo](references/app-monorepo-deployment.md),
+   [Copilot setup](references/copilot-setup.md) or [Dependabot](references/dependabot.md).
+   Verify prerequisites; unavailable access/tooling is blocked/unverified, not a passing
+   deployment check. After adopting SHA-pinned templates, check for Dependabot/Renovate;
+   none: offer Dependabot template. Existing bot config: report, never overwrite.
 3. Fill selected template by hand per [fill rules](references/common-workflows.md#fill-rules)
    into new staging file. Stop on any slot value breaking its header rule; never
    sanitize or guess. No network, credential reads or installation.

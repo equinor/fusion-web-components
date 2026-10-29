@@ -1,8 +1,8 @@
 # Reviewed common workflow lifecycle
 
 Load [catalogue](common-workflows.md), then only selected [APM](sync-workflows.md),
-[single-app](app-deployment.md), [Changesets monorepo](app-monorepo-deployment.md) or
-[Copilot setup](copilot-setup.md) guide. No automatic consumer rollout.
+[single-app](app-deployment.md), [Changesets monorepo](app-monorepo-deployment.md),
+[Copilot setup](copilot-setup.md) or [Dependabot](dependabot.md) guide. No automatic consumer rollout.
 
 ## Inspect before proposing
 
@@ -12,8 +12,9 @@ Load [catalogue](common-workflows.md), then only selected [APM](sync-workflows.m
    For APM look for `microsoft/apm-action`/APM updates or reusable sync calls; for
    apps look for Fusion publish action/CLI, Changesets release management and
    deployment environments; for Copilot look for `copilot-setup-steps.yml` and
-   `copilot-code-review.yml`. Filename or provenance-comment matching alone does not
-   prove ownership.
+   `copilot-code-review.yml`; for Dependabot look for any Dependabot or Renovate
+   config ([detection](dependabot.md#detect-existing-bots-first)). Filename or
+   provenance-comment matching alone does not prove ownership.
 3. Report missing/ambiguous/duplicate matches. One existing matching purpose
    means compare that file, not create a second workflow under standard name.
 4. Verify selected catalogue prerequisites locally. For APM inspect committed
@@ -118,6 +119,8 @@ after approval. No generated timestamps or normalization-only rewrites.
 | Existing sync with Fusion skill dependencies but no token | Finding: `github.token` cannot clone internal `equinor/fusion-skills`; set `apmTokenSecret` (reusable caller) or `dependencyTokenSecret` (standalone). |
 | Same APM inputs/pin, workflow already present under another name | No duplicate or needless diff; inspect purpose, retain original path and corresponding sidecar. |
 | App with verified CLI, app-root lock and protected `ci`/`fqa`/`fprd` GitHub environments | Fill manual-only OIDC workflow with confirmed ordered environment list; permissions/federation remain unverified until maintainer checks them. |
+| Workflow templates adopted, no Dependabot or Renovate | Offer Dependabot template: `github-actions` at `/` plus only detected lockfile/solution directories; weekly, 7-day cooldown. |
+| Existing Renovate or hand-written `dependabot.yml` | Report path and coverage gaps (e.g. no `github-actions`); never add second bot or overwrite; offer reviewed adoption for Dependabot only. |
 | Repository without Copilot setup, pnpm lockfile committed | Fill setup steps with exact Node/pnpm; after merge confirm workflow run passed; no secrets or extra tools added. |
 | .NET service with seven solutions, `global.json`, no lock files | Fill .NET block with `global.json` pin, its directory as .NET working directory and each solution as restore target, no `--locked-mode`; add Node block only if a frontend exists. |
 | Changesets app monorepo with configured release scripts | Reuse existing release manager or fill monorepo template; allowlist packages, require release-event credential, deploy released app through Fusion action. |

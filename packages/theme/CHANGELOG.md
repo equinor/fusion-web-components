@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.2.6
+
+### Patch Changes
+
+- [#2512](https://github.com/equinor/fusion-web-components/pull/2512) [`fcb768f`](https://github.com/equinor/fusion-web-components/commit/fcb768f190d5e6b40b3ce9236d236b1d9ff8c552) Thanks [@chdefrene](https://github.com/chdefrene)! - Force light color scheme in `fwc-theme` until Fusion supports dark mode.
+  
+  Always set `data-color-scheme="light"` on the element when connected, so EDS variables never resolve to dark values from the OS/browser `prefers-color-scheme: dark` preference.
+  
+  Ref: equinor/fusion-core-tasks#2120
+
 ## 1.2.5
 
 ### Patch Changes

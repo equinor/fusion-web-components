@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!.changeset", "!utils/builder/bin"]
+    "includes": ["**", "!.changeset", "!utils/builder/bin", "!storybook"]
   },
   "formatter": {
     "enabled": true,

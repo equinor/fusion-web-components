@@ -1,0 +1,148 @@
+{{!--
+Copilot cloud agent environment, reused by Copilot code review. Agent fills by hand; follow fill rules in references/common-workflows.md. Enable at least one of useNode or useDotnet.
+useNode: true when repository has a Node workspace to install; false skips all Node steps.
+nodeWorkingDirectory: Node install root holding package.json and lockfile; . for repository or monorepo root; [A-Za-z0-9_][A-Za-z0-9_./-]* without ..; empty when useNode is false.
+nodeVersion: exact even Node x.y.z matching engines, e.g. 24.14.1; empty when useNode is false.
+packageManagerVersion: exact x.y.z matching package.json packageManager for pnpm/Bun; empty for npm or when useNode is false.
+isNpm: true only when useNode and packageManager is npm.
+isPnpm: true only when useNode and packageManager is pnpm.
+isBun: true only when useNode and packageManager is bun.
+useDotnet: true when repository has .NET solutions or projects to restore; false skips all .NET steps.
+dotnetWorkingDirectory: directory where .NET commands run and restore targets resolve; . for repository root; same path rule as nodeWorkingDirectory; empty when useDotnet is false.
+useGlobalJson: true when dotnetWorkingDirectory/global.json pins the SDK; false uses dotnetVersion.
+dotnetVersion: exact SDK version x.y.z, e.g. 10.0.100, when useGlobalJson is false; empty otherwise.
+dotnetRestoreTargets: space-separated .sln, .slnx or .csproj paths relative to dotnetWorkingDirectory, e.g. src/Fusion.Api.sln; no spaces inside paths.
+dotnetLockedMode: true only when every target commits packages.lock.json.
+dotnetToolRestore: true when .config/dotnet-tools.json exists.
+--}}
+# fusion-workflow-template: copilot-setup-steps
+# fusion-workflow-version: 1.0.0
+# fusion-workflow-source: https://github.com/equinor/fusion-skills/blob/main/skills/.experimental/fusion-repository-greenkeeping/assets/workflows/copilot-setup-steps.yml.hbs
+# fusion-workflow-owner: @equinor/fusion-core
+# Record source pin and raw inputs in .github/workflows/copilot-setup-steps.inputs.json.
+name: Copilot Setup Steps
+
+# Purpose: prepare the environment Copilot cloud agent and Copilot code review start in.
+# Checkout, pinned toolchains and locked dependency installs only; no build, test or deploy.
+# Without it, Copilot starts with an empty toolchain and guesses how to install dependencies.
+
+# Runs as a normal check when this file changes, so a broken setup is visible.
+# Copilot otherwise continues silently with a partial environment.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # Copilot recognizes only this job name and honors only steps, permissions,
+  # runs-on, services, snapshot and timeout-minutes (maximum 59).
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+{{#if useNode}}
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "{{nodeVersion}}"
+          # Automatic npm caching follows the root package.json and lockfile, not the
+          # install directory, and is discouraged for privileged jobs.
+          package-manager-cache: false
+{{#if isNpm}}
+
+      - name: Install locked Node dependencies
+        working-directory: "{{nodeWorkingDirectory}}"
+        run: npm ci
+{{/if}}
+{{#if isPnpm}}
+
+      - name: Set up pinned pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: "{{packageManagerVersion}}"
+          package_json_file: "{{nodeWorkingDirectory}}/package.json"
+
+      - name: Install locked Node dependencies
+        working-directory: "{{nodeWorkingDirectory}}"
+        run: pnpm install --frozen-lockfile
+{{/if}}
+{{#if isBun}}
+
+      - name: Set up pinned Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "{{packageManagerVersion}}"
+
+      - name: Install locked Node dependencies
+        working-directory: "{{nodeWorkingDirectory}}"
+        run: bun install --frozen-lockfile
+{{/if}}
+{{/if}}
+{{#if useDotnet}}
+
+      - name: Set up pinned .NET SDK
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+{{#if useGlobalJson}}
+          global-json-file: "{{dotnetWorkingDirectory}}/global.json"
+{{else}}
+          dotnet-version: "{{dotnetVersion}}"
+{{/if}}
+
+      # Without an applicable global.json, .NET picks the newest installed SDK,
+      # including runner preinstalls. A pin above the checkout governs every
+      # repository directory now and in the later Copilot session, and stays out of git.
+      - name: Pin .NET SDK for repository
+        env:
+          DOTNET_DIRECTORY: "{{dotnetWorkingDirectory}}"
+          SDK_VERSION: "{{dotnetVersion}}"
+        run: |
+          if [ -n "$SDK_VERSION" ]; then
+            printf '{ "sdk": { "version": "%s", "rollForward": "disable" } }\n' "$SDK_VERSION" > "$GITHUB_WORKSPACE/../global.json"
+          else
+            cp "$DOTNET_DIRECTORY/global.json" "$GITHUB_WORKSPACE/../global.json"
+          fi
+
+      - name: Verify selected .NET SDK
+        working-directory: "{{dotnetWorkingDirectory}}"
+        env:
+          SDK_VERSION: "{{dotnetVersion}}"
+        run: |
+          selected=$(dotnet --version)
+          root=$(cd "$GITHUB_WORKSPACE" && dotnet --version)
+          expected=${SDK_VERSION:-$selected}
+          if [ "$selected" != "$expected" ] || [ "$root" != "$expected" ]; then
+            echo "::error::.NET SDK mismatch: directory $selected, repository root $root, expected $expected. Reconcile global.json pins."
+            exit 1
+          fi
+          echo "Using .NET SDK $selected"
+{{#if dotnetToolRestore}}
+
+      - name: Restore .NET tools
+        working-directory: "{{dotnetWorkingDirectory}}"
+        run: dotnet tool restore
+{{/if}}
+
+      - name: Restore .NET dependencies
+        working-directory: "{{dotnetWorkingDirectory}}"
+        env:
+          RESTORE_TARGETS: "{{dotnetRestoreTargets}}"
+        # Word splitting is intended: targets are space-separated paths without spaces.
+        run: |
+          for target in $RESTORE_TARGETS; do
+{{#if dotnetLockedMode}}
+            dotnet restore "$target" --locked-mode
+{{else}}
+            dotnet restore "$target"
+{{/if}}
+          done
+{{/if}}

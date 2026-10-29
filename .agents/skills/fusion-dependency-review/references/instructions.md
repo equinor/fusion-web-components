@@ -27,7 +27,7 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 
 1. Refine the Step 1 discussion summary: highlight maintainer instructions, prior reviewer findings, unanswered questions, and unresolved threads. Distinguish open concerns from resolved or outdated discussion.
 2. Summarize release notes or changelog changes between the old and new version.
-3. Flag breaking changes, deprecations, peer shifts, or migration steps.
+3. Flag breaking changes, deprecations, peer shifts, or migration steps. When the update is not a pure patch, a breaking change is reported, or CI needs code or config changes, follow `references/upgrade-migration.md`: read the upstream upgrade guide, run documented migration commands or codemods before hand-editing, and record command plus output summary.
 4. Check for known regressions or open issues against the target version.
 5. Capture notable transitive dependency changes visible in the diff.
 6. When the ecosystem provides audit tooling such as `npm audit`, `cargo audit`, or `pip-audit`, include that output as an additional evidence source.
@@ -47,7 +47,9 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 6. Pending checks or required approval must not turn an otherwise safe recommendation into `hold` or reduce confidence by themselves.
 7. A major version requires explicit compatibility analysis, but semver category alone must not determine confidence.
 8. Unresolved reviewer concerns without evidence-based resolution reduce confidence and usually prevent a `merge` recommendation.
-9. Treat the verdict as a comment-ready artifact. Fold patching/rebase/validation results into readiness before posting.
+9. Broad rule downgrades, path-based tool disables, or CI check removals used to pass CI (in the PR or proposed by the review) make the code-quality lens `blocking`; see `references/upgrade-migration.md`. Surface newly enabled default behaviour as a maintainer decision, not a silent choice.
+10. Fill the verdict migration fields: upgrade guide, migration command, findings fixed, suppressions added with reasons, decisions deferred.
+11. Treat the verdict as a comment-ready artifact. Fold patching/rebase/validation results into readiness before posting.
 
 ## Step 4 — Live PR checkpoints and maintainer decision gates
 
@@ -56,7 +58,7 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 3. Post the final verdict comment before any approval, hold, decline, or merge action. Refresh it with any patching or validation results before posting.
 4. Include the existing discussion summary, unresolved reviewer concerns or rationale for treating them as resolved or outdated, lens assessments, recommendation, confidence, readiness, follow-up items, and explicit confirmation prompt in the final verdict comment, shaped by `assets/verdict-template.md.hbs` with the lens analysis folded and the decision, blockers, follow-ups, and prompt visible. Read its `.hbs` slot header, the shared fill README, and every named partial first.
 5. If the runtime cannot post the final verdict comment, stop before approval or merge and tell the maintainer that the PR record could not be updated.
-6. If branch patching is required before approval or merge, use `agents/source-control-advisor.md` only after the verdict is accepted so branch-sync planning, rebase need, validation reruns, and push confirmation stay tied to the chosen next action.
+6. If branch patching is required before approval or merge, use `agents/source-control-advisor.md` only after the verdict is accepted so branch-sync planning, rebase need, validation reruns, and push confirmation stay tied to the chosen next action. Migration patches follow `references/upgrade-migration.md`: migration tooling first, fixes in code, narrow justified suppressions only, first-class opt-outs for new defaults.
 7. Before any rebase, push, force-push, approval, or merge, ask for explicit maintainer confirmation.
 8. If the maintainer approves merge, then approve and/or merge the PR via MCP.
 9. If the maintainer requests hold, add a comment noting the hold reason and any follow-up criteria.

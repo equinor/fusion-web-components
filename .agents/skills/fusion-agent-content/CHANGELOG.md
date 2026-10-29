@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.2 - 2026-10-27
+
+### patch
+
+- [#336](https://github.com/equinor/fusion-skills/pull/336) [`bf60e9e`](https://github.com/equinor/fusion-skills/commit/bf60e9e76a812735b3ff0cde8140eb5604a506f7) - Resolve authoring-turn runtime model and effort before provenance fallback.
+
+  Bound lookups, preserve independent fields and attribute model changes and delegates
+  without exporting private session data.
+
+  fixes equinor/fusion-skills#335
+
 ## 0.1.1 - 2026-10-18
 
 ### patch

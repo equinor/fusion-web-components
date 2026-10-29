@@ -4,7 +4,7 @@ description: 'Review dependency PRs with structured research, existing-PR-discus
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.2.1"
+  version: "0.2.3"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -117,6 +117,7 @@ No renderer ships with the skill; `assets/review-tracker.md` stays Markdown.
 ## References
 
 - `references/instructions.md`: detailed execution contract for target selection, live-PR checkpoints, and decision sequencing
+- `references/upgrade-migration.md`: upgrade guide, migration tooling, finding fixes, narrow suppressions, and new-default decisions when an upgrade needs code or config changes
 - `references/questions.md`: concise follow-up questions for choosing the target dependency PR and scoping the review
 
 ## Advisors
@@ -148,6 +149,7 @@ If the PR target is resolved, return a structured review containing:
 - Code quality assessment with evidence
 - Impact assessment with evidence
 - Verdict: recommendation, rationale, confidence, readiness, and follow-up items
+- Migration steps when the upgrade needed adaptation: upgrade guide, migration command, findings fixed, suppressions added with reasons, decisions deferred
 - Handoff recommendation when follow-up work should become a tracked issue
 - Explicit action prompt for the maintainer
 
@@ -166,6 +168,8 @@ Never:
 - Expose secrets or tokens in comments or logs
 - Dismiss security concerns for convenience
 - Fabricate changelog entries or version details not found in sources
+- Downgrade or disable rules repository-wide, add glob/path overrides that weaken checks, or remove CI checks just to get CI green
+- Silently adopt or reject behaviour a tool newly enables by default
 
 Always:
 
@@ -174,6 +178,7 @@ Always:
 - Assess technical recommendation, evidence confidence, and mechanical merge readiness independently
 - Treat pending checks or required approval as readiness gates, not technical reasons to hold
 - Require explicit compatibility evidence for major updates without treating semver category alone as low confidence
+- When an upgrade is not a pure patch, reports breaking changes, or needs code/config changes: read upstream upgrade guide, run documented migration tooling first, fix new findings in code, use only narrow inline-justified suppressions, and report migration steps in the verdict (`references/upgrade-migration.md`)
 - List candidate dependency PRs for user selection when repository context exists but the PR target does not
 - Fetch existing PR comments and review threads via GitHub MCP before analysis on a live PR
 - Reuse one shared research packet across advisors instead of rediscovering the same facts in each pass — this includes PR metadata, changed files, CI status, and existing discussion

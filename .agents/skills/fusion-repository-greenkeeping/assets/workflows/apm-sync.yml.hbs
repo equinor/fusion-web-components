@@ -1,0 +1,153 @@
+{{!--
+Standalone APM dependency updates. Agent fills by hand; follow fill rules in references/common-workflows.md.
+schedule: five numeric cron fields, weekday 0-6, e.g. 0 8 * * 1; empty string means manual only.
+updateBranch: literal Git branch passing git check-ref-format --branch, not default branch, e.g. chore/apm-sync.
+apmVersion: exact stable SemVer x.y.z, e.g. 0.33.0.
+dependencyTokenSecret: Actions secret name [A-Za-z_][A-Za-z0-9_]*, not GITHUB_*; empty string selects github.token for public dependencies.
+--}}
+# fusion-workflow-template: apm-sync
+# fusion-workflow-version: 1.1.0
+# fusion-workflow-source: https://github.com/equinor/fusion-skills/blob/main/skills/.experimental/fusion-repository-greenkeeping/assets/workflows/apm-sync.yml.hbs
+# fusion-workflow-owner: @equinor/fusion-core
+# Record source pin and raw inputs in .github/workflows/apm-sync.inputs.json.
+name: APM Sync
+
+on:
+{{#if schedule}}
+  schedule:
+    - cron: "{{schedule}}"
+{{/if}}
+  workflow_dispatch:
+
+concurrency:
+  group: apm-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    name: Sync APM dependencies
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      BASE_BRANCH: $\{{ github.event.repository.default_branch }}
+      PR_BRANCH: "{{updateBranch}}"
+      DEPENDENCY_TOKEN_SECRET: "{{dependencyTokenSecret}}"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: $\{{ env.BASE_BRANCH }}
+          fetch-depth: 0
+
+      - name: Require APM setup
+        shell: bash
+        run: |
+          if [ ! -f apm.yml ]; then
+            echo "::error::APM is not configured: root apm.yml is missing. Commit apm.yml, apm.lock.yaml and managed files before enabling sync. See https://github.com/equinor/fusion-skills/blob/main/apm/MIGRATION.md"
+            exit 1
+          fi
+
+      - name: Require dependency authentication
+        shell: bash
+        env:
+{{#if dependencyTokenSecret}}
+          DEPENDENCY_TOKEN: $\{{ secrets[env.DEPENDENCY_TOKEN_SECRET] }}
+{{else}}
+          DEPENDENCY_TOKEN: $\{{ github.token }}
+{{/if}}
+        run: |
+          if [ -z "$DEPENDENCY_TOKEN" ]; then
+            echo "::error::Dependency authentication is missing. Configure the named Actions secret with read access to every dependency (and organization/SSO approval), or fill dependencyTokenSecret as empty for public dependencies."
+            exit 1
+          fi
+
+      - name: Prepare update branch
+        shell: bash
+        run: |
+          git check-ref-format --branch "$PR_BRANCH"
+          if [ "$PR_BRANCH" = "$BASE_BRANCH" ]; then
+            echo "::error::The update branch must differ from the repository default branch."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git show-ref --verify --quiet "refs/remotes/origin/$PR_BRANCH"; then
+            git switch --create "$PR_BRANCH" --track "origin/$PR_BRANCH"
+            if ! git merge --no-edit "origin/$BASE_BRANCH"; then
+              echo "::error::Update branch conflicts with the default branch. Resolve and push the merge manually, then rerun APM Sync."
+              exit 1
+            fi
+          else
+            git switch --create "$PR_BRANCH"
+          fi
+
+      - name: Update APM dependencies
+        uses: microsoft/apm-action@d723bb64ed70c135bbaf87d126b721dd2dae0439 # v1.10.0
+        env:
+{{#if dependencyTokenSecret}}
+          GITHUB_APM_PAT: $\{{ secrets[env.DEPENDENCY_TOKEN_SECRET] }}
+{{else}}
+          GITHUB_APM_PAT: $\{{ github.token }}
+{{/if}}
+        with:
+          apm-version: "{{apmVersion}}"
+{{#if dependencyTokenSecret}}
+          github-token: $\{{ secrets[env.DEPENDENCY_TOKEN_SECRET] }}
+{{else}}
+          github-token: $\{{ github.token }}
+{{/if}}
+          update: "true"
+
+      - name: Discard lockfile-only changes
+        shell: bash
+        run: |
+          # APM rewrites resolved_at on every update. A real update also changes deployed
+          # files, so a lockfile-only difference from the base branch is not worth a PR.
+          git add --all
+          changed=$(git diff --cached --name-only "origin/$BASE_BRANCH")
+          if [ "$changed" = "apm.lock.yaml" ] &&
+            git cat-file -e "origin/$BASE_BRANCH:apm.lock.yaml" 2>/dev/null; then
+            git checkout "origin/$BASE_BRANCH" -- apm.lock.yaml
+          fi
+
+      - name: Create or update pull request
+        shell: bash
+        env:
+          GH_TOKEN: $\{{ github.token }}
+          GH_REPO: $\{{ github.repository }}
+          PR_LABEL: "☘️ Fusion Greenkeep"
+        run: |
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(apm): sync dependencies"
+          fi
+          if git diff --quiet "origin/$BASE_BRANCH" HEAD; then
+            echo "No APM dependency changes to propose."
+            exit 0
+          fi
+          if ! git show-ref --verify --quiet "refs/remotes/origin/$PR_BRANCH" ||
+             [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/$PR_BRANCH")" ]; then
+            git push origin "HEAD:refs/heads/$PR_BRANCH"
+          fi
+          labels=$(gh api --paginate "repos/$GH_REPO/labels" --jq '.[].name')
+          if ! grep -Fxq "$PR_LABEL" <<< "$labels"; then
+            gh label create "$PR_LABEL" --color 2DA44E --description "Fusion greenkeeping"
+          fi
+          pr_number=$(gh pr list --state open --head "$PR_BRANCH" --base "$BASE_BRANCH" \
+            --json number --jq '.[0].number // empty')
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --add-label "$PR_LABEL"
+            echo "Updated existing pull request #$pr_number."
+            exit 0
+          fi
+          gh pr create --base "$BASE_BRANCH" --head "$PR_BRANCH" --label "$PR_LABEL" \
+            --title "☘️ chore(apm): sync dependencies" --body "$(cat <<'EOF'
+            Automated APM dependency sync.
+
+            APM refreshed dependencies within the constraints in `apm.yml`,
+            updated `apm.lock.yaml`, and redeployed managed agent context.
+            Review the complete diff before merging.
+          EOF
+          )"

@@ -3,7 +3,7 @@ name: fusion-pm-mcp
 description: 'Explain what Fusion PM MCP is and guide setup of the hosted HTTP+OAuth server for its GitHub project-management tools. USE FOR: setting up or troubleshooting Fusion PM MCP, understanding its issue/PR/milestone tools, filing a setup bug. DO NOT USE FOR: implementing changes to the fusion-pm-mcp service itself, GitHub issue authoring/triage workflows, or general Fusion Framework/docs/EDS retrieval — use `fusion-mcp` for that.'
 license: MIT
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:

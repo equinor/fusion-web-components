@@ -1,0 +1,25 @@
+{{!--
+Operational readiness without implied deployment approval.
+operations: object with environment, observability, alerting, recovery, capacity, runbooks, ownership, blockers; mark each control configured/exercised/verified/unassessed/inapplicable using supplied evidence.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Operational decision
+
+- Service / environment: {{operations.environment}}
+- Observability / alerting: {{operations.observability}} / {{operations.alerting}}
+- Recovery / rollback: {{operations.recovery}}
+- Capacity: {{operations.capacity}}
+- Runbooks / operational ownership: {{operations.runbooks}} / {{operations.ownership}}
+- Blockers / unassessed controls: {{operations.blockers}}
+
+Configured, exercised and verified are different states. Builds, deployments and
+runbook presence alone do not establish production readiness or approval.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

@@ -1,0 +1,120 @@
+{{!--
+Dependabot version updates for SHA-pinned workflows and detected package ecosystems. Agent fills by hand; follow fill rules in references/common-workflows.md and detection in references/dependabot.md.
+Directory rule: / for repository root, otherwise / plus segments of [A-Za-z0-9_.-] joined by /, e.g. /.github/actions/setup; no empty, . or .. segment, trailing / or glob; unique within one list; only directories detected in the repository.
+interval: daily, weekly or monthly; recommended weekly.
+cooldownDays: whole number 1-30 delaying version updates after release; recommended 7; security updates are never delayed.
+githubActionsDirectories: always / first, then each local composite action directory holding action.yml or action.yaml, e.g. /.github/actions/setup.
+npmDirectories: directories holding package.json with package-lock.json, pnpm-lock.yaml or yarn.lock; empty list omits npm.
+bunDirectories: directories holding package.json with text bun.lock; empty list omits Bun.
+nugetDirectories: directories holding .sln, .slnx, .csproj or Directory.Packages.props; empty list omits NuGet.
+--}}
+# fusion-workflow-template: dependabot
+# fusion-workflow-version: 1.0.0
+# fusion-workflow-source: https://github.com/equinor/fusion-skills/blob/main/skills/.experimental/fusion-repository-greenkeeping/assets/config/dependabot.yml.hbs
+# fusion-workflow-owner: @equinor/fusion-core
+# Record source pin and raw inputs in .github/dependabot.inputs.json.
+
+# Purpose: keep SHA-pinned actions and locked dependencies current through reviewed PRs.
+# Fusion/React/EDS families update together; every other dependency and action gets its own PR
+# for focused review and rollback.
+# Cooldown delays version updates so compromised or broken releases can be withdrawn first;
+# security updates ignore cooldown and are never grouped here.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directories:
+{{#each githubActionsDirectories}}
+      - "{{this}}"
+{{/each}}
+    schedule:
+      interval: "{{interval}}"
+    cooldown:
+      default-days: {{cooldownDays}}
+    # One PR per action; each bump keeps its full commit SHA and version comment.
+    open-pull-requests-limit: 50
+{{#if npmDirectories}}
+
+  - package-ecosystem: "npm"
+    directories:
+{{#each npmDirectories}}
+      - "{{this}}"
+{{/each}}
+    schedule:
+      interval: "{{interval}}"
+    cooldown:
+      default-days: {{cooldownDays}}
+    # Ungrouped dependencies open one PR each; default limit 5 stalls a backlog.
+    open-pull-requests-limit: 50
+    groups:
+      # Fusion and React packages release together; mixed versions break apps.
+      fusion-framework:
+        applies-to: version-updates
+        patterns:
+          - "@equinor/fusion-framework"
+          - "@equinor/fusion-framework-*"
+      fusion-react:
+        applies-to: version-updates
+        patterns:
+          - "@equinor/fusion-react-*"
+      react:
+        applies-to: version-updates
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      eds:
+        applies-to: version-updates
+        patterns:
+          - "@equinor/eds-*"
+{{/if}}
+{{#if bunDirectories}}
+
+  - package-ecosystem: "bun"
+    directories:
+{{#each bunDirectories}}
+      - "{{this}}"
+{{/each}}
+    schedule:
+      interval: "{{interval}}"
+    cooldown:
+      default-days: {{cooldownDays}}
+    # Ungrouped dependencies open one PR each; default limit 5 stalls a backlog.
+    open-pull-requests-limit: 50
+    groups:
+      # Fusion and React packages release together; mixed versions break apps.
+      fusion-framework:
+        applies-to: version-updates
+        patterns:
+          - "@equinor/fusion-framework"
+          - "@equinor/fusion-framework-*"
+      fusion-react:
+        applies-to: version-updates
+        patterns:
+          - "@equinor/fusion-react-*"
+      react:
+        applies-to: version-updates
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      eds:
+        applies-to: version-updates
+        patterns:
+          - "@equinor/eds-*"
+{{/if}}
+{{#if nugetDirectories}}
+
+  - package-ecosystem: "nuget"
+    directories:
+{{#each nugetDirectories}}
+      - "{{this}}"
+{{/each}}
+    schedule:
+      interval: "{{interval}}"
+    cooldown:
+      default-days: {{cooldownDays}}
+    # Ungrouped dependencies open one PR each; default limit 5 stalls a backlog.
+    open-pull-requests-limit: 50
+{{/if}}

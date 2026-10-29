@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.4
+
+### Patch Changes
+
+- [#2501](https://github.com/equinor/fusion-web-components/pull/2501) [`dabc1b8`](https://github.com/equinor/fusion-web-components/commit/dabc1b80ad2c7d92e366211745f4dc4678abe279) Thanks [@chdefrene](https://github.com/chdefrene)! - Temporarily keep EDS-styled Storybook previews light by setting `data-color-scheme="light"` on the preview root, with Playwright regression tests.
+
 ## 5.2.3
 
 ### Patch Changes

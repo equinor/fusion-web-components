@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Realse tag (PR)'
+        description: "Release tag (PR)"
         required: true
 
 jobs:

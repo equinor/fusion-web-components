@@ -19,14 +19,14 @@ npm install @equinor/fusion-wc-switch
 
 ### Properties/Attributes
 
-| Name       | Type      | Default | Description
-| ---------- | --------- | ------- | -----------
-| `checked`  | `boolean` | `false` | Whether or not the switch should be checked / activated.
-| `disabled` | `boolean` | `false` | Disables the input and sets the disabled styles.
+| Name       | Type      | Default | Description                                              |
+| ---------- | --------- | ------- | -------------------------------------------------------- |
+| `checked`  | `boolean` | `false` | Whether or not the switch should be checked / activated. |
+| `disabled` | `boolean` | `false` | Disables the input and sets the disabled styles.         |
 
 ### Events
 
-| Event Name | Target         | Detail | Description
-| ---------- | -------------- | ------ | -----------
-| `change`   | `fwc-switch`   | `{}`   | Fired when the user modifies the switch `checked` state from an input device interaction. Note that, like [native `<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event), the `change` event is *not* fired when the `checked` property is set from JavaScript.
+| Event Name | Target       | Detail | Description                                                                                                                                                                                                                                                                                    |
+| ---------- | ------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `change`   | `fwc-switch` | `{}`   | Fired when the user modifies the switch `checked` state from an input device interaction. Note that, like [native `<input>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event), the `change` event is _not_ fired when the `checked` property is set from JavaScript. |
 <!--prettier-ignore-end-->

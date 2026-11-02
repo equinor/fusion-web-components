@@ -29,7 +29,7 @@ import {
   PeopleViewerElement,
   type PersonInfo,
   type PeoplePickerElementProps,
-  type PeopleViewerElementProps
+  type PeopleViewerElementProps,
 } from '@equinor/fusion-web-components';
 ```
 
@@ -38,10 +38,10 @@ import {
 Import components from specific subpaths:
 
 ```ts
-import { 
-  PeoplePickerElement, 
+import {
+  PeoplePickerElement,
   PeopleViewerElement,
-  type PersonInfo 
+  type PersonInfo,
 } from '@equinor/fusion-web-components/people';
 ```
 
@@ -49,10 +49,10 @@ import {
 
 ### People Components
 
-| Component | Description |
-| --------- | ----------- |
+| Component             | Description                                        |
+| --------------------- | -------------------------------------------------- |
 | `<fwc-people-picker>` | Select and manage people with search functionality |
-| `<fwc-people-viewer>` | Display people in list or table format |
+| `<fwc-people-viewer>` | Display people in list or table format             |
 
 See [@equinor/fusion-wc-people](https://github.com/equinor/fusion-web-components/tree/main/packages/people) for detailed documentation.
 

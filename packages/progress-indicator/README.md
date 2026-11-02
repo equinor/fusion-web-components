@@ -4,6 +4,7 @@
 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/general-loader--default-story)
 
 ## Installation
+
 ```sh
 npm install @equinor/fusion-wc-progress-indicator
 ```

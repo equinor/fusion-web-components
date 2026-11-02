@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.2.2 - 2026-11-01
+
+### patch
+
+- [#384](https://github.com/equinor/fusion-skills/pull/384) [`c554907`](https://github.com/equinor/fusion-skills/commit/c5549072df77c0903d8279e428912bc49ad34a75) - Load greenkeeping lane and mode detail only when needed; preserve evidence, approval, resumption and stop contracts.
+
+
+  resolves equinor/fusion-core-tasks#2682
+
+## 0.2.1 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the skill description, which is loaded on every turn. Triggers, exclusions that separate it from sibling skills, and safety exclusions are unchanged, and a routing evaluation confirms requests still reach this skill.
+
+
+  resolves equinor/fusion-core-tasks#2666
+
+## 0.2.0 - 2026-10-31
+
+### minor
+
+- [#353](https://github.com/equinor/fusion-skills/pull/353) [`e2c276a`](https://github.com/equinor/fusion-skills/commit/e2c276a0be5dd41001061948859471aa12ec0d0f) - Add bounded research and working-confidence stop heuristics for smallest evidenced hygiene fixes,
+
+  without changing approval or validation gates.
+
+  refs equinor/fusion-poc-greenkeeper#45
+
+### patch
+
+- [#356](https://github.com/equinor/fusion-skills/pull/356) [`ba79254`](https://github.com/equinor/fusion-skills/commit/ba79254ce5a7a1ffa6fbefc093a6dc03aec827c6) - Route GitHub Actions audits, APM health, JavaScript toolchain and .NET build configuration checks to the companion greenkeeping lanes that own them.
+
+
+  refs equinor/fusion-poc-greenkeeper#45
+
 ## 0.1.1 - 2026-10-24
 
 ### patch

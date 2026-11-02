@@ -26,7 +26,7 @@ Keep source-control steps explicit and safe when a dependency PR branch needs ma
 ## Workflow
 
 1. Confirm whether source-control mutation is actually needed. Stay read-only if the review can finish without branch changes.
-2. Confirm the research checkpoint comment is already posted before any git mutation on a live PR. If not, stop and hand back to the parent skill.
+2. In an interactive run, confirm the research checkpoint comment is already posted before any git mutation on a live PR. If not, stop and hand back to the parent skill. Host-assigned runs follow the calling host's checkpoint and publication rules.
 3. Check branch state: mergeable, conflicted, behind base, or stale.
 4. Prefer the smallest safe sync step:
    - Rebase onto the base branch is the required sync method when patching an existing dependency PR branch that fell behind.
@@ -54,7 +54,7 @@ Return:
 - Do not use destructive recovery commands such as `git reset --hard`
 - Never downgrade or disable rules repository-wide, add glob/path overrides that weaken checks, or remove CI checks to get CI green
 - Do not force-push without explicit maintainer confirmation
-- Do not start git mutation on a live PR until the research checkpoint comment is posted
+- In an interactive run, do not start git mutation on a live PR until the research checkpoint comment is posted
 - Keep git operations non-interactive and scoped to the dependency PR branch
 - Never merge the base branch into a dependency PR branch; keep dependency PR history linear
 - Preserve unrelated local changes and call out blockers before rebasing

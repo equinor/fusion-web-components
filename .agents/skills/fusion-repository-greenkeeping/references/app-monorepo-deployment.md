@@ -1,5 +1,11 @@
 # Fusion app monorepo release and deployment
 
+## Contents
+
+- [Source pattern](#source-pattern)
+- [Inputs and prerequisites](#inputs-and-prerequisites)
+- [Runtime contract](#runtime-contract)
+
 Use [`app-monorepo-deploy.yml.hbs`](../assets/workflows/app-monorepo-deploy.yml.hbs)
 `1.0.0` when one workspace uses Changesets to release multiple app packages.
 Shared action, prerequisites and CLI caveat: [app deployment](app-deployment.md).

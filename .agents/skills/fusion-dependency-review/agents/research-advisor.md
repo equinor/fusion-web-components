@@ -39,6 +39,17 @@ Portable, source-backed signals (priority order):
 8. Capture notable transitive dependency changes in diff.
 9. Draft findings with sources, discussion context, unknowns. Same content as PR-comment-ready checkpoint, shaped by `assets/research-template.md.hbs`.
 
+### Ecosystem and licence evidence
+
+- Every update: compare official licence files/terms and release announcements over full installed-to-target
+  interval, including skipped releases and relevant transitives. Record changes or explicit evidence gaps.
+- GitHub Actions: resolve tags/SHAs, compare action/reusable-workflow contracts and release notes with
+  caller permissions, inputs, output consumers, scripts and runner requirements.
+- Docker: resolve tags/digests/platforms; research publisher image, distro and runtime changes against
+  affected Dockerfile stages. Unprivileged sandbox build unavailable: record research-only, not a passing build.
+- Use `references/unattended-updates.md` ecosystem checklists and licence gate; pass one evidence packet
+  to impact/verdict. Distinguish unavailable local execution from missing compatibility evidence.
+
 ## Portable boundaries
 
 Reusable patterns:
@@ -47,7 +58,7 @@ Reusable patterns:
 - Fetch existing PR comments and review threads before analysis for a live PR
 - Research first, then lens scoring, then verdict
 - Structured notes instead of ad hoc comments
-- For a live PR, post completed research packet as checkpoint comment before any rebase, push, approval, or merge
+- For a live PR in an interactive run, post completed research packet as checkpoint comment before any rebase, push, approval, or merge; host-assigned runs follow the calling host
 - Explicit consent gate before any approval, merge, or PR mutation
 
 Don't import repo-specific branch/rebase/push/package-manager automation unless repo explicitly requires it.
@@ -59,6 +70,8 @@ Return:
 - Normalized context: package, versions, ecosystem, update type, changed files, CI status
 - Existing discussion summary: top-level comment themes, review-thread themes, unresolved concerns, already-answered items
 - Research summary: changelog highlights, breaking changes, known issues, transitive changes
+- Licence/terms record: old/new terms, transition release and official sources, or explicit unknowns
+- Infrastructure evidence when relevant: action/workflow or image usage, runtime requirements, unrun checks and reasons
 - Migration record: upgrade guide URL or `None found`, migration command and output summary or `None documented`, manual steps, new default behaviour, existing suppressions or overrides in the PR diff
 - Source list with detail to re-check evidence
 - PR-comment-ready research checkpoint body
@@ -75,5 +88,5 @@ every named partial before filling; no renderer ships with the skill.
 - Don't claim source checked if not
 - Don't guess between multiple plausible PRs; require explicit user selection
 - No lens scoring until PR comments/threads fetched or escalated as unavailable
-- No mutation planning until checkpoint comment posted or escalated as blocked
+- Interactive runs: no mutation planning until checkpoint comment posted or escalated as blocked
 - Read-only until maintainer asks for mutation step

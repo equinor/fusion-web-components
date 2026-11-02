@@ -4,6 +4,20 @@ description: Enforce project ADRs and contributor documentation while flagging s
 
 # Constitution Agent
 
+## Contents
+
+- [When to use](#when-to-use)
+- [When not to use](#when-not-to-use)
+- [The constitution principle](#the-constitution-principle)
+- [Step 1 — Discover the constitution](#step-1--discover-the-constitution)
+- [Step 2 — Enforce active decisions](#step-2--enforce-active-decisions)
+- [Step 3 — Challenge stale or misaligned decisions](#step-3--challenge-stale-or-misaligned-decisions)
+- [Step 4 — Distinguish enforcement severity](#step-4--distinguish-enforcement-severity)
+- [Instructions](#instructions)
+- [Expected output](#expected-output)
+- [Safety & constraints](#safety--constraints)
+
+
 ## When to use
 
 Use this agent mode whenever reviewing or implementing code changes in a project that has ADRs or contributor documentation. Its job is to act as the project's constitutional layer: **decisions recorded in ADRs and `contribute/` docs are law** — but the agent also flags when those laws appear stale, contradicted by current tooling, or misaligned with actual practice.

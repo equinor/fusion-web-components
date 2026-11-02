@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.2.4 - 2026-11-01
+
+### patch
+
+- [#395](https://github.com/equinor/fusion-skills/pull/395) [`41ebc0f`](https://github.com/equinor/fusion-skills/commit/41ebc0fcdd462e138d299bd9a784e65f900b40bb) - Load warden report details only in report mode and retain sanitization, dedupe and publication gates before dispatch. Add direct conditional resource links and contract navigation.
+
+
+  resolves equinor/fusion-core-tasks#2686
+
+## 0.2.3 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+## 0.2.2 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten lifecycle discovery wording while keeping authoring, failure reports, greenkeeping feedback and repository-workflow exclusions.
+
+
+  refs equinor/fusion-core-tasks#2670
+
 ## 0.2.1 - 2026-10-27
 
 ### patch

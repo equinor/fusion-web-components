@@ -1,5 +1,14 @@
 # APM sync workflows
 
+## Contents
+
+- [Preconditions](#preconditions)
+- [Detect visibility first](#detect-visibility-first)
+- [Fill reusable caller template](#fill-reusable-caller-template)
+- [Fill standalone template](#fill-standalone-template)
+- [Runtime contract](#runtime-contract)
+- [Schedule reference](#schedule-reference)
+
 Keep declared APM dependencies current through one reviewable pull request.
 APM updates declared dependencies only; it never discovers undeclared skills.
 

@@ -1,5 +1,17 @@
 # Dependency PR Review Tracker
 
+## Contents
+
+- [Quick workflow](#quick-workflow)
+- [Context](#context)
+- [Sources consulted](#sources-consulted)
+- [Validation plan](#validation-plan)
+- [Lens tracking](#lens-tracking)
+- [Verdict](#verdict)
+- [Migration steps](#migration-steps)
+- [Follow-up handoff](#follow-up-handoff)
+- [Final action gate](#final-action-gate)
+
 Use this tracker while reviewing a dependency PR so the research, lens analysis, validation, and follow-up path stay explicit.
 
 ## Quick workflow

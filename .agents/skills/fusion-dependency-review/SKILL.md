@@ -1,14 +1,15 @@
 ---
 name: fusion-dependency-review
-description: 'Review dependency PRs with structured research, existing-PR-discussion capture, multi-lens analysis (security, code quality, impact), and a repeatable verdict template. USE FOR: dependency update PRs, Renovate/Dependabot PRs, library upgrade reviews, "review this dependency PR", "should we merge this update". DO NOT USE FOR: feature PRs, application code reviews, dependency automation/bot configuration, or unattended merge without confirmation.'
+description: 'Reviews dependency PRs using existing PR discussion, security, code-quality and impact research, and a repeatable verdict. USE FOR: dependency update PRs, Renovate/Dependabot PRs, library upgrades, "should we merge this update". DO NOT USE FOR: feature PRs or code reviews, dependency bot configuration, or merging without confirmation.'
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.2.3"
+  version: "0.4.2"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
     - fusion-agent-content
+    - fusion-pr-documentation
   tags:
     - github
     - pull-request
@@ -22,172 +23,102 @@ metadata:
 
 # Dependency Review
 
-Structured review workflow for dependency update PRs. Produces consistent research notes that incorporate existing PR discussion, multi-lens analysis, and an actionable verdict with explicit maintainer confirmation before any merge action.
+Research PR discussion; assess security/quality/impact; give evidenced verdict.
 
 ## When to use
 
-Use when a dependency PR needs review and you want a consistent, auditable decision process.
-
-Typical triggers:
-
-- "Review this dependency PR"
-- "Should we merge this dependency update?"
-- "Check this Renovate/Dependabot PR"
-- "Review one of our open dependency PRs"
-- "What changed in this library bump?"
-- "Is this dependency update safe to merge?"
-- PR title contains dependency update patterns (e.g. `chore(deps):`, `fix(deps):`, `bump`, `update`)
-- User shares a PR URL for a dependency update
+- Dependency update/library bump review, Renovate/Dependabot PR, merge-safety question.
+- Dependency PR URL or title patterns: `chore(deps):`, `fix(deps):`, `bump`, `update`.
 
 ## When not to use
 
-- Feature PRs or application code reviews (use standard code review workflows)
-- Dependency automation or bot configuration
-- Approving/merging without explicit user confirmation
-- Deciding organizational dependency policy
+- Feature/application code reviews, bot configuration, organizational dependency policy.
+- Approval/merge without explicit user confirmation.
 
 ## Required inputs
 
-Collect before starting:
-
-- **Repository** owner and name
-- **PR number or URL**, or a copied PR summary including package name, version change, changed files, and CI status
-- Optional: specific review concerns or areas of focus
-
-If required details are missing, ask concise clarifying questions from `references/questions.md`.
-
-If PR target is missing or ambiguous:
-
-- Ask only the minimal follow-up question needed to identify the target PR.
-- When repository context is known, use GitHub MCP to list likely open dependency PRs and let user choose.
-- Keep shortlist concise: include PR number, title, dependency/package hint, author, and CI state when available.
-
-Auto-extract from the PR when available:
-
-- Package(s) being updated and version range (from → to)
-- Changelog/release notes URL
-- CI status
-- Changed files and dependency ecosystem
-- Existing top-level PR comments, review comments, and unresolved thread state
-
-## Instructions
-
-### Preferred advisor orchestration
-
-When the runtime supports skill-local advisors, prefer this execution shape instead of a single long linear pass:
-
-1. Run `agents/target-pr-advisor.md` first when the PR target is missing or ambiguous so the review starts from one explicit dependency PR.
-2. Run `agents/research-advisor.md` to normalize the PR context, existing discussion, source list, and research notes.
-3. Fan out the lens advisors in parallel with the same normalized inputs:
-  - `agents/security-advisor.md`
-  - `agents/code-quality-advisor.md`
-  - `agents/impact-advisor.md`
-4. Chain the combined research and lens outputs into `agents/verdict-advisor.md` for recommendation, confidence, readiness, handoff, and confirmation wording.
-5. Chain into `agents/source-control-advisor.md` only if the accepted next step requires PR patching, rebase, conflict resolution, or merge-readiness work.
-
-Keep the lens advisors narrow and independent. The parent skill owns the unified review and should preserve disagreement between advisors instead of flattening it early.
-
-### Workflow summary
-
-1. Resolve target PR with `agents/target-pr-advisor.md` and concise prompts in `references/questions.md`.
-2. Gather context and build shared evidence packet with `agents/research-advisor.md`, `assets/review-tracker.md`, and `assets/research-template.md.hbs`.
-3. Run `agents/security-advisor.md`, `agents/code-quality-advisor.md`, and `agents/impact-advisor.md` in parallel with the same normalized research packet.
-4. Use `agents/verdict-advisor.md` to produce recommendation, confidence, readiness, follow-up, and explicit maintainer prompt.
-5. Use `agents/source-control-advisor.md` only after verdict is accepted and only when branch work is required.
-6. Follow `references/instructions.md` for detailed live-PR contract: target selection, checkpoint comments, decision gates, and handoff timing.
-
-### Human-first output
-
-Maintainers read the research checkpoint and verdict comments to decide whether to merge. When `fusion-agent-content` is installed, use it to shape both; otherwise follow the shape built into the templates:
-
-- A banner naming the agent, tool, model, and reasoning effort reported by the runtime (never guessed), then a quoted TL;DR (`> **TL;DR:**`) with the verdict and the ask.
-- Short prose for the reasoning that matters. Recommendation, confidence, readiness, blockers, risks, follow-ups, and the confirmation prompt stay visible.
-- Lens analysis, changelog excerpts, and research notes fold under **Details**; skills, references, and sources fold last under **References and evidence**.
-
-## Assets
-
-- `assets/research-template.md.hbs`: human-first research checkpoint comment with a TL;DR, visible breaking changes, folded upstream notes, and folded sources
-- `assets/verdict-template.md.hbs`: human-first verdict comment with a TL;DR, visible decision, blockers, and follow-ups, folded lens analysis, and folded references and evidence
-
-Before filling either template, read its `.hbs` slot header,
-`assets/partials/agent-content/README.md`, and every named partial.
-No renderer ships with the skill; `assets/review-tracker.md` stays Markdown.
-- `assets/review-tracker.md`: working checklist and tracker for context, validation, lens outcomes, and handoff decisions
-
-## References
-
-- `references/instructions.md`: detailed execution contract for target selection, live-PR checkpoints, and decision sequencing
-- `references/upgrade-migration.md`: upgrade guide, migration tooling, finding fixes, narrow suppressions, and new-default decisions when an upgrade needs code or config changes
-- `references/questions.md`: concise follow-up questions for choosing the target dependency PR and scoping the review
-
-## Advisors
-
-- `agents/target-pr-advisor.md`: resolves the exact dependency PR to review or returns a shortlist for user selection
-- `agents/research-advisor.md`: first pass; builds the shared evidence packet for all later advisors
-- `agents/security-advisor.md`: parallel lens pass; checks security posture and attack-surface changes
-- `agents/code-quality-advisor.md`: parallel lens pass; checks upstream stability, regressions, and API drift
-- `agents/impact-advisor.md`: parallel lens pass; checks repository blast radius, CI, and follow-up work
-- `agents/verdict-advisor.md`: chained synthesis pass; turns research and lens outputs into one decision
-- `agents/source-control-advisor.md`: conditional final pass; handles rebase, sync, validation reruns, and push safety when patching the PR
-
-If helper advisors are unavailable, follow the same orchestration inline: research first, lenses next, verdict after that, and source-control last only when mutation is needed.
-
-## Expected output
-
-If the PR target is unresolved, return:
-
-- A concise shortlist of candidate dependency PRs when live PR search is available
-- The minimal follow-up question required to let the user choose the correct PR
-- Explicit status: `Awaiting user PR selection`
-
-If the PR target is resolved, return a structured review containing:
-
-- Package name, version change, and update type
-- Existing PR discussion summary (top-level comments, review-thread themes, unresolved concerns)
-- Research summary (changelog highlights, breaking changes, known issues)
-- Security assessment with evidence
-- Code quality assessment with evidence
-- Impact assessment with evidence
-- Verdict: recommendation, rationale, confidence, readiness, and follow-up items
-- Migration steps when the upgrade needed adaptation: upgrade guide, migration command, findings fixed, suppressions added with reasons, decisions deferred
-- Handoff recommendation when follow-up work should become a tracked issue
-- Explicit action prompt for the maintainer
+Owner/repo; PR number/URL or copied package/version/files/CI summary; optional concerns.
+Missing/ambiguous target: ask minimum question; known repo: GitHub MCP shortlist
+(number/title/package/author/CI). Never guess; return `Awaiting user PR selection`.
+For clarification read `references/questions.md`; read and apply `agents/target-pr-advisor.md`.
 
 ## Safety & constraints
 
-- This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
+This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
 
-Never:
+- Repo owns commits/validation/changesets/PRs/refresh. Read its rules at point of use.
+- No secrets/tokens; never invent versions, changelog, sources, audit/security or CI passes.
+- Live PR: fetch comments and review threads before analysis; retrieval failure stops analysis.
+  One packet; no per-lens refetch or dismissing inconvenient concerns.
+- Interactive live PR: authorized research checkpoint comment before branch mutation/rebase/push;
+  final verdict before approval/hold/decline/merge. Posting unavailable/unauthorized: stop
+  affected actions; report blocked PR record. Never skip checkpoints.
+- Require accepted verdict before branch work; explicit maintainer confirmation before rebase,
+  push, force-push, approval or merge. Local work grants no publication/merge authority.
+- Refresh with latest base by rebase, never merge base into Dependabot/Renovate PR branch.
+  State sync needs before patching; preserve unrelated work.
+- Any `blocking` lens bars `merge`. Unresolved concerns reduce confidence and normally bar `merge`
+  unless explicitly resolved/rebutted with evidence.
+- Changed licence/terms or missing material evidence: HOLD until maintainer/legal owner
+  explicitly accepts terms. CI/API compatibility cannot waive acceptance.
+- No repository-wide rule downgrades/disables, weakening glob/path overrides or removed CI
+  checks to get green. Broad suppression is quality `blocking` even with green CI. Only narrow
+  inline-reason suppressions. New defaults: preserve behaviour with first-class opt-outs;
+  maintainer decides adoption/rejection, never silently.
+- Host-assigned unattended: caller owns confirmation/Git/comments/publication. Checkpoints/verdict
+  posted only when host requires/authorizes. Missing comment permission never blocks authorized
+  local work; references grant no authority or host-limit bypass.
 
-- Merge or approve a dependency PR without explicit user confirmation
-- Create a merge commit by merging the base branch into a Dependabot or Renovate PR branch
-- Guess which PR to review when multiple plausible dependency PRs exist
-- Skip the research checkpoint comment or final verdict comment on a live PR
-- Ignore existing reviewer concerns because they are inconvenient or duplicative
-- Claim CI passed or security is clear without checking actual status
-- Expose secrets or tokens in comments or logs
-- Dismiss security concerns for convenience
-- Fabricate changelog entries or version details not found in sources
-- Downgrade or disable rules repository-wide, add glob/path overrides that weaken checks, or remove CI checks just to get CI green
-- Silently adopt or reject behaviour a tool newly enables by default
+## Instructions
 
-Always:
+1. Resolve target. **Interactive live PR**: read `references/instructions.md` for checkpoint/
+   decision sequence. **Host-assigned**: read `references/unattended-updates.md` for warm-up,
+   bounded regeneration/research/validation/delivery. **Copied context**: use supplied evidence,
+   expose gaps, honor caller output/tools; no PR posting.
+2. Read and apply `agents/research-advisor.md`: shared packet with metadata/base/head/branch,
+   package/ecosystem/versions/type/usage, diff/transitives/CI, discussion inventory
+   (top-level/thread/unresolved/outdated/answered), sources/gaps, changelog/breaks/regressions/
+   advisories/licences, validation/sync plan. Compare official terms across full interval,
+   skipped releases/relevant transitives included. For Actions/Docker/licence transitions,
+   read corresponding `references/unattended-updates.md` sections for evidence/terms checks.
+3. Non-pure-patch/break/code-config adaptation: read `references/upgrade-migration.md`. Read-only
+   here: identify upstream guide/tooling, planned commands, expected findings, suppressions and
+   default decisions for the packet. No edits, commands that change the branch, or reruns before
+   the checkpoint and accepted verdict; apply them in step 7.
+4. Interactive live PR: draft `assets/research-template.md.hbs` checkpoint; authorize/post before
+   mutation. Verify context/discussion/source inventory and validation/sync plan complete. For
+   complex/multi-package or retained tracking, read `assets/review-tracker.md`; all checkpoints
+   stay mandatory without tracker.
+5. Read and apply `agents/security-advisor.md`, `agents/code-quality-advisor.md`,
+   `agents/impact-advisor.md` to same packet for evidenced lenses. Prefer parallel where supported;
+   otherwise apply inline sequentially. Preserve disagreement; parent owns review. All lenses before verdict.
+6. Read and apply `agents/verdict-advisor.md`: independent recommendation/confidence/readiness.
+   Pending checks/routine approval affect readiness only. Major: explicit compatibility evidence,
+   not semver-only low confidence. Verify lens evidence, concerns reflected/rebutted, licence
+   acceptance, independent dimensions, branch plan/follow-up, no broad suppressions, defaults flagged.
+7. Accepted branch work after checkpoints/authorization: read and apply `agents/source-control-advisor.md`
+   for sync/conflicts/focused checks. Apply step 3's migration plan: upstream guide/tooling first within
+   authority; record command/output ("no migration needed" only if observed), fix code findings, rerun
+   checks, report suppressions/default decisions. Refresh verdict with actual patch/rebase/check results.
+8. Draft `assets/verdict-template.md.hbs`; interactive live PR: post before decision action.
+   Explicit follow-up: propose `fusion-issue-authoring` handoff as `Task`, `Bug` or `User Story`.
+   Maintainer decides approve/hold/decline/create follow-up; act only as authorized.
 
-- Ask minimal follow-up questions when the target PR is missing or ambiguous
-- Present evidence for each assessment (link to changelog, CVE, CI status)
-- Assess technical recommendation, evidence confidence, and mechanical merge readiness independently
-- Treat pending checks or required approval as readiness gates, not technical reasons to hold
-- Require explicit compatibility evidence for major updates without treating semver category alone as low confidence
-- When an upgrade is not a pure patch, reports breaking changes, or needs code/config changes: read upstream upgrade guide, run documented migration tooling first, fix new findings in code, use only narrow inline-justified suppressions, and report migration steps in the verdict (`references/upgrade-migration.md`)
-- List candidate dependency PRs for user selection when repository context exists but the PR target does not
-- Fetch existing PR comments and review threads via GitHub MCP before analysis on a live PR
-- Reuse one shared research packet across advisors instead of rediscovering the same facts in each pass — this includes PR metadata, changed files, CI status, and existing discussion
-- Do not re-fetch PR comments or review threads independently in each advisor; pass the pre-fetched data from the research advisor to all lens advisors
-- Prefer parallel lens analysis when the runtime supports it, then chain synthesis after all lens outputs are ready
-- Post the research checkpoint comment to the PR before any branch mutation on a live PR
-- Post the final verdict comment to the PR before any approval or merge on a live PR
-- Make branch-sync or rebase needs explicit before patching the PR
-- Rebase dependency PR branches onto the latest base branch when refresh is required; do not merge the base branch into the PR branch
-- Make follow-up work explicit rather than burying it in review notes
-- Respect the maintainer as the final decision-maker
-- Keep review output in a consistent, repeatable structure
+## Expected output
+
+Target unresolved: shortlist/question, `Awaiting user PR selection`. Otherwise package/versions/type,
+discussion/concerns, sourced research, evidenced lenses, recommendation/rationale/confidence/readiness,
+follow-up or none, handoff/action prompt. Migration: guide/command/output/findings/suppressions/reasons/
+deferred decisions. Distinguish unrun checks, research and runtime validation.
+
+### Human-first output
+
+Comments: installed `fusion-agent-content`, else bundled shape. When filling `.hbs`, read header,
+`assets/partials/agent-content/README.md` and named partials:
+`assets/partials/agent-content/banner.hbs`, `assets/partials/agent-content/tldr.hbs`,
+`assets/partials/agent-content/details.hbs`, `assets/partials/agent-content/references.hbs`.
+Manual fill, no renderer. Caller shape wins. Runtime metadata only; quoted TL;DR (`> **TL;DR:**`);
+visible decision/confidence/readiness/blockers/risks/follow-up/prompt; fold support under **Details**,
+sources last under **References and evidence**.
+
+Combined PR of several reviewed updates: verdicts feed its body but don't shape it. Write body with `fusion-pr-documentation` → `references/combined-pr.md`; held or blocked verdicts become **Updates not included**, behavior changes become **Needs your attention**.

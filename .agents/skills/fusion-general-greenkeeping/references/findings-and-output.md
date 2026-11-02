@@ -51,3 +51,13 @@ Suggestions max `low` unless maintainer asked for ideas. No scores, grades or ra
 
 One per root cause. Title: greenkeeping marker + local title format. Body: outcome, evidence rows,
 scope, acceptance criteria, validation. Show draft; publish only after confirmation.
+
+## Example
+
+Example:
+
+> `docs-cmd-lint` · docs · high · confirmed — `CONTRIBUTING.md:8` says `pnpm lint`; `package.json`
+> `scripts` has `check`, no `lint`. Contributors hit missing-script error before every PR.
+> Fix: `pnpm check`.
+
+Avoid: "No CODEOWNERS file (high)" when `AGENTS.md` says ownership lives in `docs/ownership.md`.

@@ -54,9 +54,9 @@ Use `"url": "https://mcp.test.api.fusion-dev.net/mcp"` and `"clientId": "a0327fa
 
 ## Troubleshooting quick map
 
-- Sign-in prompt not appearing: verify the `fusion-mcp` server entry is enabled in VS Code MCP settings and that you are signed in with an Equinor account.
+- Sign-in prompt not appearing: verify `oauth.clientId` in config, the `fusion-mcp` server entry is enabled in VS Code MCP settings and that you are signed in with an Equinor account.
 - `401 Unauthorized`: re-authenticate via VS Code account settings; ensure your Equinor Entra account is active.
-- `tools/list` returns empty: verify the `fusion-mcp` server entry is enabled in VS Code MCP settings and reload the MCP server.
+- `tools/list` returns empty or tool call fails: verify the `fusion-mcp` server entry is enabled in VS Code MCP settings and reload the MCP server.
 - Partial tool behavior: check VS Code Output > Copilot for error details and restart the MCP server.
 
 ## Sources

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.3 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+- [#382](https://github.com/equinor/fusion-skills/pull/382) [`22dc946`](https://github.com/equinor/fusion-skills/commit/22dc94689f81a7545524a2ae7962c6d84a4744b9) - Keep issue drafting safety and selected-mode routing in the entry point; load cache, MCP payload, setup, rate-limit, and interview guidance only when needed. Preserve issue templates and draft-first publication gates.
+
+
+  resolves equinor/fusion-core-tasks#2681
+
 ## 0.4.2 - 2026-10-27
 
 ### patch

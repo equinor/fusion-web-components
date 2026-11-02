@@ -1,5 +1,13 @@
 # Greenkeeper readiness report
 
+## Contents
+
+- [Verdicts](#verdicts)
+- [Rules](#rules)
+- [Checks](#checks)
+- [Enrol (only when ready)](#enrol-only-when-ready)
+- [Report](#report)
+
 Agent-run, read-only check: is repository ready to enrol in Fusion Greenkeeper?
 One report (one issue), not finding stream. Objective checks; every verdict cites evidence.
 Change nothing; publish only after confirmation. Checklist source: "Getting ready" in

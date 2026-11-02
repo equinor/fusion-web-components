@@ -27,11 +27,11 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 
 1. Refine the Step 1 discussion summary: highlight maintainer instructions, prior reviewer findings, unanswered questions, and unresolved threads. Distinguish open concerns from resolved or outdated discussion.
 2. Summarize release notes or changelog changes between the old and new version.
-3. Flag breaking changes, deprecations, peer shifts, or migration steps. When the update is not a pure patch, a breaking change is reported, or CI needs code or config changes, follow `references/upgrade-migration.md`: read the upstream upgrade guide, run documented migration commands or codemods before hand-editing, and record command plus output summary.
+3. Flag breaking changes, deprecations, peer shifts, or migration steps. When the update is not a pure patch, a breaking change is reported, or CI needs code or config changes, follow `references/upgrade-migration.md` read-only: read the upstream upgrade guide, identify documented migration commands or codemods to run before hand-editing, and record them as the migration plan. Do not run commands that change the branch, edits or reruns here; execute the plan only after the research checkpoint (Step 4) and an accepted verdict, in the source-control step.
 4. Check for known regressions or open issues against the target version.
 5. Capture notable transitive dependency changes visible in the diff.
 6. When the ecosystem provides audit tooling such as `npm audit`, `cargo audit`, or `pip-audit`, include that output as an additional evidence source.
-7. Start from `assets/review-tracker.md` and fill the context, discussion inventory, validation plan, and source inventory first.
+7. Verify packet context, discussion inventory, validation plan and source inventory first. For complex/multi-package or retained tracking, use `assets/review-tracker.md`; its checkpoints remain enforced by `SKILL.md` on every review.
 8. Draft detailed findings from `assets/research-template.md.hbs` either in `.tmp/` or as a PR comment draft, keeping its human-first shape (see "Human-first output" in `SKILL.md`). Read its `.hbs` slot header, `assets/partials/agent-content/README.md`, and every named partial before filling; no renderer ships with the skill.
 
 ## Step 3 — Run lens analysis and synthesize the verdict
@@ -52,6 +52,8 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 11. Treat the verdict as a comment-ready artifact. Fold patching/rebase/validation results into readiness before posting.
 
 ## Step 4 — Live PR checkpoints and maintainer decision gates
+
+Applies to interactive runs. Host-assigned runs follow `references/unattended-updates.md`: the calling host decides whether checkpoint and verdict comments are posted and owns confirmations and publication, so missing comment permission doesn't stop host-authorised local work.
 
 1. Post the research checkpoint comment before any source-control mutation, rebase, push, approval, or merge.
 2. If the runtime cannot post the research checkpoint comment, stop before mutation and tell the maintainer that the PR record could not be updated.

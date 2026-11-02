@@ -1,6 +1,29 @@
 # Health lanes
 
+## Contents
+
+- [Bounded hygiene investigation](#bounded-hygiene-investigation)
+- [Local conventions](#local-conventions)
+- [Docs vs executable config](#docs-vs-executable-config)
+- [CODEMAP accuracy](#codemap-accuracy)
+- [Ownership and security policy](#ownership-and-security-policy)
+- [Stale or duplicated config](#stale-or-duplicated-config)
+- [Dead references](#dead-references)
+- [Handoffs](#handoffs)
+
 Per-lane checks, evidence and false-positive traps. Inspect in-scope lanes only.
+
+## Bounded hygiene investigation
+
+- Time-box open-ended research to roughly first quarter of agreed task budget; reserve time for
+  verification and delivery. Without fixed deadline, agree a small research budget.
+- Roughly 70% working confidence is a stopping heuristic, not measured probability or finding score.
+  Once concrete evidence supports useful bounded recommendation, stop and disclose uncertainty.
+  Confidence never overrides scope, approval, integrity or required validation gates.
+- Adopted rule or established local pattern plus concrete inconsistency supports a small correction;
+  don't survey entire repository to prove universal agreement. Prefer useful findings over cleanup inventory.
+- For selected fixes, make smallest evidenced correction and run only approved focused checks.
+  Avoid speculative cleanup/unrelated refactors; report failed or unrun checks, never weaken tests.
 
 ## Local conventions
 
@@ -84,6 +107,13 @@ External URLs: unknown unless network checks approved; never fetch by default.
 | Signal | Companion |
 | --- | --- |
 | Workflow template drift, APM sync, deployment, Copilot setup/readiness | `fusion-repository-greenkeeping` |
+| Existing workflow security/currency (permissions, injection, `pull_request_target`, pins, runners, Node runtimes) | `fusion-repository-greenkeeping` Actions audit |
+| APM manifest/lock drift, edited installed copies, floating refs | `fusion-repository-greenkeeping` APM health |
+| Competing lockfiles, `packageManager`/Corepack/Node version drift, non-frozen CI installs | `fusion-app-greenkeeping` toolchain lane (any JS workspace) |
+| Central package management, NuGet lock files, `nuget.config` feeds, NuGet audit, solution membership | `fusion-service-greenkeeping` build-configuration lane (any .NET solution) |
 | Dependency update or upgrade decision | `fusion-dependency-review` |
 | Fusion app code, tests, routing, app-local context | `fusion-app-greenkeeping` |
 | Issue drafts from findings | `fusion-issue-authoring` |
+
+Docs-vs-config lane still reports simple contradictions (docs say pnpm, lockfile is npm) itself;
+hand off only deeper stack checks.

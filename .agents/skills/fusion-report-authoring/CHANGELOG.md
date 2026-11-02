@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.0.4 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+- [#379](https://github.com/equinor/fusion-skills/pull/379) [`4182f37`](https://github.com/equinor/fusion-skills/commit/4182f3767407b11dbaa127c3c9b2820af15dd434) - Load core evidence rules on every report; read template context and visual guidance only when needed. Keep authoring, disclosure and visible-limitations boundaries explicit.
+
+
+  resolves equinor/fusion-core-tasks#2677
+
+## 0.0.3 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the description while keeping all nine assessment types, supplied-evidence scope and authoring-only exclusions. Route discussions of existing reports to fusion-general-greenkeeping instead of assessment authoring.
+
+
+  resolves equinor/fusion-core-tasks#2668
+
 ## 0.0.2 - 2026-10-27
 
 ### patch

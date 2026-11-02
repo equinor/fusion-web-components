@@ -1,0 +1,105 @@
+{{!--
+  Claude project and scoped rule starters; select the applicable fenced output.
+  Insert Markdown as written; drop this header. No agent-content framing in rules.
+  languageAndRuntime: imperative bullet directives.
+  codeStyle: imperative bullet directives.
+  architecture: imperative bullet directives.
+  testing: imperative bullet directives.
+  errorHandling: imperative bullet directives.
+  buildAndRun: imperative bullet directives.
+  security: imperative bullet directives.
+  pathPattern: YAML-safe path glob, without surrounding quotes.
+  ruleTitle: concise rule title.
+  directives: imperative rule bullets.
+--}}
+# Claude Code Rule — Starter Templates
+
+Templates for Claude Code project instructions and scoped rules.
+
+---
+
+## Project instructions (`CLAUDE.md` or `.claude/CLAUDE.md`)
+
+No frontmatter needed. Write plain markdown. Target under 200 lines.
+
+```markdown
+# Project Instructions
+
+## Language and runtime
+
+{{languageAndRuntime}}
+
+## Code style
+
+{{codeStyle}}
+
+## Architecture
+
+{{architecture}}
+
+## Testing
+
+{{testing}}
+
+## Error handling
+
+{{errorHandling}}
+
+## Build and run
+
+{{buildAndRun}}
+
+## Security
+
+{{security}}
+```
+
+You can import additional files using `@path` syntax:
+
+```markdown
+See @README.md for project overview and @package.json for available scripts.
+
+# Additional Instructions
+- Git workflow: @docs/git-instructions.md
+```
+
+---
+
+## Path-scoped rule (`.claude/rules/<name>.md`)
+
+```markdown
+---
+paths:
+  - "{{pathPattern}}"
+---
+
+# {{ruleTitle}}
+
+{{directives}}
+```
+
+Multiple patterns and brace expansion are supported:
+
+```markdown
+---
+paths:
+  - "src/**/*.{ts,tsx}"
+  - "lib/**/*.ts"
+---
+
+# {{ruleTitle}}
+
+{{directives}}
+```
+
+---
+
+## Unconditional rule (`.claude/rules/<name>.md`)
+
+Omit `paths` to make the rule load every session:
+
+```markdown
+# {{ruleTitle}}
+
+{{directives}}
+```

@@ -1,9 +1,9 @@
 ---
 name: fusion-pm-mcp
-description: 'Explain what Fusion PM MCP is and guide setup of the hosted HTTP+OAuth server for its GitHub project-management tools. USE FOR: setting up or troubleshooting Fusion PM MCP, understanding its issue/PR/milestone tools, filing a setup bug. DO NOT USE FOR: implementing changes to the fusion-pm-mcp service itself, GitHub issue authoring/triage workflows, or general Fusion Framework/docs/EDS retrieval — use `fusion-mcp` for that.'
+description: 'Explains and configures hosted HTTP+OAuth Fusion PM MCP for GitHub project management. USE FOR: setup, verification, troubleshooting stale/rate-limited tools and setup bug drafts. DO NOT USE FOR: service development, issue authoring/triage (use fusion-issue-authoring), Framework/docs/EDS retrieval (use `fusion-mcp`) or exposing secrets.'
 license: MIT
 metadata:
-  version: "0.1.3"
+  version: "0.1.5"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -21,96 +21,39 @@ metadata:
 
 ## When to use
 
-Use when a user asks:
-- what Fusion PM MCP is
-- how to install/configure it
-- how to verify it is working
-- how to troubleshoot a failing setup or stale/rate-limited results
-
-Typical triggers:
-- "what is fusion pm mcp"
-- "help me set up fusion pm mcp"
-- "how do I get GitHub issues/PRs into Copilot without hitting rate limits"
+Explain, configure, verify or troubleshoot hosted project-management MCP, including stale/rate-limited GitHub issue/PR results.
 
 ## When not to use
 
-- Implementing or modifying the `fusion-pm-mcp` service source code — that belongs to the repository itself
-- General Fusion Framework/docs/EDS/backend-code retrieval — use `fusion-mcp`
-- Authoring, triaging, or reviewing GitHub issues/PRs — use `fusion-issue-authoring` or repo-specific review skills once the MCP tools are available
-- Making destructive environment changes without user confirmation
+- `fusion-pm-mcp` service development: use its repository guidance.
+- Framework/docs/EDS/backend-code retrieval: use `fusion-mcp`.
+- Issue authoring/triage or PR reviews: use `fusion-issue-authoring` or repo-specific review skills after tools work.
+- Destructive environment changes without confirmation.
 
 ## Required inputs
 
-Collect before proposing setup steps:
-- whether a GitHub token is available (`gh auth token`, or a PAT with `repo` scope) — supplied per-request, not stored in config
-- target client (VS Code is primary)
-
-If details are missing, ask concise follow-up questions first.
-
-## Instructions
-
-1. Explain what this MCP server provides:
-   - a caching proxy over the GitHub REST API, exposed as MCP tools, so agents can read project data without hitting GitHub rate limits on every call
-   - hosted as a managed service — no local infrastructure required for most users
-   - tools, grouped by area (verify against `tools/list`; the live server is the source of truth over any doc, including this one):
-     - issues: `issue_get`, `issue_parent_get`, `issue_children`, `issue_comments`, `issue_create`, `issue_update`, `issue_close`, `issue_set_parent`, `issue_add_blocker`, `issue_remove_blocker`, `repository_labels`
-     - milestones: `milestones`, `milestone_get`, `milestone_work_hierarchy_get`
-     - pull requests: `pull_request_get`, `pull_request_comments`, `pull_request_reviews`, `pull_request_review_get`, `pull_request_review_comments`, `pull_request_review_thread_resolve`, `pull_request_close`
-     - discussions and comments: `discussions`, `discussion_get`, `discussion_search`, `discussion_create`, `discussion_update`, `discussion_comment_create`, `timeline_comment_get`, `timeline_comment_create`
-     - artifacts, snapshots, and reports: `artifact_get`, `artifact_get_evidence`, `artifact_get_schema`, `artifact_search`, `artifact_upsert`, `snapshot_get`, `reports`, `report_by_operation`
-   - tools that create, update, close, resolve, set, add, remove, or upsert change GitHub state or the server's index; use them only after explicit user confirmation
-   - responses are cached (default TTL 300s); there is no cache-invalidation tool — stale results clear on their own after the TTL
-2. Guide user to set up the **hosted production server** — the only recommended path:
-   - no Docker, no local clone, no env vars to manage
-   - VS Code authenticates the MCP connection via Microsoft Entra (Equinor account)
-   - the caller also supplies their own GitHub token per request via the `X-GitHub-Token` header (each user keeps their own identity and rate limit — don't suggest a shared/service token)
-   - use the manual config in `references/vscode-mcp-config.md` (no one-click install link is published for this server)
-   - don't suggest local stdio or the full Docker dev stack — those exist only for contributors working on the `fusion-pm-mcp` service itself; point them to that repo's `CONTRIBUTING.md` instead of embedding setup steps here
-3. Describe the authentication flow:
-   - on first tool invocation VS Code prompts sign-in with the Equinor Entra account (controls access to the MCP server itself)
-   - separately, the `X-GitHub-Token` header carries the caller's own GitHub PAT through to the API on every request
-   - both must be valid; a 401 can come from either layer
-4. Give a validation checklist:
-   - run `initialize` and confirm a successful response
-   - run `tools/list` and compare against the actual returned tool names — don't assume a fixed list, the surface has changed before
-   - run one non-destructive `tools/call` (e.g. `milestones` or `issue_get`) and confirm a non-empty result
-5. Troubleshoot in documented order:
-   - Unauthenticated / hitting rate limits fast → no `X-GitHub-Token` header configured; unauthenticated calls are capped at 60 req/hr
-   - `401` or repeated sign-in prompts → re-authenticate via VS Code (sign out/in, or reload the MCP server); if that doesn't resolve it, treat it as a setup bug rather than a known transient issue
-   - Results look stale → there is no invalidate-cache tool; results self-clear after the cache TTL (a few minutes)
-6. When setup fails or the user asks to file a bug, produce a bug report draft from `assets/bug-report-template.md.hbs`. Read its `.hbs` slot header, `assets/partials/agent-content/README.md`, and every named partial before filling; no renderer ships with the skill.
-   - default target repository: `equinor/fusion-pm-mcp`
-   - include concrete repro steps, expected vs actual behavior, and troubleshooting already attempted
-   - include non-sensitive environment details only (OS, VS Code version)
-   - never include GitHub tokens, PATs, or Entra credentials
-7. For uncertainty or repo-private constraints, state assumptions explicitly and link to authoritative docs instead of guessing.
-
-## Expected output
-
-Return:
-- short explanation of Fusion PM MCP and when to use it
-- hosted setup steps tailored to the user's environment
-- validation checklist: `initialize`, `tools/list` (compare against actual returned names), one `tools/call` (expect non-empty result)
-- troubleshooting steps mapped to observed symptoms
-- bug report draft (when setup fails/misbehaves or user requests) using `assets/bug-report-template.md.hbs` with default target `equinor/fusion-pm-mcp`
-- assumptions and missing information called out explicitly
-
-## References
-
-- [references/vscode-mcp-config.md](references/vscode-mcp-config.md)
-- [assets/bug-report-template.md.hbs](assets/bug-report-template.md.hbs)
+Collect target client (VS Code primary) and whether caller has GitHub token available (`gh auth token` or PAT with `repo` scope). Ask availability only, never value; token is supplied per request, not stored in config. Clarify missing inputs before setup.
 
 ## Safety & constraints
 
-Never:
-- request or expose GitHub tokens, PATs, or Entra credentials
-- invent setup commands that are not supported by project documentation
-- claim setup succeeded without validation output
-- suggest a single shared GitHub token for hosted multi-user setups
-- run destructive commands without explicit user confirmation
+This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
 
-Always:
-- prefer official repository documentation as source of truth
-- guide users to the hosted production server; do not suggest local stdio or Docker setups unless the user is contributing to the service itself, then link to that repo's `CONTRIBUTING.md` instead of embedding setup steps
-- recommend per-request `X-GitHub-Token` auth over shared tokens
-- separate confirmed facts from assumptions
+- Never request or expose secrets, GitHub tokens, PATs or Entra credentials.
+- Never invent undocumented commands or claim setup succeeded without validation output.
+- Tools that create, update, close, resolve, set, add, remove or upsert mutate GitHub or server index: explicit user confirmation required before use. Destructive environment changes also require confirmation.
+- Prefer least-privilege, minimal-change hosted production setup: no Docker, local clone or env vars. No shared/service token; use caller's own per-request `X-GitHub-Token` identity/rate limit.
+- Do not suggest local stdio/full Docker stack except for service contributors; link that repo's `CONTRIBUTING.md`, do not embed contributor setup.
+- Prefer official docs and live `tools/list`; separate facts from assumptions. Bug flow produces draft, not publication authority.
+
+## Instructions
+
+1. Explain managed caching proxy over GitHub REST API: reads avoid repeated GitHub calls. Default cache TTL 300s; no cache-invalidation tool. When explaining tool areas, read `references/tool-inventory.md` for catalog; actual `tools/list` always wins over docs.
+2. When configuring hosted HTTP+OAuth or explaining authentication, read `references/vscode-mcp-config.md` for exact manual config (no one-click install), server URL and two auth layers: Equinor Entra authenticates MCP connection; per-request `X-GitHub-Token` carries caller's GitHub PAT. Both must be valid; `401` may come from either layer.
+3. Validate with observed output: `initialize` success, `tools/list` compared to actual returned names, then one non-destructive `tools/call` (e.g. `milestones` or `issue_get`) with non-empty result. Never assume fixed inventory or equate empty/failed response with success.
+4. On unauthenticated/rate-limited calls, `401`, repeated sign-in or stale results, read `references/vscode-mcp-config.md` troubleshooting map and apply in order. Persistent `401`/sign-in after re-authentication is setup bug, not known transient issue. Stale results self-clear after TTL; do not invent invalidate-cache tool.
+5. On setup failure or bug request, read `assets/bug-report-template.md.hbs` header, `assets/partials/agent-content/README.md` fill rules and named partials `assets/partials/agent-content/banner.hbs`, `assets/partials/agent-content/details.hbs`, `assets/partials/agent-content/references.hbs`. Fill by hand; no renderer ships. Default target `equinor/fusion-pm-mcp`; include repro, expected/actual, attempted troubleshooting, non-sensitive OS/VS Code details only. Never include GitHub/PAT/Entra values.
+6. State uncertainty/private-repo assumptions explicitly; cite authoritative docs instead of guessing.
+
+## Expected output
+
+Short explanation, tailored hosted setup, observed validation checklist, symptom-mapped troubleshooting, conditional bug draft, and explicit assumptions/missing information.

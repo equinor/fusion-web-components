@@ -1,5 +1,17 @@
 # Service-mode skill contract
 
+## Contents
+
+- [1. Activation](#1-activation)
+- [2. Input: given, not asked](#2-input-given-not-asked)
+- [3. Decisions belong to the maintainer](#3-decisions-belong-to-the-maintainer)
+- [4. Allowed and not allowed](#4-allowed-and-not-allowed)
+- [5. Stop rules](#5-stop-rules)
+- [6. Output: one proposal per fingerprint](#6-output-one-proposal-per-fingerprint)
+- [7. Fingerprints](#7-fingerprints)
+- [8. Example](#8-example)
+- [Making a skill service-ready](#making-a-skill-service-ready)
+
 Contract id: `fusion-service-mode/1`.
 
 How a skill behaves when an unattended service (for example the Fusion Greenkeeper) runs it with no

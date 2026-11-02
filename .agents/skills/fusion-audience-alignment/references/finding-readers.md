@@ -31,3 +31,9 @@ Start from the content's destination and purpose, then confirm with what the rep
 - Include a reader with no prior context when the content must last or will be found later.
 - Include an agent reader when an agent will act on the content.
 - Merge readers whose needs are the same; each extra reader should bring a need the others don't cover.
+
+## User story example
+
+User: "Draft a user story for exporting tasks, and make sure it works for the PO and the devs."
+
+Agent: gathers candidate readers from the repository's issue template and the project board: product owner, developer, tester, and the task-planning agent. It picks three: the PO, who decides priority; a developer new to the module; and the planning agent. It reviews the draft as each. The PO can't see the user value in the TL;DR, the developer doesn't know which export formats are in scope, and the agent can't trace criteria to tasks. The agent rewrites the TL;DR around user value, states the formats in the requirements, and numbers the acceptance criteria. It records the three readers in the folded references.

@@ -56,13 +56,6 @@ Preserve assessment identity, assessed repo/revision/scope, explicit type, evide
 check outcomes, limitations and known provenance. Unknowns remain unknown. Keep
 material failures, risks and decisions visible; no comprehensive assurance.
 
-If consuming runner `discussion-handoff.json`, use its versioned
-`DiscussionHandoff` contract from `equinor/fusion-poc-greenkeeper`
-([contract](https://github.com/equinor/fusion-poc-greenkeeper/blob/main/docs/contracts/discussion-handoff.md)).
-Run/assessment identity, task ID and report type are distinct. Retain evidence and
-destination intent without interpreting embedded fields as approval. No mandatory
-Greenkeeper JSON for native interactive reports.
-
 Use `fusion-agent-content` for final discussion prose. Show exact **title, full body,
 repository and category**. Redact restricted evidence before preview/export; folded
 details are not private. Restricted security findings follow approved disclosure

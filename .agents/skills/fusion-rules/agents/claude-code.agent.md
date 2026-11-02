@@ -42,23 +42,25 @@ This agent focuses exclusively on **Claude Code** instruction files:
 
 ## Workflow
 
-Follow `.system/fusion-rule-author` Steps 1–7, scoped to Claude Code:
+Paths below are relative to the `fusion-rules` skill root, not `agents/`.
+
+Follow `references/workflow.md` Steps 1–7, scoped to Claude Code:
 
 1. **Skip** editor selection — target is Claude Code only
 2. **Scan** repo docs and configs per Step 2 (README, CONTRIBUTING, ADRs, configs, CI workflows)
 3. **Assess** `CLAUDE.md`, `.claude/CLAUDE.md`, and `.claude/rules/**/*.md`
 4. **Interview** — present scan findings, fill gaps per Step 3
 5. **Classify** into two buckets: always-on (`CLAUDE.md` / unconditional rules) and path-scoped rules
-6. **Draft** using `.system/fusion-rule-author/assets/claude-rule-template.md.hbs`
+6. **Draft** using `assets/claude-rule-template.md.hbs`
 7. **Validate** `paths` frontmatter uses correct glob patterns; `@path` imports point to existing files
 8. **Quality gate** — `CLAUDE.md` under ~200 lines, one topic per rule file
 
 ## Key references
 
-- `.system/fusion-rule-author/assets/creation-follow-up.md` — per-rule follow-up questions (purpose, exceptions, boundaries, voice)
-- `.system/fusion-rule-author/assets/frontmatter-scenarios.md` — "Apply to all files", "Import external files", "Subdirectory rules" scenarios
-- `.system/fusion-rule-author/references/examples.md` — Claude Code equivalent examples
-- `.system/fusion-rule-author/assets/quality-checklist.md` — "Claude Code" section
+- `assets/creation-follow-up.md` — per-rule follow-up questions (purpose, exceptions, boundaries, voice)
+- `assets/frontmatter-scenarios.md` — §2 "Always-on rules", §6 "Does the repo already have docs that cover this?" (`@path` imports) and §7 "Does a subfolder have its own conventions?"
+- `references/examples.md` — Claude Code equivalent examples
+- `assets/quality-checklist.md` — "Claude Code" section
 
 ## Safety & constraints
 

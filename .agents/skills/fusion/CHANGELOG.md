@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.6 - 2026-11-01
+
+### patch
+
+- [#395](https://github.com/equinor/fusion-skills/pull/395) [`41ebc0f`](https://github.com/equinor/fusion-skills/commit/41ebc0fcdd462e138d299bd9a784e65f900b40bb) - Defer first-contact example until exploratory requests and tighten router prose while keeping catalog fallbacks and routing gates.
+
+
+  resolves equinor/fusion-core-tasks#2686
+
+## 0.1.5 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten cross-domain routing wording while keeping ambiguous requests, where-to-start guidance, missing-skill installation and direct-lifecycle exclusions.
+
+
+  refs equinor/fusion-core-tasks#2670
+
 ## 0.1.4 - 2026-10-22
 
 ### patch

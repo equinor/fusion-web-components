@@ -1,10 +1,10 @@
 ---
 name: fusion-github-review-resolution
-description: "Resolves unresolved GitHub PR review threads end-to-end: evaluates whether each review comment is correct, applies a targeted fix when valid, replies with rationale when not, commits, and resolves the thread. USE FOR: unresolved review threads, PR review feedback, changes requested PRs, PR review URLs (#pullrequestreview-...), fix the review comments, close the open threads, address PR feedback. DO NOT USE FOR: summarizing feedback without code changes, creating new PRs, or read-only branches."
+description: 'Resolves GitHub PR review threads by judging feedback, fixing valid concerns and replying before resolution. USE FOR: unresolved review threads, changes requested, fix review comments, PR review URLs (#pullrequestreview-...). DO NOT USE FOR: feedback summaries, new PRs, dependency verdicts (use fusion-dependency-review), read-only branches or unconfirmed mutations.'
 license: MIT
 compatibility: Requires GitHub MCP server or gh CLI, and git.
 metadata:
-   version: "0.2.2"
+   version: "0.2.4"
    status: experimental
    owner: "@equinor/fusion-core"
    skills:
@@ -23,223 +23,133 @@ metadata:
 
 ## When to use
 
-Use this skill when a pull request has unresolved inline review comments and you need a repeatable, auditable closure workflow.
-
-Typical triggers (skill should activate on all of these):
-
-**URL patterns — activate immediately:**
-- `https://github.com/<owner>/<repo>/pull/<number>#pullrequestreview-<id>`
-- `https://github.com/<owner>/<repo>/pull/<number>` (when context implies review work)
-
-**Explicit user requests:**
-- "Fix the review comments"
-- "Address the review feedback on this PR"
-- "There are unresolved review comments — fix them"
-- "Resolve the conversations on this PR"
-- "Handle all unresolved comments on this PR"
-- "For each review comment: fix, test, commit, reply, resolve"
-- "Close the open review threads"
-- "Check this review and resolve the conversation when fixed"
-- "Resolve outstanding review feedback"
-- "The PR has changes requested — fix it"
-
-**Implicit / agent-detected:**
-- A PR is in "changes requested" state and the agent is asked to work on it
-- A PR has unresolved review threads and the user asks to improve or merge the PR
-- An agent working on a PR detects open review conversations
+- Unresolved inline review threads, review feedback or changes requested; includes open conversations found while
+  working on, improving or merging a PR.
+- Activate immediately for `https://github.com/<owner>/<repo>/pull/<number>#pullrequestreview-<id>` or
+  `https://github.com/<owner>/<repo>/pull/<number>` when context implies review work.
+- When intent is unclear, read `references/activation-examples.md` for explicit and implicit request examples.
 
 ## When not to use
 
-- No unresolved review comments exist
-- Request is only to summarize or describe feedback without code changes
-- All targeted threads are already resolved or outdated and acknowledged
-- Branch/worktree is intentionally read-only
+- No unresolved comments; targeted threads already resolved or outdated and acknowledged; summary-only requests;
+  intentionally read-only branch/worktree.
+- Dependency verdicts or new PRs, rather than review-thread remediation.
 
 ## Required inputs
 
-Collect before execution:
-- repository owner/name
-- pull request number or URL
-- optional review id to scope comments (e.g. `pullrequestreview-<id>`)
-- branch/worktree decision (skip asking if the current checkout is already on the PR's head branch — see step 1)
-- required validation commands for the repository
-
-> **When a review URL is provided** (`github.com/<owner>/<repo>/pull/<number>#pullrequestreview-<id>`),
-> auto-extract owner, repo, PR number, and review id from it.
-> Only branch/worktree choice and validation commands still need confirming.
-
-Optional:
-- linked issue reference (e.g. `equinor/fusion-core-tasks#432`)
-- commit granularity preference when comments overlap the same file
-
-## Instructions
-
-Follow this phase order unless the user explicitly asks for a different sequence: fetch → analyze → fix → validate → push → reply → resolve → verify. Do not interleave GitHub thread mutations with code-editing retries.
-
-1. Determine branch/worktree context
-   - Check the current checkout's branch against the PR's head branch first.
-   - If the current branch already matches the PR's head branch, proceed directly there — do not ask about a worktree.
-   - Otherwise (current branch differs, or the workspace is on a shared/long-lived branch like `main`/`master`), ask whether to use a dedicated git worktree before any other workflow questions.
-   - If yes, use/create the worktree and continue there.
-
-2. Gather unresolved comments and create working tracker
-   - If a review URL with `#pullrequestreview-<id>` was provided, parse owner, repo, PR number, and review id from it before fetching.
-   - **Copy or open `assets/review-resolution-checklist.md`—this becomes your working document.** Fill in the context section and update the comment tracking table as you work through each thread.
-   - Draft replies from `assets/replies/fixed.md.hbs` or `assets/replies/declined.md.hbs`. Read the `.hbs` slot header, `assets/partials/agent-content/README.md`, and every named partial before filling; no renderer ships with the skill.
-   - Fetch review threads for the PR and filter unresolved threads.
-   - If a specific review id or review URL is provided, limit to comments from that review.
-   - Within the targeted review, collect all comments associated with that review id (do not include replies from other reviews unless explicitly requested).
-   - Build a working list with: thread id, comment id, parent review id, file path, original comment body, and all subsequent replies in that thread (including contributor replies).
-   - Read the full reply chain for each thread — contributors may have added clarifications, constraints, or additional context that must be taken into account when deciding how to resolve the comment.
-   - Capture a baseline list of targeted thread ids and unresolved-thread count before any GitHub mutation.
-
-3. Understand, research, and judge each comment
-   - Read the referenced file(s) and nearby logic.
-   - Decide whether the feedback is correct, partially correct, outdated, or incorrect against the current code, requirements, and surrounding context.
-   - Reviewers are not automatically correct; do not make code churn just to satisfy a comment that is stale or wrong.
-   - If the feedback is correct, verify root cause and identify the smallest safe fix.
-   - If the feedback is clearly incorrect or outdated, prepare a concise evidence-based reply instead of changing code unnecessarily.
-   - If uncertain, inspect adjacent tests/usages before editing.
-   - If doubt remains after local research, ask the user before making code changes or mutating that review thread.
-
-4. Fix, check, commit (per comment)
-   - Apply focused code/doc changes only for comments you judged valid or partially valid.
-   - Run targeted checks first, then required repo checks.
-   - Create one commit per comment when practical.
-   - If two comments require one inseparable change, use one commit and map both comments to that commit in replies.
-   - For comments you decline, record the reasoning in the tracker so the eventual reply is explicit and auditable.
-
-5. Push once after all fixes
-   - After all comment-related commits are created, push branch updates once.
-
-6. Reply and resolve each review comment
-   - Before any thread mutation, prefer structured tooling in this order:
-     1. dedicated GitHub MCP review-thread reply/resolve tools exposed in the current client session,
-     2. the bundled GraphQL assets or bundled `scripts/resolve-review-comments.sh`,
-     3. never ad hoc temporary Python scripts, one-off batch helpers, or blind `gh api` retry loops.
-   - Prepare exactly one planned reply per targeted thread from the checklist/tracker before posting anything.
-   - Re-fetch the current thread state before retrying if a reply/resolve attempt errors, times out, or returns an uncertain result.
-    - For each thread, these two steps are mandatory and must happen together in order unless the thread is still uncertain and waiting for user input:
-       1. **Post a reply** on the thread: either describe what changed and include the commit hash(es), or explain why no code change was made because the comment is incorrect/outdated.
-       2. **Resolve the thread** immediately after the reply is posted — never before.
-   - Post at most one reply attempt per thread per run.
-   - If an equivalent agent-authored reply already exists, do not post another reply; reuse it and only resolve if the thread is still unresolved.
-   - If a different agent-authored reply already exists, stop and inspect manually rather than stacking another comment.
-    - Do not resolve a thread that is still uncertain; escalate it to the user first.
-   - Never resolve a thread without a reply. Never post a reply without then resolving the thread.
-   - Keep replies specific: name the file/line changed and the commit, not just "fixed". Write them in the shape described in [Human-first replies](#human-first-replies).
-
-7. Verify closure state
-   - Re-check review threads and confirm no targeted unresolved threads remain.
-   - Confirm the targeted unresolved-thread count dropped to zero and no duplicate agent replies were created during this run.
-   - Re-check latest CI status if the workflow expects green checks.
-
-8. Ask whether to request a new review from the original review author
-   - After fixes are pushed and threads are resolved, ask if the user wants to request a new review from the author of the review comments.
-   - If yes, request review from that reviewer username and report that the request was sent.
-
-9. Optional scripted execution
-   - Use `scripts/get-review-comments.sh` to fetch matching review comments (including sub-comments associated with the review id).
-   - Results are limited to the first 100 review threads and first 100 comments per thread.
-   - Example test:
-      - `skills/.experimental/fusion-github-review-resolution/scripts/get-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674`
-   - Use `--include-outdated` when you need comments from outdated matching threads.
-   - Use `scripts/resolve-review-comments.sh` to reply+resolve matching threads with a dry-run-first duplicate-reply guard.
-   - Keep default dry-run behavior; use `--apply` only after fixes are committed and pushed.
-   - By default the script refuses to add another authenticated-user reply to a thread that already contains one; use `--allow-additional-reply` only after manual inspection.
-   - Example dry-run:
-      - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --include-resolved`
-   - Example apply (write the multi-line reply to a file first, so the banner and any `<details>` block survive):
-      - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --apply --message-file reply.md`
-
-## Human-first replies
-
-Write every thread reply for the reviewer, not for an agent. When `fusion-agent-content` is installed, use it; otherwise follow this shape:
-
-- First line: `<sub>🤖 Drafted by <agent> (<tool>) · <model> · <effort> reasoning</sub>`, filled from runtime metadata and never guessed (write `model not reported` when unknown).
-- Then one to three sentences: the decision (fixed, partly fixed, or declined), the reason, and the commit that addresses it. A reply this short needs no TL;DR.
-- Fold anything longer (test output, extended reasoning, links) into one `<details><summary>Evidence</summary>` block.
-- Any summary comment or report this skill posts uses the full `fusion-agent-content` shape: banner, quoted `> **TL;DR:**`, prose, folded Details, folded References and evidence.
-
-```markdown
-<sub>🤖 Drafted by fusion-developer (GitHub Copilot) · claude-opus-5.5 · high reasoning</sub>
-
-Fixed in abc1234: `parseConfig` now returns early on an empty file, as suggested.
-
-<details>
-<summary>Evidence</summary>
-
-`bun test config` passes, including the new empty-file case.
-</details>
-```
-
-## Tooling map (MCP vs GraphQL)
-
-Use GitHub MCP tools for high-level PR operations and any dedicated review-thread mutations the current client exposes. Use GraphQL for thread-level review operations when MCP coverage is missing.
-
-| Workflow action | Preferred tool | Notes |
-|---|---|---|
-| Request reviewer / update PR metadata | `mcp_github_update_pull_request` | Works for collaborator reviewers and standard PR updates. |
-| Create or submit PR review | `mcp_github_pull_request_review_write` | Handles pending review lifecycle actions. |
-| Add general PR comment | `mcp_github_add_issue_comment` | Adds issue-style comment to PR conversation, not inline thread reply. |
-| List review threads and comments | `assets/pull-request-review-threads.graphql` | Use with `gh api graphql -f query=@assets/pull-request-review-threads.graphql` for thread-level context. |
-| Count unresolved threads for specific review id | `assets/unresolved-thread-count-for-review.graphql` | Post-process response (for example with `jq`) to filter by review id and unresolved state. |
-| Reply to a review thread | `Dedicated MCP review-thread reply tool`, otherwise `assets/add-pull-request-review-thread-reply.graphql` | Prefer the MCP tool when available; otherwise use the bundled thread-scoped mutation instead of ad hoc scripts. |
-| Resolve a review thread | `Dedicated MCP review-thread resolve tool`, otherwise `assets/resolve-review-thread.graphql` | Use the matching structured tool for the current client/session. ⚠️ GraphQL note: `resolveReviewThread` uses `threadId`, not `pullRequestReviewThreadId`. |
-| List PR reviews (review URL/id lookup support) | `assets/pull-request-reviews.graphql` | Useful when starting from review URL context. |
-
-> **Pro tip:** See each `.graphql` file in assets for complete mutation/query syntax and parameter names.
-
-### GraphQL cost awareness
-
-Review-resolution workflows make multiple GraphQL mutation calls (reply + resolve per thread). Be conservative:
-
-- Mutations cost 5 secondary-limit points each (vs 1 for read queries). Budget accordingly when processing many threads.
-- Pause at least 1 second between consecutive mutation calls to avoid secondary rate limits.
-- Keep `first`/`last` connection arguments small (prefer `first: 100` only when you need all threads in a single page).
-- If a secondary rate-limit error or `retry-after` header is returned, stop processing and respect the indicated wait before retrying.
-- Always prefer a dedicated MCP review-thread tool over raw GraphQL when the client exposes one.
-
-### Token budget guidance
-
-- Fetch the full thread list once and reuse it for all per-thread work; do not re-fetch threads between reply and resolve.
-- Budget estimate: for N unresolved threads expect ~1 list call + N reply mutations + N resolve mutations = 1 + 2N calls. A 10-thread review costs ~21 calls.
-- If the thread count exceeds 15, warn the user about rate-limit risk before starting mutations and offer to batch in smaller groups.
-- Cache PR metadata (title, branch, CI status, changed files) from the first fetch and reuse it for commit messages and replies.
-- Avoid redundant PR-level reads between steps; the data does not change within a single resolution run.
-
-## Expected output
-
-Return a concise report containing:
-- comments processed count,
-- disposition summary (fixed, declined with rationale, escalated to user),
-- files changed,
-- commit list (hash + message),
-- validation commands run and outcomes,
-- confirmation of push,
-- reply/resolve confirmation per thread,
-- completed checklist location,
-- any remaining unresolved threads or blockers.
-
-## Linked issue usage
-
-When an issue is provided (for example `equinor/fusion-core-tasks#432`):
-- mention the issue in progress/final summaries,
-- keep implementation aligned with issue scope,
-- avoid expanding to unrelated PR automation.
+Owner/name, PR number/URL, optional review id (`pullrequestreview-<id>`), head/worktree choice and required checks.
+Extract URL identifiers; confirm remaining inputs. Already on PR head: skip worktree question.
+Optional: linked issue and commit granularity when comments overlap.
 
 ## Safety & constraints
 
 - This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
-- Never expose secrets or tokens in logs/replies.
-- Prefer argv-based process execution over shell-interpolated command strings.
-- Keep diffs minimal and scoped to review feedback.
-- Do not assume review feedback is correct; reason about it against the code and requirements first.
-- If a comment remains ambiguous after research, ask the user instead of guessing.
-- Do not resolve a thread without posting a concrete fix reply.
-- Do not claim checks passed unless commands were actually run.
-- Do not force-push; use regular commits and a single push after all fixes.
-- If a comment is outdated but still unresolved, either:
-  - resolve with a clear explanation and commit reference, or
-  - leave unresolved and report why.
-- In scripted mode, keep default dry-run behavior and require explicit `--apply` for mutations.
+- Defer commit conventions/granularity, validation, changesets, PR rules and branch-refresh policy to
+  repository-local instructions at use.
+- Require explicit user confirmation before push, thread reply/resolution or review requests. Stop without approval;
+  `--apply` is not consent.
+- Never expose secrets/tokens in logs/replies. Prefer argv-based execution over shell-interpolated commands.
+- Keep diffs scoped; escalate ambiguity before edits/writes. Do not resolve a thread that is still uncertain.
+- Before reply/resolution, fixes must be committed, validated and available on PR head. No fabricated check results
+  or force-push; regular commits, one push.
+- Draft replies before mutations. Re-fetch thread state after errors, timeouts or uncertain results before retrying;
+  no blind retries or stacked replies. Report failed/unresolved state rather than claiming closure.
+- Keep script dry-run default; explicit `--apply` only after committed/pushed fixes and approval.
+  `--allow-additional-reply` requires manual inspection.
+- Bundled queries/scripts cap first 100 threads and first 100 comments per thread; don't claim exhaustive closure
+  from incomplete data.
+- Pause at least 1 second between consecutive mutations. Stop on secondary rate limits and respect `retry-after`.
+  Above 15 threads, warn before writes and offer smaller batches.
+
+## Instructions
+
+Follow this phase order unless user explicitly requests another:
+fetch → analyze → fix → validate → push → reply → resolve → verify. Do not interleave GitHub thread mutations with
+code-editing retries.
+
+1. Determine branch/worktree context
+   - Compare current branch with PR head. Already matched: proceed without worktree question.
+   - Otherwise, including shared `main`/`master`, ask about dedicated git worktree before other workflow questions;
+     use/create it if chosen.
+
+2. Gather unresolved comments and create working tracker
+   - Copy/open `assets/review-resolution-checklist.md`; fill context and update each thread's tracking row
+     throughout.
+   - Fetch once, scope original comments to supplied review id, and capture targeted ids/unresolved count before
+     writes.
+   - Record thread/comment/parent review ids, path, original body and all subsequent replies. Read full chains,
+     including contributor clarifications; scoping originals must not discard context.
+   - Cache PR title/branch/CI/changed files. Reuse reads; none between reply and resolve except failure
+     reconciliation.
+
+3. Understand, research, and judge each comment
+   - Read files/nearby logic; classify correct, partially correct, outdated or incorrect against current
+     code/requirements. Reviewers are not automatically correct; avoid stale/wrong-feedback churn.
+   - Valid: verify root cause and smallest safe fix. If the feedback is clearly incorrect or outdated, draft
+     evidence-based rationale instead of code changes.
+   - Uncertain: inspect adjacent tests/usages. If doubt remains after local research, ask the user before edits or
+     thread mutation.
+
+4. Fix, check, commit (per comment)
+   - Fix valid/partial concerns only; targeted checks first, then required repository checks.
+   - One commit per comment when practical; inseparable comments may share a commit, mapped in both replies. Record
+     declined rationale in tracker.
+
+5. Push once after all fixes
+   - After all commits and checks, confirm and push branch updates once.
+
+6. Reply and resolve each review comment
+   - Prefer dedicated current-session GitHub MCP reply/resolve tools, then bundled GraphQL assets or
+     `scripts/resolve-review-comments.sh`; never ad hoc temporary Python scripts, one-off batch helpers or blind
+     `gh api` retry loops.
+   - Prepare exactly one planned reply per targeted thread. Post at most one reply attempt per thread per run.
+   - Equivalent agent reply exists: reuse and resolve only if still open. Different reply: stop and inspect
+     manually.
+   - Reply with file/line/change/commit hashes or incorrect/outdated rationale; resolve immediately after, never
+     before or without reply. Never post a reply without then resolving the thread; uncertain/failed outcomes use
+     reconciliation gate above.
+   - For missing MCP coverage, read `references/review-tooling.md` for tool map, GraphQL syntax and cost detail. For
+     reads, use `assets/pull-request-review-threads.graphql` (full threads),
+     `assets/unresolved-thread-count-for-review.graphql` (first comment per thread; filter by review ID and
+     `isResolved` yourself, it is not scoped), or `assets/pull-request-reviews.graphql` (review lookup) as needed.
+   - For approved GraphQL writes, read `assets/add-pull-request-review-thread-reply.graphql` and
+     `assets/resolve-review-thread.graphql` for reply and resolution syntax.
+
+7. Verify closure state
+   - Re-check targeted threads: unresolved count zero and no duplicate agent replies from this run. Re-check latest
+     CI when workflow expects green checks.
+
+8. Ask whether to request a new review from the original review author
+   - After push and resolution, ask; only if approved, request original reviewer's username and report sent status.
+
+## Optional scripted execution
+
+When choosing scripts, read `references/review-tooling.md` for prerequisites, intact examples and filters.
+`scripts/get-review-comments.sh` fetches matching comments; `--include-outdated` includes outdated matches.
+`scripts/resolve-review-comments.sh` defaults to guarded dry-run; apply gates above.
+
+Script inputs: `--owner`, `--repo`, `--pr`, `--review-id`; `--include-resolved` inspects resolved threads;
+`--message-file` preserves multiline replies.
+
+## Human-first replies
+
+When drafting a valid/partial reply, read `assets/replies/fixed.md.hbs`; for incorrect/outdated feedback, read
+`assets/replies/declined.md.hbs`. Read selected `.hbs` slot header, `assets/partials/agent-content/README.md`, and
+named `assets/partials/agent-content/banner.hbs`, `assets/partials/agent-content/details.hbs`,
+`assets/partials/agent-content/references.hbs`; fill manually, no renderer.
+
+Use installed `fusion-agent-content`; if absent, read `references/reply-format.md` for standalone reply/report
+shape and example. No guessed model/effort; `model not reported` when unknown. Keep decision/reason/commit visible;
+fold long evidence.
+
+## Expected output
+
+Report processed counts/dispositions (fixed, declined rationale, escalated), files, commit hashes/messages,
+checks/outcomes, push status, per-thread reply/resolution confirmations, checklist path and unresolved
+threads/blockers.
+
+## Linked issue usage
+
+When supplied (for example `equinor/fusion-core-tasks#432`), mention issue in progress/final reports, stay within
+scope and avoid unrelated PR automation. Outdated unresolved threads: explain with commit reference or leave open
+and report why.

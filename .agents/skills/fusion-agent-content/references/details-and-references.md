@@ -20,7 +20,7 @@ Markdown here renders normally, because of the blank line after the summary.
 
 - Implementation notes, file inventories, and design alternatives considered.
 - Commands run and their full output.
-- Raw data, long tables, logs, and screenshots that support a claim.
+- Raw data, supporting tables such as per-item validation, logs, and screenshots that support a claim. A table that is the content, such as the item list of a combined PR, stays visible.
 - Checklists meant for agents or for auditing the process.
 
 Fold a block inside the section it supports when it belongs there, such as validation output under "How it was tested". Otherwise put details just before the references block.

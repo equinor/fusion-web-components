@@ -1,6 +1,14 @@
 # Reviewed common workflow lifecycle
 
-Load [catalogue](common-workflows.md), then only selected [APM](sync-workflows.md),
+## Contents
+
+- [Inspect before proposing](#inspect-before-proposing)
+- [Initial setup](#initial-setup)
+- [Repeat setup and versioned updates](#repeat-setup-and-versioned-updates)
+- [Unknown provenance and conflicts](#unknown-provenance-and-conflicts)
+- [Worked examples](#worked-examples)
+
+Reuse selected [catalogue](common-workflows.md) and [APM](sync-workflows.md),
 [single-app](app-deployment.md), [Changesets monorepo](app-monorepo-deployment.md),
 [Copilot setup](copilot-setup.md) or [Dependabot](dependabot.md) guide. No automatic consumer rollout.
 

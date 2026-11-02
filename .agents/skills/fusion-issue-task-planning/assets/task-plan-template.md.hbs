@@ -1,8 +1,7 @@
 {{!--
 Task plan draft; publishing still requires explicit confirmation.
-draftingMode: orchestrated | direct-subordinate | inline
+draftingMode: orchestrated | inline
 issueAuthoringAvailability: available | not installed
-issueAuthorTaskAvailability: available | not installed
 runMode: draft-only | draft+publish-ready | publish-now
 planningDepth: minimal | standard | detailed
 issue: full owner/repo#number reference
@@ -16,7 +15,7 @@ tasks: ordered list with number, objective, sequence, acceptanceCriteria, scopeB
 niceToHaveTasks: optional list with title and value; not drafted until selected
 dependencyNotes: list of dependencies with reasons
 taskIssueDrafts: list with path, title, sequence, dependsOn; paths use .tmp/TASK-NN-slug.md
-publishPath: orchestrated via fusion-issue-authoring (preferred sub-agent) | subordinate-draft via fusion-issue-author-task then publish via fusion-issue-authoring | draft-only handoff
+publishPath: orchestrated via fusion-issue-authoring (preferred sub-agent) | draft-only handoff
 postFlightReport: list with issue, exists (yes/no), type, parent, status (ok/fixed/failed)
 assumptions: list of explicit assumptions
 blockers: optional list with what, why, nextAction
@@ -35,7 +34,6 @@ EXPERIMENTAL: This workflow is not yet stable and may change.
 ## Skill availability
 - Drafting mode: {{draftingMode}}
 - `fusion-issue-authoring`: {{issueAuthoringAvailability}}
-- `fusion-issue-author-task`: {{issueAuthorTaskAvailability}}
 
 ## Run mode
 - Mode: {{runMode}}

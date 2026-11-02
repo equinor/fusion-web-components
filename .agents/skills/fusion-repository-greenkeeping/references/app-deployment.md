@@ -1,5 +1,13 @@
 # Fusion app deployment workflows
 
+## Contents
+
+- [Shared action](#shared-action)
+- [Prerequisites](#prerequisites)
+- [Single-app inputs](#single-app-inputs)
+- [Runtime contract](#runtime-contract)
+- [Sources](#sources)
+
 Both app templates delegate OIDC and publication to maintained Fusion action; no
 custom authentication or publication code.
 

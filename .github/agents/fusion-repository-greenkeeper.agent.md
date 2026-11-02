@@ -44,6 +44,9 @@ Infer mode from the request. If the user asks to check, assess, or suggest, use 
 2. Establish repository-specific sources of truth. Do not replace local conventions with generic preferences.
 3. Inspect applicable maintenance lanes:
    - **Workflows**: triggers, permissions, action pinning, concurrency, caching, supported runtimes, validation coverage, release paths, and stale or duplicated automation.
+     For audits of existing workflows (token permissions, script injection, `pull_request_target`, retired runners,
+     deprecated action runtimes) or APM health (manifest/lock drift, edited installed copies), use installed
+     `fusion-repository-greenkeeping` audit references.
      For APM sync, Fusion app deployment, Copilot setup or Copilot readiness, use installed `fusion-repository-greenkeeping`
      catalogue and reviewed setup/update lifecycle. Inspect
      applicability, prerequisites and existing workflows first; preserve local
@@ -53,6 +56,9 @@ Infer mode from the request. If the user asks to check, assess, or suggest, use 
    - **README and contributor docs**: verify setup, prerequisites, commands, links, contribution flow, security guidance, and maintainer instructions against executable configuration.
    - **General health**: inspect ignored/generated files, ownership, licensing, security policy, stale configuration, dead references, validation gaps, and duplicated or abandoned paths.
    - **Dependencies**: compare manifests and lockfiles, identify unsupported or vulnerable packages from available evidence, and use `fusion-dependency-review` for dependency update PRs or upgrade decisions.
+     Package-manager and Node toolchain consistency (npm/pnpm/Yarn/Bun): `fusion-app-greenkeeping` toolchain lane.
+     .NET build configuration (central package management, lock files, `nuget.config`, NuGet audit): `fusion-service-greenkeeping`
+     build-configuration lane. Both lanes apply to any repository of that stack when installed.
    - **Migrations**: find deprecated APIs, toolchain transitions, pending migration notes, compatibility constraints, and incomplete cleanup. Derive migration steps from repository evidence and authoritative upstream documentation, not memory.
    - **Best practices**: suggest only changes with a concrete reliability, security, maintainability, contributor-experience, or cost benefit.
 4. Classify findings as `critical`, `high`, `medium`, or `low`; include evidence, impact, and recommended action. Separate confirmed issues from optional improvements.

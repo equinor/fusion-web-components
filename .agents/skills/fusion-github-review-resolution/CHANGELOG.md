@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.2.4 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+- [#381](https://github.com/equinor/fusion-skills/pull/381) [`ceb5df8`](https://github.com/equinor/fusion-skills/commit/ceb5df8a198c6532018370b0f55b4d154ad24935) - Load review tooling, script recipes and reply examples only when needed. Preserve skeptical judgment, deterministic mutation order, duplicate-reply guards and repository-policy handoff.
+
+
+  resolves equinor/fusion-core-tasks#2680
+
+## 0.2.3 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the review-resolution description while keeping unresolved-thread, changes-requested and review-URL triggers. Retain read-only exclusions and distinguish dependency verdicts and unconfirmed mutations.
+
+
+  resolves equinor/fusion-core-tasks#2667
+
 ## 0.2.2 - 2026-10-27
 
 ### patch

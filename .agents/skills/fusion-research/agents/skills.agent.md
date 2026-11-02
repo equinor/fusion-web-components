@@ -28,7 +28,7 @@ Summary:
 ## Process
 
 1. Confirm the question is catalog research, not a lifecycle operation or an implementation question.
-   - If the user wants to install, update, or remove a skill, redirect to `fusion-discover-skills`.
+   - If the user wants to install, update, or remove a skill, redirect to `fusion-skills`.
    - If the user wants to create or edit skill files, redirect to `fusion-skill-authoring`.
 2. Choose the query intent above.
 3. Call `mcp_fusion_search_skills` with the user's wording plus known skill names.

@@ -3,10 +3,10 @@ description: General setup of node
 inputs:
   node-version:
     description: Node.js version to use
-    default: '24'
+    default: "24"
   turbo-cache:
     description: Enable turbo cache setup
-    default: 'false'
+    default: "false"
   registry-url:
     description: npm registry URL
     default: https://registry.npmjs.org
@@ -14,13 +14,12 @@ inputs:
 runs:
   using: composite
   steps:
-
     - uses: pnpm/action-setup@v4
 
     - uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'pnpm'
+        cache: "pnpm"
         registry-url: ${{ inputs.registry-url }}
 
     # - name: enable turbo cache

@@ -3,6 +3,7 @@
 [![Published on npm](https://img.shields.io/npm/v/@equinor/fusion-wc-theme.svg)](https://www.npmjs.com/package/@equinor/fusion-wc-theme)
 
 ## Install
+
 ```sh
 npm install @equinor/fusion-wc-theme
 ```

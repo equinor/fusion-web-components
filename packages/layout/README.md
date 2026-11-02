@@ -32,15 +32,15 @@ import '@equinor/fusion-wc-layout';
 
 ## Properties
 
-| Property | Attribute | Type | Default | Description |
-| --- | --- | --- | --- | --- |
+| Property  | Attribute | Type      | Default | Description                                                |
+| --------- | --------- | --------- | ------- | ---------------------------------------------------------- |
 | `sidebar` | `sidebar` | `boolean` | `false` | Enables the sidebar column and renders the `sidebar` slot. |
 
 ## Slots
 
-| Slot | Description |
-| --- | --- |
-| `content` | Primary application content. Slotted content is stretched to the full layout height. |
+| Slot      | Description                                                                                    |
+| --------- | ---------------------------------------------------------------------------------------------- |
+| `content` | Primary application content. Slotted content is stretched to the full layout height.           |
 | `sidebar` | Optional secondary content. Rendered only when the `sidebar` property or attribute is enabled. |
 
 ## Examples

@@ -4,6 +4,7 @@
 ## [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-chip)
 
 ## Installation
+
 ```sh
 npm install @equinor/fusion-wc-chip
 ```

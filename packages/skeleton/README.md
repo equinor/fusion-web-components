@@ -4,9 +4,11 @@
 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs/data-skeleton)
 
 ## Installation
+
 ```sh
 npm install @equinor/fusion-wc-skeleton
 ```
 
 ## Skeleton `<fwc-skeleton>`
+
 <!--prettier-ignore-end-->

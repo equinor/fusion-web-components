@@ -78,25 +78,25 @@ The provider is usually delivered by the portal or cli. but you can also create 
 
 ### fwc-people-picker
 
-| Property | Type | Description |
-| ---------- | ------ | ------------- |
-| `people` | `PersonInfo[]` | Array of PersonInfo objects to set as selected people in the picker. Mostly used when using PersonPicker as a controlled component. |
-| `resolveIds` | `string[]` | Array of person azureIds to pre-resolve and display as selected people. PS: will only resolve on mount. |
-| `placeholder` | `string` | Placeholder text shown in the search input. |
-| `multiple` | `boolean` | Whether multiple people can be selected. Defaults to `true`. |
-| `showSelectedPeople` | `boolean` | Whether to show selected people below the input. Defaults to `true`. This must be paired with `multiple` to be effective. |
-| `subtitle` | `keyof PersonInfo` | Subtitle text field from PersonInfo displayed in the People Pills. |
-| `secondarySubtitle` | `keyof PersonInfo` | Secondary subtitle field from PersonInfo displayed in the search result list. |
-| `noResultTitle` | `string` | Title to show when suggest task has no results |
-| `noResultSubtitle` | `string` | Subtitle to show when suggest task has no results |
+| Property             | Type               | Description                                                                                                                         |
+| -------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `people`             | `PersonInfo[]`     | Array of PersonInfo objects to set as selected people in the picker. Mostly used when using PersonPicker as a controlled component. |
+| `resolveIds`         | `string[]`         | Array of person azureIds to pre-resolve and display as selected people. PS: will only resolve on mount.                             |
+| `placeholder`        | `string`           | Placeholder text shown in the search input.                                                                                         |
+| `multiple`           | `boolean`          | Whether multiple people can be selected. Defaults to `true`.                                                                        |
+| `showSelectedPeople` | `boolean`          | Whether to show selected people below the input. Defaults to `true`. This must be paired with `multiple` to be effective.           |
+| `subtitle`           | `keyof PersonInfo` | Subtitle text field from PersonInfo displayed in the People Pills.                                                                  |
+| `secondarySubtitle`  | `keyof PersonInfo` | Secondary subtitle field from PersonInfo displayed in the search result list.                                                       |
+| `noResultTitle`      | `string`           | Title to show when suggest task has no results                                                                                      |
+| `noResultSubtitle`   | `string`           | Subtitle to show when suggest task has no results                                                                                   |
 
 ### fwc-people-viewer
 
-| Property | Type | Description |
-| ---------- | ------ | ------------- |
-| `people` | `PersonInfo[]` | Array of PersonInfo objects to display in the viewer. |
-| `resolveIds` | `string[]` | Array of person azureIds to pre-resolve and display as selected people. PS: will only resolve on mount. |
-| `viewMode` | `'list \| table'` | The view mode to display the people in. Defaults to `'list'`. |
-| `showViewMode` | `boolean` | Whether to show the view mode selector. Defaults to `true`. |
-| `tableColumns` | `string[]` | Array of column names to display in the table. Defaults to `['avatar', 'name', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove']`. |
-| `subtitle` | `keyof PersonInfo` | Subtitle text field from PersonInfo displayed in the People Pills. |
+| Property       | Type               | Description                                                                                                                                                     |
+| -------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `people`       | `PersonInfo[]`     | Array of PersonInfo objects to display in the viewer.                                                                                                           |
+| `resolveIds`   | `string[]`         | Array of person azureIds to pre-resolve and display as selected people. PS: will only resolve on mount.                                                         |
+| `viewMode`     | `'list \| table'`  | The view mode to display the people in. Defaults to `'list'`.                                                                                                   |
+| `showViewMode` | `boolean`          | Whether to show the view mode selector. Defaults to `true`.                                                                                                     |
+| `tableColumns` | `string[]`         | Array of column names to display in the table. Defaults to `['avatar', 'name', 'type', 'email', 'mobilePhone', 'jobTitle', 'department', 'manager', 'remove']`. |
+| `subtitle`     | `keyof PersonInfo` | Subtitle text field from PersonInfo displayed in the People Pills.                                                                                              |

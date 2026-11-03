@@ -4,6 +4,7 @@
 [Storybook](https://equinor.github.io/fusion-web-components/?path=/docs//input-markdown-editor--basic)
 
 ### Installation
+
 ```sh
 npm install @equinor/fusion-wc-markdown
 ```
@@ -19,20 +20,22 @@ npm install @equinor/fusion-wc-markdown
 ```
 
 #### Usage
-```js 
+
+```js
 const markdown = "# my heading here";
 <fwc-markdown-editor value={markdown} onInput={(e)=>{console.log(e.target._value)}} change={console.log} />
 ```
 
 #### Properties/Attributes
-| Name | Type | Default | Description
-| ---- | ---- | ------- | -----------
-| `menuItems` | `Array<MdMenuItemType>*` | `['strong', 'em', 'bullet_list', 'ordered_list']` | List of visible menu buttons
-| `minHeight` | `string` | `''` | Markdown Editor minimum height
-| `value` | `string` | `''` | Markdown editors value
-| `menuSize` | `MenuSizes**` | `'medium'` | Size of the menu buttons
 
-\*  `Array<MdMenuItemType>` is list of showing visible menu buttons available as `MdMenuItemType`.
+| Name        | Type                     | Default                                           | Description                    |
+| ----------- | ------------------------ | ------------------------------------------------- | ------------------------------ |
+| `menuItems` | `Array<MdMenuItemType>*` | `['strong', 'em', 'bullet_list', 'ordered_list']` | List of visible menu buttons   |
+| `minHeight` | `string`                 | `''`                                              | Markdown Editor minimum height |
+| `value`     | `string`                 | `''`                                              | Markdown editors value         |
+| `menuSize`  | `MenuSizes**`            | `'medium'`                                        | Size of the menu buttons       |
+
+\* `Array<MdMenuItemType>` is list of showing visible menu buttons available as `MdMenuItemType`.
 ```ts
 type MdMenuItemType =
   | 'strong'
@@ -47,7 +50,7 @@ type MdMenuItemType =
   | 'h3';
 ```
 
-\*  `MenuSizes` type imported from markdown component.
+\* `MenuSizes` type imported from markdown component.
 ```ts
 type MenuSizes = 'small' | 'medium' | 'large';
 ```

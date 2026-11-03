@@ -50,7 +50,7 @@
     "@equinor/fusion-wc-icon": "workspace:^",
     "@equinor/fusion-web-theme": "^0.1.12",
     "lit": "3.3.3",
-    "marked": "^18.1.1",
+    "marked": "^18.1.2",
     "prismjs": "^1.29.0",
     "prosemirror-commands": "^1.7.2",
     "prosemirror-history": "^1.5.1",
@@ -62,7 +62,7 @@
     "prosemirror-schema-list": "^1.5.1",
     "prosemirror-state": "^1.4.4",
     "prosemirror-transform": "^1.12.4",
-    "prosemirror-view": "^1.42.7"
+    "prosemirror-view": "^1.42.8"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",

@@ -40,11 +40,11 @@ import '@equinor/fusion-wc-page';
 
 ## Slots
 
-| Slot | Description |
-| --- | --- |
-| `header` | Optional page header content, such as a title, navigation, or actions. |
-| `main` | Primary page content. This region fills the available space and scrolls vertically when content overflows. |
-| `footer` | Optional page footer content, such as status information or secondary actions. |
+| Slot     | Description                                                                                                |
+| -------- | ---------------------------------------------------------------------------------------------------------- |
+| `header` | Optional page header content, such as a title, navigation, or actions.                                     |
+| `main`   | Primary page content. This region fills the available space and scrolls vertically when content overflows. |
+| `footer` | Optional page footer content, such as status information or secondary actions.                             |
 
 ## Examples
 
@@ -88,11 +88,11 @@ import '@equinor/fusion-wc-page';
 import '@equinor/fusion-wc-page';
 
 export const ProjectPage = () => (
-	<fwc-app-page>
-		<div slot="header">Project details</div>
-		<div slot="main">Main content</div>
-		<div slot="footer">Status content</div>
-	</fwc-app-page>
+  <fwc-app-page>
+    <div slot="header">Project details</div>
+    <div slot="main">Main content</div>
+    <div slot="footer">Status content</div>
+  </fwc-app-page>
 );
 ```
 

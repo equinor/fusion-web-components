@@ -1,5 +1,6 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,7 +8,23 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!.changeset", "!utils/builder/bin", "!storybook"]
+    "includes": [
+      "**",
+      "!.changeset",
+      "!**/CHANGELOG.md",
+      "!apm.lock.yaml",
+      "!utils/builder/bin",
+      "!storybook",
+      "!agent",
+      "!.agents",
+      "!.github/agents",
+      "!.github/instructions"
+    ]
+  },
+  "markdown": {
+    "parser": {
+      "frontmatter": true
+    }
   },
   "formatter": {
     "enabled": true,

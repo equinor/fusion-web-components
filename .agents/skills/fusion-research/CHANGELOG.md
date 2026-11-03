@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.4.4 - 2026-11-01
+
+### patch
+
+- [#374](https://github.com/equinor/fusion-skills/pull/374) [`e7ebd75`](https://github.com/equinor/fusion-skills/commit/e7ebd75a5b42d9ea28d33c4df38a1f2a1ce79bec) - Replace references to removed skills: send implementation work to `fusion-developer-app` instead of `fusion-app-react-dev`, and send skill install and update requests to `fusion-skills` instead of `fusion-discover-skills`. Update the matching query example.
+
+
+  fixes equinor/fusion-skills#359
+
+- [#388](https://github.com/equinor/fusion-skills/pull/388) [`28d6873`](https://github.com/equinor/fusion-skills/commit/28d6873433fdda973ef1680adb5fa1777b4b79dc) - Load only selected research-domain instructions and query guides while preserving source-backed evidence, bounded refinement and unavailable-MCP fallback.
+
+
+  resolves equinor/fusion-core-tasks#2685
+
+## 0.4.3 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the always-loaded research description while keeping source-backed evidence, five domain cues, and implementation, skill lifecycle, MCP and invented-behavior exclusions.
+
+
+  resolves equinor/fusion-core-tasks#2669
+
 ## 0.4.2 - 2026-10-18
 
 ### patch

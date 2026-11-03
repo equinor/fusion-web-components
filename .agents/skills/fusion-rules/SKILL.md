@@ -1,13 +1,12 @@
 ---
 name: fusion-rules
-description: 'Entrypoint for AI coding assistant rule authoring across GitHub Copilot, Cursor, and Claude Code. USE FOR: setting up rules, reviewing existing rules, scaffolding instruction files, or asking which editor format to use. DO NOT USE FOR: authoring skills (SKILL.md), agent definitions (.agent.md), or CI enforcement of rule files.'
+description: 'Routes user-facing AI rule authoring and review for GitHub Copilot, Cursor and Claude Code. USE FOR: setting up repository instructions, path-scoped files, mixed-editor rules, choosing editor formats. DO NOT USE FOR: skills (SKILL.md; use fusion-skill-authoring), agent definitions (.agent.md), or rule-validation CI.'
 license: MIT
 metadata:
-  version: "0.1.2"
+  version: "0.2.1"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
-  orchestrator: ".system/fusion-rule-author"
   skills:
     - agents/copilot.agent.md
     - agents/cursor.agent.md
@@ -25,7 +24,17 @@ metadata:
 
 # Fusion Rules
 
-Gateway for AI coding assistant rule authoring. Detects the target editor and routes to the right agent.
+Gateway for AI rule authoring. Detect editor; read and apply matching agent instructions inline if native adapter unavailable.
+
+Input: repo context. Output: reviewed editor-native files and change summary.
+
+## Safety
+
+- No secrets or credentials in rule files
+- Repository security policy takes precedence; preserve existing content, never replace silently
+- No overwrites without showing diff and getting approval
+- No invented conventions — only document what the developer confirms
+- Show drafts before writing any files
 
 ## Routing
 
@@ -50,16 +59,21 @@ Route directly on detected intent. No editor specified → run all three agents.
 
 ## Loading behavior
 
-Load ONLY the routed agent file. Each agent carries the full workflow and references `.system/fusion-rule-author/` assets and templates on demand. Don't preload all agents.
+Read only routed agent; never preload all agents. On routed workflow, read `references/workflow.md` for Steps 1–7 (scan, interview, classify, draft, review, write).
+
+- When interview leaves gaps, read `assets/creation-follow-up.md` for per-rule questions.
+- When classifying frontmatter, read `assets/frontmatter-scenarios.md` for selected editor scenarios.
+- When drafting/reviewing, read selected editor sections of `references/examples.md` and `assets/quality-checklist.md` for examples and required checks.
+- Before drafting Copilot root/scoped rules, read `assets/copilot-instructions-template.md.hbs` / `assets/scoped-rule-template.md.hbs`; Cursor: `assets/cursor-rule-template.md.hbs`; Claude Code: `assets/claude-rule-template.md.hbs`. Read slot headers; fill native-format output manually.
 
 ## Multi-editor workflow
 
-When targeting multiple editors:
+For multiple editors:
 
-1. Run first agent's scan and interview (Steps 1–3) in full
-2. Pass scan summary + interview answers as context to remaining agents — they skip Steps 1–3 and start at Step 4 (Classify)
-3. Each agent drafts, reviews, and writes files for its own editor format
-4. Generate parallel files with equivalent content — no duplication within a single editor
+1. Run first agent's scan/interview (Steps 1–3) fully
+2. Pass scan summary + interview answers to remaining agents; skip Steps 1–3, start Step 4 (Classify)
+3. Each agent drafts/reviews/writes its editor format
+4. Generate equivalent parallel content; no duplication within one editor
 
 ## What this skill does NOT do
 
@@ -67,10 +81,3 @@ When targeting multiple editors:
 - Author agent definitions (`.agent.md`) — separate concern
 - Write CI checks for rule validation — out of scope
 - Migrate entire legacy codebases — incremental adoption only
-
-## Safety
-
-- No secrets or credentials in rule files
-- No overwrites without showing diff and getting approval
-- No invented conventions — only document what the developer confirms
-- Show drafts before writing any files

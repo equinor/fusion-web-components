@@ -1,5 +1,51 @@
 # Changelog
 
+## 0.2.0 - 2026-11-01
+
+### minor
+
+- [#383](https://github.com/equinor/fusion-skills/pull/383) [`9dd268f`](https://github.com/equinor/fusion-skills/commit/9dd268f19bf27e76c2b0371448ba47218a001c0d) - Shape content about many similar items and keep process narration out of view
+
+
+  - Name the aggregate case: three or more similar items get a visible table, prose only for items that need a decision, and one shared caveat line. Tables that are the content no longer fold under Details.
+  - Add a rule against process narration in the visible part, with a before-and-after example: write about the repository and the reader's decision, and turn environment gaps into one actionable line.
+  - Add both rules to the pre-post checklist.
+
+  resolves equinor/fusion-skills#380
+  refs equinor/fusion-poc-greenkeeper#48
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  resolves equinor/fusion-core-tasks#2678
+
+- [#387](https://github.com/equinor/fusion-skills/pull/387) [`9b01ad2`](https://github.com/equinor/fusion-skills/commit/9b01ad236790db3caa7c2269e0af5d2bd1da65dc) - Load prose and folding guides only when needed; preserve required framing, provenance and pre-post checks.
+
+
+  resolves equinor/fusion-core-tasks#2684
+
+## 0.1.3 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the description while keeping human-readable GitHub text, provenance, TL;DR, audience handoff and publication exclusions.
+
+
+  resolves equinor/fusion-core-tasks#2668
+
+## 0.1.2 - 2026-10-27
+
+### patch
+
+- [#336](https://github.com/equinor/fusion-skills/pull/336) [`bf60e9e`](https://github.com/equinor/fusion-skills/commit/bf60e9e76a812735b3ff0cde8140eb5604a506f7) - Resolve authoring-turn runtime model and effort before provenance fallback.
+
+  Bound lookups, preserve independent fields and attribute model changes and delegates
+  without exporting private session data.
+
+  fixes equinor/fusion-skills#335
+
 ## 0.1.1 - 2026-10-18
 
 ### patch

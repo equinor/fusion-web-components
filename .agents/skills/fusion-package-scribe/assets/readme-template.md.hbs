@@ -1,0 +1,41 @@
+{{!--
+Built-in README skeleton for a TypeScript package when the repository has no README template; repository templates win. Preserve valuable existing README content and use only verified public exports.
+packageName: package name as published
+description: one paragraph on what the package does and why it exists
+features: list of key capabilities
+installCommand: package-manager install command, as a Markdown code block
+usageExample: primary usage example, as a Markdown code block
+apiExports: list of {name, summary} for verified public exports; summary gives a brief description and the signature
+configuration: optional configuration options; omit the section when the package has none
+--}}
+# {{packageName}}
+
+{{description}}
+
+## Features
+
+{{#each features}}
+- {{this}}
+{{/each}}
+
+## Installation
+
+{{installCommand}}
+
+## Usage
+
+{{usageExample}}
+
+## API Reference
+{{#each apiExports}}
+
+### {{name}}
+
+{{summary}}
+{{/each}}
+{{#if configuration}}
+
+## Configuration
+
+{{configuration}}
+{{/if}}

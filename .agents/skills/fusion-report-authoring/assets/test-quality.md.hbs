@@ -1,0 +1,25 @@
+{{!--
+Test-quality assessment; preserve exact existing, experimental, failed and blocked outcomes.
+testQuality: object with behavior, assertions, isolation, environment, gaps, followUp; static inspection is not a suite pass, scratch checks are not workspace validation, timing risk is not demonstrated flakiness.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Test-quality decision
+
+- Behavioral scope: {{testQuality.behavior}}
+- Meaningful assertions: {{testQuality.assertions}}
+- Setup / isolation concerns: {{testQuality.isolation}}
+- Supplied execution environment: {{testQuality.environment}}
+- Coverage / evidence gaps: {{testQuality.gaps}}
+- Targeted follow-up tests: {{testQuality.followUp}}
+
+Static inspection is not a suite pass. Experimental checks are not full-workspace
+validation. Timing sensitivity alone does not demonstrate flakiness.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

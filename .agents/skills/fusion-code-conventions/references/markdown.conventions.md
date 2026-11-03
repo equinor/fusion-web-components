@@ -1,5 +1,19 @@
 # Markdown Code Conventions
 
+## Contents
+
+- [Frontmatter](#frontmatter)
+- [Document structure](#document-structure)
+- [Links](#links)
+- [Code blocks](#code-blocks)
+- [Lists](#lists)
+- [Emphasis](#emphasis)
+- [Images](#images)
+- [Callouts](#callouts)
+- [Formatting](#formatting)
+- [GitHub-specific](#github-specific)
+
+
 Markdown conventions: docs, READMEs, changelogs, skill files.
 
 > **Applicability:** Org-wide baseline. Repo policy (`CONTRIBUTING.md`, ADRs) and tooling (`.editorconfig`, `.markdownlint.json`) take precedence on explicit override. See skill **Precedence and applicability** for resolution order.

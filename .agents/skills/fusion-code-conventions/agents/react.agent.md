@@ -28,7 +28,7 @@ The React reference covers:
 
 ## Instructions
 
-1. Read `references/react.conventions.md` and `references/typescript.conventions.md` to load the authoritative rules.
+1. Read `references/react.conventions.md` for React rules. Read `references/typescript.conventions.md` too for `.tsx` reviews or TypeScript-specific questions; skip it for React-only `.jsx` questions.
 2. Discover project-specific overrides before flagging anything:
    - Read `biome.json` — do not flag patterns the project has explicitly configured or suppressed.
 3. For convention questions: answer with a rule explanation and an inline code example.

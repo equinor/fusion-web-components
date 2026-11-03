@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.0.5 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+- [#389](https://github.com/equinor/fusion-skills/pull/389) [`cfe9a74`](https://github.com/equinor/fusion-skills/commit/cfe9a74de0f35d5dd0d3be761a8531fa2f96a712) - Load hosted setup, authentication, troubleshooting and JSON-RPC detail only when needed; retain retrieval routing, observed validation and secret-safe bug drafting.
+
+
+  resolves equinor/fusion-core-tasks#2687
+
+## 1.0.4 - 2026-10-27
+
+### patch
+
+- [#336](https://github.com/equinor/fusion-skills/pull/336) [`bf60e9e`](https://github.com/equinor/fusion-skills/commit/bf60e9e76a812735b3ff0cde8140eb5604a506f7) - Sync shared provenance fill rules: resolve authoring-turn metadata before fallback,
+
+  with bounded lookup, model-change and delegate attribution, and privacy limits.
+
+  fixes equinor/fusion-skills#335
+
 ## 1.0.3 - 2026-10-18
 
 ### patch

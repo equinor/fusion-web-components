@@ -1,0 +1,24 @@
+{{!--
+Architecture assessment from supplied structure and decisions.
+architecture: object with components, boundaries, decisions, dependencies, drift, consequences, alternatives; separate recorded-rule violation, risk and preference; proposals are not accepted ADRs.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Architecture decision
+
+- Components / boundaries: {{architecture.components}} / {{architecture.boundaries}}
+- Applicable recorded decisions: {{architecture.decisions}}
+- Observed dependencies: {{architecture.dependencies}}
+- Violations / risks / preferences: {{architecture.drift}}
+- Material consequences: {{architecture.consequences}}
+- Alternatives / proposed decisions: {{architecture.alternatives}}
+
+Missing runtime/usage evidence remains a limitation; proposed designs are not accepted decisions.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

@@ -1,5 +1,19 @@
 # Command reference
 
+## Contents
+
+- [Authentication](#authentication)
+- [REST API calls](#rest-api-calls)
+- [Token acquisition](#token-acquisition)
+- [Service discovery](#service-discovery)
+- [Person resolution](#person-resolution)
+- [PIM access elevation](#pim-access-elevation)
+- [Common service keys (examples — verify with discovery)](#common-service-keys-examples--verify-with-discovery)
+- [Environment mapping](#environment-mapping)
+- [Global options](#global-options)
+- [Discovery, lookup and PIM examples](#discovery-lookup-and-pim-examples)
+- [Environments](#environments)
+
 Compact reference for all fdev commands relevant to agentic workflows.
 
 ## Authentication
@@ -104,3 +118,49 @@ Use `fdev disc env list fprd -json | jq '.[].key'` to get the full list of servi
 |---|---|
 | `--verbose` | Verbose output (cache diagnostics, request details) |
 | `--no-cache` | Bypass SQLite cache for service discovery |
+
+## Discovery, lookup and PIM examples
+
+### 3 — Discover services and environments
+
+```bash
+# List all environments
+fdev disc envs
+
+# List services in an environment (JSON output)
+# Note: disc subcommand uses single-dash flags (-json, -out) — this is by design
+fdev disc env list fprd -json
+
+# List services showing key and URI
+fdev disc env list fprd -out ku
+```
+
+### 4 — Look up a person
+
+```bash
+# Resolve by email
+fdev persons resolve user@equinor.com
+
+# Search by name
+fdev persons search "John"
+```
+
+### 5 — Activate PIM role
+
+Elevate Azure access when needed for admin operations:
+
+```bash
+fdev pim azure activate
+```
+
+**Safety: always confirm with the user before running PIM activation — this grants elevated access.**
+
+## Environments
+
+| Key | Purpose | Notes |
+|---|---|---|
+| `ci` | Continuous integration / development | Least stable, latest changes |
+| `fqa` | Quality assurance | Pre-production validation |
+| `fprd` | Production | Default environment |
+
+Default environment is `fprd` for all commands. Override with `-e <env>`.

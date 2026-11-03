@@ -1,5 +1,18 @@
 # MCP JSON-RPC payload snippets
 
+## Contents
+
+- [Tool inventory](#tool-inventory)
+- [`initialize`](#initialize)
+- [`tools/list`](#toolslist)
+- [`tools/call` → `search`](#toolscall--search)
+- [`tools/call` → `search_framework`](#toolscall--search_framework)
+- [`tools/call` → `search_docs`](#toolscall--search_docs)
+- [`tools/call` → `search_backend_code`](#toolscall--search_backend_code)
+- [`tools/call` → `search_eds`](#toolscall--search_eds)
+- [`tools/call` → `search_indexes`](#toolscall--search_indexes)
+
+
 Direct MCP request snippets for verifying/exploring the Fusion MCP server (`https://mcp.api.fusion.equinor.com/mcp`).
 
 > **Note:** In VS Code, tool invocations are handled automatically. Raw JSON-RPC is useful for direct debugging or scripted smoke tests.

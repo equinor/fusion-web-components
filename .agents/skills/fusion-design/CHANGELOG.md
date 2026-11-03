@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.3 - 2026-11-01
+
+### patch
+
+- [#391](https://github.com/equinor/fusion-skills/pull/391) [`ece2d45`](https://github.com/equinor/fusion-skills/commit/ece2d4547c2cfd491234816c41c780b5153850ec) - Read task-relevant Fusion Design references instead of the full catalog before every frontend change. Keep typography, spacing, failure handling and both confirmation layers visible before code.
+
+
+  resolves equinor/fusion-core-tasks#2689
+
 ## 0.1.2 - 2026-07-23
 
 ### patch

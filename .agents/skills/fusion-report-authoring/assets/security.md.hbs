@@ -1,0 +1,24 @@
+{{!--
+Security assessment from supplied evidence only; public-safe content excludes restricted details.
+security: object with assets, boundaries, methods, affectedComponents, ratingBasis, mitigations, disclosure; unknown ratings stay not supplied; suspicion is not an exploit claim.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Security decision
+
+- Assets / boundaries: {{security.assets}} / {{security.boundaries}}
+- Supplied methods: {{security.methods}}
+- Affected components: {{security.affectedComponents}}
+- Rating basis: {{security.ratingBasis}}
+- Recommended mitigations: {{security.mitigations}}
+- Disclosure / destination restrictions: {{security.disclosure}}
+
+Limited inspection is not comprehensive security assurance.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

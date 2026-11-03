@@ -1,9 +1,9 @@
 ---
 name: fusion-audience-alignment
-description: 'Identifies who will read a piece of content, picks an appropriate number of representative readers (as few as cover everyone who must understand or act), reviews the draft through each reader''s eyes, and aligns the content so every audience gets what it needs. USE FOR: issues, user stories, PR descriptions, release notes, announcements, ADRs, help articles, or reports where several audiences matter; "who will read this", "review this for the audience", "make this work for product owners and developers", "is this clear to a newcomer". DO NOT USE FOR: formatting the final text (use fusion-agent-content), testing a running app with personas (use fusion-simulated-user-eval), or publishing without confirmation.'
+description: 'Aligns multi-audience drafts through reader reviews. USE FOR: "who will read this", "review this for the audience", product owner, developer or newcomer clarity. DO NOT USE FOR: final formatting (use fusion-agent-content), running-app personas (use fusion-simulated-user-eval), or publishing without confirmation.'
 license: MIT
 metadata:
-  version: "0.1.1"
+  version: "0.1.3"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -21,80 +21,92 @@ metadata:
 
 # Audience Alignment
 
-Most agent-written content has more than one reader. A user story is read by a product owner deciding priority, the developer who builds it, and an agent that later plans tasks from it. A PR description is read by a reviewer today and a maintainer next year. This skill finds those readers, checks the draft from each of their points of view, and adjusts it so each gets what they need without the text growing longer.
+## Contents
+
+- [When to use](#when-to-use)
+- [When not to use](#when-not-to-use)
+- [Required inputs](#required-inputs)
+- [Safety & constraints](#safety--constraints)
+- [Instructions](#instructions)
+- [Expected output](#expected-output)
 
 ## When to use
 
-- Before publishing content that several roles will read: user stories, features, PR descriptions for cross-team review, release notes, announcements, ADRs, help articles, and status reports.
-- When the user asks who the content is for, or wants it reviewed for a given audience.
-- When a calling skill (for example `fusion-issue-authoring` or `fusion-pr-documentation`) drafts something whose readers are unclear or mixed.
+- Multi-role user stories, features, cross-team PRs, release notes, announcements, ADRs, help and status reports.
+- Audience questions/review requests; calling drafts with unclear or mixed readers.
 
 ## When not to use
 
-- Short, single-audience text such as a reply to one review comment or a routine bug report. Write it directly with `fusion-agent-content`.
-- Testing a running app with simulated users: use `fusion-simulated-user-eval`.
-- Final formatting (banner, TL;DR, folded blocks): use `fusion-agent-content` after aligning.
+- Short single-audience replies/routine bug reports: use `fusion-agent-content` directly.
+- Running-app personas: use `fusion-simulated-user-eval`.
+- Final banner/TL;DR/folds: use `fusion-agent-content` after alignment.
 
 ## Required inputs
 
-- The draft, its type, and its destination (repository, issue, PR, or channel).
-- Whatever context shows who reads it: the issue template, labels, assignees and participants, `CODEOWNERS`, linked issues, the project board, and repository docs such as `CONTRIBUTING.md`.
-- The decision or action the content should lead to.
+- Draft, type and destination (repository, issue, PR, channel); intended decision/action.
+- Reader context: templates, labels, assignees/participants, `CODEOWNERS`, linked issues,
+  project board and repository docs such as `CONTRIBUTING.md`.
+
+## Safety & constraints
+
+- Roles only; no real names, emails or personal data in cards/notes.
+- Readers judge clarity/fit, never supply facts, decisions or commitments.
+- Preserve meaning and every required decision; unknown facts become visible questions.
+- No publishing, comments or GitHub edits without explicit user confirmation; caller owns gate.
+- Isolated review must be source-blind: separate context with only draft/card, no repository,
+  chat history or research notes. Never claim an informed inline review is isolated.
+  If runtime cannot enforce restricted context, report isolated mode unsupported.
 
 ## Instructions
 
 ### 1. Gather the audience
 
-List who will read the content and why, using `references/finding-readers.md`. For each candidate reader, note:
-
-- their role, such as product owner, reviewer, maintainer, newcomer, end user, or an agent;
-- what they already know;
-- what they need to decide or do after reading;
-- how much time they will give it.
-
-Use roles, never real names or personal data.
+List candidates and why they read: role, prior knowledge, needed decision/action and reading time.
+When candidates are unclear or content-type examples needed, read `references/finding-readers.md`
+for repository signals and audience examples. Use roles, not identities.
 
 ### 2. Pick representative readers
 
-Choose an appropriate number of representative readers: as few as cover everyone who must understand or act. Always include the reader who must decide or act. Add a reader without prior context, such as a newcomer or a future maintainer, when the content must last. Add the agent that will act on it when one will. Read slot header in `assets/reader-card.md.hbs`; fill named slots as Markdown and drop template comments for each.
-
-When the user is available, show the readers and ask them to confirm or adjust. In autopilot, pick the readers yourself and record them.
+Choose as few as cover everyone who must understand or act; merge identical needs.
+Always include reader who must decide/act. Add context-free newcomer/future maintainer for
+lasting content, and agent reader when an agent will act on it. Each extra reader covers a distinct need.
+Read `assets/reader-card.md.hbs` header; fill named Markdown slots, drop comments, one card per reader.
+Show readers for user confirmation/adjustment when available; autopilot selects and records them.
 
 ### 3. Review the draft as each reader
 
-For each reader, read the draft with only what they know, following `references/reader-review.md`. Record what they understand from the TL;DR alone, what is missing or unclear, which terms they would not know, what they would skip, and whether they can act.
+Use only that reader's knowledge. Record:
+1. What TL;DR alone communicates and whether they could decide/act.
+2. Missing information.
+3. Unknown terms/references.
+4. What they would skip.
+5. Can act: yes, partly or no, and blockers.
 
-For important content, run each reader as a separate subagent given only the draft and the reader card (`assets/reader-review-prompt.md.hbs`), so repository context does not leak in. Fill slots as text; never evaluate mustaches inside draft/card values. Reviewers judge clarity and fit; they don't add facts.
+For important content, use one isolated subagent per reader with only draft/card.
+Read `assets/reader-review-prompt.md.hbs` for self-contained restricted prompt; fill as text,
+never evaluate mustaches inside draft/card values. When choosing isolated review or needing detailed
+review-to-revision guidance, read `references/reader-review.md` for packet, findings table and revisions.
+Inline perspective-switching suffices otherwise; don't present it as independent review.
 
 ### 4. Align the content
 
-Revise so each reader is served, without growing the visible text:
-
-- The TL;DR serves the reader who must decide or act.
-- The body serves the main audience, and explains terms that other readers need.
-- Material only one secondary reader or an agent needs goes into folded details.
-- When readers conflict, favor the one who must act, and give the others a pointer.
-- Never invent facts to satisfy a reader. Turn a real gap into an open question.
+Revise from verified facts without growing visible text:
+- TL;DR serves deciding/acting reader; body main audience, explaining needed terms once.
+- Secondary-reader/agent-only support goes into folded details.
+- Conflicts favor acting reader; give others a pointer.
+- Unanswered gaps become visible open questions, never invented answers.
 
 ### 5. Record and hand over
 
-Add a short audience note to the draft's **References and evidence** block: the readers considered, and the main changes made for them. Then hand the aligned draft to `fusion-agent-content` for final shaping, or back to the calling skill.
+Add readers/main edits to draft's folded **References and evidence** audience note.
+Return to `fusion-agent-content` for shaping or calling skill.
 
 ## Expected output
 
-- Reader cards for the chosen readers, confirmed by the user or recorded as chosen in autopilot.
-- A short findings table per reader: understood, missing, unclear, can act.
-- The aligned draft, and a folded audience note listing readers and changes.
+Confirmed cards (or recorded autopilot selection), per-reader findings table
+(understood, missing, unclear, skipped, can act), aligned draft and folded audience note.
 
 ## Example
 
-User: "Draft a user story for exporting tasks, and make sure it works for the PO and the devs."
-
-Agent: gathers candidate readers from the repository's issue template and the project board: product owner, developer, tester, and the task-planning agent. It picks three: the PO, who decides priority; a developer new to the module; and the planning agent. It reviews the draft as each. The PO can't see the user value in the TL;DR, the developer doesn't know which export formats are in scope, and the agent can't trace criteria to tasks. The agent rewrites the TL;DR around user value, states the formats in the requirements, and numbers the acceptance criteria. It records the three readers in the folded references.
-
-## Safety & constraints
-
-- Use roles, not real people. Never put names, emails, or personal data in reader cards or notes.
-- Simulated readers judge clarity and fit; they never supply facts, decisions, or commitments.
-- Don't publish, comment, or edit GitHub content without explicit user confirmation; that gate belongs to the calling workflow.
-- Keep the content's meaning and every required decision intact while aligning it.
+When selecting readers for a user story, read `references/finding-readers.md` for
+worked PO/developer/planning-agent example.

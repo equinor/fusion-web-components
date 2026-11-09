@@ -29,7 +29,6 @@ npm install @equinor/fusion-wc-formfield
 | --------- | ------------------------------------------------------------ |
 | _default_ | The input element that this form field provides a label for. |
 
-
 ### Properties/Attributes
 
 | Name           | Type      | Description                                                                                           |

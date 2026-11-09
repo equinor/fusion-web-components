@@ -42,7 +42,6 @@ return (
 );
 ```
 
-
 #### Icon
 
 ```ts
@@ -72,21 +71,25 @@ return (
 | `tooltip`  | `string`          | ``          | Tooltip text to show on hover.                                                 |
 
 \* `BadgeSize` is exported by `fwc-badge`.
+
 ```ts
 type BadgeSize = 'small' | 'medium' | 'large';
 ```
 
 \*\* `BadgePosition` is exported by `fwc-badge`.
+
 ```ts
 type BadgePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 ```
 
 \*\*\* `BadgeColor` is exported by `fwc-badge`.
+
 ```ts
 type BadgeColor = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'disabled';
 ```
 
 \*\*\*\* `IconName` is exported by `fwc-icon` and is based on EDS icon tokens.
+
 ```ts
 type IconName = 'calendar' | 'settings'...;
 ```

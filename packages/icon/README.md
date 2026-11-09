@@ -17,11 +17,13 @@ npm install @equinor/fusion-wc-icon
 | `type` | `IconType**` | `IconType.EDS` | Icon type to display. Currently only supports EDS.      |
 
 \* `IconName` is exported by `@equinor/eds-icons`.
+
 ```ts
 type IconName = keyof typeof icons | string;
 ```
 
 \** `IconType` is exported by `fwc-icon`.
+
 ```ts
 enum IconType {
   EDS = 'eds',

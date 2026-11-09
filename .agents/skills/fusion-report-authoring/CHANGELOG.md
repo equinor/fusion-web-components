@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0 - 2026-11-08
+
+### minor
+
+- [#414](https://github.com/equinor/fusion-skills/pull/414) [`71cb0e8`](https://github.com/equinor/fusion-skills/commit/71cb0e8360ea675694a392ae3e9fd2d1c899571f) - Add a team progress/retro report type
+
+
+  - New `progress` template: narrative standing, a feature-state chart, "Closed as done" items, a short needs-attention list with owners and options, retro prose and checkbox follow-ups. The metrics table and method notes are folded.
+  - New `references/progress-reports.md`: precedence over agent-content, names before numbers, voice, recorded dates only, charts, length per period and a worked example.
+  - Project status reports are no longer excluded from this skill.
+
+  resolves equinor/fusion-core-tasks#2813
+
 ## 0.0.4 - 2026-11-01
 
 ### patch

@@ -3,7 +3,7 @@ name: fusion-issue-authoring
 description: Classify issue type, activate the matching agent mode for type-specific drafting, and enforce shared safety gates before GitHub mutation.
 license: MIT
 metadata:
-  version: "0.4.3"
+  version: "0.5.0"
   status: active
   owner: "@equinor/fusion-core"
   skills:
@@ -32,6 +32,8 @@ Before publishing: repo; intent/context/type (Bug, Feature, User Story, Task); u
 
 Missing context: read `references/questions.md` for questions. Unclear destination: ask before mutation commands.
 
+Draft with user, not for user: question rounds, staged drafting, provenance tags and assumption gate in `references/collaborative-drafting.md` apply to every type.
+
 ## Safety & constraints
 
 - Never run `mcp_github::issue_write` create/update without explicit confirmation. Draft content approval first, publish approval second. No assumed permission or first-draft-pass mutation unless explicitly confirmed.
@@ -54,7 +56,7 @@ Classify `Bug`, `Feature`, `User Story`, or `Task`; clarify essential ambiguity.
 | User Story | `agents/user-story.agent.md` | `assets/issue-templates/user-story.md.hbs` |
 | Task | `agents/task.agent.md` | Selected `assets/issue-templates/task*.md.hbs` variant below |
 
-Moderate devil's-advocate pass after classification: 2–3 concerns with recommended resolutions. Bug: repro/severity/environment; Feature: scope/testable criteria/dependencies; User Story: role/scenarios/testable acceptance; Task: decomposition/circular blockers/validation. Planning: premature splits, implicit contracts, hidden architecture assumptions. Resolve codebase answers silently; user accepts/adjusts/dismisses concerns. Keep brief, skip settled concerns. Skip pass for well-defined scope/criteria/dependencies or explicit no-pushback request; post-draft review remains Step 5.
+Moderate devil's-advocate pass after classification: 2–3 concerns with recommended resolutions. Bug: repro/severity/environment; Feature: scope/testable criteria/dependencies; User Story: role/scenarios/testable acceptance; Task: decomposition/circular blockers/validation. Planning: premature splits, implicit contracts, hidden architecture assumptions. Resolve codebase answers silently (they become `[verified]`); ask user to accept/adjust/dismiss rest in same question round. Never keep agent recommendation as decision without user answer; unanswered becomes `[assumed]`. Keep brief, skip settled concerns. Skip pass for well-defined scope/criteria/dependencies or explicit no-pushback request; post-draft review remains Step 5.
 
 When asked "grilled", "stress-test this", "poke holes", or equivalent, significant scope/criteria gaps exist, or `fusion-issue-task-planning` reports two or more architecture-ambiguity signals: read/apply `agents/devils-advocate.agent.md` in interrogator mode before type drafting. Return decisions/derived answers/noted risks; hand off. Ordinary moderate review does not load interview.
 
@@ -66,7 +68,9 @@ No explicit repo: apply active workspace `CONTRIBUTING.md`/`contribute/` type ro
 
 One focused `mcp_github::search_issues` duplicate search; surface matches. Rescan only material scope/title change.
 
-### Step 4 — Draft first
+### Step 4 — Clarify, then draft
+
+Before drafting, read `references/collaborative-drafting.md`. Unclear problem, outcome, criteria, scope or dependencies: run question rounds (1–3 questions, each with recommended answer) and staged drafting before full draft; skip when request already explicit or user asks for no questions. Always tag every substantive claim in every section `[stated]`, `[verified: <source>]` or `[assumed]` (untagged counts as assumed); cut unrequested, unevidenced content before presenting and list cuts in one line.
 
 User/session preferred draft path first. Without preference and ambiguous intent, ask once/cache answer; otherwise `.tmp/{TYPE}-{CONTEXT}.md`, GitHub Flavored Markdown.
 
@@ -79,6 +83,8 @@ Before filling fallback, read selected `.hbs` header, `assets/partials/agent-con
 ### Step 5 — Review and confirm
 
 Ask content edits/approval, then explicit publication approval; `Awaiting user content approval` until approved.
+
+Assumption gate (adds to approval, never replaces it): interactive publish blocked until every `[assumed]` claim confirmed, edited or removed. Unattended = caller states no user can answer and pre-authorized this run; never inferred from silence or run mode. Unattended doesn't block on assumptions: list them in visible `Assumptions to confirm` section after summary (`TL;DR`, or `Objective` when template has none); without pre-authorized publish, stop at local draft. Before publish, drop all tags; verified sources go in References and evidence.
 
 ### Step 6 — Apply shared gates
 
@@ -110,4 +116,4 @@ When drafting, use installed `fusion-agent-content` or read `references/human-fi
 
 ## Expected output
 
-Return selected mode, draft path under `.tmp/`, template source, proposed title/body/labels/type, dependency order/links, minimum set/stretch goals, undrafted suggestions, assignee/unassigned plan, duplicates/related links, exact confirmed create/update commands. Status: `Awaiting user content approval` before any publish/update command. Issue URL/number only after confirmed mutation. Suggest template maintenance when repo templates missing/weak.
+Return selected mode, draft path under `.tmp/`, template source, proposed title/body/labels/type, open `[assumed]` items and cuts, dependency order/links, minimum set/stretch goals, undrafted suggestions, assignee/unassigned plan, duplicates/related links, exact confirmed create/update commands. Status: `Awaiting user content approval` before any publish/update command. Issue URL/number only after confirmed mutation. Suggest template maintenance when repo templates missing/weak.

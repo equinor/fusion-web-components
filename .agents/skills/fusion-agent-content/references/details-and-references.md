@@ -25,6 +25,8 @@ Markdown here renders normally, because of the blank line after the summary.
 
 Fold a block inside the section it supports when it belongs there, such as validation output under "How it was tested". Otherwise put details just before the references block.
 
+When a post carries secondary asks for other groups, give each its own fold between the visible part and References, titled with the ask and its group. Each fold keeps that ask's full material and its own required-visible items; the Safety list applies inside the fold, not above it.
+
 ## Keep visible
 
 Never fold these:

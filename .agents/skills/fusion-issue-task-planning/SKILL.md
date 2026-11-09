@@ -3,7 +3,7 @@ name: fusion-issue-task-planning
 description: Plan and break down user-story issues into ordered, traceable task issue drafts with explicit publish gates.
 license: MIT
 metadata:
-   version: "0.2.4"
+   version: "0.3.0"
    status: experimental
    owner: "@equinor/fusion-core"
 
@@ -45,7 +45,7 @@ Issue (`owner/repo#number` or URL); depth (`minimal`, `standard`, `detailed`), d
 - This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
 - Explicit same-turn confirmation before any mutation, including `publish-now` and repair. Run mode is not approval. Delegate mutation/repair to `fusion-issue-authoring` (prefer sub-agent); never call MCP write tools directly. Missing orchestrator: draft-only artifacts and explicit publish handoff.
 - Never infer acceptance criteria without flagged assumptions; always preserve AC traceability. Keep drafts in `.tmp/` before publishing.
-- Publication blocked until devil's advocate confirms sound split or user explicitly accepts listed risks. Unresolved assumptions still block publication; draft-only ambiguity exception below does not authorize writes.
+- Publication blocked until devil's advocate confirms sound split or user explicitly accepts listed risks. Unresolved assumptions, uncovered requirements or untraced tasks still block publication; draft-only ambiguity exception below does not authorize writes.
 - Publish/repair fails until issue exists, requested `Issue Type` and expected parent linkage pass post-flight. Unresolved item failures: hard fail, exact per-issue `failed` reasons; stop further mutations pending user confirmation, retain unresolved items for explicit decision.
 
 ## Tool format
@@ -71,12 +71,17 @@ Execute in order; state assumptions.
 4. Extract planning anchors
    - Outcomes, constraints/non-goals, verification points.
 
-5. Build dependency-ordered tasks
+5. Agree technical plan
+   - Read `references/technical-plan.md`. Propose affected areas, approach, at least one alternative, risks, test strategy; tag claims `[stated]`/`[verified: <source>]`/`[assumed]`. User confirms/edits before tasks; unattended lists unconfirmed decisions as assumptions.
+   - Unknowns become research questions (question, sources, stop condition); blocking ones become first-sequenced research task drafts.
+   - Skip for `minimal` depth or obvious decomposition; state skip in plan preview.
+
+6. Build dependency-ordered tasks
    - Each: objective, scope boundary, deliverable, verification method, mapped AC. Prefer independently verifiable slices.
    - Minimum tasks cover all AC; every task maps to at least one. Unmapped quality-of-life tasks are suggestions (title/value), not drafts unless selected; autopilot lists only.
    - Required closure criteria only in "Done when"; desirable extras under **Stretch goals**.
 
-6. Run devil's-advocate review before drafting
+7. Run devil's-advocate review before drafting
    - Count architecture-ambiguity signals:
      - Unresolved design/architecture in story, comments, or ancestors
      - Backend/frontend implicit API, data-model, ownership contract not agreed
@@ -87,24 +92,27 @@ Execute in order; state assumptions.
    - Zero/one: **moderate mode**, up to 3 concerns, continue after acknowledgement.
    - **Draft-only exception**: unresolved ambiguities may proceed to drafts in `draft-only`, but plan preview starts with `⚠ Ambiguity warning` listing each. Publication remains blocked until risks accepted.
 
-7. Generate task issue drafts
+8. Generate task issue drafts
    - `orchestrated`: route through `fusion-issue-authoring` with issue type `Task` in draft-only mode; it reads/applies its `agents/task.agent.md`, then returns local drafts for plan review.
    - `inline`: write `.tmp/TASK-<nn>-<slug>.md` drafts from `assets/task-issue-draft.md.hbs`
    - Shape every task body for human readers (see [Human-first output](#human-first-output)).
    - Keep drafts local until explicit publish approval.
 
-8. Generate plan preview
-   - Write `.tmp/USER-STORY-TASK-PLAN-<context>.md` from `assets/task-plan-template.md.hbs`: summary, traceability, ordered tasks, undrafted suggestions, draft paths, publish plan, assumptions/risks.
+9. Check coverage
+   - List requirements/AC with no task and tasks mapping to none, or `Full coverage`. Both block publication until resolved: uncovered requirement gets task, deferral or accepted gap; untraced task dropped, moved to suggestions or mapped after confirmation.
+
+10. Generate plan preview
+   - Write `.tmp/USER-STORY-TASK-PLAN-<context>.md` from `assets/task-plan-template.md.hbs`: summary, technical plan, research questions, traceability, coverage, ordered tasks, undrafted suggestions, draft paths, publish plan, assumptions/risks.
    - Before filling either template, read selected `.hbs` header, `assets/partials/agent-content/README.md`, and named partials: `assets/partials/agent-content/banner.hbs`, `assets/partials/agent-content/tldr.hbs`, `assets/partials/agent-content/references.hbs`; `assets/partials/agent-content/details.hbs` only for inline task draft. Fill manually; no renderer ships.
 
-9. Publish only after explicit confirmation
-   - Apply same-turn confirmation/assumption/DA gates above. When publishing approved drafts, read `references/publish-and-repair.md` for delegated payload and verification contract.
+11. Publish only after explicit confirmation
+   - Apply same-turn confirmation/assumption/DA/coverage gates above. When publishing approved drafts, read `references/publish-and-repair.md` for delegated payload and verification contract.
    - No milestone for tasks, even story/Feature inherited milestone. Prefer sub-agent execution.
    - MCP-first; GraphQL only missing MCP write coverage. Reuse batch caches: labels/candidates per repo, types per organization.
    - Sub-issue links/order are sole child list; no story-body task checklist or parent comment listing tasks.
    - N tasks cost ~N issue writes plus optional links; N > 5: warn rate-limit risk, offer batches.
 
-10. Repair mode for already-created tasks
+12. Repair mode for already-created tasks
    - For missing/incorrect `Issue Type` or parent linkage, read `references/publish-and-repair.md` for delegated `type=Task`/parent/order repair. Idempotent: skip correct issues, change only missing metadata; require post-flight checks and actionable failures.
 
 ## Human-first output
@@ -116,11 +124,12 @@ Use installed `fusion-agent-content`, otherwise banner `<sub>🤖 Drafted by <ag
 Return heading order:
 1. Experimental caveat
 2. Story summary
-3. Acceptance-criteria traceability
-4. Ordered tasks (minimum set)
-5. Suggested nice-to-have tasks (not drafted)
-6. Draft file paths
-7. Publish plan
-8. Assumptions, risks, and open questions
+3. Technical plan and research questions
+4. Acceptance-criteria traceability and coverage
+5. Ordered tasks (minimum set)
+6. Suggested nice-to-have tasks (not drafted)
+7. Draft file paths
+8. Publish plan
+9. Assumptions, risks, and open questions
 
 Always `Status: Awaiting user approval` until confirmed and completed. For `publish-now` or `repair`, per-issue post-flight: exists, issue type equals requested type, parent equals story number, status (`ok`, `fixed`, `failed`).

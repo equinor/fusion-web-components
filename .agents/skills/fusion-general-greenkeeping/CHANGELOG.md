@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.3.0 - 2026-11-08
+
+### minor
+
+- [#419](https://github.com/equinor/fusion-skills/pull/419) [`9e4bedd`](https://github.com/equinor/fusion-skills/commit/9e4beddf47bfe9a6a45925113fddae0e8b2d4bdf) - Check whether a repository follows its own rules, not only whether docs match
+
+  files. New lanes: rule coherence (contributor docs, `AGENTS.md`, instructions
+  and ADRs that contradict or duplicate each other), rule compliance (bounded
+  sample of the locally resolved default branch after approved read-only `git`
+  commands, patterns with counts, network only with approval), ADR lifecycle
+  (superseded or contradicted ADRs, discovered in common ADR directories) and docs
+  coverage (contributor
+  workflows no doc describes). Rule conflicts are a new `decision` finding class:
+  greenkeeping asks which source wins and never edits before the maintainer
+  chooses. Declares `fusion-code-conventions` as companion for convention and ADR
+  compliance checks.
+
+  resolves equinor/fusion-core-tasks#2859
+
 ## 0.2.2 - 2026-11-01
 
 ### patch

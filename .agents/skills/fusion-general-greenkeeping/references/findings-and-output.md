@@ -5,12 +5,12 @@
 | Field | Rule |
 | --- | --- |
 | ID | Stable, lane-prefixed kebab-case (`docs-cmd-lint`, `codemap-api-v1`). Same drift → same ID on rerun, so maintainers can select, defer, dedupe |
-| Lane | `docs`, `codemap`, `ownership`, `config`, `references` |
+| Lane | `docs`, `codemap`, `ownership`, `config`, `references`, `rules`, `compliance`, `adr`, `docs-coverage` |
 | Priority | See below |
-| Class | `confirmed`, `suggestion`, `unknown` (respected conventions listed separately) |
-| Evidence | Both sides: path + line or quote, plus contradicting source or missing target |
+| Class | `confirmed`, `decision`, `suggestion`, `unknown` (respected conventions listed separately) |
+| Evidence | Both sides: path + line or quote, plus contradicting source or missing target. Compliance: sample size, source and pattern count |
 | Impact | Who is affected and how, one sentence |
-| Fix | Smallest change; name alternatives when ambiguous |
+| Fix | Smallest change; name alternatives when ambiguous. `decision`: list options and ask which rule wins; no fix until chosen |
 
 ## Priority
 
@@ -33,6 +33,7 @@ Suggestions max `low` unless maintainer asked for ideas. No scores, grades or ra
 | --- | --- | --- | --- | --- | --- | --- |
 | docs-cmd-lint | docs | high | confirmed | `CONTRIBUTING.md:8` `pnpm lint`; `package.json` scripts: `check`, `build` | Pre-PR check fails for contributors | `pnpm check` |
 | codemap-api-v1 | codemap | medium | confirmed | `CODEMAP.md:5` lists `api/v1/`; path absent, handlers now in `api/` | Misleads navigation | Point entry to `api/` |
+| rules-validate-cmd | rules | medium | decision | `CONTRIBUTING.md:40` `npm run check`; `AGENTS.md:12` `npm run validate` | Contributors and agents run different pre-PR checks | Which source wins? Then align the other |
 
 **Unknowns:** <what could not be verified and how to verify>
 **Handoffs:** <companion skill and why>

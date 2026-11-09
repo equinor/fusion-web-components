@@ -1,9 +1,9 @@
 ---
 name: fusion-general-greenkeeping
-description: 'Checks repository health against adopted policy and helps discuss assessment reports. USE FOR: greenkeep this repo, README, contributor or CODEMAP drift, ownership or security policy drift, stale config, dead references, findings as issues, draft or publish a reviewed report discussion, selected fixes. DO NOT USE FOR: app or JS toolchain (fusion-app-greenkeeping), .NET, NuGet, Roles V2 or service test maintenance (use fusion-service-greenkeeping), Actions, APM or Copilot setup (fusion-repository-greenkeeping), dependency PRs, or unattended runs.'
+description: 'Checks repository health against adopted policy and helps discuss assessment reports. USE FOR: greenkeep this repo, README, contributor-rule, ADR or CODEMAP drift, ownership or security policy drift, stale config, dead references, findings as issues, reviewed report discussions, selected fixes. DO NOT USE FOR: app or JS toolchain (fusion-app-greenkeeping), .NET, NuGet, Roles V2 or service test maintenance (use fusion-service-greenkeeping), Actions, APM or Copilot setup (fusion-repository-greenkeeping), dependency PRs, or unattended runs.'
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.3.0"
   status: experimental
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -11,6 +11,7 @@ metadata:
     - fusion-repository-greenkeeping
     - fusion-issue-authoring
     - fusion-dependency-review
+    - fusion-code-conventions
   tags:
     - repository-maintenance
     - greenkeeping
@@ -18,6 +19,8 @@ metadata:
     - codemap
     - ownership
     - configuration-drift
+    - contributor-rules
+    - adr
 ---
 
 # Greenkeep General Repository Health
@@ -30,7 +33,7 @@ Find drift between repo claims and practice. Report first; change only selected 
 
 ## When to use
 
-- "Greenkeep this repo": README/contributor/CODEMAP drift, ownership/security policy, stale config/dead references.
+- "Greenkeep this repo": README/contributor/CODEMAP drift, ownership/security policy, stale config/dead references, rule conflicts across contributor docs/instructions/ADRs, undocumented workflows.
 - Findings as issues, selected fixes, supplied assessment report discussions.
 
 ## When not to use
@@ -82,14 +85,14 @@ For diagnosis read [health lanes](references/health-lanes.md#bounded-hygiene-inv
 
 ### 2. Inspect requested lanes
 
-Health check: all lanes; focused request: named only. When inspecting, read selected sections of [health lanes](references/health-lanes.md): Docs vs executable config, CODEMAP accuracy, Ownership and security policy, Stale or duplicated config, Dead references, for checks/traps.
+Health check: all lanes; focused request: named only. When inspecting, read selected sections of [health lanes](references/health-lanes.md): Docs vs executable config, CODEMAP accuracy, Ownership and security policy, Stale or duplicated config, Dead references, Rule coherence, Rule compliance, ADR lifecycle, Docs coverage, for checks/traps. Rule lanes check repo's rule sources against each other and recent practice; compliance samples local default-branch history only after approved read-only `git` commands, otherwise "not run"; network only with approved command.
 Executable config beats prose; simple docs/config contradiction stays here, deeper stack checks need handoff. When handing off, read [handoffs](references/health-lanes.md#handoffs) for workflow/Actions/APM/JS/.NET/dependency seams. Missing companion: disclose, bounded observations only.
 
 ### 3. Classify and prioritise
 
 When classifying/returning findings, read [findings and output](references/findings-and-output.md) for stable IDs/priorities/report shape.
 Findings: stable ID/lane/priority (`high`/`medium`/`low`), both sides of drift (path + line or quote), impact/smallest fix.
-**Confirmed**: contradiction/missing target. **Suggestion**: optional concrete benefit, no unadopted convention unless asked. **Respected convention**: deliberate choice, not problem. **Unknown**: not statically verifiable; name needed verification.
+**Confirmed**: contradiction/missing target. **Decision**: rule sources conflict and maintainer must choose winner; never fix before choice, offer discussion mode. **Suggestion**: optional concrete benefit, no unadopted convention unless asked. **Respected convention**: deliberate choice, not problem. **Unknown**: not statically verifiable; name needed verification.
 
 ### 4. Execute chosen mode
 

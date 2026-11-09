@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.3.0 - 2026-11-08
+
+### minor
+
+- [#417](https://github.com/equinor/fusion-skills/pull/417) [`e7bb202`](https://github.com/equinor/fusion-skills/commit/e7bb2023b5ee1006619fa96d7cf63709777137cf) - Agree a technical plan before splitting a story into tasks: affected areas,
+
+  approach, at least one alternative, risks and test strategy, with claims tagged
+  by provenance. Unknowns become research questions with sources and a stop
+  condition; blocking ones become first-sequenced research tasks. After drafting,
+  a coverage check lists requirements with no task and tasks with no requirement;
+  both block publication until resolved, and a missing check renders `Not checked`. The plan preview
+  template gains technical plan, research question and coverage sections.
+
+  resolves equinor/fusion-core-tasks#2858
+
 ## 0.2.4 - 2026-11-01
 
 ### patch

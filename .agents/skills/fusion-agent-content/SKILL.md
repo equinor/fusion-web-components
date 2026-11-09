@@ -3,7 +3,7 @@ name: fusion-agent-content
 description: 'Shapes agent-written GitHub issues, PRs, reviews and delivery reports with provenance, TL;DR and folded evidence. USE FOR: "write this up for humans", "add a TL;DR". DO NOT USE FOR: audience review (use fusion-audience-alignment), skill or agent instructions, commit messages, end-user help, or publishing without confirmation.'
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -91,12 +91,16 @@ folded **References and evidence**, always last.
   Outcome and ask, not repeated title. First template section already serving as summary
   (such as task's "What to do") can serve as TL;DR.
 - Write for teammate with thirty seconds: natural sentences, short paragraphs, bullets only for real lists.
+- **One decision visible, high signal to noise**: TL;DR names one ask for one group; every visible line serves it or is a
+  required-visible item (Safety) *for that ask*. Each other ask gets its own fold, titled with the ask and its group, holding
+  its full material and its own required-visible items; nothing dropped. Follow-up drafts returned to caller.
+  No "start here" maps; no disclaimers about what the post is not.
 - **Aggregate content** (3+ similar items: combined PR, batch report, multi-finding summary): the item list is the content.
-  Visible table, one row per item; prose only for items needing a decision; shared caveat once. TL;DR gives counts and ask.
-  Combined PRs: `fusion-pr-documentation` → `references/combined-pr.md`.
+  Visible table, one row per item *in the visible ask*; prose only for items needing a decision; shared caveat once.
+  TL;DR gives counts and ask. Combined PRs: `fusion-pr-documentation` → `references/combined-pr.md`.
 - **No process narration** in the visible part: write about the repository and the reader's decision, not the agent's
   inputs, workers, prompts, tooling or temp paths. An environment gap becomes one actionable line ("CI passes on this branch").
-- Aim for one visible screen; shorten by folding, never dropping needed facts.
+- **Name, don't number**: title + `owner/repo#123` on first mention; ratios in words; each fact once; reader actions as `- [ ]`.
 - When prose needs detailed guidance or worked examples, read `references/writing-for-people.md`
   for reader-first phrasing, list/table choices and before/after examples.
 

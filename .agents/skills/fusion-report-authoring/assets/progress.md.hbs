@@ -1,0 +1,85 @@
+{{!--
+Team progress or retro report for one period (week, month, quarter); readers are developers, team lead and product owner.
+Read references/progress-reports.md before filling. Does not use the assessment partials.
+progress: object with standing, limits, visual, delivered, attention, retro, followUps, numbers, method.
+progress.standing: two or three short prose paragraphs; pace against elapsed time, what drives the gap, what it means for the plan; no bullets.
+progress.limits: optional one sentence naming the caveat that changes how to read the report; leave out when none.
+progress.visual: one or two fenced Mermaid charts (pie, xychart-beta) from supplied numbers, each with a one-sentence plain-text readback ending with its source in plain words; omit only when numbers are missing.
+progress.delivered: list of {item, outcome}; item is "Readable title (owner/repo#123)" plus tag Q4 plan / Q3 carry-over / outside the plan; outcome is one sentence on the intended benefit; claim live/verified only with release or acceptance evidence.
+progress.attention: list of at most five {item, why, decision}; item named as above; why matters now, with deadline or "not recorded", and cost of not deciding; decision names one role (and who prepares), optional options sub-bullets with one recommended; dates only when recorded.
+progress.retro: optional {keep, change}; each two to four sentences of prose; no per-person metrics.
+progress.followUps: list of at most eight {title, context}; title is an imperative task one person can take; context is "Parent: <owner/repo#123> · Owner: <recorded @handle, or proposed role (unassigned)> · due <recorded date, or omit>. Done when <visible end state>."; ordered by risk.
+progress.numbers: list of {signal, value}; supporting metrics, folded.
+progress.method: list of data sources, collection date and caveats, folded.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Where we stand
+
+{{progress.standing}}
+{{#if progress.limits}}
+
+_Read with care:_ {{progress.limits}}
+{{/if}}
+{{#if progress.visual}}
+
+{{progress.visual}}
+{{/if}}
+
+## Closed as done
+
+{{#each progress.delivered}}
+- **{{item}}**
+  {{outcome}}
+{{else}}
+Nothing reached done in this period.
+{{/each}}
+
+## Needs attention
+
+{{#each progress.attention}}
+**{{item}}**
+{{why}} {{decision}}
+
+{{else}}
+Nothing needs a decision this period.
+
+{{/each}}
+{{#if progress.retro}}
+## Retro
+
+**What worked.** {{progress.retro.keep}}
+
+**What to change.** {{progress.retro.change}}
+
+{{/if}}
+## Follow-ups
+
+{{#each progress.followUps}}
+- [ ] {{title}}
+  {{context}}
+{{else}}
+No follow-ups proposed.
+{{/each}}
+
+{{#> agent-content/details summary="The numbers behind this report"}}
+{{#if progress.numbers}}
+| Signal | Value |
+| --- | --- |
+{{#each progress.numbers}}
+| {{signal}} | {{value}} |
+{{/each}}
+{{else}}
+No supporting numbers supplied.
+{{/if}}
+{{/agent-content/details}}
+
+{{#> agent-content/details summary="How this report was made"}}
+{{#each progress.method}}
+- {{this}}
+{{/each}}
+{{/agent-content/details}}
+
+{{> agent-content/references}}

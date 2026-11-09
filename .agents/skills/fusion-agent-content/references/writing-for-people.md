@@ -1,6 +1,14 @@
 # Writing for people
 
-Agent drafts tend to be long, list-heavy, and organized around what the agent did rather than what the reader needs. These rules turn that around.
+Agent drafts tend to be long, list-heavy, and organized around what the agent did rather than what the reader needs. These rules turn that around. The standard is high signal to noise: every visible line helps the reader decide or act, and the agent compresses its draft to that standard before handing it over.
+
+## One post, one decision
+
+- The visible part of a post is for one group of people and asks them for one thing: a decision, a review, a fix, an answer. Name both in the TL;DR.
+- Everything the agent found that does not serve that one ask goes below the fold, except the items SKILL.md Safety requires visible *for that ask*. It is still there for anyone, human or agent, who wants it; it is out of the way for everyone else.
+- A post with several asks for several groups keeps the one due now visible and gives **each other ask its own fold**, titled with the ask and the group it is for (for example "Direct React Router imports in 6 apps — their maintainers"). Inside each fold the full material stays, including that ask's risks, criteria and open questions. Follow-up drafts go back to the caller, whose confirmation step governs posting them.
+- The fold titles are the only navigation a reader needs; a maintainer scanning for their repository finds it by heading.
+- Don't write a "start here" guide that routes different readers to different sections. If the post needs a map, the visible part is too long.
 
 ## Lead with the reader
 
@@ -50,17 +58,34 @@ Both apps get a patch release note for the light-mode change.
 - [ ] CI passes on this branch (frontend checks here ran on Node 24, not the required Node 26).
 ```
 
+## Name things, don't number them
+
+Readers can't decode `#2227` or `1/7` without opening a tab. Every reference costs them a click unless the text names it.
+
+- On first mention, give an issue, PR or epic its title and then its reference: "Collect app feedback through the portal (equinor/fusion-core-tasks#2231)". Later mentions can use a short name.
+- Never write a list of bare numbers. Name each item. When there are many, name them in a fold.
+- Write ratios in words: "none of its 5 sub-issues closed", not "0/5". Show a percentage only next to its count.
+- Explain board states and label names the first time you use them, or translate them: "still waiting to be shaped (Triage)".
+- Say each fact once. If the TL;DR gives a count, the body explains it instead of repeating it.
+- Write status in words, not colour codes: "main risk", not 🔴.
+- When readers must act on items, write them as a task list (`- [ ]`). Each item's first line should work as an issue title, followed by one line of context.
+
+## Periodic reports
+
+Weekly, monthly and quarterly status or retro reports are the worst offenders, because an agent has lots of numbers and no story. Lead with whether the team is on track and why, then what landed, what needs a decision, and the follow-ups. Fold the metrics table and the method notes. `fusion-report-authoring` ships a `progress` template and `references/progress-reports.md` for this.
+
 ## Plain and concrete
 
 - Prefer plain words. Explain a term once when the reader needs it, or link to where it's explained.
 - Cut filler: "This PR aims to…", "It is important to note that…", "In order to…", "As mentioned above…".
 - Be concrete: names, numbers, links, and exact UI labels.
 - Don't repeat the TL;DR in the body; the body adds the why and the how.
+- Drop disclaimers about what the post is not: "this is not a ranking", "not an incident finding". State a real limitation once, where it changes what the reader should do.
 
 ## Length
 
-- Aim for a visible part that fits on about one screen for a typical issue or PR.
-- Shorten by moving supporting material into details, never by dropping facts the reader needs.
+- The visible part fits on one screen: banner, TL;DR, the one decision, the evidence for it and the required-visible items (see SKILL.md Safety).
+- Shorten by moving supporting material into Details, never by dropping facts the reader needs.
 - Keep a reply to a single review comment to a few sentences: the decision, the reason, and the commit that addresses it.
 
 ## Before and after

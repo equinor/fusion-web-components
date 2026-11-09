@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.2.1 - 2026-11-08
+
+### patch
+
+- [#414](https://github.com/equinor/fusion-skills/pull/414) [`71cb0e8`](https://github.com/equinor/fusion-skills/commit/71cb0e8360ea675694a392ae3e9fd2d1c899571f) - Name items instead of numbering them in agent-written content
+
+
+  - Give each issue or PR its title on first mention; no lists of bare numbers.
+  - Write ratios in words, explain board jargon once, state each fact once and write status without colour codes.
+  - Write actions that readers own as task-list checkboxes with issue-ready titles. Add guidance for periodic reports.
+
+  resolves equinor/fusion-core-tasks#2813
+
+- [#413](https://github.com/equinor/fusion-skills/pull/413) [`ed61305`](https://github.com/equinor/fusion-skills/commit/ed61305aefd44f1d61c315ce0720250e37580432) - Hold agent-written posts to high signal to noise: the TL;DR names one ask for
+
+  one group, and every visible line serves it or is a required-visible item
+  (decisions, risks, breaking changes, validation, issue closure) for that ask.
+  Each other ask gets its own fold, titled with the ask and its group, holding its
+  full material and its own required-visible items; nothing dropped, follow-up
+  drafts returned to the caller. Aggregate tables list items in the visible ask
+  only. No "start here" maps or disclaimers about what the post is not. The
+  content skeleton header carries the same rule.
+
+  refs https://github.com/equinor/fusion-core-tasks/discussions/2462
+
 ## 0.2.0 - 2026-11-01
 
 ### minor

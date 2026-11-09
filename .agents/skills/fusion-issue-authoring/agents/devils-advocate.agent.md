@@ -95,6 +95,7 @@ Return:
 - **Noted risks**: unresolved items the user chose to defer
 - **Ready to draft**: explicit signal that the type-specific agent can proceed
 
+Drafting maps these to provenance tags (`references/collaborative-drafting.md`): confirmed decisions `[stated]`, derived answers `[verified: <source>]`, unanswered or deferred items `[assumed]`.
 Keep the summary scannable — bullet lists, not paragraphs.
 
 ## Expected output

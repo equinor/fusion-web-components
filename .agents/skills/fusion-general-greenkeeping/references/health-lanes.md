@@ -9,6 +9,10 @@
 - [Ownership and security policy](#ownership-and-security-policy)
 - [Stale or duplicated config](#stale-or-duplicated-config)
 - [Dead references](#dead-references)
+- [Rule coherence](#rule-coherence)
+- [Rule compliance](#rule-compliance)
+- [ADR lifecycle](#adr-lifecycle)
+- [Docs coverage](#docs-coverage)
 - [Handoffs](#handoffs)
 
 Per-lane checks, evidence and false-positive traps. Inspect in-scope lanes only.
@@ -102,6 +106,70 @@ scripts or CI, `applyTo`/glob patterns matching nothing.
 
 External URLs: unknown unless network checks approved; never fetch by default.
 
+## Rule coherence
+
+Rule sources: `CONTRIBUTING.md`, `contribute/` or maintainer docs, nearest `AGENTS.md`,
+`.github/copilot-instructions.md`, `.github/instructions/`, ADRs. These are repo's constitution; never
+suggest new constitution file.
+
+Check:
+
+- same rule stated differently across sources (validation commands, PR rules, naming, issue routing);
+- duplicated rule text likely to drift (same rule maintained in several files without pointer);
+- unclear precedence: overlapping sources with no stated winner;
+- `applyTo` scopes that overlap with conflicting instructions.
+
+Finding names every source with path + line or quote. Contradictions are **decision** findings: ask which
+source wins, never pick. Trap: summary pointing to canonical source ("see `contribute/`") isn't duplication.
+
+## Rule compliance
+
+Checks adopted rules against recent practice. Opt-in for large repos or when maintainer asks; otherwise
+include in full health check with default sample.
+
+- Default sample: last 10 commits on default branch from local history. Resolve default branch locally
+  (`git symbolic-ref refs/remotes/origin/HEAD`, else `init.defaultBranch` or `main`/`master` ref that
+  exists); never use current checkout, which may be a feature branch. No fetch.
+- Run only after approval of exact read-only commands (ref resolution and
+  `git log -n 10 --format='%h %ad %s' --date=short <ref>`). No approval or no local default-branch
+  ref: lane "not run", state why. Report sample, ref and source.
+- PR bodies, reviews or labels need network (`gh`): only with approval of exact command; else "not run".
+- Rules to check: those stated in rule sources (changesets, required tests, commit format, naming, docs
+  updates). Convention and ADR checks: use `fusion-code-conventions` when installed; else read rule
+  sources directly and disclose.
+- Report recurring patterns with counts (`4/10 commits touching skills/ lack changeset`), not every
+  violation. One-off misses are not findings.
+
+Trap: rule adopted after sampled commits isn't violated by them; compare commit date with rule's
+introduction.
+
+## ADR lifecycle
+
+Only when repo keeps ADRs. Discover: `docs/adr/`, `adr/`, `docs/decisions/`, `decisions/`,
+`contribute/decisions/`, directories rule sources name as ADR home, or directories of numbered decision
+files (`0001-*.md`, `YYYYMMDD-*.md`). None found: lane not applicable, say so.
+
+Check:
+
+- ADR replaced by later ADR but still marked accepted or lacking superseded link;
+- accepted ADR that current code, config or rule sources contradict, quoting both sides;
+- ADR index or README listing missing or dead ADR files.
+
+Decisions repeated across PRs with no ADR are **suggestions** only; ADR adoption is maintainer choice.
+Trap: ADR status `proposed` or documented in-progress migration isn't drift.
+
+## Docs coverage
+
+Reverse of [Docs vs executable config](#docs-vs-executable-config): practice docs never mention.
+
+Check:
+
+- manifest scripts or `Makefile` targets contributors must run (validate, test, lint, release) that no
+  contributor doc describes;
+- required CI checks whose local equivalent is undocumented.
+
+Report only contributor-facing gaps; internal helper scripts and generated targets aren't findings.
+
 ## Handoffs
 
 | Signal | Companion |
@@ -114,6 +182,7 @@ External URLs: unknown unless network checks approved; never fetch by default.
 | Dependency update or upgrade decision | `fusion-dependency-review` |
 | Fusion app code, tests, routing, app-local context | `fusion-app-greenkeeping` |
 | Issue drafts from findings | `fusion-issue-authoring` |
+| Convention and ADR compliance in code | `fusion-code-conventions` |
 
 Docs-vs-config lane still reports simple contradictions (docs say pnpm, lockfile is npm) itself;
 hand off only deeper stack checks.

@@ -1,6 +1,6 @@
 ---
 name: fusion-devtools
-description: 'Uses Fusion DevTools CLI (fdev) for API testing. USE FOR: Fusion REST calls, JSON access tokens, service/environment discovery, person lookup and PIM role activation. DO NOT USE FOR: backend code (use fusion-developer-service), deployments, infrastructure, CI/CD setup, Service Bus operations, unconfirmed PIM activation or exposing tokens or secrets.'
+description: 'Uses Fusion DevTools CLI (fdev) for API testing, security snapshots, and service/person discovery. USE FOR: Fusion REST calls, JSON tokens, service/environment discovery, person lookup, PIM role activation, or fdev GitHub security snapshots. DO NOT USE FOR: backend code, deployments, infrastructure, CI/CD, Service Bus, or writing security reports (use fusion-security-report).'
 license: MIT
 compatibility: >
   Requires fdev installed as a .NET global tool
@@ -8,7 +8,7 @@ compatibility: >
   Requires Azure AD login (fdev login).
   Works best alongside fusion-core-services for understanding API contracts before calling them.
 metadata:
-  version: "0.1.4"
+  version: "0.2.0"
   status: active
   owner: "@equinor/fusion-core"
   tags:
@@ -36,6 +36,7 @@ Typical triggers:
 - "Resolve this person's Azure ID"
 - "What's the base URL for the org service?"
 - "Get me an access token I can pipe to jq"
+- "Fetch GitHub security alerts for an app"
 
 Implicit triggers: verify API contract/response shape, acquire bearer token for HTTP request, map service key to URL, or resolve identity for test data.
 
@@ -47,6 +48,7 @@ Implicit triggers: verify API contract/response shape, acquire bearer token for 
 - Non-database infrastructure — use Terraform/Bicep
 - Service Bus / SignalR debugging — use Azure portal/dedicated tools
 - AI search index management
+- Writing security reports from snapshots — use `fusion-security-report`
 
 ## Required inputs
 
@@ -108,10 +110,28 @@ Discovery cache: environments 24h, services 1h. Use `--no-cache` for fresh looku
 fdev rest people '/persons/me?api-version=3.0' --no-cache
 ```
 
+### Step 5 — Collect GitHub security snapshots
+
+Available in fdev 1.9.0+. Use `fdev selfcheck appsec github-security` to create a repository inventory, fetch security findings, and review a console summary. Run all three commands from the same directory:
+
+```bash
+fdev selfcheck appsec github-security init --org <ORG> --app-id <APP_ID>
+fdev selfcheck appsec github-security fetch --app-id <APP_ID>
+fdev selfcheck appsec github-security report --detail list
+```
+
+| Command | Key options |
+|---|---|
+| `init` | `--org <ORG>` (required), `--app-id <APP_ID>`, `--topic <TOPIC>`, `--all`, `--name-contains <PATTERN>`, `--output <PATH>`, `--force` |
+| `fetch` | `--config <PATH>`, `--app-id <ID>`, `--topic <TOPIC>`, `--name-contains <PATTERN>`, `--exclude-archived`, `--exclude-forks`, `--output <PATH>`, `--force` |
+| `report` | `--detail` (Summary, List, or Full), `--repo <NAME>`, `--data <PATH>`, `--access` |
+
+`init` accepts comma-separated `--app-id` and `--topic` filters. Without either filter, non-interactive sessions must pass `--all` to list every repository. `fetch` can further filter repositories from the generated inventory. For report writing, use `fusion-security-report`. See the [full fdev GitHub Security snapshot reference](https://github.com/equinor/fusion-dev-tools/blob/main/src/fusion-devtools/docs/selfcheck-github-security.md) for option behavior and output details.
+
 ## Reference guides
 
 Bundled `references/` (`command-reference.md`, `agentic-patterns.md`) load only under conditions above.
 
 ## Expected output
 
-Sanitized API response/shape, service keys/base URLs/environment, resolved person identifiers or redacted token metadata; approved PIM/write outcome when applicable. Report command, selected environment, failures, approval blockers and unknown state. Never return raw tokens or imply unrun commands succeeded.
+Sanitized API response/shape, service keys/base URLs/environment, resolved person identifiers or redacted token metadata, or GitHub security snapshot files and report summary; approved PIM/write outcome when applicable. Report command, selected environment, failures, approval blockers and unknown state. Never return raw tokens or imply unrun commands succeeded.

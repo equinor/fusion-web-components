@@ -1,9 +1,9 @@
 ---
 name: fusion-report-authoring
-description: 'Authors assessments from supplied evidence. USE FOR: security, repository-health, dependencies, bug-investigation, test-quality, architecture, performance, operational-readiness or migration-readiness reports. DO NOT USE FOR: collecting evidence, investigations/tests/scanners, project status, fixes, issue drafting, publishing, or discussing existing reports (use fusion-general-greenkeeping).'
+description: 'Authors reports from supplied evidence. USE FOR: security, repository-health, dependencies, bug-investigation, test-quality, architecture, performance, operational- or migration-readiness assessments; team progress/retro reports. DO NOT USE FOR: collecting evidence, investigations/tests/scanners, fixes, issue drafting, publishing, or discussing existing reports (use fusion-general-greenkeeping).'
 license: MIT
 metadata:
-  version: "0.0.4"
+  version: "0.1.0"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -23,11 +23,12 @@ Author only; caller owns investigation/execution/publication. Report completion 
 ## When to use
 
 - Author selected assessment from completed, partial, failed-check or static-only evidence, inside caller's envelope.
+- Author weekly, monthly or quarterly team progress/retro report from supplied board, milestone and issue data.
 
 ## When not to use
 
 - Evidence collection, reproduction, tests/scans/benchmarks; fixes, dependency updates,
-  migration/deployment approval, project status, issues or publishing.
+  migration/deployment approval, issues or publishing.
 - Unsupported template substitution.
 
 ## Required inputs
@@ -66,6 +67,8 @@ outcome in caller's envelope.
    [shared template context](references/evidence-contract.md#shared-template-context)
    (lines 37–58) for field semantics; [fill rules](assets/partials/agent-content/README.md)
    and named partials. Fill by hand; no renderer installation/execution.
+   `progress`: skip assessment/supporting-evidence partials and shared template context; read
+   [progress reports](references/progress-reports.md) instead; its section rules override agent-content's one-ask/aggregate-table rules.
 4. Present with installed `fusion-agent-content`; use `fusion-audience-alignment`
    when readers need different decision information. Missing companion: disclose; use shipped
    framing, never invented provenance.
@@ -91,11 +94,13 @@ outcome in caller's envelope.
 | `performance` | [Performance](assets/performance.md.hbs) |
 | `operational-readiness` | [Operational readiness](assets/operational-readiness.md.hbs) |
 | `migration-readiness` | [Migration readiness](assets/migration-readiness.md.hbs) |
+| `progress` | [Team progress / retro](assets/progress.md.hbs) |
 
 ## Expected output
 
-Bounded report: identity/scope, outcome, evidence, checks/omissions, domain decisions,
-visible limitations/actions, provenance/references. Explain blocked/unsupported requests.
+Assessment types: bounded report with identity/scope, outcome, evidence, checks/omissions, domain decisions,
+visible limitations/actions, provenance/references. `progress`: filled progress template only; no assessment
+sections. Explain blocked/unsupported requests.
 
 Example: "TQ-17: static inspection found missing persistence assertions (E1).
 No tests ran; timing fragility remains unverified. Other modules unassessed.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 - 2026-11-08
+
+### minor
+
+- [#402](https://github.com/equinor/fusion-skills/pull/402) [`87af3ac`](https://github.com/equinor/fusion-skills/commit/87af3ac85a28df72527d47be3d1d7d9f68e13b42) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Document fdev GitHub security snapshot commands and routing to the report-writing skill.
+
+
+  resolves equinor/fusion-skills#347
+
 ## 0.1.4 - 2026-11-01
 
 ### patch

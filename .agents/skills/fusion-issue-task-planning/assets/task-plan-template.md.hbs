@@ -11,6 +11,10 @@ ancestors: list of full parent or ancestor references
 relevantLinks: list of verified issue, PR, or documentation URLs
 acceptanceCriteriaAnchors: list of criteria with stable AC identifiers
 acceptanceCriteriaTraceability: list of AC to task mappings
+technicalPlan: object with affectedAreas, approach, alternatives, risks, testStrategy (lists, claims tagged [stated]/[verified: source]/[assumed]); omit when plan step skipped
+planSkipReason: optional reason plan step was skipped
+researchQuestions: optional list with question, sources, stopCondition, blocking (yes/no)
+coverage: object with uncoveredRequirements and untracedTasks lists; both empty means full coverage; omit when coverage check has not run (renders Not checked)
 tasks: ordered list with number, objective, sequence, acceptanceCriteria, scopeBoundary, deliverable, verification
 niceToHaveTasks: optional list with title and value; not drafted until selected
 dependencyNotes: list of dependencies with reasons
@@ -59,10 +63,66 @@ EXPERIMENTAL: This workflow is not yet stable and may change.
 - {{this}}
 {{/each}}
 
+## Technical plan
+{{#if technicalPlan}}
+- Affected areas:
+{{#each technicalPlan.affectedAreas}}
+  - {{this}}
+{{/each}}
+- Approach:
+{{#each technicalPlan.approach}}
+  - {{this}}
+{{/each}}
+- Alternatives considered:
+{{#each technicalPlan.alternatives}}
+  - {{this}}
+{{/each}}
+- Risks:
+{{#each technicalPlan.risks}}
+  - {{this}}
+{{/each}}
+- Test strategy:
+{{#each technicalPlan.testStrategy}}
+  - {{this}}
+{{/each}}
+{{else}}
+Skipped: {{planSkipReason}}
+{{/if}}
+{{#if researchQuestions}}
+
+## Research questions
+{{#each researchQuestions}}
+- {{question}} (blocking: {{blocking}})
+  - Sources: {{sources}}
+  - Stop when: {{stopCondition}}
+{{/each}}
+{{/if}}
+
 ## Acceptance-criteria traceability
 {{#each acceptanceCriteriaTraceability}}
 - {{this}}
 {{/each}}
+
+## Coverage
+{{#if coverage}}
+{{#if coverage.uncoveredRequirements}}
+- Uncovered requirements (block publication):
+{{#each coverage.uncoveredRequirements}}
+  - {{this}}
+{{/each}}
+{{/if}}
+{{#if coverage.untracedTasks}}
+- Untraced tasks (block publication):
+{{#each coverage.untracedTasks}}
+  - {{this}}
+{{/each}}
+{{/if}}
+{{#unless coverage.uncoveredRequirements}}{{#unless coverage.untracedTasks}}
+Full coverage: every requirement has a task and every task traces to a requirement.
+{{/unless}}{{/unless}}
+{{else}}
+Not checked: coverage check has not run; publication blocked until it does.
+{{/if}}
 
 ## Ordered implementation tasks
 {{#each tasks}}

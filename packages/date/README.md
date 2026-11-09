@@ -48,6 +48,7 @@ return (
 #### Alternative format type
 
 The `format` variable can also be given as a value instead of a typed enum
+
 ```ts
 return (
   <fwc-datetime format='datetime' date='2021-08-09T11:12:49Z' />
@@ -71,6 +72,7 @@ return (
 | `locale` | `LocaleName**`              | `enGB`         | Used to override the locale for which the date format is based. See date-fns [`Locale`](https://date-fns.org/v2.23.0/docs/Locale).                           |
 
 \* `DateTimeFormat` is exported by `fwc-date`.
+
 ```ts
 enum DateTimeFormat {
   date = 'dd.MM.yyyy',
@@ -83,6 +85,7 @@ enum DateTimeFormat {
 
 \*\* `LocaleName` is exported by `fwc-date`.
 See date-fns [`Locale`](https://date-fns.org/v2.23.0/docs/Locale) for all supported locales.
+
 ```ts
 type LocaleName = 'enGB' | 'enUS' | 'nb' | ...;
 ```
@@ -172,11 +175,13 @@ return (
 | `capitalize` | `boolean`                    | `false`        | Set `true` to capitalize the first character in the formatted text. Applies to `distance` and `relative` variants.                                           |
 
 \* `DateRangeVariant` is exported by `fwc-date`.
+
 ```ts
 type DateRangeVariant = 'relative' | 'distance' | 'datetime';
 ```
 
 \*\* `DateTimeFormat` is exported by `fwc-date`.
+
 ```ts
 enum DateTimeFormat {
   date = 'dd.MM.yyyy',
@@ -189,11 +194,13 @@ enum DateTimeFormat {
 
 \*\*\* `LocaleName` is exported by `fwc-date`.
 See date-fns [`Locale`](https://date-fns.org/v2.23.0/docs/Locale) for all supported locales.
+
 ```ts
 type LocaleName = 'enGB' | 'enUS' | 'nb' | ...;
 ```
 
 \*\*\*\* `WeekDay` is exported by `fwc-date`.
+
 ```ts
 type WeekDay = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 ```

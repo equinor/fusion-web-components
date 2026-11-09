@@ -36,6 +36,7 @@ const markdown = "# my heading here";
 | `menuSize`  | `MenuSizes**`            | `'medium'`                                        | Size of the menu buttons       |
 
 \* `Array<MdMenuItemType>` is list of showing visible menu buttons available as `MdMenuItemType`.
+
 ```ts
 type MdMenuItemType =
   | 'strong'
@@ -51,6 +52,7 @@ type MdMenuItemType =
 ```
 
 \* `MenuSizes` type imported from markdown component.
+
 ```ts
 type MenuSizes = 'small' | 'medium' | 'large';
 ```

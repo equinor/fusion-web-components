@@ -11,6 +11,6 @@ jobs:
 
     steps:
       - name: Notify
-        uses: davidwengier/PostAdaptiveCard@v1.0.4
+        uses: davidwengier/PostAdaptiveCard@ed077f2bd4b80fdaaef21dae2e13a34e556d466d # v1.0.4
         with:
           webhook_uri: ${{ secrets.TEAMS_PR_WEBHOOK }}

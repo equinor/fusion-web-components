@@ -24,7 +24,7 @@
     "remark-gfm": "^4.0.1",
     "storybook": "^10.6.5",
     "typescript": "^7.0.2",
-    "vite": "^8.3.5"
+    "vite": "^8.3.6"
   },
   "devDependencies": {
     "@equinor/eds-tokens": "^2.3.2",

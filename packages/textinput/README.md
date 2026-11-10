@@ -50,6 +50,7 @@ npm install @equinor/fusion-wc-textinput
 | `name`                    | `string`                         | Sets the `name` attribute on the internal input.\*\*\*                                                                                                                                        |
 
 \* `TextInputType` is exported by `fwc-textinput`.
+
 ```ts
 type TextInputType =
   | 'text'
@@ -68,21 +69,25 @@ type TextInputType =
 ```
 
 \*\* `TextInputVariant` is exported by `fwc-textinput`.
+
 ```ts
 export type TextInputVariant = 'filled' | 'outlined';
 ```
 
 \*\*\* `IconName` is exported by `fwc-icon`.
+
 ```ts
 type IconName = keyof typeof edsIcons | string;
 ```
 
 \*\*\*\* `TextInputCharCounter` is exported by `fwc-textinput`.
+
 ```ts
 type TextInputCharCounter = 'external' | 'internal';
 ```
 
 \*\*\*\*\* `ValidityTransform` is exported by `fwc-textinput`.
+
 ```ts
 type ValidityTransform = (value: string, nativeValidity: ValidityState) => Partial<ValidityState>;
 ```

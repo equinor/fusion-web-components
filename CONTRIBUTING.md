@@ -29,10 +29,12 @@ npm trust list @equinor/fusion-wc-<package>
 ```
 
 Ensure the trust entry points to:
+
 - repository: `equinor/fusion-web-components`
 - workflow file: `.github/workflows/release.yml`
 
 Once this is in place, subsequent releases for that package can use OIDC via CI.
+
 ## Temporary light-only Storybook
 
 Storybook's preview document sets `data-color-scheme="light"` on its root `<html>`

@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.0 - 2026-11-09
+
+### minor
+
+- [#424](https://github.com/equinor/fusion-skills/pull/424) [`6f5773b`](https://github.com/equinor/fusion-skills/commit/6f5773b2fd360f3589b9ad69e6c72c3311749ac1) - Cover GitHub Actions workflow dependency lockfiles in the Actions hygiene audit
+
+
+  - Recognize `.github/workflows/actions.lock` as an adopted convention and the preferred target over inline SHA pins
+  - Stop recommending inline SHA pins for workflows covered by the lockfile; keep SHA pins acceptable until a workflow is onboarded
+  - Keep requiring full commit SHAs for cross-repository reusable-workflow calls, which lockfiles do not cover
+  - When a lockfile is present or adopted, flag drift and readiness blockers: uncovered workflows (no-`uses:` workflows as policy-dependent), mismatched `uses:` references, local actions that use other actions, missing `gh actions-lock --verify` check and no effective CODEOWNERS owner for the lockfile
+  - Never hand-edit the lockfile; regenerate with an approved `gh actions-lock` command
+
+  resolves equinor/fusion-core-tasks#2884
+
 ## 0.4.2 - 2026-11-01
 
 ### patch

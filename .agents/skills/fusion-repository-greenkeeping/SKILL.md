@@ -4,7 +4,7 @@ description: 'Sets up, audits and maintains repository workflows and APM setup, 
 license: MIT
 compatibility: No runtime dependencies; agent fills templates by hand. Optional actionlint validates filled YAML. Consumer workflow prerequisites depend on selected template; no MCP or service authentication needed.
 metadata:
-  version: "0.4.2"
+  version: "0.5.0"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -28,7 +28,7 @@ Own reviewed workflows/lifecycle, not skill management or deployment platform. R
 ## When to use
 
 - APM sync/health; Fusion single-app/Changesets deployment; Copilot setup/readiness.
-- Dependabot/pinned Actions, workflow security/runtime/runner audits.
+- Dependabot/pinned Actions, workflow lockfile (`actions.lock`), workflow security/runtime/runner audits.
 - Greenkeeper enrolment readiness; repeat setup, template upgrades/customization conflicts.
 
 ## When not to use

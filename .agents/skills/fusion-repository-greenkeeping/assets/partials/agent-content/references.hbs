@@ -1,0 +1,30 @@
+<details>
+<summary>References and evidence</summary>
+
+{{#if references.skills}}
+**Skills:** {{#each references.skills}}`{{name}}`{{#if version}} {{version}}{{/if}}{{#unless @last}}, {{/unless}}{{/each}}
+{{else}}
+**Skills:** none used.
+{{/if}}
+{{#if references.skillReferences}}
+
+**Skill references read:**
+{{#each references.skillReferences}}
+- `{{path}}`: {{why}}
+{{/each}}
+{{/if}}
+{{#if references.evidence}}
+
+**Evidence:**
+{{#each references.evidence}}
+- {{source}}: {{shows}}
+{{/each}}
+{{/if}}
+{{#if references.otherAgents}}
+
+**Other agents:**
+{{#each references.otherAgents}}
+- {{this}}
+{{/each}}
+{{/if}}
+</details>

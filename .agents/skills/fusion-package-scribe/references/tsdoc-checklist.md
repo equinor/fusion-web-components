@@ -1,5 +1,17 @@
 # TSDoc Checklist
 
+## Contents
+
+- [Required tags by export kind](#required-tags-by-export-kind)
+- [Summary line rules](#summary-line-rules)
+- [`@param` rules](#param-rules)
+- [`@returns` rules](#returns-rules)
+- [`@template` rules](#template-rules)
+- [`@throws` rules](#throws-rules)
+- [`@example` rules](#example-rules)
+- [Anti-patterns to flag](#anti-patterns-to-flag)
+
+
 Default TSDoc quality rules when no repository-level standards exist. Repository standards (e.g. `fusion-code-conventions`) take precedence.
 
 ## Required tags by export kind

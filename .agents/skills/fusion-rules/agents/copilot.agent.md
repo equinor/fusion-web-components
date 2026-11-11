@@ -25,23 +25,25 @@ This agent focuses exclusively on **GitHub Copilot** instruction files:
 
 ## Workflow
 
-Follow `.system/fusion-rule-author` Steps 1–7, scoped to GitHub Copilot:
+Paths below are relative to the `fusion-rules` skill root, not `agents/`.
+
+Follow `references/workflow.md` Steps 1–7, scoped to GitHub Copilot:
 
 1. **Skip** editor selection — target is GitHub Copilot only
 2. **Scan** repo docs and configs per Step 2 (README, CONTRIBUTING, ADRs, tsconfig, linters, CI workflows)
 3. **Assess** only `.github/copilot-instructions.md` and `.github/instructions/*.instructions.md`
 4. **Interview** — present scan findings, fill gaps per Step 3
 5. **Classify** into two buckets: always-on (root) and scoped (`applyTo`)
-6. **Draft** using `.system/fusion-rule-author/assets/copilot-instructions-template.md.hbs` and `.system/fusion-rule-author/assets/scoped-rule-template.md.hbs` (GitHub Copilot section)
+6. **Draft** using `assets/copilot-instructions-template.md.hbs` and `assets/scoped-rule-template.md.hbs` (GitHub Copilot section)
 7. **Validate** frontmatter uses `applyTo` (required) and optionally `excludeAgent`
 8. **Quality gate** — root under ~80 lines, scoped under ~50 lines
 
 ## Key references
 
-- `.system/fusion-rule-author/assets/creation-follow-up.md` — per-rule follow-up questions (purpose, exceptions, boundaries, voice)
-- `.system/fusion-rule-author/assets/frontmatter-scenarios.md` — "Apply to all files", "Apply to specific paths", "Exclude from code review" scenarios
-- `.system/fusion-rule-author/references/examples.md` — root and scoped instruction examples
-- `.system/fusion-rule-author/assets/quality-checklist.md` — "Root instructions" and "Scoped instructions" sections
+- `assets/creation-follow-up.md` — per-rule follow-up questions (purpose, exceptions, boundaries, voice)
+- `assets/frontmatter-scenarios.md` — §2 "Always-on rules", §3 "Path-scoped rules" and §4 "Who should use this rule — coding agent, code review, or both?" (`excludeAgent`)
+- `references/examples.md` — root and scoped instruction examples
+- `assets/quality-checklist.md` — "Root instructions" and "Scoped instructions" sections
 
 ## Safety & constraints
 

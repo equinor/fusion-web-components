@@ -1,0 +1,62 @@
+{{!--
+  Scoped rule starters; select the editor's fenced output.
+  Insert Markdown as written; drop this header. No agent-content framing in rules.
+  pathPattern: YAML-safe path glob, without surrounding quotes or brace expansion ({a,b}).
+    Copilot splits applyTo on commas, so braces break matching. For several patterns,
+    comma-separate them in applyTo and use separate list items in paths.
+  description: YAML-safe rule description, without surrounding quotes.
+  ruleTitle: concise rule title.
+  directives: imperative rule bullets.
+--}}
+# Scoped Rule — Starter Templates
+
+Templates for path-specific rules. Choose the format matching your editor.
+
+---
+
+## GitHub Copilot (`.github/instructions/<name>.instructions.md`)
+
+```markdown
+---
+applyTo: "{{pathPattern}}"
+---
+
+{{directives}}
+```
+
+Optional: add `excludeAgent: "code-review"` or `excludeAgent: "coding-agent"` to limit which Copilot agent uses the file.
+
+---
+
+## Cursor (`.cursor/rules/<name>.mdc`)
+
+See `assets/cursor-rule-template.md.hbs` for the full starter template.
+
+```markdown
+---
+description: "{{description}}"
+globs: "{{pathPattern}}"
+alwaysApply: false
+---
+
+{{directives}}
+```
+
+---
+
+## Claude Code (`.claude/rules/<name>.md`)
+
+See `assets/claude-rule-template.md.hbs` for the full starter template.
+
+```markdown
+---
+paths:
+  - "{{pathPattern}}"
+---
+
+# {{ruleTitle}}
+
+{{directives}}
+```
+
+Omit the `paths` frontmatter to make the rule load unconditionally (every session).

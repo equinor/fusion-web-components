@@ -1,5 +1,16 @@
 # Agentic workflow patterns
 
+## Contents
+
+- [Pattern 1 — Verify API response shape](#pattern-1--verify-api-response-shape)
+- [Pattern 2 — Get a token for external tools](#pattern-2--get-a-token-for-external-tools)
+- [Pattern 3 — Discover service base URL](#pattern-3--discover-service-base-url)
+- [Pattern 4 — Resolve person identity](#pattern-4--resolve-person-identity)
+- [Pattern 5 — Test across environments](#pattern-5--test-across-environments)
+- [Pattern 6 — POST with request body from file](#pattern-6--post-with-request-body-from-file)
+- [Pattern 7 — Chain discovery with token for scripting](#pattern-7--chain-discovery-with-token-for-scripting)
+- [Safety reminders](#safety-reminders)
+
 Common recipes for coding agents using fdev in automated workflows.
 
 ## Pattern 1 — Verify API response shape

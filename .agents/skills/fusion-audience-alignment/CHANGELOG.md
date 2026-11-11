@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.3 - 2026-11-01
+
+### patch
+
+- [#387](https://github.com/equinor/fusion-skills/pull/387) [`9b01ad2`](https://github.com/equinor/fusion-skills/commit/9b01ad236790db3caa7c2269e0af5d2bd1da65dc) - Load reader discovery and detailed review guidance conditionally while retaining reader-selection rules and source-blind review gates.
+
+
+  resolves equinor/fusion-core-tasks#2684
+
+## 0.1.2 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the description while keeping multi-audience reader reviews, product owner/developer/newcomer cues, formatting and running-app persona handoffs, and publication confirmation.
+
+
+  resolves equinor/fusion-core-tasks#2668
+
 ## 0.1.1 - 2026-10-18
 
 ### patch

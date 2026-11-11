@@ -1,0 +1,55 @@
+{{!--
+  Cursor rule starters; select the applicable fenced output and save it as .mdc.
+  Insert Markdown as written; drop this header. No agent-content framing in rules.
+  description: YAML-safe activation description, without surrounding quotes.
+  pathPattern: YAML-safe path glob, without surrounding quotes.
+  directives: concise imperative rule bullets.
+--}}
+# Cursor Rule — Starter Template
+
+Use this as the starting structure for `.cursor/rules/<name>.mdc`.
+Set frontmatter fields to control activation mode, then add concise, imperative directives.
+
+---
+
+## Always-apply rule
+
+```markdown
+---
+alwaysApply: true
+---
+
+{{directives}}
+```
+
+## Glob-scoped rule (activates when matching files are in context)
+
+```markdown
+---
+description: "{{description}}"
+globs: "{{pathPattern}}"
+alwaysApply: false
+---
+
+{{directives}}
+```
+
+## Agent-selected rule (Agent decides relevance from description)
+
+```markdown
+---
+description: "{{description}}"
+alwaysApply: false
+---
+
+{{directives}}
+```
+
+## Manual rule (only applied when @-mentioned in chat)
+
+```markdown
+---
+---
+
+{{directives}}
+```

@@ -1,5 +1,53 @@
 # Changelog
 
+## 0.3.0 - 2026-11-08
+
+### minor
+
+- [#417](https://github.com/equinor/fusion-skills/pull/417) [`e7bb202`](https://github.com/equinor/fusion-skills/commit/e7bb2023b5ee1006619fa96d7cf63709777137cf) - Agree a technical plan before splitting a story into tasks: affected areas,
+
+  approach, at least one alternative, risks and test strategy, with claims tagged
+  by provenance. Unknowns become research questions with sources and a stop
+  condition; blocking ones become first-sequenced research tasks. After drafting,
+  a coverage check lists requirements with no task and tasks with no requirement;
+  both block publication until resolved, and a missing check renders `Not checked`. The plan preview
+  template gains technical plan, research question and coverage sections.
+
+  resolves equinor/fusion-core-tasks#2858
+
+## 0.2.4 - 2026-11-01
+
+### patch
+
+- [#397](https://github.com/equinor/fusion-skills/pull/397) [`577ac76`](https://github.com/equinor/fusion-skills/commit/577ac7654ff0f23eb62e01736ef497724e9b3ef7) - Route task drafts through fusion-issue-authoring's task mode instead of the removed fusion-issue-author-task companion. Align plan previews with the orchestrated and inline modes while preserving draft-only fallback, ambiguity review, and explicit publish/repair gates.
+
+
+  fixes equinor/fusion-skills#376
+
+## 0.2.3 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+- [#382](https://github.com/equinor/fusion-skills/pull/382) [`22dc946`](https://github.com/equinor/fusion-skills/commit/22dc94689f81a7545524a2ae7962c6d84a4744b9) - Tighten task planning while preserving same-turn approval, ambiguity review, draft-only fallbacks, and output templates. Load publication and idempotent repair detail only for those branches.
+
+
+  resolves equinor/fusion-core-tasks#2681
+
+## 0.2.2 - 2026-10-27
+
+### patch
+
+- [#336](https://github.com/equinor/fusion-skills/pull/336) [`bf60e9e`](https://github.com/equinor/fusion-skills/commit/bf60e9e76a812735b3ff0cde8140eb5604a506f7) - Sync shared provenance fill rules: resolve authoring-turn metadata before fallback,
+
+  with bounded lookup, model-change and delegate attribution, and privacy limits.
+
+  fixes equinor/fusion-skills#335
+
 ## 0.2.1 - 2026-10-18
 
 ### patch

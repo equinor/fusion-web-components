@@ -1,0 +1,28 @@
+{{!--
+Migration readiness from supplied compatibility and pilot evidence.
+migration: object with versions, scope, compatibility, dependenciesAndData, rollout, recovery, validation, blockers, decision; distinguish inferred compatibility, partial pilot and full migration; never imply approval.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Migration decision
+
+- Source / target versions: {{migration.versions}}
+- Migration scope: {{migration.scope}}
+- Compatibility evidence: {{migration.compatibility}}
+- Dependencies / data impacts: {{migration.dependenciesAndData}}
+- Rollout / cutover constraints: {{migration.rollout}}
+- Rollback / recovery: {{migration.recovery}}
+- Validation evidence: {{migration.validation}}
+- Remaining blockers: {{migration.blockers}}
+- Recommended next decision: {{migration.decision}}
+
+Inferred compatibility is not demonstrated migration success. A pilot does not
+prove full readiness; recommendations authorize neither migration nor data loss/downtime.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

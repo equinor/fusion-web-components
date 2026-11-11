@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.2.2 - 2026-11-01
+
+### patch
+
+- [#382](https://github.com/equinor/fusion-skills/pull/382) [`22dc946`](https://github.com/equinor/fusion-skills/commit/22dc94689f81a7545524a2ae7962c6d84a4744b9) - Tighten implementation workflow and defer PR preparation and output framing until needed. Preserve repository-policy precedence, assignment checks, validation, and explicit mutation confirmation.
+
+
+  resolves equinor/fusion-core-tasks#2681
+
+## 0.2.1 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the issue-solving description while keeping short issue references, direct GitHub issue URL triggers and implementation boundaries. Make read-only and unconfirmed-publishing exclusions explicit.
+
+
+  resolves equinor/fusion-core-tasks#2667
+
 ## 0.2.0 - 2026-10-18
 
 ### minor

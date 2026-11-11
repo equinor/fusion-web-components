@@ -147,6 +147,8 @@ Shipped skill package:
 
 Repo-local instructions/catalog docs:
 
+When repository provides `contribute/02-skill-structure-and-content.md`, read § Context budget before drafting/reviewing context-cost changes. Apply its conditions through local overlay; do not copy catalog budgets into portable skills. Measure entry plus mandatory reads; record which conditional files representative runs actually load.
+
 - repo-owned prefixes (e.g. `fusion-`)
 - placement conventions (`skills/.experimental/`, `skills/.curated/`)
 - required ownership, lifecycle, composition metadata

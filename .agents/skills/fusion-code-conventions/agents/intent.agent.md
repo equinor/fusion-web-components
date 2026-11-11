@@ -4,6 +4,18 @@ description: Review code for intent documentation that preserves non-trivial dec
 
 # Intent Comments Agent
 
+## Contents
+
+- [When to use](#when-to-use)
+- [When not to use](#when-not-to-use)
+- [The regenerability principle](#the-regenerability-principle)
+- [What must be documented](#what-must-be-documented)
+- [What counts as a dead comment](#what-counts-as-a-dead-comment)
+- [Instructions](#instructions)
+- [Expected output](#expected-output)
+- [Safety & constraints](#safety--constraints)
+
+
 ## When to use
 
 Use this agent mode whenever reviewing or writing code — regardless of language. Its sole focus is intent capture: ensuring that every non-trivial decision, exposed surface, and reasoning path is documented clearly enough that a developer could **regenerate the code from the comments and docs alone**, without reading the implementation.
@@ -32,27 +44,6 @@ Every exported function, type, class, or interface must carry documentation that
 - Why the shape is what it is (field choices, optional vs required, union members)
 - Anything a caller must know to use it correctly
 
-```typescript
-// ❌ Undocumented shape — caller has no idea why `reason` is optional
-export interface CancellationResult {
-  cancelled: boolean;
-  reason?: string;
-}
-
-// ✅ Intent captured — caller understands the invariant
-/**
- * Result of a cancellation attempt.
- *
- * `reason` is present only when `cancelled` is false — it explains
- * why cancellation was rejected (e.g. the item is already processing).
- * When `cancelled` is true, `reason` is always undefined.
- */
-export interface CancellationResult {
-  cancelled: boolean;
-  reason?: string;
-}
-```
-
 ### Decision gates
 
 Every `if`, `else`, `switch` branch, and non-trivial ternary must be explained when the condition is not self-evident from the variable names alone.
@@ -62,33 +53,9 @@ Capture:
 - What business rule or constraint it encodes
 - Why the alternative was rejected
 
-```typescript
-// ❌ Condition reads clearly but the reason is opaque
-if (item.lockedBy !== null && item.lockedBy !== currentUser) {
-  return false;
-}
-
-// ✅ Business rule captured
-// Items locked by another user must not be edited — concurrent edits corrupt
-// the workflow state. The current user's own lock is always safe to proceed.
-if (item.lockedBy !== null && item.lockedBy !== currentUser) {
-  return false;
-}
-```
-
 ### Iterator transforms and pipelines
 
 Every `.filter()`, `.map()`, `.reduce()`, `for…of` loop, and RxJS `pipe()` chain with a non-obvious purpose needs a comment that explains the business invariant being enforced.
-
-```typescript
-// ❌ What is filtered is clear; why is not
-const billable = entries.filter((e) => e.type !== 'overhead' && e.approved);
-
-// ✅ Financial rule captured
-// Only approved, non-overhead entries are billable — overhead is absorbed
-// at department level and must never appear on client invoices
-const billable = entries.filter((e) => e.type !== 'overhead' && e.approved);
-```
 
 ### Architecture and pattern choices
 
@@ -98,35 +65,9 @@ When a non-obvious pattern is chosen over a simpler one, explain it:
 - Why polling over a websocket
 - Why denormalization in this query result
 
-```typescript
-// ❌ Pattern is used with no explanation
-const state: LoadState = { status: 'idle' };
-
-// ✅ Explains why this pattern was chosen
-// Discriminated union over a class hierarchy — this state machine is consumed
-// by React render functions which need exhaustive switch narrowing without
-// instanceof guards. Adding a new state forces all consumers to handle it.
-type LoadState =
-  | { status: 'idle' }
-  | { status: 'loading' }
-  | { status: 'success'; data: Item[] }
-  | { status: 'error'; error: Error };
-```
-
 ### Magic values
 
 Every hard-coded number, string, timeout, or threshold must be a named constant with a comment explaining where the value comes from.
-
-```typescript
-// ❌ Unexplained literal
-setTimeout(flush, 250);
-
-// ✅ Origin and rationale captured
-// 250 ms debounce matches the minimum human perception gap for keypress feedback
-// (below 100 ms feels instant; above 300 ms feels laggy — Nielsen 1993)
-const DEBOUNCE_MS = 250;
-setTimeout(flush, DEBOUNCE_MS);
-```
 
 ### Workarounds and escape hatches
 
@@ -135,50 +76,13 @@ Any suppression (`// biome-ignore`, `@ts-ignore`, `#pragma warning disable`, `as
 - What makes this usage acceptable
 - A ticket if the workaround is temporary
 
-```typescript
-// ❌ Silent suppression
-// biome-ignore lint/suspicious/noExplicitAny
-const raw = response as any;
-
-// ✅ Justified
-// The vendor SDK types `response` as `any`; a typed wrapper is tracked in #892.
-// Safe here because we validate the shape immediately below via `isApiResponse`.
-// biome-ignore lint/suspicious/noExplicitAny: vendor SDK gap, see #892
-const raw = response as any;
-```
-
 ### Async sequencing decisions
 
 When async operations are sequential rather than parallel — or vice versa — the reason must be documented.
 
-```typescript
-// ❌ Sequential awaits — is this intentional or a performance bug?
-const user = await fetchUser(id);
-const permissions = await fetchPermissions(id);
-
-// ✅ Intent captured
-// Sequential by design — permissions fetch depends on user.tenantId
-// which is only known after fetchUser resolves
-const user = await fetchUser(id);
-const permissions = await fetchPermissions(user.tenantId);
-```
-
 ### Error handling intent
 
 Explain *why* an error is caught, swallowed, rethrown, or transformed:
-
-```typescript
-// ❌ Swallowed silently
-try { ... } catch { return null; }
-
-// ✅ Reasoning captured
-// 404 is expected when the feature flag is not yet provisioned for this tenant;
-// return null so the caller renders the default (disabled) state
-try { ... } catch (err) {
-  if (err instanceof ApiError && err.statusCode === 404) return null;
-  throw err;
-}
-```
 
 ---
 
@@ -188,16 +92,6 @@ Flag and remove any comment that:
 - Restates the next line of code in different words
 - Repeats the symbol name
 - Describes the syntax rather than the intent
-
-```typescript
-// ❌ Dead — says the same thing as the code
-// Filter items
-const active = items.filter(...);
-
-// ❌ Dead — restates the name
-// UserService class
-class UserService { ... }
-```
 
 ---
 

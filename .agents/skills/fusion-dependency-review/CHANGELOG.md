@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.0 - 2026-11-10
+
+### minor
+
+- [#430](https://github.com/equinor/fusion-skills/pull/430) [`b529e41`](https://github.com/equinor/fusion-skills/commit/b529e410c0c893c2ed4a0e5d945f881c28b10b8a) - Add security-audit remediation guidance for pnpm, npm, Yarn, Bun and NuGet
+
+
+  - New `references/audit-remediation.md`: JSON audit baseline and same-scope re-audit, then a four-step order: fix stale overrides, update within the allowed range, override on the same release line, report the rest
+  - Guardrails against hiding findings: no unattended ignore or suppress entries (`--ignore-unfixable`, `audit.ignore`, `NuGetAuditSuppress`), registry-error tolerance is informational only, no forced majors, auto-fix output is a proposal
+  - Patch handling for `patchedDependencies` and `patch:` resolutions: verify or re-create the patch, or leave the package and report it
+  - Per-manager commands and override fields checked against official documentation, including `bun audit fix` and `dotnet package update --vulnerable`
+  - Route audit findings from `SKILL.md` and the unattended-update reference; overrides stay held proposals unless the host authorises manifest changes
+
+  resolves equinor/fusion-skills#429
+
 ## 0.4.2 - 2026-11-01
 
 ### patch

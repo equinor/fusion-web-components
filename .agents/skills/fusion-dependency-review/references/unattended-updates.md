@@ -9,6 +9,7 @@ Keep host paths, machine contracts, resource limits and publication policy outsi
 
 - [Repository-notes warm-up](#repository-notes-warm-up)
 - [Targeted regeneration](#targeted-regeneration)
+- [Security-audit findings](#security-audit-findings)
 - [Compare resolutions, not line counts](#compare-resolutions-not-line-counts)
 - [Bounded consumer discovery](#bounded-consumer-discovery)
 - [Research the installed interval](#research-the-installed-interval)
@@ -163,6 +164,15 @@ See official [restore options](https://learn.microsoft.com/en-us/dotnet/core/too
 [PackageReference lock behaviour and ranges](https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files).
 Only use `--use-lock-file` when repository already adopts locks; don't introduce `packages.lock.json`
 into projects that intentionally omit it. NuGet has no general pnpm-style exact lockfile-only/no-save recipe.
+
+## Security-audit findings
+
+When host scope is fixing audit findings, not one requested version, read
+[audit remediation](audit-remediation.md) for evidence, fix order, patch handling and guardrails.
+Targeted regeneration rules above still bound each update: named packages only, unrelated resolutions preserved.
+Overrides, pins and adopted transitive pinning are remediation steps there, not workarounds for a version
+request here; commit them only when host authorises that manifest change, else report held proposal.
+Never write ignore/suppress entries; unfixed findings stay in maintainer summary.
 
 ## Compare resolutions, not line counts
 

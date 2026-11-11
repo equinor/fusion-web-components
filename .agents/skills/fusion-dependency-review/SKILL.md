@@ -1,10 +1,10 @@
 ---
 name: fusion-dependency-review
-description: 'Reviews dependency PRs using existing PR discussion, security, code-quality and impact research, and a repeatable verdict. USE FOR: dependency update PRs, Renovate/Dependabot PRs, library upgrades, "should we merge this update". DO NOT USE FOR: feature PRs or code reviews, dependency bot configuration, or merging without confirmation.'
+description: 'Reviews dependency PRs using existing PR discussion, security, code-quality and impact research, and a repeatable verdict. USE FOR: dependency update PRs, Renovate/Dependabot PRs, library upgrades, fixing security-audit findings (npm, pnpm, Yarn, Bun, NuGet), "should we merge this update". DO NOT USE FOR: feature PRs or code reviews, dependency bot configuration, or merging without confirmation.'
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.4.2"
+  version: "0.5.0"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -29,6 +29,8 @@ Research PR discussion; assess security/quality/impact; give evidenced verdict.
 
 - Dependency update/library bump review, Renovate/Dependabot PR, merge-safety question.
 - Dependency PR URL or title patterns: `chore(deps):`, `fix(deps):`, `bump`, `update`.
+- Package-audit findings to fix, direct or transitive: `pnpm audit`, `npm audit`, `yarn npm audit`,
+  `bun audit`, NuGetAudit warnings.
 
 ## When not to use
 
@@ -41,6 +43,7 @@ Owner/repo; PR number/URL or copied package/version/files/CI summary; optional c
 Missing/ambiguous target: ask minimum question; known repo: GitHub MCP shortlist
 (number/title/package/author/CI). Never guess; return `Awaiting user PR selection`.
 For clarification read `references/questions.md`; read and apply `agents/target-pr-advisor.md`.
+Audit findings need no PR: repo/workspace, package manager, audit output or approval to run audit.
 
 ## Safety & constraints
 
@@ -65,6 +68,9 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
   checks to get green. Broad suppression is quality `blocking` even with green CI. Only narrow
   inline-reason suppressions. New defaults: preserve behaviour with first-class opt-outs;
   maintainer decides adoption/rejection, never silently.
+- Audit findings: never hide. No ignore/suppress entry (`audit.ignore`, `NuGetAuditSuppress`),
+  registry-error tolerance as evidence, lowered audit scope or forced major unattended.
+  Overrides/pins need approval of exact entries. Unfixed findings reported with evidence.
 - Host-assigned unattended: caller owns confirmation/Git/comments/publication. Checkpoints/verdict
   posted only when host requires/authorizes. Missing comment permission never blocks authorized
   local work; references grant no authority or host-limit bypass.
@@ -74,7 +80,9 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
 1. Resolve target. **Interactive live PR**: read `references/instructions.md` for checkpoint/
    decision sequence. **Host-assigned**: read `references/unattended-updates.md` for warm-up,
    bounded regeneration/research/validation/delivery. **Copied context**: use supplied evidence,
-   expose gaps, honor caller output/tools; no PR posting.
+   expose gaps, honor caller output/tools; no PR posting. **Audit findings**: read
+   `references/audit-remediation.md` for evidence, four-step fix order, patch handling and
+   per-manager commands. Plan read-only; apply approved steps only; fixes needing a major follow steps 2–8.
 2. Read and apply `agents/research-advisor.md`: shared packet with metadata/base/head/branch,
    package/ecosystem/versions/type/usage, diff/transitives/CI, discussion inventory
    (top-level/thread/unresolved/outdated/answered), sources/gaps, changelog/breaks/regressions/
@@ -110,6 +118,8 @@ Target unresolved: shortlist/question, `Awaiting user PR selection`. Otherwise p
 discussion/concerns, sourced research, evidenced lenses, recommendation/rationale/confidence/readiness,
 follow-up or none, handoff/action prompt. Migration: guide/command/output/findings/suppressions/reasons/
 deferred decisions. Distinguish unrun checks, research and runtime validation.
+Audit findings: before/after counts by severity, fixes per step, overrides changed with reason,
+remaining findings with reason/next step, existing ignore entries.
 
 ### Human-first output
 

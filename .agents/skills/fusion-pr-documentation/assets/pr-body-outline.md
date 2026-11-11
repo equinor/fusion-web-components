@@ -1,12 +1,12 @@
 # PR body outline
 
-Use this to fill the repository's PR template with a coherent account. Keep every template heading, HTML comment, checklist item, and their order; put the answers below under the closest matching heading. Use the fallback skeleton only when the repository has no template.
+Fill repository PR template with coherent narrative. Preserve headings, HTML comments, checklist items/order; map answers below to nearest heading. Fallback skeleton only when no repository template.
 
-Wrap the template in the human-first shape from `fusion-agent-content`: a runtime-sourced banner and a quoted `> **TL;DR:**` above the first heading (quote any list under it too), short prose under each heading, then a folded **Details** block and a folded **References and evidence** block last. When the template has its own summary section, the TL;DR goes directly above it; repository template rules win where they conflict.
+Use `fusion-agent-content` shape: runtime banner, quoted `> **TL;DR:**` above first heading or existing summary (quote lists too), short prose, folded **Details**, folded **References and evidence** last. Repository template rules win.
 
 ## Narrative questions
 
-Answer in this order when practical:
+Answer in order when practical:
 
 1. What problem did users, developers, or operators have?
 2. Why does that problem matter to the linked product work now?
@@ -17,15 +17,15 @@ Answer in this order when practical:
 7. Where should a reviewer start?
 8. What evidence demonstrates the result?
 
-Write short, natural prose under meaningful headings, for a teammate with thirty seconds. Use tables or bullets only where they make roles, boundaries, evidence, or review steps easier to scan.
+Write short, natural prose for thirty-second review. Tables/bullets only for clearer roles, boundaries, evidence or review steps.
 
 ## What stays visible and what folds
 
 | Visible | Folded under **Details** | Folded under **References and evidence** (last) |
 | --- | --- | --- |
-| Banner, TL;DR, why, what changes, boundaries, risks, breaking changes | Full file lists, command tables and output, raw data | Skills used (with version when known) |
+| Banner, TL;DR, why, what changes, boundaries, risks, breaking changes | Full file lists, commands/output, raw data | Skills used (with version when known) |
 | Which issues close and which are referenced, with the role of each | A review guide longer than a few lines | Skill references read |
-| One-line validation result, including what was not run | Implementation notes most reviewers skip | Verified issues, PRs, docs, ADRs, and commands, one line each on what they show |
+| One-line validation result, including what was not run | Implementation detail | Verified issues/PRs/docs/ADRs/commands, each with evidence role |
 
 ## Mapping to common template headings
 
@@ -39,16 +39,13 @@ Write short, natural prose under meaningful headings, for a teammate with thirty
 | Reviewer focus / How to review | 7 |
 | Testing / Validation / Checklist | 8 — one visible result line; observed commands and outcomes folded under **Details** |
 
-Tick a template checkbox only when it is true and observed. Leave unchecked boxes unchecked and explain in prose when relevant.
+Tick checkboxes only when observed true; explain relevant unchecked items.
 
 ## Fallback skeleton (no repository template)
 
-Read and fill [pr-body-outline.md.hbs](pr-body-outline.md.hbs) only when the
-target repository has no PR template. Read its `.hbs` slot header,
-`assets/partials/agent-content/README.md`, and every named partial first.
-No renderer ships with the skill; insert Markdown values as written.
+Only without repository template, fill [pr-body-outline.md.hbs](pr-body-outline.md.hbs). Read `.hbs` header, `assets/partials/agent-content/README.md` and named partials first. No renderer; insert Markdown values verbatim.
 
-Replace the banner placeholders with values the runtime reports; write `model not reported` rather than guessing.
+Banner: `<sub>🤖 Drafted by <agent> (<tool>) · <model> · <effort> reasoning</sub>`. Without custom agent, `Drafted with <tool>`; unresolved model: `model not reported`. Never guess provenance.
 
 ## Anti-patterns
 

@@ -50,13 +50,13 @@ No one-click install link is published for this server — use the manual config
 ## Validation checklist
 
 - Run `initialize` and confirm a successful response.
-- Run `tools/list` and compare against the actual returned names (see the tool inventory in the skill's `SKILL.md`). Don't assume a fixed list — this has drifted from published docs before; trust the live `tools/list` response over any doc, including this one and `SKILL.md`.
+- Run `tools/list` and compare against the actual returned names. Don't assume a fixed list — this has drifted from published docs before; trust the live `tools/list` response over any doc, including this one and `SKILL.md`.
 - Pick one non-destructive tool (e.g. `milestones` or `issue_get`) and confirm a non-empty result.
 
 ## Troubleshooting quick map
 
 - Hitting GitHub rate limits fast → no `X-GitHub-Token` header configured; unauthenticated calls are capped at 60 req/hr.
-- `401` or repeated sign-in prompts → re-authenticate via VS Code (sign out/in, or reload the MCP server).
+- `401` or repeated sign-in prompts → re-authenticate via VS Code (sign out/in, or reload the MCP server); if unresolved, treat as setup bug, not a known transient issue.
 - Stale results → there is no cache-invalidation tool; results self-clear after the cache TTL (a few minutes).
 
 ## Contributing to the service itself

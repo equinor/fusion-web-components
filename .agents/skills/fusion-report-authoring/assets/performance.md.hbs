@@ -1,0 +1,26 @@
+{{!--
+Performance assessment from supplied measurements, not new benchmarking.
+performance: object with workload, environment, metrics, baseline, method, results, comparability, targets, recommendation; preserve units, variability, missing samples/baselines and hypotheses.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Performance decision
+
+- Workload / environment: {{performance.workload}} / {{performance.environment}}
+- Metrics / units: {{performance.metrics}}
+- Baseline / comparison: {{performance.baseline}}
+- Sampling / measurement method: {{performance.method}}
+- Observed results: {{performance.results}}
+- Comparability / uncertainty: {{performance.comparability}}
+- Supplied targets: {{performance.targets}}
+- Recommended next step: {{performance.recommendation}}
+
+Static anti-patterns are not measured bottlenecks. Projected improvements are not achieved results.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

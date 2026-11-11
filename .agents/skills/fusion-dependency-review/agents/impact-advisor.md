@@ -28,6 +28,17 @@ Assess how risky the update is to merge in this repository, including CI behavio
 4. Call out follow-up work such as config changes, migration tasks, or monitoring needs.
 5. Produce one of `clear`, `concern`, or `blocking` with concise evidence.
 
+### Infrastructure and licence impact
+
+- Actions/reusable workflows: map changed permissions, inputs/defaults, outputs and runner Node requirements
+  to actual callers and downstream jobs. Preserve SHA policy; don't silently broaden permissions.
+- Docker: map tag/digest, distro/runtime and platform changes to build and runtime stages, native dependencies
+  and deployment assumptions. Research-only in sandbox is not image-build or runtime validation.
+- Report unrun workflow/image checks separately from demonstrated breakage. Workflow-file push needs
+  workflow-edit permission: host-owned publication limitation, not dependency incompatibility.
+- Licence/terms change: `blocking` pending explicit maintainer/legal decision, even if technically compatible.
+  State affected use and required decision; use `references/unattended-updates.md` for detailed checks.
+
 ## Assessment scale
 
 - `clear`: Low blast radius, green CI, no downstream breakage, and no meaningful follow-up.

@@ -17,6 +17,11 @@ readinessGates: remaining checks, approval, changesets, branch sync, or None
 afterMerge: follow-up summary or None
 followUps: optional list of actionable after-merge items
 issueHandoff: none | Task | Bug | User Story via fusion-issue-authoring
+upgradeGuide: upstream upgrade or migration guide URL, None found, or not applicable (pure patch, no adaptation)
+migrationCommand: migration command or codemod and output summary, or None documented
+findingsFixed: count and kind of new tool findings fixed in code, or None
+suppressionsAdded: each suppression with location and inline reason, or None
+decisionsDeferred: newly enabled defaults opted out pending maintainer choice, or None
 requestedAction: approve | hold | decline | create follow-up issue
 decisionNote: maintainer decision or PR comment summary; leave empty until known
 securityAnalysis: advisory, attack-surface change, or no material security issue found
@@ -57,6 +62,14 @@ Since the research checkpoint: {{branchAction}}; {{validationResult}}. The PR is
   - [ ] {{this}}
 {{/each}}
 - **Issue handoff:** {{issueHandoff}}
+
+## Migration steps
+
+- **Upgrade guide:** {{upgradeGuide}}
+- **Migration command:** {{migrationCommand}}
+- **Findings fixed:** {{findingsFixed}}
+- **Suppressions added (with reasons):** {{suppressionsAdded}}
+- **Decisions deferred to maintainers:** {{decisionsDeferred}}
 
 ## Your decision
 

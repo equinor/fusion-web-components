@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.9 - 2026-11-01
+
+### patch
+
+- [#388](https://github.com/equinor/fusion-skills/pull/388) [`28d6873`](https://github.com/equinor/fusion-skills/commit/28d6873433fdda973ef1680adb5fa1777b4b79dc) - Load convention guidance only for scoped languages and review intents; defer intact intent examples while keeping full-review and correction-approval gates mandatory.
+
+
+  resolves equinor/fusion-core-tasks#2685
+
+## 0.1.8 - 2026-11-01
+
+### patch
+
+- [#363](https://github.com/equinor/fusion-skills/pull/363) [`f34c0d9`](https://github.com/equinor/fusion-skills/commit/f34c0d9dc7de15e59ec643407914e98ad8288245) - Shorten the conventions description while keeping language coverage, naming, TSDoc/XML documentation, intent and ADR review cues, and review-target and approval boundaries.
+
+
+  resolves equinor/fusion-core-tasks#2669
+
 ## 0.1.7 - 2026-10-18
 
 ### patch

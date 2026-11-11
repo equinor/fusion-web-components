@@ -1,5 +1,17 @@
 # TypeScript Code Conventions
 
+## Contents
+
+- [TSDoc — mandatory for all exports](#tsdoc--mandatory-for-all-exports)
+- [Naming conventions](#naming-conventions)
+- [Type system](#type-system)
+- [Code style](#code-style)
+- [Inline comments](#inline-comments)
+- [Async / await](#async--await)
+- [Error handling](#error-handling)
+- [Dead code policy](#dead-code-policy)
+
+
 TypeScript conventions: Fusion Framework apps, libraries, scripts, skill tooling.
 
 > **Applicability:** Org-wide baseline. Repo policy (`CONTRIBUTING.md`, ADRs) and tooling (`biome.json`, `tsconfig.json`) take precedence on explicit override. See skill **Precedence and applicability** for resolution order.

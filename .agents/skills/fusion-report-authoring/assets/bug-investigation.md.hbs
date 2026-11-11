@@ -1,0 +1,24 @@
+{{!--
+Bug investigation summary, not a new investigation or bug issue.
+bug: object with expected, actual, environment, reproductionStatus (reproduced/not reproduced/not attempted), steps, causalEvidence, proposedFix; preserve contradictory observations and unverified cause/fix.
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+{{> assessment}}
+
+## Investigation decision
+
+- Expected / actual behavior: {{bug.expected}} / {{bug.actual}}
+- Environment: {{bug.environment}}
+- Reproduction status: {{bug.reproductionStatus}}
+- Supplied steps / observations: {{bug.steps}}
+- Causal evidence / uncertainty: {{bug.causalEvidence}}
+- Proposed fix / validation still needed: {{bug.proposedFix}}
+
+A suspected cause is not confirmed root cause; a proposed fix is not implemented or validated.
+
+{{> supporting-evidence}}
+
+{{> agent-content/references}}

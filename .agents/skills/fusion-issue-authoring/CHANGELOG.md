@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.5.0 - 2026-11-08
+
+### minor
+
+- [#417](https://github.com/equinor/fusion-skills/pull/417) [`e7bb202`](https://github.com/equinor/fusion-skills/commit/e7bb2023b5ee1006619fa96d7cf63709777137cf) - Draft issues with the user instead of on autopilot. Underspecified requests get
+
+  short question rounds (one to three questions, each with a recommended answer)
+  and staged drafting before a full draft. Every substantive claim in a draft is
+  tagged `[stated]`, `[verified: <source>]` or `[assumed]` (untagged counts as
+  assumed); unrequested, unevidenced content is cut and listed. Interactive
+  publishing is blocked until every assumption is confirmed, edited or removed.
+  Unattended runs, where the caller states no user can answer and pre-authorizes
+  the run, list assumptions in a visible `Assumptions to confirm` section after
+  the summary instead; publishing still needs explicit approval. Tags are dropped
+  before publishing.
+
+  resolves equinor/fusion-core-tasks#2857
+
+## 0.4.3 - 2026-11-01
+
+### patch
+
+- [#378](https://github.com/equinor/fusion-skills/pull/378) [`ca584cf`](https://github.com/equinor/fusion-skills/commit/ca584cff41be1622d5b98dd93371a6d3bdde3189) - Compress shared template fill guidance while preserving provenance, privacy and output rules.
+
+
+  refs equinor/fusion-core-tasks#2678
+
+- [#382](https://github.com/equinor/fusion-skills/pull/382) [`22dc946`](https://github.com/equinor/fusion-skills/commit/22dc94689f81a7545524a2ae7962c6d84a4744b9) - Keep issue drafting safety and selected-mode routing in the entry point; load cache, MCP payload, setup, rate-limit, and interview guidance only when needed. Preserve issue templates and draft-first publication gates.
+
+
+  resolves equinor/fusion-core-tasks#2681
+
+## 0.4.2 - 2026-10-27
+
+### patch
+
+- [#336](https://github.com/equinor/fusion-skills/pull/336) [`bf60e9e`](https://github.com/equinor/fusion-skills/commit/bf60e9e76a812735b3ff0cde8140eb5604a506f7) - Resolve authoring-turn runtime model and effort before issue provenance fallback.
+
+  Sync shared bounded lookup, model-change and delegate attribution, and privacy rules.
+
+  fixes equinor/fusion-skills#335
+
 ## 0.4.1 - 2026-10-18
 
 ### patch

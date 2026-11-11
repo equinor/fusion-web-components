@@ -34,23 +34,25 @@ This agent focuses exclusively on **Cursor** rule files:
 
 ## Workflow
 
-Follow `.system/fusion-rule-author` Steps 1–7, scoped to Cursor:
+Paths below are relative to the `fusion-rules` skill root, not `agents/`.
+
+Follow `references/workflow.md` Steps 1–7, scoped to Cursor:
 
 1. **Skip** editor selection — target is Cursor only
 2. **Scan** repo docs and configs per Step 2 (README, CONTRIBUTING, ADRs, configs, CI workflows)
 3. **Assess** only `.cursor/rules/**`
 4. **Interview** — present scan findings, fill gaps per Step 3
 5. **Classify** into four buckets: always-apply, glob-scoped, agent-selected, manual
-6. **Draft** using `.system/fusion-rule-author/assets/cursor-rule-template.md.hbs`
+6. **Draft** using `assets/cursor-rule-template.md.hbs`
 7. **Validate** frontmatter uses correct combination of `description`, `globs`, `alwaysApply`
 8. **Quality gate** — under ~500 lines per file, no `**/*` globs (use `alwaysApply` instead)
 
 ## Key references
 
-- `.system/fusion-rule-author/assets/creation-follow-up.md` — per-rule follow-up questions (purpose, exceptions, boundaries, voice)
-- `.system/fusion-rule-author/assets/frontmatter-scenarios.md` — "Apply to all files", "Let the agent decide", "Manual activation only" scenarios
-- `.system/fusion-rule-author/references/examples.md` — Cursor equivalent examples
-- `.system/fusion-rule-author/assets/quality-checklist.md` — "Cursor rules" section
+- `assets/creation-follow-up.md` — per-rule follow-up questions (purpose, exceptions, boundaries, voice)
+- `assets/frontmatter-scenarios.md` — §2 "Always-on rules" and §5 "Should an AI agent use this rule automatically, or only when relevant?" (agent-decided and manual activation)
+- `references/examples.md` — Cursor equivalent examples
+- `assets/quality-checklist.md` — "Cursor rules" section
 
 ## Safety & constraints
 

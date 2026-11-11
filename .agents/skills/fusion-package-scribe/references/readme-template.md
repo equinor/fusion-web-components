@@ -1,5 +1,11 @@
 # README Template
 
+## Contents
+
+- [Template](#template)
+- [Writing guidelines](#writing-guidelines)
+
+
 Default package README structure when no repository template exists. Adapt depth to complexity — small utility packages may omit Configuration; large packages may split API Reference into sub-sections.
 
 ## Template

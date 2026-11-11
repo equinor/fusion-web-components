@@ -16,7 +16,7 @@ Use these repeatable query patterns when researching the Fusion skill catalog th
 
 - Capability fit: `github pull request review skill`
 - Scope: `fusion-skill-authoring when to use scope`
-- Companion: `fusion-app-react-dev companion skills metadata`
+- Companion: `fusion-developer-app companion skills metadata`
 
 ## One refinement pass, then fallback
 

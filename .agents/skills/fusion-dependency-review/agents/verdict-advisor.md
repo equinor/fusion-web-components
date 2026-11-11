@@ -1,5 +1,16 @@
 # Verdict Advisor
 
+## Contents
+
+- [Role](#role)
+- [Inputs](#inputs)
+- [Workflow](#workflow)
+- [Recommendation semantics](#recommendation-semantics)
+- [Decision dimensions](#decision-dimensions)
+- [Handoff rules](#handoff-rules)
+- [Output contract](#output-contract)
+- [Guardrails](#guardrails)
+
 Use this advisor after research and the three lens assessments exist.
 
 ## Role
@@ -20,10 +31,13 @@ Synthesize research, security, code quality, impact into dependency-review decis
 2. Surface strongest +/- signals and open reviewer concerns.
 3. Apply recommendation rules:
    - Any `blocking` lens → verdict must be `hold` or `decline`
+   - Changed licence/terms → `hold` until explicit human acceptance of applicable terms; API compatibility
+     or passing CI cannot override. Missing material licence evidence also requires `hold`.
    - Unresolved reviewer concerns usually prevent `merge`
    - Concerns without blocker: `merge with follow-up` or `hold` by evidence gaps
-   - Compatible update + no unresolved technical risk: can support `merge`
-   - Pending checks or required approval alone never change `merge` to `hold`
+   - Compatible update + no unresolved technical or licence risk: can support `merge`
+   - Pending checks or routine PR approval alone never change `merge` to `hold`; licence acceptance is
+     a policy decision, not routine approval
 4. Apply confidence model:
    - `high`: complete, consistent sources; repository usage understood; no material question unanswered
    - `medium`: bounded uncertainty, partial source coverage, or limited adoption evidence
@@ -48,12 +62,18 @@ Synthesize research, security, code quality, impact into dependency-review decis
 
 ## Decision dimensions
 
-- Recommendation answers: "Is this dependency update technically safe to accept?"
+- Recommendation answers: "Is this dependency update safe to accept, including applicable licence/terms?"
 - Confidence answers: "How complete and consistent is the evidence?"
 - Readiness answers: "Which mechanical repository gates remain?"
 
 Keep dimensions independent. Example: safe update with complete evidence and pending approval is
 `merge`, `high`, `waiting for approval`.
+
+Actions/Docker: official release evidence plus actual workflow/Dockerfile usage may support bounded
+recommendation without local execution. Report workflow/image checks as not run with reasons; missing
+material compatibility evidence requires `hold`. Never equate research with validated runtime or readiness.
+Host workflow-edit token limitations affect publication state, not technical verdict.
+Use `references/unattended-updates.md` for ecosystem evidence and licence decision gate.
 
 ## Handoff rules
 
@@ -74,6 +94,8 @@ Return:
 - Confidence
 - Readiness
 - Follow-up items
+- Licence decision when applicable: changed terms, official sources, human decision owner and acceptance status
+- Migration steps: upgrade guide, migration command, findings fixed, suppressions added with reasons, decisions deferred (see `references/upgrade-migration.md`)
 - Handoff recommendation when needed
 - PR-comment-ready final verdict comment body
 - Explicit confirmation prompt
@@ -86,9 +108,12 @@ every named partial before filling; no renderer ships with the skill.
 
 - Never auto-approve or auto-merge
 - Never claim CI, security, or impact is clear without cited evidence
-- Never use pending checks or required approval as the sole reason for `hold` or reduced confidence
+- Never use pending checks or routine PR approval as the sole reason for `hold` or reduced confidence
+- Never recommend `merge` or `merge with follow-up` for changed licence/terms awaiting explicit human acceptance
 - Never infer low confidence from semver-major alone
 - Don't ignore unresolved threads unless packet explains why outdated/addressed
 - No approval/merge until verdict comment posted
 - Conflicting sources: reflect in confidence/recommendation
 - Bias ambiguous/high-risk to `hold` until evidence resolved
+- Broad rule downgrades, path-based tool disables, or removed CI checks used to pass CI: technical blocker, never `merge`
+- Newly enabled default behaviour: surface as maintainer decision, never decide silently

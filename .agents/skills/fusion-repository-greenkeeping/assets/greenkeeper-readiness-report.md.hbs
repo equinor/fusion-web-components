@@ -1,0 +1,72 @@
+{{!--
+  Greenkeeper readiness report; one issue body. Fill per references/greenkeeper-readiness.md.
+  Context:
+    drafter, tldr, references   shared agent-content context
+    verdict: overall verdict; one of `ready`, `not ready`
+    repository: owner/repo checked
+    defaultBranch: default branch name
+    headSha: default branch HEAD commit checked
+    checkedAt: ISO date of the run
+    checks: list of {number, name, verdict, evidence}; five checks in reference order; verdict one of `ready`, `not ready`, `unverified`; evidence names a link, path or command result
+    fixes: optional ordered list of remedies for not-ready checks, in check order; leave out when ready
+    unverified: optional list of checks that could not run, with the command and error
+    enrolSteps: optional list of enrolment steps; only when verdict is ready
+    advice: optional list of non-blocking findings, such as Copilot environment warnings
+    commands: list of {command, outcome} for every command run
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Verdict
+
+**{{verdict}}** for `{{repository}}`, default branch `{{defaultBranch}}` at `{{headSha}}`, checked {{checkedAt}}.
+Unverified checks never count as passing.
+
+| # | Check | Verdict | Evidence |
+| --- | --- | --- | --- |
+{{#each checks}}
+| {{number}} | {{name}} | {{verdict}} | {{evidence}} |
+{{/each}}
+{{#if fixes}}
+
+## Fix first
+
+{{#each fixes}}
+1. {{this}}
+{{/each}}
+{{/if}}
+{{#if unverified}}
+
+## Unverified
+
+{{#each unverified}}
+- {{this}}
+{{/each}}
+{{/if}}
+{{#if enrolSteps}}
+
+## How to enrol
+
+{{#each enrolSteps}}
+1. {{this}}
+{{/each}}
+{{/if}}
+{{#if advice}}
+
+## Other findings (not blocking)
+
+{{#each advice}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+{{#> agent-content/details summary="Commands run"}}
+{{#each commands}}
+- `{{command}}`: {{outcome}}
+{{/each}}
+
+Read-only run: no files changed, nothing published without confirmation.
+{{/agent-content/details}}
+
+{{> agent-content/references}}

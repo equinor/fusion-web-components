@@ -1,9 +1,9 @@
 ---
 name: fusion-issue-solving
-description: 'Handles GitHub issue resolution end-to-end for prompts like "solve #123", "lets solve #123", "work on #123", "work on https://github.com/owner/repo/issues/123", or by pasting a direct GitHub issue URL as the request. USE FOR: solve #123, continue work on issue #123, work on https://github.com/owner/repo/issues/123, paste a GitHub issue URL for implementation work. DO NOT USE FOR: issue drafting only, PR review only, or non-implementation research.'
+description: 'Resolves GitHub issues through implementation, validation and PR preparation. USE FOR: solve #123, work on #123, continue or finish an issue, direct GitHub issue URLs (https://github.com/owner/repo/issues/123). DO NOT USE FOR: issue drafting, PR review only, non-implementation research, read-only repositories or unconfirmed publishing.'
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.2"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -26,7 +26,7 @@ metadata:
 
 ## When to use
 
-Use when the user wants to solve or continue a GitHub issue end-to-end, including short current-repo prompts like `solve #123`, direct GitHub issue URLs, or requests like `lets work on https://github.com/owner/repo/issues/123`.
+Solve/continue GitHub issues end-to-end, including current-repo short refs and direct URLs such as `lets work on https://github.com/owner/repo/issues/123`.
 
 Typical triggers:
 - "lets solve #123"
@@ -43,114 +43,49 @@ Treat GitHub issue URLs as interchangeable with `#123` references for verbs like
 
 ## When not to use
 
-- Request is only issue drafting/authoring
-- No implementation changes expected
-- Repository write operations are disallowed
+Issue drafting only, no implementation expected, or repo writes disallowed.
 
 ## Required inputs
 
-Collect before execution:
-- issue URL or `owner/repo#number`
-- repository and branch/worktree decision
-- acceptance criteria and out-of-scope constraints
-- required validation commands for the target repository
-
-Optional:
-- related issues/PRs
-- risk areas to prioritize
-- requested commit/PR granularity
-
-## Instructions
-
-1. Ask whether to use a dedicated git worktree
-   - Ask this before any other workflow questions.
-   - If yes, use/create the worktree and continue there.
-
-2. Confirm issue context and success criteria
-   - Read the issue body, labels, and linked discussions once, then reuse that context instead of refetching.
-   - Restate the implementable scope and explicitly list out-of-scope items.
-
-3. Confirm assignee intent for issue closure work
-   - Check whether the current user is assigned to the primary issue.
-   - If the current user is not assigned, ask whether they want to assign themselves before continuing.
-   - For each sub-issue that will be resolved or closed by this workflow, check assignee status once and reuse the result for closure decisions.
-   - If the current user is not assigned on a sub-issue, ask whether they want to assign themselves before resolving/closing it.
-
-4. Apply low-token GitHub strategy
-   - Prefer MCP-backed tools over ad hoc `gh api` or GraphQL calls when equivalent tools exist.
-   - Avoid duplicate lookups for labels, issue types, and duplicate detection.
-   - Cache per-run context (issue metadata, duplicate matches, issue-type support, label sets, assignee candidates) and reuse it — do not re-fetch data that was already retrieved in this session.
-   - When delegating to `fusion-issue-authoring` or its subordinate skills, the orchestrator's session-cache rules apply: labels and assignee candidates are fetched once per repository, issue types once per organization.
-   - Use GraphQL fallback only when MCP coverage is unavailable and do not loop retries.
-   - GraphQL mutations cost 5 secondary-limit points each (vs 1 for queries); batch fields into single calls and pause at least 1 second between mutation calls.
-   - Budget awareness: a typical implementation session (read issue + duplicate check + 1–2 mutations + sub-issue links) should stay under ~20 MCP read calls and ~5 mutations. If the running total approaches 30+ calls, pause optional enrichment and proceed with local work.
-   - Respect `retry-after` and `x-ratelimit-reset` headers; do not retry before the indicated wait.
-   - If rate limits are hit, stop non-essential operations and continue with local implementation/PR preparation when possible.
-
-5. Build and track a concrete plan
-   - Create actionable todos ordered by dependencies.
-   - Keep exactly one step in progress and update status as work completes.
-
-6. Research before edits
-   - Inspect relevant files, tests, and adjacent usage.
-   - Prefer root-cause fixes over surface patches.
-
-7. Implement in small scoped changes
-   - Keep each change aligned to issue acceptance criteria.
-   - Avoid unrelated refactors and generated release artifacts.
-
-8. Validate incrementally
-   - Run targeted checks first, then required project checks.
-   - If checks fail, fix relevant issues and re-run before proceeding.
-
-9. Prepare PR-ready output
-   - Summarize what changed and why.
-   - Include validation evidence and known follow-ups.
-   - Draft the PR body in a `.tmp/` file with an issue/context-specific name (for example, `.tmp/pr-body-issue-123-scope-summary.md`), not a shared `.tmp/pr-body.md`.
-   - Base the draft on `.github/pull_request_template.md` and keep it updated as implementation evolves.
-   - Shape the draft for human readers as described in [Human-first output](#human-first-output).
-   - Ask which base branch to target and propose a likely default (typically `main`, or the branch the current branch was cut from).
-   - Ask whether the PR should be opened as draft or ready for review.
-   - Ask whether the PR should be assigned to the user and whether related issues should be linked.
-   - For each linked issue, ask whether merging should close it (`closes owner/repo#123`) or only reference it (`refs owner/repo#123`), and present the most logical choice as the default:
-     - close (the usual case) when this PR completes the issue's acceptance criteria, such as the issue being solved;
-     - reference when the issue is a parent story or epic, needs more PRs, rollout, or acceptance, or is in another repository that this PR only supports.
-   - If the user already stated the intent ("closes #123", "just reference #123"), follow it without asking.
-   - When the user is unavailable (autonomous or autopilot runs), apply the recommended choice and state in the PR body and delivery report which issues will close on merge.
-
-10. Optional GitHub mutation steps
-   - Before any GitHub mutation (create/edit/comment/close), ask for explicit user confirmation.
-   - If requested, update issue status/comments with objective progress.
-   - Prefer MCP tool mutations over ad hoc API calls when equivalent operations exist.
-   - If GitHub API rate limits block mutation, report the failure clearly, stop retry loops, and propose a safe retry sequence.
-   - If requested, create or update the PR using the repository PR template and the `.tmp/` PR body draft file, using the confirmed base branch, draft/ready state, assignee choice, and related issue links (close or reference, as decided above).
-   - After publishing, read the PR body back and verify that exactly the issues chosen for closing use a closing keyword.
-
-## Human-first output
-
-People read the PR body draft (step 9) and the delivery report, so give both the same shape:
-1. A banner line, `<sub>🤖 Drafted by <agent> (<tool>) · <model> · <effort> reasoning</sub>`, filled from runtime metadata and never guessed.
-2. A quoted TL;DR (`> **TL;DR:** ...`) of one to three sentences, then (for the PR body) the repository PR template headings in plain prose.
-3. A folded `<details><summary>Details</summary>` block for file lists and command output, then a folded `<details><summary>References and evidence</summary>` block last, for the skills, references, and evidence used.
-
-Keep the one-line validation result, risks, and the issues that close on merge visible. When `fusion-agent-content` is installed, use it to shape both texts; optionally also use `fusion-pr-documentation` for the PR body when it is installed.
-
-## Expected output
-
-Return a human-first delivery report (see [Human-first output](#human-first-output)):
-- visible: banner, TL;DR of the outcome and what the user needs to do next, a one-line validation result, open risks and blockers, the assignment decisions that need attention, and the `.tmp/` PR body draft path when one was created;
-- folded under **Details**: implemented scope against the original issue criteria, files changed, validation commands and their output, all assignment decisions for the primary issue and sub-issues, and the API usage strategy (MCP-first, cache reuse, fallbacks);
-- folded under **References and evidence**: the skills, references, and sources used.
-
-## Assets
-
-- [assets/issue-solving-checklist.md](assets/issue-solving-checklist.md)
+Before execution: issue URL or `owner/repo#number`; repo and branch/worktree decision; acceptance criteria/non-goals; repo-required validation commands. Optional: related issues/PRs, risk priorities, commit/PR granularity.
 
 ## Safety & constraints
 
 - This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
-- Never request or expose secrets/credentials.
-- Never run destructive commands without explicit confirmation.
-- Keep changes minimal and scoped to the issue.
-- Do not claim checks passed without running them.
-- Follow repository instructions and contribution rules.
+- Never request/expose secrets; destructive commands require explicit confirmation.
+- Explicit confirmation before every GitHub create/edit/comment/close mutation. Autopilot issue-link recommendations do not authorize publishing. Keep changes minimal, issue-scoped; follow contribution/workflow rules, including commit, validation, changeset, PR, and branch policies.
+- Claim checks passed only after running them; fix relevant failures and rerun before proceeding.
+- Rate limits: report clearly, stop non-essential operations/retry loops, continue local implementation/PR preparation where possible; safe retry sequence. Respect `retry-after`/`x-ratelimit-reset`; never retry early. GraphQL fallback only missing MCP coverage; batch fields, 5 secondary-limit points per mutation vs 1 per query, pause at least 1 second between mutations.
+
+## Instructions
+
+1. Ask whether to use dedicated git worktree before any other workflow questions. If yes, use/create it and continue there.
+2. Read issue body, labels, linked discussions once; reuse. Restate implementable scope and explicit non-goals.
+3. Check current user's primary-issue assignment. If absent, ask self-assignment before continuing. For each sub-issue to resolve/close, check once/cache; ask self-assignment if absent before closure.
+4. Apply low-token GitHub strategy
+   - MCP-backed tools over ad hoc `gh api`/GraphQL equivalents. Cache issue metadata, duplicates, type support, label sets, candidate results; no duplicate/repeated lookups.
+   - Delegated authoring session caches: labels/candidates per repo, types per organization, reused across calls.
+   - Typical budget ~20 MCP reads/~5 mutations; approaching 30+ calls, pause optional enrichment and proceed locally. Apply rate-limit gates above.
+5. Track dependency-ordered actionable todos, exactly one in progress; update completion. When using execution checklist, read `assets/issue-solving-checklist.md` for checkpoints.
+6. Inspect relevant files/tests/adjacent usage before edits; fix root cause, not surface symptoms.
+7. Implement small AC-aligned changes; no unrelated refactors or generated release artifacts.
+8. Validate targeted checks then required project checks; fix relevant failures and rerun.
+9. Prepare PR-ready output
+   - Summarize scope/why, validation evidence, follow-ups. Read `references/pr-preparation.md` when preparing PR draft for repo-policy-aware setup and issue-link defaults; optional installed `fusion-pr-documentation`.
+   - Issue/context-specific `.tmp/` draft, never shared `.tmp/pr-body.md`; base on `.github/pull_request_template.md`, update as implementation evolves.
+   - Ask base (suggest `main` or source branch), draft/ready, user assignment, related links. Ask each issue's close/reference choice with recommended default: close completed AC, reference parent/partial/rollout/cross-repo support. Honor stated intent; unavailable user, apply recommendation and disclose which issues close in PR/delivery. Repo-local closure rules win.
+   - Shape PR draft and delivery using Human-first output below.
+10. Optional GitHub mutations
+   - Ask explicit confirmation before each mutation. Objective status/comments only requested; prefer MCP equivalents.
+   - Requested PR create/update uses repo template and draft file, confirmed base, draft/ready, assignee, close/reference links. Read published body back; verify exactly chosen issues use closing keywords. Rate-limit failure: stop loops, report safe retry plan.
+
+## Human-first output
+
+When writing PR body or delivery report, use installed `fusion-agent-content` or read `references/human-first-output.md` for runtime banner (never guessed), quoted TL;DR, repo headings, and folds. Keep validation result, risks, issues closing visible. Optional installed `fusion-pr-documentation` for PR body.
+
+## Expected output
+
+Human-first delivery report:
+- Visible: banner, outcome/next-action TL;DR, one-line validation, risks/blockers, assignment decisions needing attention, created `.tmp/` PR draft path.
+- **Details**: scope versus original criteria, changed files, exact check commands/output, primary/sub-issue assignment decisions, MCP/cache/fallback strategy.
+- **References and evidence** last: skills, references, sources used.

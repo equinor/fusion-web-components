@@ -1,12 +1,14 @@
 # Pre-post checklist
 
-- [ ] The banner names the drafting agent and tool, and a model and reasoning effort reported by the runtime, or says `model not reported`.
-- [ ] The TL;DR is a quote block starting with `> **TL;DR:**` (with any list under it quoted too), and gives the outcome and the ask in at most three sentences, without repeating the title.
-- [ ] The repository template's headings are kept, in order, and their content reads as prose.
-- [ ] The visible part fits on about one screen.
-- [ ] Acceptance criteria, decisions, risks, breaking changes, the one-line validation result, and issue closing choices are visible.
-- [ ] Supporting material is in **Details**, with a summary that says what's inside.
-- [ ] **References and evidence** comes last and lists only the skills, references, and sources actually used.
-- [ ] Nothing folded contains secrets, tokens, personal data, or internal-only links.
-- [ ] Every `<details>` block has a blank line after `<summary>` and is closed.
-- [ ] Issues and pull requests are written as `owner/repo#123` (or `#123` in the same repository), never as Markdown links with custom labels.
+- [ ] Before fallback, check runtime metadata and bounded lookup within caller restrictions; disclose unresolved fields/limitations, no raw session data.
+- [ ] Attribute actual authoring turn/agent, accounting for model changes, rewrites and delegates; retain verified fields independently; unresolved model: `model not reported`, effort omitted.
+- [ ] Quoted TL;DR starts `> **TL;DR:**`, including quoted lists; outcome/ask in at most three sentences, not title.
+- [ ] Repository headings in order; visible part serves one ask for one group, about one screen; each other ask in its own titled fold; no "start here" maps. Authoring-skill templates with own layout (e.g. progress reports) override one-ask, one-screen and aggregate-table items.
+- [ ] Three or more similar items: visible table, prose only for items needing a decision, shared caveat once.
+- [ ] Visible part covers the repository and reader's decision, not agent inputs, workers, tooling or temp paths; environment gaps as one actionable line.
+- [ ] Acceptance criteria, decisions, risks, breaking changes, one-line validation result and issue closing choices visible.
+- [ ] Support folded in **Details**, summary names contents; **References and evidence** last, only actual skills/references/sources.
+- [ ] No secrets, tokens, personal data or internal-only links in folds.
+- [ ] Every `<details>` closed, blank line after `<summary>`.
+- [ ] Issues/PRs: `owner/repo#123` (or `#123` in same repo), never custom-label Markdown links.
+- [ ] Items named on first mention (title + reference), no bare-number lists; ratios in words; jargon explained; each fact once; reader actions as `- [ ]` with issue-ready titles.

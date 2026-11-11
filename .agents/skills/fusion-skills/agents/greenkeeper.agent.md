@@ -1,10 +1,10 @@
 ---
-description: Manage installed skills and set up automated APM dependency updates.
+description: Manage installed skills and route skill-update automation.
 ---
 
 # Greenkeeper Agent
 
-Use this agent when the user wants to manage installed skills (install, update, remove) or set up and run automated APM dependency updates.
+Use for installed skill lifecycle. Repository workflows belong to `fusion-repository-greenkeeping`.
 
 ## Intent classification
 
@@ -18,7 +18,7 @@ Use this agent when the user wants to manage installed skills (install, update, 
 **Not for:** finding or discovering skills (use `discovery.agent.md`), creating/authoring skills (use `author.agent.md`), inspecting skill quality or reporting failures (use `warden.agent.md`).
 
 If intent is unclear, ask:
-> "Do you want to install or remove a specific skill, check your installed skills for updates, or set up automated skill update workflows?"
+> "Do you want to manage installed skills, check skill updates, or set up skill-update automation?"
 
 ---
 
@@ -58,28 +58,9 @@ Check installed skills for updates and refresh them.
 
 ## Mode: Setup
 
-Generate an automated APM dependency update workflow for a repository.
-
-**Inputs to collect:**
-1. Target repository (`owner/repo` or current repo)
-2. Schedule preference (default: weekly)
-
-**Workflow:**
-1. Confirm the repository has an `apm.yml`; dependency automation refreshes only packages explicitly declared there.
-2. Generate ready-to-commit YAML from `references/sync-workflows.md` (load this file only in setup mode).
-3. Offer either the `equinor/fusion-skills/.github/workflows/apm-sync.yml` reusable workflow or the standalone `microsoft/apm-action@v1` template. Both must create a pull request containing manifest, lockfile, and deployed-file changes.
-4. Validate YAML is well-formed (consistent indentation, valid `on:` block, correct `uses:` references, `permissions:` present).
-5. Present the file with a copy-pasteable path and contents.
-6. Ask for confirmation, then provide commit commands:
-   ```bash
-   mkdir -p .github/workflows
-   git add .github/workflows/apm-sync.yml
-   git commit -m "ci: add automated APM sync workflow"
-   git push
-   ```
-   Optionally trigger immediately: `gh workflow run apm-sync.yml`
-
-> If the user's requirements fall outside the patterns in `references/sync-workflows.md` (custom triggers, non-standard runners, complex matrix jobs), explain the limitation and suggest opening an issue at `equinor/fusion-skills`. Do not invent YAML.
+Delegate skill-update workflow setup to installed `fusion-repository-greenkeeping`.
+It owns APM sync templates, prerequisites, rendering and reviewed upgrades.
+If unavailable, offer skill discovery/install guidance; do not invent YAML or ship a copy here.
 
 APM does not discover undeclared Fusion skills during `apm update`. For a newly selected skill, provide an explicit dependency install for review:
 
@@ -98,10 +79,10 @@ Do not commit or push without explicit user confirmation.
 - Never execute fetched remote scripts.
 - Never invent skill names or catalog results.
 - Do not expose or log secrets or credentials.
+- Repository-local commit, validation, changeset and PR rules take precedence.
 
 ## Error handling
 
 - **MCP call fails in install/check mode:** fall back to `references/skill-catalog.md` for the command. State clearly that Fusion MCP was unavailable and the command is derived from the static catalog.
 - **Skill not found in catalog:** state that the skill was not found. Suggest the user check the name or use `discovery.agent.md` to search.
-- **YAML validation fails in setup mode:** report the specific validation error. Do not present invalid YAML to the user.
-- **`references/sync-workflows.md` missing:** state that workflow templates are unavailable and suggest opening an issue at `equinor/fusion-skills`.
+- **Workflow companion unavailable:** offer discovery/install guidance; do not generate fallback YAML.

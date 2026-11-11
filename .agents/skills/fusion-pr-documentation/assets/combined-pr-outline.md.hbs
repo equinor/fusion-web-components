@@ -1,0 +1,90 @@
+{{!--
+Fallback body for a combined PR of three or more similar changes when the target repository has no template.
+Read references/combined-pr.md first; repository template rules win.
+attentionItems: list with item (update name and source PR) and note (one or two plain sentences on the behavior change, migration, release note, or hold); leave out when nothing needs a decision
+updates: list with pr (source PR references), update (name and from → to), impact (one line), risk (Low, Medium, or High)
+sharedCaveat: optional one line that applies to every included update
+beforeMerging: list of checks the maintainer must confirm, including checks not run in the agent's environment
+validationSummary: one line on checks that ran and their outcome across the bundle, such as "Focused tests pass for all 8 updates; full suites not run here"
+notIncluded: optional; leave out when every update is included. Fields: held (list with pr and reason), failed (list with pr and reason), inProgress (list with pr and reason; still being worked on, such as a pending regeneration or retry, and expected in a later combined PR)
+issueLinks: list of confirmed lines such as closes #123 or refs owner/repo#456
+validationByUpdate: list with pr, checks (what ran), and outcome; use observed results only
+notRun: checks not run with reasons, or None
+--}}
+{{> agent-content/banner}}
+
+{{> agent-content/tldr}}
+
+## Needs your attention
+
+{{#if attentionItems}}
+{{#each attentionItems}}
+- **{{item}}:** {{note}}
+{{/each}}
+{{else}}
+Nothing needs a decision; every update is routine.
+{{/if}}
+
+## Included updates
+
+| PR | Update | Impact | Risk |
+| --- | --- | --- | --- |
+{{#each updates}}
+| {{pr}} | {{update}} | {{impact}} | {{risk}} |
+{{/each}}
+{{#if sharedCaveat}}
+
+{{sharedCaveat}}
+{{/if}}
+
+## Before merging
+
+{{validationSummary}}
+
+{{#each beforeMerging}}
+- [ ] {{this}}
+{{/each}}
+{{#if notIncluded}}
+
+## Updates not included
+{{#if notIncluded.held}}
+
+> [!WARNING]
+> **Held:**
+{{#each notIncluded.held}}
+> - {{pr}}: {{reason}}
+{{/each}}
+{{/if}}
+{{#if notIncluded.failed}}
+
+> [!CAUTION]
+> **Failed:**
+{{#each notIncluded.failed}}
+> - {{pr}}: {{reason}}
+{{/each}}
+{{/if}}
+{{#if notIncluded.inProgress}}
+
+> [!NOTE]
+> **In progress:**
+{{#each notIncluded.inProgress}}
+> - {{pr}}: {{reason}}
+{{/each}}
+{{/if}}
+{{/if}}
+
+{{#each issueLinks}}
+{{this}}
+{{/each}}
+
+{{#> agent-content/details summary="Details"}}
+| PR | Checks | Outcome |
+| --- | --- | --- |
+{{#each validationByUpdate}}
+| {{pr}} | {{checks}} | {{outcome}} |
+{{/each}}
+
+Not run: {{notRun}}.
+{{/agent-content/details}}
+
+{{> agent-content/references}}

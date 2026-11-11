@@ -1,5 +1,22 @@
 # C# Code Conventions
 
+## Contents
+
+- [Project structure](#project-structure)
+- [Naming](#naming)
+- [Compiler settings and style enforcement](#compiler-settings-and-style-enforcement)
+- [Null safety](#null-safety)
+- [Async/await](#asyncawait)
+- [Disposables](#disposables)
+- [Architecture patterns](#architecture-patterns)
+- [API response models](#api-response-models)
+- [EF Core conventions](#ef-core-conventions)
+- [Error handling](#error-handling)
+- [Code style (enforced via `.editorconfig`)](#code-style-enforced-via-editorconfig)
+- [XML doc comments](#xml-doc-comments)
+- [Testing](#testing)
+
+
 C# naming, null safety, async/await, code style.
 
 > **Applicability:** Org-wide baseline. Repo policy (`CONTRIBUTING.md`, ADRs) and tooling (`.editorconfig`, `Directory.Build.props`) take precedence on explicit override. See skill **Precedence and applicability** for resolution order.

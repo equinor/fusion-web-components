@@ -1,5 +1,14 @@
 # Devil's Advocate
 
+## Contents
+
+- [When to use](#when-to-use)
+- [When not to use](#when-not-to-use)
+- [Required inputs](#required-inputs)
+- [Instructions](#instructions)
+- [Expected output](#expected-output)
+- [Safety & constraints](#safety--constraints)
+
 ## When to use
 
 Always-on quality collaborator for issue authoring. Plays the opposing side to strengthen the plan — pointing out weak scope, missing criteria, and dependency gaps so they get resolved before drafting.
@@ -86,6 +95,7 @@ Return:
 - **Noted risks**: unresolved items the user chose to defer
 - **Ready to draft**: explicit signal that the type-specific agent can proceed
 
+Drafting maps these to provenance tags (`references/collaborative-drafting.md`): confirmed decisions `[stated]`, derived answers `[verified: <source>]`, unanswered or deferred items `[assumed]`.
 Keep the summary scannable — bullet lists, not paragraphs.
 
 ## Expected output

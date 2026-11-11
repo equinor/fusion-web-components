@@ -1,6 +1,6 @@
 ---
 name: fusion-devtools
-description: 'Use Fusion DevTools CLI (fdev) for API testing, token acquisition, service discovery, and person lookup during development. USE FOR: calling Fusion REST APIs, getting access tokens as JSON, discovering services and environments, resolving persons, PIM role activation. DO NOT USE FOR: modifying backend service code, deploying services, infrastructure changes, CI/CD pipeline configuration, or Service Bus operations.'
+description: 'Uses Fusion DevTools CLI (fdev) for API testing, security snapshots, and service/person discovery. USE FOR: Fusion REST calls, JSON tokens, service/environment discovery, person lookup, PIM role activation, or fdev GitHub security snapshots. DO NOT USE FOR: backend code, deployments, infrastructure, CI/CD, Service Bus, or writing security reports (use fusion-security-report).'
 license: MIT
 compatibility: >
   Requires fdev installed as a .NET global tool
@@ -8,7 +8,7 @@ compatibility: >
   Requires Azure AD login (fdev login).
   Works best alongside fusion-core-services for understanding API contracts before calling them.
 metadata:
-  version: "0.1.2"
+  version: "0.2.0"
   status: active
   owner: "@equinor/fusion-core"
   tags:
@@ -26,7 +26,7 @@ metadata:
 
 ## When to use
 
-Use when you need to interact with Fusion platform services from the command line — calling APIs, getting tokens, discovering services, or looking up persons.
+Interact with Fusion services through CLI: call APIs, get tokens, discover services/environments, resolve persons or activate PIM.
 
 Typical triggers:
 - "Call the People API"
@@ -36,161 +36,44 @@ Typical triggers:
 - "Resolve this person's Azure ID"
 - "What's the base URL for the org service?"
 - "Get me an access token I can pipe to jq"
+- "Fetch GitHub security alerts for an app"
 
-Implicit triggers:
-- Agent needs to verify an API contract or response shape
-- Agent needs a bearer token for an HTTP request
-- Agent needs to find which service key maps to a URL
-- Agent needs to look up a person's identity for test data
+Implicit triggers: verify API contract/response shape, acquire bearer token for HTTP request, map service key to URL, or resolve identity for test data.
 
 ## When not to use
 
-- Modifying backend service source code — use the service repo directly
-- Deploying or publishing services — use CI/CD pipelines
-- Infrastructure provisioning — use Terraform/Bicep
-- Service Bus / SignalR debugging — use Azure portal or dedicated tooling
-- Managing AI search indexes — separate ops concern
+- Backend source changes — use service repo directly
+- Deployment/publishing or CI/CD setup — use pipelines
+- Database provisioning/migrations — use `fusion-infra-cli`; Roles V2 bindings/config — use `fusion-roles-cli`
+- Non-database infrastructure — use Terraform/Bicep
+- Service Bus / SignalR debugging — use Azure portal/dedicated tools
+- AI search index management
+- Writing security reports from snapshots — use `fusion-security-report`
 
-## Prerequisites
+## Required inputs
 
-Install fdev as a .NET global tool:
+Operation, target environment, service key or URL, quoted path/method/body, person identity or token scope as applicable. Default environment is `fprd` for all commands; select explicitly and override with `-e <env>` (`ci`, `fqa`, `fprd`). Clipboard token commands have separate test/production behavior.
 
-```bash
-dotnet tool install --global --add-source "https://statoil-proview.pkgs.visualstudio.com/Fusion%20-%20Packages/_packaging/Fusion-Public/nuget/v3/index.json" fusion-devtools
-```
+## Safety
 
-Update to latest:
-
-```bash
-dotnet tool update --global --add-source "https://statoil-proview.pkgs.visualstudio.com/Fusion%20-%20Packages/_packaging/Fusion-Public/nuget/v3/index.json" fusion-devtools
-```
-
-Authenticate before first use:
-
-```bash
-fdev login
-```
-
-## Core workflows
-
-### 1 — Call a Fusion REST API
-
-Use `fdev rest` to call any Fusion service. Service discovery resolves the base URL and acquires a token automatically.
-
-```bash
-fdev rest <serviceKey> '<path>'
-```
-
-The path must be quoted in zsh/bash to prevent `?` glob expansion.
-
-**Examples:**
-
-```bash
-# GET from people service (production)
-fdev rest people '/persons/me?api-version=3.0'
-
-# POST with JSON body
-fdev rest context '/contexts?api-version=1.0' -m post -b '{"query":"test"}'
-
-# POST with body from file
-fdev rest people '/persons/search?api-version=3.0' -m post -b @request.json
-
-# Different environment
-fdev rest people '/persons/me?api-version=3.0' -e ci
-
-# Save response to file
-fdev rest people '/persons/me?api-version=3.0' -o response.json
-
-# Full URL mode (skip discovery)
-fdev rest --url https://httpbin.org/get --no-auth
-
-# Custom scope override
-fdev rest people '/persons/me?api-version=3.0' --scope api://my-app/.default
-```
-
-Key options: `-m` method, `-b` body (`@file` supported), `-e` environment, `--url` full URL mode, `--no-auth` skip auth, `--scope` override scope, `-o` output file, `--header KEY=VALUE`.
-
-### 2 — Get an access token
-
-Use `fdev get-access-token` for structured JSON token output, similar to `az account get-access-token`. Output is pipe-friendly.
-
-```bash
-# Token for a specific service (resolves scope via discovery)
-fdev get-access-token --service-key people
-
-# Token with explicit scope
-fdev get-access-token --scope api://97978493-9777-4d48-b38a-67b0b9cd88d2/.default
-
-# Extract just the token
-fdev get-access-token --service-key people | jq -r '.accessToken'
-```
-
-Output format:
-
-```json
-{
-  "accessToken": "eyJ...",
-  "expiresOn": "2026-05-15T12:00:00+00:00",
-  "expiresOnUnix": 1778846400,
-  "scope": "api://app-id/.default",
-  "tokenType": "Bearer"
-}
-```
-
-### 3 — Discover services and environments
-
-```bash
-# List all environments
-fdev disc envs
-
-# List services in an environment (JSON output)
-# Note: disc subcommand uses single-dash flags (-json, -out) — this is by design
-fdev disc env list fprd -json
-
-# List services showing key and URI
-fdev disc env list fprd -out ku
-```
-
-### 4 — Look up a person
-
-```bash
-# Resolve by email
-fdev persons resolve user@equinor.com
-
-# Search by name
-fdev persons search "John"
-```
-
-### 5 — Activate PIM role
-
-Elevate Azure access when needed for admin operations:
-
-```bash
-fdev pim azure activate
-```
-
-**Safety: always confirm with the user before running PIM activation — this grants elevated access.**
-
-### 6 — Get a raw JWT token (clipboard)
-
-For quick clipboard-based token workflows (existing command):
-
-```bash
-fdev token          # test environment token
-fdev token --prod   # production token
-```
+- This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
+- Default to read-only. Confirm remote writes before POST/PUT/PATCH/DELETE or other mutations; confirm with user before `fdev pim azure activate` because it grants elevated access.
+- Never print, expose, log or persist raw tokens/secrets. JSON token output stays in memory; never show raw acquisition output or pipe extracted tokens to visible output. Report only redacted/truncated metadata.
+- Prefer `fdev rest` (including `--url` when suitable) for internal token handling; acquire tokens for another client only when necessary. Prefer `--service-key` over hardcoded scopes.
+- Verbose diagnostics include full request/response headers and token details. Avoid credential-bearing tool output; sanitize before sharing, never display raw verbose output.
+- Always quote paths containing `?` or `&` in zsh/bash to prevent shell expansion. Use `--no-auth` only for genuinely public endpoints.
+- On failed/uncertain writes, reconcile current state before retry; do not assume nothing changed.
+- Follow caller filesystem/secret rules rather than conflicting example mechanics. Do not run token/clipboard examples that would print or persist tokens.
 
 ## Instructions
 
 ### Step 1 — Confirm fdev is available
 
-Before using any fdev command, verify it is installed:
-
 ```bash
 fdev --version
 ```
 
-If not installed, show the install command from Prerequisites. If authentication is needed, run `fdev login`.
+When missing/outdated, read `references/setup.md` and show exact install/update command. Authenticate with `fdev login` before first use or when needed.
 
 ### Step 2 — Choose the right command
 
@@ -203,44 +86,52 @@ If not installed, show the install command from Prerequisites. If authentication
 | Look up a person | `fdev persons resolve <email>` |
 | Quick clipboard token | `fdev token` |
 
-### Step 3 — Use verbose mode for debugging
-
-Add `--verbose` to any command for diagnostic output including cache hit/miss, full request/response headers, and token details.
+For PIM, use `fdev pim azure activate` only after explicit confirmation.
+REST discovery resolves base URL and acquires token automatically:
 
 ```bash
-fdev rest people '/persons/me?api-version=3.0' --verbose
+fdev rest <serviceKey> '<path>'
 ```
+
+- When forming REST requests beyond basic GET, read `references/rest-examples.md` for methods, file bodies, environment/output/full-URL/scope examples and diagnostic command.
+- When acquiring JSON or clipboard tokens, read `references/token-examples.md` for exact commands/output fields, subject to memory-only handling above.
+- When discovering services, resolving persons, activating PIM or choosing unfamiliar flags, read `references/command-reference.md` for options, examples, verified service keys and environment mapping. Discovery uses deliberate single-dash `-json` / `-out` flags.
+- When composing API verification, external-client token, discovery, identity, cross-environment or file-body workflows, read `references/agentic-patterns.md` for recipes; apply Safety before executing examples.
+
+### Step 3 — Use verbose mode for debugging
+
+Use `--verbose` only with safe, sanitized diagnostic handling above.
 
 ### Step 4 — Bypass cache when needed
 
-Service discovery results are cached locally (environments: 24h, services: 1h). Use `--no-cache` to force fresh lookups:
+Discovery cache: environments 24h, services 1h. Use `--no-cache` for fresh lookups:
 
 ```bash
 fdev rest people '/persons/me?api-version=3.0' --no-cache
 ```
 
-## Environments
+### Step 5 — Collect GitHub security snapshots
 
-| Key | Purpose | Notes |
-|---|---|---|
-| `ci` | Continuous integration / development | Least stable, latest changes |
-| `fqa` | Quality assurance | Pre-production validation |
-| `fprd` | Production | Default environment |
+Available in fdev 1.9.0+. Use `fdev selfcheck appsec github-security` to create a repository inventory, fetch security findings, and review a console summary. Run all three commands from the same directory:
 
-Default environment is `fprd` for all commands. Override with `-e <env>`.
+```bash
+fdev selfcheck appsec github-security init --org <ORG> --app-id <APP_ID>
+fdev selfcheck appsec github-security fetch --app-id <APP_ID>
+fdev selfcheck appsec github-security report --detail list
+```
+
+| Command | Key options |
+|---|---|
+| `init` | `--org <ORG>` (required), `--app-id <APP_ID>`, `--topic <TOPIC>`, `--all`, `--name-contains <PATTERN>`, `--output <PATH>`, `--force` |
+| `fetch` | `--config <PATH>`, `--app-id <ID>`, `--topic <TOPIC>`, `--name-contains <PATTERN>`, `--exclude-archived`, `--exclude-forks`, `--output <PATH>`, `--force` |
+| `report` | `--detail` (Summary, List, or Full), `--repo <NAME>`, `--data <PATH>`, `--access` |
+
+`init` accepts comma-separated `--app-id` and `--topic` filters. Without either filter, non-interactive sessions must pass `--all` to list every repository. `fetch` can further filter repositories from the generated inventory. For report writing, use `fusion-security-report`. See the [full fdev GitHub Security snapshot reference](https://github.com/equinor/fusion-dev-tools/blob/main/src/fusion-devtools/docs/selfcheck-github-security.md) for option behavior and output details.
 
 ## Reference guides
 
-See `references/` for detailed command options and workflow recipes:
+Bundled `references/` (`command-reference.md`, `agentic-patterns.md`) load only under conditions above.
 
-- `command-reference.md` — compact command cheat sheet with all options
-- `agentic-patterns.md` — common agentic workflow recipes
+## Expected output
 
-## Safety
-
-- This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
-- Never expose raw access tokens in output shown to users — truncate or redact when displaying
-- Always quote paths containing `?` in shell commands to prevent glob expansion
-- Use `--no-auth` only for genuinely public endpoints
-- Confirm with the user before running `fdev pim azure activate` (elevated access)
-- Do not store or log tokens to files unless explicitly requested
+Sanitized API response/shape, service keys/base URLs/environment, resolved person identifiers or redacted token metadata, or GitHub security snapshot files and report summary; approved PIM/write outcome when applicable. Report command, selected environment, failures, approval blockers and unknown state. Never return raw tokens or imply unrun commands succeeded.

@@ -1,0 +1,56 @@
+{{!--
+Shared visible assessment contract; read before filling any domain template.
+assessment: object with id, repository, revision, scope, context, method, outcome, inspected, unassessed; unknown facts must say not supplied; optional visual is evidence-grounded Mermaid plus plain-text explanation when useful and destination supports it.
+findings: list with id, claim, status (observed/inferred/unverified), evidence, impact, confidence and basis; no invented ratings.
+checks: list with command, scope, kind (existing/experimental), outcome and reason; include failed/blocked/not-run checks.
+limitations: list of material limits, missing evidence, conflicts and disclosure constraints.
+actions: list of proposed decisions/actions, with supplied owner only.
+--}}
+## Assessment
+
+- Identity: {{assessment.id}}
+- Repository / revision: {{assessment.repository}} / {{assessment.revision}}
+- Scope / context: {{assessment.scope}} / {{assessment.context}}
+- Method: {{assessment.method}}
+- Outcome: {{assessment.outcome}}
+- Inspected: {{assessment.inspected}}
+- Unassessed / skipped: {{assessment.unassessed}}
+{{#if assessment.visual}}
+
+## Visual explanation
+
+{{assessment.visual}}
+{{/if}}
+
+## Findings
+
+{{#each findings}}
+- **{{id}} — {{status}}:** {{claim}} Evidence: {{evidence}}.
+  Impact/severity: {{impact}}. Confidence: {{confidence}}; basis: {{basis}}.
+{{else}}
+No findings supplied within inspected scope; this does not establish overall health.
+{{/each}}
+
+## Checks and outcomes
+
+{{#each checks}}
+- {{command}} — {{kind}}; scope: {{scope}}; result: {{outcome}}. {{reason}}
+{{else}}
+No executed checks supplied; test/runtime status remains unverified.
+{{/each}}
+
+## Material limitations
+
+{{#each limitations}}
+- {{this}}
+{{else}}
+No limitations supplied; do not interpret this as comprehensive assessment.
+{{/each}}
+
+## Proposed next actions
+
+{{#each actions}}
+- {{this}}
+{{else}}
+Next decision not supplied.
+{{/each}}

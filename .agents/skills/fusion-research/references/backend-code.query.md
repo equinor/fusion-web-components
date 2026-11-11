@@ -1,5 +1,16 @@
 # Backend Code Search Reference
 
+## Contents
+
+- [Overview](#overview)
+- [Search lanes](#search-lanes)
+- [Proven search starters](#proven-search-starters)
+- [Query construction tips](#query-construction-tips)
+- [Evidence capture](#evidence-capture)
+- [Weak signal indicators](#weak-signal-indicators)
+- [Lane examples by question type](#lane-examples-by-question-type)
+
+
 ## Overview
 
 C# implementation search across Fusion services, libraries, and infrastructure. Use for service implementations, API contracts, architectural patterns, and cross-service interactions.

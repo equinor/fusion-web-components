@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@v7 # v7
         with:
           fetch-depth: 0
 
       - name: Setup node and install deps
-        uses: ./.github/workflows/actions/node-setup
+        uses: $/.github/workflows/actions/node-setup
 
       - name: Build project
         run: pnpm build
@@ -32,7 +32,7 @@ jobs:
       # 👇 Checks if the branch is not main and runs Chromatic
       - name: Publish to Chromatic
         if: github.ref != 'refs/heads/main'
-        uses: chromaui/action@2b75e3340bcec86b4ae38c6a10f14831114e8137 # v18
+        uses: chromaui/action@v18 # v18
         # Required options for the Chromatic GitHub Action
         with:
           workingDir: storybook
@@ -43,7 +43,7 @@ jobs:
         # 👇 Checks if the branch is main and accepts all changes in Chromatic
       - name: Publish to Chromatic and auto accept changes
         if: github.ref == 'refs/heads/main'
-        uses: chromaui/action@2b75e3340bcec86b4ae38c6a10f14831114e8137 # v18
+        uses: chromaui/action@v18 # v18
         # Required options for the Chromatic GitHub Action
         with:
           workingDir: storybook

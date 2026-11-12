@@ -24,7 +24,7 @@ jobs:
       PR_BRANCH: chore/apm-sync
     steps:
       - name: Check out repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7 # v7
         with:
           ref: ${{ env.BASE_BRANCH }}
           fetch-depth: 0
@@ -55,7 +55,7 @@ jobs:
       # equinor/fusion-skills is an internal repository, so the job token cannot clone it.
       # APM reads the per-organization token from GITHUB_APM_PAT_EQUINOR.
       - name: Update APM dependencies
-        uses: microsoft/apm-action@d723bb64ed70c135bbaf87d126b721dd2dae0439 # v1
+        uses: microsoft/apm-action@v1 # v1
         env:
           GITHUB_APM_PAT_EQUINOR: ${{ secrets.APM_FUSION_SKILLS_TOKEN || github.token }}
         with:

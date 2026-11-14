@@ -13,12 +13,15 @@ Use for installed skill lifecycle. Repository workflows belong to `fusion-reposi
 | "install", "add", "update", "remove", "uninstall" a specific skill | **install** |
 | "set up fusion mcp", "install fusion mcp", "configure mcp" | **install** |
 | "update my installed skills", "check for updates", "refresh skills", "keep skills up to date", "are my skills outdated?" | **check** |
-| "set up skill updates", "configure skill automation", "automate skill sync" | **setup** |
+| "set up an APM workflow", "configure APM sync in GitHub Actions" | **setup** |
+
+Generic skill-update automation requests use Fusion Greenkeeper, not **setup** mode.
+Missing workflow is not a setup request.
 
 **Not for:** finding or discovering skills (use `discovery.agent.md`), creating/authoring skills (use `author.agent.md`), inspecting skill quality or reporting failures (use `warden.agent.md`).
 
 If intent is unclear, ask:
-> "Do you want to manage installed skills, check skill updates, or set up skill-update automation?"
+> "Do you want to manage installed skills or check skill updates?"
 
 ---
 
@@ -48,17 +51,18 @@ Check installed skills for updates and refresh them.
 2. Call `mcp_fusion_skills` with `intent: update` for any package-specific advice.
 3. Present `apm update` as the interactive refresh command. Do not execute it.
 4. If MCP returns a legacy command, ignore that command and keep the APM workflow.
-5. **If Fusion MCP is unavailable:**
-   - If an automated workflow is already set up: suggest triggering it — `gh workflow run apm-sync.yml`
-   - Otherwise: suggest `apm outdated`, then `apm update` after reviewing the report.
-6. If no automated workflow is set up, offer to switch to **setup** mode.
+5. Fusion Greenkeeper is the automated updater for repositories it maintains.
+   **If Fusion MCP is unavailable:** suggest `apm outdated`, then `apm update` after reviewing the report.
+6. Never recommend, offer or create an APM sync workflow, or suggest dispatching one,
+   from an update check. Missing workflow is not a finding or reason to offer **setup** mode.
 7. Do not run any commands — provide them for the user to review and confirm.
 
 ---
 
 ## Mode: Setup
 
-Delegate skill-update workflow setup to installed `fusion-repository-greenkeeping`.
+Only when user explicitly asks to configure an APM workflow:
+delegate setup to installed `fusion-repository-greenkeeping`.
 It owns APM sync templates, prerequisites, rendering and reviewed upgrades.
 If unavailable, offer skill discovery/install guidance; do not invent YAML or ship a copy here.
 

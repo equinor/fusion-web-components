@@ -2,7 +2,9 @@
 
 Read-only check that a repository's Agent Package Manager setup is reproducible and that
 installed agent context is not silently edited. APM = Agent Package Manager, not application
-performance monitoring. Sync automation itself: [APM sync](sync-workflows.md).
+performance monitoring. Fusion Greenkeeper owns automated updates for repositories it
+maintains. Missing sync workflow is not a finding; never suggest one from this audit.
+Workflow setup only on explicit request: [APM sync](sync-workflows.md).
 
 ## Scope and evidence
 
@@ -38,7 +40,6 @@ Source: [APM drift detection](https://microsoft.github.io/apm/enterprise/drift-d
 | CLI version drift | Lockfile `apm_version`, effective CLI version in sync workflow (`apm-version` input or action default) and contributor docs disagree on major/minor. `microsoft/apm-action` pin versions the action, not the CLI: audit it separately as an action pin | low | Align CLI on reviewed version |
 | Cache committed | `apm_modules/` tracked or not ignored | medium | Ignore and untrack after approval |
 | Sync token gap | Sync uses `github.token` with internal/private dependencies | high | [Detect visibility](sync-workflows.md#detect-visibility-first) |
-| No update path | Dependencies exist, no sync workflow, docs promise current skills | low suggestion | Offer [APM sync](sync-workflows.md) template |
 
 Traps:
 

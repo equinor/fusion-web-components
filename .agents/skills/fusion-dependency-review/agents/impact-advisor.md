@@ -36,8 +36,10 @@ Assess how risky the update is to merge in this repository, including CI behavio
   and deployment assumptions. Research-only in sandbox is not image-build or runtime validation.
 - Report unrun workflow/image checks separately from demonstrated breakage. Workflow-file push needs
   workflow-edit permission: host-owned publication limitation, not dependency incompatibility.
-- Licence/terms change: `blocking` pending explicit maintainer/legal decision, even if technically compatible.
-  State affected use and required decision; use `references/unattended-updates.md` for detailed checks.
+- Licence/terms change: classify tier per `references/unattended-updates.md`. Routine (permissive → permissive,
+  or CI/build-only tooling without new use restrictions): no licence blocker; record evidence note.
+  Needs a human, unverified terms or unsure: `blocking` pending explicit maintainer/legal decision, even if
+  technically compatible. State affected use (shipped/linked vs CI/build-only) and required decision.
 
 ## Assessment scale
 

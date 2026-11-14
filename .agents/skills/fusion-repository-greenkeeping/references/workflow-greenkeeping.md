@@ -14,6 +14,11 @@ Reuse selected [catalogue](common-workflows.md) and [APM](sync-workflows.md),
 
 ## Inspect before proposing
 
+APM setup/adoption requires explicit user request to configure an APM workflow.
+Generic update automation, missing workflow or stale packages do not qualify.
+Use Fusion Greenkeeper for repositories it maintains, or `apm outdated` then `apm update`.
+Existing workflow maintenance stays supported; never remove existing callers during audit.
+
 1. Read repo-local instructions and identify requested repository/app boundary.
    Stay in advice mode unless maintainer approves local setup/update scope.
 2. Inspect every workflow by purpose, including reusable calls and renamed files.
@@ -121,9 +126,10 @@ after approval. No generated timestamps or normalization-only rewrites.
 
 | Situation | Expected result |
 | --- | --- |
-| Public APM repo, no sync job | Fill local standalone YAML, not internal reusable call; record explicit dependency auth choice and reviewed source pin. |
-| Internal `equinor` repo with Fusion skill dependencies, e.g. `fusion-core-apps` | Fill reusable caller template with `apmTokenSecret`; existing hand-written caller is unknown provenance, offer reviewed adoption. |
-| Public repo with Fusion skill dependencies, e.g. `fusion-framework` | Standalone template with `dependencyTokenSecret`; confirm secret reaches public repo. |
+| Generic update request, no APM sync workflow | Use Greenkeeper or reviewed `apm outdated` then `apm update`; no workflow suggestion or setup offer. |
+| Explicit APM workflow request, public repo, no sync job | Fill local standalone YAML, not internal reusable call; record explicit dependency auth choice and reviewed source pin. |
+| Explicit APM workflow request, internal `equinor` repo with Fusion skill dependencies, e.g. `fusion-core-apps` | Fill reusable caller template with `apmTokenSecret`; existing hand-written caller is unknown provenance, offer reviewed adoption. |
+| Explicit APM workflow request, public repo with Fusion skill dependencies, e.g. `fusion-framework` | Standalone template with `dependencyTokenSecret`; confirm secret reaches public repo. |
 | Existing sync with Fusion skill dependencies but no token | Finding: `github.token` cannot clone internal `equinor/fusion-skills`; set `apmTokenSecret` (reusable caller) or `dependencyTokenSecret` (standalone). |
 | Same APM inputs/pin, workflow already present under another name | No duplicate or needless diff; inspect purpose, retain original path and corresponding sidecar. |
 | App with verified CLI, app-root lock and protected `ci`/`fqa`/`fprd` GitHub environments | Fill manual-only OIDC workflow with confirmed ordered environment list; permissions/federation remain unverified until maintainer checks them. |
@@ -132,7 +138,7 @@ after approval. No generated timestamps or normalization-only rewrites.
 | Repository without Copilot setup, pnpm lockfile committed | Fill setup steps with exact Node/pnpm; after merge confirm workflow run passed; no secrets or extra tools added. |
 | .NET service with seven solutions, `global.json`, no lock files | Fill .NET block with `global.json` pin, its directory as .NET working directory and each solution as restore target, no `--locked-mode`; add Node block only if a frontend exists. |
 | Changesets app monorepo with configured release scripts | Reuse existing release manager or fill monorepo template; allowlist packages, require release-event credential, deploy released app through Fusion action. |
-| Workflow copied from `apm/templates/apm-sync.yml` or custom deploy script | Unknown provenance: inventory local choices, offer reviewed adoption; never replace. |
+| Workflow copied from `apm/templates/apm-sync.yml` or custom deploy script | Unknown provenance: inventory local choices; APM adoption only on explicit APM workflow request. Never replace unapproved. |
 | App upgrade changes runtime guard; local extra notification step | Reproduce old baseline, carry notification forward, validate merged candidate and show diff. |
 | App local environment edits overlap template upgrade | Block, show competing environment choices and wait. No automatic promotion. |
 | Missing APM secret/app lockfile, or missing old source pin | Give exact remedy; no setup-success message, fallback YAML or destructive replacement. |

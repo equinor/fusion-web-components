@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.5 - 2026-11-11
+
+### patch
+
+- [#437](https://github.com/equinor/fusion-skills/pull/437) [`8a4b430`](https://github.com/equinor/fusion-skills/commit/8a4b430d8ea5e1e06d6350c391e7993f5a3a7fcc) - Use Fusion Greenkeeper or reviewed manual APM commands for installed-skill updates. Never suggest APM sync or offer workflow setup from update checks, missing workflows or generic automation requests. Route setup only on an explicit APM workflow request.
+
+
+  resolves equinor/fusion-core-tasks#2921
+
 ## 0.2.4 - 2026-11-01
 
 ### patch

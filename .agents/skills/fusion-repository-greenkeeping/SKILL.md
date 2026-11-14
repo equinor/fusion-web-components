@@ -4,7 +4,7 @@ description: 'Sets up, audits and maintains repository workflows and APM setup, 
 license: MIT
 compatibility: No runtime dependencies; agent fills templates by hand. Optional actionlint validates filled YAML. Consumer workflow prerequisites depend on selected template; no MCP or service authentication needed.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -27,7 +27,7 @@ Own reviewed workflows/lifecycle, not skill management or deployment platform. R
 
 ## When to use
 
-- APM sync/health; Fusion single-app/Changesets deployment; Copilot setup/readiness.
+- APM health or explicitly requested APM workflow setup/maintenance; Fusion single-app/Changesets deployment; Copilot setup/readiness.
 - Dependabot/pinned Actions, workflow lockfile (`actions.lock`), workflow security/runtime/runner audits.
 - Greenkeeper enrolment readiness; repeat setup, template upgrades/customization conflicts.
 
@@ -71,6 +71,10 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
   destructive change, dispatch or deployment; each needs explicit confirmation.
 - Feedback issues/comments need confirmation unless trusted runtime policy allows them.
 - Source verification/offline fixtures never prove consumer authorization or live behavior.
+- Fusion Greenkeeper owns automated APM updates for repositories it maintains.
+  Never recommend, offer or create an APM sync workflow unless user explicitly asks
+  to configure an APM workflow. Missing workflow, stale packages, readiness gaps or
+  generic update-automation requests never satisfy this gate. Preserve existing workflows.
 
 ## Instructions
 

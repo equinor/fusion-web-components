@@ -42,7 +42,8 @@ Portable, source-backed signals (priority order):
 ### Ecosystem and licence evidence
 
 - Every update: compare official licence files/terms and release announcements over full installed-to-target
-  interval, including skipped releases and relevant transitives. Record changes or explicit evidence gaps.
+  interval, including skipped releases and relevant transitives. Record changes or explicit evidence gaps,
+  affected use (shipped/linked vs CI/build-only) and licence tier.
 - GitHub Actions: resolve tags/SHAs, compare action/reusable-workflow contracts and release notes with
   caller permissions, inputs, output consumers, scripts and runner requirements.
 - Docker: resolve tags/digests/platforms; research publisher image, distro and runtime changes against
@@ -70,7 +71,7 @@ Return:
 - Normalized context: package, versions, ecosystem, update type, changed files, CI status
 - Existing discussion summary: top-level comment themes, review-thread themes, unresolved concerns, already-answered items
 - Research summary: changelog highlights, breaking changes, known issues, transitive changes
-- Licence/terms record: old/new terms, transition release and official sources, or explicit unknowns
+- Licence/terms record: old/new terms, transition release, official sources and tier (routine or needs a human) with reason, or explicit unknowns
 - Infrastructure evidence when relevant: action/workflow or image usage, runtime requirements, unrun checks and reasons
 - Migration record: upgrade guide URL or `None found`, migration command and output summary or `None documented`, manual steps, new default behaviour, existing suppressions or overrides in the PR diff
 - Source list with detail to re-check evidence

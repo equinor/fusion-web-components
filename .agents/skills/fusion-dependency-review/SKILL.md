@@ -4,7 +4,7 @@ description: 'Reviews dependency PRs using existing PR discussion, security, cod
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -62,8 +62,11 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
   State sync needs before patching; preserve unrelated work.
 - Any `blocking` lens bars `merge`. Unresolved concerns reduce confidence and normally bar `merge`
   unless explicitly resolved/rebutted with evidence.
-- Changed licence/terms or missing material evidence: HOLD until maintainer/legal owner
-  explicitly accepts terms. CI/API compatibility cannot waive acceptance.
+- Licence/terms change: classify per `references/unattended-updates.md`. Routine (permissive ->
+  permissive, or CI/build-only tooling without new use restrictions): evidence note, no HOLD.
+  Copyleft, commercial/dual/keys/paid, source-available/non-commercial/field-of-use, narrowed
+  shipped/linked terms, unknown terms or unsure: HOLD until maintainer/legal owner explicitly
+  accepts. CI/API compatibility cannot waive acceptance.
 - No repository-wide rule downgrades/disables, weakening glob/path overrides or removed CI
   checks to get green. Broad suppression is quality `blocking` even with green CI. Only narrow
   inline-reason suppressions. New defaults: preserve behaviour with first-class opt-outs;
@@ -103,7 +106,7 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
 6. Read and apply `agents/verdict-advisor.md`: independent recommendation/confidence/readiness.
    Pending checks/routine approval affect readiness only. Major: explicit compatibility evidence,
    not semver-only low confidence. Verify lens evidence, concerns reflected/rebutted, licence
-   acceptance, independent dimensions, branch plan/follow-up, no broad suppressions, defaults flagged.
+   tier/acceptance, independent dimensions, branch plan/follow-up, no broad suppressions, defaults flagged.
 7. Accepted branch work after checkpoints/authorization: read and apply `agents/source-control-advisor.md`
    for sync/conflicts/focused checks. Apply step 3's migration plan: upstream guide/tooling first within
    authority; record command/output ("no migration needed" only if observed), fix code findings, rerun

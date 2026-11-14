@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.1 - 2026-11-11
+
+### patch
+
+- [#437](https://github.com/equinor/fusion-skills/pull/437) [`8a4b430`](https://github.com/equinor/fusion-skills/commit/8a4b430d8ea5e1e06d6350c391e7993f5a3a7fcc) - Make Fusion Greenkeeper the default APM updater and require explicit APM workflow requests for sync setup. Remove sync remedies from health/readiness checks while preserving opt-in templates, existing callers and reviewed lifecycle gates.
+
+
+  Keep readiness remedies report-only; require separately approved work for setup, updates and commits.
+
+  resolves equinor/fusion-core-tasks#2921
+
 ## 0.5.0 - 2026-11-09
 
 ### minor

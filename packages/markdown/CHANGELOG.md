@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.6.6
+
+### Patch Changes
+
+- [#2547](https://github.com/equinor/fusion-web-components/pull/2547) [`4909093`](https://github.com/equinor/fusion-web-components/commit/49090934e9fe1d4d30ecedcde964ec6b70a66037) Thanks [@odinr](https://github.com/odinr)! - Update marked from 18.1.3 to 18.2.0 for fixes to emphasis, image alt text, and nested-list parsing.
+  
+  Update prosemirror-model from 1.25.12 to 1.25.13 to work around V8 memory retention of text-node substrings.
+
 ## 1.6.5
 
 ### Patch Changes

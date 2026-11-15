@@ -5,6 +5,10 @@ repository-owned YAML; not a deployment platform or central reusable workflow.
 
 ## Catalogue
 
+Fusion Greenkeeper owns automated APM updates for repositories it maintains.
+APM templates require explicit user request to configure an APM workflow; never offer
+them because workflow is absent or packages are stale. Existing callers stay supported.
+
 | Template | Applies to | Key prerequisites | Destination | Guide |
 | --- | --- | --- | --- | --- |
 | [`apm-sync-reusable.yml.hbs`](../assets/workflows/apm-sync-reusable.yml.hbs) | Internal/private `equinor` repository using APM | Committed `apm.yml`, lockfile and managed files; access to internal reusable workflow; token secret for internal dependencies | `.github/workflows/apm-sync.yml` | [APM](sync-workflows.md) |

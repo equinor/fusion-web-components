@@ -276,14 +276,37 @@ announcements and terms changes throughout interval (including skipped majors an
 Record old/new licence identifiers or terms, release introducing change, source URLs and affected use.
 Registry metadata or absence of a changelog mention alone is insufficient evidence of unchanged terms.
 
-**Any licence/terms change is HOLD pending explicit human decision**, even if API-compatible and checks pass.
-Name decision owner (maintainer/legal or procurement owner), changed obligations and smallest next step:
-confirm approved licensing option, eligibility and any purchase/key configuration before reconsideration.
-Never assume commercial eligibility, grant legal approval, suppress licence warnings or configure keys.
-Unverified material licence evidence stays HOLD with research gap; budget/confidence heuristics cannot waive gate.
+Classify every licence/terms change into one tier. **Unsure: needs a human.**
+
+**Routine: no HOLD.** Record one-line evidence note (old/new terms, transition release, source URLs,
+tier reason); note never blocks MERGE.
+
+- Permissive -> permissive: MIT, Apache-2.0, BSD, ISC; CC-BY for docs.
+- Any change in CI-only or build-only tooling not shipped or linked into product, unless it adds a
+  use restriction listed below (commercial, keys, paid tiers, source-available, non-commercial, field-of-use).
+
+**Needs a human: HOLD pending explicit human decision**, even if API-compatible and checks pass.
+
+- Copyleft or network-copyleft (e.g. GPL, LGPL, MPL, AGPL) in shipped or linked code.
+- Commercial or dual licensing, licence keys or paid tiers.
+- Source-available, non-commercial or field-of-use restrictions.
+- Narrowed terms for shipped or linked code.
+- Unknown or unverified material terms.
+
+For needs-a-human: name decision owner (maintainer/legal or procurement owner), changed obligations and
+smallest next step: confirm approved licensing option, eligibility and any purchase/key configuration
+before reconsideration. Never assume commercial eligibility, grant legal approval, suppress licence
+warnings or configure keys. Unverified material licence evidence stays HOLD with research gap;
+budget/confidence heuristics cannot waive gate or move a change into routine.
 This is an acceptance-policy blocker, not routine pending PR approval or a compatibility failure.
 
-Example: MediatR 12 -> 14 crosses
+Routine example: APM CLI 0.33.0 -> 0.35.1 crosses
+[microsoft/apm#3487](https://github.com/microsoft/apm/pull/3487).
+[v0.35.0 licence](https://github.com/microsoft/apm/blob/v0.35.0/LICENSE) is MIT;
+[v0.35.1 terms](https://github.com/microsoft/apm/blob/v0.35.1/LICENSING.md) are Apache-2.0 for software
+and CC-BY-4.0 for docs. Permissive -> permissive in CI-only tool: record evidence note, no HOLD.
+
+Needs-a-human example: MediatR 12 -> 14 crosses
 [v13.0.0 licensing transition](https://github.com/LuckyPennySoftware/MediatR/releases/tag/v13.0.0).
 [v12.5.0 licence](https://github.com/LuckyPennySoftware/MediatR/blob/v12.5.0/LICENSE) is Apache-2.0;
 [v14.0.0 terms](https://github.com/LuckyPennySoftware/MediatR/blob/v14.0.0/LICENSE.md) offer RPL-1.5
@@ -302,8 +325,9 @@ Keep technical recommendation, execution state, evidence confidence and merge re
   [upgrade migration contract](upgrade-migration.md), not weakened checks or speculative refactors.
 - **HOLD / blocked compatibility**: demonstrated incompatibility after bounded migration, or breaking
   behaviour requiring maintainer judgement. Name exact decision or smallest next step.
-- **HOLD / licence decision**: changed licence/terms require explicit human acceptance before MERGE.
-  Keep separate from compatibility and routine approval; cite transition and responsible decision owner.
+- **HOLD / licence decision**: needs-a-human licence/terms change requires explicit human acceptance
+  before MERGE. Keep separate from compatibility and routine approval; cite transition and responsible
+  decision owner. Routine tier needs evidence note only.
 - **HOLD / failed execution**: unrecovered setup/tool failure, timeout, missing regeneration capability
   or incomplete evidence needed to decide. Keep retryable; don't manufacture a compatibility blocker.
   Calling host maps these concepts to its own machine contract.

@@ -65,13 +65,20 @@ Reuse [Copilot readiness check](copilot-readiness.md) inventory and instruction 
 
 ### 3. Fusion skill packages installed with APM and current
 
+Report maintainer follow-up only: readiness check performs no update or commit.
+Setup, updates and commits require a separate, approved task outside this check.
+
 1. `apm.yml` declares `equinor/fusion-skills` dependency and `apm.lock.yaml` committed.
-   Either missing: **not ready**; remedy [APM sync](sync-workflows.md).
+   Either missing: **not ready**; report maintainer follow-up to declare intended Fusion
+   dependencies and commit `apm.yml` and `apm.lock.yaml` after approved local setup,
+   not workflow creation.
 2. Latest release: `gh api repos/equinor/fusion-skills/releases/latest --jq .tag_name`;
    compare each fusion-skills `resolved_ref` in `apm.lock.yaml`.
-3. All at latest: **ready**. Any behind: **not ready**; list locked vs latest, open sync PR
-   (`gh pr list --state open --search "chore(apm): sync dependencies in:title" --json url`),
-   and `apm.yml` range excluding latest major.
+3. All at latest: **ready**. Any behind: **not ready**; list locked vs latest and
+   `apm.yml` range excluding latest major. Greenkeeper's `apm` lane updates stale packages
+   for enrolled repositories. Before enrolment, report maintainer follow-up to review
+   `apm outdated`, then run `apm update` and commit manifest/lock/deployed changes in that
+   separate, approved task. Never suggest an APM sync workflow as remedy.
 4. Release lookup denied/fails: **unverified** (repository internal).
 
 ### 4. Known large migrations done or recorded as deferred

@@ -9,7 +9,12 @@
 - [Runtime contract](#runtime-contract)
 - [Schedule reference](#schedule-reference)
 
-Keep declared APM dependencies current through one reviewable pull request.
+Use only when user explicitly asks to configure an APM workflow.
+Fusion Greenkeeper owns automated updates for repositories it maintains; otherwise
+review `apm outdated`, then `apm update`. Never offer workflow setup from an update
+check, health finding or readiness gap. Existing workflows remain supported.
+
+Opt-in workflows keep declared APM dependencies current through one reviewable pull request.
 APM updates declared dependencies only; it never discovers undeclared skills.
 
 ## Preconditions

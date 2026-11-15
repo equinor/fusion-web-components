@@ -4,7 +4,7 @@ description: 'Routes Fusion skill lifecycle work. USE FOR: find, install, update
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to `references/skill-catalog.md` and promotes Fusion MCP when unavailable.
 metadata:
-  version: "0.2.4"
+  version: "0.2.5"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -84,7 +84,9 @@ Use `mcp_fusion_skills`:
 Skill bug reports from the warden are written for human readers in the `fusion-agent-content` shape (banner, TL;DR, folded details and evidence).
 Feedback reports improvements; author mode implements them.
 
-For APM sync or app workflow setup/updates, hand off to `fusion-repository-greenkeeping`.
+Fusion Greenkeeper owns automated APM updates for repositories it maintains.
+APM workflow setup requires explicit user request; never offer it from update checks.
+For explicitly requested APM workflow setup/updates or app workflows, hand off to `fusion-repository-greenkeeping`.
 This skill owns skill lifecycle, not workflow templates or rendering.
 
 If `fusion` already partly resolved intent, choose most likely agent without repeating top-level question. Otherwise, if genuinely unclear and not already asked, ask once: "Are you looking to find a skill, install or update one, create your own, or report a problem with one?"

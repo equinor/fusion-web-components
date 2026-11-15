@@ -31,8 +31,10 @@ Synthesize research, security, code quality, impact into dependency-review decis
 2. Surface strongest +/- signals and open reviewer concerns.
 3. Apply recommendation rules:
    - Any `blocking` lens → verdict must be `hold` or `decline`
-   - Changed licence/terms → `hold` until explicit human acceptance of applicable terms; API compatibility
-     or passing CI cannot override. Missing material licence evidence also requires `hold`.
+   - Needs-a-human licence/terms change (tiers in `references/unattended-updates.md`) or missing material
+     licence evidence → `hold` until explicit human acceptance; API compatibility or passing CI cannot override.
+   - Routine licence/terms change (permissive → permissive, or CI/build-only tooling without new use
+     restrictions) → evidence note only; does not block `merge`. Unsure → needs a human.
    - Unresolved reviewer concerns usually prevent `merge`
    - Concerns without blocker: `merge with follow-up` or `hold` by evidence gaps
    - Compatible update + no unresolved technical or licence risk: can support `merge`
@@ -94,7 +96,7 @@ Return:
 - Confidence
 - Readiness
 - Follow-up items
-- Licence decision when applicable: changed terms, official sources, human decision owner and acceptance status
+- Licence decision when applicable: changed terms, official sources and tier; needs-a-human adds decision owner and acceptance status
 - Migration steps: upgrade guide, migration command, findings fixed, suppressions added with reasons, decisions deferred (see `references/upgrade-migration.md`)
 - Handoff recommendation when needed
 - PR-comment-ready final verdict comment body
@@ -109,7 +111,7 @@ every named partial before filling; no renderer ships with the skill.
 - Never auto-approve or auto-merge
 - Never claim CI, security, or impact is clear without cited evidence
 - Never use pending checks or routine PR approval as the sole reason for `hold` or reduced confidence
-- Never recommend `merge` or `merge with follow-up` for changed licence/terms awaiting explicit human acceptance
+- Never recommend `merge` or `merge with follow-up` for needs-a-human licence/terms change awaiting explicit human acceptance
 - Never infer low confidence from semver-major alone
 - Don't ignore unresolved threads unless packet explains why outdated/addressed
 - No approval/merge until verdict comment posted

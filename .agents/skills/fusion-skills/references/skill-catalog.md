@@ -55,8 +55,8 @@ Handled by `fusion-skills` agents without separate install:
 | "install / add a skill" | `greenkeeper` agent — install mode |
 | "update / remove / uninstall a skill" | `greenkeeper` agent — install mode |
 | "check my skills for updates", "refresh skills" | `greenkeeper` agent — check mode |
-| "set up skill update automation" | `greenkeeper` agent — setup mode |
-| "set up skill discovery workflow" | `greenkeeper` agent — setup mode |
+| "keep skills updated automatically" | `greenkeeper` agent — check mode; Fusion Greenkeeper, no workflow offer |
+| "configure an APM update workflow" | `greenkeeper` agent — setup mode; explicit APM workflow request only |
 | "create / author / improve a skill" | `author` agent — redirects to `fusion-skill-authoring` |
 | "inspect a skill", "smell check", "audit this SKILL.md" | `warden` agent — inspect mode |
 | "report a bug or failure with a skill" | `warden` agent — report mode |

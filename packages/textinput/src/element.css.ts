@@ -1,13 +1,12 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 import { styles as mdcStyle } from '@material/mwc-textfield/mwc-textfield.css';
 
 export const attributes: CSSResult = css`
   :host {
-    --fwc-text-field-base-color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
-    --fwc-text-field-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    --fwc-text-field-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
-    --fwc-text-field-disabled-ink-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
+    --fwc-text-field-base-color: var(--eds-color-text-neutral-subtle);
+    --fwc-text-field-fill-color: var(--eds-color-bg-input);
+    --fwc-text-field-ink-color: var(--eds-color-text-neutral-strong);
+    --fwc-text-field-disabled-ink-color: var(--eds-color-text-neutral-strong);
   }
 `;
 

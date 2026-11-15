@@ -42,11 +42,21 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
     accountLabel: person.identifier,
     isExpired: false, // set to not expired since we want to show the azureId for the failed person in the pill
     avatarUrl: resolveFailedAvatarUrl(),
-    avatarColor: '#ff92a8',
+    avatarColor: 'var(--eds-color-bg-danger-fill-muted-default)',
   };
 };
 
-export const resolveFailedAvatarUrl = (avatarColor = '#eb0037') => {
+/**
+ * Resolves an EDS colour variable against the document, for contexts such as SVG data URLs
+ * that can't read CSS custom properties.
+ */
+const resolveDocumentColor = (variable: string): string =>
+  getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+
+export const resolveFailedAvatarUrl = (
+  avatarColor = resolveDocumentColor('--eds-color-bg-danger-fill-emphasis-default'),
+) => {
+  const surfaceColor = resolveDocumentColor('--eds-color-bg-neutral-surface');
   const svgString = `
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
       <style>
@@ -65,7 +75,7 @@ export const resolveFailedAvatarUrl = (avatarColor = '#eb0037') => {
         }
       </style>
       <circle cx="32" cy="32" r="32" fill="${avatarColor}"/>
-      <circle cx="32" cy="32" r="29" fill="#fff"/>
+      <circle cx="32" cy="32" r="29" fill="${surfaceColor}"/>
       <text x="32" y="33" fill="${avatarColor}" text-anchor="middle" dominant-baseline="central">!</text>
     </svg>
   `;

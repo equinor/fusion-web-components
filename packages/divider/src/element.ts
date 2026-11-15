@@ -20,7 +20,7 @@ import style from './element.css';
  * @property {DividerVariant} variant - Sets the divider variant.
  * @property {DividerOrientation} orientation - Sets orientation type for the divider.
  *
- * @cssprop {theme.colors.ui.background__medium} --fwc-divider-color - color of the divider.
+ * @cssprop {var(--eds-color-border-neutral-subtle)} --fwc-divider-color - color of the divider.
  */
 export class DividerElement extends LitElement implements DividerElementProps {
   static styles: CSSResult[] = [style];

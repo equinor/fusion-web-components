@@ -1,19 +1,16 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 export const style: CSSResult = css`
   :host {
-    --editor-color-text: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
-    --editor-border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-    --editor-border-color-active: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --editor-divider-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-    --editor-button-disabled-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
-    --editor-button-hover-color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
-    --editor-button-hover-background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.getVariable('color'))};
-    --editor-button-active-color: ${unsafeCSS(theme.colors.text.static_icons__default.getVariable('color'))};
-    --editor-button-active-background: ${unsafeCSS(
-      theme.colors.interactive.primary__selected_highlight.getVariable('color'),
-    )};
+    --editor-color-text: var(--eds-color-text-neutral-subtle);
+    --editor-border-color: var(--eds-color-border-neutral-subtle);
+    --editor-border-color-active: var(--eds-color-border-accent-strong);
+    --editor-divider-color: var(--eds-color-border-neutral-subtle);
+    --editor-button-disabled-color: var(--eds-color-text-disabled);
+    --editor-button-hover-color: var(--eds-color-bg-accent-fill-emphasis-hover);
+    --editor-button-hover-background: var(--eds-color-bg-accent-fill-muted-hover);
+    --editor-button-active-color: var(--eds-color-text-neutral-strong);
+    --editor-button-active-background: var(--eds-color-bg-accent-fill-muted-active);
     cursor: auto;
   }
   :host([menuSize='small']) {

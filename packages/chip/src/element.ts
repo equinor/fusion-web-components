@@ -37,10 +37,10 @@ export type ChipElementProps = {
  * @property {boolean} removable - Set the chip as removable to render remove icon
  * @property {boolean} disabled - Set the chip to render as disabled
  *
- * @cssprop {theme.colors.text.static_icons__tertiary} --fwc-chip-base-color - Base color of the element
- * @cssprop {theme.colors.ui.background__light} --fwc-chip-fill-color - Background color of element
- * @cssprop {theme.colors.text.static_icons__default} --fwc-chip-ink-color - Text color
- * @cssprop {theme.colors.text.static_icons__default} --fwc-chip-disabled-ink-color - Text color when disabled
+ * @cssprop {var(--eds-color-text-neutral-subtle)} --fwc-chip-base-color - Base color of the element
+ * @cssprop {var(--eds-color-bg-neutral-canvas)} --fwc-chip-fill-color - Background color of element
+ * @cssprop {var(--eds-color-text-neutral-strong)} --fwc-chip-ink-color - Text color
+ * @cssprop {var(--eds-color-text-neutral-strong)} --fwc-chip-disabled-ink-color - Text color when disabled
  *
  * @fires click - When the element is clicked
  * @fires remove - When the remove icon is clicked

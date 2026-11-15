@@ -3,7 +3,7 @@ import { css, type CSSResult } from 'lit';
 export const headerStyle: CSSResult = css`
   header {
     position: relative;
-    background-color: #f0f0f0;
+    background-color: var(--eds-color-bg-neutral-fill-muted-default);
     padding: 2ch;
     display: grid;
     grid-template-areas: 

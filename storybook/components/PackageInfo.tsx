@@ -18,8 +18,8 @@ const Dependencies = styled.div({
 });
 
 const Dependency = styled.a({
-  background: '#444',
-  color: '#fff',
+  background: 'var(--eds-color-bg-neutral-fill-emphasis-default)',
+  color: 'var(--eds-color-text-neutral-strong-on-emphasis)',
   display: 'inline-flex',
   textDecoration: 'none',
   fontFamily: 'monospace',

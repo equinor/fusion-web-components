@@ -19,7 +19,7 @@ export { RippleHandlers } from '@material/mwc-ripple/ripple-handlers';
  * @property {boolean} selected - Set true when the container of the ripple should be in a `selected` state.
  * @property {string} disabled - Set true to disable the ripple when the container of the ripple is disabled.
  *
- * @cssprop {#000} --mdc-ripple-color - Base color of the ripple
+ * @cssprop {var(--eds-color-text-neutral-strong)} --mdc-ripple-color - Base color of the ripple (set by `<fwc-theme>`)
  * @cssprop {0.1} --fwc-ripple-hover-opacity - Opacity of the ripple
  */
 export class RippleElement extends RippleBase implements RippleElementProps {

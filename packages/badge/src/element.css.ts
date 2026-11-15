@@ -1,30 +1,29 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 const styleColor: CSSResult = css`
   :host {
-    --fwc-badge-background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    --fwc-badge-background: var(--eds-color-bg-neutral-canvas);
   }
   :host(:not([border])) {
-    --fwc-badge-ink-color: ${unsafeCSS(theme.colors.text.static_icons__primary_white.getVariable('color'))};
+    --fwc-badge-ink-color: var(--eds-color-text-accent-strong-on-emphasis);
   }
   :host([color='primary']) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-accent-fill-emphasis-default);
   }
   :host([color='secondary']) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-neutral-fill-emphasis-default);
   }
   :host([color='success']) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-success-fill-emphasis-default);
   }
   :host([color='danger']) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-danger-fill-emphasis-default);
   }
   :host([color='warning']) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-warning-fill-emphasis-default);
   }
   :host([color='disabled']) {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-disabled);
   }
 `;
 
@@ -79,7 +78,7 @@ export const stylePosition: CSSResult = css`
 
 export const style: CSSResult = css`
   :host {
-    --fwc-badge-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-badge-color: var(--eds-color-bg-accent-fill-emphasis-default);
     --fwc-badge-size: 1.5rem;
     --fwc-badge-font-size: 0.75rem;
     --fwc-badge-icon-size: 0.685rem;

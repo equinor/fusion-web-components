@@ -4,12 +4,12 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 export const pickerStyle: CSSResult = css`
   #person-picker {
     position: relative;
-    background: white;
+    background: var(--eds-color-bg-input);
     width: 100%;
     padding: 2px;
     border: none;
     box-sizing: border-box;
-    box-shadow: inset 0px -1px 0px 0px ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
+    box-shadow: inset 0px -1px 0px 0px var(--eds-color-border-neutral-medium);
     outline: none;
 
     $.list {
@@ -20,7 +20,7 @@ export const pickerStyle: CSSResult = css`
 
     &:focus-within {
       box-shadow: none;
-      outline: 2px solid ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+      outline: 2px solid var(--eds-color-border-accent-strong);
     }
   }
 
@@ -47,7 +47,7 @@ export const pickerStyle: CSSResult = css`
       font-style: italic;
 
       &.error {
-        color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+        color: var(--eds-color-text-danger-subtle);
       }
     }
   }

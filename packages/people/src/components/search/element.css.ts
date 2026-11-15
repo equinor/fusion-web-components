@@ -16,13 +16,13 @@ export const searchStyle: CSSResult = css`
     display: flex;
     width: 100%;
     height: var(--search-input-height);
-    background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    background: var(--eds-color-bg-neutral-canvas);
     border: 1px solid transparent;
     border-radius: calc(var(--fwc-avatar-size, 3.5rem) * 0.5);
 
     &:hover,
     &:focus-within {
-      border-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
+      border-color: var(--eds-color-border-disabled);
     }
   }
 
@@ -52,7 +52,7 @@ export const searchStyle: CSSResult = css`
     left: 0;
     background: none;
     outline: none;
-    color: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
+    color: var(--eds-color-text-neutral-subtle);
     border: none;
     border-radius: 100%;
     line-height: 0;
@@ -60,11 +60,11 @@ export const searchStyle: CSSResult = css`
 
     &:hover,
     &:focus {
-      background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.value.hex)};
+      background: var(--eds-color-bg-accent-fill-muted-hover);
     }
 
     &:active {
-      background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
+      background: var(--eds-color-bg-accent-fill-muted-active);
     }
   }
 `;

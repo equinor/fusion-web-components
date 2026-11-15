@@ -37,8 +37,8 @@ export class BadgeWrapper extends LitElement {
       width: 4rem;
       height: 4rem;
       margin: 0.5rem;
-      background-color: rgba(0, 0, 0, 0.1);
-      box-shadow: 0.25rem 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+      background-color: var(--eds-color-bg-neutral-fill-muted-default);
+      box-shadow: var(--eds-elevation-low);
       position: relative;
     }
     :host([circular]) .root {

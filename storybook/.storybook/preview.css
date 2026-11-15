@@ -1,0 +1,5 @@
+/* Let the preview page follow the EDS colour scheme, like a host app would. */
+body {
+  background-color: var(--eds-color-bg-neutral-surface);
+  color: var(--eds-color-text-neutral-strong);
+}

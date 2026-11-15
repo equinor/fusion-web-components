@@ -1,3 +1,5 @@
+import '@equinor/eds-tokens/css/variables';
+import './preview.css';
 import '@equinor/fusion-wc-theme';
 import './custom_element';
 

@@ -13,24 +13,24 @@ export const tableStyles = css`
 
   #content th,
   #content td {
-    border: 1px solid #e1e5e9;
+    border: 1px solid var(--eds-color-border-neutral-subtle);
     padding: 0.5rem 0.75rem;
     text-align: left;
     vertical-align: top;
   }
 
   #content th {
-    background-color: #f8f9fa;
+    background-color: var(--eds-color-bg-neutral-fill-muted-default);
     font-weight: 600;
-    color: #495057;
+    color: var(--eds-color-text-neutral-strong);
   }
 
   #content tr:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: var(--eds-color-bg-neutral-fill-muted-default);
   }
 
   #content tr:hover {
-    background-color: #e9ecef;
+    background-color: var(--eds-color-bg-neutral-fill-muted-hover);
   }
 
   /* Responsive table */

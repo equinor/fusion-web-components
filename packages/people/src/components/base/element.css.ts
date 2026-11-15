@@ -25,18 +25,18 @@ export const peopleBaseStyle: CSSResult = css`
     border-spacing: 0;
     border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--eds-elevation-low);
   }
 
   table th {
     font-weight: 600;
     font-size: 0.75rem;
-    color: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    color: var(--eds-color-text-neutral-subtle);
+    background-color: var(--eds-color-bg-neutral-canvas);
     padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))}
       ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     text-align: left;
-    border-bottom: 2px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-bottom: 2px solid var(--eds-color-border-neutral-subtle);
     position: sticky;
     top: 0;
     z-index: 1;
@@ -73,7 +73,7 @@ export const peopleBaseStyle: CSSResult = css`
   table td {
     padding: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))}
       ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
-    border-bottom: 1px solid ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    border-bottom: 1px solid var(--eds-color-border-neutral-subtle);
     vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -85,15 +85,15 @@ export const peopleBaseStyle: CSSResult = css`
   }
 
   table tbody tr:hover {
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-canvas);
   }
 
   table tbody tr:nth-child(even) {
-    background-color: rgba(248, 249, 250, 0.5);
+    background-color: var(--eds-color-bg-neutral-surface);
   }
 
   table tbody tr:nth-child(even):hover {
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-canvas);
   }
 
   table tbody tr .name {
@@ -106,7 +106,7 @@ export const peopleBaseStyle: CSSResult = css`
     }
 
     p.expired {
-      color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+      color: var(--eds-color-text-danger-subtle);
     }
   }
   

@@ -6,9 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev",
-    "build": "storybook build -o ./dist",
-    "test": "vitest run",
-    "test:setup": "playwright install --only-shell chromium"
+    "build": "storybook build -o ./dist"
   },
   "keywords": [],
   "author": "",
@@ -57,8 +55,6 @@
     "@equinor/fusion-wc-textinput": "workspace:*",
     "@equinor/fusion-wc-theme": "workspace:*",
     "@storybook/react-webpack5": "^10.6.6",
-    "playwright": "^1.65.0",
-    "tslib": "^2.9.1",
-    "vitest": "^5.1.0"
+    "tslib": "^2.9.1"
   }
 }

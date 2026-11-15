@@ -47,7 +47,7 @@ const style: CSSResult = css`
   }
 
   #avatar-badge {
-    color: #ffffff;
+    color: var(--eds-color-text-neutral-strong-on-emphasis);
     position: absolute;
     right: -0.25em;
     bottom: 0;

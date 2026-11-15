@@ -1,5 +1,4 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 export const listStyle: CSSResult = css`
   :host {
@@ -7,12 +6,12 @@ export const listStyle: CSSResult = css`
   }
   #root {
     position: relative;
-    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
-    border: 1px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-surface);
+    border: 1px solid var(--eds-color-border-neutral-subtle);
     border-radius: 2px;
     opacity: 0;
     pointer-events: none;
-    filter: drop-shadow(0 3px 3px rgba(55, 55, 55, 0.1));
+    box-shadow: var(--eds-elevation-low);
     overflow: hidden;
 
     &.active {
@@ -30,9 +29,9 @@ export const listStyle: CSSResult = css`
   }
   #search-meta {
     /* Render search options as an attached footer bar below the scrollable results. */
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    border-top: 1px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-canvas);
+    border-top: 1px solid var(--eds-color-border-neutral-subtle);
+    color: var(--eds-color-text-neutral-subtle);
     font-size: 0.75em;
     padding: 0.4em 1em;
     line-height: 1;

@@ -16,7 +16,7 @@ export type RadioElementProps = {
  *
  * @cssprop {18px default, 14px reducedTouchTarget} --fwc-radio-size  - size of radio. **note** setting size will override `reducedTouchTarget`
  * @cssprop {--fwc-radio-size / 2} --fwc-radio-spacing - Number of pixels padding around radio
- * @cssprop {theme.colors.interactive.primary__resting} --fwc-radio-color - Color of radio
+ * @cssprop {var(--eds-color-bg-accent-fill-emphasis-default)} --fwc-radio-color - Color of radio
  *
  */
 export class RadioElement extends RadioBase implements RadioElementProps {}

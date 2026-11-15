@@ -1,15 +1,14 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 import { styles as mdcStyle } from '@material/mwc-radio/mwc-radio.css';
 
 const style: CSSResult = css`
   :host {
     --fwc-radio-size: 18px;
     --fwc-radio-spacing: calc(var(--fwc-radio-size) / 2);
-    --fwc-radio-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-radio-color: var(--eds-color-bg-accent-fill-emphasis-default);
     --fwc-radio-circle-color: var(--fwc-radio-color);
     --fwc-radio-color-unchecked: var(--fwc-radio-color);
-    --fwc-radio-color-disabled: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
+    --fwc-radio-color-disabled: var(--eds-color-text-disabled);
   }
   :host([reducedtouchtarget]) {
     --fwc-radio-size: 14px;

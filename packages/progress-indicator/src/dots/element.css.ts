@@ -1,5 +1,4 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 const style: CSSResult = css`
   :host {
@@ -7,13 +6,13 @@ const style: CSSResult = css`
     justify-content: center;
   }
   :host([color='primary']) {
-    --fwc-dots-progress-color: ${unsafeCSS(theme.colors.infographic.primary__moss_green_100.getVariable('color'))};
+    --fwc-dots-progress-color: var(--eds-color-bg-accent-fill-emphasis-default);
   }
   :host([color='tertiary']) {
-    --fwc-dots-progress-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    --fwc-dots-progress-color: var(--eds-color-bg-danger-fill-emphasis-default);
   }
   :host([color='neutral']) {
-    --fwc-dots-progress-color: ${unsafeCSS(theme.colors.interactive.icon_on_interactive_colors.getVariable('color'))};
+    --fwc-dots-progress-color: var(--eds-color-text-accent-strong-on-emphasis);
   }
 `;
 

@@ -52,7 +52,7 @@ const resolver: SearchableDropdownResolver = {
         item({
           title: 'custom content',
           subTitle: 'foo bar baz',
-          graphic: `<div style="background: red; padding: .5rem">${appIconSvgTemplate}</div>`,
+          graphic: `<div style="background: var(--eds-color-bg-danger-fill-muted-default); padding: .5rem">${appIconSvgTemplate}</div>`,
           graphicType: 'inline-svg',
           meta: '<fwc-chip disabled variant="outlined" value="Custom meta" />',
           metaType: 'inline-html',

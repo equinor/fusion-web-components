@@ -69,9 +69,6 @@ importers:
       '@equinor/fusion-wc-ripple':
         specifier: workspace:^
         version: link:../ripple
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       lit:
         specifier: ^3.0.2
         version: 3.3.3
@@ -97,9 +94,6 @@ importers:
       '@equinor/fusion-wc-icon':
         specifier: workspace:^
         version: link:../icon
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       lit:
         specifier: ^3.0.2
         version: 3.3.3
@@ -162,9 +156,6 @@ importers:
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../core
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       '@material/mwc-checkbox':
         specifier: ^0.27.0
         version: 0.27.0
@@ -196,9 +187,6 @@ importers:
       '@equinor/fusion-wc-ripple':
         specifier: workspace:^
         version: link:../ripple
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       lit:
         specifier: ^3.0.2
         version: 3.3.3
@@ -426,9 +414,6 @@ importers:
       '@equinor/fusion-wc-icon':
         specifier: workspace:^
         version: link:../icon
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       lit:
         specifier: ^3.0.2
         version: 3.3.3
@@ -728,9 +713,6 @@ importers:
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../core
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       '@material/mwc-radio':
         specifier: ^0.27.0
         version: 0.27.0
@@ -793,9 +775,6 @@ importers:
       '@equinor/fusion-wc-textinput':
         specifier: workspace:^
         version: link:../textinput
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       '@lit-labs/task':
         specifier: ^3.1.0
         version: 3.1.0
@@ -861,9 +840,6 @@ importers:
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../core
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       lit:
         specifier: ^3.0.2
         version: 3.3.3
@@ -886,9 +862,6 @@ importers:
       '@equinor/fusion-wc-core':
         specifier: workspace:^
         version: link:../core
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       '@material/mwc-switch':
         specifier: ^0.27.0
         version: 0.27.0
@@ -945,9 +918,6 @@ importers:
       '@equinor/fusion-wc-icon':
         specifier: workspace:^
         version: link:../icon
-      '@equinor/fusion-web-theme':
-        specifier: ^0.1.12
-        version: 0.1.12
       '@material/mwc-textfield':
         specifier: ^0.27.0
         version: 0.27.0

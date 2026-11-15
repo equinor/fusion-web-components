@@ -30,7 +30,7 @@ const style: CSSResult = css`
     align-items: center;
   }
   .person-cell__about--error fwc-skeleton {
-    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.ui.background__danger.getVariable('color'))};
+    --fwc-skeleton-fill-color: var(--eds-color-bg-danger-fill-muted-default);
   }
   .person-cell__content {
     display: flex;
@@ -51,7 +51,7 @@ const style: CSSResult = css`
     );
   }
   .person-cell__sub-heading-expired {
-    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+    color: var(--eds-color-text-danger-subtle);
   }
 `;
 

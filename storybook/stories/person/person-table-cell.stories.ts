@@ -68,7 +68,7 @@ export const TableAlignment: Story = {
   render: () => html`
     <table style="border-collapse: collapse; width: 100%;">
       <thead>
-        <tr style="text-align: left; border-bottom: 1px solid #dcdcdc;">
+        <tr style="text-align: left; border-bottom: 1px solid var(--eds-color-border-neutral-subtle);">
           <th style="padding: 8px;">Person</th>
           <th style="padding: 8px;">Department</th>
         </tr>
@@ -76,7 +76,7 @@ export const TableAlignment: Story = {
       <tbody>
         ${(['small', 'medium', 'large'] as PersonTableCellElementProps['size'][]).map(
           (size) => html`
-            <tr style="border-bottom: 1px solid #dcdcdc;">
+            <tr style="border-bottom: 1px solid var(--eds-color-border-neutral-subtle);">
               <td style="padding: 8px; vertical-align: middle;">
                 <fwc-person-table-cell
                   size="${ifDefined(size)}"

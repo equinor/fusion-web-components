@@ -82,8 +82,8 @@ export const CustomColor: Story = {
       ...props,
       slot: html`<h5>Custom Color</h5>`,
       style: css`
-        --fwc-skeleton-fill-color: rgba(0, 111, 0, 0.25);
-        --fwc-skeleton-ink-color: #000;
+        --fwc-skeleton-fill-color: var(--eds-color-bg-success-fill-muted-default);
+        --fwc-skeleton-ink-color: var(--eds-color-text-success-strong);
       `,
     }),
 };

@@ -13,12 +13,12 @@ export const pillStyle: CSSResult = css`
     gap: 0.5rem;
     height: 30px;
     border-radius: calc(var(--fwc-avatar-size, 3.5rem) * 0.5);
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-canvas);
     border: 1px solid transparent;
 
     &:hover,
     &:focus-within {
-      border-color: ${unsafeCSS(theme.colors.interactive.disabled__border.getVariable('color'))};
+      border-color: var(--eds-color-border-disabled);
     }
   }
 
@@ -44,7 +44,7 @@ export const pillStyle: CSSResult = css`
   }
 
   #subtitle-expired {
-    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+    color: var(--eds-color-text-danger-subtle);
   }
 
   #people-pill-delete button {
@@ -53,7 +53,7 @@ export const pillStyle: CSSResult = css`
     outline: none;
     padding: var(--fusion-close-btn-padding);
     margin: var(--fusion-close-btn-margin);
-    color: ${unsafeCSS(theme.colors.text.static_icons__secondary.getVariable('color'))};
+    color: var(--eds-color-text-neutral-subtle);
     border: none;
     border-radius: 100%;
     line-height: 0;
@@ -61,11 +61,11 @@ export const pillStyle: CSSResult = css`
 
     &:hover,
     &:focus {
-      background: ${unsafeCSS(theme.colors.interactive.primary__hover_alt.value.hex)};
+      background: var(--eds-color-bg-accent-fill-muted-hover);
     }
 
     &:active {
-      background: ${unsafeCSS(theme.colors.interactive.primary__selected_highlight.getVariable('color'))};
+      background: var(--eds-color-bg-accent-fill-muted-active);
     }
   }
 `;

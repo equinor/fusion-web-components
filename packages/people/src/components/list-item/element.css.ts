@@ -16,19 +16,19 @@ export const listItemStyle: CSSResult = css`
 
     &:hover,
     &:focus {
-      background: ${unsafeCSS(theme.colors.interactive.primary__selected_hover.getVariable('color'))};
+      background: var(--eds-color-bg-accent-fill-muted-hover);
     }
 
     &:focus {
-      outline: 2px inset ${unsafeCSS(theme.colors.interactive.focus.getVariable('color'))};
+      outline: 2px inset var(--eds-color-border-focus);
     }
 
     &.selected {
-      background: ${unsafeCSS(theme.colors.interactive.secondary__highlight.getVariable('color'))};
+      background: var(--eds-color-bg-info-fill-muted-default);
 
       &:hover,
       &:focus {
-        background: ${unsafeCSS(theme.colors.interactive.danger__highlight.getVariable('color'))};
+        background: var(--eds-color-bg-danger-fill-muted-default);
       }
     }
   }
@@ -54,6 +54,6 @@ export const listItemStyle: CSSResult = css`
   }
 
   #expired {
-    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+    color: var(--eds-color-text-danger-subtle);
   }
 `;

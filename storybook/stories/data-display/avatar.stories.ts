@@ -70,10 +70,10 @@ export const Sizes: Story = {
 export const CustomColors: Story = {
   ...Default,
   render: (props) => html`
-    <fwc-avatar size="${props.size}" style="--fwc-avatar-color: #495057" value="${props.value}"></fwc-avatar>
+    <fwc-avatar size="${props.size}" style="--fwc-avatar-color: var(--eds-color-bg-neutral-fill-emphasis-default)" value="${props.value}"></fwc-avatar>
     <fwc-avatar
       size="${props.size}"
-      style="--fwc-avatar-color: #ffc6ff; --fwc-avatar-ink-color: red"
+      style="--fwc-avatar-color: var(--eds-color-bg-danger-fill-muted-default); --fwc-avatar-ink-color: var(--eds-color-text-danger-strong)"
       value="${props.value}"
     ></fwc-avatar>
   `,

@@ -37,5 +37,13 @@ Once this is in place, subsequent releases for that package can use OIDC via CI.
 
 ## Colour schemes in Storybook
 
-Storybook no longer forces light mode on the preview's `<html>`, so stories follow the
-document colour scheme. Use EDS CSS custom properties (`var(--eds-color-…)`) for colours in components.
+The Storybook preview loads `@equinor/eds-tokens/css/variables` and wraps every story in
+`<fwc-theme>` without a `color-scheme` attribute, so stories inherit the document scheme and follow the browser's
+`prefers-color-scheme` preference. Use EDS CSS custom properties (`var(--eds-color-…)`) for colours
+in components; do not use the deprecated JavaScript `tokens` object from `@equinor/eds-tokens`
+or `@equinor/fusion-web-theme` colour helpers, and do not hard-code colours.
+
+To check a change in both schemes, start Storybook (`pnpm dev`), open a story and its Docs page,
+and use the browser DevTools to emulate `prefers-color-scheme: light` and `dark`
+(Chrome: **Rendering** > **Emulate CSS media feature prefers-color-scheme**). Switch the
+preference without reloading; colours should update immediately.

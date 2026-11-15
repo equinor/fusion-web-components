@@ -956,6 +956,9 @@ importers:
       '@custom-elements-manifest/analyzer':
         specifier: ^0.11.0
         version: 0.11.0
+      '@equinor/eds-tokens':
+        specifier: ^2.3.2
+        version: 2.3.2
       '@equinor/fusion-wc-builder':
         specifier: workspace:^
         version: link:../../utils/builder

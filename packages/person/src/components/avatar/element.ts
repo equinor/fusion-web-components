@@ -11,7 +11,7 @@ import Icon from '@equinor/fusion-wc-icon';
 
 import type { AvatarData, PersonAvatarElementProps } from './types';
 import style from './element.css';
-import { mapResolveToPersonInfo } from '../../utils';
+import { isFailedAvatarUrl, mapResolveToPersonInfo } from '../../utils';
 import { PersonCardElement } from '../card';
 import { PersonBaseElement } from '../base';
 
@@ -156,6 +156,15 @@ export class PersonAvatarElement extends PersonBaseElement implements PersonAvat
   protected renderImage(person: Partial<AvatarData>): TemplateResult | undefined {
     if (!person.avatarUrl) {
       return;
+    }
+    if (isFailedAvatarUrl(person.avatarUrl)) {
+      return html`
+        <svg class="failed-avatar" role="img" aria-label="${person.name ?? ''}" viewBox="0 0 64 64">
+          <circle class="failed-avatar__ring" cx="32" cy="32" r="32" />
+          <circle class="failed-avatar__surface" cx="32" cy="32" r="29" />
+          <text class="failed-avatar__mark" x="32" y="33" text-anchor="middle" dominant-baseline="central">!</text>
+        </svg>
+      `;
     }
     return html`<img src="${person.avatarUrl}" alt="${person.name}" />`;
   }

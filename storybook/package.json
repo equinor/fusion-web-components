@@ -57,7 +57,7 @@
     "@equinor/fusion-wc-textinput": "workspace:*",
     "@equinor/fusion-wc-theme": "workspace:*",
     "@storybook/react-webpack5": "^10.6.6",
-    "playwright": "^1.65.0",
+    "playwright": "^1.65.1",
     "tslib": "^2.9.1",
     "vitest": "^5.1.0"
   }

@@ -32,10 +32,27 @@ const style: CSSResult = css`
     width: var(--fwc-avatar-size);
     height: var(--fwc-avatar-size);
 
-    img {
+    img,
+    .failed-avatar {
+      display: block;
       width: 100%;
       height: 100%;
     }
+  }
+
+  .failed-avatar__ring,
+  .failed-avatar__mark {
+    fill: var(--eds-color-bg-danger-fill-emphasis-default);
+  }
+
+  .failed-avatar__surface {
+    fill: var(--eds-color-bg-neutral-surface);
+  }
+
+  .failed-avatar__mark {
+    font-family: 'Equinor', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
   }
 
   #floating {

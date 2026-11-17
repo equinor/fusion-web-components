@@ -80,5 +80,16 @@ export const resolveFailedAvatarUrl = (
     </svg>
   `;
 
-  return `data:image/svg+xml;base64,${btoa(svgString)}`;
+  const url = `data:image/svg+xml;base64,${btoa(svgString)}`;
+  failedAvatarUrls.add(url);
+  return url;
 };
+
+/** URLs created by `resolveFailedAvatarUrl`, so avatars can render a theme-aware version instead. */
+const failedAvatarUrls = new Set<string>();
+
+/**
+ * Whether the URL was created by `resolveFailedAvatarUrl`. `<fwc-person-avatar>` renders these inline
+ * with EDS colour variables, so they follow colour scheme changes after the URL was generated.
+ */
+export const isFailedAvatarUrl = (url?: string): boolean => !!url && failedAvatarUrls.has(url);

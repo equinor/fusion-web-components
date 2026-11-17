@@ -102,14 +102,21 @@ With `light`, `dark` or `system`, `<fwc-theme>` writes the resolved `light` or `
 `data-color-scheme` attribute, the hook the
 [EDS colour scheme guidance](https://eds.equinor.com/docs/foundation/colour/getting_started/#colour-scheme-detection)
 uses, and `resolvedColorScheme` returns it. Without the attribute it writes nothing, attaches no
-`matchMedia` listener and `resolvedColorScheme` is `undefined`. Removing the attribute removes the
-`data-color-scheme` value it wrote and stops listening, so the subtree inherits again.
+`matchMedia` listener and `resolvedColorScheme` is `undefined`. Removing the attribute stops listening
+and restores the `data-color-scheme` value the element had before (or removes it if there was none),
+so the subtree inherits again.
 
 EDS defines semantic colour aliases (such as `--eds-color-bg-accent-fill-emphasis-default`) only for
 the document root and light subtrees. `<fwc-theme>` re-declares them on its host so they resolve
 against the scheme that applies there, which makes a dark ancestor or `color-scheme="dark"` work
 inside a light page and vice versa. The aliases are generated from `@equinor/eds-tokens`; after
 upgrading it, run `pnpm --filter @equinor/fusion-wc-theme generate:color-scheme`.
+
+The light and dark primitive palettes (such as `--eds-color-neutral-1`) still come from the EDS
+stylesheet in the document, which only matches elements in the document tree. Inside another
+component's shadow root, `<fwc-theme color-scheme="…">` therefore can't switch the palette: it
+follows the scheme of the nearest ancestor in the document. Set `data-color-scheme` on `<html>` or on
+an element in the document tree instead.
 
 > [!IMPORTANT]
 > Content rendered outside `<fwc-theme>`, such as popovers or dialogs attached to `document.body`,

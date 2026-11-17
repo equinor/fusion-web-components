@@ -41,8 +41,11 @@ export default class ThemeElement extends LitElement {
 
   #mediaQuery?: MediaQueryList;
 
-  /** Whether `data-color-scheme` was written by this element, so inheriting only removes its own value. */
-  #ownsSchemeAttribute = false;
+  /**
+   * `data-color-scheme` value present before this element took control (`null` when absent), restored
+   * when it inherits again. `undefined` while this element doesn't control the attribute.
+   */
+  #previousSchemeAttribute?: string | null;
 
   #onSystemSchemeChange = (): void => {
     this.#applyColorScheme();
@@ -109,20 +112,27 @@ export default class ThemeElement extends LitElement {
     this.#mediaQuery = undefined;
   }
 
-  /** Writes the resolved scheme where the EDS stylesheet expects it, or removes it to inherit. */
+  /** Writes the resolved scheme where the EDS stylesheet expects it, or restores the previous value to inherit. */
   #applyColorScheme(): void {
     const scheme = this.resolvedColorScheme;
     if (!scheme) {
-      if (this.#ownsSchemeAttribute) {
-        this.removeAttribute('data-color-scheme');
-        this.#ownsSchemeAttribute = false;
+      if (this.#previousSchemeAttribute !== undefined) {
+        const previous = this.#previousSchemeAttribute;
+        this.#previousSchemeAttribute = undefined;
+        if (previous === null) {
+          this.removeAttribute('data-color-scheme');
+        } else {
+          this.setAttribute('data-color-scheme', previous);
+        }
       }
       return;
+    }
+    if (this.#previousSchemeAttribute === undefined) {
+      this.#previousSchemeAttribute = this.getAttribute('data-color-scheme');
     }
     if (this.getAttribute('data-color-scheme') !== scheme) {
       this.setAttribute('data-color-scheme', scheme);
     }
-    this.#ownsSchemeAttribute = true;
   }
 
   /**

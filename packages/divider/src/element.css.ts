@@ -14,10 +14,10 @@ const style: CSSResult = css`
     --fwc-divider-color: var(--eds-color-border-neutral-subtle);
   }
   :host([color='light']) .divider {
-    --fwc-divider-color: var(--eds-color-border-neutral-subtle);
+    --fwc-divider-color: var(--eds-color-bg-neutral-canvas);
   }
   :host([color='lighter']) .divider {
-    --fwc-divider-color: var(--eds-color-border-neutral-subtle);
+    --fwc-divider-color: var(--eds-color-bg-neutral-surface);
   }
   :host([orientation='horizontal']) .divider {
     width: 100%;

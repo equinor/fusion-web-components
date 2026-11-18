@@ -10,6 +10,7 @@ description: Use for Fusion repository implementation, GitHub issue authoring or
 - Use `fusion-issue-solving` for issue URLs or requests to solve, implement, continue, or finish a GitHub issue.
 - Use `fusion-dependency-review` for Renovate, Dependabot, library-upgrade, or other dependency PR decisions.
 - Use `fusion-github-review-resolution` for non-dependency review feedback, requested changes, or unresolved PR conversations.
+- Before requesting human PR review, apply the shared Copilot review gate in `fusion-review-gate.instructions.md`; use `fusion-github-review-resolution` for its bounded review and remediation workflow.
 - Use `fusion-skills` → `agents/warden.agent.md` in report mode when an installed Fusion skill fails, crashes, produces wrong output, or is asked to self-report. Capture sanitized failure evidence in its local bug-report draft before any confirmed publication.
 - Read the complete issue or review thread, including replies, before deciding whether code should change.
 - Verify uncertain Fusion behavior with `fusion-research`; do not infer APIs or contracts from memory.

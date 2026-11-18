@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 - 2026-11-15
+
+### minor
+
+- [#462](https://github.com/equinor/fusion-skills/pull/462) [`bd6e289`](https://github.com/equinor/fusion-skills/commit/bd6e289f544ab54ddbeb2736d0f61c439407ea3f) - Hand off applicable post-publication Copilot review gates to the review-resolution companion and preserve review authority, critical-finding stops and documented exceptions. PRs open as draft and are marked ready only when ready for human review; the agent never waits for CI checks.
+
+
+  refs equinor/fusion-core-tasks#3013
+
 ## 0.2.2 - 2026-11-01
 
 ### patch

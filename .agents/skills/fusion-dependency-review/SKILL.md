@@ -4,12 +4,13 @@ description: 'Reviews dependency PRs using existing PR discussion, security, cod
 license: MIT
 compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
 metadata:
-  version: "0.5.1"
+  version: "0.6.0"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
     - fusion-agent-content
     - fusion-pr-documentation
+    - fusion-github-review-resolution
   tags:
     - github
     - pull-request
@@ -66,7 +67,8 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
   permissive, or CI/build-only tooling without new use restrictions): evidence note, no HOLD.
   Copyleft, commercial/dual/keys/paid, source-available/non-commercial/field-of-use, narrowed
   shipped/linked terms, unknown terms or unsure: HOLD until maintainer/legal owner explicitly
-  accepts. CI/API compatibility cannot waive acceptance.
+  accepts. CI/API compatibility cannot waive acceptance. Output is PR only a maintainer merges
+  (no auto/agent merge): verified needs-a-human change gets visible "merging accepts it" flag, not HOLD.
 - No repository-wide rule downgrades/disables, weakening glob/path overrides or removed CI
   checks to get green. Broad suppression is quality `blocking` even with green CI. Only narrow
   inline-reason suppressions. New defaults: preserve behaviour with first-class opt-outs;
@@ -114,6 +116,10 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
 8. Draft `assets/verdict-template.md.hbs`; interactive live PR: post before decision action.
    Explicit follow-up: propose `fusion-issue-authoring` handoff as `Task`, `Bug` or `User Story`.
    Maintainer decides approve/hold/decline/create follow-up; act only as authorized.
+   Before requesting human review of an existing or replacement PR, apply repository-local review-gate policy
+   through installed `fusion-github-review-resolution`. Research lenses/verdict are not a completed Copilot PR
+   review. Missing companion/tooling blocks the gate; use only its documented unavailability exception.
+   Keep dependency verdict/licence/CI blockers independent; a passed gate never waives them or grants mutations.
 
 ## Expected output
 

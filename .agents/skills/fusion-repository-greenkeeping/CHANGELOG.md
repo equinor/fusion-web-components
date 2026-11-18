@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.2 - 2026-11-15
+
+### patch
+
+- [#460](https://github.com/equinor/fusion-skills/pull/460) [`60e0935`](https://github.com/equinor/fusion-skills/commit/60e093565604263d1a3709696997fdddb620c7b3) - Point standalone APM Sync fill guidance at the shared APM CLI default 0.35.1.
+
+
+  - `apmVersion` guidance, the example raw inputs and the template comment use `0.35.1`
+  - Token-precedence source link moves to the unchanged v0.35.1 `token_manager.py`
+
+  resolves equinor/fusion-core-tasks#3003
+
 ## 0.5.1 - 2026-11-11
 
 ### patch

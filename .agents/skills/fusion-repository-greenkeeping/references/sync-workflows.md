@@ -91,7 +91,7 @@ inputs, so every run uses the reviewed branch and APM version. Change them by re
 | --- | --- |
 | `schedule` | Five numeric cron fields, weekday `0–6`; `""` means manual-only. Numeric lists, ranges and positive steps supported, no aliases/names. Review GitHub's minimum five-minute interval separately. |
 | `updateBranch` | Literal valid Git branch, different from repository default. Job also rejects default branch at runtime. |
-| `apmVersion` | Exact stable SemVer. Start with shared maintained CLI default `0.33.0`, then review upgrades explicitly. |
+| `apmVersion` | Exact stable SemVer. Start with shared maintained CLI default `0.35.1`, then review upgrades explicitly. |
 | `dependencyTokenSecret` | Actions secret **name**, never value. Required for any internal/private dependency (all Fusion skills). `""` selects `github.token`, valid only when every dependency is public. |
 
 Example `.tmp/apm-sync.raw.json`:
@@ -100,7 +100,7 @@ Example `.tmp/apm-sync.raw.json`:
 {
   "schedule": "0 8 * * 1",
   "updateBranch": "chore/apm-sync",
-  "apmVersion": "0.33.0",
+  "apmVersion": "0.35.1",
   "dependencyTokenSecret": "APM_FUSION_SKILLS_TOKEN"
 }
 ```
@@ -138,7 +138,7 @@ Fill into new `.tmp/apm-sync.candidate.yml`, then follow
 
 Verified sources: [action inputs](https://github.com/microsoft/apm-action/blob/v1/action.yml),
 [action runner](https://github.com/microsoft/apm-action/blob/v1/src/runner.ts),
-[APM 0.33.0 token precedence](https://github.com/microsoft/apm/blob/v0.33.0/src/apm_cli/core/token_manager.py).
+[APM 0.35.1 token precedence](https://github.com/microsoft/apm/blob/v0.35.1/src/apm_cli/core/token_manager.py).
 
 ## Schedule reference
 

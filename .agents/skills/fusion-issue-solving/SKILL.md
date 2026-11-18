@@ -3,11 +3,12 @@ name: fusion-issue-solving
 description: 'Resolves GitHub issues through implementation, validation and PR preparation. USE FOR: solve #123, work on #123, continue or finish an issue, direct GitHub issue URLs (https://github.com/owner/repo/issues/123). DO NOT USE FOR: issue drafting, PR review only, non-implementation research, read-only repositories or unconfirmed publishing.'
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.3.0"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
     - fusion-agent-content
+    - fusion-github-review-resolution
   tags:
     - github
     - github-issue
@@ -73,11 +74,13 @@ Before execution: issue URL or `owner/repo#number`; repo and branch/worktree dec
 9. Prepare PR-ready output
    - Summarize scope/why, validation evidence, follow-ups. Read `references/pr-preparation.md` when preparing PR draft for repo-policy-aware setup and issue-link defaults; optional installed `fusion-pr-documentation`.
    - Issue/context-specific `.tmp/` draft, never shared `.tmp/pr-body.md`; base on `.github/pull_request_template.md`, update as implementation evolves.
-   - Ask base (suggest `main` or source branch), draft/ready, user assignment, related links. Ask each issue's close/reference choice with recommended default: close completed AC, reference parent/partial/rollout/cross-repo support. Honor stated intent; unavailable user, apply recommendation and disclose which issues close in PR/delivery. Repo-local closure rules win.
+   - Ask base (suggest `main` or source branch), user assignment, related links. Ask each issue's close/reference choice with recommended default: close completed AC, reference parent/partial/rollout/cross-repo support. Honor stated intent; unavailable user, apply recommendation and disclose which issues close in PR/delivery. Repo-local closure rules win.
    - Shape PR draft and delivery using Human-first output below.
+   - Create PRs as draft only. Mark ready only when ready for human review: gate passed, documented exception, or the person's word when no gate applies. Never wait for CI checks.
 10. Optional GitHub mutations
    - Ask explicit confirmation before each mutation. Objective status/comments only requested; prefer MCP equivalents.
-   - Requested PR create/update uses repo template and draft file, confirmed base, draft/ready, assignee, close/reference links. Read published body back; verify exactly chosen issues use closing keywords. Rate-limit failure: stop loops, report safe retry plan.
+   - Requested PR create/update uses repo template and draft file, confirmed base, draft state, assignee, close/reference links. Read published body back; verify exactly chosen issues use closing keywords. Rate-limit failure: stop loops, report safe retry plan.
+   - After PR publication, before requesting human review, apply repository-local review-gate instructions. For an applicable Copilot gate, use installed `fusion-github-review-resolution`; report missing companion/tooling as blocked, never a passed gate. Preserve its bounded rounds, critical-finding stops and documented unavailability exception. Review requests need separate workflow authority; headless/autopilot does not waive mutation restrictions.
 
 ## Human-first output
 

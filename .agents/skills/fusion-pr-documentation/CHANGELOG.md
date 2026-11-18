@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 - 2026-11-15
+
+### minor
+
+- [#462](https://github.com/equinor/fusion-skills/pull/462) [`bd6e289`](https://github.com/equinor/fusion-skills/commit/bd6e289f544ab54ddbeb2736d0f61c439407ea3f) - Apply repository-local Copilot review gates after PR publication and before human-review requests, without treating ready status or publication as review approval. New PRs are always published as draft and marked ready only when ready for human review.
+
+
+  refs equinor/fusion-core-tasks#3013
+
 ## 0.2.0 - 2026-11-01
 
 ### minor

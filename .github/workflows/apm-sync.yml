@@ -59,7 +59,7 @@ jobs:
         env:
           GITHUB_APM_PAT_EQUINOR: ${{ secrets.APM_FUSION_SKILLS_TOKEN || github.token }}
         with:
-          apm-version: "0.35.1"
+          apm-version: "0.36.0"
           update: "true"
 
       - name: Create or update pull request

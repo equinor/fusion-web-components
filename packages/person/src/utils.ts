@@ -53,9 +53,9 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
 const resolveDocumentColor = (variable: string): string =>
   getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 
-export const resolveFailedAvatarUrl = (
-  avatarColor = resolveDocumentColor('--eds-color-bg-danger-fill-emphasis-default'),
-) => {
+export const resolveFailedAvatarUrl = (customColor?: string) => {
+  const avatarColor =
+    customColor ?? resolveDocumentColor('--eds-color-bg-danger-fill-emphasis-default');
   const surfaceColor = resolveDocumentColor('--eds-color-bg-neutral-surface');
   const svgString = `
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
@@ -81,15 +81,19 @@ export const resolveFailedAvatarUrl = (
   `;
 
   const url = `data:image/svg+xml;base64,${btoa(svgString)}`;
-  failedAvatarUrls.add(url);
+  // Only default avatars are rendered inline; a custom colour keeps the generated image.
+  if (customColor === undefined) {
+    failedAvatarUrls.add(url);
+  }
   return url;
 };
 
-/** URLs created by `resolveFailedAvatarUrl`, so avatars can render a theme-aware version instead. */
+/** Default URLs created by `resolveFailedAvatarUrl`, so avatars can render a theme-aware version instead. */
 const failedAvatarUrls = new Set<string>();
 
 /**
- * Whether the URL was created by `resolveFailedAvatarUrl`. `<fwc-person-avatar>` renders these inline
- * with EDS colour variables, so they follow colour scheme changes after the URL was generated.
+ * Whether the URL was created by `resolveFailedAvatarUrl` without a custom colour.
+ * `<fwc-person-avatar>` renders these inline with EDS colour variables, so they follow colour scheme
+ * changes after the URL was generated. URLs with a custom colour render as the generated image.
  */
 export const isFailedAvatarUrl = (url?: string): boolean => !!url && failedAvatarUrls.has(url);

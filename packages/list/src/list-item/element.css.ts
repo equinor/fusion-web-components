@@ -4,12 +4,12 @@ import { styles as theme } from '@equinor/fusion-web-theme';
 const style: CSSResult = css`
   :host {
     --fwc-list-item-vertical-padding: var(--fwc-list-item-vertical-padding, 0);
-    --fwc-list-item-interactive-color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
-    --fwc-list-item-background: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
-    --fwc-list-item-background-hover: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --fwc-list-item-ink-color: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('color'))};
-    --fwc-list-item-secondary-ink-color: ${unsafeCSS(theme.typography.paragraph.caption.getVariable('color'))};
-    --fwc-list-item-meta-color: ${unsafeCSS(theme.typography.paragraph.meta.getVariable('color'))};
+    --fwc-list-item-interactive-color: var(--eds-color-bg-accent-fill-emphasis-hover);
+    --fwc-list-item-background: var(--eds-color-bg-neutral-surface);
+    --fwc-list-item-background-hover: var(--eds-color-bg-accent-fill-emphasis-default);
+    --fwc-list-item-ink-color: var(--eds-color-text-neutral-strong);
+    --fwc-list-item-secondary-ink-color: var(--eds-color-text-neutral-subtle);
+    --fwc-list-item-meta-color: var(--eds-color-text-neutral-subtle);
     --fwc-list-item-font-size: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))};
     --fwc-list-item-font-weight: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontWeight'))};
     --fwc-list-item-secondary-font-size: ${unsafeCSS(theme.typography.paragraph.caption.getVariable('fontSize'))};

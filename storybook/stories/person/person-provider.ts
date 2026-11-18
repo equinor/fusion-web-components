@@ -43,6 +43,9 @@ const generatePositions = (azureId?: string): PersonDetails['positions'] => {
   });
 };
 
+// SVG data URLs can't read CSS custom properties, so resolve the EDS colours against the document.
+const edsColor = (variable: string) => getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+
 const avatarSvg = async (avatarColor: string, name: string, accountType: string) => {
   const hasImage = faker.datatype.boolean({ probability: 0.8 });
 
@@ -52,8 +55,8 @@ const avatarSvg = async (avatarColor: string, name: string, accountType: string)
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
         <circle cx="32" cy="32" r="32" fill="${avatarColor}"/>
-        <circle cx="32" cy="32" r="28" fill="#fff"/>
-        <text x="33" y="35" font-family="Equinor, sans-serif" font-size="26" font-weight="400" fill="#000" text-anchor="middle" dominant-baseline="central">${initial}</text>
+        <circle cx="32" cy="32" r="28" fill="${edsColor('--eds-color-bg-neutral-surface')}"/>
+        <text x="33" y="35" font-family="Equinor, sans-serif" font-size="26" font-weight="400" fill="${edsColor('--eds-color-text-neutral-strong')}" text-anchor="middle" dominant-baseline="central">${initial}</text>
       </svg>
     `;
     return `data:image/svg+xml;base64,${btoa(svg)}`;
@@ -92,7 +95,14 @@ export const generatePerson = async (args: {
   args.azureId && faker.seed(uuid2number(args.azureId));
   const azureId = args.azureId ?? faker.string.uuid();
   const fakeUpn = args.upn ?? faker.internet.email({ provider: 'equinor.com' });
-  const avatarColor = faker.helpers.arrayElement(['#bebebe', '#eb0037', '#ff92a8', '#000']);
+  const avatarColor = edsColor(
+    faker.helpers.arrayElement([
+      '--eds-color-bg-neutral-fill-muted-default',
+      '--eds-color-bg-danger-fill-emphasis-default',
+      '--eds-color-bg-danger-fill-muted-default',
+      '--eds-color-bg-neutral-fill-emphasis-default',
+    ]),
+  );
   const name = faker.person.fullName();
 
   const application: PersonSuggestResult['application'] = {};

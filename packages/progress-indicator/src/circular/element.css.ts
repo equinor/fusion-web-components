@@ -1,5 +1,4 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 const style: CSSResult = css`
   :host {
@@ -8,13 +7,11 @@ const style: CSSResult = css`
   }
 
   :host([color='primary']) {
-    --fwc-circular-progress-color: ${unsafeCSS(theme.colors.infographic.primary__moss_green_100.getVariable('color'))};
+    --fwc-circular-progress-color: var(--eds-color-bg-accent-fill-emphasis-default);
   }
 
   :host([color='neutral']) {
-    --fwc-circular-progress-color: ${unsafeCSS(
-      theme.colors.interactive.icon_on_interactive_colors.getVariable('color'),
-    )};
+    --fwc-circular-progress-color: var(--eds-color-text-accent-strong-on-emphasis);
   }
 `;
 

@@ -1,31 +1,30 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 const colorStyle: CSSResult = css`
   :host {
-    --fwc-avatar-background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-avatar-background: var(--eds-color-bg-neutral-canvas);
+    --fwc-avatar-color: var(--eds-color-bg-accent-fill-emphasis-default);
   }
   :host(:not([border])) {
-    --fwc-avatar-ink-color: ${unsafeCSS(theme.colors.text.static_icons__primary_white.getVariable('color'))};
+    --fwc-avatar-ink-color: var(--eds-color-text-accent-strong-on-emphasis);
   }
   :host([color='primary']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --fwc-avatar-color: var(--eds-color-bg-accent-fill-emphasis-default);
   }
   :host([color='secondary']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+    --fwc-avatar-color: var(--eds-color-bg-neutral-fill-emphasis-default);
   }
   :host([color='success']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
+    --fwc-avatar-color: var(--eds-color-bg-success-fill-emphasis-default);
   }
   :host([color='danger']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    --fwc-avatar-color: var(--eds-color-bg-danger-fill-emphasis-default);
   }
   :host([color='warning']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
+    --fwc-avatar-color: var(--eds-color-bg-warning-fill-emphasis-default);
   }
   :host([color='disabled']) {
-    --fwc-avatar-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    --fwc-avatar-color: var(--eds-color-bg-disabled);
   }
 `;
 
@@ -85,7 +84,7 @@ const style: CSSResult = css`
     border-width: 0;
     background-color: var(
       --fwc-avatar-color,
-      ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))}
+      var(--eds-color-bg-accent-fill-emphasis-default)
     );
     height: 100%;
     width: 100%;
@@ -128,7 +127,7 @@ const style: CSSResult = css`
   }
 
   :host([elevated]) {
-    --fwc-avatar-elevation: 2px 3px 5px 0 var(--fwc-avatar-shadow-color, rgba(0, 0, 0, 0.5));
+    --fwc-avatar-elevation: var(--eds-elevation-low);
   }
 `;
 

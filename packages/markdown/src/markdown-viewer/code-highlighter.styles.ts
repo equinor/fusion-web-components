@@ -5,7 +5,7 @@ export const codeHighlighterStyles = css`
   #content {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: var(--eds-color-text-neutral-strong);
   }
 
   #content h1,
@@ -21,13 +21,13 @@ export const codeHighlighterStyles = css`
 
   #content h1 {
     font-size: 2rem;
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid var(--eds-color-border-neutral-subtle);
     padding-bottom: 0.3rem;
   }
 
   #content h2 {
     font-size: 1.5rem;
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid var(--eds-color-border-neutral-subtle);
     padding-bottom: 0.3rem;
   }
 
@@ -45,7 +45,7 @@ export const codeHighlighterStyles = css`
 
   #content h6 {
     font-size: 0.85rem;
-    color: #6a737d;
+    color: var(--eds-color-text-neutral-subtle);
   }
 
   #content p {
@@ -65,14 +65,14 @@ export const codeHighlighterStyles = css`
   #content blockquote {
     margin: 1rem 0;
     padding: 0 1rem;
-    color: #6a737d;
-    border-left: 0.25rem solid #dfe2e5;
+    color: var(--eds-color-text-neutral-subtle);
+    border-left: 0.25rem solid var(--eds-color-border-neutral-subtle);
   }
 
   #content hr {
     height: 0.25rem;
     margin: 2rem 0;
-    background-color: #e1e4e8;
+    background-color: var(--eds-color-bg-neutral-fill-muted-default);
     border: 0;
   }
 
@@ -83,7 +83,7 @@ export const codeHighlighterStyles = css`
   }
 
   #content a {
-    color: #0366d6;
+    color: var(--eds-color-text-link);
     text-decoration: none;
   }
 
@@ -93,7 +93,7 @@ export const codeHighlighterStyles = css`
 
   /* Basic code block styling */
   pre {
-    background-color: #f5f5f5;
+    background-color: var(--eds-color-bg-neutral-fill-muted-default);
     border-radius: 0.25rem;
     padding: 1rem;
     overflow-x: auto;
@@ -113,7 +113,7 @@ export const codeHighlighterStyles = css`
 
   /* Inline code styling */
   :not(pre) > code {
-    background-color: #f5f5f5;
+    background-color: var(--eds-color-bg-neutral-fill-muted-default);
     padding: 0.125rem 0.25rem;
     border-radius: 0.125rem;
     font-size: 0.9em;
@@ -124,11 +124,11 @@ export const codeHighlighterStyles = css`
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: #708090;
+    color: var(--eds-color-text-neutral-subtle);
   }
 
   .token.punctuation {
-    color: #999;
+    color: var(--eds-color-text-neutral-subtle);
   }
 
   .token.namespace {
@@ -142,7 +142,7 @@ export const codeHighlighterStyles = css`
   .token.constant,
   .token.symbol,
   .token.deleted {
-    color: #905;
+    color: var(--eds-color-text-danger-strong);
   }
 
   .token.selector,
@@ -151,7 +151,7 @@ export const codeHighlighterStyles = css`
   .token.char,
   .token.builtin,
   .token.inserted {
-    color: #690;
+    color: var(--eds-color-text-success-strong);
   }
 
   .token.operator,
@@ -159,25 +159,24 @@ export const codeHighlighterStyles = css`
   .token.url,
   .language-css .token.string,
   .style .token.string {
-    color: #9a6e3a;
-    background: hsla(0, 0%, 100%, 0.5);
+    color: var(--eds-color-text-warning-strong);
   }
 
   .token.atrule,
   .token.attr-value,
   .token.keyword {
-    color: #07a;
+    color: var(--eds-color-text-info-strong);
   }
 
   .token.function,
   .token.class-name {
-    color: #dd4a68;
+    color: var(--eds-color-text-accent-strong);
   }
 
   .token.regex,
   .token.important,
   .token.variable {
-    color: #e90;
+    color: var(--eds-color-text-warning-subtle);
   }
 
   .token.important,

@@ -42,11 +42,21 @@ export const mapResolveToPersonInfo = (person: PersonResolveResult) => {
     accountLabel: person.identifier,
     isExpired: false, // set to not expired since we want to show the azureId for the failed person in the pill
     avatarUrl: resolveFailedAvatarUrl(),
-    avatarColor: '#ff92a8',
+    avatarColor: 'var(--eds-color-bg-danger-fill-muted-default)',
   };
 };
 
-export const resolveFailedAvatarUrl = (avatarColor = '#eb0037') => {
+/**
+ * Resolves an EDS colour variable against the document, for contexts such as SVG data URLs
+ * that can't read CSS custom properties.
+ */
+const resolveDocumentColor = (variable: string): string =>
+  getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+
+export const resolveFailedAvatarUrl = (customColor?: string) => {
+  const avatarColor =
+    customColor ?? resolveDocumentColor('--eds-color-bg-danger-fill-emphasis-default');
+  const surfaceColor = resolveDocumentColor('--eds-color-bg-neutral-surface');
   const svgString = `
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
       <style>
@@ -65,10 +75,25 @@ export const resolveFailedAvatarUrl = (avatarColor = '#eb0037') => {
         }
       </style>
       <circle cx="32" cy="32" r="32" fill="${avatarColor}"/>
-      <circle cx="32" cy="32" r="29" fill="#fff"/>
+      <circle cx="32" cy="32" r="29" fill="${surfaceColor}"/>
       <text x="32" y="33" fill="${avatarColor}" text-anchor="middle" dominant-baseline="central">!</text>
     </svg>
   `;
 
-  return `data:image/svg+xml;base64,${btoa(svgString)}`;
+  const url = `data:image/svg+xml;base64,${btoa(svgString)}`;
+  // Only default avatars are rendered inline; a custom colour keeps the generated image.
+  if (customColor === undefined) {
+    failedAvatarUrls.add(url);
+  }
+  return url;
 };
+
+/** Default URLs created by `resolveFailedAvatarUrl`, so avatars can render a theme-aware version instead. */
+const failedAvatarUrls = new Set<string>();
+
+/**
+ * Whether the URL was created by `resolveFailedAvatarUrl` without a custom colour.
+ * `<fwc-person-avatar>` renders these inline with EDS colour variables, so they follow colour scheme
+ * changes after the URL was generated. URLs with a custom colour render as the generated image.
+ */
+export const isFailedAvatarUrl = (url?: string): boolean => !!url && failedAvatarUrls.has(url);

@@ -5,7 +5,7 @@ const style: CSSResult = css`
   :host {
     display: flex;
     justify-content: center;
-    color: var(--fwc-star-progress-color, ${unsafeCSS(theme.colors.logo.fill_positive.getVariable('color'))});
+    color: var(--fwc-star-progress-color, var(--eds-color-bg-danger-fill-emphasis-default));
   }
   svg {
     fill: currentColor;
@@ -18,6 +18,7 @@ const style: CSSResult = css`
   }
   .title {
     ${unsafeCSS(theme.typography.heading.h2.css)};
+    color: var(--eds-color-text-neutral-strong);
     font-size: var(--fwc-star-progress-header-size, ${unsafeCSS(theme.typography.heading.h2.getVariable('fontSize'))});
   }
 `;

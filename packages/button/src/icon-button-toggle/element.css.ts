@@ -6,7 +6,7 @@ const style: CSSResult = css`
     font-size: calc(
       ${unsafeCSS(theme.typography.paragraph.body_long.getVariable('fontSize'))} * var(--content-resize, 1)
     );
-    --fwc-ripple-color: ${unsafeCSS(theme.colors.interactive.danger__resting.value.hex)};
+    --fwc-ripple-color: var(--eds-color-text-danger-subtle);
   }
   :host([size='x-small']) .mdc-icon-button {
     --content-resize: 0.6;
@@ -41,52 +41,52 @@ const style: CSSResult = css`
     --mdc-icon-size: calc(28px * var(--content-resize, 1));
   }
   :host([offColor='primary']) .mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.primary__resting.value.hex)};
-    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-accent-subtle);
+    color: var(--eds-color-text-accent-subtle);
   }
   :host([offColor='secondary']) .mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-neutral-strong);
+    color: var(--eds-color-text-neutral-strong);
   }
   :host([offColor='success']) .mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-success-subtle);
+    color: var(--eds-color-text-success-subtle);
   }
   :host([offColor='danger']) .mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-danger-subtle);
+    color: var(--eds-color-text-danger-subtle);
   }
   :host([offColor='warning']) .mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-warning-subtle);
+    color: var(--eds-color-text-warning-subtle);
   }
   :host([offColor='disabled']) .mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-disabled);
+    color: var(--eds-color-text-disabled);
   }
   :host([onColor='primary']) .mdc-icon-button--on.mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.primary__resting.value.hex)};
-    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-accent-subtle);
+    color: var(--eds-color-text-accent-subtle);
   }
   :host([onColor='secondary']) .mdc-icon-button--on.mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.value.hex)};
-    color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-neutral-strong);
+    color: var(--eds-color-text-neutral-strong);
   }
   :host([onColor='success']) .mdc-icon-button--on.mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-success-subtle);
+    color: var(--eds-color-text-success-subtle);
   }
   :host([onColor='danger']) .mdc-icon-button--on.mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-danger-subtle);
+    color: var(--eds-color-text-danger-subtle);
   }
   :host([onColor='warning']) .mdc-icon-button--on.mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-warning-subtle);
+    color: var(--eds-color-text-warning-subtle);
   }
   :host([onColor='disabled']) .mdc-icon-button--on.mdc-icon-button {
-    --mdc-ripple-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
-    color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    --mdc-ripple-color: var(--eds-color-text-disabled);
+    color: var(--eds-color-text-disabled);
   }
 `;
 

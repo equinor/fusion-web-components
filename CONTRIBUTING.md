@@ -35,33 +35,15 @@ Ensure the trust entry points to:
 
 Once this is in place, subsequent releases for that package can use OIDC via CI.
 
-## Temporary light-only Storybook
+## Colour schemes in Storybook
 
-Storybook's preview document sets `data-color-scheme="light"` on its root `<html>`
-element through `storybook/.storybook/preview-head.html`, following the
-[EDS colour scheme guidance](https://eds.equinor.com/docs/foundation/colour/getting_started/#colour-scheme-detection).
-EDS v2 `variables.css` then skips its `prefers-color-scheme: dark` rule and keeps
-EDS colour variables and native controls light, on initial load and when the
-OS/browser preference changes. Only the preview is affected; the Storybook
-manager UI is unchanged.
+The Storybook preview loads `@equinor/eds-tokens/css/variables` and wraps every story in
+`<fwc-theme>` without a `color-scheme` attribute, so stories inherit the document scheme and follow the browser's
+`prefers-color-scheme` preference. Use EDS CSS custom properties (`var(--eds-color-…)`) for colours
+in components; do not use the deprecated JavaScript `tokens` object from `@equinor/eds-tokens`
+or `@equinor/fusion-web-theme` colour helpers, and do not hard-code colours.
 
-This is a temporary, Storybook-only precaution for
-[equinor/fusion-core-tasks#2120](https://github.com/equinor/fusion-core-tasks/issues/2120).
-The preview does not load EDS v2 CSS variables today, so there is no visible
-change yet; the override guards against regressions once they are adopted. It is
-not dark-mode support and does not change component or theme defaults. Remove the
-override when Storybook supports automatic theming.
-
-Run the regression checks from the `storybook` directory. They are intentionally
-local-only and not part of CI, because the override is temporary and the preview
-does not use EDS v2 variables yet:
-
-```sh
-pnpm test:setup # once, installs the Playwright Chromium shell
-pnpm test
-```
-
-For manual verification, start Storybook, emulate `prefers-color-scheme: dark`
-in the browser DevTools, and load a story and its Docs page. The preview root
-must have `data-color-scheme="light"` and EDS colours must stay light. Switch the
-preference live without reloading and check again.
+To check a change in both schemes, start Storybook (`pnpm dev`), open a story and its Docs page,
+and use the browser DevTools to emulate `prefers-color-scheme: light` and `dark`
+(Chrome: **Rendering** > **Emulate CSS media feature prefers-color-scheme**). Switch the
+preference without reloading; colours should update immediately.

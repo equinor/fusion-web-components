@@ -47,13 +47,13 @@ const style: CSSResult = css`
     display: flex;
     flex-direction: column;
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: var(--eds-color-border-neutral-subtle);
     border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     min-width: 200px;
-    background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-surface);
 
     &.shadow {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      box-shadow: var(--eds-elevation-high);
     }
   }
 
@@ -71,15 +71,15 @@ const style: CSSResult = css`
     gap: var(--medium-size-space);
     padding: calc(var(--small-size-space) * 0.5) var(--small-size-space);
     border-bottom: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: var(--eds-color-border-neutral-subtle);
     font-size: calc(${unsafeCSS(theme.typography.paragraph.meta.getVariable('fontSize'))} * var(--content-resize, 1));
 
     a {
-      color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
+      color: var(--eds-color-bg-accent-fill-emphasis-hover);
       text-decoration: none;
 
       &:hover {
-        color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+        color: var(--eds-color-text-accent-subtle);
       }
       &.disabled {
         pointer-events: none;
@@ -111,7 +111,7 @@ const style: CSSResult = css`
     line-height: 1.2;
   }
   .person-card__expired {
-    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+    color: var(--eds-color-text-danger-subtle);
   }
   .person-card__profession {
     display: flex;
@@ -139,7 +139,7 @@ const style: CSSResult = css`
     margin: 0 var(--medium-size-space);
     padding: var(--small-size-space) 0;
     border-top: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: var(--eds-color-border-neutral-subtle);
 
     &:first-child {
       border-top: none;
@@ -164,7 +164,7 @@ const style: CSSResult = css`
     font-size: calc(0.66rem * var(--content-resize, 1));
 
     &:hover {
-      background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+      background-color: var(--eds-color-bg-neutral-canvas);
 
       .person-card-info__copy {
         opacity: 1;
@@ -195,7 +195,7 @@ const style: CSSResult = css`
     font-size: calc(${unsafeCSS(theme.typography.input.helper.getVariable('fontSize'))} * var(--content-resize, 1));
     padding: 2px 6px;
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: var(--eds-color-border-neutral-subtle);
     border-radius: 4px;
   }
   .copyable-text {
@@ -226,7 +226,7 @@ const style: CSSResult = css`
     .copyable-text__button {
       border: none;
       outline: none;
-      background: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+      background: var(--eds-color-bg-neutral-canvas);
       cursor: pointer;
       font-size: 0.55rem;
       padding: 0.5em;
@@ -239,7 +239,7 @@ const style: CSSResult = css`
 
       &:hover,
       &:focus {
-        background: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+        background: var(--eds-color-bg-neutral-fill-muted-default);
       }
     }
   }

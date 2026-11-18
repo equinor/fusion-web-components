@@ -7,7 +7,7 @@ export const personStyle: CSSResult = css`
     font-size: calc(
       ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('fontSize'))} * var(--content-resize, 1)
     );
-    color: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('color'))};
+    color: var(--eds-color-text-neutral-strong);
     line-height: ${unsafeCSS(theme.typography.paragraph.body_short.getVariable('lineHeight'))};
   }
   :host([size='x-small']) {
@@ -23,31 +23,31 @@ export const personStyle: CSSResult = css`
     --content-resize: 1.2;
   }
   a {
-    color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
+    color: var(--eds-color-text-accent-subtle);
   }
   a:hover {
-    color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
+    color: var(--eds-color-bg-accent-fill-emphasis-hover);
   }
   .fwc-person-avatar-badge {
     z-index: 10;
-    border: 1px solid #fff;
+    border: 1px solid var(--eds-color-bg-neutral-surface);
     border-radius: 50%;
   }
   .fwc-person-type__employee {
-    --fwc-avatar-color: #bebebe;
-    --fwc-avatar-ink-color: #fff;
+    --fwc-avatar-color: var(--eds-color-bg-neutral-fill-muted-default);
+    --fwc-avatar-ink-color: var(--eds-color-text-neutral-strong);
   }
   .fwc-person-type__consultant {
-    --fwc-avatar-color: #eb0037;
-    --fwc-avatar-ink-color: #fff;
+    --fwc-avatar-color: var(--eds-color-bg-danger-fill-emphasis-default);
+    --fwc-avatar-ink-color: var(--eds-color-text-danger-strong-on-emphasis);
   }
   .fwc-person-type__external {
-    --fwc-avatar-color: #ff92a8;
-    --fwc-avatar-ink-color: #fff;
+    --fwc-avatar-color: var(--eds-color-bg-danger-fill-muted-default);
+    --fwc-avatar-ink-color: var(--eds-color-text-danger-strong);
   }
   .fwc-person-type__external-hire {
-    --fwc-avatar-color: #000;
-    --fwc-avatar-ink-color: #fff;
+    --fwc-avatar-color: var(--eds-color-bg-neutral-fill-emphasis-default);
+    --fwc-avatar-ink-color: var(--eds-color-text-neutral-strong-on-emphasis);
   }
 `;
 

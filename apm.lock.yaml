@@ -1,5 +1,5 @@
 lockfile_version: '2'
-apm_version: 0.36.0
+apm_version: 0.36.1
 dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-developer
@@ -31,7 +31,7 @@ dependencies:
   content_hash: sha256:bd79157d065b8d20233c3523ef104a18ed8cf556296717487e3281d6c5e2de72
   constraint: ^1.9.0
   resolved_tag: v1.21.0
-  resolved_at: '2026-11-18T05:23:58+00:00'
+  resolved_at: '2026-11-19T05:24:06+00:00'
   declared_license: MIT
   carried_licenses:
   - path: LICENSE
@@ -78,7 +78,7 @@ dependencies:
   content_hash: sha256:7f46e29de018b62aef7cb3f5632636eb5cee58682294da4847029d521b704ab2
   constraint: ^1.9.0
   resolved_tag: v1.21.0
-  resolved_at: '2026-11-18T05:23:58+00:00'
+  resolved_at: '2026-11-19T05:24:06+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -122,7 +122,7 @@ dependencies:
   content_hash: sha256:73e5ff8ff3cecf554150d45bd19348fce4663b85b4f38302ce321e4da03b7043
   constraint: ^1.9.0
   resolved_tag: v1.21.0
-  resolved_at: '2026-11-18T05:23:58+00:00'
+  resolved_at: '2026-11-19T05:24:06+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -164,7 +164,7 @@ dependencies:
   content_hash: sha256:75d04ee1245b96551408d9e47b91a40252fa58fbdfa68a2eb0baebee192d2e30
   constraint: ^1.9.0
   resolved_tag: v1.21.0
-  resolved_at: '2026-11-18T05:23:58+00:00'
+  resolved_at: '2026-11-19T05:24:07+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -192,7 +192,7 @@ dependencies:
   content_hash: sha256:52c431cdbb74b44c91acaf90a0c5f004bfb8fb2ac4b71934b4954d1f1ca8ea4b
   constraint: ^1.9.0
   resolved_tag: v1.21.0
-  resolved_at: '2026-11-18T05:23:58+00:00'
+  resolved_at: '2026-11-19T05:24:07+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -242,7 +242,7 @@ dependencies:
   content_hash: sha256:bd4bd70e46515aae738549e7301993319a79617af924a5e174b5e7bfa2d5f33b
   constraint: ^1.9.0
   resolved_tag: v1.21.0
-  resolved_at: '2026-11-18T05:23:58+00:00'
+  resolved_at: '2026-11-19T05:24:06+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE

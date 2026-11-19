@@ -22,7 +22,7 @@
       "shell-quote@>=1.8.4 <1.11.0": "1.11.0"
     }
   },
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@12.21.0",
   "scripts": {
     "start": "cd storybook && pnpm run dev",
     "dev": "pnpm run start",

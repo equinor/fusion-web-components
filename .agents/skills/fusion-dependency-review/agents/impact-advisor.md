@@ -40,6 +40,7 @@ Assess how risky the update is to merge in this repository, including CI behavio
   or CI/build-only tooling without new use restrictions): no licence blocker; record evidence note.
   Needs a human, unverified terms or unsure: `blocking` pending explicit maintainer/legal decision, even if
   technically compatible. State affected use (shipped/linked vs CI/build-only) and required decision.
+  Output is PR only a maintainer merges: verified change → `concern` with merge-accepts flag, not `blocking`.
 
 ## Assessment scale
 

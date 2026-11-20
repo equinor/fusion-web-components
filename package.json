@@ -22,7 +22,7 @@
       "shell-quote@>=1.8.4 <1.11.0": "1.11.0"
     }
   },
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@12.21.0",
   "scripts": {
     "start": "cd storybook && pnpm run dev",
     "dev": "pnpm run start",
@@ -52,7 +52,7 @@
     "@types/react": "^19.3.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.6.6",
+    "@biomejs/biome": "^2.6.8",
     "del-cli": "^8.0.1",
     "typescript": "^7.0.2"
   }

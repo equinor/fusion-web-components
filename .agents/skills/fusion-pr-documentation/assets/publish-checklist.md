@@ -4,6 +4,7 @@
 
 - [ ] Repository PR template inspected; all headings, comments, checklist items, and order preserved
 - [ ] Repository-local PR, linking, and evidence rules applied
+- [ ] New PR is created as draft; ready only after the gate passes, a documented exception, or the person says it is ready for human review
 - [ ] Every behavior claim matches the diff on the current head commit
 - [ ] Every issue or PR reference verified live; role explained in prose
 - [ ] Issues and PRs written as `owner/repo#123` (or `#123` in the same repository), not as Markdown links with custom labels
@@ -18,7 +19,7 @@
 - [ ] File lists, command output, and long review-guide detail sit under `<details><summary>Details</summary>`
 - [ ] `<details><summary>References and evidence</summary>` comes last and lists only the skills, references, and sources actually used
 - [ ] Every `<details>` block has a blank line after `<summary>` and is closed
-- [ ] User confirmed: operation (create or update), base, head, title, draft or ready, assignee
+- [ ] User confirmed: operation (create or update), base, head, title, assignee (new PRs are draft)
 
 ## After publishing — read back
 
@@ -34,6 +35,8 @@ Verify:
 - [ ] Body matches the confirmed draft, with banner, headings, boundaries, and folded blocks intact (no truncation or mangled Markdown)
 - [ ] Required issue references are present and resolve to the intended repositories
 - [ ] `closingIssuesReferences` lists exactly the issues chosen for closing
-- [ ] Draft or ready state and assignee match the confirmation
+- [ ] New PR is draft and assignee matches the confirmation
+- [ ] Before requesting human review, applicable repository-local Copilot gate completed or its permitted unavailability exception documented; critical findings do not remain unresolved
+- [ ] Review requests have workflow authority; publishing or marking ready is not review-request consent
 
 If a check fails, report it, fix the draft, and ask before editing the PR again.

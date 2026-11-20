@@ -4,7 +4,7 @@ description: 'Drafts and updates evidence-backed PR descriptions. USE FOR: PR bo
 license: MIT
 compatibility: Requires git and read access to the target repository. Live GitHub verification needs the gh CLI, the GitHub MCP server, or Fusion PM MCP. Publishing needs write access and explicit user confirmation.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -142,17 +142,26 @@ evidence rules, never invent them.
 
 ### 8. Confirm, publish, and read back
 
+Publish new PRs as draft. Mark ready only when ready for human review: after an applicable gate passes or a
+documented exception, or on the person's word when no gate applies. Ready status may notify CODEOWNERS, rules or
+bots, so never use it as a default.
+
 When preparing publication, read `assets/publish-checklist.md` before requesting approval for preflight, and apply
-again after read-back. Show final draft and create/update, base, head, draft/ready, assignee, title. Require
+again after read-back. Show final draft and create/update, base, head, assignee, title (new PRs are always draft). Require
 explicit confirmation, then use:
 
-- Create: `gh pr create --base <base> --head <branch> --title "<title>" --body-file <draft>`, adding `--draft` or
-  `--assignee` as confirmed.
+- Create: `gh pr create --base <base> --head <branch> --title "<title>" --body-file <draft>`, always with `--draft`,
+  adding `--assignee` as confirmed.
 - Update: `gh pr edit <number> --body-file <draft>`.
 - GitHub MCP equivalents when `gh` unavailable.
 
 Read live PR back; verify confirmed body/metadata and `closingIssuesReferences`. Report drift, correct local draft,
 re-confirm before editing again.
+
+Before requesting human review, apply repository-local review-gate instructions. When a Copilot gate applies,
+hand off to installed `fusion-github-review-resolution`; missing companion/tooling is a reported blocker, not a
+passed gate. Document its outcome or authorized unavailability exception. PR publication/ready status alone
+does not authorize review requests, and body-only updates need not restart a completed gate.
 
 ## Expected output
 

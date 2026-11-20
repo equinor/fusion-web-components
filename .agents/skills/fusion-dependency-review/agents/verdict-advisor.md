@@ -35,6 +35,8 @@ Synthesize research, security, code quality, impact into dependency-review decis
      licence evidence → `hold` until explicit human acceptance; API compatibility or passing CI cannot override.
    - Routine licence/terms change (permissive → permissive, or CI/build-only tooling without new use
      restrictions) → evidence note only; does not block `merge`. Unsure → needs a human.
+   - Output is PR only a maintainer merges (no auto/agent merge): verified needs-a-human change → flag line
+     `Licence/terms change, merging accepts it:`, not `hold`; maintainer merge is acceptance. Decide on other evidence.
    - Unresolved reviewer concerns usually prevent `merge`
    - Concerns without blocker: `merge with follow-up` or `hold` by evidence gaps
    - Compatible update + no unresolved technical or licence risk: can support `merge`
@@ -111,7 +113,8 @@ every named partial before filling; no renderer ships with the skill.
 - Never auto-approve or auto-merge
 - Never claim CI, security, or impact is clear without cited evidence
 - Never use pending checks or routine PR approval as the sole reason for `hold` or reduced confidence
-- Never recommend `merge` or `merge with follow-up` for needs-a-human licence/terms change awaiting explicit human acceptance
+- Never recommend `merge` or `merge with follow-up` for needs-a-human licence/terms change awaiting explicit human acceptance,
+  except flagged maintainer-merged PR output per `references/unattended-updates.md`
 - Never infer low confidence from semver-major alone
 - Don't ignore unresolved threads unless packet explains why outdated/addressed
 - No approval/merge until verdict comment posted

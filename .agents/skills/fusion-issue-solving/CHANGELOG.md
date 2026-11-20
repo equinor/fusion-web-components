@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.3.1 - 2026-11-17
+
+### patch
+
+- [#468](https://github.com/equinor/fusion-skills/pull/468) [`7131d1a`](https://github.com/equinor/fusion-skills/commit/7131d1adaa967d9b2454fb7cbaede1664785a9b3) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Choose PR base branches from verified repository and task evidence instead of guessing `main`.
+
+
+  fixes equinor/fusion-skills#466
+
+- [#464](https://github.com/equinor/fusion-skills/pull/464) [`a3db67d`](https://github.com/equinor/fusion-skills/commit/a3db67ddc14a528ee57a09f4dc783b66fcd74e4d) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Honor session-confirmed issue-specific worktrees without repeating the worktree question.
+
+
+  resolves equinor/fusion-skills#463
+
+## 0.3.0 - 2026-11-15
+
+### minor
+
+- [#462](https://github.com/equinor/fusion-skills/pull/462) [`bd6e289`](https://github.com/equinor/fusion-skills/commit/bd6e289f544ab54ddbeb2736d0f61c439407ea3f) - Hand off applicable post-publication Copilot review gates to the review-resolution companion and preserve review authority, critical-finding stops and documented exceptions. PRs open as draft and are marked ready only when ready for human review; the agent never waits for CI checks.
+
+
+  refs equinor/fusion-core-tasks#3013
+
 ## 0.2.2 - 2026-11-01
 
 ### patch

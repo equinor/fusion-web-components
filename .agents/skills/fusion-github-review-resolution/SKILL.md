@@ -1,10 +1,10 @@
 ---
 name: fusion-github-review-resolution
-description: 'Resolves GitHub PR review threads by judging feedback, fixing valid concerns and replying before resolution. USE FOR: unresolved review threads, changes requested, fix review comments, PR review URLs (#pullrequestreview-...). DO NOT USE FOR: feedback summaries, new PRs, dependency verdicts (use fusion-dependency-review), read-only branches or unconfirmed mutations.'
+description: 'Runs Copilot review gates and resolves PR threads with validated fixes and replies. USE FOR: Copilot before human review, unresolved threads, changes requested, PR review URLs (#pullrequestreview-...). DO NOT USE FOR: feedback summaries, PR creation, dependency verdicts (use fusion-dependency-review), read-only branches or unconfirmed mutations.'
 license: MIT
 compatibility: Requires GitHub MCP server or gh CLI, and git.
 metadata:
-   version: "0.2.4"
+   version: "0.3.0"
    status: experimental
    owner: "@equinor/fusion-core"
    skills:
@@ -25,15 +25,17 @@ metadata:
 
 - Unresolved inline review threads, review feedback or changes requested; includes open conversations found while
   working on, improving or merging a PR.
+- Copilot review gate before human review, including PRs with no review or no findings yet. Read
+  `references/copilot-review-gate.md` when running that gate for mode, severity, round limits and exceptions.
 - Activate immediately for `https://github.com/<owner>/<repo>/pull/<number>#pullrequestreview-<id>` or
   `https://github.com/<owner>/<repo>/pull/<number>` when context implies review work.
 - When intent is unclear, read `references/activation-examples.md` for explicit and implicit request examples.
 
 ## When not to use
 
-- No unresolved comments; targeted threads already resolved or outdated and acknowledged; summary-only requests;
+- No unresolved comments unless running the Copilot gate; ordinary remediation of threads already resolved or outdated and acknowledged; summary-only requests;
   intentionally read-only branch/worktree.
-- Dependency verdicts or new PRs, rather than review-thread remediation.
+- Dependency verdicts or PR creation; a gate on an existing PR is in scope.
 
 ## Required inputs
 
@@ -47,7 +49,8 @@ Optional: linked issue and commit granularity when comments overlap.
 - Defer commit conventions/granularity, validation, changesets, PR rules and branch-refresh policy to
   repository-local instructions at use.
 - Require explicit user confirmation before push, thread reply/resolution or review requests. Stop without approval;
-  `--apply` is not consent.
+  `--apply` is not consent. Interactive gate: ask once for its bounded mutation sequence; host-authorized
+  headless/autopilot gate runs without that question. Neither branch waives runtime permissions or caller restrictions.
 - Never expose secrets/tokens in logs/replies. Prefer argv-based execution over shell-interpolated commands.
 - Keep diffs scoped; escalate ambiguity before edits/writes. Do not resolve a thread that is still uncertain.
 - Before reply/resolution, fixes must be committed, validated and available on PR head. No fabricated check results
@@ -116,11 +119,15 @@ code-editing retries.
      `assets/resolve-review-thread.graphql` for reply and resolution syntax.
 
 7. Verify closure state
-   - Re-check targeted threads: unresolved count zero and no duplicate agent replies from this run. Re-check latest
-     CI when workflow expects green checks.
+   - Ordinary remediation: re-check targeted threads for unresolved count zero and no duplicate agent replies.
+     Copilot gate: verify every disposition and zero unresolved critical findings; report any remaining
+     non-critical uncertainty without claiming closure or blocking human handoff solely for it.
+   - Read latest CI state once and report it; never wait for running checks.
 
 8. Ask whether to request a new review from the original review author
-   - After push and resolution, ask; only if approved, request original reviewer's username and report sent status.
+   - Ordinary remediation: after push and resolution, ask; only if approved, request original reviewer's username
+     and report sent status. Copilot gate: follow `references/copilot-review-gate.md` instead; retain the initial
+     interactive decision or headless workflow authority, without repeated optional-review questions.
 
 ## Optional scripted execution
 
@@ -147,6 +154,8 @@ fold long evidence.
 Report processed counts/dispositions (fixed, declined rationale, escalated), files, commit hashes/messages,
 checks/outcomes, push status, per-thread reply/resolution confirmations, checklist path and unresolved
 threads/blockers.
+Copilot gate: completed review ids/commits, total rounds, critical/non-critical dispositions, remaining findings,
+passed/blocked/unavailable status and observed exception reason. Never equate ready status with a passed gate.
 
 ## Linked issue usage
 

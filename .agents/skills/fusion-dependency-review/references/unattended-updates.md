@@ -300,6 +300,14 @@ warnings or configure keys. Unverified material licence evidence stays HOLD with
 budget/confidence heuristics cannot waive gate or move a change into routine.
 This is an acceptance-policy blocker, not routine pending PR approval or a compatibility failure.
 
+**Maintainer-merged PR output: flag, don't HOLD.** When review output is a pull request only a maintainer
+merges (no auto-merge, no agent approval or merge), that merge is the explicit acceptance. Verified
+needs-a-human change is then no HOLD reason: decide MERGE/HOLD on other evidence and write one summary line
+starting `Licence/terms change, merging accepts it:` with package/tool, old -> new terms, transition release
+and official licence/terms file URLs at both versions. Keep line visible in PR description near TL;DR, never
+folded. Still HOLD: unverified/unknown material terms, auto-merge or agent-merge paths, and verdicts on PRs
+the review does not produce (verdict HOLD is the ask). Never configure keys or assume eligibility.
+
 Routine example: APM CLI 0.33.0 -> 0.35.1 crosses
 [microsoft/apm#3487](https://github.com/microsoft/apm/pull/3487).
 [v0.35.0 licence](https://github.com/microsoft/apm/blob/v0.35.0/LICENSE) is MIT;
@@ -327,7 +335,8 @@ Keep technical recommendation, execution state, evidence confidence and merge re
   behaviour requiring maintainer judgement. Name exact decision or smallest next step.
 - **HOLD / licence decision**: needs-a-human licence/terms change requires explicit human acceptance
   before MERGE. Keep separate from compatibility and routine approval; cite transition and responsible
-  decision owner. Routine tier needs evidence note only.
+  decision owner. Routine tier needs evidence note only. Maintainer-merged PR output: flag line instead
+  of HOLD (see [licence and terms changes](#licence-and-terms-changes)).
 - **HOLD / failed execution**: unrecovered setup/tool failure, timeout, missing regeneration capability
   or incomplete evidence needed to decide. Keep retryable; don't manufacture a compatibility blocker.
   Calling host maps these concepts to its own machine contract.
@@ -358,6 +367,7 @@ Write for a merge decision, not an execution log:
 - **Why:** relevant upstream changes and effect on discovered consumers; migration and incidental deltas.
 - **Validation limits:** focused outcome and what remains untested; distinguish base, source PR and candidate.
 - **Risks / next action:** evidence-based MERGE/HOLD, unresolved unknowns and exact maintainer decision or retry.
+  Licence/terms flag lines stay visible, never folded or dropped.
 
 Keep decision-relevant risks and short validation result visible. Fold command logs, Git checks,
 release excerpts and source evidence under details; retain URLs and versions for later reuse.

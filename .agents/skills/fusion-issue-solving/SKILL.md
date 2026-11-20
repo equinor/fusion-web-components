@@ -3,7 +3,7 @@ name: fusion-issue-solving
 description: 'Resolves GitHub issues through implementation, validation and PR preparation. USE FOR: solve #123, work on #123, continue or finish an issue, direct GitHub issue URLs (https://github.com/owner/repo/issues/123). DO NOT USE FOR: issue drafting, PR review only, non-implementation research, read-only repositories or unconfirmed publishing.'
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -48,7 +48,7 @@ Issue drafting only, no implementation expected, or repo writes disallowed.
 
 ## Required inputs
 
-Before execution: issue URL or `owner/repo#number`; repo and branch/worktree decision; acceptance criteria/non-goals; repo-required validation commands. Optional: related issues/PRs, risk priorities, commit/PR granularity.
+Before execution: issue URL or `owner/repo#number`; repo and branch/worktree decision; acceptance criteria/non-goals; repo-required validation commands. Accept session-confirmed worktree decisions using step 1's association checks. Optional: related issues/PRs, risk priorities, commit/PR granularity.
 
 ## Safety & constraints
 
@@ -60,7 +60,7 @@ Before execution: issue URL or `owner/repo#number`; repo and branch/worktree dec
 
 ## Instructions
 
-1. Ask whether to use dedicated git worktree before any other workflow questions. If yes, use/create it and continue there.
+1. Before other workflow questions, check current session's worktree state, including earlier creation announcements available in context; exact wording is immaterial. Confirm only when session context explicitly associates the active worktree with the requested issue, or its metadata matches the issue URL or repository-plus-number. A branch/worktree name containing only the issue number is ambiguous. A creation announcement confirms isolation, not issue association by itself. If confirmed, continue there without asking again, creating another worktree, or switching. Otherwise ask whether to use a dedicated git worktree; if yes, use/create it and continue there.
 2. Read issue body, labels, linked discussions once; reuse. Restate implementable scope and explicit non-goals.
 3. Check current user's primary-issue assignment. If absent, ask self-assignment before continuing. For each sub-issue to resolve/close, check once/cache; ask self-assignment if absent before closure.
 4. Apply low-token GitHub strategy
@@ -74,7 +74,8 @@ Before execution: issue URL or `owner/repo#number`; repo and branch/worktree dec
 9. Prepare PR-ready output
    - Summarize scope/why, validation evidence, follow-ups. Read `references/pr-preparation.md` when preparing PR draft for repo-policy-aware setup and issue-link defaults; optional installed `fusion-pr-documentation`.
    - Issue/context-specific `.tmp/` draft, never shared `.tmp/pr-body.md`; base on `.github/pull_request_template.md`, update as implementation evolves.
-   - Ask base (suggest `main` or source branch), user assignment, related links. Ask each issue's close/reference choice with recommended default: close completed AC, reference parent/partial/rollout/cross-repo support. Honor stated intent; unavailable user, apply recommendation and disclose which issues close in PR/delivery. Repo-local closure rules win.
+   - Determine the base from repository and task evidence. If context establishes a verified, intended base (for example, the branch this work targets), propose it; otherwise read the repository-reported default. Verify every proposed branch exists. Never assume `main`/`master` or offer alternatives without evidence. Follow repository-local confirmation rules; otherwise ask only when the target is ambiguous or its intended/default branch cannot be established.
+   - Ask whether the PR should be assigned to the user and whether related issues should be linked. Ask each issue's close/reference choice with recommended default: close completed AC, reference parent/partial/rollout/cross-repo support. Honor stated intent; unavailable user, apply recommendation and disclose which issues close in PR/delivery. Repo-local closure rules win.
    - Shape PR draft and delivery using Human-first output below.
    - Create PRs as draft only. Mark ready only when ready for human review: gate passed, documented exception, or the person's word when no gate applies. Never wait for CI checks.
 10. Optional GitHub mutations

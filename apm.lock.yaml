@@ -4,9 +4,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-developer
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
-  version: 1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
+  version: 1.21.1
   virtual_path: apm/fusion-developer
   is_virtual: true
   package_type: apm_package
@@ -28,10 +28,10 @@ dependencies:
     .github/instructions/fusion-skill-feedback.instructions.md: sha256:87e3caecf799cbe12a29eeadd860aef1042e12a841d3a0f2a345499ea4a07f6c
     .github/instructions/fusion-work-bounds.instructions.md: sha256:edff44bf8f9ef3c0c9ea7ad3fa9c63936ed1a7574c883c7d549a6dd4d76cf018
     .github/instructions/fusion-work-tracking.instructions.md: sha256:fa8699206f268371d2571b4f98aba12d38ae151669d799c57fe2961542fd5e71
-  content_hash: sha256:bd79157d065b8d20233c3523ef104a18ed8cf556296717487e3281d6c5e2de72
+  content_hash: sha256:e2db7d9c2f7752b2ae71cd64124741892857ad436295818ee4e65435a4ba5096
   constraint: ^1.9.0
-  resolved_tag: v1.21.0
-  resolved_at: '2026-11-19T05:24:06+00:00'
+  resolved_tag: v1.21.1
+  resolved_at: '2026-11-20T05:24:11+00:00'
   declared_license: MIT
   carried_licenses:
   - path: LICENSE
@@ -40,9 +40,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-design
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
-  version: 1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
+  version: 1.21.1
   virtual_path: skills/.experimental/fusion-design
   is_virtual: true
   package_type: claude_skill
@@ -77,8 +77,8 @@ dependencies:
     .agents/skills/fusion-design/references/spacing.md: sha256:a84b5071ce3c7f64a713fb497c9e11489f5b5ce6e0cfe2c4db0e42b0642c3edc
   content_hash: sha256:7f46e29de018b62aef7cb3f5632636eb5cee58682294da4847029d521b704ab2
   constraint: ^1.9.0
-  resolved_tag: v1.21.0
-  resolved_at: '2026-11-19T05:24:06+00:00'
+  resolved_tag: v1.21.1
+  resolved_at: '2026-11-20T05:24:11+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -86,9 +86,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-package-scribe
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
-  version: 1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
+  version: 1.21.1
   virtual_path: skills/.experimental/fusion-package-scribe
   is_virtual: true
   package_type: claude_skill
@@ -121,8 +121,8 @@ dependencies:
     .agents/skills/fusion-package-scribe/references/tsdoc-checklist.md: sha256:cffc02ad2bc8b40c7cb86648ada5b2db9e1d001951e52b5c7ad59ec0b917fb3b
   content_hash: sha256:73e5ff8ff3cecf554150d45bd19348fce4663b85b4f38302ce321e4da03b7043
   constraint: ^1.9.0
-  resolved_tag: v1.21.0
-  resolved_at: '2026-11-19T05:24:06+00:00'
+  resolved_tag: v1.21.1
+  resolved_at: '2026-11-20T05:24:11+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -130,9 +130,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-pm-mcp
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
-  version: 1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
+  version: 1.21.1
   virtual_path: skills/.experimental/fusion-pm-mcp
   is_virtual: true
   package_type: claude_skill
@@ -163,8 +163,8 @@ dependencies:
     .agents/skills/fusion-pm-mcp/references/vscode-mcp-config.md: sha256:4d43b2ae19cd6ccd843253e01705af9ffdad4f718c3f60eb655c42f096134bab
   content_hash: sha256:75d04ee1245b96551408d9e47b91a40252fa58fbdfa68a2eb0baebee192d2e30
   constraint: ^1.9.0
-  resolved_tag: v1.21.0
-  resolved_at: '2026-11-19T05:24:07+00:00'
+  resolved_tag: v1.21.1
+  resolved_at: '2026-11-20T05:24:12+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -172,9 +172,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
-  version: 1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
+  version: 1.21.1
   virtual_path: skills/fusion
   is_virtual: true
   package_type: claude_skill
@@ -191,8 +191,8 @@ dependencies:
     .agents/skills/fusion/references/first-contact.md: sha256:78d8253b1ab821a243a5a8fd33dae737fe230f12e12978fb9624fa8cccbeabf1
   content_hash: sha256:52c431cdbb74b44c91acaf90a0c5f004bfb8fb2ac4b71934b4954d1f1ca8ea4b
   constraint: ^1.9.0
-  resolved_tag: v1.21.0
-  resolved_at: '2026-11-19T05:24:07+00:00'
+  resolved_tag: v1.21.1
+  resolved_at: '2026-11-20T05:24:12+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -200,9 +200,9 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-rules
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
-  version: 1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
+  version: 1.21.1
   virtual_path: skills/fusion-rules
   is_virtual: true
   package_type: claude_skill
@@ -241,8 +241,8 @@ dependencies:
     .agents/skills/fusion-rules/references/workflow.md: sha256:041798d1f25f73b09c14a805ef03275e2143f089d1c4e7cc00908baa2fc4c113
   content_hash: sha256:bd4bd70e46515aae738549e7301993319a79617af924a5e174b5e7bfa2d5f33b
   constraint: ^1.9.0
-  resolved_tag: v1.21.0
-  resolved_at: '2026-11-19T05:24:06+00:00'
+  resolved_tag: v1.21.1
+  resolved_at: '2026-11-20T05:24:11+00:00'
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -250,8 +250,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-agent-content
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-agent-content
   is_virtual: true
@@ -293,8 +293,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-audience-alignment
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-audience-alignment
   is_virtual: true
@@ -326,8 +326,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-dependency-review
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-dependency-review
   is_virtual: true
@@ -391,8 +391,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-general-greenkeeping
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-general-greenkeeping
   is_virtual: true
@@ -424,8 +424,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-github-review-resolution
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-github-review-resolution
   is_virtual: true
@@ -487,8 +487,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-issue-solving
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-issue-solving
   is_virtual: true
@@ -504,13 +504,13 @@ dependencies:
   - .agents/skills/fusion-issue-solving/references/human-first-output.md
   - .agents/skills/fusion-issue-solving/references/pr-preparation.md
   deployed_file_hashes:
-    .agents/skills/fusion-issue-solving/CHANGELOG.md: sha256:f8c325fc4afabc6be796c86974c590485076eb276b86835bde4d31f73fd1c065
+    .agents/skills/fusion-issue-solving/CHANGELOG.md: sha256:3a9a731e5b8faec130a7308e04cb49d048c8cf568743e19c526bc0ad6c15aafe
     .agents/skills/fusion-issue-solving/LICENSE: sha256:409cb313f76a0aef6ff2593da5b3304bd93be1040ef69c6b043966155f023f42
-    .agents/skills/fusion-issue-solving/SKILL.md: sha256:0afa2734732c418cdb07d0abf665283313387489593db49578afeaf41c6fc2d4
+    .agents/skills/fusion-issue-solving/SKILL.md: sha256:9363a6ddbee781024bf108a918476722a877c5d7a60b385438bd7e266c558325
     .agents/skills/fusion-issue-solving/assets/issue-solving-checklist.md: sha256:29ccd26f8afa7c12f5d4831fea2021ea3b80229f05d51a24cfef3841d3e665fb
     .agents/skills/fusion-issue-solving/references/human-first-output.md: sha256:78dfe4884d425e1f32da9122c418250673c24a1476deb605cf4ebd40adc75528
-    .agents/skills/fusion-issue-solving/references/pr-preparation.md: sha256:14beb6e852f8129ba71def0d483ad58c1bf887720954e2a6cd84bca97e6a98a0
-  content_hash: sha256:5bb1d9aa5a286863d08135a68d089ecc403a9e36b7345e072eb960b23dc6b880
+    .agents/skills/fusion-issue-solving/references/pr-preparation.md: sha256:eda8d53551d38579b316e969b06f0d85eb27a5d642ee65b4be67e57d4a5f1dac
+  content_hash: sha256:70af07163453a7676412b24f8d5e48fdec955bda62343d81cb24024905c3f0d0
   carried_licenses:
   - path: LICENSE
     source: LICENSE
@@ -518,8 +518,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-issue-task-planning
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-issue-task-planning
   is_virtual: true
@@ -565,8 +565,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-mcp
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-mcp
   is_virtual: true
@@ -608,8 +608,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-pr-documentation
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-pr-documentation
   is_virtual: true
@@ -659,8 +659,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-report-authoring
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-report-authoring
   is_virtual: true
@@ -722,8 +722,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-repository-greenkeeping
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.experimental/fusion-repository-greenkeeping
   is_virtual: true
@@ -795,8 +795,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-code-conventions
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.system/fusion-code-conventions
   is_virtual: true
@@ -848,8 +848,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-research
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/.system/fusion-research
   is_virtual: true
@@ -903,8 +903,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-devtools
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/fusion-devtools
   is_virtual: true
@@ -940,8 +940,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-issue-authoring
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/fusion-issue-authoring
   is_virtual: true
@@ -1039,8 +1039,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-skill-authoring
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/fusion-skill-authoring
   is_virtual: true
@@ -1088,8 +1088,8 @@ dependencies:
 - repo_url: equinor/fusion-skills
   name: fusion-skills
   host: github.com
-  resolved_commit: 01c27ce3b9a463675b4f8d887cb2f16b1282ed5e
-  resolved_ref: v1.21.0
+  resolved_commit: 1b8bf1bfa3fd25401646403cfd392399c9bb7922
+  resolved_ref: v1.21.1
   version: unknown
   virtual_path: skills/fusion-skills
   is_virtual: true
@@ -2600,7 +2600,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/.experimental/fusion-issue-solving
   active_owner: equinor/fusion-skills/skills/.experimental/fusion-issue-solving
-  content_hash: sha256:f8c325fc4afabc6be796c86974c590485076eb276b86835bde4d31f73fd1c065
+  content_hash: sha256:3a9a731e5b8faec130a7308e04cb49d048c8cf568743e19c526bc0ad6c15aafe
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-issue-solving/LICENSE
@@ -2618,7 +2618,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/.experimental/fusion-issue-solving
   active_owner: equinor/fusion-skills/skills/.experimental/fusion-issue-solving
-  content_hash: sha256:0afa2734732c418cdb07d0abf665283313387489593db49578afeaf41c6fc2d4
+  content_hash: sha256:9363a6ddbee781024bf108a918476722a877c5d7a60b385438bd7e266c558325
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-issue-solving/assets/issue-solving-checklist.md
@@ -2645,7 +2645,7 @@ deployments:
   owners:
   - equinor/fusion-skills/skills/.experimental/fusion-issue-solving
   active_owner: equinor/fusion-skills/skills/.experimental/fusion-issue-solving
-  content_hash: sha256:14beb6e852f8129ba71def0d483ad58c1bf887720954e2a6cd84bca97e6a98a0
+  content_hash: sha256:eda8d53551d38579b316e969b06f0d85eb27a5d642ee65b4be67e57d4a5f1dac
 - kind: project-relative
   target: copilot
   value: .agents/skills/fusion-issue-task-planning

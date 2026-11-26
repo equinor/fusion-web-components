@@ -16,14 +16,14 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^10.6.0",
-    "@storybook/addon-docs": "^10.6.6",
-    "@storybook/builder-vite": "^10.6.6",
-    "@storybook/web-components-vite": "^10.6.6",
+    "@storybook/addon-docs": "^10.6.8",
+    "@storybook/builder-vite": "^10.6.8",
+    "@storybook/web-components-vite": "^10.6.8",
     "lit": "3.3.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "remark-gfm": "^4.0.1",
-    "storybook": "^10.6.6",
+    "storybook": "^10.6.8",
     "typescript": "^7.0.2",
     "vite": "^8.3.8"
   },
@@ -57,7 +57,7 @@
     "@equinor/fusion-wc-textarea": "workspace:*",
     "@equinor/fusion-wc-textinput": "workspace:*",
     "@equinor/fusion-wc-theme": "workspace:*",
-    "@storybook/react-webpack5": "^10.6.6",
+    "@storybook/react-webpack5": "^10.6.8",
     "playwright": "^1.65.0",
     "tslib": "^2.9.1",
     "vitest": "^5.1.0"

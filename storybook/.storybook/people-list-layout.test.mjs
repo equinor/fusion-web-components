@@ -45,7 +45,7 @@ for (const count of [1, 12]) {
           root.innerHTML = `<style>${styles}
             li { height: 48px; display: flex; align-items: center; }
             </style>
-            <div id="root">
+            <div id="root" class="active">
               <div id="list" class="active" style="max-height: 250px;">
                 <ul>${Array.from({ length: count }, (_, i) =>
                   `<li><span>Service Principal ${i + 1}</span></li>`).join('')}</ul>
@@ -84,6 +84,10 @@ for (const count of [1, 12]) {
         });
         const initial = await geometry();
         assert.ok(initial.footerTop >= initial.listBottom, 'Footer must not overlay the results');
+        assert.ok(
+          initial.footerTop - initial.listBottom <= 0.5,
+          'Footer must stay attached below the results',
+        );
         assert.ok(initial.rootBottom >= initial.footerBottom, 'Footer must reserve normal-flow space');
         assert.equal(initial.scrollHeight > initial.clientHeight, count > 1);
 

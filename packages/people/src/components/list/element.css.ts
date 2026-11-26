@@ -26,9 +26,8 @@ export const listStyle: CSSResult = css`
     margin: 0;
   }
   #search-meta {
-    position: absolute;
-    bottom: 0.4rem;
-    right: 1.4rem;
+    /* Reserve space below the scrollable results so account options never obscure a person. */
+    margin: 0.4rem;
     background-color: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
     color: ${unsafeCSS(theme.colors.text.static_icons__tertiary.getVariable('color'))};
     font-size: 0.75em;
@@ -37,6 +36,7 @@ export const listStyle: CSSResult = css`
     border-radius: 6px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.5em;
 

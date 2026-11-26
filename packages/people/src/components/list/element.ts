@@ -107,7 +107,7 @@ export class ListElement extends LitElement implements ListElementProps {
     });
 
     return html`
-      <div id="root">
+      <div id="root" class=${cssClasses}>
         <div id="list" class=${cssClasses} style="max-height: ${this.maxHeight}px;">
           <ul>
             ${this.renderListItems()}

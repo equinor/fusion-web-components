@@ -8,6 +8,7 @@
     "dev": "storybook dev",
     "build": "storybook build -o ./dist",
     "test": "vitest run",
+    "test:people-layout": "node --test .storybook/people-list-layout.test.mjs",
     "test:setup": "playwright install --only-shell chromium"
   },
   "keywords": [],

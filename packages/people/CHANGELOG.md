@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.2.7
+
+### Patch Changes
+
+- [#2569](https://github.com/equinor/fusion-web-components/pull/2569) [`8ea3bab`](https://github.com/equinor/fusion-web-components/commit/8ea3bab9a5ce525dd0c5bd79173966da228f69d0) Thanks [@odinr](https://github.com/odinr)! - Keep the people search result count and System accounts control in a footer below the scrollable results,
+  so person and service principal names remain unobstructed.
+
 ## 2.2.6
 
 ### Patch Changes

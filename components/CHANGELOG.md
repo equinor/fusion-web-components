@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`8ea3bab`](https://github.com/equinor/fusion-web-components/commit/8ea3bab9a5ce525dd0c5bd79173966da228f69d0)]:
+  - @equinor/fusion-wc-people@2.2.7
+
 ## 1.1.9
 
 ### Patch Changes

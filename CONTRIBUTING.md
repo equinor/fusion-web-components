@@ -47,3 +47,34 @@ To check a change in both schemes, start Storybook (`pnpm dev`), open a story an
 and use the browser DevTools to emulate `prefers-color-scheme: light` and `dark`
 (Chrome: **Rendering** > **Emulate CSS media feature prefers-color-scheme**). Switch the
 preference without reloading; colours should update immediately.
+
+### Preview dark mode packages locally
+
+Use the dedicated Verdaccio registry at `http://127.0.0.1:4873/` and an authenticated, user-only
+npm config at `$HOME/.config/fusion-dark-mode/npmrc`. The registry should allow authenticated reads and
+provide the unchanged dependencies through its npm uplink. Do not commit the config or credentials.
+
+Run from the web-components checkout. `pack` uses committed files from `HEAD` and works without
+Verdaccio. It calculates the normal Changesets release versions in a disposable copy, then uses
+pnpm to pack the versioned packages. Use a new output directory for each pack.
+
+```sh
+mkdir -p .tmp
+node scripts/dark-mode-preview.mjs pack .tmp/dark-mode-preview
+node scripts/dark-mode-preview.mjs publish .tmp/dark-mode-preview
+```
+
+`publish` writes only to the loopback registry and only under the `dark-mode` tag, never `latest`.
+It refuses to overwrite a different artifact at the same version. Keep the original tarballs to retry
+a partial publish. The command smoke-installs all published versions into a disposable project and
+prints the exact package names, versions and integrity hashes.
+
+To try a package in a disposable consumer checkout, use the exact preview version. For example:
+
+```sh
+npm install --save-exact @equinor/fusion-wc-theme@2.0.0 \
+  --registry=http://127.0.0.1:4873/ --@equinor:registry=http://127.0.0.1:4873/ \
+  --userconfig="$HOME/.config/fusion-dark-mode/npmrc"
+```
+
+Keep any resulting manifest or lockfile changes local. CI and normal releases do not use Verdaccio.

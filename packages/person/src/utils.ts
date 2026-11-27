@@ -54,11 +54,14 @@ const resolveDocumentColor = (variable: string): string =>
   getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 
 export const resolveFailedAvatarUrl = (customColor?: string) => {
+  const isDefault = customColor === undefined;
   const avatarColor =
     customColor ?? resolveDocumentColor('--eds-color-bg-danger-fill-emphasis-default');
   const surfaceColor = resolveDocumentColor('--eds-color-bg-neutral-surface');
+  // Keep the URLs distinct even when the caller supplies the same colour as the default.
+  const defaultMarker = isDefault ? ' data-fwc-failed-avatar="default"' : '';
   const svgString = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"${defaultMarker}>
       <style>
         @font-face {
             font-family: Equinor;
@@ -82,7 +85,7 @@ export const resolveFailedAvatarUrl = (customColor?: string) => {
 
   const url = `data:image/svg+xml;base64,${btoa(svgString)}`;
   // Only default avatars are rendered inline; a custom colour keeps the generated image.
-  if (customColor === undefined) {
+  if (isDefault) {
     failedAvatarUrls.add(url);
   }
   return url;

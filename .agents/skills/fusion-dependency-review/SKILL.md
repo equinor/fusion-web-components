@@ -1,15 +1,16 @@
 ---
 name: fusion-dependency-review
-description: 'Reviews dependency PRs using existing PR discussion, security, code-quality and impact research, and a repeatable verdict. USE FOR: dependency update PRs, Renovate/Dependabot PRs, library upgrades, fixing security-audit findings (npm, pnpm, Yarn, Bun, NuGet), "should we merge this update". DO NOT USE FOR: feature PRs or code reviews, dependency bot configuration, or merging without confirmation.'
+description: 'USE FOR: dependency update PRs, Renovate/Dependabot PRs, library upgrades, npm/pnpm/Yarn/Bun/NuGet security-audit fixes, "should we merge this update". DO NOT USE FOR: feature PRs or code reviews, dependency bot config, or merging without confirmation.'
 license: MIT
-compatibility: Requires GitHub MCP server for PR context. Uses fusion-issue-authoring for follow-up handoff when post-merge work is identified.
+compatibility: Works from host-supplied PR context (metadata, diff, comments) alone. Live lookup via GitHub MCP server or gh CLI only when the host grants GitHub access and context is missing. Uses fusion-issue-authoring for follow-up handoff.
 metadata:
-  version: "0.5.1"
+  version: "0.7.1"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
     - fusion-agent-content
     - fusion-pr-documentation
+    - fusion-github-review-resolution
   tags:
     - github
     - pull-request
@@ -17,7 +18,7 @@ metadata:
     - dependency-updates
     - security
   mcp:
-    required:
+    suggested:
       - github
 ---
 
@@ -39,7 +40,8 @@ Research PR discussion; assess security/quality/impact; give evidenced verdict.
 
 ## Required inputs
 
-Owner/repo; PR number/URL or copied package/version/files/CI summary; optional concerns.
+Owner/repo; PR number/URL, host-prefetched PR context (metadata, diff, comments/threads, CI) or copied
+package/version/files/CI summary; optional concerns. Prefetched context is first-class, sufficient input.
 Missing/ambiguous target: ask minimum question; known repo: GitHub MCP shortlist
 (number/title/package/author/CI). Never guess; return `Awaiting user PR selection`.
 For clarification read `references/questions.md`; read and apply `agents/target-pr-advisor.md`.
@@ -51,8 +53,11 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
 
 - Repo owns commits/validation/changesets/PRs/refresh. Read its rules at point of use.
 - No secrets/tokens; never invent versions, changelog, sources, audit/security or CI passes.
-- Live PR: fetch comments and review threads before analysis; retrieval failure stops analysis.
-  One packet; no per-lens refetch or dismissing inconvenient concerns.
+- PR context: use host-prefetched metadata/diff/comments/threads first. Fetch live via `gh`/GitHub MCP only
+  for missing context and only when host grants GitHub access. Never probe auth (`gh auth status`,
+  unauthenticated `curl`); absent live auth never stops analysis when prefetched context is supplied.
+  Interactive live PR without prefetched discussion: retrieval failure stops analysis. Gaps lower confidence;
+  report them. One packet; no per-lens refetch or dismissing inconvenient concerns.
 - Interactive live PR: authorized research checkpoint comment before branch mutation/rebase/push;
   final verdict before approval/hold/decline/merge. Posting unavailable/unauthorized: stop
   affected actions; report blocked PR record. Never skip checkpoints.
@@ -64,9 +69,18 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
   unless explicitly resolved/rebutted with evidence.
 - Licence/terms change: classify per `references/unattended-updates.md`. Routine (permissive ->
   permissive, or CI/build-only tooling without new use restrictions): evidence note, no HOLD.
+  Missing-file exceptions below require newly introduced package or verified unchanged material terms
+  across installed-to-target interval. Actual transitions: normal licence-change tiers; unknown interval: HOLD.
+  Missing tarball licence file with matching published/exact-version upstream permissive declarations
+  and applicable text, no conflicts: routine note; preserve notices and stricter repo/legal policy, never infer sibling coverage.
+  Matching published/exact-version upstream permissive declarations without text or conflicts: only a produced,
+  maintainer-only-merged PR may use visible `Licence/terms change, merging accepts it:` flag naming
+  package/version, SPDX licence, `no licence file`, checked URLs and missing text; otherwise HOLD.
   Copyleft, commercial/dual/keys/paid, source-available/non-commercial/field-of-use, narrowed
-  shipped/linked terms, unknown terms or unsure: HOLD until maintainer/legal owner explicitly
-  accepts. CI/API compatibility cannot waive acceptance.
+  shipped/linked terms: HOLD until maintainer/legal owner explicitly accepts. Unknown, undeclared,
+  conflicting or uncorroborated terms: HOLD, even maintainer-only output. CI/API compatibility cannot waive
+  acceptance. Produced PR only a maintainer merges (no auto/agent merge): verified needs-a-human change
+  gets visible "merging accepts it" flag, not HOLD; other blockers remain.
 - No repository-wide rule downgrades/disables, weakening glob/path overrides or removed CI
   checks to get green. Broad suppression is quality `blocking` even with green CI. Only narrow
   inline-reason suppressions. New defaults: preserve behaviour with first-class opt-outs;
@@ -114,6 +128,11 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
 8. Draft `assets/verdict-template.md.hbs`; interactive live PR: post before decision action.
    Explicit follow-up: propose `fusion-issue-authoring` handoff as `Task`, `Bug` or `User Story`.
    Maintainer decides approve/hold/decline/create follow-up; act only as authorized.
+   Post-PR review gate belongs to publisher layer: interactive publisher, before requesting human review of
+   an existing or replacement PR, applies repository-local review-gate policy through installed
+   `fusion-github-review-resolution`; host-owned publication: host runs gate, worker returns verdict only. Research lenses/verdict are not a completed Copilot PR
+   review. Missing companion/tooling blocks the gate; use only its documented unavailability exception.
+   Keep dependency verdict/licence/CI blockers independent; a passed gate never waives them or grants mutations.
 
 ## Expected output
 

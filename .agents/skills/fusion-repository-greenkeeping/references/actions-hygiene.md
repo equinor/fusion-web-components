@@ -9,11 +9,11 @@ rewrite a template-owned file outside that lifecycle.
 
 - Inventory `git ls-files .github/workflows .github/actions '**/action.yml' '**/action.yaml' CODEOWNERS .github/CODEOWNERS docs/CODEOWNERS`.
   Record triggers, jobs, `permissions`, `uses:` refs, runner labels, secret/variable **names**,
-  and whether `.github/workflows/actions.lock` exists and which workflows it covers.
+  and whether `.github/workflows/actions.lock` exists and which workflows it lists.
 - Record local conventions first (e.g. `AGENTS.md` says tags allowed for `actions/*`,
   org ruleset requires SHA pins, repo adopted workflow lockfile). Deliberate choices are respected conventions, not findings.
-- Static by default. `actionlint` and `zizmor` run repo-local config and may contact
-  network: run only after maintainer approves exact command. Prefer `zizmor --offline`;
+- `actionlint` and `zizmor` run repo-local config and may contact network: run per host
+  permissions (interactive: once maintainer agrees). Prefer `zizmor --offline`;
   never supply a token for online audits. Report unrun tools as "not run".
 - Repository/org settings (default token permissions, rulesets, required checks,
   environment protections, fork-PR approval) need admin read: **unknown** unless
@@ -27,9 +27,9 @@ rewrite a template-owned file outside that lifecycle.
 | Privileged trigger runs PR code | `pull_request_target` or `workflow_run` checks out PR head (`ref: ${{ github.event.pull_request.head.sha }}`, `head.ref`, artifact from untrusted run) then builds, installs or runs scripts | high | Split: untrusted build on `pull_request`, privileged step consumes reviewed output only |
 | Broad token permissions | `permissions: write-all`, or write scopes on jobs that only read | medium | Workflow-level `contents: read`; grant writes per job |
 | No explicit `permissions` | Neither workflow nor job declares it | unknown → medium if org default known write | Declare least privilege; default depends on org/repo setting |
-| Mutable third-party ref | `uses: owner/action@main\|master\|<branch>` in workflow **not** covered by lockfile | medium | Onboard workflow to [lockfile](#workflow-lockfile); until then pin release commit SHA + version comment |
-| Tag-pinned third-party action | `@v4` on non-GitHub-owned action in workflow **not** covered by lockfile | low suggestion; confirmed if local policy requires SHA | Onboard to lockfile; until then full SHA + `# vX.Y.Z` comment |
-| Unpinned cross-repo reusable workflow | `jobs.<id>.uses: owner/repo/.github/workflows/x.yml@<tag\|branch>`; lockfile never covers these calls | medium | Full commit SHA + version comment, lockfile or not |
+| Mutable third-party ref | `uses: owner/action@main\|master\|<branch>` in workflow **not** listed in lockfile | medium | Onboard workflow to [lockfile](#workflow-lockfile); until then pin release commit SHA + version comment |
+| Tag-pinned third-party action | `@v4` on non-GitHub-owned action in workflow **not** listed in lockfile | low suggestion; confirmed if local policy requires SHA | Onboard to lockfile; until then full SHA + `# vX.Y.Z` comment |
+| Unpinned cross-repo reusable workflow | `jobs.<id>.uses: owner/repo/.github/workflows/x.yml@<tag\|branch\|short SHA>`; lockfile never covers these calls | medium | Full 40-character commit SHA + version comment, lockfile or not |
 | `secrets: inherit` across repos | Reusable workflow from another repo/owner receives all secrets | medium | Pass named secrets only |
 | Persisted checkout credentials | `actions/checkout` without `persist-credentials: false` in job that later runs untrusted code or uploads workspace artifacts | low | `persist-credentials: false` unless later step pushes |
 | Hard-coded credential | Literal token/password/connection string in YAML | high | Remove, rotate through owners, use secret; never print value |
@@ -47,32 +47,51 @@ full-length commit SHA" for them ([concept](https://docs.github.com/en/actions/c
 [enforcing](https://docs.github.com/en/actions/how-tos/administer/enforce-workflow-lockfiles)).
 Lockfile present → adopted convention, preferred over inline pins.
 
-**Covered** = workflow path is key under `workflows:` in `actions.lock`. Decide each `uses:` ref in order:
+**Policy scope** (Fusion Core workflow policy: every workflow lockfile-covered and verified, every reusable-workflow
+call full-SHA-pinned): maintainer states it, repo instructions adopt it, or `actions.lock` exists. Outside scope:
+skip lockfile table, no coverage/verify finding or status; [security checks](#security-checks) SHA-pin rules only,
+onboarding at most optional alternative in their fix.
 
-1. Cross-repo reusable-workflow call (`jobs.<id>.uses: owner/repo/...`): never covered → full commit SHA + version comment.
-   Its own dependencies need lockfile in source repo; uncovered source → unknown, blocks under **Require lockfile**.
-2. Step action in covered workflow: lockfile pins it → tag/branch ref expected; never recommend inline SHA pin.
+**Listed** = workflow path is key under `workflows:` in `actions.lock`; runner uses its pins. **Verified** = passing
+`gh actions-lock --verify` for audited commit, from maintainer-supplied output or existing CI check run on that commit.
+Listed alone, `--verify-local` (coverage only, no provenance), failed, partial or unrun verify → **not verified**;
+never report compliant. Skill never runs `gh actions-lock`: give maintainer exact command. Decide each ref in order:
+
+1. Cross-repo reusable-workflow call (`jobs.<id>.uses: owner/repo/...`): never covered → full 40-character commit SHA
+   with version comment, in policy scope too; caller workflow still needs own entry. Called repository owns its action
+   lockfile; unverified callee → unknown,
+   blocks under **Require lockfile**. Reviewed exception for unpinned call: list as exception, never compliant.
+2. Step action in listed workflow: lockfile pins it → tag/branch ref expected; never recommend inline SHA pin.
    Existing inline pins acceptable; removing them is optional cleanup, not finding. Check drift table below instead.
-3. Step action in uncovered workflow, or no lockfile: SHA-pin rules in [security checks](#security-checks) apply.
-   Offer onboarding (`gh actions-lock <workflow-path>`) as preferred alternative when lockfile exists or repo adopts one.
+3. Step action in unlisted workflow, or no lockfile: SHA-pin rules in [security checks](#security-checks) apply.
+   Policy scope: offer onboarding (`gh actions-lock <workflow-path>`) as preferred fix; inline SHA pin never resolves
+   coverage finding. Outside scope: no lockfile finding; onboarding at most optional alternative in SHA-pin fix.
+4. Same-repo `$/path`: runs at workflow commit, needs no own entry → no lockfile finding; `gh actions-lock --verify`
+   reports any missing remote-dependency entries.
+   `./path` with remote dependencies → finding (table). `./path` with none → no lockfile finding.
+5. `docker://` → outside lockfile check; coverage says nothing about image.
 
-Run drift/readiness checks only when `actions.lock` exists or repo instructions adopt it; no lockfile and no
-adoption → skip table, SHA-pin rules only.
+Policy scope → run table. Lockfile coverage, verify and provenance failures have no exception path.
 
 | Check | Confirmed when | Priority |
 | --- | --- | --- |
-| Workflow missing from lockfile | Workflow with `uses:` dependencies absent from `workflows:` | medium; low while repo intentionally onboards incrementally |
-| Workflow without `uses:` not onboarded | Workflow with no `uses:` absent from `workflows:`; **Require lockfile** blocks it if targeted | unknown unless policy targeting evidence supplied → then high |
-| `uses:` drift | Covered workflow's `uses:` ref absent from its `workflows:` list or `dependencies:` | high: run fails |
-| Local action uses actions | `uses: ./path` action calls other actions without lockfile entries for that workflow | medium: run fails at that step |
+| Workflow not listed | Any workflow, including run-only (no `uses:`) or reusable-call-only, absent from `workflows:`; **Require lockfile** blocks it if targeted | medium; high only with admin evidence that **Require lockfile** targets it; policy scope alone stays medium |
+| Lockfile not verified | No passing `gh actions-lock --verify` evidence for audited commit (listed only, `--verify-local`, partial or unrun) | medium, class unknown, status **not verified**; maintainer runs `gh actions-lock --verify`, supplies output |
+| Verify fails | Supplied verify output reports missing pins or stale entries | high: run fails |
+| Provenance failure | Verify reports changed `owner_id`/`repo_id`, moved full tag or unreachable locked commit | high; investigate before relock |
+| `uses:` drift | Listed workflow's `uses:` ref absent from its `workflows:` list or `dependencies:` | high: run fails |
+| `./` local action uses actions | `uses: ./path` action calls remote actions without lockfile entries for that workflow | medium: run fails at that step |
 | No verify check | No PR workflow runs `gh actions-lock --verify` on `.github/workflows/**` and `action.yml`/`action.yaml` changes | medium |
 | No lockfile code owner | Effective owner of `.github/workflows/actions.lock` is none: last matching `CODEOWNERS` pattern wins, so `* @team` fallback counts as owned | low; code-owner approval requirement unknown without ruleset evidence |
 | Tag-only allowlist | Allowed-actions list uses tags (`actions/checkout@v6`) once workflows are onboarded; checked against locked SHAs | unknown without admin evidence |
 
-Never hand-edit `actions.lock`. Drift fix: change workflow, then regenerate with exact `gh actions-lock`
-command approved by maintainer (needs extension and network); `--accept-moved` only after reviewing upstream
-history, never in automation. Generating lockfiles and organization settings (e.g. **Require lockfile**
-policy) are maintainer actions outside this audit. Review changed `commit`, `owner_id` or `repo_id` like dependency bumps.
+Never hand-edit `actions.lock`. Fix by changing workflow, then maintainer regenerates with exact `gh actions-lock`
+command (needs extension and network) and reruns `gh actions-lock --verify`. Moved branch/partial-version ref or moved
+full tag: `--relock` after reviewing upstream history. Rewritten history: `--accept-moved` only after reviewing
+upstream history, never in automation. `./` with remote dependencies: maintainer may migrate to `$/` with
+`gh actions-lock --migrate-local-actions` after reviewing behavior difference (workspace checkout vs workflow commit);
+never migrate automatically. Generating lockfiles and organization settings (e.g. **Require lockfile** policy) are
+maintainer actions outside this audit. Review changed `commit`, `owner_id` or `repo_id` like dependency bumps.
 
 ## Currency checks
 
@@ -101,7 +120,8 @@ Verify against sources at check date; record date. Never rely on remembered depr
 ## Selected fixes
 
 Edit only selected findings' files. Preserve triggers, environments, concurrency and local steps.
-Lockfile-covered workflows: never add inline pins; follow [lockfile rules](#workflow-lockfile).
+Listed workflows: never add inline pins; follow [lockfile rules](#workflow-lockfile). Lockfile regeneration and
+verify stay maintainer follow-ups with exact commands; never run `gh actions-lock`.
 Pin bumps: resolve SHA from action's release tag read-only (`gh api repos/<o>/<a>/git/ref/tags/<tag>`),
 show tag and SHA; annotated tags need peeled commit. Validate: YAML parses, `actionlint` if approved,
 syntax-check changed `run:` blocks for their effective shell (step `shell:`, `defaults.run.shell`, runner OS default:
@@ -116,4 +136,5 @@ After SHA pinning, check Dependabot/Renovate coverage per [Dependabot](dependabo
 > with write token. Fix: `env: TITLE: ${{ github.event.pull_request.title }}` and `echo "$TITLE"`.
 
 Avoid: "Pin every `actions/*` to SHA (high)" when repo instructions accept GitHub-owned tags,
-or when `actions.lock` covers the workflow.
+or when `actions.lock` lists the workflow. Avoid: "`ci.yml` compliant" because its path is a lockfile key;
+without passing `gh actions-lock --verify` evidence report **not verified**.

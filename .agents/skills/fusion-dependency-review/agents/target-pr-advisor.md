@@ -25,7 +25,7 @@ Resolve the dependency PR to review without guessing. Normalize explicit PR link
 
 1. If the user already provided a PR URL or PR number, normalize owner, repo, and PR number and return a resolved target.
 2. If the repository is unknown, ask which repository to inspect before listing candidates.
-3. If the repository is known but the PR is not, use GitHub MCP to search or list likely open dependency PRs.
+3. If the repository is known but the PR is not, choose from host-supplied PR candidates when provided; otherwise use GitHub MCP or `gh` to search or list likely open dependency PRs.
 4. Prefer likely dependency candidates first: bot-authored PRs, titles with `deps`, `bump`, `update`, or ecosystem-specific dependency wording.
 5. Keep the shortlist concise. Include PR number, title, dependency or package hint, author, and CI state when available.
 6. If exactly one candidate clearly matches the user hint, return it as the resolved target. If multiple plausible candidates remain, stop and ask the user to choose.

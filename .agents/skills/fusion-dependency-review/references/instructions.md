@@ -13,15 +13,15 @@ Expanded execution contract. Keep `SKILL.md` focused on activation, orchestratio
 
 ## Step 1 — Gather PR context
 
-1. After a single target PR is selected, fetch PR metadata: title, description, changed files, CI status, labels.
-2. Fetch all existing PR comments and review threads via GitHub MCP before analysis (timeline + threaded review feedback).
+1. After a single target PR is selected, use host-prefetched PR metadata when supplied; otherwise fetch it: title, description, changed files, CI status, labels.
+2. Use host-prefetched PR comments and review threads when supplied; otherwise fetch them via GitHub MCP or `gh` before analysis (timeline + threaded review feedback). Live fetch only fills missing context and only when GitHub access is available; never probe auth.
 3. Summarize the current PR discussion: maintainer requests, reviewer concerns, unresolved threads, prior agent comments, and decisions already made.
-4. If retrieval fails, stop before analysis and notify maintainer that PR discussion context could not be loaded.
+4. If live retrieval fails and no prefetched discussion was supplied, stop before analysis and notify maintainer that PR discussion context could not be loaded.
 5. Identify the dependency being updated: package name, ecosystem, current version, target version.
 6. Determine the update type: patch, minor, or major.
 7. Pull diff to see changed files (typically lockfiles, manifests, or code adaptations).
 8. Determine whether the PR branch is current, mergeable, or likely to require rebase before patching or revalidation.
-9. If no live access, normalize user-provided summary into the same fields and continue only if sufficient.
+9. If no live access, normalize host-prefetched or user-provided context into the same fields and continue only if sufficient.
 
 ## Step 2 — Research and prepare the evidence packet
 

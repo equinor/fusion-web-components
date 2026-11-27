@@ -17,7 +17,7 @@ Do not use this agent mode for feature requests, user stories, or generic enable
 ## Instructions
 
 1. Confirm routed type is `Bug`.
-2. Draft locally in `.tmp/BUG-<context>.md`.
+2. Draft `BUG-<context>.md` in host scratch storage, or return inline if unavailable.
 3. Structure draft with:
    - Description
    - Steps to reproduce
@@ -38,7 +38,7 @@ No renderer ships with the skill.
 
 ## Expected output
 
-- Draft file path in `.tmp/`
+- Host draft path or inline draft
 - Proposed title/body summary
 - Bug-specific triage notes (repro clarity + impact)
 

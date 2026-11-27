@@ -11,7 +11,7 @@ Use GitHub MCP tools for high-level PR operations and any dedicated review-threa
 | Request reviewer / update PR metadata | `mcp_github_update_pull_request` | Works for collaborator reviewers and standard PR updates. |
 | Create or submit PR review | `mcp_github_pull_request_review_write` | Handles pending review lifecycle actions. |
 | Add general PR comment | `mcp_github_add_issue_comment` | Adds issue-style comment to PR conversation, not inline thread reply. |
-| List review threads and comments | `assets/pull-request-review-threads.graphql` | Use with `gh api graphql -f query=@assets/pull-request-review-threads.graphql` for thread-level context. |
+| List review threads and comments | `assets/pull-request-review-threads.graphql` | Use with `gh api graphql -F query=@assets/pull-request-review-threads.graphql` for thread-level context. Use `-F` (reads `@path` from a file); `-f` sends the literal text `@path`. |
 | Count unresolved threads for specific review id | `assets/unresolved-thread-count-for-review.graphql` | Post-process response (for example with `jq`) to filter by review id and unresolved state. |
 | Reply to a review thread | `Dedicated MCP review-thread reply tool`, otherwise `assets/add-pull-request-review-thread-reply.graphql` | Prefer the MCP tool when available; otherwise use the bundled thread-scoped mutation instead of ad hoc scripts. |
 | Resolve a review thread | `Dedicated MCP review-thread resolve tool`, otherwise `assets/resolve-review-thread.graphql` | Use the matching structured tool for the current client/session. ⚠️ GraphQL note: `resolveReviewThread` uses `threadId`, not `pullRequestReviewThreadId`. |
@@ -49,5 +49,7 @@ Review-resolution workflows make multiple GraphQL mutation calls (reply + resolv
    - By default the script refuses to add another authenticated-user reply to a thread that already contains one; use `--allow-additional-reply` only after manual inspection.
    - Example dry-run:
       - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --include-resolved`
+   - Use `--thread-id <id>` to target one thread so each thread gets its own `--message` / `--message-file`.
+   - Raw mutations: pass the query file with `-F query=@assets/add-pull-request-review-thread-reply.graphql -F threadId=<id> -f body="<text>"`, and `-F query=@assets/resolve-review-thread.graphql -F threadId=<id>` to resolve. Use `-f` for free-text values so a leading `@` is not read as a file.
    - Example apply (write the multi-line reply to a file first, so the banner and any `<details>` block survive):
       - `skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh --owner equinor --repo fusion-skills --pr 27 --review-id 3837647674 --apply --message-file reply.md`

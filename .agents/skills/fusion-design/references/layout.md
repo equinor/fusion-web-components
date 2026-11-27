@@ -92,3 +92,4 @@ When tabs are used, each tab panel controls its own overflow independently. Only
 - Pick one pattern per page — never mix on the same page
 - The header always matches the content width (centered header + full-width content is not allowed)
 - Don't set a fixed pixel height on the content area
+- Changing an existing page to a different pattern crosses a threshold — stop before writing code (even when requested) and follow the threshold check in `decision-tree.md`; never switch patterns as a side effect

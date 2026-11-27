@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.2.3 - 2026-11-21
+
+### patch
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Add ranked AI writing-tell checks, untrusted-input guard, and trigger-only description.
+
+
+  - Add untrusted-input guard to `SKILL.md` Safety & constraints
+  - Add ranked structural AI-tell rules and 5-dimension pre-handoff check to `references/writing-for-people.md`
+  - Trim workflow summary from `description` for trigger-focused discovery
+
+- [#404](https://github.com/equinor/fusion-skills/pull/404) [`158966d`](https://github.com/equinor/fusion-skills/commit/158966dad86edd92a86f3ba3270c3f538c3f7e44) - Add rule to keep GitHub-facing prose unwrapped, one logical line per paragraph or list item.
+
+
+  resolves equinor/fusion-skills#298
+
+## 0.2.2 - 2026-11-21
+
+### patch
+
+- [#480](https://github.com/equinor/fusion-skills/pull/480) [`3a91663`](https://github.com/equinor/fusion-skills/commit/3a916635f0cc0ef996746bc631767c68f7e63943) - Keep content shaping usable with supplied context while handing publication authority and scratch storage to the host.
+
+
+  resolves equinor/fusion-skills#480
+  refs equinor/fusion-skills#479
+
 ## 0.2.1 - 2026-11-08
 
 ### patch

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.5 - 2026-11-21
+
+### patch
+
+- [#480](https://github.com/equinor/fusion-skills/pull/480) [`3a91663`](https://github.com/equinor/fusion-skills/commit/3a916635f0cc0ef996746bc631767c68f7e63943) - Accept source-backed prefetched context and host-approved source access without requiring live MCP, preserving domain evidence boundaries and honest uncertainty.
+
+
+  resolves equinor/fusion-skills#480
+  refs equinor/fusion-skills#479
+
 ## 0.4.4 - 2026-11-01
 
 ### patch

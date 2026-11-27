@@ -17,7 +17,7 @@ Do not use this agent mode for bugs, user stories centered on role narratives, o
 ## Instructions
 
 1. Confirm routed type is `Feature`.
-2. Draft locally in `.tmp/FEATURE-<context>.md`.
+2. Draft `FEATURE-<context>.md` in host scratch storage, or return inline if unavailable.
 3. Structure draft with:
    - Problem statement
    - Scope (in/out)
@@ -37,7 +37,7 @@ No renderer ships with the skill.
 
 ## Expected output
 
-- Draft file path in `.tmp/`
+- Host draft path or inline draft
 - Proposed title/body summary
 - Feature-specific scope and acceptance summary
 

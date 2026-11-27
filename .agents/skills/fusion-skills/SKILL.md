@@ -1,10 +1,10 @@
 ---
 name: fusion-skills
-description: 'Routes Fusion skill lifecycle work. USE FOR: find, install, update, remove, sync, greenkeep or author skills; report skill failures; evaluate greenkeeping runs and deduplicate feedback in editors or agent runtimes. DO NOT USE FOR: repository workflows (use fusion-repository-greenkeeping), unrelated issues, issue solving, PR reviews or task planning.'
+description: 'Routes Fusion skill lifecycle work. USE FOR: find, install, update, remove, sync, greenkeep, author or diagnose installed skills (trigger, drift or MCP issues); report skill failures; evaluate greenkeeping runs. DO NOT USE FOR: repository workflows (use fusion-repository-greenkeeping), unrelated issues, issue solving, PR reviews or task planning.'
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to `references/skill-catalog.md` and promotes Fusion MCP when unavailable.
 metadata:
-  version: "0.2.5"
+  version: "0.4.0"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -62,7 +62,9 @@ Load only routed agent and branch resources (`skill-catalog.md` only on MCP fail
 - In report/feedback mode, read `references/run-feedback.md` for attribution, dedupe, authority, reconciliation and outcomes.
 - Before filling a failure report, read `assets/issue-templates/skill-workflow-failure-bug.md.hbs`, its slot header, `assets/partials/agent-content/README.md` and every named partial. Fill by hand; no renderer ships.
 
-Unattended runs: `references/service-mode-contract.md` defines how a skill runs under a service task (given inputs, allowed actions, stop rules, proposals, fingerprints). Load it only when a skill receives a service task or an author makes a skill service-ready.
+**Runtime boundary:** skills own checks, remediation craft, verification and output shape; active host runtime owns execution authority, confirmations/approvals, branches/commits, labels, credentials and remote publishing. Interactive hosts default to non-mutating advice until developer approves changes; automated hosts work within their authorized scope, tools and verification commands. When a skill runs in an automated host, or applies greenkeeping markers/labels, read `references/runtime-boundary.md`.
+
+Service tasks: `references/service-mode-contract.md` defines the `fusion-service-mode/1` input/proposal shape (given inputs, stop rules, proposals, fingerprints). Load it only when a skill receives a service task or an author makes a skill service-ready.
 
 ## MCP tools
 
@@ -78,7 +80,7 @@ Use `mcp_fusion_skills`:
 | Find or discover the right skill; list installed skills | `agents/discovery.agent.md` |
 | Install, update, remove or check skills; route skill-update automation | `agents/greenkeeper.agent.md` |
 | Create, author, or improve a skill | `agents/author.agent.md` |
-| Inspect a skill for quality issues, or report a skill failure | `agents/warden.agent.md` |
+| Inspect a skill for quality issues, diagnose installed skill setup, or report a skill failure | `agents/warden.agent.md` |
 | Evaluate a greenkeeping run; report skill bugs or guidance gaps | `agents/warden.agent.md` (feedback mode) |
 
 Skill bug reports from the warden are written for human readers in the `fusion-agent-content` shape (banner, TL;DR, folded details and evidence).

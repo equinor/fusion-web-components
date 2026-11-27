@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.4.1 - 2026-11-21
+
+### patch
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Add rationalization-prevention table, untrusted-input guard, and trigger-only description.
+
+
+  - Guard against executing instructions embedded in issue bodies or discussions
+  - Add `Excuse | Reality` fresh-evidence verification table to `SKILL.md`
+  - Trim workflow summary from `description`
+
+- [#404](https://github.com/equinor/fusion-skills/pull/404) [`158966d`](https://github.com/equinor/fusion-skills/commit/158966dad86edd92a86f3ba3270c3f538c3f7e44) - Add safety rule against committing or pushing directly to default or protected branches.
+
+
+  resolves equinor/fusion-skills#183
+
+## 0.4.0 - 2026-11-21
+
+### minor
+
+- [#484](https://github.com/equinor/fusion-skills/pull/484) [`cfb2f7b`](https://github.com/equinor/fusion-skills/commit/cfb2f7bfdce007805948b18af651268abc63b7d9) - Separate implementation craft from host-managed worktree, assignment and publication steps.
+
+
+  - Add a runtime boundary: when the host supplies the worktree/branch and owns publication, skip worktree questions, self-assignment, `.tmp/` drafts, PR creation and the post-PR review gate, and return PR content to the host.
+  - Interactive runs keep live fetch, draft confirmation and review-gate guidance.
+
+  resolves equinor/fusion-skills#481
+  refs equinor/fusion-skills#479
+
+## 0.3.1 - 2026-11-17
+
+### patch
+
+- [#468](https://github.com/equinor/fusion-skills/pull/468) [`7131d1a`](https://github.com/equinor/fusion-skills/commit/7131d1adaa967d9b2454fb7cbaede1664785a9b3) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Choose PR base branches from verified repository and task evidence instead of guessing `main`.
+
+
+  fixes equinor/fusion-skills#466
+
+- [#464](https://github.com/equinor/fusion-skills/pull/464) [`a3db67d`](https://github.com/equinor/fusion-skills/commit/a3db67ddc14a528ee57a09f4dc783b66fcd74e4d) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Honor session-confirmed issue-specific worktrees without repeating the worktree question.
+
+
+  resolves equinor/fusion-skills#463
+
+## 0.3.0 - 2026-11-15
+
+### minor
+
+- [#462](https://github.com/equinor/fusion-skills/pull/462) [`bd6e289`](https://github.com/equinor/fusion-skills/commit/bd6e289f544ab54ddbeb2736d0f61c439407ea3f) - Hand off applicable post-publication Copilot review gates to the review-resolution companion and preserve review authority, critical-finding stops and documented exceptions. PRs open as draft and are marked ready only when ready for human review; the agent never waits for CI checks.
+
+
+  refs equinor/fusion-core-tasks#3013
+
 ## 0.2.2 - 2026-11-01
 
 ### patch

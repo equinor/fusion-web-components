@@ -1,5 +1,70 @@
 # Changelog
 
+## 0.6.1 - 2026-11-21
+
+### patch
+
+- [#496](https://github.com/equinor/fusion-skills/pull/496) [`926b2c7`](https://github.com/equinor/fusion-skills/commit/926b2c785a838ee56fff101f656804061a92a0a9) - Recover APM Sync update branches from default-branch merge conflicts
+
+
+  - Reset the conflicted merge to the default branch tree and commit it, so `apm update` regenerates cleanly without force-pushing
+  - List superseded update-branch commits in the job summary
+
+  resolves equinor/fusion-skills#477
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Trim workflow summary from `SKILL.md` description to pure trigger and anti-trigger cues (under 400-char budget).
+
+## 0.6.0 - 2026-11-21
+
+### minor
+
+- [#488](https://github.com/equinor/fusion-skills/pull/488) [`d8375b3`](https://github.com/equinor/fusion-skills/commit/d8375b3257243816be28b004e4df61967f215ca0) - Make repository greenkeeping runtime-agnostic.
+
+
+  - Remove the unattended-rollout exclusion; automated hosts may edit and commit workflows, APM manifests and `CODEOWNERS` within their authorized task scope.
+  - Replace per-command approval locks for `actionlint`, `zizmor` and `apm` with host permissions; interactive sessions still apply candidates only after approval.
+  - Publish warden feedback per host policy and scope `☘️ Fusion Greenkeep` label creation to publishing hosts.
+
+  resolves equinor/fusion-skills#483
+  refs equinor/fusion-skills#479
+
+- [#476](https://github.com/equinor/fusion-skills/pull/476) [`05f2a51`](https://github.com/equinor/fusion-skills/commit/05f2a5120558c9cfe49ae247ed8b027d9b830d05) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Align the Actions audit and template lifecycle with the Fusion Core workflow lockfile policy
+
+
+  - Define lockfile policy scope: the maintainer states it, repository instructions adopt it, or `actions.lock` exists. Outside scope, today's SHA-pin advice is unchanged
+  - In scope, report every workflow that is not in the lockfile as a finding, including run-only workflows and workflows that only call a reusable workflow. These findings are medium; they are high only with admin evidence that **Require lockfile** targets the workflow
+  - Separate "listed" from "verified": compliance needs passing `gh actions-lock --verify` evidence for the audited commit. A lockfile key alone, `--verify-local`, or a failed, partial or unrun verification is reported as **not verified**
+  - Add findings for verify failures and provenance failures (changed `owner_id`/`repo_id`, moved full tag, unreachable locked commit). These have no exception path
+  - Keep full 40-character SHAs for cross-repository reusable-workflow calls. The called repository owns its lockfile. A reviewed exception is listed, never reported as compliant
+  - Add reference rules: `$/` local actions run at the workflow commit and get no lockfile finding. A `./` local action with remote dependencies is a finding, and only a maintainer migrates it to `$/` after review. `docker://` references are outside the check
+  - The template lifecycle reports lockfile onboarding and `gh actions-lock --verify` as a required maintainer follow-up with exact commands. The skill never runs `gh actions-lock`
+
+  resolves equinor/fusion-core-tasks#3163
+
+### patch
+
+- [#474](https://github.com/equinor/fusion-skills/pull/474) [`1eda6ad`](https://github.com/equinor/fusion-skills/commit/1eda6ad89f3fbeb5b84779984a07164eaf617f12) Thanks [@perkjelsvik](https://github.com/perkjelsvik)! - Align standalone APM workflow guidance and examples with shared CLI 0.36.1.
+
+
+  Add the carried-license migration procedure to the APM sync reference, inside the skill. It covers the additive migration required for older committed skills and requires separate cold install, update and audit checks.
+
+  Consumer rollout and live-run validation remain incomplete, so this release does not close the repair task.
+
+  refs equinor/fusion-core-tasks#3154
+  refs equinor/fusion-core-tasks#2892
+
+## 0.5.2 - 2026-11-15
+
+### patch
+
+- [#460](https://github.com/equinor/fusion-skills/pull/460) [`60e0935`](https://github.com/equinor/fusion-skills/commit/60e093565604263d1a3709696997fdddb620c7b3) - Point standalone APM Sync fill guidance at the shared APM CLI default 0.35.1.
+
+
+  - `apmVersion` guidance, the example raw inputs and the template comment use `0.35.1`
+  - Token-precedence source link moves to the unchanged v0.35.1 `token_manager.py`
+
+  resolves equinor/fusion-core-tasks#3003
+
 ## 0.5.1 - 2026-11-11
 
 ### patch

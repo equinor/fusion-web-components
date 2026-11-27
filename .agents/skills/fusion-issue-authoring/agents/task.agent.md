@@ -18,7 +18,7 @@ Do not use this agent mode when the request is clearly a bug, feature, or user-s
 1. Confirm routed type is `Task`.
 2. Start with a concise checklist of small tasks when request is broad.
 3. For multi-issue requests, define logical order and blockers before drafting.
-4. Draft locally in `.tmp/TASK-<context>.md`.
+4. Draft `TASK-<context>.md` in host scratch storage, or return inline if unavailable.
 5. Use appropriate task template variant (planning/research/spec/testing/documentation/ux/generic). Open with the banner, let `Objective` serve as the TL;DR, and end with the folded Details and References and evidence blocks (see Human-first output in `SKILL.md`).
 6. Include dependency notes and blocker mapping in the draft.
 7. Return draft summary for orchestrator review/publish flow.
@@ -39,7 +39,7 @@ No renderer ships with the skill.
 ## Expected output
 
 - Checklist (for broad task requests)
-- Draft file path in `.tmp/`
+- Host draft path or inline draft
 - Dependency plan (order + blockers)
 - Task-specific decomposition summary
 

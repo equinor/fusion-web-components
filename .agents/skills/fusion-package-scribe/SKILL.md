@@ -1,10 +1,10 @@
 ---
 name: fusion-package-scribe
-description: 'Improves public-export TSDoc and retrieval-friendly READMEs in TypeScript packages, with per-package review and commits. USE FOR: single-package or monorepo doc passes, TSDoc generation, README standardization, review council checks. DO NOT USE FOR: runtime changes, security scans, API reference sites, CI doc-generation replacement, non-TypeScript languages or auto-merging PRs.'
+description: 'Improves public-export TSDoc and retrieval-friendly TypeScript package READMEs. USE FOR: package/monorepo doc passes, TSDoc, README standardization and review council checks. DO NOT USE FOR: runtime edits, security scans, API sites, CI doc-generation replacement, non-TypeScript languages or auto-merge.'
 license: MIT
-compatibility: Requires file-system access and git CLI for commit operations. Works best in runtimes that support skill-local agents for parallel orchestration and review council. Falls back to inline sequential processing in single-agent runtimes. Benefits from fusion-code-conventions for convention-aware TSDoc quality.
+compatibility: Requires source access. Host owns git operations and scratch storage. Supports inline sequential processing without skill-local agents; benefits from fusion-code-conventions for convention-aware TSDoc quality.
 metadata:
-  version: "0.0.4"
+  version: "0.0.5"
   status: experimental
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -44,17 +44,16 @@ or replacing CI-based doc generation. Scope is TS/TSX doc comments and README on
 
 ## Required inputs
 
-Ask before proceeding if required inputs are missing or ambiguous:
+Resolve from task context; interactive sessions ask when required inputs are missing or ambiguous:
 - **Scope**: monorepo root or specific package path(s).
 - **Mode**: `single` or `sweep`; default `single` for one package path.
 
 When relevant: package glob/list filter, repo README template path, tracking
-issue, commit style (default
-`docs(<package>): `), batch size (default 5).
+issue and batch size (default 5).
 
 ## Defaults
 
-Commit prefix: `docs(<package-name>):`. Review council enabled for every package.
+Review council criteria apply to every package.
 README fallback: `references/readme-template.md`, only without repo template.
 
 ## Precedence and standards discovery
@@ -78,11 +77,11 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
 - Only doc comments and README edits; no runtime changes or invented API behavior.
 - Preserve valuable existing documentation; never discard it during replacement.
 - Never request, expose or store secrets/credentials.
-- No push, auto-merge or review bypass. No commit until all four council criteria pass.
+- Host owns edit/commit authority, branches, scratch storage, publishing and post-PR review. Interactive: confirm edits/commits unless already explicitly authorized. Automated: follow authorized task scope; mode or silence grants no authority.
+- No review bypass. Commit-ready only after all four council criteria pass; readiness never authorizes commit, push or merge.
 - After two failed reviews for a package, stop its loop and flag manual review.
-- Tracking-issue mutation requires explicit confirmation and completed summary;
-  never update it prematurely.
-- Respect `.gitignore`; never commit temporary files from `.tmp/`.
+- Tracking-issue mutation needs host-authorized publication and completed summary; never update prematurely.
+- Use host-provided scratch storage for discovery, plans, progress and reports; no fixed repository directory. Respect `.gitignore`; exclude scratch files and secrets from commits.
 
 ## Instructions
 
@@ -105,14 +104,14 @@ do not preload every candidate.
 Single: validate package path exists and contains TypeScript sources.
 Sweep: read root `package.json` or workspace config (`pnpm-workspace.yaml`,
 `lerna.json`, `turbo.json`), apply filter, sort by source-file count and write
-`.tmp/scribe-discovery-<context>.md`.
+`scribe-discovery-<context>.md` in host scratch storage.
 
 ### Step 3 — Plan execution (sweep mode only)
 
 For sweep, read and apply `agents/orchestrator.agent.md` to batch smaller packages
 first, estimate tokens (~100 per source file, ~200 per export), flag packages
 exceeding 60% of context window for barrel-first special handling, and write
-`.tmp/scribe-plan-<context>.md`. Preserve package context isolation/progress and
+`scribe-plan-<context>.md` in host scratch storage. Preserve package context isolation/progress and
 batch-failure stop. Skip coordinator in single mode.
 
 ### Step 4 — Process each package
@@ -138,23 +137,20 @@ independent pass/fail evidence for all four criteria:
 Any failure returns package to Step 4; two failures require manual review,
 not another retry or premature commit.
 
-### Step 6 — Commit
+### Step 6 — Prepare commit handoff
 
-Only after council passes and repo-required validation:
+Only after council passes and repo-required validation, hand documentation-only changes to host commit workflow:
 1. Stage only documentation files (`.ts`/`.tsx` doc-comment changes, `README.md`).
-2. Use repo commit rules, defaulting to:
-   ```
-   docs(<package-name>): improve TSDoc and README documentation
-   ```
-3. Do not push; leave that to user or PR workflow.
+2. Follow host authority and repo commit rules; commit only when authorized.
+3. Push/PR/merge remain with host workflow, outside documentation authority.
 
 ### Step 7 — Report
 
-Write `.tmp/scribe-report-<context>.md`: package pass/fail/skipped status, exports
+Write `scribe-report-<context>.md` in host scratch storage: package pass/fail/skipped status, exports
 documented, council pass rates, manual-review flags and commits. Update supplied
-tracking issue only after explicit confirmation.
+tracking issue only through host-authorized publication.
 
 ## Expected output
 
 Public-export TSDoc and consistent README per processed package; one documentation-only
-commit per passed package; summary in `.tmp/`; confirmed tracking-issue summary when supplied.
+commit-ready handoff per passed package, commits only when authorized; summary in host scratch storage; authorized tracking-issue summary when supplied.

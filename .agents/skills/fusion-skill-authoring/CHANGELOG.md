@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.10 - 2026-11-21
+
+### patch
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Document trigger-only description rules, rationalization-prevention tables, and deterministic script preference in `references/drafting-guide.md`.
+
 ## 0.3.9 - 2026-11-01
 
 ### patch

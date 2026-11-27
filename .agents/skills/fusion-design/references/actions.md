@@ -1,14 +1,14 @@
 # Actions
 
-Rules for save/discard actions and destructive actions. Grounded in `docs/patterns/action-bar/`, `docs/patterns/destructive-actions.md`, and `docs/guidelines/ux-writing.md`.
+Rules for save/discard actions and destructive actions. Grounded in `docs/patterns/action-bar/`, `docs/decisions/app-details-interaction-patterns.md` (decided: dialog vs. inline-warning confirmation) and `docs/guidelines/ux-writing.md` in `equinor/fusion-design`.
 
 ---
 
 ## Action bar
 
-> **Status: experimental.** The action bar is not yet a ratified Fusion pattern and has no shared component in `fusion-react-components` — it is currently trialed in App Admin only. Treat this guidance as provisional: apply it when a page genuinely needs an explicit-save action bar, but do not proliferate the pattern as an established Fusion standard until it is ratified. The destructive-action and button-placement rules below are settled and apply regardless.
+> **Status: ratified pattern, optional to use.** The action bar is `ready` in the Fusion Design guidelines, but there is no shared component in `fusion-react-components` yet, so apps must compose it from EDS primitives. Offer it as an option when a page needs an explicit Save; do not require it or add it to existing pages unasked. Revisit when a shared component ships. The destructive-action and button-placement rules below are settled and mandatory regardless.
 
-Use a sticky action bar for any page with a form or editable content that requires an explicit **Save** (not auto-save).
+When a page with a form or editable content that requires an explicit **Save** (not auto-save) uses the action bar, make it sticky:
 
 | Property | Value |
 |---|---|
@@ -19,7 +19,7 @@ Use a sticky action bar for any page with a form or editable content that requir
 | Left zone | A plain colored bullet character (`●`) + status label — e.g. `● Unsaved changes`. Never use an EDS `Icon` component (`edit`, `pencil`, etc.) here — the source pattern uses a literal `●`/`✓`/`⚠` character, not an icon |
 | Right zone | `Discard` (ghost variant) + `Save` (primary), in that order — `Discard` must use `variant="ghost"`, never a filled/contained secondary button |
 
-- Never render an inline Save button elsewhere on the page — the action bar is the only way to persist changes
+- On a page with an action bar, never render an inline Save button elsewhere — the action bar is the only way to persist changes
 - The bar disappears after a successful save and returns to idle
 - Do **not** use the action bar inside side panels — side panels use the Apply pattern with buttons below the panel content
 - Do **not** use the action bar for auto-saving forms — use a status indicator instead

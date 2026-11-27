@@ -1,6 +1,6 @@
 # Follow-up questions
 
-Use these only when required inputs are missing. Ask at most 3 questions per batch and prioritize blockers first.
+Interactive: use only when required inputs are missing, at most 3 questions per batch, blockers first. Automated: resolve from task context; record safe assumptions or required-input blockers without questions.
 
 ## Blocking questions
 
@@ -18,7 +18,7 @@ Use these only when required inputs are missing. Ask at most 3 questions per bat
 
 - Planning depth: `standard`
 - Run mode: `draft-only`
-- Publish behavior: explicit same-turn confirmation required before mutation
+- Publish behavior: active host authority required; explicit interactive publication confirmation or separately authorized automated scope, never run mode alone
 
 ## Questioning rules
 

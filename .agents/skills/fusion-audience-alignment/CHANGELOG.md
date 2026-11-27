@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.4 - 2026-11-21
+
+### patch
+
+- [#489](https://github.com/equinor/fusion-skills/pull/489) [`f8f9846`](https://github.com/equinor/fusion-skills/commit/f8f9846632964057e2122fe8bd722968eeb8b5e3) - Clarify that reader comprehension reviews do not approve planning or design decisions.
+
+
+  refs equinor/fusion-skills#440
+
+- [#480](https://github.com/equinor/fusion-skills/pull/480) [`3a91663`](https://github.com/equinor/fusion-skills/commit/3a916635f0cc0ef996746bc631767c68f7e63943) - Use task-supplied reader context and distinguish interactive reader confirmation from automated selection and host publication authority.
+
+
+  resolves equinor/fusion-skills#480
+  refs equinor/fusion-skills#479
+
 ## 0.1.3 - 2026-11-01
 
 ### patch

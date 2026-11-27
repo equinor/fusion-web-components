@@ -91,7 +91,9 @@ On GitHub: use native alert syntax (see [GitHub-specific → Alerts](#alerts)).
 
 - Spaces (not tabs) for indentation in lists and code blocks
 - No trailing whitespace
-- Prose <120 chars for diff readability; code blocks may exceed
+- Repository Markdown files: prose <120 chars per line for diff readability; code blocks may exceed
+- GitHub-published prose (issues, PRs, comments, reviews): don't hard-wrap;
+  one logical line per paragraph or list item
 
 ---
 

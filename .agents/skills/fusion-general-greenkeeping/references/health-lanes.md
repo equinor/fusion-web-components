@@ -26,7 +26,7 @@ Per-lane checks, evidence and false-positive traps. Inspect in-scope lanes only.
   Confidence never overrides scope, approval, integrity or required validation gates.
 - Adopted rule or established local pattern plus concrete inconsistency supports a small correction;
   don't survey entire repository to prove universal agreement. Prefer useful findings over cleanup inventory.
-- For selected fixes, make smallest evidenced correction and run only approved focused checks.
+- For selected fixes, make smallest evidenced correction and run focused checks covering it.
   Avoid speculative cleanup/unrelated refactors; report failed or unrun checks, never weaken tests.
 
 ## Local conventions
@@ -130,10 +130,10 @@ include in full health check with default sample.
 - Default sample: last 10 commits on default branch from local history. Resolve default branch locally
   (`git symbolic-ref refs/remotes/origin/HEAD`, else `init.defaultBranch` or `main`/`master` ref that
   exists); never use current checkout, which may be a feature branch. No fetch.
-- Run only after approval of exact read-only commands (ref resolution and
-  `git log -n 10 --format='%h %ad %s' --date=short <ref>`). No approval or no local default-branch
-  ref: lane "not run", state why. Report sample, ref and source.
-- PR bodies, reviews or labels need network (`gh`): only with approval of exact command; else "not run".
+- Use read-only commands (ref resolution and
+  `git log -n 10 --format='%h %ad %s' --date=short <ref>`); host permissions apply. Not permitted or no
+  local default-branch ref: lane "not run", state why. Report sample, ref and source.
+- PR bodies, reviews or labels need network (`gh`): only when host permits; else "not run".
 - Rules to check: those stated in rule sources (changesets, required tests, commit format, naming, docs
   updates). Convention and ADR checks: use `fusion-code-conventions` when installed; else read rule
   sources directly and disclose.

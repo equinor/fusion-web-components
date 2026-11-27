@@ -1,6 +1,6 @@
 # Collaborative drafting
 
-Build drafts with user, not for user. Goal: published issue holds user intent and verified facts only, no plausible filler.
+Interactive: build drafts with user. Automated: use authorized task context, preserve visible assumptions. Goal: published issue holds intent and verified facts, no plausible filler.
 
 ## Question rounds
 
@@ -21,7 +21,7 @@ Agree small pieces before full draft, one round each when unclear:
 2. Success or acceptance criteria.
 3. Scope, non-goals and dependencies.
 
-Settled stages need no extra round. Never present full long draft before stage 1 agreed.
+Settled stages need no extra round. Interactive: never present full long draft before stage 1 agreed. Automated: skip question rounds, record unresolved assumptions and blockers.
 
 ## Provenance tags
 
@@ -39,7 +39,7 @@ Before showing draft, remove content neither requested nor backed by evidence: s
 
 ## Assumption gate
 
-Publishing always needs explicit approval (SKILL.md safety gates); this gate adds a content condition, never replaces approval.
+Publishing needs active host authority (SKILL.md safety gates): explicit interactive publication approval or separately authorized automated scope. This gate adds a content condition, never grants authority.
 
 - **Interactive** (user can answer this session): block publish until each `[assumed]` claim confirmed (becomes `[stated]`), edited or removed. Ask in one round; list claims, recommend keep/edit/drop each.
 - **Unattended**: caller states no user is available to answer, and has pre-authorized drafting (and publishing, if it wants a publish) for this run, e.g. greenkeeping or orchestrator runs with explicit publish approval in their invocation. Never infer unattended mode from silence or run mode alone. Don't block on assumptions: list every unresolved one in visible `Assumptions to confirm` section placed right after summary (`TL;DR`, or first summary section such as task `Objective` when template has no TL;DR), and report them in delivery output. Without pre-authorized publishing, stop at local draft.

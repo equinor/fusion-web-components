@@ -34,9 +34,9 @@ Questions that block implementation become research task drafts sequenced first 
 
 ## Where plan lives
 
-GitHub issues stay source of truth; no repo spec files.
+GitHub issues own work definition: scope, acceptance criteria, tasks, dependencies and status. Repository owns durable design decisions, models and contracts; link them by revision, never copy into task bodies. No repo spec files for issue-owned work.
 
-- Plan preview `.tmp/USER-STORY-TASK-PLAN-<context>.md` holds full plan.
+- Plan preview `USER-STORY-TASK-PLAN-<context>.md` in host scratch storage holds full plan; return inline when storage unavailable.
 - Each task draft carries decisions and risks it depends on in `Decisions and risks`.
 - Add plan summary to story only when user asks.
 

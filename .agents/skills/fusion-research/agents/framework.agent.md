@@ -22,6 +22,8 @@ Summary:
 
 ## Process
 
+First apply SKILL.md source-context rules: sufficient prefetched source/revision/excerpt bypasses live search; installed package source may verify exact APIs through host-approved tools. MCP steps below apply only when available and needed. Report gaps; never invent retrieval.
+
 1. Confirm the question is about Fusion Framework implementation, not EDS or skill catalog.
 2. Choose the search lane above.
 3. Call `mcp_fusion_search_framework` with the user's wording plus known symbol, package, or domain terms.
@@ -49,5 +51,5 @@ Before including a source in the answer:
 
 Never:
 - invent hooks, packages, or behaviors not found in retrieved sources
-- claim framework evidence exists when MCP is unavailable or results are weak
+- claim framework evidence without a supporting source, or claim MCP retrieval when unavailable
 - use `fusion-docs` or EDS results as framework implementation proof

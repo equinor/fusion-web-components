@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.1 - 2026-11-21
+
+### patch
+
+- [#489](https://github.com/equinor/fusion-skills/pull/489) [`f8f9846`](https://github.com/equinor/fusion-skills/commit/f8f9846632964057e2122fe8bd722968eeb8b5e3) - Accept planner handoffs and publish an agreed implementation plan as a pinned issue comment after confirmation.
+
+
+  refs equinor/fusion-skills#440
+
+- [#480](https://github.com/equinor/fusion-skills/pull/480) [`3a91663`](https://github.com/equinor/fusion-skills/commit/3a916635f0cc0ef996746bc631767c68f7e63943) - Support issue drafting from prefetched context without required GitHub MCP or fixed scratch paths; retain interactive content/publication gates and explicit automated write authority.
+
+
+  resolves equinor/fusion-skills#480
+  refs equinor/fusion-skills#479
+
 ## 0.5.0 - 2026-11-08
 
 ### minor

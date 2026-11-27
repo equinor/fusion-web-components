@@ -89,9 +89,12 @@ Explain *why* an error is caught, swallowed, rethrown, or transformed:
 ## What counts as a dead comment
 
 Flag and remove any comment that:
-- Restates the next line of code in different words
-- Repeats the symbol name
-- Describes the syntax rather than the intent
+- Restates the next line of code in different words (`// increment counter`, `// return the result`, `// check if user is null`)
+- Repeats the symbol name or echoes parameter names in TSDoc/XML doc without adding constraints or *why*
+- Describes the syntax or narrates obvious control flow rather than intent
+- Adds decorative section-divider banners (`// === Helpers ===`, `// --- Handlers ---`) or AI drafting notes (`// Updated to handle X`)
+
+Keep comments that encode *why*, invariants, non-obvious edge cases, or external constraints; delete everything else.
 
 ---
 

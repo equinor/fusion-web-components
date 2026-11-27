@@ -44,9 +44,9 @@ Suggestions max `low` unless maintainer asked for ideas. No scores, grades or ra
 
 - Fixed findings, diff per file.
 - Unselected/deferred findings, unchanged.
-- Validation: static checks done; repo command only if maintainer approved that exact command, with
-  outcome; else `not run` + reason. Static path checks ≠ builds or tests.
-- Remote state unchanged; commit/push/PR await confirmation.
+- Validation: static checks done; repo commands run (host permissions apply), with outcome; else
+  `not run` + reason. Static path checks ≠ builds or tests.
+- Remote state unchanged unless host policy commits/publishes; interactive commit/push/PR await confirmation.
 
 ## Issue drafts
 

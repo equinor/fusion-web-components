@@ -4,7 +4,7 @@ description: 'Creates or modernizes installable skills. USE FOR: new skills, SKI
 license: MIT
 compatibility: Works best in repositories that can inspect their local skill catalog and run catalog-specific validation commands. Optional helper agents are most useful in Anthropic-compatible runtimes or other clients that support skill-local agents/subagents.
 metadata:
-   version: "0.3.9"
+   version: "0.3.10"
    status: active
    owner: "@equinor/fusion-core"
    tags:

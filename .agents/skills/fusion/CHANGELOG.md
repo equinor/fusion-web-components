@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.7 - 2026-11-21
+
+### patch
+
+- [#489](https://github.com/equinor/fusion-skills/pull/489) [`f8f9846`](https://github.com/equinor/fusion-skills/commit/f8f9846632964057e2122fe8bd722968eeb8b5e3) - Route Feature, Task and implementation planning to `fusion-planner`; keep User Story breakdown with task planning.
+
+
+  refs equinor/fusion-skills#440
+
 ## 0.1.6 - 2026-11-01
 
 ### patch

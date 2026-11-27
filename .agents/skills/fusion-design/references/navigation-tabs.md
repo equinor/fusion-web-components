@@ -2,7 +2,9 @@
 
 ## Rules
 
-- **Use tabs when the app has 2–5 closely related views** — for more than 5 top-level sections, use a sidemenu instead.
+- **Use tabs when the app has 2–5 flat views of the same entity or context** — for 3 or more independent sections, any hierarchy, or more than 5 views, use a sidemenu instead.
+- **Exactly 2 independent sections is an open question:** ask the user and recommend from expected growth — see `decision-tree.md` (Step 2) and record the choice in `DESIGN.md`.
+- **Adding a 6th view, sub-navigation, or an unrelated section crosses a threshold:** stop before writing code (even when requested) and follow the threshold check in `decision-tree.md`.
 - **Never nest tabs** — if a tab requires sub-navigation, the structure needs rethinking.
 - **Never combine tabs with a sidemenu at the same hierarchy level** — tabs handle all top-level navigation on their own.
 - **Never use tabs for unrelated content** — all tabs must belong to the same entity or context.

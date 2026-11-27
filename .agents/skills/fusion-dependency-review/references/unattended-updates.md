@@ -4,6 +4,8 @@ For a calling host that supplies update scope and owns confirmation gates. Recom
 not permission to commit, publish, approve or merge. Repository-local workflow rules win.
 Interactive live-PR checkpoint and verdict comments apply only when host requires and authorises them.
 Keep host paths, machine contracts, resource limits and publication policy outside this reference.
+Host-prefetched PR metadata, diffs and comments are sufficient input; fetch live only for missing
+context the host grants GitHub access for. Never abort on missing `gh`/MCP auth. Post-PR review gate is host-owned.
 
 ## Contents
 
@@ -165,6 +167,31 @@ See official [restore options](https://learn.microsoft.com/en-us/dotnet/core/too
 Only use `--use-lock-file` when repository already adopts locks; don't introduce `packages.lock.json`
 into projects that intentionally omit it. NuGet has no general pnpm-style exact lockfile-only/no-save recipe.
 
+### Bun
+
+Select repository-pinned Bun from `packageManager` (or documented runtime pin) through host's authorised
+runtime mechanism. Before either install, run selected executable's `--version` and compare with exact pin;
+missing/mismatched version: stop with setup limitation, never substitute another version.
+Commands below assume `bun` resolves to that verified executable throughout regeneration and verification.
+From current lockfile and approved manifest changes:
+
+```bash
+bun install
+bun install --frozen-lockfile
+```
+
+Normal install regenerates lock and installed tree; optionally add `--ignore-scripts` to both commands
+when host authorises skipping lifecycle scripts. Report skipped scripts and resulting validation limits.
+Verify requested resolutions and unrelated-version stability; frozen success proves consistency, not update scope.
+For lockfile-only scope, use a repository-tested recipe or report limitation; normal install needs install authority.
+
+Do not trust `bun install --lockfile-only` success alone: [reported Bun 1.3.3 reproduction](https://github.com/equinor/fusion-skills/issues/469)
+produced an incomplete lock rejected by frozen install; normal install passed. This is an observed result,
+not a universal version cutoff. Newer Bun can write lockfile formats older pins cannot read: preserve existing
+lockfile, never delete it or switch Bun versions as an unattended workaround.
+See official [install](https://bun.sh/docs/pm/cli/install),
+[lifecycle scripts](https://bun.sh/docs/pm/lifecycle) and [lockfile](https://bun.sh/docs/pm/lockfile) docs.
+
 ## Security-audit findings
 
 When host scope is fixing audit findings, not one requested version, read
@@ -222,8 +249,22 @@ No package-manager regeneration applies to a `uses:`-only update.
   such as `actions/github-script` v8 -> v9 need call-site evidence, not automatic HOLD or MERGE.
 - Preserve repository SHA-pinning conventions and version comments; verify new full SHA belongs to
   upstream repository and intended release. Never replace a pinned SHA with a mutable tag.
-  Respect adopted workflow dependency lockfiles; regenerate only through repository's documented tooling.
   See GitHub's [secure use guidance](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions).
+- Treat `.github/workflows/actions.lock` changes as dependency updates
+  ([lockfile review](https://docs.github.com/en/actions/how-tos/secure-your-work/lock-workflow-dependencies#reviewing-lockfile-changes)):
+  - Each changed `commit`, direct or transitive, is code workflows will run: research it like a version bump.
+  - Changed `owner_id`/`repo_id` means repository behind name differs from locked one: `hold` until maintainer
+    investigates.
+  - Never hand-edit lockfile. Regeneration only through `gh actions-lock` (Dependabot, repository tooling or
+    maintainer), never this skill. Onboarded workflow's `uses:` change without matching lockfile entry is drift:
+    `needs changes`.
+  - `--relock` advances moved refs: reviewed update; compare upstream history from locked to new commit.
+    Rewritten history needs `--accept-moved` only after human upstream review; never in unattended runs.
+  - After approved update, passing `gh actions-lock --verify` at reviewed head is required validation (existing
+    CI check or maintainer-supplied output). Missing or partial: **not verified**, never `ready`; give exact
+    command. Failed: `needs changes`.
+- Lockfile never covers job-level reusable-workflow calls: keep full 40-character SHA pins even when
+  `actions.lock` exists; never swap them for tags. Called repository owns its action lockfile.
 - Read upstream `action.yml`/`action.yaml` at both refs plus release/migration notes. Compare
   `runs.using`, inputs/defaults, outputs and required token permissions with each caller's `with:`,
   workflow/job `permissions:`, scripts and downstream output consumers. Don't silently broaden permissions.
@@ -276,6 +317,52 @@ announcements and terms changes throughout interval (including skipped majors an
 Record old/new licence identifiers or terms, release introducing change, source URLs and affected use.
 Registry metadata or absence of a changelog mention alone is insufficient evidence of unchanged terms.
 
+### Missing package licence file
+
+Classify evidence, not file presence. Qualifying permissive declarations: MIT, ISC, 0BSD, BSD-2-Clause,
+BSD-3-Clause, Apache-2.0. Check published package manifest/tarball and exact-version upstream package
+manifest plus applicable licence text; record checked URLs and gaps. Never infer coverage from sibling
+packages or repository-wide text without evidence it applies to this package/version.
+Preserve notice/distribution obligations and stricter repository/legal policy; these exceptions are
+review classifications, not legal approval or permission to omit required notices.
+
+Apply missing-file exceptions below only to newly introduced packages or existing dependencies with
+verified unchanged material terms across installed-to-target interval. Cite interval evidence; matching
+target declarations or silence in release notes alone proves neither. Actual transitions use normal
+licence-change tiers with old/new terms, transition release and applicable sources. Unknown interval:
+HOLD, never a target-only packaging-gap flag.
+
+- **Routine, no HOLD solely for omission:** published and exact-version upstream package declarations
+  agree with applicable exact-version upstream text on same qualifying licence, with no conflicting terms;
+  only tarball file is missing. Any declaration/text conflict: HOLD. Record packaging gap,
+  source URLs and applicable notice obligations.
+- **Declaration-only:** published and exact-version upstream package manifests agree on qualifying SPDX
+  licence, no applicable text file found and no conflicting terms. Only a produced PR that a maintainer
+  alone merges may decide MERGE/HOLD on other evidence and use visible flag:
+  `Licence/terms change, merging accepts it: <package>@<version>, declared <SPDX>, no licence file; checked <URLs>; applicable licence text missing.`
+  Keep flag near TL;DR, never folded. Standalone verdicts and auto/agent-merge paths remain HOLD.
+- **HOLD:** unknown, undeclared, conflicting or uncorroborated licensing, including unverifiable
+  exact-version applicability. Maintainer-only output cannot turn these gaps into acceptance flags.
+
+Regression examples (static cases, not executed evaluations):
+
+| Evidence / output | Licence result |
+| --- | --- |
+| Published MIT; applicable exact-version upstream MIT text; tarball file absent | Routine note, preserve notices |
+| Matching published/upstream MIT declarations; no applicable text; produced maintainer-only PR | Visible declaration-only flag; other evidence decides |
+| Same declarations/text gap; automatic/agent merge or standalone verdict | HOLD |
+| Undeclared licence, conflicting declarations/text, or unverified upstream version; any output | HOLD |
+| Routine/flag-eligible licence evidence plus blocking technical lens | HOLD for technical blocker |
+| Existing package, matching target declarations but unverified prior/interval terms | HOLD |
+| Existing package, verified unchanged interval terms, declaration-only maintainer output | Visible packaging-gap flag |
+| Existing package, actual licence transition | Normal licence-change tiers, not packaging-gap exception |
+
+Reported [`proxy-agent-negotiate@1.1.0` case](https://github.com/equinor/fusion-skills/issues/461):
+matching MIT declarations without applicable text is declaration-only, not authoritative upstream-text
+evidence; never borrow sibling licensing.
+
+### Licence-change tiers
+
 Classify every licence/terms change into one tier. **Unsure: needs a human.**
 
 **Routine: no HOLD.** Record one-line evidence note (old/new terms, transition release, source URLs,
@@ -296,9 +383,19 @@ tier reason); note never blocks MERGE.
 For needs-a-human: name decision owner (maintainer/legal or procurement owner), changed obligations and
 smallest next step: confirm approved licensing option, eligibility and any purchase/key configuration
 before reconsideration. Never assume commercial eligibility, grant legal approval, suppress licence
-warnings or configure keys. Unverified material licence evidence stays HOLD with research gap;
+warnings or configure keys. Unverified material licence evidence stays HOLD with research gap, except
+qualifying declaration-only produced PR output above;
 budget/confidence heuristics cannot waive gate or move a change into routine.
 This is an acceptance-policy blocker, not routine pending PR approval or a compatibility failure.
+
+**Maintainer-merged PR output: flag, don't HOLD.** When review output is a produced pull request only a maintainer
+merges (no auto-merge, no agent approval or merge), that merge is the explicit acceptance. Verified
+needs-a-human change is then no HOLD reason: decide MERGE/HOLD on other evidence and write one summary line
+starting `Licence/terms change, merging accepts it:` with package/tool, old -> new terms, transition release
+and official licence/terms file URLs at both versions. Keep line visible in PR description near TL;DR, never
+folded. Declaration-only packaging gaps use exact flag/evidence conditions above, not invented licence-file URLs.
+Still HOLD: unknown, undeclared, conflicting or uncorroborated material terms, auto-merge or agent-merge paths, and verdicts on PRs
+the review does not produce (verdict HOLD is the ask). Never configure keys or assume eligibility.
 
 Routine example: APM CLI 0.33.0 -> 0.35.1 crosses
 [microsoft/apm#3487](https://github.com/microsoft/apm/pull/3487).
@@ -327,7 +424,8 @@ Keep technical recommendation, execution state, evidence confidence and merge re
   behaviour requiring maintainer judgement. Name exact decision or smallest next step.
 - **HOLD / licence decision**: needs-a-human licence/terms change requires explicit human acceptance
   before MERGE. Keep separate from compatibility and routine approval; cite transition and responsible
-  decision owner. Routine tier needs evidence note only.
+  decision owner. Routine tier needs evidence note only. Maintainer-merged PR output: flag line instead
+  of HOLD (see [licence and terms changes](#licence-and-terms-changes)).
 - **HOLD / failed execution**: unrecovered setup/tool failure, timeout, missing regeneration capability
   or incomplete evidence needed to decide. Keep retryable; don't manufacture a compatibility blocker.
   Calling host maps these concepts to its own machine contract.
@@ -358,6 +456,7 @@ Write for a merge decision, not an execution log:
 - **Why:** relevant upstream changes and effect on discovered consumers; migration and incidental deltas.
 - **Validation limits:** focused outcome and what remains untested; distinguish base, source PR and candidate.
 - **Risks / next action:** evidence-based MERGE/HOLD, unresolved unknowns and exact maintainer decision or retry.
+  Licence/terms flag lines stay visible, never folded or dropped.
 
 Keep decision-relevant risks and short validation result visible. Fold command logs, Git checks,
 release excerpts and source evidence under details; retain URLs and versions for later reuse.

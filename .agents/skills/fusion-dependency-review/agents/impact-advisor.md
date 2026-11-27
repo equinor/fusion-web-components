@@ -40,6 +40,15 @@ Assess how risky the update is to merge in this repository, including CI behavio
   or CI/build-only tooling without new use restrictions): no licence blocker; record evidence note.
   Needs a human, unverified terms or unsure: `blocking` pending explicit maintainer/legal decision, even if
   technically compatible. State affected use (shipped/linked vs CI/build-only) and required decision.
+  Output is PR only a maintainer merges: verified change → `concern` with merge-accepts flag, not `blocking`.
+  Missing-file exceptions require newly introduced package or verified unchanged material terms across
+  installed-to-target interval; actual transitions use normal tiers, unknown interval stays `blocking`.
+  Apply exact evidence/qualifying-licence conditions in that reference. Matching
+  published/exact-version upstream declarations plus applicable text, no conflicts: routine, no licence blocker.
+  Matching qualifying declarations without text or conflicts: `concern` with visible acceptance flag only
+  for produced maintainer-only PR (no auto/agent merge); otherwise `blocking`. Unknown, undeclared,
+  conflicting or uncorroborated terms remain `blocking`; no sibling inference or stricter-policy bypass.
+  Keep independent technical blockers even when licence classification is routine or flag-eligible.
 
 ## Assessment scale
 

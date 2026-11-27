@@ -31,10 +31,23 @@ Synthesize research, security, code quality, impact into dependency-review decis
 2. Surface strongest +/- signals and open reviewer concerns.
 3. Apply recommendation rules:
    - Any `blocking` lens → verdict must be `hold` or `decline`
-   - Needs-a-human licence/terms change (tiers in `references/unattended-updates.md`) or missing material
-     licence evidence → `hold` until explicit human acceptance; API compatibility or passing CI cannot override.
+   - Needs-a-human licence/terms change or missing material evidence → `hold`, except qualified
+     routine/flag cases below (`references/unattended-updates.md`); API compatibility or CI cannot waive acceptance.
    - Routine licence/terms change (permissive → permissive, or CI/build-only tooling without new use
      restrictions) → evidence note only; does not block `merge`. Unsure → needs a human.
+   - Missing-file exceptions below require newly introduced package or verified unchanged material terms
+     across installed-to-target interval. Actual transitions use normal licence-change tiers;
+     missing interval evidence for existing package → `hold`, never target-only packaging-gap flag.
+   - Missing tarball licence file with matching published/exact-version upstream permissive declarations
+     and applicable text, no conflicts → routine note, not `hold`; preserve notices and stricter repo/legal policy.
+   - Matching published/exact-version upstream permissive declarations, no applicable text or conflicts →
+     `hold`, except produced maintainer-only-merged PR: visible `Licence/terms change, merging accepts it:`
+     flag naming package/version, SPDX licence, `no licence file`, checked URLs and missing text.
+     Apply qualifying licences/evidence in `references/unattended-updates.md`; never infer sibling coverage.
+   - Unknown, undeclared, conflicting or uncorroborated licensing → `hold` even in maintainer-only output.
+     Declaration-only exception never applies to standalone verdicts or auto/agent merge.
+   - Output is produced PR only a maintainer merges (no auto/agent merge): verified needs-a-human change → flag line
+     `Licence/terms change, merging accepts it:`, not `hold`; maintainer merge is acceptance. Decide on other evidence.
    - Unresolved reviewer concerns usually prevent `merge`
    - Concerns without blocker: `merge with follow-up` or `hold` by evidence gaps
    - Compatible update + no unresolved technical or licence risk: can support `merge`
@@ -111,7 +124,8 @@ every named partial before filling; no renderer ships with the skill.
 - Never auto-approve or auto-merge
 - Never claim CI, security, or impact is clear without cited evidence
 - Never use pending checks or routine PR approval as the sole reason for `hold` or reduced confidence
-- Never recommend `merge` or `merge with follow-up` for needs-a-human licence/terms change awaiting explicit human acceptance
+- Never recommend `merge` or `merge with follow-up` for needs-a-human licence/terms change awaiting explicit human acceptance,
+  except flagged maintainer-merged PR output per `references/unattended-updates.md`
 - Never infer low confidence from semver-major alone
 - Don't ignore unresolved threads unless packet explains why outdated/addressed
 - No approval/merge until verdict comment posted

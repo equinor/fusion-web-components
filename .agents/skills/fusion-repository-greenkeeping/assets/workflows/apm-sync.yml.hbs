@@ -2,11 +2,11 @@
 Standalone APM dependency updates. Agent fills by hand; follow fill rules in references/common-workflows.md.
 schedule: five numeric cron fields, weekday 0-6, e.g. 0 8 * * 1; empty string means manual only.
 updateBranch: literal Git branch passing git check-ref-format --branch, not default branch, e.g. chore/apm-sync.
-apmVersion: exact stable SemVer x.y.z, e.g. 0.33.0.
+apmVersion: exact stable SemVer x.y.z, e.g. 0.36.1.
 dependencyTokenSecret: Actions secret name [A-Za-z_][A-Za-z0-9_]*, not GITHUB_*; empty string selects github.token for public dependencies.
 --}}
 # fusion-workflow-template: apm-sync
-# fusion-workflow-version: 1.1.0
+# fusion-workflow-version: 1.1.1
 # fusion-workflow-source: https://github.com/equinor/fusion-skills/blob/main/skills/.experimental/fusion-repository-greenkeeping/assets/workflows/apm-sync.yml.hbs
 # fusion-workflow-owner: @equinor/fusion-core
 # Record source pin and raw inputs in .github/workflows/apm-sync.inputs.json.
@@ -75,9 +75,18 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git show-ref --verify --quiet "refs/remotes/origin/$PR_BRANCH"; then
             git switch --create "$PR_BRANCH" --track "origin/$PR_BRANCH"
+            before=$(git rev-parse HEAD)
             if ! git merge --no-edit "origin/$BASE_BRANCH"; then
-              echo "::error::Update branch conflicts with the default branch. Resolve and push the merge manually, then rerun APM Sync."
-              exit 1
+              echo "::warning::Update branch conflicts with the default branch. Resetting its tree to the default branch so APM can regenerate it."
+              git read-tree --reset -u "origin/$BASE_BRANCH"
+              git commit --no-edit
+              {
+                echo "### Superseded update-branch commits"
+                echo
+                echo "The update branch conflicted with \`$BASE_BRANCH\`; its tree was reset to \`$BASE_BRANCH\` in a merge commit. These commits were superseded:"
+                echo
+                git log --format='- %h %s' "origin/$BASE_BRANCH..$before"
+              } >> "${GITHUB_STEP_SUMMARY:-/dev/null}"
             fi
           else
             git switch --create "$PR_BRANCH"

@@ -2,9 +2,9 @@
 name: fusion-pr-documentation
 description: 'Drafts and updates evidence-backed PR descriptions. USE FOR: PR body, combined PRs, stale descriptions, review guides, validation summaries, issue linkage. DO NOT USE FOR: review threads (use fusion-github-review-resolution), implementation (use fusion-issue-solving), issues (use fusion-issue-authoring), dependency verdicts (use fusion-dependency-review), release notes or unconfirmed publishing.'
 license: MIT
-compatibility: Requires git and read access to the target repository. Live GitHub verification needs the gh CLI, the GitHub MCP server, or Fusion PM MCP. Publishing needs write access and explicit user confirmation.
+compatibility: Requires git and read access to the target repository. Live GitHub verification needs the gh CLI, the GitHub MCP server, or Fusion PM MCP. Interactive publishing needs write access and explicit user confirmation; host publisher tools may own publication instead.
 metadata:
-  version: "0.2.0"
+  version: "0.4.0"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -70,6 +70,13 @@ This skill is mutation-capable. Repository-local workflow instructions take prec
   work completes production behavior.
 - Read published body back; drift corrections need renewed confirmation before another edit.
 
+## Host-managed publication
+
+Skill owns PR content craft: evidence-backed structure, review guide, validation summary, issue linkage. When a host
+publisher tool owns publication, skip `.tmp/` files, `gh pr create`/`gh pr edit`, read-back and the Copilot gate
+(steps 5 draft file, 8); return title, body, linking choices and unknowns to the host. Interactive runs with
+`gh`/GitHub MCP keep live verification, draft confirmation, publication and gate guidance.
+
 ## Repository-policy handoff
 
 At use, defer template choice, base selection, issue-linking/defaults, draft locations, validation-evidence and
@@ -105,8 +112,8 @@ merely list adjacent results.
 
 ### 5. Write the narrative in the human-first shape
 
-Draft context-specific `.tmp/pr-body-<issue-or-topic>.md`, never shared `.tmp/pr-body.md`, unless repo specifies
-another location. Preserve template structure/order and replace placeholders with accurate narrative. Use installed
+Interactive: draft context-specific `.tmp/pr-body-<issue-or-topic>.md`, never shared `.tmp/pr-body.md`, unless repo
+specifies another location. Host-managed: compose in memory and return body to host. Preserve template structure/order and replace placeholders with accurate narrative. Use installed
 `fusion-agent-content`; when absent or template mapping needs guidance, read `assets/pr-body-outline.md` for
 narrative questions and visible/folded shape.
 
@@ -142,21 +149,32 @@ evidence rules, never invent them.
 
 ### 8. Confirm, publish, and read back
 
+Host-managed publication: skip this step; host publishes, reads back and runs the gate.
+
+Publish new PRs as draft. Mark ready only when ready for human review: after an applicable gate passes or a
+documented exception, or on the person's word when no gate applies. Ready status may notify CODEOWNERS, rules or
+bots, so never use it as a default.
+
 When preparing publication, read `assets/publish-checklist.md` before requesting approval for preflight, and apply
-again after read-back. Show final draft and create/update, base, head, draft/ready, assignee, title. Require
+again after read-back. Show final draft and create/update, base, head, assignee, title (new PRs are always draft). Require
 explicit confirmation, then use:
 
-- Create: `gh pr create --base <base> --head <branch> --title "<title>" --body-file <draft>`, adding `--draft` or
-  `--assignee` as confirmed.
+- Create: `gh pr create --base <base> --head <branch> --title "<title>" --body-file <draft>`, always with `--draft`,
+  adding `--assignee` as confirmed.
 - Update: `gh pr edit <number> --body-file <draft>`.
 - GitHub MCP equivalents when `gh` unavailable.
 
 Read live PR back; verify confirmed body/metadata and `closingIssuesReferences`. Report drift, correct local draft,
 re-confirm before editing again.
 
+Publisher layer: before requesting human review, apply repository-local review-gate instructions. When a Copilot gate applies,
+hand off to installed `fusion-github-review-resolution`; missing companion/tooling is a reported blocker, not a
+passed gate. Document its outcome or authorized unavailability exception. PR publication/ready status alone
+does not authorize review requests, and body-only updates need not restart a completed gate.
+
 ## Expected output
 
-Draft path and full proposed human-first body; diff range/docs/verified issue and PR roles in References and
+Draft path (interactive) or body returned to host, and full proposed human-first body; diff range/docs/verified issue and PR roles in References and
 evidence; unknowns/unverified claims; linking modes/recommendations and user/autopilot choices; exact
 validation/results/omissions and pre-existing failures. After approved publication: PR URL/read-back results
 including `closingIssuesReferences`. Report remaining questions.

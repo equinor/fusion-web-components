@@ -22,6 +22,8 @@ React naming, component structure, hooks for Fusion Framework apps.
 - Props interface co-located with component
 - Never define component inside another — causes full unmounts on parent re-render
 - Split data-fetching, transformation, rendering into separate layers
+- Keep components focused on rendering and interaction; move non-trivial domain rules (status derivation, permissions, validation, data transforms) into testable pure functions, selectors or hooks. Simple presentation conditions stay inline; no one-line wrapper files
+- Shared/workflow client state: default `@equinor/fusion-observable` (see `fusion-app-bloc`) unless repo chose otherwise; `useState` for leaf UI state
 
 ## Hooks rules
 

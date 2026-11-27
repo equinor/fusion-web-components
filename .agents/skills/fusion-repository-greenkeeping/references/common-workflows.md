@@ -52,7 +52,7 @@ lists every slot with its allowed values.
    `actionlint` when available, else report it not run.
 7. Write new staging file outside `.github/workflows/`, e.g. `.tmp/<id>.candidate.yml`.
    Show destination and complete diff; apply only after approval. Filling never
-   pushes, triggers or deploys.
+   pushes, triggers, deploys or runs `gh actions-lock`.
 
 Example: slot `updateBranch` = `chore/apm-sync`.
 
@@ -71,6 +71,8 @@ env:
 Extra triggers or changed template lines are local customizations: review separately
 and preserve on update. Templates pin every action to a full commit SHA with a version
 comment; bump pins only through the [reviewed lifecycle](workflow-greenkeeping.md).
+In lockfile policy scope, pins never replace onboarding: report
+[lockfile follow-up](workflow-greenkeeping.md#initial-setup).
 
 ## Provenance and upgrades
 

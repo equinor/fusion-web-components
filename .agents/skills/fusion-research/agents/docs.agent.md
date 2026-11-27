@@ -8,7 +8,7 @@ When the question belongs to Fusion Framework implementation (hooks, packages, A
 
 ## MCP tooling
 
-Use `mcp_fusion_search_docs` for all platform documentation questions.
+Use source-backed prefetched platform docs when sufficient; otherwise use `mcp_fusion_search_docs` when available, or host-approved access to identified authoritative platform documentation. Never substitute another domain's evidence.
 
 Do not fall back to `mcp_fusion_search_framework` or other indexes. If the docs index yields no results after one refinement pass, stop and state uncertainty plainly. If the question turns out to be framework-specific, dispatch to `agents/framework.agent.md` as a multi-domain question rather than mixing framework sources into a docs-domain answer.
 
@@ -23,6 +23,8 @@ Summary:
 - Governance — `<policy or guideline> Fusion guidelines governance`
 
 ## Process
+
+First apply SKILL.md source-context rules: sufficient prefetched source/revision/excerpt bypasses live search. MCP steps below apply only when available and needed. Report gaps; never invent retrieval.
 
 1. Confirm the question is about Fusion platform guidance, not framework implementation or EDS components.
    - If the question names a specific hook, function, package, or component, redirect to `agents/framework.agent.md` or `agents/eds.agent.md`.
@@ -50,6 +52,6 @@ Before including a source in the answer:
 
 Never:
 - invent Fusion platform guidance not found in retrieved sources
-- claim docs evidence exists when MCP is unavailable or results are weak
+- claim docs evidence without a supporting source, or claim MCP retrieval when unavailable
 - use framework or EDS results as documentation platform proof
 - redirect the user to external URLs that were not present in retrieval results

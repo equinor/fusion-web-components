@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.4.1 - 2026-11-21
+
+### patch
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Trim workflow summary from `SKILL.md` description to pure trigger and anti-trigger cues (under 400-char budget).
+
+## 0.4.0 - 2026-11-21
+
+### minor
+
+- [#488](https://github.com/equinor/fusion-skills/pull/488) [`d8375b3`](https://github.com/equinor/fusion-skills/commit/d8375b3257243816be28b004e4df61967f215ca0) - Make general greenkeeping runtime-agnostic.
+
+
+  - Remove the unattended-run exclusion and "Interactive only" service-mode section; automated hosts run within their authorized scope.
+  - Replace per-command approval locks for builds, tests, scripts and `git`/`gh` reads with host permissions; interactive sessions still default to non-mutating diagnosis until the developer approves changes.
+  - Scope `☘️ Fusion Greenkeep` label creation to publishing hosts.
+
+  resolves equinor/fusion-skills#483
+  refs equinor/fusion-skills#479
+
 ## 0.3.0 - 2026-11-08
 
 ### minor

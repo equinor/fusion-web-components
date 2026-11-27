@@ -20,7 +20,7 @@ Unknown PR target: return to parent skill (`agents/target-pr-advisor.md`).
 
 Portable, source-backed signals (priority order):
 
-1. Existing top-level PR comments and review threads fetched through GitHub MCP
+1. Existing top-level PR comments and review threads, host-prefetched or fetched through GitHub MCP/`gh`
 2. Upstream official upgrade or migration guide for the version range, and upstream changelog or release notes
 3. Security advisories from GitHub or the package ecosystem
 4. Issue tracker or discussion threads for regressions in the target version
@@ -30,7 +30,7 @@ Portable, source-backed signals (priority order):
 ## Workflow
 
 1. Ambiguous PR: stop, return to parent skill via `agents/target-pr-advisor.md`.
-2. Live PR: fetch all PR comments and review threads via GitHub MCP before lens scoring.
+2. Live PR: use host-prefetched PR comments and review threads; fetch via GitHub MCP/`gh` only what is missing and only with host-granted GitHub access, before lens scoring. Missing live auth never aborts when prefetched context exists.
 3. Summarize PR discussion: maintainer requests, reviewer concerns, unresolved threads, outdated items.
 4. Confirm exact version jump and update type.
 5. Summarize release notes (old → new).
@@ -45,7 +45,8 @@ Portable, source-backed signals (priority order):
   interval, including skipped releases and relevant transitives. Record changes or explicit evidence gaps,
   affected use (shipped/linked vs CI/build-only) and licence tier.
 - GitHub Actions: resolve tags/SHAs, compare action/reusable-workflow contracts and release notes with
-  caller permissions, inputs, output consumers, scripts and runner requirements.
+  caller permissions, inputs, output consumers, scripts and runner requirements. `actions.lock` diff: changed
+  direct/transitive `commit`, `owner_id`/`repo_id` and `gh actions-lock --verify` evidence at head.
 - Docker: resolve tags/digests/platforms; research publisher image, distro and runtime changes against
   affected Dockerfile stages. Unprivileged sandbox build unavailable: record research-only, not a passing build.
 - Use `references/unattended-updates.md` ecosystem checklists and licence gate; pass one evidence packet
@@ -56,7 +57,7 @@ Portable, source-backed signals (priority order):
 Reusable patterns:
 
 - When target PR unknown: ask minimal follow-up or present shortlist via `agents/target-pr-advisor.md`
-- Fetch existing PR comments and review threads before analysis for a live PR
+- Load existing PR comments and review threads (prefetched or live) before analysis for a live PR
 - Research first, then lens scoring, then verdict
 - Structured notes instead of ad hoc comments
 - For a live PR in an interactive run, post completed research packet as checkpoint comment before any rebase, push, approval, or merge; host-assigned runs follow the calling host
@@ -88,6 +89,6 @@ every named partial before filling; no renderer ships with the skill.
 - Don't claim migration tooling ran or reported "no migration needed" without running it
 - Don't claim source checked if not
 - Don't guess between multiple plausible PRs; require explicit user selection
-- No lens scoring until PR comments/threads fetched or escalated as unavailable
+- No lens scoring until PR comments/threads loaded (prefetched or live) or escalated as unavailable
 - Interactive runs: no mutation planning until checkpoint comment posted or escalated as blocked
 - Read-only until maintainer asks for mutation step

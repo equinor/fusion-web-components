@@ -78,11 +78,11 @@ When single package exceeds 60% of estimated context window:
 | Review council fails a package (1st time) | Return to documenter with specific fixes |
 | Review council fails a package (2nd time) | Flag for manual review, move to next package |
 | Entire batch fails | Stop, report the failure, do not continue to next batch |
-| Token budget exceeded mid-package | Commit completed work, flag remainder for next batch |
+| Token budget exceeded mid-package | Preserve uncommitted work, flag remainder; no commit before council/validation and host authority |
 
 ## Progress tracking
 
-Maintain a status file at `.tmp/scribe-progress-<context>.md`:
+Maintain `scribe-progress-<context>.md` in host scratch storage:
 
 ```markdown
 ## Progress

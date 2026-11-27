@@ -19,6 +19,9 @@ Agent drafts tend to be long, list-heavy, and organized around what the agent di
 
 ## Prose over lists
 
+- Don't hard-wrap GitHub-facing prose: keep each paragraph and list item on one source line.
+  GitHub wraps it visually. Keep paragraph breaks, lists, tables, fenced code and intentional hard breaks.
+
 - Use natural, flowing sentences in short paragraphs of two to four sentences.
 - Use bullets only for real lists such as steps, criteria, options, or a few parallel items. A paragraph of bullets that are each half a thought is prose in disguise.
 - Use a table only when readers compare items across the same attributes.
@@ -81,6 +84,18 @@ Weekly, monthly and quarterly status or retro reports are the worst offenders, b
 - Be concrete: names, numbers, links, and exact UI labels.
 - Don't repeat the TL;DR in the body; the body adds the why and the how.
 - Drop disclaimers about what the post is not: "this is not a ranking", "not an incident finding". State a real limitation once, where it changes what the reader should do.
+
+## Cut AI writing tells
+
+Every sentence must add a fact or decision the reader does not already have. Fix these structural tells on sight (strongest first), without dropping any supported fact, number, citation, or risk:
+
+1. **Not-X-but-Y staging** ("It's not just X, it's Y"; "This does not mean X. It means Y."): state Y directly unless the negative half corrects a real misconception.
+2. **One-line closers and dramatic fragments** ("That is the real win.", "Let that sink in.", "Overall, ..."): cut closers that only restate the paragraph before them.
+3. **Deep-sounding filler** ("at its core", "the real question is", "fundamentally", "X is not a tool but a mirror"): replace with the specific claim.
+4. **Forced triads and metronomic rhythm**: do not pad two real items into three; vary sentence length and paragraph endings.
+5. **Mechanical bold labels**: bold only real scannable keys (or UI labels in help docs), not the first three words of every bullet.
+
+Before handing over, check five dimensions: **Directness** (statements, not announcements), **Rhythm** (varied sentence length), **Trust** (no hand-holding or softening), **Specificity** (named actors/files/numbers, no vague declaratives), and **Density** (nothing cuttable left visible).
 
 ## Length
 

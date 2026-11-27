@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.2.0 - 2026-11-21
+
+### minor
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Add zero-dependency static invariant checker script for non-negotiable UI rules.
+
+
+  - Add read-only `scripts/check-design-invariants.ts` checking bare HTML text tags, hardcoded `px` spacing, `BannerIcon` outside `Banner`, and block `Typography` inside `BannerMessage`
+  - Wire the checker into `SKILL.md` handoff instructions
+
+- [#494](https://github.com/equinor/fusion-skills/pull/494) [`cfb061e`](https://github.com/equinor/fusion-skills/commit/cfb061e8910a41c42d0c342a4b81e2a17c0d108a) - Protect existing apps, fix border-radius tokens, and add a guarded decision tree and `DESIGN.md` template
+
+
+  - `SKILL.md`: add **Existing apps & rule strength** splitting mandatory rules (invariants, safety constraints, settled destructive-action/button-placement/dialog-copy rules, runtime/accessibility guards) from recommended defaults for new UI, plus an inline threshold stop gate before code edits
+  - `SKILL.md`: harmonize static invariant checker output with existing-app protection (fix new/changed code; report pre-existing violations in untouched lines as suggestions unless runtime-breaking) and declare Fusion MCP under `metadata.mcp.suggested`
+  - `references/decision-tree.md`: add ordered decision tree for new UI, scope matrix, existing-UI threshold check, 2-independent-sections open question, EDS fact verification, and `DESIGN.md` precedence/recording rules
+  - `assets/DESIGN.md.hbs`: add app design contract template for apps without `DESIGN.md` (with `Revisit when` conditions; never reformats an existing `DESIGN.md`)
+  - `references/navigation-sidemenu.md`, `references/navigation-tabs.md`, `references/layout.md`: resolve the 3–5 view overlap and link to the threshold check and 2-section rule in `decision-tree.md`
+  - `references/spacing.md`: replace undefined `--eds-shape-corners-border-radius` with `@equinor/eds-tokens` v2 `--eds-spacing-border-radius-rounded` / `-none` / `-pill`
+  - `references/actions.md`: mark action bar as ratified (`ready`) but optional until a shared component exists, and fix the broken destructive-actions doc reference
+
+  refs equinor/fusion-skills#415
+  refs equinor/fusion-skills#416
+
 ## 0.1.3 - 2026-11-01
 
 ### patch

@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.3.1 - 2026-11-21
+
+### patch
+
+- [#489](https://github.com/equinor/fusion-skills/pull/489) [`f8f9846`](https://github.com/equinor/fusion-skills/commit/f8f9846632964057e2122fe8bd722968eeb8b5e3) - Route solution and implementation planning to `fusion-planner` and clarify issue versus repository authority.
+
+
+  refs equinor/fusion-skills#440
+
+- [#480](https://github.com/equinor/fusion-skills/pull/480) [`3a91663`](https://github.com/equinor/fusion-skills/commit/3a916635f0cc0ef996746bc631767c68f7e63943) - Support traceable task planning with prefetched issue context and host scratch storage, using host-authorized publication instead of mandatory automated confirmation loops.
+
+
+  resolves equinor/fusion-skills#480
+  refs equinor/fusion-skills#479
+
 ## 0.3.0 - 2026-11-08
 
 ### minor

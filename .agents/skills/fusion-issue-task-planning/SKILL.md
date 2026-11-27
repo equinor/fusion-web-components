@@ -1,9 +1,9 @@
 ---
 name: fusion-issue-task-planning
-description: Plan and break down user-story issues into ordered, traceable task issue drafts with explicit publish gates.
+description: 'Breaks user stories into ordered task drafts with acceptance-criteria traceability and dependency checks. USE FOR: plan tasks for an issue, decompose an agreed story, preview coverage or prepare task-publication handoff. DO NOT USE FOR: implementation, PR review or publication outside active host authority.'
 license: MIT
 metadata:
-   version: "0.3.0"
+   version: "0.3.1"
    status: experimental
    owner: "@equinor/fusion-core"
 
@@ -16,9 +16,8 @@ metadata:
       - user-story
       - task-planning
    mcp:
-      required:
-         - github
       suggested:
+         - github
          - mcp_fusion
 ---
 
@@ -34,7 +33,8 @@ Plan actionable tasks for existing User Story before implementation: "plan tasks
 
 ## When not to use
 
-Direct implementation, PR review, or unconfirmed GitHub mutations.
+Planning how to solve an issue, or exploring concepts/models before an agreed User Story (use installed `fusion-planner`);
+direct implementation, PR review, or unconfirmed GitHub mutations.
 
 ## Required inputs
 
@@ -43,14 +43,14 @@ Issue (`owner/repo#number` or URL); depth (`minimal`, `standard`, `detailed`), d
 ## Safety & constraints
 
 - This skill is mutation-capable. Repository-local workflow instructions take precedence over inline guidance when they conflict.
-- Explicit same-turn confirmation before any mutation, including `publish-now` and repair. Run mode is not approval. Delegate mutation/repair to `fusion-issue-authoring` (prefer sub-agent); never call MCP write tools directly. Missing orchestrator: draft-only artifacts and explicit publish handoff.
-- Never infer acceptance criteria without flagged assumptions; always preserve AC traceability. Keep drafts in `.tmp/` before publishing.
+- Active host owns confirmations, credentials/authentication, scratch storage and remote publishing. Run mode is not approval. Interactive: explicit confirmation before publication/repair unless already explicitly authorized. Automated: follow separately authorized publication scope; silence grants no authority. Route publication/repair through `fusion-issue-authoring` using host adapter or inline procedure; never call MCP write tools directly. Missing orchestrator: draft-only artifacts and explicit publish handoff.
+- Never infer acceptance criteria without flagged assumptions; always preserve AC traceability. Keep drafts in host scratch storage or return inline before publishing.
 - Publication blocked until devil's advocate confirms sound split or user explicitly accepts listed risks. Unresolved assumptions, uncovered requirements or untraced tasks still block publication; draft-only ambiguity exception below does not authorize writes.
-- Publish/repair fails until issue exists, requested `Issue Type` and expected parent linkage pass post-flight. Unresolved item failures: hard fail, exact per-issue `failed` reasons; stop further mutations pending user confirmation, retain unresolved items for explicit decision.
+- Publish/repair fails until issue exists, requested `Issue Type` and expected parent linkage pass post-flight. Unresolved item failures: hard fail, exact per-issue `failed` reasons; stop further mutations pending host-authorized recovery, retain unresolved items for explicit decision.
 
 ## Tool format
 
-Tool names: `<mcp_server>::<tool>` (example: `mcp_github::sub_issue_write`).
+Tool names below are MCP examples, not requirements. Host chooses available approved adapter; prefetched issue context supports draft-only planning without live GitHub access.
 
 ## Instructions
 
@@ -63,10 +63,11 @@ Execute in order; state assumptions.
    - Never stop due to missing preferred skills; degrade gracefully.
 
 2. Research the user story
-   - Read title/body, acceptance criteria, scenarios, ancestor chain, existing sub-issues, related links. Ambiguous issue type: confirm `User Story`.
+   - Planning handoff: use supplied design revisions, decisions, criteria, risks and blockers as context; reconcile with current User Story first. Link repository design; keep tasks in GitHub. Planning approval is not task/publication approval.
+   - Read supplied/prefetched title/body, acceptance criteria, scenarios, ancestor chain, existing sub-issues and related links; fetch missing context only through available host tools. Mark unavailable context unverified; missing criteria block traceable planning. Ambiguous issue type: interactive sessions confirm `User Story`; automated runs flag ambiguity.
 
 3. Clarify only when needed
-   - At most 3 questions per batch; continue with explicit assumptions when safe defaults exist.
+   - Interactive: at most 3 questions per batch. Automated: use safe explicit assumptions, return consequential blockers without an ask-user loop.
 
 4. Extract planning anchors
    - Outcomes, constraints/non-goals, verification points.
@@ -88,27 +89,27 @@ Execute in order; state assumptions.
      - Discovery/research/alignment alongside implementation without explicit blocker
      - Vague/circular dependencies ("after backend is done", "when design is ready")
      - Unclear/contested component, API, data-model ownership
-   - Two or more: `orchestrated` asks `fusion-issue-authoring` to read/apply its `agents/devils-advocate.agent.md` in **interrogator mode**, no user trigger needed. `inline`: apply five-signal inline DA checklist, surface `⚠ Ambiguity checklist`; user resolves/explicitly accepts each before drafts.
-   - Zero/one: **moderate mode**, up to 3 concerns, continue after acknowledgement.
+   - Two or more: `orchestrated` asks `fusion-issue-authoring` to read/apply its `agents/devils-advocate.agent.md` in **interrogator mode** interactively, or bounded inline critique when automated. `inline`: apply five-signal DA checklist, surface `⚠ Ambiguity checklist`; unresolved items follow draft-only exception.
+   - Zero/one: **moderate mode**, up to 3 concerns; interactive acknowledgement or automated recorded disposition.
    - **Draft-only exception**: unresolved ambiguities may proceed to drafts in `draft-only`, but plan preview starts with `⚠ Ambiguity warning` listing each. Publication remains blocked until risks accepted.
 
 8. Generate task issue drafts
    - `orchestrated`: route through `fusion-issue-authoring` with issue type `Task` in draft-only mode; it reads/applies its `agents/task.agent.md`, then returns local drafts for plan review.
-   - `inline`: write `.tmp/TASK-<nn>-<slug>.md` drafts from `assets/task-issue-draft.md.hbs`
+   - `inline`: write `TASK-<nn>-<slug>.md` in host scratch storage or return inline drafts from `assets/task-issue-draft.md.hbs`
    - Shape every task body for human readers (see [Human-first output](#human-first-output)).
-   - Keep drafts local until explicit publish approval.
+   - Interactive: Keep drafts local until explicit publish approval. Automated: keep drafts local until host publication authority and content gates pass.
 
 9. Check coverage
    - List requirements/AC with no task and tasks mapping to none, or `Full coverage`. Both block publication until resolved: uncovered requirement gets task, deferral or accepted gap; untraced task dropped, moved to suggestions or mapped after confirmation.
 
 10. Generate plan preview
-   - Write `.tmp/USER-STORY-TASK-PLAN-<context>.md` from `assets/task-plan-template.md.hbs`: summary, technical plan, research questions, traceability, coverage, ordered tasks, undrafted suggestions, draft paths, publish plan, assumptions/risks.
+   - Write `USER-STORY-TASK-PLAN-<context>.md` in host scratch storage or return inline plan from `assets/task-plan-template.md.hbs`: summary, technical plan, research questions, traceability, coverage, ordered tasks, undrafted suggestions, draft paths, publish plan, assumptions/risks.
    - Before filling either template, read selected `.hbs` header, `assets/partials/agent-content/README.md`, and named partials: `assets/partials/agent-content/banner.hbs`, `assets/partials/agent-content/tldr.hbs`, `assets/partials/agent-content/references.hbs`; `assets/partials/agent-content/details.hbs` only for inline task draft. Fill manually; no renderer ships.
 
-11. Publish only after explicit confirmation
-   - Apply same-turn confirmation/assumption/DA/coverage gates above. When publishing approved drafts, read `references/publish-and-repair.md` for delegated payload and verification contract.
-   - No milestone for tasks, even story/Feature inherited milestone. Prefer sub-agent execution.
-   - MCP-first; GraphQL only missing MCP write coverage. Reuse batch caches: labels/candidates per repo, types per organization.
+11. Hand off authorized publication
+   - Apply host authority/assumption/DA/coverage gates above. When publishing authorized drafts, read `references/publish-and-repair.md` for payload and verification contract.
+   - No milestone for tasks, even story/Feature inherited milestone. Host chooses execution adapter.
+   - Use available host-approved tools. Reuse batch caches: labels/candidates per repo, types per organization.
    - Sub-issue links/order are sole child list; no story-body task checklist or parent comment listing tasks.
    - N tasks cost ~N issue writes plus optional links; N > 5: warn rate-limit risk, offer batches.
 
@@ -132,4 +133,4 @@ Return heading order:
 8. Publish plan
 9. Assumptions, risks, and open questions
 
-Always `Status: Awaiting user approval` until confirmed and completed. For `publish-now` or `repair`, per-issue post-flight: exists, issue type equals requested type, parent equals story number, status (`ok`, `fixed`, `failed`).
+Interactive: `Status: Awaiting user approval` until approved and completed. Automated: draft-ready, blocked or verified publication result; never infer approval. For `publish-now` or `repair`, per-issue post-flight: exists, issue type equals requested type, parent equals story number, status (`ok`, `fixed`, `failed`).

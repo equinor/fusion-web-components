@@ -55,7 +55,7 @@ After each batch:
 
 ## Expected output
 
-- Execution plan in `.tmp/scribe-plan-<context>.md`
+- Execution plan `scribe-plan-<context>.md` in host scratch storage
 - Progress updates after each batch
 - Final summary statistics for the report (Step 7)
 

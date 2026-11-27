@@ -22,6 +22,8 @@ Summary:
 
 ## Process
 
+First apply SKILL.md source-context rules: sufficient prefetched source/revision/excerpt bypasses live search; installed package source may verify exact APIs through host-approved tools. MCP steps below apply only when available and needed. Report gaps; never invent retrieval.
+
 1. Confirm the question is about EDS, not Fusion Framework or skills.
 2. Choose the query pattern above.
 3. Call `mcp_fusion_search_eds` with the component name plus relevant context terms.
@@ -48,5 +50,5 @@ Before including a source in the answer:
 
 Never:
 - invent EDS component props, tokens, or behaviors not found in retrieved sources
-- claim EDS evidence exists when MCP is unavailable or results are weak
+- claim EDS evidence without a supporting source, or claim MCP retrieval when unavailable
 - use Fusion Framework or docs results as EDS component proof

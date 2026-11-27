@@ -4,7 +4,7 @@ description: 'Routes unclear cross-domain Fusion requests and gives missing-skil
 license: MIT
 compatibility: Assumes Fusion MCP is available (`mcp_fusion_skills`). Falls back to inline install commands when unavailable.
 metadata:
-  version: "0.1.6"
+  version: "0.1.7"
   status: active
   owner: "@equinor/fusion-core"
   role: orchestrator
@@ -45,7 +45,8 @@ When asked "what can you do?" or greeting an exploratory newcomer, read `referen
 | Inspect a skill for quality issues or report a skill failure | `fusion-skills` | active |
 | Create or update a GitHub issue | `fusion-issue-authoring` | active |
 | Solve / implement a GitHub issue | `fusion-issue-solving` | experimental |
-| Plan or break down an issue into sub-tasks | `fusion-issue-task-planning` | experimental |
+| Plan how to solve an issue, shape a feature or model, check readiness or spec fit | `fusion-planner` | experimental |
+| Break down an existing User Story into task issue drafts | `fusion-issue-task-planning` | experimental |
 | Address PR review comments | `fusion-github-review-resolution` | experimental |
 | Review a dependency update PR | `fusion-dependency-review` | experimental |
 | Greenkeep or incrementally improve a Fusion app repo; resume its maintenance plan | `fusion-app-greenkeeping` | experimental |
@@ -67,7 +68,7 @@ Never route to yourself or back to incoming Fusion skill. Answer directly or sta
    ```
    apm install equinor/fusion-skills/skills/<skill-name>#^1.6.1 --target copilot
    ```
-   For `fusion-app-greenkeeping`, `fusion-service-greenkeeping`, `fusion-repository-greenkeeping` or `fusion-general-greenkeeping`, use catalog path `skills/.experimental/<skill-name>`
+   For `fusion-planner`, `fusion-app-greenkeeping`, `fusion-service-greenkeeping`, `fusion-repository-greenkeeping` or `fusion-general-greenkeeping`, use catalog path `skills/.experimental/<skill-name>`
    instead of `skills/<skill-name>`; available after release containing skill. App APM profile includes app greenkeeping; services profile includes service greenkeeping.
 5. **If the skill is experimental:** add a note: "This skill is experimental and may change. Install at your own risk."
 6. **If intent doesn't match any routing entry:** say so; suggest describing goal differently or `fusion-skills` discovery.

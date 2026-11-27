@@ -1,0 +1,85 @@
+{{!--
+  App design contract, saved as DESIGN.md at the app root (or the frontend root for several apps).
+  Use only when the app has no DESIGN.md. Never reformat an existing DESIGN.md with this template.
+  Context:
+    appName: product name as users see it
+    principles: optional list of { title, rule, owner, date, reference }; only principles the user
+      states, with the owner and date they give; never invent or infer them; reference is an issue
+      or decision link, or "none"
+    surfaces: list of { name, rules }; one entry per part of the product (app shell, home, a
+      workflow, a grid); rules is a list of plain-language rules for that surface
+    navigationModel: optional; one of "None", "Tabs", "Sidemenu"
+    navigationReason: required when navigationModel is set; short rationale for the chosen model
+    navigationRevisitWhen: required when navigationModel is set; condition that reopens the
+      navigation decision, for example "more than 5 views, sub-navigation, or an unrelated section"
+      for tabs, or "a second page or section is added" when navigationModel is "None"
+    layoutDecisions: optional list of { page, pageType, pattern, maxWidth, revisitWhen }; pattern is
+      one of "A — Centered", "B — Full-width", "C — Viewport-fill"; revisitWhen is the change that
+      reopens the decision, for example "a data grid becomes the main content"
+    deviations: optional list of { rule, deviation, reason }; departures from fusion-design defaults
+    decisions: optional list of { title, link }; design decision records with evidence
+    openQuestions: optional list of cases no rule covered and the choice made meanwhile
+--}}
+# {{appName}} design
+{{#if principles}}
+
+## Principles
+
+These rules take precedence over the sections below and over evaluation findings, but never over fusion-design's mandatory rules.
+
+{{#each principles}}
+- **{{title}}.** {{rule}} (Set by {{owner}}, {{date}}; {{reference}})
+{{/each}}
+{{/if}}
+{{#each surfaces}}
+
+## {{name}}
+
+{{#each rules}}
+- {{this}}
+{{/each}}
+{{/each}}
+{{#if navigationModel}}
+
+## Navigation
+
+**{{navigationModel}}** — {{navigationReason}}
+
+**Revisit when:** {{navigationRevisitWhen}}
+{{/if}}
+{{#if layoutDecisions}}
+
+## Page layout
+
+| Page | Page type | Pattern | Max-width | Revisit when |
+| --- | --- | --- | --- | --- |
+{{#each layoutDecisions}}
+| {{page}} | {{pageType}} | {{pattern}} | {{maxWidth}} | {{revisitWhen}} |
+{{/each}}
+{{/if}}
+{{#if deviations}}
+
+## Deviations from Fusion Design
+
+| Rule | Deviation | Reason |
+| --- | --- | --- |
+{{#each deviations}}
+| {{rule}} | {{deviation}} | {{reason}} |
+{{/each}}
+{{/if}}
+{{#if decisions}}
+
+## Decision records
+
+{{#each decisions}}
+- [{{title}}]({{link}})
+{{/each}}
+{{/if}}
+{{#if openQuestions}}
+
+## Open questions
+
+{{#each openQuestions}}
+- {{this}}
+{{/each}}
+{{/if}}

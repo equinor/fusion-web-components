@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.4.0 - 2026-11-21
+
+### minor
+
+- [#493](https://github.com/equinor/fusion-skills/pull/493) [`6ad5348`](https://github.com/equinor/fusion-skills/commit/6ad5348913e97384b0e38b8b51d22bb917135fd5) - Add read-only `diagnose` mode to `agents/warden.agent.md` and `SKILL.md` routing.
+
+
+  - Inspect installed APM provenance/drift, trigger collisions, missing MCP servers, and frontmatter/size issues without mutating workspace files
+
+## 0.3.0 - 2026-11-21
+
+### minor
+
+- [#488](https://github.com/equinor/fusion-skills/pull/488) [`d8375b3`](https://github.com/equinor/fusion-skills/commit/d8375b3257243816be28b004e4df61967f215ca0) - Add a runtime-boundary rule and make the service-mode contract defer authority to the host runtime.
+
+
+  - Add `references/runtime-boundary.md`: skills own maintenance checks, remediation craft, verification and output shape; the host runtime owns execution authority, approvals, branches/commits, labels, credentials and publishing.
+  - Interactive hosts default to non-mutating advice until the developer approves changes; automated hosts work within their authorized scope, tools and verification commands.
+  - Supersede `fusion-service-mode/1` bans on commits, branches, workflows, `CODEOWNERS`, APM manifests and companion skills. Path protection now comes from the host task's optional `protectedPaths`.
+  - Scope `☘️ Fusion Greenkeep` label creation to hosts that publish directly.
+
+  resolves equinor/fusion-skills#483
+  refs equinor/fusion-skills#479
+
 ## 0.2.5 - 2026-11-11
 
 ### patch

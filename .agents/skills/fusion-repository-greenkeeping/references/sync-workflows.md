@@ -7,6 +7,7 @@
 - [Fill reusable caller template](#fill-reusable-caller-template)
 - [Fill standalone template](#fill-standalone-template)
 - [Runtime contract](#runtime-contract)
+- [Carried-license migration](#carried-license-migration)
 - [Schedule reference](#schedule-reference)
 
 Use only when user explicitly asks to configure an APM workflow.
@@ -80,7 +81,7 @@ into new `.tmp/apm-sync.candidate.yml`, then follow [reviewed lifecycle](workflo
 
 ## Fill standalone template
 
-[`apm-sync.yml.hbs`](../assets/workflows/apm-sync.yml.hbs) `1.1.0`; agent fills per
+[`apm-sync.yml.hbs`](../assets/workflows/apm-sync.yml.hbs) `1.1.1`; agent fills per
 [fill rules](common-workflows.md#fill-rules). Output uses public actions and runs
 independently of this skill. Hosted runner supplies Python 3, Git and `gh`.
 
@@ -91,7 +92,7 @@ inputs, so every run uses the reviewed branch and APM version. Change them by re
 | --- | --- |
 | `schedule` | Five numeric cron fields, weekday `0–6`; `""` means manual-only. Numeric lists, ranges and positive steps supported, no aliases/names. Review GitHub's minimum five-minute interval separately. |
 | `updateBranch` | Literal valid Git branch, different from repository default. Job also rejects default branch at runtime. |
-| `apmVersion` | Exact stable SemVer. Start with shared maintained CLI default `0.33.0`, then review upgrades explicitly. |
+| `apmVersion` | Exact stable SemVer. Start with shared maintained CLI default `0.36.1`, then review upgrades explicitly. |
 | `dependencyTokenSecret` | Actions secret **name**, never value. Required for any internal/private dependency (all Fusion skills). `""` selects `github.token`, valid only when every dependency is public. |
 
 Example `.tmp/apm-sync.raw.json`:
@@ -100,10 +101,14 @@ Example `.tmp/apm-sync.raw.json`:
 {
   "schedule": "0 8 * * 1",
   "updateBranch": "chore/apm-sync",
-  "apmVersion": "0.33.0",
+  "apmVersion": "0.36.1",
   "dependencyTokenSecret": "APM_FUSION_SKILLS_TOKEN"
 }
 ```
+
+APM 0.36.1 adopts unchanged committed skills without local receipts, but pre-0.36
+deployments can lack newly carried `LICENSE` files. That still blocks cold install/update.
+Before rollout, follow [carried-license migration](#carried-license-migration).
 
 Name an approved secret, e.g. `APM_FUSION_SKILLS_TOKEN` (as in `equinor/fusion-framework`),
 provisioned through GitHub UI or approved identity tooling. Prefer a short-lived GitHub App
@@ -121,7 +126,8 @@ Fill into new `.tmp/apm-sync.candidate.yml`, then follow
   constraints, then redeploys owned files. Dependency token reaches only update step,
   as `github-token` and `GITHUB_APM_PAT`.
 - Git and `gh` keep one persistent branch and reuse its open PR. Default-branch advances
-  merge first; conflicts need manual resolution. No force-push or branch deletion.
+  merge first; on conflict the branch tree resets to the default branch in a merge commit, so APM regenerates
+  cleanly, and superseded update-branch commits go to the job summary. No force-push or branch deletion.
 - Discards lockfile-only changes: APM rewrites `resolved_at` on every update, while a real
   update also changes deployed files. Lockfile plus deployed-file changes are committed;
   unchanged runs create no commit, push or PR.
@@ -138,7 +144,41 @@ Fill into new `.tmp/apm-sync.candidate.yml`, then follow
 
 Verified sources: [action inputs](https://github.com/microsoft/apm-action/blob/v1/action.yml),
 [action runner](https://github.com/microsoft/apm-action/blob/v1/src/runner.ts),
-[APM 0.33.0 token precedence](https://github.com/microsoft/apm/blob/v0.33.0/src/apm_cli/core/token_manager.py).
+[APM 0.36.1 token precedence](https://github.com/microsoft/apm/blob/v0.36.1/src/apm_cli/core/token_manager.py).
+
+## Carried-license migration
+
+APM 0.36.1 includes cold-checkout adoption fixes
+([microsoft/apm#3564](https://github.com/microsoft/apm/pull/3564),
+[microsoft/apm#3638](https://github.com/microsoft/apm/pull/3638)). It also carries
+repository licenses into deployed skills
+([microsoft/apm#3646](https://github.com/microsoft/apm/pull/3646)). Older committed skill
+directories and lockfiles lack them. Adoption needs identical complete directories, so
+cold install/update still fail. CLI upgrade alone, or a passing `apm audit --ci`, is not a repair.
+
+Interactive: needs explicit maintainer approval of the additive migration; automated: host task scope.
+Run `apm` commands per host permissions. Use isolated `HOME`, `APM_HOME` and cache/config
+paths. Never use `--force`, copy receipts or change dependency constraints.
+
+1. Preserve original checkout, manifest, lockfile, update branch and local context. Make a
+   separate rendering control at the same commit with the same files except deployed skill
+   directories. Omit them only from the control; never delete them from the consumer.
+2. Run checksum-verified `apm install` in the control.
+3. Compare generated deployment with every existing managed file. Existing bytes and locked
+   dependency commits must match. Every added file must be a source-derived license. Other
+   changes, missing files or local edits: stop and report.
+4. After review, carry only added license files and the APM-generated lockfile into a
+   complete fresh copy. Never hand-edit ownership claims or hashes. Preserve
+   repository-authored files and every existing managed file.
+5. With empty local APM state, test `apm install --frozen`, `apm update --yes` and
+   `apm audit --ci` separately. Frozen install preserves lock bytes. Review update output.
+   A deliberately edited managed file must still fail without partial writes.
+6. Publish each repository's migration only after approval. `@main` callers inherit the shared
+   CLI on merge; SHA-pinned callers need the migration plus an approved workflow-reference
+   advance. Reuse existing update PRs.
+
+Report local checks separately from successful default-branch manual and later scheduled
+runs. Source/pip installs of APM 0.36.1 need Python 3.11+; shared workflow uses release binaries.
 
 ## Schedule reference
 

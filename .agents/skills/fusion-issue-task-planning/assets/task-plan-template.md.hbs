@@ -1,5 +1,5 @@
 {{!--
-Task plan draft; publishing still requires explicit confirmation.
+Task plan draft; interactive publication requires explicit confirmation, automated publication requires separate host authority.
 draftingMode: orchestrated | inline
 issueAuthoringAvailability: available | not installed
 runMode: draft-only | draft+publish-ready | publish-now
@@ -18,8 +18,9 @@ coverage: object with uncoveredRequirements and untracedTasks lists; both empty 
 tasks: ordered list with number, objective, sequence, acceptanceCriteria, scopeBoundary, deliverable, verification
 niceToHaveTasks: optional list with title and value; not drafted until selected
 dependencyNotes: list of dependencies with reasons
-taskIssueDrafts: list with path, title, sequence, dependsOn; paths use .tmp/TASK-NN-slug.md
-publishPath: orchestrated via fusion-issue-authoring (preferred sub-agent) | draft-only handoff
+taskIssueDrafts: list with path, title, sequence, dependsOn; host scratch paths or inline draft identifiers
+publishPath: orchestrated via fusion-issue-authoring (host adapter or inline) | draft-only handoff
+status: optional host-derived draft-ready, blocked or verified publication result; omit for interactive approval default
 postFlightReport: list with issue, exists (yes/no), type, parent, status (ok/fixed/failed)
 assumptions: list of explicit assumptions
 blockers: optional list with what, why, nextAction
@@ -156,13 +157,14 @@ Quality-of-life work that no acceptance criterion requires. Draft only the ones 
 {{/each}}
 
 ## Publish plan (requires explicit confirmation)
+Interactive confirmation or separately authorized automated scope; run mode grants no write authority.
 - Publish path: {{publishPath}}
 - Delegated publisher: `fusion-issue-authoring`
 - Delegated inputs:
   - `owner`, `repo`, `parent story`, `ordered task drafts`, `labels/assignee intent`, `dependency ordering`
 - Delegated behavior contract:
-  - MCP-first issue mutation and verification through `fusion-issue-authoring`
-  - GraphQL fallback only when MCP write coverage is unavailable
+  - Host-approved issue mutation and verification through `fusion-issue-authoring`
+  - Host owns tool adapter and authorized GraphQL fallback
   - Return per-issue post-flight verification (`exists`, `type`, `parent`, `status`)
 - This skill does not call MCP write tools directly for publish/repair.
 - Apply sub-issue ordering from planned sequence
@@ -196,6 +198,10 @@ Quality-of-life work that no acceptance criterion requires. Draft only the ones 
 {{/each}}
 
 ## Status
+{{#if status}}
+Status: {{status}}
+{{else}}
 Status: Awaiting user approval
+{{/if}}
 
 {{> agent-content/references}}

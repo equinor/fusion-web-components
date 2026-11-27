@@ -17,7 +17,7 @@ Do not use this agent mode for pure bug reports, generic feature specs without u
 ## Instructions
 
 1. Confirm routed type is `User Story`.
-2. Draft locally in `.tmp/USER-STORY-<context>.md`.
+2. Draft `USER-STORY-<context>.md` in host scratch storage, or return inline if unavailable.
 3. Structure draft with:
    - Story statement
    - Context/pain points
@@ -37,7 +37,7 @@ No renderer ships with the skill.
 
 ## Expected output
 
-- Draft file path in `.tmp/`
+- Host draft path or inline draft
 - Proposed title/body summary
 - Story-specific scenario and validation summary
 

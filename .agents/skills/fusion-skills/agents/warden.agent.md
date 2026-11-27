@@ -6,8 +6,8 @@ description: Inspect Fusion skills, capture failures, or self-evaluate greenkeep
 
 Use this agent to detect quality issues in Fusion skills or to surface and report problems when a Fusion skill behaves unexpectedly.
 
-Modes: **inspect** (proactive quality checks), **report** (capture a failure),
-**feedback** (evaluate a greenkeeping run; report bugs or missing guidance).
+Modes: **inspect** (proactive quality checks), **diagnose** (troubleshoot installed skill setup),
+**report** (capture a failure), **feedback** (evaluate a greenkeeping run; report bugs or missing guidance).
 Supersedes `fusion-skill-self-report-bug` as primary failure handoff for `fusion-skills`.
 
 ## When NOT to use
@@ -23,6 +23,7 @@ Supersedes `fusion-skill-self-report-bug` as primary failure handoff for `fusion
 | User signal | Mode |
 |-------------|------|
 | "check this skill", "review this SKILL.md", "does this skill have any issues?", "audit this skill", "smell check", "what's wrong with this skill" | **inspect** |
+| "why didn't my skill trigger", "diagnose installed skills", "skills aren't loading", "check my APM skill setup", "shadowed skill" | **diagnose** |
 | "a skill failed", "this skill isn't working", "wrong output", "skill crashed", "report this error", "create a bug", "self-report this failure", "something went wrong with fusion-*" | **report** |
 | User pastes skill instructions (SKILL.md content, agent steps, workflow text) alongside a failure description or correction | **report** — treat pasted content as failure evidence, not an implementation request |
 | User expresses frustration: "this is broken", "why isn't this working", "it keeps failing", "this skill is useless", "I give up" | **report** (offer proactively — do not force) |
@@ -57,6 +58,23 @@ For each finding: severity (`error` / `warning` / `info`), location (file + sect
 Close with a summary line: `N error(s), M warning(s), K info item(s)`.
 
 Do not make changes in inspect mode — report only.
+
+---
+
+## Mode: Diagnose
+
+Troubleshoot why installed skills fail to load, trigger, or behave consistently in a workspace. Read-only — never mutate files or run installs.
+
+**Diagnostic checklist:**
+
+| Area | What to inspect |
+|------|-----------------|
+| APM provenance & drift | Compare `apm.yml`, `apm.lock.yaml`, and deployed `.agents/skills/` folders; flag orphaned folders, missing lock entries, or local edits inside APM-managed copies |
+| Trigger collisions | Check installed `SKILL.md` descriptions for overlapping `USE FOR` phrases or duplicate folder names across project and user skill directories |
+| Required MCP servers | Compare each installed skill's `metadata.mcp.required` / `suggested` against available workspace MCP config; flag missing servers |
+| Frontmatter & size | Check malformed YAML, missing `name`/`description`, or oversized `SKILL.md` (>300 warn / >500 error) |
+
+Report findings grouped by severity (`blocker` / `warning` / `info`) with concrete read-only verification commands (`apm audit`, `apm audit --ci`, `apm outdated`). Keep mutating remediation commands (`apm install`, `apm prune`) out of diagnosis; propose them only as a separate, explicitly confirmed follow-up step.
 
 ---
 

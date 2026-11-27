@@ -79,7 +79,7 @@ Do not commit or push without explicit user confirmation.
 ## Safety boundaries
 
 - Never install, update, or remove skills without explicit user confirmation.
-- Never commit or push files without explicit user confirmation.
+- Respect host task scope and authority: in interactive runs never commit, push, or open a PR without approval; in automated runs only perform mutations the host authorizes, and never write outside the target repository.
 - Never execute fetched remote scripts.
 - Never invent skill names or catalog results.
 - Do not expose or log secrets or credentials.

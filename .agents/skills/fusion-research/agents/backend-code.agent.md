@@ -29,6 +29,8 @@ Recommended search patterns by question type:
 
 ## Process
 
+First apply SKILL.md source-context rules: sufficient prefetched source/revision/excerpt bypasses live search; authorized local backend source may verify exact implementation. MCP steps below apply only when available and needed. Report gaps; never invent retrieval.
+
 1. Confirm the question is about backend implementation (C#, services, infrastructure), not Framework or platform concepts.
 2. Choose the search lane above that matches the question type.
 3. Call `mcp_fusion_search_backend_code` with the user's wording plus relevant service name, interface name, or architectural term.
@@ -57,6 +59,6 @@ Before including a source in the answer:
 
 Never:
 - invent service methods, interfaces, or behaviors not found in retrieved sources
-- claim backend implementation evidence exists when MCP is unavailable or results are weak
+- claim backend implementation evidence without a supporting source, or claim MCP retrieval when unavailable
 - use Framework or platform docs as proof of backend architectural decisions
 - assume behavior from similar code — verify the exact implementation in context

@@ -1,9 +1,9 @@
 ---
 name: fusion-audience-alignment
-description: 'Aligns multi-audience drafts through reader reviews. USE FOR: "who will read this", "review this for the audience", product owner, developer or newcomer clarity. DO NOT USE FOR: final formatting (use fusion-agent-content), running-app personas (use fusion-simulated-user-eval), or publishing without confirmation.'
+description: 'Aligns multi-audience drafts through reader reviews. USE FOR: "who will read this", "review this for the audience", product owner, developer or newcomer clarity. DO NOT USE FOR: final formatting (use fusion-agent-content), running-app personas (use fusion-simulated-user-eval), or publication.'
 license: MIT
 metadata:
-  version: "0.1.3"
+  version: "0.1.4"
   status: experimental
   owner: "@equinor/fusion-core"
   skills:
@@ -52,7 +52,8 @@ metadata:
 - Roles only; no real names, emails or personal data in cards/notes.
 - Readers judge clarity/fit, never supply facts, decisions or commitments.
 - Preserve meaning and every required decision; unknown facts become visible questions.
-- No publishing, comments or GitHub edits without explicit user confirmation; caller owns gate.
+- Alignment authorizes no publication. Active host owns confirmations, credentials and remote writes: interactive writes need explicit user authorization; automated writes need authorized task scope. Mode or silence grants no authority.
+- Use supplied/prefetched reader context; live lookup only through available host tools. Missing context becomes questions or labeled assumptions, not a mandatory tool/ask-user loop. Host owns scratch storage.
 - Isolated review must be source-blind: separate context with only draft/card, no repository,
   chat history or research notes. Never claim an informed inline review is isolated.
   If runtime cannot enforce restricted context, report isolated mode unsupported.
@@ -71,7 +72,7 @@ Choose as few as cover everyone who must understand or act; merge identical need
 Always include reader who must decide/act. Add context-free newcomer/future maintainer for
 lasting content, and agent reader when an agent will act on it. Each extra reader covers a distinct need.
 Read `assets/reader-card.md.hbs` header; fill named Markdown slots, drop comments, one card per reader.
-Show readers for user confirmation/adjustment when available; autopilot selects and records them.
+Interactive: show readers for confirmation/adjustment. Automated: select and record from task context; no claim of user confirmation.
 
 ### 3. Review the draft as each reader
 
@@ -100,6 +101,7 @@ Revise from verified facts without growing visible text:
 
 Add readers/main edits to draft's folded **References and evidence** audience note.
 Return to `fusion-agent-content` for shaping or calling skill.
+Called from planning: return reader paraphrases and clarity findings only; comprehension is not design approval, spec conformance or council consent.
 
 ## Expected output
 

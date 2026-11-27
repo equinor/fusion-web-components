@@ -8,9 +8,9 @@ Do not install, update, create, or remove skills from this agent. When the quest
 
 ## MCP tooling
 
-Use both tools in sequence:
+Use source-backed prefetched catalog content first when sufficient; otherwise use available tools in sequence:
 
-1. **`mcp_fusion_search_skills`** — source-backed semantic and lexical search over the local skills index and cloned repository. Start here for every catalog research question.
+1. **`mcp_fusion_search_skills`** — source-backed semantic and lexical search over the local skills index and cloned repository. Start here for live catalog research when available.
 2. **`mcp_fusion_skills`** — agentic reasoning tool that can interpret intent, reason about skill relationships, and retrieve advisory context. Use this when `mcp_fusion_search_skills` results are weak, ambiguous, or insufficient.
 
 Fall back to local `SKILL.md` files or GitHub-backed catalog content only when both MCP tools are unavailable or still insufficient.
@@ -26,6 +26,8 @@ Summary:
 - usage boundary — `<skill-name> when not to use do not use`
 
 ## Process
+
+First apply SKILL.md source-context rules: sufficient prefetched source/revision/excerpt bypasses live search. MCP steps below apply only when available and needed; skip missing tools, retain fallback order and disclose limitations.
 
 1. Confirm the question is catalog research, not a lifecycle operation or an implementation question.
    - If the user wants to install, update, or remove a skill, redirect to `fusion-skills`.

@@ -72,6 +72,13 @@ With no matching workflow and confirmed prerequisites:
    choices, prerequisite limits and runtime effects.
 5. Apply only after approval. Follow repo-local commit/PR policy; local setup
    approval does not permit pushes, Actions runs or deployments.
+6. Filled workflow (not Dependabot config) in lockfile [policy scope](actions-hygiene.md#workflow-lockfile):
+   candidate report and post-apply report list required maintainer follow-up with exact commands:
+   `gh actions-lock .github/workflows/<file>.yml`, review full diff (lockfile plus
+   rewritten `uses:` refs), commit with workflow, then `gh actions-lock --verify`.
+   Skill never runs them. Until verify passes, status **not verified**, never
+   compliant. Reusable-workflow callers keep full SHA; called repo owns its lockfile.
+   Outside policy scope: template SHA pins only, no lockfile follow-up.
 
 ## Repeat setup and versioned updates
 
@@ -92,6 +99,9 @@ proof that installed workflow equals generated source.
 - Compare original baseline, installed file and proposed baseline. Local-only
   edits must survive. Inputs/sidecar changes also require review; do not silently
   change configured environment, identity names or branch.
+- Policy scope and changed `uses:` refs: report same lockfile follow-up as
+  [initial setup](#initial-setup) step 6 (`gh actions-lock .github/workflows/<file>.yml`,
+  then `gh actions-lock --verify`).
 
 For reproducible three-way text comparison using staged local files:
 
@@ -136,6 +146,8 @@ after approval. No generated timestamps or normalization-only rewrites.
 | Workflow templates adopted, no Dependabot or Renovate | Offer Dependabot template: `github-actions` at `/` plus only detected lockfile/solution directories; weekly, 7-day cooldown. |
 | Existing Renovate or hand-written `dependabot.yml` | Report path and coverage gaps (e.g. no `github-actions`); never add second bot or overwrite; offer reviewed adoption for Dependabot only. |
 | Repository without Copilot setup, pnpm lockfile committed | Fill setup steps with exact Node/pnpm; after merge confirm workflow run passed; no secrets or extra tools added. |
+| `actions.lock` exists, new Copilot setup candidate | Report maintainer follow-up: `gh actions-lock .github/workflows/copilot-setup-steps.yml`, review/commit, `gh actions-lock --verify`. Status **not verified** until it passes; skill runs neither. |
+| No `actions.lock`, no adoption, no maintainer statement | Template SHA pins only; no lockfile follow-up or finding. |
 | .NET service with seven solutions, `global.json`, no lock files | Fill .NET block with `global.json` pin, its directory as .NET working directory and each solution as restore target, no `--locked-mode`; add Node block only if a frontend exists. |
 | Changesets app monorepo with configured release scripts | Reuse existing release manager or fill monorepo template; allowlist packages, require release-event credential, deploy released app through Fusion action. |
 | Workflow copied from `apm/templates/apm-sync.yml` or custom deploy script | Unknown provenance: inventory local choices; APM adoption only on explicit APM workflow request. Never replace unapproved. |
@@ -145,5 +157,6 @@ after approval. No generated timestamps or normalization-only rewrites.
 
 Expected report: template/applicability, inspected workflow path, prerequisite
 results, version/pin/inputs, **no change / blocked / candidate**, retained
-customizations, reviewable diff, validation and requested approval. Distinguish
+customizations, reviewable diff, validation, policy-scope lockfile follow-up and
+requested approval. Distinguish
 filled, applied, committed, published and executed; never collapse into “done”.

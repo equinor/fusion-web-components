@@ -2,7 +2,8 @@
 
 ## Rules
 
-- **Use a sidemenu when the app has 3 or more distinct sections** — for fewer than 3 sections, use tabs instead.
+- **Use a sidemenu when the app has 3 or more independent sections, any parent/child hierarchy, or more than 5 views.** For 2–5 flat views of the same entity or context, use tabs instead.
+- **Exactly 2 independent sections is an open question:** ask the user and recommend from expected growth — see `decision-tree.md` (Step 2) and record the choice in `DESIGN.md`.
 - **Never combine sidemenu and tabs at the same hierarchy level** — the sidemenu handles all top-level navigation on its own.
 - **Maximum navigation depth is 4 levels** — if the app requires more, reconsider the information architecture.
 - **Expand the sidemenu by default on first arrival** — never hide or collapse it on load.

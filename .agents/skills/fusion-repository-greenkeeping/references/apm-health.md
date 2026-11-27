@@ -15,8 +15,8 @@ install step): both are valid conventions.
 
 Static by default. Raw `shasum -a 256` does not reproduce lockfile hashes: APM applies per-file rules
 (e.g. APM 0.33.0 normalizes CRLF to LF for UTF-8 text without NUL bytes) and stores `sha256:<hex>`.
-Apply producing CLI version's rules before comparing; if not reproducible, hash mismatch is **unknown**. CLI checks need
-approval of exact command and installed version (`apm --version`, then `apm <cmd> --help`;
+Apply producing CLI version's rules before comparing; if not reproducible, hash mismatch is **unknown**. CLI checks run
+per host permissions (interactive: once maintainer agrees) and need installed version (`apm --version`, then `apm <cmd> --help`;
 older CLIs lack newer commands):
 
 | Command | Effect | Use |

@@ -25,7 +25,7 @@ Keep references one level deep. Don't create nested chains that force partial re
 ### Step 5 — Draft the minimum viable `SKILL.md`
 
 Write the smallest useful main document first:
-- concise frontmatter with strong discovery cues
+- concise frontmatter with strong discovery cues — write `description` as pure triggering conditions (`USE FOR`) and exclusions (`DO NOT USE FOR`), never a workflow summary (summarizing steps causes agents to follow the description and skip reading `SKILL.md`)
 - `When to use` and `When not to use`
 - `Required inputs`
 - `Instructions`
@@ -35,6 +35,8 @@ Write the smallest useful main document first:
 Keep under 300 lines. Different runtimes have different context limits — files over 300 lines risk degradation on smaller runtimes and trigger CI warnings. Files over 500 lines fail CI. Move overflow to `references/` early.
 
 Prefer concise, specific instructions over background explanation. Assume the agent is capable; only add context it won't reliably infer.
+
+For high-drift workflows (review gates, verification, testing), add a compact `Excuse | Reality` rationalization-prevention table targeting the shortcuts agents actually took in baseline runs. If an invariant is mechanically checkable (regex/AST/file check), prefer a small read-only script in `scripts/` over prose-only reminders.
 
 Set degree of freedom intentionally:
 - high freedom for context-dependent analysis or review

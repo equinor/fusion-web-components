@@ -7,12 +7,15 @@ Usage:
   skills/.experimental/fusion-github-review-resolution/scripts/resolve-review-comments.sh \
     --owner <owner> --repo <repo> --pr <number> --review-id <number> \
     [--message <text> | --message-file <path>] [--apply] [--include-resolved] [--include-outdated] \
-    [--allow-additional-reply]
+    [--allow-additional-reply] [--thread-id <id>]
 
 Description:
   Resolves matching review threads for a given pull request review id.
   Note: Uses GraphQL queries limited to the first 100 review threads and first 100
   comments per thread; results may be incomplete on very large pull requests.
+
+  --thread-id limits the run to one review thread (GraphQL node id, for example PRRT_...),
+  so each thread can get its own --message or --message-file.
 
 Safety:
   - Default mode is dry-run and performs no GitHub mutations.
@@ -45,6 +48,7 @@ MESSAGE_FROM_INLINE="false"
 MESSAGE_FROM_FILE="false"
 ALLOW_ADDITIONAL_REPLY="false"
 VIEWER_LOGIN=""
+THREAD_FILTER=""
 
 require_command() {
   local name="$1"
@@ -129,6 +133,11 @@ while [[ $# -gt 0 ]]; do
       MESSAGE_FROM_FILE="true"
       shift 2
       ;;
+    --thread-id)
+      require_arg "--thread-id" "${2:-}" "a review thread id value"
+      THREAD_FILTER="$2"
+      shift 2
+      ;;
     --apply)
       APPLY="true"
       shift
@@ -173,6 +182,11 @@ fi
 
 if ! [[ "$REVIEW_ID" =~ ^[1-9][0-9]*$ ]]; then
   echo "ERROR: --review-id must be a positive integer." >&2
+  exit 1
+fi
+
+if [[ -n "$THREAD_FILTER" ]] && ! [[ "$THREAD_FILTER" =~ ^[A-Za-z0-9_=-]{1,200}$ ]]; then
+  echo "ERROR: --thread-id must contain only letters, numbers, underscores, equals signs, or hyphens (max 200 chars)." >&2
   exit 1
 fi
 
@@ -233,6 +247,7 @@ TARGETS_JSON="$(printf '%s\n' "$JSON_OUTPUT" | jq -c \
   --arg includeResolved "$INCLUDE_RESOLVED" \
   --arg includeOutdated "$INCLUDE_OUTDATED" \
   --arg viewerLogin "$VIEWER_LOGIN" \
+  --arg threadFilter "$THREAD_FILTER" \
   --arg message "$MESSAGE" '
     .data.repository.pullRequest.reviewThreads.nodes
     | map(
@@ -271,6 +286,7 @@ TARGETS_JSON="$(printf '%s\n' "$JSON_OUTPUT" | jq -c \
             )
           }
         | select(.matchingReviewCommentIds | length > 0)
+        | if $threadFilter == "" then . else select(.threadId == $threadFilter) end
         | if $includeResolved == "true" then . else select(.isResolved == false) end
         | if $includeOutdated == "true" then . else select(.isOutdated == false) end
       )

@@ -1,10 +1,10 @@
 ---
 name: fusion-research
-description: 'Routes Fusion research and returns only source-backed evidence. USE FOR: Framework APIs and hooks, EDS components and props, skill catalog scope and relationships, Fusion platform docs, backend service implementation. DO NOT USE FOR: implementing code, installing or editing skills (use fusion-skills), MCP setup or troubleshooting (use fusion-mcp), or inventing behavior.'
+description: 'Returns source-backed Fusion research. USE FOR: Framework APIs/hooks, EDS components/props, skill scope/relationships, platform docs and backend implementation. DO NOT USE FOR: code implementation, skill install/edit (fusion-skills), MCP setup/troubleshooting (fusion-mcp) or invented behavior.'
 license: MIT
-compatibility: Works best with Fusion MCP. Dispatches to `agents/framework.agent.md` for `mcp_fusion_search_framework`, `agents/eds.agent.md` for `mcp_fusion_search_eds`, `agents/skills.agent.md` for `mcp_fusion_search_skills`, `agents/docs.agent.md` for `mcp_fusion_search_docs`, and `agents/backend-code.agent.md` for `mcp_fusion_search_backend_code`. If MCP is unavailable, state that clearly rather than guessing.
+compatibility: Works with source-backed prefetched context or host-approved source access. Fusion MCP improves live research but is optional; disclose missing tools and unverified evidence rather than guessing.
 metadata:
-  version: "0.4.4"
+  version: "0.4.5"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -51,16 +51,14 @@ Do not use this skill for:
 ## Required inputs
 
 Research question with concrete artifact (hook, component, package, token or
-skill) or platform topic. Ask for that reference when absent; infer domain
-from question before selecting instructions.
+skill) or platform topic. Resolve from task/prefetched context; interactive sessions ask when absent, automated runs report missing required scope. Infer domain before selecting instructions.
 
 ## Safety & constraints
 
 - Never invent hooks, EDS props, skill entries, platform guidance or service behavior.
-- Never claim evidence exists when MCP is unavailable or results are weak.
-  State unavailable MCP clearly; use only fallback sources allowed by selected
-  agent. Skills catalog fallback preserves search, reasoning tool, then local
-  `SKILL.md` or GitHub-backed evidence order.
+- Active host owns tools, credentials/authentication, clarification and scratch storage. Research stays read-only; mode or silence grants no write authority.
+- Use source-backed prefetched context first when sufficient; retain source/revision and supporting excerpt. Live lookup uses available host-approved tools. Missing MCP is a tooling limitation, not proof no evidence exists.
+- Without sufficient prefetched evidence, use selected agent's live search/fallback order; report unavailable tools and remaining uncertainty. Never fabricate retrieval or claim unverified sources were checked.
 - No code changes or repository/MCP mutations during research.
 - Capture source path and supporting excerpt before each claim; distinguish
   confirmed facts from inference. State agent and source for every answer part.
@@ -75,7 +73,7 @@ from question before selecting instructions.
 ### Step 0 — Sharpen scope (optional)
 
 When question lacks a specific artifact or needs clarification, read only
-selected domain's follow-up file; ask relevant unanswered questions:
+selected domain's follow-up file; interactive sessions ask unanswered questions, automated runs record safe assumptions or missing-scope blockers:
 - Framework: [assets/framework.follow-up.md](assets/framework.follow-up.md)
 - EDS: [assets/eds.follow-up.md](assets/eds.follow-up.md)
 - Skills catalog: [assets/skills.follow-up.md](assets/skills.follow-up.md)

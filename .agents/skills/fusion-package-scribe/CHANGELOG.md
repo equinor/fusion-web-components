@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.5 - 2026-11-21
+
+### patch
+
+- [#480](https://github.com/equinor/fusion-skills/pull/480) [`3a91663`](https://github.com/equinor/fusion-skills/commit/3a916635f0cc0ef996746bc631767c68f7e63943) - Separate documentation quality gates from host-owned edit, commit and publication authority; use host scratch storage and preserve council validation.
+
+
+  resolves equinor/fusion-skills#480
+  refs equinor/fusion-skills#479
+
 ## 0.0.4 - 2026-11-01
 
 ### patch

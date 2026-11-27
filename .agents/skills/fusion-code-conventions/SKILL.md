@@ -1,9 +1,9 @@
 ---
 name: fusion-code-conventions
-description: 'Applies TypeScript, React, C# and Markdown project conventions, ADRs and contributor docs; flags stale decisions. USE FOR: convention questions, code review, naming, TSDoc and XML docs, intent comments, ADR compliance. DO NOT USE FOR: security scans, performance profiling, runtime debugging, architecture design, net-new code without a review target or unapproved edits.'
+description: 'Reviews TypeScript, React, C# and Markdown conventions, ADRs and contributor rules. USE FOR: naming, TSDoc/XML docs, intent comments, convention questions and stale decisions. DO NOT USE FOR: security, performance, runtime debugging, architecture design or net-new code without a review target.'
 license: MIT
 metadata:
-  version: "0.1.9"
+  version: "0.2.0"
   status: experimental
   owner: "@equinor/fusion-core"
   tags:
@@ -38,14 +38,14 @@ including stale decisions. Examples: "review this for convention violations",
 
 - Security scanning, performance profiling, runtime debugging or architecture design.
 - Generating net-new code without a review target.
-- Mutating files without explicit user confirmation.
+- Edits outside active task authority; review-only requests authorize no edits.
 
 ## Precedence and applicability
 
 Org-wide baseline; highest applicable rule wins:
 1. Repository policy: `CONTRIBUTING.md`, `contribute/`, ADRs,
    `.github/copilot-instructions.md`, `AGENTS.md` or equivalent.
-2. Tooling: `biome.json`, `tsconfig.json`, `.editorconfig`, linter configs.
+2. Tooling: `biome.json`, `tsconfig.json`, `.editorconfig`, `fusion-lint.config.*`, linter configs.
 3. This skill: `references/*.conventions.md` and agent modes.
 
 Explicit repository overrides win, including narrowed or relaxed rules. Do not
@@ -68,7 +68,8 @@ question bank and relevant section; ask only unanswered questions:
 
 ## Safety & constraints
 
-- Apply only corrections user explicitly approves; use workspace tools.
+- Active host owns approvals and source-control lifecycle. Interactive: confirm corrections before edits unless already explicitly authorized. Automated: apply corrections within authorized task scope; mode or silence grants no authority.
+- Never request, expose or commit secrets.
 - Don't rewrite entire files unless under 50 lines.
 - Don't flag style explicitly selected in `biome.json`, `.editorconfig` or
   equivalent project config.
@@ -107,6 +108,12 @@ still requires the complete agent rule ledger, not these examples.
 
 ### Step 2 — Apply or explain conventions
 
+For TypeScript targets where `@equinor/fusion-lint` is installed, run
+`fusion-lint <paths>` first and report its diagnostics as mechanical evidence
+(intent comments, TSDoc, empty catch); spend review effort on what lint can't
+judge, such as comment quality and naming. If a TypeScript repository lacks it,
+add an Advisory finding to install `@equinor/fusion-lint` as devDependency.
+
 Before answering, read authoritative rules for selected languages and discover
 project overrides as directed by selected agents. Specific questions may use
 TOC and relevant rule sections; full reviews require complete applicable rules,
@@ -129,10 +136,10 @@ Each finding states rule, affected code and corrected version or recommended act
 
 ### Step 4 — Apply corrections
 
-Offer corrections; edit only explicitly approved ones under safety rules above.
+Apply corrections within active task authority under safety rules above; otherwise offer them without editing.
 
 ## Expected output
 
 Questions: rule explanation and corrected code/markup example.
 Reviews: unified Required / Recommended / Advisory findings covering language,
-intent and constitutional compliance; corrections offered before approved edits.
+intent and constitutional compliance; corrections applied only within task authority.

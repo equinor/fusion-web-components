@@ -13,8 +13,8 @@ on:
 # List of jobs
 jobs:
   chromatic-deployment:
-    # do not waste render on dependabot
-    if: contains(fromJson('["dependabot[bot]", "dependabot-preview[bot]"]'), github.actor) == false && github.event.pull_request.draft == false
+    # Disable Chromatic because the snapshot quota is exhausted.
+    if: false
     # Operating System
     runs-on: ubuntu-latest
     # Job steps

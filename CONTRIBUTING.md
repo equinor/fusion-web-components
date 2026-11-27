@@ -54,6 +54,30 @@ Use the dedicated Verdaccio registry at `http://127.0.0.1:4873/` and an authenti
 npm config at `$HOME/.config/fusion-dark-mode/npmrc`. The registry should allow authenticated reads and
 provide the unchanged dependencies through its npm uplink. Do not commit the config or credentials.
 
+#### Reuse the commit-qualified snapshot
+
+The retained snapshot comes from `090f40d9` and is tagged `dark-mode-090f40d9`. Obtain the
+trusted `web-090f40d9.json` manifest from whoever provisioned the local registry, and save it
+outside the checkout. The `reuse` command installs all 24 exact versions in a disposable project.
+It checks the tag, loopback tarball URLs, SHA-512 hashes, and that no transitive dependency
+substitutes an older stable version. It does not publish or retag anything.
+
+```sh
+node scripts/dark-mode-preview.mjs reuse "$HOME/.config/fusion-dark-mode/web-090f40d9.json"
+```
+
+For a disposable consumer checkout, use the exact `version` from the manifest, not `releaseVersion`
+or a stable range. For example:
+
+```sh
+npm install --save-exact @equinor/fusion-wc-theme@2.0.0-dark-mode-090f40d9 \
+  --registry=http://127.0.0.1:4873/ --@equinor:registry=http://127.0.0.1:4873/ \
+  --userconfig="$HOME/.config/fusion-dark-mode/npmrc"
+```
+
+#### Pack and publish stable release candidates locally
+
+These commands are separate from snapshot reuse and do not produce commit-qualified versions.
 Run from the web-components checkout. `pack` uses committed files from `HEAD` and works without
 Verdaccio. It calculates the normal Changesets release versions in a disposable copy, then uses
 pnpm to pack the versioned packages. Use a new output directory for each pack.
@@ -68,13 +92,5 @@ node scripts/dark-mode-preview.mjs publish .tmp/dark-mode-preview
 It refuses to overwrite a different artifact at the same version. Keep the original tarballs to retry
 a partial publish. The command smoke-installs all published versions into a disposable project and
 prints the exact package names, versions and integrity hashes.
-
-To try a package in a disposable consumer checkout, use the exact preview version. For example:
-
-```sh
-npm install --save-exact @equinor/fusion-wc-theme@2.0.0 \
-  --registry=http://127.0.0.1:4873/ --@equinor:registry=http://127.0.0.1:4873/ \
-  --userconfig="$HOME/.config/fusion-dark-mode/npmrc"
-```
 
 Keep any resulting manifest or lockfile changes local. CI and normal releases do not use Verdaccio.

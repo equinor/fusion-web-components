@@ -18,6 +18,8 @@ const tag = 'dark-mode';
 const userconfig = join(homedir(), '.config/fusion-dark-mode/npmrc');
 const repo = fileURLToPath(new URL('../', import.meta.url));
 const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
+const packageName = /^@equinor\/fusion-(wc-[a-z-]+|web-components)$/;
+const stableVersion = /^\d+\.\d+\.\d+$/;
 
 function run(command, args, cwd, capture = false) {
   return execFileSync(command, args, {
@@ -77,8 +79,8 @@ function artifact(file) {
   const { name, version, publishConfig = {} } = manifest;
   if (
     manifest.private ||
-    !/^@equinor\/fusion-(wc-[a-z-]+|web-components)$/.test(name) ||
-    !/^\d+\.\d+\.\d+$/.test(version) ||
+    !packageName.test(name) ||
+    !stableVersion.test(version) ||
     Object.keys(publishConfig).some((key) => key !== 'access')
   ) {
     throw new Error(`Unexpected preview manifest: ${name}@${version}`);
@@ -108,22 +110,20 @@ function metadata(pkg, cwd) {
   }
 }
 
-function verify(pkg, data, cwd) {
+function verify(pkg, data, cwd, expectedTag = tag) {
   const dist = JSON.parse(npm(['view', pkg.spec, 'dist', '--json'], cwd, true));
   if (
     dist.integrity !== pkg.integrity ||
     !dist.tarball?.startsWith(registry) ||
-    data['dist-tags']?.[tag] !== pkg.version
+    data['dist-tags']?.[expectedTag] !== pkg.version
   ) {
     throw new Error(
-      `${pkg.spec} conflicts with an existing registry entry or is not tagged ${tag}.`,
+      `${pkg.spec} conflicts with an existing registry entry or is not tagged ${expectedTag}.`,
     );
   }
 }
 
 function publish(output, stage) {
-  if (!existsSync(userconfig))
-    throw new Error(`Set up the dedicated Verdaccio npm config at ${userconfig} first.`);
   const packages = readdirSync(output)
     .filter((file) => file.endsWith('.tgz'))
     .sort()
@@ -154,33 +154,98 @@ function publish(output, stage) {
     }
   }
 
+  smokeInstall(packages, stage);
+}
+
+function reuse(manifest, stage) {
+  const { repository, commit, tag: snapshotTag, packages } = readJson(manifest);
+  if (
+    repository !== 'equinor/fusion-web-components' ||
+    typeof commit !== 'string' ||
+    !/^[0-9a-f]{40}$/.test(commit) ||
+    snapshotTag !== `dark-mode-${commit.slice(0, 8)}` ||
+    !packages ||
+    !Object.keys(packages).length
+  ) {
+    throw new Error('Expected a commit-qualified web-components preview manifest.');
+  }
+  const releases = Object.entries(packages).map(
+    ([name, { version, releaseVersion, integrity }]) => {
+      if (
+        !packageName.test(name) ||
+        typeof releaseVersion !== 'string' ||
+        !stableVersion.test(releaseVersion) ||
+        version !== `${releaseVersion}-${snapshotTag}` ||
+        typeof integrity !== 'string' ||
+        !/^sha512-[A-Za-z0-9+/]{86}==$/.test(integrity)
+      ) {
+        throw new Error(`Invalid snapshot manifest entry: ${name}`);
+      }
+      return { name, version, spec: `${name}@${version}`, integrity };
+    },
+  );
+  for (const pkg of releases) {
+    verify(pkg, metadata(pkg, stage), stage, snapshotTag);
+  }
+  smokeInstall(releases, stage, true);
+}
+
+function smokeInstall(packages, stage, requireExactTransitive = false) {
   writeFileSync(join(stage, 'package.json'), '{"private":true,"name":"fusion-dark-mode-smoke"}\n');
   npm(
-    ['install', '--save-exact', '--no-audit', '--no-fund', ...packages.map(({ spec }) => spec)],
+    [
+      'install',
+      '--save-exact',
+      '--package-lock',
+      '--no-audit',
+      '--no-fund',
+      ...packages.map(({ spec }) => spec),
+    ],
     stage,
   );
   const lock = readJson(join(stage, 'package-lock.json'));
-  for (const pkg of packages) {
-    const entry = lock.packages[`node_modules/${pkg.name}`];
-    if (entry?.integrity !== pkg.integrity || !entry.resolved?.startsWith(registry)) {
+  const verifyEntry = (pkg, entry) => {
+    if (
+      entry?.version !== pkg.version ||
+      entry.integrity !== pkg.integrity ||
+      !entry.resolved?.startsWith(registry)
+    ) {
       throw new Error(`Smoke install did not resolve ${pkg.spec} from the local registry.`);
     }
+  };
+  // A nested stable copy would invalidate snapshot testing even if the top-level install is correct.
+  if (requireExactTransitive) {
+    const byName = new Map(packages.map((pkg) => [pkg.name, pkg]));
+    for (const [path, entry] of Object.entries(lock.packages)) {
+      const pkg = byName.get(path.split('node_modules/').at(-1));
+      if (pkg) verifyEntry(pkg, entry);
+    }
+  }
+  for (const pkg of packages) {
+    verifyEntry(pkg, lock.packages[`node_modules/${pkg.name}`]);
     console.log(`${pkg.spec} ${pkg.integrity}`);
   }
 }
 
-const [action, directory] = process.argv.slice(2);
-if (!directory || !['pack', 'publish'].includes(action)) {
-  throw new Error('Usage: node scripts/dark-mode-preview.mjs <pack|publish> <tarball-directory>');
+const [action, input] = process.argv.slice(2);
+if (!input || !['pack', 'publish', 'reuse'].includes(action)) {
+  throw new Error(
+    'Usage: node scripts/dark-mode-preview.mjs <pack|publish|reuse> <tarball-directory-or-manifest>',
+  );
 }
-const output = resolve(directory);
+if (action !== 'pack' && !existsSync(userconfig)) {
+  throw new Error(`Set up the dedicated Verdaccio npm config at ${userconfig} first.`);
+}
+const path = resolve(input);
 const stage = mkdtempSync(join(tmpdir(), 'fusion-wc-preview-'));
 try {
   if (action === 'pack') {
-    mkdirSync(output);
-    pack(output, stage);
+    mkdirSync(path);
+    pack(path, stage);
+  } else if (action === 'reuse') {
+    reuse(path, stage);
   } else {
-    publish(output, stage);
+    publish(path, stage);
   }
 } finally {
   rmSync(stage, { recursive: true });

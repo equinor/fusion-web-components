@@ -102,12 +102,21 @@ function artifact(file) {
 }
 
 function metadata(pkg, cwd) {
+  let response;
   try {
-    return JSON.parse(npm(['view', `${pkg.name}@*`, 'versions', 'dist-tags', '--json'], cwd, true));
+    response = npm(['view', `${pkg.name}@*`, 'versions', 'dist-tags', '--json'], cwd, true);
   } catch (error) {
     if (error.stdout && JSON.parse(error.stdout).error?.code === 'E404') return {};
     throw error;
   }
+  const parsed = JSON.parse(response);
+  // npm repeats these package-wide fields for every matching version.
+  const data = Array.isArray(parsed) ? parsed[0] : parsed;
+  const tags = data?.['dist-tags'];
+  if (!Array.isArray(data?.versions) || !tags || typeof tags !== 'object' || Array.isArray(tags)) {
+    throw new Error(`Unexpected registry metadata for ${pkg.name}.`);
+  }
+  return data;
 }
 
 function verify(pkg, data, cwd, expectedTag = tag) {

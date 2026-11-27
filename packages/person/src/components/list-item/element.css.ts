@@ -21,7 +21,7 @@ const style: CSSResult = css`
     column-gap: ${unsafeCSS(theme.spacing.comfortable.medium.getVariable('padding'))};
     background-color: var(--fwc-person-list-item-background);
     border: 1px solid;
-    border-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    border-color: var(--eds-color-border-neutral-subtle);
     padding: calc(
         ${unsafeCSS(theme.spacing.comfortable.medium_small.getVariable('padding'))} * var(--content-resize, 1)
       )
@@ -32,7 +32,7 @@ const style: CSSResult = css`
   }
   .person-list__item.person-list__item-clickable:hover {
     box-shadow: ${unsafeCSS(theme.elevation.raised.getVariable('shadow'))};
-    background-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
+    background-color: var(--eds-color-bg-neutral-canvas);
   }
   .person-list__item-clickable {
     cursor: pointer;
@@ -56,7 +56,7 @@ const style: CSSResult = css`
     );
   }
   .person-list__sub-heading-expired {
-    color: ${unsafeCSS(theme.colors.interactive.danger__text.getVariable('color'))};
+    color: var(--eds-color-text-danger-subtle);
   }
   .person-list__toolbar {
     display: flex;

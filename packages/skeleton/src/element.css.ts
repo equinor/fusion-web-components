@@ -1,5 +1,4 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 const rectangleStyle = css`
   :host([variant='rectangle']) {
@@ -152,14 +151,14 @@ const style: CSSResult = css`
     display: block;
     position: relative;
     overflow: hidden;
-    --fwc-skeleton-fill-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
-    --fwc-skeleton-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))};
+    --fwc-skeleton-fill-color: var(--eds-color-bg-disabled);
+    --fwc-skeleton-ink-color: var(--eds-color-text-disabled);
     background-color: var(--fwc-skeleton-fill-color);
     height: 1em;
   }
 
   :host(:not([inactive])):after {
-    background-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+    background-image: linear-gradient(90deg, transparent, var(--eds-color-bg-neutral-surface), transparent);
     animation: 1.6s linear 0.5s infinite normal none running fwc-skeleton__animation-shine;
     content: '';
     position: absolute;

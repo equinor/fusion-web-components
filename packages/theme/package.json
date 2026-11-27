@@ -8,7 +8,8 @@
     "build": "tsc -b",
     "postbuild": "pnpm typedoc",
     "typedoc": "cem analyze --litelement --globs \"src/**/*.ts\" --outdir lib",
-    "prepack": "pnpm build && fwc-build"
+    "prepack": "pnpm build && fwc-build",
+    "generate:color-scheme": "node scripts/generate-color-scheme-aliases.mjs"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@equinor/eds-tokens": "^2.3.2",
     "@equinor/fusion-wc-builder": "workspace:^",
     "tslib": "^2.9.1",
     "typescript": "^7.0.2"

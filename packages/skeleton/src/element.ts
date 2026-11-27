@@ -10,8 +10,8 @@ export type SkeletonElementProps = Pick<SkeletonElement, 'size' | 'variant' | 'i
  *
  * @tag fwc-skeleton
  *
- * @cssprop {theme.colors.interactive.disabled__fill} --fwc-skeleton-fill-color - background color of the element.
- * @cssprop {theme.colors.interactive.disabled__text} --fwc-skeleton-ink-color - text color of the element.
+ * @cssprop {var(--eds-color-bg-disabled)} --fwc-skeleton-fill-color - background color of the element.
+ * @cssprop {var(--eds-color-text-disabled)} --fwc-skeleton-ink-color - text color of the element.
  *
  * @slot default - Inner content of the skeleton
  *

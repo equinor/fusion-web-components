@@ -1,74 +1,73 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 
 export const styleColors: CSSResult = css`
   :host([color='primary'][variant='filled']) {
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --fwc-chip-ink-hover-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))};
-    --fwc-chip-fill-hover-color: ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-accent-subtle);
+    --fwc-chip-ink-hover-color: var(--eds-color-text-accent-subtle);
+    --fwc-chip-fill-color: var(--eds-color-bg-neutral-canvas);
+    --fwc-chip-fill-hover-color: var(--eds-color-bg-neutral-fill-muted-default);
   }
   :host([color='primary'][variant='outlined']) {
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --fwc-chip-ink-hover-color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
-    --fwc-chip-border-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --fwc-chip-border-hover-color: ${unsafeCSS(theme.colors.interactive.primary__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-accent-subtle);
+    --fwc-chip-ink-hover-color: var(--eds-color-bg-accent-fill-emphasis-hover);
+    --fwc-chip-border-color: var(--eds-color-border-accent-strong);
+    --fwc-chip-border-hover-color: var(--eds-color-border-accent-strong);
   }
   :host([color='secondary'][variant='filled']) {
-    --fwc-chip-ink-color: #fff;
-    --fwc-chip-ink-hover-color: #fff;
-    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-    --fwc-chip-fill-hover-color: ${unsafeCSS(theme.colors.interactive.secondary__link_hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-neutral-strong-on-emphasis);
+    --fwc-chip-ink-hover-color: var(--eds-color-text-neutral-strong-on-emphasis);
+    --fwc-chip-fill-color: var(--eds-color-bg-neutral-fill-emphasis-default);
+    --fwc-chip-fill-hover-color: var(--eds-color-bg-neutral-fill-emphasis-hover);
   }
   :host([color='secondary'][variant='outlined']) {
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-    --fwc-chip-ink-hover-color: ${unsafeCSS(theme.colors.interactive.secondary__link_hover.getVariable('color'))};
-    --fwc-chip-border-color: ${unsafeCSS(theme.colors.interactive.secondary__resting.getVariable('color'))};
-    --fwc-chip-border-hover-color: ${unsafeCSS(theme.colors.interactive.secondary__link_hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-neutral-strong);
+    --fwc-chip-ink-hover-color: var(--eds-color-text-neutral-strong);
+    --fwc-chip-border-color: var(--eds-color-border-neutral-strong);
+    --fwc-chip-border-hover-color: var(--eds-color-border-neutral-strong);
   }
   :host([color='success'][variant='filled']) {
-    --fwc-chip-ink-color: #fff;
-    --fwc-chip-ink-hover-color: #fff;
-    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
-    --fwc-chip-border-hover-color: ${unsafeCSS(theme.colors.interactive.success__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-success-strong-on-emphasis);
+    --fwc-chip-ink-hover-color: var(--eds-color-text-success-strong-on-emphasis);
+    --fwc-chip-fill-color: var(--eds-color-bg-success-fill-emphasis-default);
+    --fwc-chip-border-hover-color: var(--eds-color-border-success-strong);
   }
   :host([color='success'][variant='outlined']) {
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
-    --fwc-chip-ink-hover-color: ${unsafeCSS(theme.colors.interactive.success__hover.getVariable('color'))};
-    --fwc-chip-border-color: ${unsafeCSS(theme.colors.interactive.success__resting.getVariable('color'))};
-    --fwc-chip-border-hover-color: ${unsafeCSS(theme.colors.interactive.success__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-success-subtle);
+    --fwc-chip-ink-hover-color: var(--eds-color-bg-success-fill-emphasis-hover);
+    --fwc-chip-border-color: var(--eds-color-border-success-strong);
+    --fwc-chip-border-hover-color: var(--eds-color-border-success-strong);
   }
   :host([color='danger'][variant='filled']) {
-    --fwc-chip-ink-color: #fff;
-    --fwc-chip-ink-hover-color: #fff;
-    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    --fwc-chip-fill-hover-color: ${unsafeCSS(theme.colors.interactive.danger__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-danger-strong-on-emphasis);
+    --fwc-chip-ink-hover-color: var(--eds-color-text-danger-strong-on-emphasis);
+    --fwc-chip-fill-color: var(--eds-color-bg-danger-fill-emphasis-default);
+    --fwc-chip-fill-hover-color: var(--eds-color-bg-danger-fill-emphasis-hover);
   }
   :host([color='danger'][variant='outlined']) {
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    --fwc-chip-ink-hover-color: ${unsafeCSS(theme.colors.interactive.danger__hover.getVariable('color'))};
-    --fwc-chip-border-color: ${unsafeCSS(theme.colors.interactive.danger__resting.getVariable('color'))};
-    --fwc-chip-border-hover-color: ${unsafeCSS(theme.colors.interactive.danger__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-danger-subtle);
+    --fwc-chip-ink-hover-color: var(--eds-color-bg-danger-fill-emphasis-hover);
+    --fwc-chip-border-color: var(--eds-color-border-danger-strong);
+    --fwc-chip-border-hover-color: var(--eds-color-border-danger-strong);
   }
   :host([color='warning'][variant='filled']) {
-    --fwc-chip-ink-color: #fff;
-    --fwc-chip-ink-hover-color: #fff;
-    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-    --fwc-chip-fill-hover-color: ${unsafeCSS(theme.colors.interactive.warning__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-warning-strong-on-emphasis);
+    --fwc-chip-ink-hover-color: var(--eds-color-text-warning-strong-on-emphasis);
+    --fwc-chip-fill-color: var(--eds-color-bg-warning-fill-emphasis-default);
+    --fwc-chip-fill-hover-color: var(--eds-color-bg-warning-fill-emphasis-hover);
   }
   :host([color='warning'][variant='outlined']) {
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-    --fwc-chip-ink-hover-color: ${unsafeCSS(theme.colors.interactive.warning__hover.getVariable('color'))};
-    --fwc-chip-border-color: ${unsafeCSS(theme.colors.interactive.warning__resting.getVariable('color'))};
-    --fwc-chip-border-hover-color: ${unsafeCSS(theme.colors.interactive.warning__hover.getVariable('color'))};
+    --fwc-chip-ink-color: var(--eds-color-text-warning-subtle);
+    --fwc-chip-ink-hover-color: var(--eds-color-bg-warning-fill-emphasis-hover);
+    --fwc-chip-border-color: var(--eds-color-border-warning-strong);
+    --fwc-chip-border-hover-color: var(--eds-color-border-warning-strong);
   }
   :host([disabled][variant='filled']) {
-    --fwc-chip-fill-color: ${unsafeCSS(theme.colors.ui.background__light.getVariable('color'))} !important;
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
+    --fwc-chip-fill-color: var(--eds-color-bg-neutral-canvas) !important;
+    --fwc-chip-ink-color: var(--eds-color-text-disabled) !important;
   }
   :host([disabled][variant='outlined']) {
-    --fwc-chip-border-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
-    --fwc-chip-ink-color: ${unsafeCSS(theme.colors.interactive.disabled__text.getVariable('color'))} !important;
+    --fwc-chip-border-color: var(--eds-color-border-disabled) !important;
+    --fwc-chip-ink-color: var(--eds-color-text-disabled) !important;
   }
 `;
 

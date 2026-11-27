@@ -45,10 +45,10 @@ export type TextAreaElementProps = {
  * @property {boolean} validateOnInitialRender - Runs validation check on initial render
  * @property {(value: string, nativeValidity: ValidityState) => Partial<ValidityState>} validityTransform - Callback called before each validation check. See the [validation section](#Validation) for more details.
  *
- * @cssprop {theme.colors.text.static_icons__tertiary} --fwc-text-field-base-color - base color of the element
- * @cssprop {theme.colors.ui.background__light} --fwc-text-field-fill-color - background color of element
- * @cssprop {theme.colors.text.static_icons__default} --fwc-text-field-ink-color -  Text color
- * @cssprop {theme.colors.text.static_icons__default} --fwc-text-field-disabled-ink-color - Text color when disabled
+ * @cssprop {var(--eds-color-text-neutral-subtle)} --fwc-text-field-base-color - base color of the element
+ * @cssprop {var(--eds-color-bg-input)} --fwc-text-field-fill-color - background color of element
+ * @cssprop {var(--eds-color-text-neutral-strong)} --fwc-text-field-ink-color -  Text color
+ * @cssprop {var(--eds-color-text-neutral-strong)} --fwc-text-field-disabled-ink-color - Text color when disabled
  *
  * @fires change - When the focus is removed from the element
  * @fires input - When the value of the element changes

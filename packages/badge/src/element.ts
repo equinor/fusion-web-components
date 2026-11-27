@@ -28,7 +28,7 @@ export type ObjectValue<T> = Extract<T[keyof T], string>;
  *
  *
  *
- * @cssprop {theme.colors.interactive.primary__resting} --fwc-badge-color - Color of the badge.
+ * @cssprop {var(--eds-color-bg-accent-fill-emphasis-default)} --fwc-badge-color - Color of the badge.
  * @cssprop {1.5rem} --fwc-badge-size - Size of the badge.
  * @cssprop {0.75rem} --fwc-badge-font-size - Font size of the text value.
  * @cssprop {0.685em} --fwc-badge-icon-size - Size of the icon.

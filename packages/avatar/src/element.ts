@@ -25,9 +25,9 @@ export type ObjectValue<T> = Extract<T[keyof T], string>;
  * @tag fwc-avatar
  *
  * @cssprop {3.5rem} --fwc-avatar-size - size of the element.
- * @cssprop {theme.colors.interactive.primary__resting} --fwc-avatar-color - base color of the element.
- * @cssprop {heme.colors.ui.background__light} --fwc-avatar-background - background color when `AvatarElement.border` is `true`
- * @cssprop {theme.colors.text.static_icons__primary_white} --fwc-avatar-ink-color - text color of the element.
+ * @cssprop {var(--eds-color-bg-accent-fill-emphasis-default)} --fwc-avatar-color - base color of the element.
+ * @cssprop {var(--eds-color-bg-neutral-canvas)} --fwc-avatar-background - background color when `AvatarElement.border` is `true`
+ * @cssprop {var(--eds-color-text-accent-strong-on-emphasis)} --fwc-avatar-ink-color - text color of the element.
  *
  * @fires click - When the element is clicked, only fires when 'clickable' is set to 'true'.
  *

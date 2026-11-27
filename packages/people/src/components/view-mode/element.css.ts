@@ -22,11 +22,11 @@ export const tableViewStyles: CSSResult = css`
     position: absolute;
     top: var(--fwc-view-mode-position);
     right: 0;
-    background: ${unsafeCSS(theme.colors.ui.background__default.getVariable('color'))};
-    border: 1px solid ${unsafeCSS(theme.colors.ui.background__medium.getVariable('color'))};
+    background: var(--eds-color-bg-neutral-surface);
+    border: 1px solid var(--eds-color-border-neutral-subtle);
     padding: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
     border-radius: ${unsafeCSS(theme.spacing.comfortable.small.getVariable('padding'))};
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--eds-elevation-low);
     z-index: 10000;
     display: none;
 

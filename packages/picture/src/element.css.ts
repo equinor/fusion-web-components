@@ -7,7 +7,7 @@ const style: CSSResult = css`
   svg {
     height: 100%;
     width: 100%;
-    fill: rgba(0, 0, 0, 0.25);
+    fill: var(--eds-color-bg-neutral-fill-muted-default);
   }
   picture,
   img {

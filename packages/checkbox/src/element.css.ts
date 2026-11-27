@@ -1,5 +1,4 @@
-import { css, unsafeCSS, type CSSResult } from 'lit';
-import { styles as theme } from '@equinor/fusion-web-theme';
+import { css, type CSSResult } from 'lit';
 import { styles as mdcStyle } from '@material/mwc-checkbox/mwc-checkbox.css';
 
 const style: CSSResult = css`
@@ -14,9 +13,9 @@ const style: CSSResult = css`
 
 export const mdcStyleOverride = css`
   :host {
-    --mdc-checkbox-ink-color: ${unsafeCSS(theme.colors.text.static_icons__primary_white.getVariable('color'))};
-    --mdc-checkbox-unchecked-color: ${unsafeCSS(theme.colors.interactive.primary__resting.getVariable('color'))};
-    --mdc-checkbox-disabled-color: ${unsafeCSS(theme.colors.interactive.disabled__fill.getVariable('color'))};
+    --mdc-checkbox-ink-color: var(--eds-color-text-accent-strong-on-emphasis);
+    --mdc-checkbox-unchecked-color: var(--eds-color-border-accent-strong);
+    --mdc-checkbox-disabled-color: var(--eds-color-text-disabled);
   }
   .mdc-checkbox {
     flex: 0 0 var(--fwc-checkbox-size) !important;
